@@ -1,0 +1,9 @@
+django
+djangorestframework
+black
+django-admin-extras
+django-cleanup
+sorl-thumbnail
+pillow
+django-timezone-field
+django-ckeditor

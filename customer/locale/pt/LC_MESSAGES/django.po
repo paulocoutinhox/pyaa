@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-10 07:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: customer/apps.py:8
+msgid "customer.app.description"
+msgstr "cliente"
+
+#: customer/enums.py:7
+msgid "enum.customer-status.active"
+msgstr "ativo"
+
+#: customer/enums.py:8
+msgid "enum.customer-status.inactive"
+msgstr "inativo"
+
+#: customer/enums.py:9
+msgid "enum.customer-status.deleted"
+msgstr "removido"
+
+#: customer/enums.py:18
+msgid "enum.customer-gender.male"
+msgstr "masculino"
+
+#: customer/enums.py:19
+msgid "enum.customer-gender.female"
+msgstr "feminino"
+
+#: customer/enums.py:20
+msgid "enum.customer-gender.none"
+msgstr "não informado"
+
+#: customer/filters.py:8
+msgid "filter.name"
+msgstr "nome"
+
+#: customer/forms.py:31
+msgid "form.label.password"
+msgstr "Senha"
+
+#: customer/forms.py:37
+msgid "form.label.confirm-password"
+msgstr "Confirmar senha"
+
+#: customer/forms.py:43
+msgid "form.label.mobile-phone"
+msgstr "Telefone celular"
+
+#: customer/forms.py:49
+msgid "form.label.home-phone"
+msgstr "Telefone residencial"
+
+#: customer/forms.py:63 customer/forms.py:72
+msgid "validation.password-not-match"
+msgstr "Sua senha e confirmação de senha não são as mesmas"
+
+#: customer/forms.py:84
+msgid "This field is required."
+msgstr ""
+
+#: customer/models.py:18
+msgid "model.customer.name"
+msgstr "cliente"
+
+#: customer/models.py:19
+msgid "model.customer.name.plural"
+msgstr "clientes"
+
+#: customer/models.py:49
+msgid "model.field.id"
+msgstr "código"
+
+#: customer/models.py:55
+msgid "model.field.name"
+msgstr "nome"
+
+#: customer/models.py:65
+msgid "model.field.language"
+msgstr "idioma"
+
+#: customer/models.py:69
+msgid "model.field.mobile-phone"
+msgstr "Telefone celular"
+
+#: customer/models.py:76
+msgid "model.field.home-phone"
+msgstr "telefone residencial"
+
+#: customer/models.py:83
+msgid "model.field.email"
+msgstr "email"
+
+#: customer/models.py:92
+msgid "model.field.auth-key"
+msgstr "chave de autenticação"
+
+#: customer/models.py:102
+msgid "model.field.password-hash"
+msgstr "hash da senha"
+
+#: customer/models.py:111
+msgid "model.field.password-reset-token"
+msgstr "token para resetar senha"
+
+#: customer/models.py:120
+msgid "model.field.verification-token"
+msgstr "token de verificação"
+
+#: customer/models.py:129
+msgid "model.field.status"
+msgstr "status"
+
+#: customer/models.py:136
+msgid "model.field.gender"
+msgstr "gênero"
+
+#: customer/models.py:143
+msgid "model.field.avatar"
+msgstr "avatar"
+
+#: customer/models.py:150
+msgid "model.field.obs"
+msgstr "obs"
+
+#: customer/models.py:156
+msgid "model.field.timezone"
+msgstr "fuso-horário"
+
+#: customer/models.py:161
+msgid "model.field.logged-at"
+msgstr "logado em"
+
+#: customer/models.py:168
+msgid "model.field.created-at"
+msgstr "criado em"
+
+#: customer/models.py:173
+msgid "model.field.updated-at"
+msgstr "alterado em"

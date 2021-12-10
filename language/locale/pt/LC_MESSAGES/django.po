@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-10 07:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: language/apps.py:8
+msgid "language.app.description"
+msgstr "idioma"
+
+#: language/filters.py:8
+msgid "filter.name"
+msgstr "nome"
+
+#: language/models.py:8
+msgid "model.language.name"
+msgstr "idioma"
+
+#: language/models.py:9
+msgid "model.language.name.plural"
+msgstr "idiomas"
+
+#: language/models.py:19
+msgid "model.field.id"
+msgstr "código"
+
+#: language/models.py:25
+msgid "model.field.name"
+msgstr "nome"
+
+#: language/models.py:30
+msgid "model.field.native_name"
+msgstr "nome nativo"
+
+#: language/models.py:32
+msgid "model.hint.native_name"
+msgstr "Nome nativo sem tradução"
+
+#: language/models.py:36
+msgid "model.field.code_iso_639_1"
+msgstr "código ISO 639-1"
+
+#: language/models.py:38
+msgid "model.hint.code_iso_639_1"
+msgstr "Exemplos: en ou pt"
+
+#: language/models.py:42
+msgid "model.field.code_iso_language"
+msgstr "código ISO"
+
+#: language/models.py:43
+msgid "model.hint.code_iso_language"
+msgstr "Exemplos: en-US ou pt-BR"
