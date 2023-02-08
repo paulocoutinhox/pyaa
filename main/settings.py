@@ -28,7 +28,7 @@ SECRET_KEY = "q0ng$x*h)wk56w2-57h53cta36=pd=cjg%d!vb!nq$rhf=j=#r"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*.naavod.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
