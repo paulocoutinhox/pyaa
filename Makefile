@@ -7,20 +7,22 @@ help:
 	@echo "Type: make [rule]. Available options are:"
 	@echo ""
 	@echo "- help"
-	@echo "- format"	
+	@echo "- format"
 	@echo "- setup"
 	@echo "- backup"
 	@echo "- restore-backup"
+	@echo ""
 	@echo "- migrate"
 	@echo "- migration-reset"
 	@echo "- create-su"
+	@echo "- run"
 	@echo ""
 
 format:
 	black .
 
 setup:
-	pip install -r requirements.txt --upgrade
+	python3 -m pip install -r requirements.txt --upgrade
 
 backup:
 	cd ../ && \
@@ -36,18 +38,24 @@ migration-reset:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
 	find . -path "*/migrations/*.pyc" -delete
 	find . -name "db.sqlite3" -delete
-	python manage.py makemigrations
-	python manage.py migrate
+	python3 manage.py makemigrations
+	python3 manage.py migrate
 	@make create-su
-	
+
 migrate:
-	python manage.py migrate customer 0001
-	python manage.py migrate language 0001
-	python manage.py makemigrations
-	python manage.py migrate
-	
+	python3 manage.py migrate customer 0001
+	python3 manage.py migrate language 0001
+	python3 manage.py makemigrations
+	python3 manage.py migrate
+
 create-su:
 	DJANGO_SUPERUSER_USERNAME="admin" \
 	DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
 	DJANGO_SUPERUSER_PASSWORD="admin" \
-	python manage.py createsuperuser --noinput
+	python3 manage.py createsuperuser --noinput
+
+run:
+	python3 manage.py runserver
+
+run-gunicorn:
+	gunicorn --bind 0.0.0.0:8000 main.wsgi

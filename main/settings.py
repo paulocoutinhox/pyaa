@@ -200,4 +200,4 @@ CKEDITOR_CONFIGS = {
 }
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
-#CKEDITOR_FILENAME_GENERATOR = "helpers.FileHelper.ckeditor_generate_filename"
+# CKEDITOR_FILENAME_GENERATOR = "helpers.FileHelper.ckeditor_generate_filename"

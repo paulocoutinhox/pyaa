@@ -14,60 +14,204 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('language', '0001_initial'),
+        ("language", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(primary_key=True, serialize=False, unique=True, verbose_name='model.field.id')),
-                ('name', models.CharField(max_length=255, verbose_name='model.field.name')),
-                ('mobile_phone', models.CharField(blank=True, max_length=11, null=True, verbose_name='model.field.mobile-phone')),
-                ('home_phone', models.CharField(blank=True, max_length=11, null=True, verbose_name='model.field.home-phone')),
-                ('email', models.CharField(max_length=255, unique=True, validators=[django.core.validators.EmailValidator()], verbose_name='model.field.email')),
-                ('auth_key', models.CharField(default=uuid.uuid4, editable=False, max_length=32, unique=True, verbose_name='model.field.auth-key')),
-                ('password_hash', models.CharField(editable=False, max_length=255, unique=True, verbose_name='model.field.password-hash')),
-                ('password_reset_token', models.CharField(blank=True, editable=False, max_length=32, null=True, unique=True, verbose_name='model.field.password-reset-token')),
-                ('verification_token', models.CharField(blank=True, editable=False, max_length=32, null=True, unique=True, verbose_name='model.field.verification-token')),
-                ('status', models.CharField(choices=[('active', 'enum.customer-status.active'), ('inactive', 'enum.customer-status.inactive'), ('deleted', 'enum.customer-status.deleted')], default='active', max_length=255, verbose_name='model.field.status')),
-                ('gender', models.CharField(blank=True, choices=[('male', 'enum.customer-gender.male'), ('female', 'enum.customer-gender.female'), ('none', 'enum.customer-gender.none')], default='none', max_length=255, null=True, verbose_name='model.field.gender')),
-                ('avatar', customer.fields.CustomerImageField(blank=True, null=True, upload_to='images/customer/avatar/%Y/%m/%d', verbose_name='model.field.avatar')),
-                ('obs', ckeditor_uploader.fields.RichTextUploadingField(blank=True, null=True, verbose_name='model.field.obs')),
-                ('timezone', timezone_field.fields.TimeZoneField(default='America/Sao_Paulo', max_length=255, verbose_name='model.field.timezone')),
-                ('logged_at', models.DateTimeField(blank=True, editable=False, null=True, verbose_name='model.field.logged-at')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='model.field.created-at')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='model.field.updated-at')),
-                ('language', models.ForeignKey(default=0, on_delete=django.db.models.deletion.RESTRICT, to='language.language', verbose_name='model.field.language')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
+                        verbose_name="model.field.id",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=255, verbose_name="model.field.name"),
+                ),
+                (
+                    "mobile_phone",
+                    models.CharField(
+                        blank=True,
+                        max_length=11,
+                        null=True,
+                        verbose_name="model.field.mobile-phone",
+                    ),
+                ),
+                (
+                    "home_phone",
+                    models.CharField(
+                        blank=True,
+                        max_length=11,
+                        null=True,
+                        verbose_name="model.field.home-phone",
+                    ),
+                ),
+                (
+                    "email",
+                    models.CharField(
+                        max_length=255,
+                        unique=True,
+                        validators=[django.core.validators.EmailValidator()],
+                        verbose_name="model.field.email",
+                    ),
+                ),
+                (
+                    "auth_key",
+                    models.CharField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        max_length=32,
+                        unique=True,
+                        verbose_name="model.field.auth-key",
+                    ),
+                ),
+                (
+                    "password_hash",
+                    models.CharField(
+                        editable=False,
+                        max_length=255,
+                        unique=True,
+                        verbose_name="model.field.password-hash",
+                    ),
+                ),
+                (
+                    "password_reset_token",
+                    models.CharField(
+                        blank=True,
+                        editable=False,
+                        max_length=32,
+                        null=True,
+                        unique=True,
+                        verbose_name="model.field.password-reset-token",
+                    ),
+                ),
+                (
+                    "verification_token",
+                    models.CharField(
+                        blank=True,
+                        editable=False,
+                        max_length=32,
+                        null=True,
+                        unique=True,
+                        verbose_name="model.field.verification-token",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("active", "enum.customer-status.active"),
+                            ("inactive", "enum.customer-status.inactive"),
+                            ("deleted", "enum.customer-status.deleted"),
+                        ],
+                        default="active",
+                        max_length=255,
+                        verbose_name="model.field.status",
+                    ),
+                ),
+                (
+                    "gender",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("male", "enum.customer-gender.male"),
+                            ("female", "enum.customer-gender.female"),
+                            ("none", "enum.customer-gender.none"),
+                        ],
+                        default="none",
+                        max_length=255,
+                        null=True,
+                        verbose_name="model.field.gender",
+                    ),
+                ),
+                (
+                    "avatar",
+                    customer.fields.CustomerImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="images/customer/avatar/%Y/%m/%d",
+                        verbose_name="model.field.avatar",
+                    ),
+                ),
+                (
+                    "obs",
+                    ckeditor_uploader.fields.RichTextUploadingField(
+                        blank=True, null=True, verbose_name="model.field.obs"
+                    ),
+                ),
+                (
+                    "timezone",
+                    timezone_field.fields.TimeZoneField(
+                        default="America/Sao_Paulo",
+                        max_length=255,
+                        verbose_name="model.field.timezone",
+                    ),
+                ),
+                (
+                    "logged_at",
+                    models.DateTimeField(
+                        blank=True,
+                        editable=False,
+                        null=True,
+                        verbose_name="model.field.logged-at",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="model.field.created-at"
+                    ),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="model.field.updated-at"
+                    ),
+                ),
+                (
+                    "language",
+                    models.ForeignKey(
+                        default=0,
+                        on_delete=django.db.models.deletion.RESTRICT,
+                        to="language.language",
+                        verbose_name="model.field.language",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'model.customer.name',
-                'verbose_name_plural': 'model.customer.name.plural',
-                'db_table': 'customer',
+                "verbose_name": "model.customer.name",
+                "verbose_name_plural": "model.customer.name.plural",
+                "db_table": "customer",
             },
         ),
         migrations.AddIndex(
-            model_name='customer',
-            index=models.Index(fields=['language'], name='customer_language'),
+            model_name="customer",
+            index=models.Index(fields=["language"], name="customer_language"),
         ),
         migrations.AddIndex(
-            model_name='customer',
-            index=models.Index(fields=['name'], name='customer_name'),
+            model_name="customer",
+            index=models.Index(fields=["name"], name="customer_name"),
         ),
         migrations.AddIndex(
-            model_name='customer',
-            index=models.Index(fields=['mobile_phone'], name='customer_mobile_phone'),
+            model_name="customer",
+            index=models.Index(fields=["mobile_phone"], name="customer_mobile_phone"),
         ),
         migrations.AddIndex(
-            model_name='customer',
-            index=models.Index(fields=['home_phone'], name='customer_home_phone'),
+            model_name="customer",
+            index=models.Index(fields=["home_phone"], name="customer_home_phone"),
         ),
         migrations.AddIndex(
-            model_name='customer',
-            index=models.Index(fields=['status'], name='customer_status'),
+            model_name="customer",
+            index=models.Index(fields=["status"], name="customer_status"),
         ),
         migrations.AddIndex(
-            model_name='customer',
-            index=models.Index(fields=['gender'], name='customer_gender'),
+            model_name="customer",
+            index=models.Index(fields=["gender"], name="customer_gender"),
         ),
     ]
