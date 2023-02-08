@@ -15,7 +15,12 @@ help:
 	@echo "- migrate"
 	@echo "- migration-reset"
 	@echo "- create-su"
+	@echo ""
 	@echo "- run"
+	@echo "- run-gunicorn"
+	@echo ""
+	@echo "- docker-build"
+	@echo "- docker-run"
 	@echo ""
 
 format:
@@ -59,3 +64,10 @@ run:
 
 run-gunicorn:
 	gunicorn --bind 0.0.0.0:8000 main.wsgi
+
+docker-build:
+	docker build --no-cache -t pyaa .
+
+docker-run:
+	@echo "Running..."
+	@docker run --rm -p 8000:8000 pyaa
