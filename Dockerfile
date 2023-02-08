@@ -11,9 +11,6 @@ COPY requirements.txt ./
 RUN python3 -m pip install -r requirements.txt
 COPY . .
 
-# create super user
-RUN python3 manage.py createsuperuser --noinput
-
 # expose ports
 EXPOSE 8000
 
