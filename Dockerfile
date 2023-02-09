@@ -35,6 +35,7 @@ RUN addgroup --gid "${GID}" "${GROUP}" \
 # create folders
 RUN mkdir -p /app/static && \
     mkdir -p /app/media && \
+    mkdir -p /app/db && \
     chown -R docker:docker /app && \
     chmod -R 755 /app
 
