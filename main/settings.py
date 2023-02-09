@@ -23,14 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "q0ng$x*h)wk56w2-57h53cta36=pd=cjg%d!vb!nq$rhf=j=#r"
+SECRET_KEY = "myapp-secret-key"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# SECURITY WARNING: specify correct domain in production
-ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*.naavod.com']
+# SECURITY WARNING: check if you are running in correct environment
+if os.getenv("APP_ENV") == "prod":
+    DEBUG = False
+    ALLOWED_HOSTS = [os.getenv("APP_ALLOWED_HOSTS")]
+    CSRF_TRUSTED_ORIGINS = [os.getenv("APP_CSRF_TRUSTED_ORIGINS")]
+else:
+    DEBUG = True
 
 # Application definition
 
@@ -91,7 +92,7 @@ WSGI_APPLICATION = "main.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": BASE_DIR / "db/db.sqlite3",
     }
 }
 

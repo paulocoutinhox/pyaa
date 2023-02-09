@@ -9,8 +9,6 @@ help:
 	@echo "- help"
 	@echo "- format"
 	@echo "- setup"
-	@echo "- backup"
-	@echo "- restore-backup"
 	@echo ""
 	@echo "- migrate"
 	@echo "- migration-reset"
@@ -21,6 +19,7 @@ help:
 	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-run"
+	@echo "- docker-run-prod"
 	@echo ""
 
 format:
@@ -28,16 +27,6 @@ format:
 
 setup:
 	python3 -m pip install -r requirements.txt --upgrade
-
-backup:
-	cd ../ && \
-	tar -zcvf ~/Dropbox/Public/pyaa.tar.gz pyaa
-
-restore-backup:
-	cd ../ && \
-	mv pyaa pyaa-$(shell date +'%y%m%d-%H%M%S') && \
-	mkdir pyaa && \
-	tar -xvf ~/Dropbox/Public/pyaa.tar.gz -C .
 
 migration-reset:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
@@ -60,14 +49,29 @@ create-su:
 	python3 manage.py createsuperuser --noinput
 
 run:
-	python3 manage.py runserver
-
-run-gunicorn:
-	gunicorn --bind 0.0.0.0:8000 main.wsgi
+	python3 manage.py runserver "0.0.0.0:8000"
 
 docker-build:
 	docker build --no-cache -t pyaa .
 
 docker-run:
 	@echo "Running..."
-	@docker run --rm -p 8000:8000 pyaa
+	@docker run --rm -v ${PWD}/db:/app/db \
+		-v ${PWD}/media:/app/media \
+		-e APP_ENV=dev \
+		-e DJANGO_SUPERUSER_USERNAME="admin" \
+		-e DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
+		-e DJANGO_SUPERUSER_PASSWORD="admin" \
+		-p 8000:8000 pyaa
+
+docker-run-prod:
+	@echo "Running..."
+	@docker run --rm -v ${PWD}/db:/app/db \
+		-v ${PWD}/media:/app/media \
+		-e APP_ENV=prod \
+		-e APP_ALLOWED_HOSTS="localhost" \
+		-e APP_CSRF_TRUSTED_ORIGINS="http://localhost" \
+		-e DJANGO_SUPERUSER_USERNAME="admin" \
+		-e DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
+		-e DJANGO_SUPERUSER_PASSWORD="admin" \
+		-p 8000:8000 pyaa
