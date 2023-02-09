@@ -30,14 +30,6 @@ class CustomerAdmin(admin.ModelAdmin):
 
     form = forms.CustomerAdminForm
 
-    def get_breadcrumb(self):
-        breadcrumb = super().get_breadcrumb()
-        breadcrumb["parents"] = [
-            {"title": "Home", "url": "/admin/"},
-            {"title": "CustomerX", "url": "/admin/customer/customer/"},
-        ]
-        return breadcrumb
-
     def get_queryset(self, request):
         qs = super(CustomerAdmin, self).get_queryset(request)
         return qs
