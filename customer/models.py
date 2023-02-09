@@ -1,17 +1,17 @@
 import uuid
 from datetime import datetime
 
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.hashers import make_password
 from django.core.validators import EmailValidator
 from django.db import models
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
-from language import models as language_models
-from main.settings import DEFAULT_TIME_ZONE
 from timezone_field import TimeZoneField
+from tinymce.models import HTMLField
 
 from customer import enums, fields
+from language import models as language_models
+from main.settings import DEFAULT_TIME_ZONE
 
 
 class Customer(models.Model):
@@ -150,11 +150,10 @@ class Customer(models.Model):
         null=True,
     )
 
-    obs = RichTextUploadingField(
+    obs = HTMLField(
         _("model.field.obs"),
         blank=True,
         null=True,
-        config_name="basic",
     )
 
     timezone = TimeZoneField(

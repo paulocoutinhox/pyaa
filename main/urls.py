@@ -20,11 +20,14 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.utils.translation import gettext_lazy as _
 
+from . import views
+
 urlpatterns = [
     re_path("api/", include("customer.urls")),
     re_path("api/", include("language.urls")),
     path("admin/", admin.site.urls),
-    path("ckeditor/", include("ckeditor_uploader.urls")),
+    path("tinymce/", include("tinymce.urls")),
+    path("upload_image/", views.upload_image),
 ]
 
 admin.site.site_header = _("main.admin.name")

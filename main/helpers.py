@@ -1,4 +1,4 @@
-import os
+import pathlib
 import re
 import uuid
 
@@ -15,7 +15,6 @@ class StringHelper:
 
 class FileHelper:
     @staticmethod
-    def ckeditor_generate_filename(filename, request):
-        _, ext = os.path.splitext(filename)
-        name = f"{uuid.uuid4().hex}{ext}"
-        return name
+    def generate_filename(file_obj):
+        file_name_suffix = pathlib.Path(file_obj.name).suffix
+        return str(uuid.uuid4()) + file_name_suffix.lower()

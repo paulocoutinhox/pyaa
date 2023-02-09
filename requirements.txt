@@ -6,5 +6,5 @@ django-cleanup
 sorl-thumbnail
 pillow
 django-timezone-field
-django-ckeditor
+django-tinymce
 tzdata
