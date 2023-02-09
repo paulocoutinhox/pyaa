@@ -57,7 +57,7 @@ You need change some environment variables:
 
 ```
 APP_ENV=prod
-APP_ALLOWED_HOSTS="https://.mydomain.com"
+APP_ALLOWED_HOSTS=".mydomain.com"
 APP_CSRF_TRUSTED_ORIGINS="https://*.mydomain.com"
 
 DJANGO_SUPERUSER_USERNAME="admin"

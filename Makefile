@@ -15,7 +15,6 @@ help:
 	@echo "- create-su"
 	@echo ""
 	@echo "- run"
-	@echo "- run-gunicorn"
 	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-run"
