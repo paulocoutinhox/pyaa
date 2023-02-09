@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-10 07:39+0000\n"
+"POT-Creation-Date: 2023-02-09 23:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,106 +50,106 @@ msgstr "não informado"
 msgid "filter.name"
 msgstr "name"
 
-#: customer/forms.py:31
+#: customer/forms.py:30
 msgid "form.label.password"
 msgstr "Password"
 
-#: customer/forms.py:37
+#: customer/forms.py:36
 msgid "form.label.confirm-password"
 msgstr "Confirm password"
 
-#: customer/forms.py:43
+#: customer/forms.py:42
 msgid "form.label.mobile-phone"
-msgstr "mobile phone"
+msgstr "Mobile phone"
 
-#: customer/forms.py:49
+#: customer/forms.py:48
 msgid "form.label.home-phone"
 msgstr "Home phone"
 
-#: customer/forms.py:63 customer/forms.py:72
+#: customer/forms.py:62 customer/forms.py:71
 msgid "validation.password-not-match"
 msgstr "Your password and repeat password need match"
 
-#: customer/forms.py:84
+#: customer/forms.py:83
 msgid "This field is required."
-msgstr ""
+msgstr "This field is required."
 
-#: customer/models.py:18
+#: customer/models.py:20
 msgid "model.customer.name"
 msgstr "customer"
 
-#: customer/models.py:19
+#: customer/models.py:21
 msgid "model.customer.name.plural"
 msgstr "customers"
 
-#: customer/models.py:49
+#: customer/models.py:51
 msgid "model.field.id"
 msgstr "code"
 
-#: customer/models.py:55
+#: customer/models.py:57
 msgid "model.field.name"
 msgstr "name"
 
-#: customer/models.py:65
+#: customer/models.py:67
 msgid "model.field.language"
 msgstr "language"
 
-#: customer/models.py:69
+#: customer/models.py:71
 msgid "model.field.mobile-phone"
 msgstr "mobile phone"
 
-#: customer/models.py:76
+#: customer/models.py:78
 msgid "model.field.home-phone"
 msgstr "home phone"
 
-#: customer/models.py:83
+#: customer/models.py:85
 msgid "model.field.email"
 msgstr "email"
 
-#: customer/models.py:92
+#: customer/models.py:94
 msgid "model.field.auth-key"
 msgstr "auth key"
 
-#: customer/models.py:102
+#: customer/models.py:104
 msgid "model.field.password-hash"
 msgstr "password hash"
 
-#: customer/models.py:111
+#: customer/models.py:113
 msgid "model.field.password-reset-token"
 msgstr "password reset token"
 
-#: customer/models.py:120
+#: customer/models.py:122
 msgid "model.field.verification-token"
 msgstr "verification token"
 
-#: customer/models.py:129
+#: customer/models.py:131
 msgid "model.field.status"
 msgstr "status"
 
-#: customer/models.py:136
+#: customer/models.py:138
 msgid "model.field.gender"
 msgstr "gender"
 
-#: customer/models.py:143
+#: customer/models.py:147
 msgid "model.field.avatar"
 msgstr "avatar"
 
-#: customer/models.py:150
+#: customer/models.py:154
 msgid "model.field.obs"
 msgstr "obs"
 
-#: customer/models.py:156
+#: customer/models.py:160
 msgid "model.field.timezone"
 msgstr "timezone"
 
-#: customer/models.py:161
+#: customer/models.py:166
 msgid "model.field.logged-at"
 msgstr "logged at"
 
-#: customer/models.py:168
+#: customer/models.py:173
 msgid "model.field.created-at"
 msgstr "created at"
 
-#: customer/models.py:173
+#: customer/models.py:178
 msgid "model.field.updated-at"
 msgstr "updated at"
