@@ -70,3 +70,12 @@ Obs: Obviously you must change this data for your real data, referring to your s
 # Security
 
 - Secret key: Change variable SECRET_KEY inside `main/settings.py`
+
+# API
+
+All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
+
+```
+http://127.0.0.1:8000/api/customer
+```
+

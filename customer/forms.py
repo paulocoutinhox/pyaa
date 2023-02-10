@@ -1,8 +1,8 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from main.fields import OnlyNumberCharField
 
 from customer import models
+from main.fields import OnlyNumberCharField
 
 
 class CustomerAdminForm(forms.ModelForm):
@@ -87,8 +87,8 @@ class CustomerAdminForm(forms.ModelForm):
         ):
             self.add_error(field_name, self.error_class([message]))
 
-    def save(self, commit=True):
-        instance = super(CustomerAdminForm, self).save(commit=False)
+    def save(self, commit=False):
+        instance: models.Customer = super(CustomerAdminForm, self).save(commit=commit)
 
         # setup initial data
         instance.setup_initial_data()

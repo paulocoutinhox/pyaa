@@ -1,7 +1,7 @@
 """URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+    https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -17,17 +17,17 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from . import views
 
 urlpatterns = [
-    re_path("api/", include("customer.urls")),
-    re_path("api/", include("language.urls")),
+    path("api/", include("customer.urls")),
+    path("api/", include("language.urls")),
     path("admin/", admin.site.urls),
-    path("tinymce/", include("tinymce.urls")),
     path("upload_image/", views.upload_image),
+    path("tinymce/", include("tinymce.urls")),
 ]
 
 admin.site.site_header = _("main.admin.name")
