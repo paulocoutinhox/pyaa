@@ -42,7 +42,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     timezone = serializers.CharField(
         required=False,
-        label=_("model.field.timezone"),
+        label=_("form.label.timezone"),
         max_length=255,
         default=DEFAULT_TIME_ZONE,
         write_only=True,

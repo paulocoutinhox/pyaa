@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 23:24+0000\n"
+"POT-Creation-Date: 2023-02-10 02:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr "não informado"
 msgid "filter.name"
 msgstr "name"
 
-#: customer/forms.py:30
+#: customer/forms.py:30 customer/serializers.py:29
 msgid "form.label.password"
 msgstr "Password"
 
@@ -58,11 +58,11 @@ msgstr "Password"
 msgid "form.label.confirm-password"
 msgstr "Confirm password"
 
-#: customer/forms.py:42
+#: customer/forms.py:42 customer/serializers.py:35
 msgid "form.label.mobile-phone"
 msgstr "Mobile phone"
 
-#: customer/forms.py:48
+#: customer/forms.py:48 customer/serializers.py:40
 msgid "form.label.home-phone"
 msgstr "Home phone"
 
@@ -153,3 +153,7 @@ msgstr "created at"
 #: customer/models.py:178
 msgid "model.field.updated-at"
 msgstr "updated at"
+
+#: customer/serializers.py:45
+msgid "form.label.timezone"
+msgstr "Timezone"
