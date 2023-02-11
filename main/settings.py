@@ -26,7 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "myapp-secret-key"
 
 # SECURITY WARNING: check if you are running in correct environment
-if os.getenv("APP_ENV") == "prod":
+ENV_PRODUCTION = os.getenv("APP_ENV") == "prod"
+ENV_DEVELOPMENT = os.getenv("APP_ENV") != "prod"
+
+if ENV_PRODUCTION:
     DEBUG = False
     ALLOWED_HOSTS = [os.getenv("APP_ALLOWED_HOSTS")]
     CSRF_TRUSTED_ORIGINS = [os.getenv("APP_CSRF_TRUSTED_ORIGINS")]
@@ -91,9 +94,27 @@ WSGI_APPLICATION = "main.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db/db.sqlite3",
+        "NAME": BASE_DIR / "db" / "db.sqlite3",
     }
 }
+
+# Cache
+# https://www.honeybadger.io/blog/caching-in-django/
+
+if ENV_PRODUCTION:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+            "LOCATION": BASE_DIR / "cache",
+        }
+    }
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "local-memory-cache-key",
+        }
+    }
 
 
 # Password validation
@@ -143,6 +164,10 @@ DEFAULT_TIME_ZONE = "America/Sao_Paulo"
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATICFILES_DIRS = [
+    BASE_DIR / "main" / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomerStatus(TextChoices):
-
     ACTIVE = "active", _("enum.customer-status.active")
     INACTIVE = "inactive", _("enum.customer-status.inactive")
     DELETED = "deleted", _("enum.customer-status.deleted")
@@ -14,7 +13,6 @@ class CustomerStatus(TextChoices):
 
 
 class CustomerGender(TextChoices):
-
     MALE = "male", _("enum.customer-gender.male")
     FEMALE = "female", _("enum.customer-gender.female")
     NONE = "none", _("enum.customer-gender.none")

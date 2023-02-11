@@ -3,8 +3,8 @@
 *.pot
 *.pyc
 __pycache__
-media
-static
+/media
+/static
 /db
 
 # Backup files #
