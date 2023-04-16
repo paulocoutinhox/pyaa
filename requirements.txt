@@ -1,4 +1,4 @@
-django
+django>=4.2
 djangorestframework
 black
 django-admin-extras

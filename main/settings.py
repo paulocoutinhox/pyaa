@@ -99,6 +99,7 @@ DATABASES = {
 }
 
 # Cache
+# https://docs.djangoproject.com/en/4.1/topics/cache/
 # https://www.honeybadger.io/blog/caching-in-django/
 
 if ENV_PRODUCTION:
@@ -109,12 +110,7 @@ if ENV_PRODUCTION:
         }
     }
 else:
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-            "LOCATION": "local-memory-cache-key",
-        }
-    }
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
 
 
 # Password validation
