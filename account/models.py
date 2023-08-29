@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from timezone_field import TimeZoneField
 from tinymce.models import HTMLField
 
-from customer import enums, fields
+from account import enums, fields
 from language import models as language_models
 from main.settings import DEFAULT_TIME_ZONE
 

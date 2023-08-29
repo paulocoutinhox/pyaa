@@ -20,7 +20,7 @@ end_of_line = crlf
 indent_style = space
 indent_size = 4
 
-[*.yml]
+[*.{yml, yaml}]
 indent_style = space
 indent_size = 2
 
@@ -41,3 +41,8 @@ end_of_line = crlf
 ktlint_standard_argument-list-wrapping = disabled
 ktlint_standard_trailing-comma-on-call-site = disabled
 ktlint_standard_trailing-comma-on-declaration-site = disabled
+
+[*.dart]
+indent_size = 2
+indent_brace_style = K&R
+indent_style = space

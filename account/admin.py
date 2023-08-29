@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from customer import filters, forms, models
+from account import filters, forms, models
 
 
 class CustomerAdmin(admin.ModelAdmin):

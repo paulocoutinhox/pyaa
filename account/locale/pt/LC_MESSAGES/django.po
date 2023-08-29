@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-10 02:22+0000\n"
+"POT-Creation-Date: 2023-08-29 05:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,142 +18,142 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: customer/apps.py:8
-msgid "customer.app.description"
-msgstr "cliente"
+#: account/apps.py:8
+msgid "account.app.description"
+msgstr "Conta"
 
-#: customer/enums.py:7
+#: account/enums.py:6
 msgid "enum.customer-status.active"
 msgstr "ativo"
 
-#: customer/enums.py:8
+#: account/enums.py:7
 msgid "enum.customer-status.inactive"
 msgstr "inativo"
 
-#: customer/enums.py:9
+#: account/enums.py:8
 msgid "enum.customer-status.deleted"
 msgstr "removido"
 
-#: customer/enums.py:18
+#: account/enums.py:16
 msgid "enum.customer-gender.male"
 msgstr "masculino"
 
-#: customer/enums.py:19
+#: account/enums.py:17
 msgid "enum.customer-gender.female"
 msgstr "feminino"
 
-#: customer/enums.py:20
+#: account/enums.py:18
 msgid "enum.customer-gender.none"
 msgstr "não informado"
 
-#: customer/filters.py:8
+#: account/filters.py:8
 msgid "filter.name"
 msgstr "nome"
 
-#: customer/forms.py:30 customer/serializers.py:29
+#: account/forms.py:30 account/serializers.py:29
 msgid "form.label.password"
 msgstr "Senha"
 
-#: customer/forms.py:36
+#: account/forms.py:36
 msgid "form.label.confirm-password"
 msgstr "Confirmar senha"
 
-#: customer/forms.py:42 customer/serializers.py:35
+#: account/forms.py:42 account/serializers.py:35
 msgid "form.label.mobile-phone"
 msgstr "Telefone celular"
 
-#: customer/forms.py:48 customer/serializers.py:40
+#: account/forms.py:48 account/serializers.py:40
 msgid "form.label.home-phone"
 msgstr "Telefone residencial"
 
-#: customer/forms.py:62 customer/forms.py:71
+#: account/forms.py:62 account/forms.py:71
 msgid "validation.password-not-match"
 msgstr "Sua senha e confirmação de senha não são as mesmas"
 
-#: customer/forms.py:83
+#: account/forms.py:83
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: customer/models.py:20
+#: account/models.py:20
 msgid "model.customer.name"
 msgstr "cliente"
 
-#: customer/models.py:21
+#: account/models.py:21
 msgid "model.customer.name.plural"
 msgstr "clientes"
 
-#: customer/models.py:51
+#: account/models.py:51
 msgid "model.field.id"
 msgstr "código"
 
-#: customer/models.py:57
+#: account/models.py:57
 msgid "model.field.name"
 msgstr "nome"
 
-#: customer/models.py:67
+#: account/models.py:67
 msgid "model.field.language"
 msgstr "idioma"
 
-#: customer/models.py:71
+#: account/models.py:71
 msgid "model.field.mobile-phone"
 msgstr "telefone celular"
 
-#: customer/models.py:78
+#: account/models.py:78
 msgid "model.field.home-phone"
 msgstr "telefone residencial"
 
-#: customer/models.py:85
+#: account/models.py:85
 msgid "model.field.email"
 msgstr "email"
 
-#: customer/models.py:94
+#: account/models.py:94
 msgid "model.field.auth-key"
 msgstr "chave de autenticação"
 
-#: customer/models.py:104
+#: account/models.py:104
 msgid "model.field.password-hash"
 msgstr "hash da senha"
 
-#: customer/models.py:113
+#: account/models.py:113
 msgid "model.field.password-reset-token"
 msgstr "token para resetar senha"
 
-#: customer/models.py:122
+#: account/models.py:122
 msgid "model.field.verification-token"
 msgstr "token de verificação"
 
-#: customer/models.py:131
+#: account/models.py:131
 msgid "model.field.status"
 msgstr "status"
 
-#: customer/models.py:138
+#: account/models.py:138
 msgid "model.field.gender"
 msgstr "gênero"
 
-#: customer/models.py:147
+#: account/models.py:147
 msgid "model.field.avatar"
 msgstr "avatar"
 
-#: customer/models.py:154
+#: account/models.py:154
 msgid "model.field.obs"
 msgstr "obs"
 
-#: customer/models.py:160
+#: account/models.py:160
 msgid "model.field.timezone"
 msgstr "fuso-horário"
 
-#: customer/models.py:166
+#: account/models.py:166
 msgid "model.field.logged-at"
 msgstr "logado em"
 
-#: customer/models.py:173
+#: account/models.py:173
 msgid "model.field.created-at"
 msgstr "criado em"
 
-#: customer/models.py:178
+#: account/models.py:178
 msgid "model.field.updated-at"
 msgstr "alterado em"
 
-#: customer/serializers.py:45
+#: account/serializers.py:45
 msgid "form.label.timezone"
 msgstr "Fuso-horário"

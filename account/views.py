@@ -1,8 +1,8 @@
 from rest_framework.generics import GenericAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.mixins import CreateModelMixin, ListModelMixin
 
-from customer.models import Customer
-from customer.serializers import CustomerSerializer
+from account.models import Customer
+from account.serializers import CustomerSerializer
 from language.models import Language
 
 

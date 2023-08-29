@@ -23,7 +23,7 @@ from django.utils.translation import gettext_lazy as _
 from . import views
 
 urlpatterns = [
-    path("api/", include("customer.urls")),
+    path("api/", include("account.urls")),
     path("api/", include("language.urls")),
     path("admin/", admin.site.urls),
     path("upload_image/", views.upload_image),

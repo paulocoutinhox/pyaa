@@ -26,6 +26,8 @@ format:
 
 setup:
 	python3 -m pip install -r requirements.txt --upgrade
+	mkdir -p db
+	mkdir -p static
 
 migration-reset:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
@@ -36,7 +38,7 @@ migration-reset:
 	@make create-su
 
 migrate:
-	python3 manage.py migrate customer 0001
+	python3 manage.py migrate account 0001
 	python3 manage.py migrate language 0001
 	python3 manage.py makemigrations
 	python3 manage.py migrate

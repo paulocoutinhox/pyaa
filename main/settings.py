@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "customer.apps.CustomerConfig",
+    "account.apps.AccountConfig",
     "language.apps.LanguageConfig",
     "rest_framework",
     "django_admin_extras",
@@ -148,7 +148,7 @@ LANGUAGES = [
 
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, "main", "locale"),
-    os.path.join(BASE_DIR, "customer", "locale"),
+    os.path.join(BASE_DIR, "account", "locale"),
     os.path.join(BASE_DIR, "language", "locale"),
 ]
 
