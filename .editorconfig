@@ -8,34 +8,27 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-[*.py]
-indent_style = space
+[*.html]
 indent_size = 4
+
+[*.json]
+indent_size = 2
+insert_final_newline = false
 
 [{*[Mm]akefile*,*.mak,*.mk,depend}]
 indent_style = tab
 
 [*.{bat, cmd, cmd.*}]
 end_of_line = crlf
-indent_style = space
-indent_size = 4
 
 [*.{yml, yaml}]
-indent_style = space
 indent_size = 2
-
-[*.md]
-indent_size = 4
-trim_trailing_whitespace = false
 
 [*.gemspec]
 indent_size = 2
 
 [*.rb,Fastfile,Gemfile,Brewfile,Podfile]
 indent_size = 2
-
-[*.bat]
-end_of_line = crlf
 
 [*.{kt,kts}]
 ktlint_standard_argument-list-wrapping = disabled
@@ -45,4 +38,3 @@ ktlint_standard_trailing-comma-on-declaration-site = disabled
 [*.dart]
 indent_size = 2
 indent_brace_style = K&R
-indent_style = space

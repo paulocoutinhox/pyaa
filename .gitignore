@@ -6,6 +6,7 @@ __pycache__
 /media
 /static
 /db
+/cache
 
 # Backup files #
 *.bak

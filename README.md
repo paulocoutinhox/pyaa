@@ -79,3 +79,6 @@ All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
 http://127.0.0.1:8000/api/customer
 ```
 
+Most resources are protected by authentication header `Authorization: Bearer XYZ` with view property in Python `permission_classes = [IsAuthenticated]`. But if you need allow public access to some resource view use `permission_classes = [AllowAny]`.
+
+The token APIs to create and refresh are `http://127.0.0.1:8000/api/token/` and `http://127.0.0.1:8000/api/token/refresh/`.

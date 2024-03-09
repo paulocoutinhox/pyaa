@@ -8,3 +8,4 @@ pillow
 django-timezone-field
 django-tinymce
 tzdata
+djangorestframework-simplejwt
