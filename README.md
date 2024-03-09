@@ -60,6 +60,8 @@ APP_ENV=prod
 APP_ALLOWED_HOSTS=".mydomain.com"
 APP_CSRF_TRUSTED_ORIGINS="https://*.mydomain.com"
 
+APP_MEDIA_URL=/media/
+
 DJANGO_SUPERUSER_USERNAME="admin"
 DJANGO_SUPERUSER_EMAIL="admin@admin.com"
 DJANGO_SUPERUSER_PASSWORD="admin"
@@ -79,6 +81,11 @@ All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
 http://127.0.0.1:8000/api/customer
 ```
 
-Most resources are protected by authentication header `Authorization: Bearer XYZ` with view property in Python `permission_classes = [IsAuthenticated]`. But if you need allow public access to some resource view use `permission_classes = [AllowAny]`.
+Most resources are protected by authentication header `Authorization: Bearer XYZ` with view property in Python `permission_classes = [AppModelPermissions]`. But if you need allow public access to some resource view use `permission_classes = [AllowAny]`.
 
 The token APIs to create and refresh are `http://127.0.0.1:8000/api/token/` and `http://127.0.0.1:8000/api/token/refresh/`.
+
+The schema can be acessed by:
+- http://localhost:8000/api/schema
+- http://localhost:8000/api/schema/redoc
+- http://localhost:8000/api/schema/swagger-ui

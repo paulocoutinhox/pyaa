@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     "django_cleanup.apps.CleanupConfig",
     "sorl.thumbnail",
     "tinymce",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
 ]
 
 MIDDLEWARE = [
@@ -177,7 +179,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.DjangoModelPermissions",
+    ),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -186,6 +190,15 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {"anon": "1/second", "user": None},
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# Spectacular
+
+SPECTACULAR_SETTINGS = {
+    "SWAGGER_UI_DIST": "SIDECAR",
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
 }
 
 # Simple JWT
@@ -197,7 +210,7 @@ SIMPLE_JWT = {
 
 # Media
 
-MEDIA_URL = "/media/"
+MEDIA_URL = os.getenv("APP_MEDIA_URL", "/media/")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Editor
@@ -213,4 +226,6 @@ TINYMCE_DEFAULT_CONFIG = {
     "custom_undo_redo_levels": 10,
     "images_upload_url": "/upload_image/",
     "relative_urls": False,
+    "remove_script_host": False,
+    "convert_urls": True,
 }

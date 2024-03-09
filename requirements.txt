@@ -9,3 +9,5 @@ django-timezone-field
 django-tinymce
 tzdata
 djangorestframework-simplejwt
+drf-spectacular
+drf-spectacular-sidecar
