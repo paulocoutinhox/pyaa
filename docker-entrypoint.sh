@@ -4,7 +4,7 @@
 echo "Apply database migrations"
 python3 manage.py migrate
 
-# create super user
+# Create super user
 echo "Create super user"
 python3 manage.py createsuperuser --noinput
 

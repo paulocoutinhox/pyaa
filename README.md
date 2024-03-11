@@ -2,7 +2,7 @@
 
 Template application that use Python + Django to build any application with common modules.
 
-# How to use
+## How to use
 
 Execute the following commands:
 
@@ -13,7 +13,7 @@ make create-su
 make run
 ```
 
-# Docker
+## Docker
 
 This project have a ready for production docker file.
 
@@ -31,7 +31,7 @@ make docker-build
 make docker-run-prod
 ```
 
-# Docker volumes
+## Docker volumes
 
 By default, this project use SQLite database and store it inside `db` folder created automatically.
 
@@ -51,7 +51,7 @@ docker run --rm -v ${PWD}/db:/app/db \
 		-p 8000:8000 pyaa
 ```
 
-# Environment
+## Environment
 
 You need change some environment variables:
 
@@ -69,23 +69,13 @@ DJANGO_SUPERUSER_PASSWORD="admin"
 
 Obs: Obviously you must change this data for your real data, referring to your server.
 
-# Security
+## References
 
-- Secret key: Change variable SECRET_KEY inside `main/settings.py`
+- [Security](docs/security.md)
+- [API](docs/api.md)
 
-# API
+## License
 
-All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
+[MIT](http://opensource.org/licenses/MIT)
 
-```
-http://127.0.0.1:8000/api/customer
-```
-
-Most resources are protected by authentication header `Authorization: Bearer XYZ` with view property in Python `permission_classes = [AppModelPermissions]`. But if you need allow public access to some resource view use `permission_classes = [AllowAny]`.
-
-The token APIs to create and refresh are `http://127.0.0.1:8000/api/token/` and `http://127.0.0.1:8000/api/token/refresh/`.
-
-The schema can be acessed by:
-- http://localhost:8000/api/schema
-- http://localhost:8000/api/schema/redoc
-- http://localhost:8000/api/schema/swagger-ui
+Copyright (c) 2024, Paulo Coutinho

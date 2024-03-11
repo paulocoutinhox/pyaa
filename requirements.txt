@@ -11,3 +11,4 @@ tzdata
 djangorestframework-simplejwt
 drf-spectacular
 drf-spectacular-sidecar
+python-slugify
