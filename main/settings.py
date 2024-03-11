@@ -56,9 +56,11 @@ INSTALLED_APPS = [
     "tinymce",
     "drf_spectacular",
     "drf_spectacular_sidecar",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -229,3 +231,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "remove_script_host": False,
     "convert_urls": True,
 }
+
+# CORS
+
+CORS_ALLOW_ALL_ORIGINS = True
