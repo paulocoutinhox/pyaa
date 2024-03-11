@@ -40,7 +40,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
+    "main.apps.AppAdminConfig",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
