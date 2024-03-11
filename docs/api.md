@@ -5,12 +5,12 @@ The PyAA project is configured to use Django Rest Framework.
 All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
 
 ```
-http://127.0.0.1:8000/api/customer
+http://localhost:8000/api/customer
 ```
 
 Most resources are protected by authentication header `Authorization: Bearer XYZ` with view property in Python `permission_classes = [AppModelPermissions]`. But if you need allow public access to some resource view use `permission_classes = [AllowAny]`.
 
-The token APIs to create and refresh are `http://127.0.0.1:8000/api/token/` and `http://127.0.0.1:8000/api/token/refresh/`.
+The token APIs to create and refresh are `http://localhost:8000/api/token/` and `http://localhost:8000/api/token/refresh/`.
 
 The schema can be acessed by:
 - http://localhost:8000/api/schema
@@ -68,7 +68,7 @@ Sample of response structure:
 ```json
 {
     "count": 3,
-    "next": "http://127.0.0.1:8000/api/resource-name/?limit=1&offset=1",
+    "next": "http://localhost:8000/api/resource-name/?limit=1&offset=1",
     "previous": null,
     "results": [
         {
