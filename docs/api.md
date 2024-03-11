@@ -19,7 +19,8 @@ The schema can be acessed by:
 
 ## Single Get Object Response
 
-Code Http: 200
+Code Http: `200`
+Method Http: `GET`
 
 Sample of response structure:
 
@@ -32,7 +33,8 @@ Sample of response structure:
 
 ## Single Create Object Response
 
-Code Http: 201
+Code Http: `201`
+Method Http: `POST`
 
 Sample of response structure:
 
@@ -45,7 +47,8 @@ Sample of response structure:
 
 ## Single Update Object Response
 
-Code Http: 200
+Code Http: `200`
+Method Http: `PUT`
 
 Sample of response structure:
 
@@ -57,11 +60,13 @@ Sample of response structure:
 ```
 ## Single Delete Object Response
 
-Code Http: 204
+Code Http: `204`
+Method Http: `DELETE`
 
-## Object List Response
+## Object Get List Response
 
-Code Http: 200
+Code Http: `200`
+Method Http: `GET`
 
 Sample of response structure:
 
@@ -81,7 +86,8 @@ Sample of response structure:
 
 ## Object Validation Response
 
-Code Http: 400
+Code Http: `400`
+Method Http: `POST` and `PUT`
 
 Sample of response structure:
 
@@ -95,7 +101,8 @@ Sample of response structure:
 
 ## Authentication Error Response
 
-Code Http: 401
+Code Http: `401`
+Method Http: `Any`
 
 Sample of response structure:
 
@@ -115,7 +122,8 @@ Sample of response structure:
 
 ## Not Found Response
 
-Code Http: 404
+Code Http: `404`
+Method Http: `Any`
 
 Sample of response structure:
 
@@ -127,7 +135,8 @@ Sample of response structure:
 
 ## Login Token Success Response
 
-Code Http: 200
+Code Http: `200`
+Method Http: `POST`
 
 Sample of response structure:
 
@@ -140,7 +149,8 @@ Sample of response structure:
 
 ## Login Token Validation Response
 
-Code Http: 400
+Code Http: `400`
+Method Http: `POST`
 
 Sample of response structure:
 
@@ -157,7 +167,8 @@ Sample of response structure:
 
 ## Login Token Error Response
 
-Code Http: 401
+Code Http: `401`
+Method Http: `POST`
 
 Sample of response structure:
 
@@ -169,7 +180,8 @@ Sample of response structure:
 
 ## Refresh Token Success Response
 
-Code Http: 200
+Code Http: `200`
+Method Http: `POST`
 
 Sample of response structure:
 
@@ -181,7 +193,8 @@ Sample of response structure:
 
 ## Refresh Token Validation Response
 
-Code Http: 400
+Code Http: `400`
+Method Http: `POST`
 
 Sample of response structure:
 
@@ -195,7 +208,8 @@ Sample of response structure:
 
 ## Refresh Token Error Response
 
-Code Http: 401
+Code Http: `401`
+Method Http: `POST`
 
 Sample of response structure:
 
