@@ -36,7 +36,12 @@ if ENV_PRODUCTION:
     CSRF_TRUSTED_ORIGINS = [os.getenv("APP_CSRF_TRUSTED_ORIGINS")]
 else:
     DEBUG = True
-    ALLOWED_HOSTS = [os.getenv("APP_ALLOWED_HOSTS", "*")]
+
+    # allowed hosts
+    allowed_hosts = os.getenv("APP_ALLOWED_HOSTS")
+
+    if allowed_hosts:
+        ALLOWED_HOSTS = [allowed_hosts]
 
     # csrf trusted origins
     csrf_origin = os.getenv("APP_CSRF_TRUSTED_ORIGINS")
