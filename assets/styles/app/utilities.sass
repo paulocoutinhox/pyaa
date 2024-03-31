@@ -1,0 +1,78 @@
+// alpine.js cloak support
+[x-cloak]
+  display: none !important
+
+.h-100
+  height: 100%
+
+
+.muted-link
+  color: hsl(0, 0%, 71%)
+  &:hover
+    color: hsl(0, 0%, 48%)
+    text-decoration: underline
+
+// this is the default class assigned to errors by django forms
+.errorlist
+  color: var(--danger)
+
+
+img.socialicon
+  padding-right: .5em
+  max-width: 24px
+  max-height: 24px
+
+
+// css loader https://loading.io/css/
+
+.lds-ripple
+  display: inline-block
+  position: relative
+  width: 80px
+  height: 80px
+
+.lds-ripple div
+  position: absolute
+  border: 4px solid var(--primary)
+  opacity: 1
+  border-radius: 50%
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite
+
+.lds-ripple div:nth-child(2)
+  animation-delay: -0.5s
+
+@keyframes lds-ripple
+  0%
+    top: 36px
+    left: 36px
+    width: 0
+    height: 0
+    opacity: 1
+
+  100%
+    top: 0px
+    left: 0px
+    width: 72px
+    height: 72px
+    opacity: 0
+
+// htmx indicators that use display instead of opacity
+// htmx hide (hide element during htmx request)
+.htmx-hide
+  display: inline
+
+.htmx-request .htmx-hide
+  display: none
+
+.htmx-request.htmx-hide
+  display: none
+
+// htmx indicator inline (show element during htmx request)
+.htmx-show
+  display: none !important
+
+.htmx-request .htmx-show
+  display: inline-block !important
+
+.htmx-request.htmx-show
+  display: inline-block !important

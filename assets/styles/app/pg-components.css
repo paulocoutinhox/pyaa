@@ -1,0 +1,210 @@
+@tailwind components;
+
+@layer components {
+  /* typography helpers */
+
+  .pg-title {
+    @apply text-3xl font-bold mb-2;
+  }
+  .pg-subtitle {
+    @apply text-xl mb-1;
+  }
+
+  .pg-text-centered {
+    @apply text-center;
+  }
+
+  .pg-text-left {
+    @apply text-left;
+  }
+
+  .pg-text-right {
+    @apply text-right;
+  }
+
+  .pg-help {
+    @apply text-gray-600 text-sm;
+  }
+
+  .pg-text-primary {
+    @apply text-primary;
+  }
+
+  .pg-text-success {
+    @apply text-success;
+  }
+
+  .pg-text-info {
+    @apply text-info;
+  }
+
+  .pg-text-danger {
+    @apply text-error;
+  }
+
+  .pg-text-muted {
+    @apply text-gray-700;
+  }
+
+  .pg-hidden-mobile-inline {
+    @apply hidden md:inline-block;
+  }
+
+  .pg-content {
+    @apply prose max-w-none lg:prose-lg;
+  }
+
+
+  /*
+
+  .pg-hidden-mobile-inline
+    @extend .is-hidden-mobile
+
+  */
+
+  /*buttons*/
+
+  .pg-button-primary {
+    @apply btn btn-primary;
+  }
+
+  .pg-button-secondary {
+    @apply btn btn-outline;
+  }
+
+  .pg-button-light {
+    @apply btn btn-ghost;
+  }
+
+  .pg-button-danger {
+    @apply btn btn-outline text-red-500 border-red-500 hover:bg-red-500 hover:border-red-700;
+  }
+
+  .pg-inline-buttons {
+    @apply flex space-x-1;
+  }
+
+  .pg-justify-content-end {
+    @apply justify-end;
+  }
+
+  .pg-icon {
+    @apply w-6 h-6 inline-flex justify-center items-center;
+  }
+
+  /*
+  .pg-is-loading
+    @extend .is-loading
+
+  */
+
+  /* forms */
+  .pg-input-group {
+    @apply mb-3;
+  }
+
+  .pg-label {
+    @apply block font-bold;
+  }
+
+  .pg-control {
+    @apply input input-bordered w-full;
+  }
+
+  .pg-select select {
+    @apply select select-bordered w-full;
+  }
+
+  /* columns */
+  .pg-columns {
+    @apply flex flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0;
+  }
+
+  .pg-columns-reversed {
+    @apply lg:flex-row-reverse;
+  }
+
+  .pg-column {
+    @apply flex-1;
+  }
+
+  .pg-column-one-quarter {
+    @apply basis-1/4 grow-0 shrink-0;
+  }
+
+  .pg-column-one-third {
+    @apply basis-1/3 grow-0 shrink-0;
+  }
+
+  .pg-align-items-center {
+    @apply items-center;
+  }
+
+
+  /* tables */
+
+  .pg-table {
+    @apply table table-zebra w-full;
+  }
+
+  .table-responsive {
+    @apply overflow-x-auto;
+  }
+
+  /* breadcrumbs */
+  .pg-breadcrumbs {
+    display: flex;
+    align-items: center;
+  }
+
+  .pg-breadcrumbs a {
+    text-decoration: underline;
+  }
+
+  .pg-breadcrumbs li:first-child {
+    padding: 0;
+  }
+
+  .pg-breadcrumbs li:not(:first-child) {
+    padding: 0 0 0 0.75em;
+  }
+
+  .pg-breadcrumbs li:not(:first-child)::before {
+    color: gray;
+    content: "\0002f";
+    float: left;
+    padding-right: 0.75em;
+  }
+
+  .pg-breadcrumb-active {
+    color: #7a7a7a;
+  }
+
+  /* cards */
+
+  .pg-card {
+    @apply card bg-base-100 shadow-xl
+  }
+
+  /*.pg-card-image*/
+  /*  @extend .card-image*/
+
+  .pg-card-body {
+    @apply card-body pt-0
+  }
+
+  .pg-ratio-3x2 {
+    @apply aspect-3/2
+  }
+
+  /* badges */
+
+  .pg-badge-default {
+    @apply badge;
+  }
+
+  .pg-badge-success {
+    @apply badge badge-success;
+  }
+
+}

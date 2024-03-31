@@ -1,0 +1,31 @@
+@tailwind components;
+
+@layer components {
+  .colored-toast.swal2-icon-success {
+    @apply bg-success !important;
+  }
+
+  .colored-toast.swal2-icon-error {
+    @apply bg-error !important;
+  }
+
+  .colored-toast.swal2-icon-warning {
+    @apply bg-warning !important;
+  }
+
+  .colored-toast.swal2-icon-info {
+    @apply bg-info !important;
+  }
+  .colored-toast.swal2-icon-question {
+    @apply bg-primary !important;
+  }
+  .colored-toast .swal2-title {
+    color: white;
+  }
+  .colored-toast .swal2-close {
+    color: white;
+  }
+  .colored-toast .swal2-html-container {
+    color: white;
+  }
+}

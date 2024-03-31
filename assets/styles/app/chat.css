@@ -1,0 +1,59 @@
+@tailwind components;
+
+@layer components {
+  .chat-pane {
+    @apply overflow-y-auto flex flex-col flex-grow p-4 space-y-4 bg-gray-50;
+  }
+  .chat-message {
+    @apply px-3 py-2 rounded-lg;
+  }
+  .message-contents {
+    @apply prose max-w-none lg:prose-lg;
+  }
+  .message-contents p {
+    @apply my-0;
+  }
+
+  .chat-message-system {
+    @apply chat-message bg-blue-100;
+  }
+
+  .chat-message-user {
+    @apply chat-message bg-indigo-500 text-white;
+  }
+
+  .chat-message-user .message-contents {
+    @apply text-white;
+  }
+
+  .chat-message-system .message-contents {
+    @apply text-slate-600;
+  }
+
+  .loading-dots:after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;
+  }
+
+  @keyframes dots {
+    0%, 20% {
+      color: rgba(0, 0, 0, 0);
+      text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+      .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    40% {
+      color: black;
+      text-shadow: .25em 0 0 rgba(0, 0, 0, 0),
+      .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    60% {
+      text-shadow: .25em 0 0 black,
+      .5em 0 0 rgba(0, 0, 0, 0);
+    }
+    80%, 100% {
+      text-shadow: .25em 0 0 black,
+      .5em 0 0 black;
+    }
+  }
+
+}

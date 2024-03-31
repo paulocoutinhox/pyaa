@@ -38,8 +38,6 @@ migration-reset:
 	@make create-su
 
 migrate:
-	python3 manage.py migrate account 0001
-	python3 manage.py migrate language 0001
 	python3 manage.py makemigrations
 	python3 manage.py migrate
 

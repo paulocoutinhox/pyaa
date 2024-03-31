@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  .section {
+    @apply m-4;
+  }
+
+  /* forms */
+  .help {
+    @apply text-xs text-gray-700;
+  }
+
+  .app {
+    @apply m-4;
+  }
+
+  .app-card {
+    @apply lg:shadow-md p-4 mb-2 mt-2 lg:mt-0 lg:p-8;
+  }
+
+}
+
+/* subscriptions */
+
+@layer components {
+
+  .plan {
+    @apply h-full px-8 py-4 border-4 rounded-md border-white;
+  }
+
+  .plan.is-selected {
+    @apply border-blue-500 border-opacity-100;
+  }
+
+}
+
+
+/* chat UI stuff*/
+@layer components {
+  .htmx-request {
+    @apply loading;
+  }
+}
+
+/* set css variables to DaisyUI default colors: https://daisyui.com/docs/colors/ */
+
+:root {
+  --primary: #570df8;
+  --danger: #f87272;
+  --success: #36d399;
+}
