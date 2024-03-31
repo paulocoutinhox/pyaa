@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load allauth %}
+
+<div class="flex items-center px-4 py-3 mb-6 text-sm font-bold text-white bg-blue-500" role="alert">
+    <p>
+        {% slot message %}
+        {% endslot %}
+    </p>
+</div>
