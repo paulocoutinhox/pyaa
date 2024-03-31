@@ -27,6 +27,8 @@ from drf_spectacular.views import (
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from app.urls import urlpatterns as app_urlpatterns
+
 from . import views
 
 urlpatterns = [
@@ -49,6 +51,8 @@ urlpatterns = [
     path("upload_image/", views.upload_image),
     path("tinymce/", include("tinymce.urls")),
 ]
+
+urlpatterns += app_urlpatterns
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

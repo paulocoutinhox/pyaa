@@ -76,3 +76,6 @@ docker-run-prod:
 		-e DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
 		-e DJANGO_SUPERUSER_PASSWORD="admin" \
 		-p 8000:8000 pyaa
+
+tailwind:
+	npx tailwindcss -i ./app/static/tailwind/styles.css -o ./static/tailwind/styles.css

@@ -19,6 +19,7 @@ class Customer(models.Model):
         db_table = "customer"
         verbose_name = _("model.customer.name")
         verbose_name_plural = _("model.customer.name.plural")
+        app_label = "demo"
 
         indexes = [
             models.Index(

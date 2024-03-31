@@ -12,3 +12,6 @@ djangorestframework-simplejwt
 drf-spectacular
 drf-spectacular-sidecar
 django-cors-headers
+django-allauth
+django-widget-tweaks
+django-compressor
