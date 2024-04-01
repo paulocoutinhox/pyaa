@@ -35,7 +35,7 @@
             <a href="{% url 'home' %}" class="text-md no-underline text-grey-darkest hover:text-blue-dark ml-2 px-1">Home</a>
 
             {% if user.is_authenticated %}
-                <a href="{% url 'account_email' %}" class="text-md no-underline text-grey-darkest hover:text-blue-dark ml-2 px-1">Change email</a>
+                <a href="{% url 'account_profile' %}" class="text-md no-underline text-grey-darkest hover:text-blue-dark ml-2 px-1">Profile</a>
                 <a href="{% url 'account_logout' %}" class="text-md no-underline text-grey-darkest hover:text-blue-dark ml-2 px-1">Logout</a>
             {% else %}
                 <a href="{% url 'account_login' %}" class="text-md no-underline text-grey-darkest hover:text-blue-dark ml-2 px-1">Sign in</a>
