@@ -192,7 +192,6 @@ LOCALE_PATHS = [
 
 DEFAULT_TIME_ZONE = "America/Sao_Paulo"
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 

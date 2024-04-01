@@ -1,12 +1,20 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
-        './app/templates/**/*.html',
+        './apps/**/*.html',
+        './assets/**/*.js',
+        './assets/**/*.vue',
+        './assets/**/*.tsx',
+        './assets/**/*.jsx',
+        './templates/**/*.html',
+        './pyaa/settings.py',
     ],
     safelist: [
 
     ],
     theme: {
+
+    },
+    variants: {
         extend: {},
     },
     plugins: [

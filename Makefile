@@ -16,6 +16,8 @@ help:
 	@echo ""
 	@echo "- run"
 	@echo ""
+	@echo "- build-static"
+	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-run"
 	@echo "- docker-run-prod"
@@ -75,5 +77,5 @@ docker-run-prod:
 		-e DJANGO_SUPERUSER_PASSWORD="admin" \
 		-p 8000:8000 pyaa
 
-tailwind:
-	npx tailwindcss -i ./app/static/tailwind/styles.css -o ./static/tailwind/styles.css
+build-static:
+	npm run build

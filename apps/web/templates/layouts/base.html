@@ -10,7 +10,14 @@
     <title>{% block head_title %}{% endblock %}</title>
 
     {% compress css %}
-    <link rel="stylesheet" href="{% static 'tailwind/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/site-tailwind.css' %}">
+    <link rel="stylesheet" href="{% static 'css/site-base.css' %}">
+    {% endcompress %}
+
+    {% compress js %}
+    <script src="{% static 'js/site-base-bundle.js'%}"></script>
+    <script src="{% static 'js/site-tailwind-bundle.js'%}"></script>
+    <script src="{% static 'js/site-bundle.js'%}"></script>
     {% endcompress %}
 
     {% block extra_head %} {% endblock %}
