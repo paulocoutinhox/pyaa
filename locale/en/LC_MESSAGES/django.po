@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 05:40+0000\n"
+"POT-Creation-Date: 2024-04-12 05:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,13 +12,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/customers/admin.py:50 apps/languages/models.py:25
+#: apps/customers/admin.py:37 apps/customers/admin.py:46
+#: apps/languages/models.py:25
 msgid "model.field.name"
 msgstr "name"
 
-#: apps/customers/admin.py:53
-msgid "model.field.email"
-msgstr "email"
+#: apps/customers/admin.py:54
+msgid "model.field.is_active"
+msgstr "active"
 
 #: apps/customers/apps.py:8
 msgid "apps.customers.description"
@@ -39,6 +40,10 @@ msgstr "none"
 #: apps/customers/filters.py:8 apps/languages/filters.py:8
 msgid "filter.name"
 msgstr "name"
+
+#: apps/customers/filters.py:24
+msgid "filter.email"
+msgstr "email"
 
 #: apps/customers/forms.py:26 apps/customers/serializers.py:35
 msgid "form.label.mobile-phone"

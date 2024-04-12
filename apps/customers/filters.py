@@ -17,3 +17,16 @@ class NameFilter(InputFilter):
                 | Q(user__last_name__icontains=value)
             )
         return queryset
+
+
+class EmailFilter(InputFilter):
+    parameter_name = "email"
+    title = _("filter.email")
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value:
+            value = value.strip()
+
+            return queryset.filter(Q(user__email=value))
+        return queryset

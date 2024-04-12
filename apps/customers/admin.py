@@ -9,25 +9,19 @@ class CustomerAdmin(admin.ModelAdmin):
         "id",
         "user_name",
         "user_email",
-        # "get_user_email",
-        # "user.email",
-        # "user.status",
-        # "logged_at",
+        "user_is_active",
     )
 
     list_display_links = (
         "id",
         "user_name",
         "user_email",
-        # "email",
-        # "status",
-        # "logged_at",
     )
 
     list_filter = [
         filters.NameFilter,
+        filters.EmailFilter,
         "user",
-        # "status",
     ]
 
     list_per_page = 10
@@ -38,19 +32,29 @@ class CustomerAdmin(admin.ModelAdmin):
         qs = super(CustomerAdmin, self).get_queryset(request)
         return qs.select_related("user")
 
+    @admin.display(
+        ordering="user__first_name",
+        description=_("model.field.name"),
+    )
     def user_name(self, obj):
         full_name = "%s %s" % (obj.user.first_name, obj.user.last_name)
         full_name = full_name.strip()
         return full_name
 
+    @admin.display(
+        ordering="user__email",
+        description=_("model.field.name"),
+    )
     def user_email(self, obj):
         return obj.user.email
 
-    user_name.admin_order_field = "user__first_name"
-    user_name.short_description = _("model.field.name")
-
-    user_email.admin_order_field = "user__email"
-    user_email.short_description = _("model.field.email")
+    @admin.display(
+        boolean=True,
+        ordering="user__is_active",
+        description=_("model.field.is_active"),
+    )
+    def user_is_active(self, obj):
+        return obj.user.is_active
 
 
 admin.site.register(models.Customer, CustomerAdmin)
