@@ -7,23 +7,23 @@ from apps.customers import filters, forms, models
 class CustomerAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "name",
-        "email",
-        "status",
-        "logged_at",
+        # "name",
+        # "email",
+        # "status",
+        # "logged_at",
     )
 
     list_display_links = (
         "id",
-        "name",
-        "email",
-        "status",
-        "logged_at",
+        # "name",
+        # "email",
+        # "status",
+        # "logged_at",
     )
 
     list_filter = [
         filters.NameFilter,
-        "status",
+        # "status",
     ]
 
     list_per_page = 10

@@ -41,6 +41,8 @@ else:
 
     if allowed_hosts:
         ALLOWED_HOSTS = [allowed_hosts]
+    else:
+        ALLOWED_HOSTS = ["*"]
 
     # csrf trusted origins
     csrf_origin = os.getenv("APP_CSRF_TRUSTED_ORIGINS")
@@ -195,11 +197,13 @@ DEFAULT_TIME_ZONE = "America/Sao_Paulo"
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "pyaa" / "static",
-]
+STATICFILES_DIRS = []
 
-STATICFILES_FINDERS = ("compressor.finders.CompressorFinder",)
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -296,7 +300,7 @@ ACCOUNT_ADAPTER = "apps.web.account.adapter.AppAccountAdapter"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# Compress
+# Compress static files
 
 COMPRESS_ROOT = BASE_DIR / "static"
 COMPRESS_ENABLED = True

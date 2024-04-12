@@ -1,8 +1,4 @@
-import uuid
-from datetime import datetime
-
-from django.contrib.auth.hashers import make_password
-from django.core.validators import EmailValidator
+from django.contrib.auth.models import User
 from django.db import models
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
@@ -26,20 +22,12 @@ class Customer(models.Model):
                 name="{0}_language".format(db_table),
             ),
             models.Index(
-                fields=["name"],
-                name="{0}_name".format(db_table),
-            ),
-            models.Index(
                 fields=["mobile_phone"],
                 name="{0}_mobile_phone".format(db_table),
             ),
             models.Index(
                 fields=["home_phone"],
                 name="{0}_home_phone".format(db_table),
-            ),
-            models.Index(
-                fields=["status"],
-                name="{0}_status".format(db_table),
             ),
             models.Index(
                 fields=["gender"],
@@ -53,16 +41,17 @@ class Customer(models.Model):
         primary_key=True,
     )
 
-    name = models.CharField(
-        _("model.field.name"),
-        max_length=255,
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name="user",
     )
 
     language = models.ForeignKey(
         language_models.Language,
         on_delete=models.RESTRICT,
-        null=False,
-        blank=False,
+        blank=True,
+        null=True,
         default=0,
         verbose_name=_("model.field.language"),
     )
@@ -79,59 +68,6 @@ class Customer(models.Model):
         max_length=11,
         blank=True,
         null=True,
-    )
-
-    email = models.CharField(
-        _("model.field.email"),
-        max_length=255,
-        blank=False,
-        unique=True,
-        null=False,
-        validators=[EmailValidator()],
-    )
-
-    auth_key = models.CharField(
-        _("model.field.auth-key"),
-        max_length=32,
-        default=uuid.uuid4,
-        blank=False,
-        unique=True,
-        null=False,
-        editable=False,
-    )
-
-    password_hash = models.CharField(
-        _("model.field.password-hash"),
-        max_length=255,
-        blank=False,
-        unique=True,
-        null=False,
-        editable=False,
-    )
-
-    password_reset_token = models.CharField(
-        _("model.field.password-reset-token"),
-        max_length=32,
-        blank=True,
-        unique=True,
-        null=True,
-        editable=False,
-    )
-
-    verification_token = models.CharField(
-        _("model.field.verification-token"),
-        max_length=32,
-        blank=True,
-        unique=True,
-        null=True,
-        editable=False,
-    )
-
-    status = models.CharField(
-        _("model.field.status"),
-        max_length=255,
-        choices=enums.CustomerStatus.choices,
-        default=enums.CustomerStatus.ACTIVE,
     )
 
     gender = models.CharField(
@@ -162,13 +98,6 @@ class Customer(models.Model):
         default=DEFAULT_TIME_ZONE,
     )
 
-    logged_at = models.DateTimeField(
-        _("model.field.logged-at"),
-        editable=False,
-        blank=True,
-        null=True,
-    )
-
     created_at = models.DateTimeField(
         _("model.field.created-at"),
         auto_now_add=True,
@@ -180,19 +109,22 @@ class Customer(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.user.get_full_name()
 
     def setup_initial_data(self):
-        self.verification_token = uuid.uuid4()
-
-    def setup_password_data(self, password):
-        self.password_hash = make_password(password)
-
-    def setup_logged_at(self):
-        self.logged_at = datetime.now()
+        pass
 
 
 @receiver(models.signals.pre_save, sender=Customer)
-def customer_pre_save_callback(sender, instance, *args, **kwargs):
-    # instance.logged_at = datetime.now()
-    pass
+def customer_pre_save_callback(sender, instance: Customer, *args, **kwargs):
+    instance.setup_initial_data()
+
+
+@receiver(models.signals.post_save, sender=User)
+def create_customer(sender, instance: User, created, **kwargs):
+    try:
+        if created:
+            customer = Customer(user=instance)
+            customer.save()
+    except Exception as err:
+        print(f"Error creating customer: {err}")
