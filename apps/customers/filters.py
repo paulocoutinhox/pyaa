@@ -8,7 +8,12 @@ class NameFilter(InputFilter):
     title = _("filter.name")
 
     def queryset(self, request, queryset):
-        if self.value() is not None:
-            value = self.value()
+        value = self.value()
+        if value:
+            value = value.strip()
 
-            return queryset.filter(Q(name__contains=value))
+            return queryset.filter(
+                Q(user__first_name__icontains=value)
+                | Q(user__last_name__icontains=value)
+            )
+        return queryset

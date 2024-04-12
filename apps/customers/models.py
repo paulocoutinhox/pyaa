@@ -50,8 +50,8 @@ class Customer(models.Model):
     language = models.ForeignKey(
         language_models.Language,
         on_delete=models.RESTRICT,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         default=0,
         verbose_name=_("model.field.language"),
     )
@@ -96,6 +96,8 @@ class Customer(models.Model):
         _("model.field.timezone"),
         max_length=255,
         default=DEFAULT_TIME_ZONE,
+        blank=False,
+        null=False,
     )
 
     created_at = models.DateTimeField(
@@ -118,13 +120,3 @@ class Customer(models.Model):
 @receiver(models.signals.pre_save, sender=Customer)
 def customer_pre_save_callback(sender, instance: Customer, *args, **kwargs):
     instance.setup_initial_data()
-
-
-@receiver(models.signals.post_save, sender=User)
-def create_customer(sender, instance: User, created, **kwargs):
-    try:
-        if created:
-            customer = Customer(user=instance)
-            customer.save()
-    except Exception as err:
-        print(f"Error creating customer: {err}")

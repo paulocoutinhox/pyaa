@@ -1,0 +1,178 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-12 05:28+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/customers/admin.py:50 apps/languages/models.py:25
+msgid "model.field.name"
+msgstr "nome"
+
+#: apps/customers/admin.py:53
+msgid "model.field.email"
+msgstr "email"
+
+#: apps/customers/apps.py:8
+msgid "apps.customers.description"
+msgstr "Clientes"
+
+#: apps/customers/enums.py:6
+msgid "enum.customer-gender.male"
+msgstr "masculino"
+
+#: apps/customers/enums.py:7
+msgid "enum.customer-gender.female"
+msgstr "feminino"
+
+#: apps/customers/enums.py:8
+msgid "enum.customer-gender.none"
+msgstr "não informado"
+
+#: apps/customers/filters.py:8 apps/languages/filters.py:8
+msgid "filter.name"
+msgstr "nome"
+
+#: apps/customers/forms.py:26 apps/customers/serializers.py:35
+msgid "form.label.mobile-phone"
+msgstr "Telefone celular"
+
+#: apps/customers/forms.py:32 apps/customers/serializers.py:40
+msgid "form.label.home-phone"
+msgstr "Telefone residencial"
+
+#: apps/customers/models.py:16
+msgid "model.customer.name"
+msgstr "cliente"
+
+#: apps/customers/models.py:17
+msgid "model.customer.name.plural"
+msgstr "clientes"
+
+#: apps/customers/models.py:39 apps/languages/models.py:19
+msgid "model.field.id"
+msgstr "código"
+
+#: apps/customers/models.py:56
+msgid "model.field.language"
+msgstr "idioma"
+
+#: apps/customers/models.py:60
+msgid "model.field.mobile-phone"
+msgstr "telefone celular"
+
+#: apps/customers/models.py:67
+msgid "model.field.home-phone"
+msgstr "telefone residencial"
+
+#: apps/customers/models.py:74
+msgid "model.field.gender"
+msgstr "gênero"
+
+#: apps/customers/models.py:83
+msgid "model.field.avatar"
+msgstr "avatar"
+
+#: apps/customers/models.py:90
+msgid "model.field.obs"
+msgstr "obs"
+
+#: apps/customers/models.py:96
+msgid "model.field.timezone"
+msgstr "fuso-horário"
+
+#: apps/customers/models.py:104
+msgid "model.field.created-at"
+msgstr "criado em"
+
+#: apps/customers/models.py:109
+msgid "model.field.updated-at"
+msgstr "alterado em"
+
+#: apps/customers/serializers.py:29
+msgid "form.label.password"
+msgstr "Telefone residencial"
+
+#: apps/customers/serializers.py:45
+msgid "form.label.timezone"
+msgstr "Fuso-horário"
+
+#: apps/languages/apps.py:8
+msgid "apps.languages.description"
+msgstr "Idiomas"
+
+#: apps/languages/models.py:8
+msgid "model.language.name"
+msgstr "idioma"
+
+#: apps/languages/models.py:9
+msgid "model.language.name.plural"
+msgstr "idiomas"
+
+#: apps/languages/models.py:30
+msgid "model.field.native_name"
+msgstr "nome nativo"
+
+#: apps/languages/models.py:32
+msgid "model.hint.native_name"
+msgstr "Nome nativo sem tradução"
+
+#: apps/languages/models.py:36
+msgid "model.field.code_iso_639_1"
+msgstr "código ISO 639-1"
+
+#: apps/languages/models.py:38
+msgid "model.hint.code_iso_639_1"
+msgstr "Exemplos: en ou pt"
+
+#: apps/languages/models.py:42
+msgid "model.field.code_iso_language"
+msgstr "código ISO"
+
+#: apps/languages/models.py:43
+msgid "model.hint.code_iso_language"
+msgstr "Exemplos: en-US ou pt-BR"
+
+#: pyaa/admin.py:6
+msgid "pyaa.admin.name"
+msgstr "PyAA"
+
+#: pyaa/admin.py:28
+msgid "admin.group.site-content"
+msgstr "Conteúdo do Site"
+
+#: pyaa/settings.py:182
+msgid "language.en"
+msgstr "Inglês"
+
+#: pyaa/settings.py:183
+msgid "language.pt-br"
+msgstr "Português"
+
+#: pyaa/templates/admin/app_list.html:9
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: pyaa/templates/admin/app_list.html:26
+msgid "Add"
+msgstr ""
+
+#: pyaa/templates/admin/app_list.html:33
+msgid "View"
+msgstr ""
+
+#: pyaa/templates/admin/app_list.html:35
+msgid "Change"
+msgstr ""
+
+#: pyaa/templates/admin/app_list.html:47
+msgid "You don’t have permission to view or edit anything."
+msgstr ""

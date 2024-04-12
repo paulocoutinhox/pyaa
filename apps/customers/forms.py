@@ -10,6 +10,7 @@ class CustomerAdminForm(forms.ModelForm):
         model = models.Customer
 
         fields = [
+            "user",
             "language",
             "mobile_phone",
             "home_phone",
@@ -30,3 +31,19 @@ class CustomerAdminForm(forms.ModelForm):
         required=False,
         label=_("form.label.home-phone"),
     )
+
+
+    def is_adding(self):
+        if self.instance.pk is None:
+            return True
+        else:
+            return False
+
+
+    def validate_required_field(
+        self, cleaned_data, field_name, message="This field is required."
+    ):
+        if field_name in cleaned_data and (
+            cleaned_data[field_name] is None or cleaned_data[field_name] == ""
+        ):
+            self.add_error(field_name, self.error_class([message]))

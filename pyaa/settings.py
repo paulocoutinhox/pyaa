@@ -184,9 +184,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [
-    BASE_DIR / "pyaa" / "locale",
-    BASE_DIR / "apps" / "customers" / "locale",
-    BASE_DIR / "apps" / "languages" / "locale",
+    BASE_DIR / "locale",
 ]
 
 DEFAULT_TIME_ZONE = "America/Sao_Paulo"
