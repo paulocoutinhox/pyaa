@@ -32,13 +32,11 @@ class CustomerAdminForm(forms.ModelForm):
         label=_("form.label.home-phone"),
     )
 
-
     def is_adding(self):
         if self.instance.pk is None:
             return True
         else:
             return False
-
 
     def validate_required_field(
         self, cleaned_data, field_name, message="This field is required."
