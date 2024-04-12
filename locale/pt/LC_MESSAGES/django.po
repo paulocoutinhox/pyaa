@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 05:28+0000\n"
+"POT-Creation-Date: 2024-04-12 05:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,39 +60,43 @@ msgstr "clientes"
 msgid "model.field.id"
 msgstr "código"
 
-#: apps/customers/models.py:56
+#: apps/customers/models.py:48
+msgid "model.field.user"
+msgstr "usuário"
+
+#: apps/customers/models.py:57
 msgid "model.field.language"
 msgstr "idioma"
 
-#: apps/customers/models.py:60
+#: apps/customers/models.py:61
 msgid "model.field.mobile-phone"
 msgstr "telefone celular"
 
-#: apps/customers/models.py:67
+#: apps/customers/models.py:68
 msgid "model.field.home-phone"
 msgstr "telefone residencial"
 
-#: apps/customers/models.py:74
+#: apps/customers/models.py:75
 msgid "model.field.gender"
 msgstr "gênero"
 
-#: apps/customers/models.py:83
+#: apps/customers/models.py:84
 msgid "model.field.avatar"
 msgstr "avatar"
 
-#: apps/customers/models.py:90
+#: apps/customers/models.py:91
 msgid "model.field.obs"
 msgstr "obs"
 
-#: apps/customers/models.py:96
+#: apps/customers/models.py:97
 msgid "model.field.timezone"
 msgstr "fuso-horário"
 
-#: apps/customers/models.py:104
+#: apps/customers/models.py:105
 msgid "model.field.created-at"
 msgstr "criado em"
 
-#: apps/customers/models.py:109
+#: apps/customers/models.py:110
 msgid "model.field.updated-at"
 msgstr "alterado em"
 

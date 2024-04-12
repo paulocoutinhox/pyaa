@@ -45,6 +45,7 @@ class Customer(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name="user",
+        verbose_name=_("model.field.user"),
     )
 
     language = models.ForeignKey(
