@@ -31,12 +31,16 @@ ALLOWED_HOSTS = [
 
 # Your email config goes here.
 # see https://github.com/anymail/django-anymail for more details / examples
-EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND", default="anymail.backends.mailgun.EmailBackend")
+EMAIL_BACKEND = env(
+    "DJANGO_EMAIL_BACKEND", default="anymail.backends.mailgun.EmailBackend"
+)
 match EMAIL_BACKEND:
     case "anymail.backends.mailgun.EmailBackend":
         ANYMAIL = {
             "MAILGUN_API_KEY": env("MAILGUN_API_KEY", default=None),
-            "MAILGUN_SENDER_DOMAIN": env("MAILGUN_SENDER_DOMAIN", default="chatbotmg.dimagi.com"),
+            "MAILGUN_SENDER_DOMAIN": env(
+                "MAILGUN_SENDER_DOMAIN", default="chatbotmg.dimagi.com"
+            ),
         }
     case "anymail.backends.amazon_ses.EmailBackend":
         ANYMAIL = {
