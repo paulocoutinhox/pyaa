@@ -19,6 +19,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path(r"customer/", views.CustomerView.as_view()),
-    path(r"customer/<int:pk>", views.SingleCustomerView.as_view()),
+    path(r"customers/", views.CustomerView.as_view()),
+    path(r"customers/<int:pk>", views.SingleCustomerView.as_view()),
 ]

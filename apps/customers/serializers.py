@@ -13,22 +13,14 @@ class CustomerSerializer(serializers.ModelSerializer):
 
         fields = [
             "id",
-            "name",
-            "email",
-            "password",
             "language",
             "mobile_phone",
             "home_phone",
             "gender",
+            "avatar",
             "obs",
             "timezone",
         ]
-
-    password = serializers.CharField(
-        required=True,
-        label=_("form.label.password"),
-        write_only=True,
-    )
 
     mobile_phone = serializers.CharField(
         required=False,
@@ -40,18 +32,30 @@ class CustomerSerializer(serializers.ModelSerializer):
         label=_("form.label.home-phone"),
     )
 
+    gender = serializers.CharField(
+        label=_("form.label.gender"),
+        max_length=255,
+        required=False,
+    )
+
+    avatar = serializers.CharField(
+        label=_("form.label.avatar"),
+        required=False,
+    )
+
+    obs = serializers.CharField(
+        label=_("form.label.obs"),
+        required=False,
+    )
+
     timezone = serializers.CharField(
         required=False,
         label=_("form.label.timezone"),
         max_length=255,
         default=DEFAULT_TIME_ZONE,
-        write_only=True,
     )
 
     def create(self, validated_data):
-        validated_data["confirm_password"] = validated_data["password"]
-        validated_data["status"] = enums.CustomerStatus.ACTIVE
-
         form = CustomerAdminForm(data=validated_data)
 
         if form.is_valid():
@@ -61,14 +65,6 @@ class CustomerSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(form.errors)
 
     def update(self, instance: Customer, validated_data):
-        if "password" in validated_data:
-            validated_data["confirm_password"] = validated_data["password"]
-
-        if "timezone" not in validated_data:
-            validated_data["timezone"] = instance.timezone
-
-        validated_data["status"] = instance.status
-
         form = CustomerAdminForm(validated_data, instance=instance)
 
         if form.is_valid():
