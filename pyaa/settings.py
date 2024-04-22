@@ -293,6 +293,9 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_ADAPTER = "apps.web.account.adapter.AppAccountAdapter"
+ACCOUNT_FORMS = {
+    "signup": "apps.web.account.forms.CustomerSignupForm",
+}
 
 # Email
 
