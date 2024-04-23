@@ -4,19 +4,6 @@ from django.utils.translation import gettext_lazy as _
 
 from .models import User
 
-# admin.site.unregister(User)
-
-
-# @admin.register(User)
-# class CustomUserAdmin(UserAdmin):
-#     readonly_fields = ("id",)
-#     list_display = ("id",) + UserAdmin.list_display
-#     list_display_links = ("id", "username", "email", "first_name", "last_name")
-#     ordering = ("-id",)
-
-#     def __init__(self, model, admin_site):
-#         super().__init__(model, admin_site)
-
 
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
