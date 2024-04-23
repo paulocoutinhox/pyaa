@@ -24,33 +24,33 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     mobile_phone = serializers.CharField(
         required=False,
-        label=_("form.label.mobile-phone"),
+        label=_("model.field.mobile-phone"),
     )
 
     home_phone = serializers.CharField(
         required=False,
-        label=_("form.label.home-phone"),
+        label=_("model.field.home-phone"),
     )
 
     gender = serializers.CharField(
-        label=_("form.label.gender"),
+        label=_("model.field.gender"),
         max_length=255,
         required=False,
     )
 
     avatar = serializers.CharField(
-        label=_("form.label.avatar"),
+        label=_("model.field.avatar"),
         required=False,
     )
 
     obs = serializers.CharField(
-        label=_("form.label.obs"),
+        label=_("model.field.obs"),
         required=False,
     )
 
     timezone = serializers.CharField(
         required=False,
-        label=_("form.label.timezone"),
+        label=_("model.field.timezone"),
         max_length=255,
         default=DEFAULT_TIME_ZONE,
     )

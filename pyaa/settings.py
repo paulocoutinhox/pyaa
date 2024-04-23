@@ -84,6 +84,7 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
+    "apps.users.apps.UsersConfig",
     "apps.customers.apps.CustomersConfig",
     "apps.languages.apps.LanguagesConfig",
 ]
@@ -296,6 +297,7 @@ ACCOUNT_ADAPTER = "apps.web.account.adapter.AppAccountAdapter"
 ACCOUNT_FORMS = {
     "signup": "apps.web.account.forms.CustomerSignupForm",
 }
+AUTH_USER_MODEL = "users.User"
 
 # Email
 

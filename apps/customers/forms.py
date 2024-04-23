@@ -23,13 +23,13 @@ class CustomerAdminForm(forms.ModelForm):
     mobile_phone = OnlyNumberCharField(
         widget=forms.TextInput(attrs={"data-mask": "(00)0000-00009"}),
         required=False,
-        label=_("form.label.mobile-phone"),
+        label=_("model.field.mobile-phone"),
     )
 
     home_phone = OnlyNumberCharField(
         widget=forms.TextInput(attrs={"data-mask": "(00)0000-00009"}),
         required=False,
-        label=_("form.label.home-phone"),
+        label=_("model.field.home-phone"),
     )
 
     def is_adding(self):

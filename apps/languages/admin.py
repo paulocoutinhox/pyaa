@@ -21,6 +21,8 @@ class LanguageAdmin(admin.ModelAdmin):
 
     list_per_page = 10
 
+    ordering = ("-id",)
+
     def get_queryset(self, request):
         qs = super(LanguageAdmin, self).get_queryset(request)
         return qs

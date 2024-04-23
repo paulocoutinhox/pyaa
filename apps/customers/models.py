@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
@@ -7,7 +6,7 @@ from tinymce.models import HTMLField
 
 from apps.customers import enums, fields
 from apps.languages import models as language_models
-from pyaa.settings import DEFAULT_TIME_ZONE
+from pyaa.settings import AUTH_USER_MODEL, DEFAULT_TIME_ZONE
 
 
 class Customer(models.Model):
@@ -42,7 +41,7 @@ class Customer(models.Model):
     )
 
     user = models.OneToOneField(
-        User,
+        AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="user",
         verbose_name=_("model.field.user"),

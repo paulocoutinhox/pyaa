@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 05:56+0000\n"
+"POT-Creation-Date: 2024-04-22 17:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 #: apps/customers/admin.py:37 apps/customers/admin.py:46
 #: apps/languages/models.py:25
 msgid "model.field.name"
-msgstr "name"
+msgstr "Name"
 
 #: apps/customers/admin.py:54
 msgid "model.field.is_active"
-msgstr "active"
+msgstr "Active"
 
 #: apps/customers/apps.py:8
 msgid "apps.customers.description"
@@ -45,73 +45,57 @@ msgstr "name"
 msgid "filter.email"
 msgstr "email"
 
-#: apps/customers/forms.py:26 apps/customers/serializers.py:35
-msgid "form.label.mobile-phone"
-msgstr "Mobile phone"
-
-#: apps/customers/forms.py:32 apps/customers/serializers.py:40
-msgid "form.label.home-phone"
-msgstr "Home phone"
-
-#: apps/customers/models.py:16
+#: apps/customers/models.py:15
 msgid "model.customer.name"
 msgstr "customer"
 
-#: apps/customers/models.py:17
+#: apps/customers/models.py:16
 msgid "model.customer.name.plural"
 msgstr "customers"
 
-#: apps/customers/models.py:39 apps/languages/models.py:19
+#: apps/customers/models.py:38 apps/languages/models.py:19
 msgid "model.field.id"
-msgstr "code"
+msgstr "Code"
 
-#: apps/customers/models.py:48
+#: apps/customers/models.py:47
 msgid "model.field.user"
-msgstr "user"
+msgstr "User"
 
-#: apps/customers/models.py:57
+#: apps/customers/models.py:56 apps/web/account/forms.py:30
 msgid "model.field.language"
-msgstr "language"
+msgstr "Language"
 
-#: apps/customers/models.py:61
+#: apps/customers/models.py:60 apps/web/account/forms.py:17
 msgid "model.field.mobile-phone"
-msgstr "mobile phone"
+msgstr "Mobile phone"
 
-#: apps/customers/models.py:68
+#: apps/customers/models.py:67
 msgid "model.field.home-phone"
-msgstr "home phone"
-
-#: apps/customers/models.py:75
-msgid "model.field.gender"
-msgstr "gender"
-
-#: apps/customers/models.py:84
-msgid "model.field.avatar"
-msgstr "avatar"
-
-#: apps/customers/models.py:91
-msgid "model.field.obs"
-msgstr "obs"
-
-#: apps/customers/models.py:97
-msgid "model.field.timezone"
-msgstr "timezone"
-
-#: apps/customers/models.py:105
-msgid "model.field.created-at"
-msgstr "created at"
-
-#: apps/customers/models.py:110
-msgid "model.field.updated-at"
-msgstr "updated at"
-
-#: apps/customers/serializers.py:29
-msgid "form.label.password"
 msgstr "Home phone"
 
-#: apps/customers/serializers.py:45
-msgid "form.label.timezone"
+#: apps/customers/models.py:74 apps/web/account/forms.py:21
+msgid "model.field.gender"
+msgstr "Gender"
+
+#: apps/customers/models.py:83
+msgid "model.field.avatar"
+msgstr "Avatar"
+
+#: apps/customers/models.py:90
+msgid "model.field.obs"
+msgstr "Obs"
+
+#: apps/customers/models.py:96 apps/web/account/forms.py:35
+msgid "model.field.timezone"
 msgstr "Timezone"
+
+#: apps/customers/models.py:104
+msgid "model.field.created-at"
+msgstr "Created at"
+
+#: apps/customers/models.py:109
+msgid "model.field.updated-at"
+msgstr "Updated at"
 
 #: apps/languages/apps.py:8
 msgid "apps.languages.description"
@@ -127,7 +111,7 @@ msgstr "languages"
 
 #: apps/languages/models.py:30
 msgid "model.field.native_name"
-msgstr "native name"
+msgstr "Native name"
 
 #: apps/languages/models.py:32
 msgid "model.hint.native_name"
@@ -135,7 +119,7 @@ msgstr "Native name without translation"
 
 #: apps/languages/models.py:36
 msgid "model.field.code_iso_639_1"
-msgstr "code ISO 639-1"
+msgstr "Code ISO 639-1"
 
 #: apps/languages/models.py:38
 msgid "model.hint.code_iso_639_1"
@@ -143,11 +127,27 @@ msgstr "Examples: en or pt"
 
 #: apps/languages/models.py:42
 msgid "model.field.code_iso_language"
-msgstr "code ISO"
+msgstr "Code ISO"
 
 #: apps/languages/models.py:43
 msgid "model.hint.code_iso_language"
 msgstr "Examples: en-US ou pt-BR"
+
+#: apps/users/admin.py:27
+msgid "Personal info"
+msgstr ""
+
+#: apps/users/admin.py:29
+msgid "Permissions"
+msgstr ""
+
+#: apps/users/admin.py:40
+msgid "Important dates"
+msgstr ""
+
+#: apps/users/models.py:43
+msgid "model.field.email"
+msgstr "E-mail"
 
 #: pyaa/admin.py:6
 msgid "pyaa.admin.name"
@@ -157,11 +157,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site Content"
 
-#: pyaa/settings.py:182
+#: pyaa/settings.py:183
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings.py:183
+#: pyaa/settings.py:184
 msgid "language.pt-br"
 msgstr "Portuguese"
 
