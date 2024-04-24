@@ -43,7 +43,7 @@ class Customer(models.Model):
     user = models.OneToOneField(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="user",
+        related_name="customer",
         verbose_name=_("model.field.user"),
     )
 

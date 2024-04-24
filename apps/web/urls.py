@@ -17,11 +17,36 @@ Including another URLconf
 from django.conf.urls import include
 from django.urls import path
 
-from .views import account_delete_view, account_profile_view, home_view
+from .views import (
+    account_delete_view,
+    account_profile_view,
+    account_update_profile_view,
+    home_view,
+)
 
 urlpatterns = [
-    path("accounts/", include("allauth.urls")),
-    path("account/profile/", account_profile_view, name="account_profile"),
-    path("account/delete/", account_delete_view, name="account_delete"),
-    path("", home_view, name="home"),
+    path(
+        "accounts/",
+        include("allauth.urls"),
+    ),
+    path(
+        "account/profile/",
+        account_profile_view,
+        name="account_profile",
+    ),
+    path(
+        "account/delete/",
+        account_delete_view,
+        name="account_delete",
+    ),
+    path(
+        "account/profile/update/",
+        account_update_profile_view,
+        name="account_update_profile",
+    ),
+    path(
+        "",
+        home_view,
+        name="home",
+    ),
 ]

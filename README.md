@@ -88,6 +88,8 @@ npm install
 npm run build
 ```
 
+And inside `apps/web` there is a folder called `static` that contains web static files for site frontend.
+
 ## References
 
 - [Security](docs/security.md)

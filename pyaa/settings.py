@@ -84,9 +84,10 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
-    "apps.users.apps.UsersConfig",
-    "apps.customers.apps.CustomersConfig",
-    "apps.languages.apps.LanguagesConfig",
+    "apps.users.apps.UsersAppConfig",
+    "apps.web.apps.WebAppConfig",
+    "apps.customers.apps.CustomersAppConfig",
+    "apps.languages.apps.LanguagesAppConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -295,7 +296,7 @@ ACCOUNT_EMAIL_NOTIFICATIONS = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_ADAPTER = "apps.web.account.adapter.AppAccountAdapter"
+ACCOUNT_ADAPTER = "apps.web.adapter.AppAccountAdapter"
 ACCOUNT_FORMS = {
     "signup": "apps.web.account.forms.CustomerSignupForm",
 }

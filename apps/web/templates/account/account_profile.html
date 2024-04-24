@@ -6,13 +6,19 @@
     <div class="flex flex-col items-center p-12">
         <h1 class="my-10 text-3xl text-center">Profile</h1>
 
-        {% if user.is_authenticated %}
         <h3>Welcome {{ user.get_full_name }}!</h3>
 
         <p class="my-2">
             <a href="{% url 'account_email' %}"
                 class="flex items-center justify-center w-full px-3 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 font-medium text-sm text-center rounded-md me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Change email
+            </a>
+        </p>
+
+        <p class="my-2">
+            <a href="{% url 'account_update_profile' %}"
+                class="flex items-center justify-center w-full px-3 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 font-medium text-sm text-center rounded-md me-2 my-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Update profile
             </a>
         </p>
 
@@ -29,7 +35,6 @@
             class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
             Logout
         </a>
-        {% endif %}
     </div>
 </div>
 
