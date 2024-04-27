@@ -16,13 +16,7 @@ Including another URLconf
 
 from django.conf.urls import include
 from django.urls import path
-
-from .views import (
-    account_delete_view,
-    account_profile_view,
-    account_update_profile_view,
-    home_view,
-)
+from .views import account, home
 
 urlpatterns = [
     path(
@@ -31,22 +25,27 @@ urlpatterns = [
     ),
     path(
         "account/profile/",
-        account_profile_view,
+        account.profile_view,
         name="account_profile",
     ),
     path(
         "account/delete/",
-        account_delete_view,
+        account.delete_view,
         name="account_delete",
     ),
     path(
         "account/profile/update/",
-        account_update_profile_view,
+        account.update_profile_view,
         name="account_update_profile",
     ),
     path(
+        "account/avatar/update/",
+        account.update_avatar_view,
+        name="account_update_avatar",
+    ),
+    path(
         "",
-        home_view,
+        home.index_view,
         name="home",
     ),
 ]

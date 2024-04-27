@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 21:01+0000\n"
+"POT-Creation-Date: 2024-04-27 08:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "model.field.name"
 msgstr "Name"
 
-#: apps/customers/admin.py:48 apps/users/models.py:57
+#: apps/customers/admin.py:48 apps/users/models.py:55
 msgid "model.field.email"
 msgstr "E-mail"
 
@@ -48,39 +48,37 @@ msgstr "name"
 msgid "filter.email"
 msgstr "email"
 
-#: apps/customers/forms.py:33 apps/customers/forms.py:67
-#: apps/customers/forms.py:120 apps/customers/models.py:60
-#: apps/customers/serializers.py:27
+#: apps/customers/forms.py:34 apps/customers/forms.py:96
+#: apps/customers/models.py:60 apps/customers/serializers.py:27
 msgid "model.field.mobile-phone"
 msgstr "Mobile phone"
 
-#: apps/customers/forms.py:39 apps/customers/forms.py:126
+#: apps/customers/forms.py:40 apps/customers/forms.py:102
 #: apps/customers/models.py:67 apps/customers/serializers.py:32
 msgid "model.field.home-phone"
 msgstr "Home phone"
 
-#: apps/customers/forms.py:71 apps/customers/forms.py:130
-#: apps/customers/models.py:74 apps/customers/serializers.py:36
-msgid "model.field.gender"
-msgstr "Gender"
-
-#: apps/customers/forms.py:80 apps/customers/forms.py:139
-#: apps/customers/models.py:56
-msgid "model.field.language"
-msgstr "Language"
-
-#: apps/customers/forms.py:85 apps/customers/forms.py:144
-#: apps/customers/models.py:96 apps/customers/serializers.py:53
-msgid "model.field.timezone"
-msgstr "Timezone"
-
-#: apps/customers/forms.py:106
+#: apps/customers/forms.py:82
 msgid "model.field.first-name"
 msgstr "First name"
 
-#: apps/customers/forms.py:112
+#: apps/customers/forms.py:88
 msgid "model.field.last-name"
 msgstr "Last name"
+
+#: apps/customers/forms.py:106 apps/customers/models.py:74
+#: apps/customers/serializers.py:36
+msgid "model.field.gender"
+msgstr "Gender"
+
+#: apps/customers/forms.py:115 apps/customers/models.py:56
+msgid "model.field.language"
+msgstr "Language"
+
+#: apps/customers/forms.py:120 apps/customers/models.py:96
+#: apps/customers/serializers.py:53
+msgid "model.field.timezone"
+msgstr "Timezone"
 
 #: apps/customers/models.py:15
 msgid "model.customer.name"
@@ -91,7 +89,7 @@ msgid "model.customer.name.plural"
 msgstr "customers"
 
 #: apps/customers/models.py:38 apps/languages/models.py:19
-#: apps/users/models.py:51
+#: apps/users/models.py:49
 msgid "model.field.id"
 msgstr "ID"
 
@@ -163,11 +161,11 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: apps/web/views.py:26
+#: apps/web/views/account.py:26 apps/web/views/account.py:40
 msgid "message.account-updated"
 msgstr "Your account was updated"
 
-#: apps/web/views.py:45
+#: apps/web/views/account.py:69
 msgid "message.account-deleted"
 msgstr "Your account was removed"
 
@@ -179,31 +177,117 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site Content"
 
-#: pyaa/settings.py:184
+#: pyaa/settings.py:183
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings.py:185
+#: pyaa/settings.py:184
 msgid "language.pt-br"
 msgstr "Portuguese"
 
-#: pyaa/templates/admin/app_list.html:9
+#: templates/account/delete.html:11
+msgid "title.account-delete"
+msgstr "Delete Account"
+
+#: templates/account/delete.html:15
+msgid "subtitle.account-delete"
+msgstr "Are you sure you want to delete your account?<br>This will permanently delete your profile and any content you have generated."
+
+#: templates/account/delete.html:25
+msgid "button.account-delete-confirm"
+msgstr "Yes, delete my account"
+
+#: templates/account/delete.html:31
+msgid "button.cancel"
+msgstr "Cancel"
+
+#: templates/account/profile.html:15
+msgid "title.account-profile"
+msgstr "Profile"
+
+#: templates/account/profile.html:19 templates/pages/home/index.html:16
+#, python-format
+msgid "Hi %(name)s!"
+msgstr "Hi %(name)s!"
+
+#: templates/account/profile.html:25
+msgid "button.change-email"
+msgstr "Change E-mail"
+
+#: templates/account/profile.html:31
+msgid "button.update-profile"
+msgstr "Update Profile"
+
+#: templates/account/profile.html:37
+msgid "button.update-avatar"
+msgstr "Update Avatar"
+
+#: templates/account/profile.html:43
+msgid "button.account-delete"
+msgstr "Delete Account"
+
+#: templates/account/profile.html:51
+msgid "button.account-logout"
+msgstr "Logout"
+
+#: templates/account/update_avatar.html:9
+msgid "title.account-update-avatar"
+msgstr "Update Avatar"
+
+#: templates/account/update_avatar.html:23
+#: templates/account/update_profile.html:19
+msgid "button.update"
+msgstr "Update"
+
+#: templates/account/update_profile.html:9
+msgid "title.account-update-profile"
+msgstr "Update Profile"
+
+#: templates/admin/app_list.html:9
 #, python-format
 msgid "Models in the %(name)s application"
 msgstr ""
 
-#: pyaa/templates/admin/app_list.html:26
+#: templates/admin/app_list.html:26
 msgid "Add"
 msgstr ""
 
-#: pyaa/templates/admin/app_list.html:33
+#: templates/admin/app_list.html:33
 msgid "View"
 msgstr ""
 
-#: pyaa/templates/admin/app_list.html:35
+#: templates/admin/app_list.html:35
 msgid "Change"
 msgstr ""
 
-#: pyaa/templates/admin/app_list.html:47
+#: templates/admin/app_list.html:47
 msgid "You don’t have permission to view or edit anything."
 msgstr ""
+
+#: templates/pages/home/index.html:9
+msgid "pyaa.site.name"
+msgstr "Python Advanced Application"
+
+#: templates/pages/home/index.html:23 templates/partials/header.html:32
+msgid "menu.logout"
+msgstr "Logout"
+
+#: templates/pages/home/index.html:28 templates/partials/header.html:38
+msgid "menu.login"
+msgstr "Sign In"
+
+#: templates/partials/header.html:7
+msgid "pyaa.site.small-name"
+msgstr "PYAA"
+
+#: templates/partials/header.html:20
+msgid "menu.home"
+msgstr "Home"
+
+#: templates/partials/header.html:27
+msgid "menu.profile"
+msgstr "Profile"
+
+#: templates/partials/header.html:43
+msgid "menu.signup"
+msgstr "Sign Up"

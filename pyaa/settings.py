@@ -111,8 +111,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / "pyaa" / "templates",
-            BASE_DIR / "apps" / "web" / "templates",
+            BASE_DIR / "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -197,9 +196,7 @@ DEFAULT_TIME_ZONE = "America/Sao_Paulo"
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "apps" / "web" / "static",
-]
+STATICFILES_DIRS = []
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -285,7 +282,7 @@ LOGIN_REDIRECT_URL = "home"
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_UNIQUE_EMAIL = True
@@ -298,7 +295,7 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_ADAPTER = "apps.web.adapter.AppAccountAdapter"
 ACCOUNT_FORMS = {
-    "signup": "apps.web.account.forms.CustomerSignupForm",
+    "signup": "apps.customers.forms.CustomerSignupForm",
 }
 AUTH_USER_MODEL = "users.User"
 

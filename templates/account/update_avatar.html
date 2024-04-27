@@ -1,0 +1,29 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+{% element page_title %}
+    {% translate "title.account-update-avatar" %}
+{% endelement %}
+
+{% if customer.avatar %}
+<img class="rounded mx-auto d-block w-25" src="{{ customer.avatar.url }}">
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" class="overflow-hidden" novalidate>
+    {% csrf_token %}
+
+    {% element fields form=form %}
+    {% endelement %}
+
+    <p>
+        {% element button type="submit" %}
+            {% translate "button.update" %}
+        {% endelement %}
+    </p>
+</form>
+
+{% endblock content %}

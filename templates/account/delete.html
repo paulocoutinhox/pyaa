@@ -1,0 +1,36 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+{% element page_title %}
+    {% translate "title.account-delete" %}
+{% endelement %}
+
+<p class="text-center">
+    {% translate "subtitle.account-delete" %}
+</p>
+
+<form action="{% url 'account_delete' %}" method="post" class="text-center" novalidate>
+    {% csrf_token %}
+
+    {{ form }}
+
+    <p>
+        {% element button type="submit" tags="danger" %}
+            {% translate "button.account-delete-confirm" %}
+        {% endelement %}
+    </p>
+
+    <p>
+        {% element button href=url_account_profile %}
+            {% translate "button.cancel" %}
+        {% endelement %}
+    </p>
+</form>
+
+{% endblock content %}

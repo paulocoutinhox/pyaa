@@ -1,13 +1,11 @@
 from allauth.account.signals import user_signed_up
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.db.models import Q
 from django.dispatch import receiver
-from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 from apps.customers.models import Customer
-from apps.languages.models import Language
+from apps.languages.helpers import LanguageHelper
 from pyaa.settings import DEFAULT_TIME_ZONE
 
 
@@ -64,26 +62,7 @@ class User(AbstractUser):
 
 @receiver(user_signed_up)
 def on_user_signed_up(request, user: User, **kwargs):
-    # Get the browser's language
-    browser_language = get_language()
-
-    # Try to get the exact match for the language
-    language = Language.objects.filter(
-        Q(code_iso_language=browser_language) | Q(code_iso_639_1=browser_language)
-    ).first()
-
-    # If not found, try to get the language without the region code
-    if not language and "-" in browser_language:
-        language_code = browser_language.split("-")[0]
-        language = Language.objects.filter(code_iso_639_1=language_code).first()
-
-    # If still not found, use the first registered language
-    if not language:
-        language = Language.objects.first()
-
-        if not language:
-            raise Exception("No languages have been registered.")
-
+    language = LanguageHelper.get_current()
     timezone = DEFAULT_TIME_ZONE
 
     customer, created = Customer.objects.get_or_create(

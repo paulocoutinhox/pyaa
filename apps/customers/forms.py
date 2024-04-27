@@ -6,6 +6,7 @@ from timezone_field import TimeZoneFormField
 from apps.customers import models
 from apps.customers.enums import CustomerGender
 from apps.customers.models import Customer
+from apps.languages.helpers import LanguageHelper
 from apps.languages.models import Language
 from apps.users.models import User
 from pyaa.fields import OnlyNumberCharField
@@ -61,41 +62,16 @@ class CustomerDeleteForm(forms.ModelForm):
 
 
 class CustomerSignupForm(SignupForm):
-    mobile_phone = OnlyNumberCharField(
-        widget=forms.TextInput(attrs={"data-mask": "(00)0000-00009"}),
-        required=False,
-        label=_("model.field.mobile-phone"),
-    )
-
-    gender = forms.ChoiceField(
-        label=_("model.field.gender"),
-        choices=CustomerGender.choices,
-        initial=CustomerGender.NONE,
-        required=True,
-    )
-
-    language = forms.ModelChoiceField(
-        queryset=Language.objects.all(),
-        required=True,
-        label=_("model.field.language"),
-        empty_label=None,
-    )
-
-    timezone = TimeZoneFormField(
-        label=_("model.field.timezone"),
-        required=True,
-        initial=DEFAULT_TIME_ZONE,
-    )
-
     def save(self, request):
         user = super(CustomerSignupForm, self).save(request)
 
+        language = LanguageHelper.get_current()
+        timezone = DEFAULT_TIME_ZONE
+
         Customer.objects.create(
             user=user,
-            mobile_phone=self.cleaned_data["mobile_phone"],
-            gender=self.cleaned_data["gender"],
-            language=self.cleaned_data["language"],
-            timezone=self.cleaned_data["timezone"],
+            language=language,
+            timezone=timezone,
         )
 
         return user
@@ -146,8 +122,6 @@ class CustomerUpdateProfileForm(forms.Form):
         initial=DEFAULT_TIME_ZONE,
     )
 
-    avatar = forms.ImageField(required=False)
-
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
         super(CustomerUpdateProfileForm, self).__init__(*args, **kwargs)
@@ -162,7 +136,6 @@ class CustomerUpdateProfileForm(forms.Form):
                 self.fields["mobile_phone"].initial = customer.mobile_phone
                 self.fields["home_phone"].initial = customer.home_phone
                 self.fields["gender"].initial = customer.gender
-                self.fields["avatar"].initial = customer.avatar
                 self.fields["timezone"].initial = customer.timezone
 
     def save(self, user):
@@ -175,6 +148,23 @@ class CustomerUpdateProfileForm(forms.Form):
         customer.mobile_phone = self.cleaned_data["mobile_phone"]
         customer.home_phone = self.cleaned_data["home_phone"]
         customer.gender = self.cleaned_data["gender"]
-        customer.avatar = self.cleaned_data["avatar"]
         customer.timezone = self.cleaned_data["timezone"]
+        customer.save()
+
+
+class CustomerUpdateAvatarForm(forms.Form):
+    avatar = forms.ImageField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop("user", None)
+        super(CustomerUpdateAvatarForm, self).__init__(*args, **kwargs)
+
+        if user:
+            if hasattr(user, "customer"):
+                customer = user.customer
+                self.fields["avatar"].initial = customer.avatar
+
+    def save(self, user):
+        customer = user.customer
+        customer.avatar = self.cleaned_data["avatar"]
         customer.save()

@@ -4,7 +4,6 @@
 *.pyc
 __pycache__
 /media
-/static
 /db
 /cache
 

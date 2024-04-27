@@ -1,0 +1,20 @@
+{% load pyaa %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "partials/head.html" %}
+</head>
+<body>
+    {% include "partials/header.html" %}
+
+    <main id="main">
+        {% include "partials/messages.html" %}
+
+        {% block before_content %}{% endblock %}
+        {% block content %} {% endblock %}
+        {% block after_content %}{% endblock %}
+    </main>
+
+    {% include "partials/footer.html" %}
+</body>
+</html>
