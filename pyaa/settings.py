@@ -88,6 +88,7 @@ PROJECT_APPS = [
     "apps.web.apps.WebAppConfig",
     "apps.customers.apps.CustomersAppConfig",
     "apps.languages.apps.LanguagesAppConfig",
+    "apps.subscriptions.apps.SubscriptionsAppConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -307,3 +308,11 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 COMPRESS_ROOT = BASE_DIR / "static"
 COMPRESS_ENABLED = True
+
+# Subscription
+
+SUBSCRIPTION_PLANS = {"premium": {"code": "prod_Q0IO9R3y0kxkxl"}}
+
+# Stripe
+
+SUBSCRIPTION_PLANS = {"premium": {"code": "prod_Q0IO9R3y0kxkxl"}}
