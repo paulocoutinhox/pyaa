@@ -5,6 +5,8 @@
 
 {% block content %}
 
+{% url 'account_profile' as url_account_profile %}
+
 {% element page_title %}
     {% translate "title.account-update-profile" %}
 {% endelement %}
@@ -18,6 +20,10 @@
     <p>
         {% element button type="submit" %}
             {% translate "button.update" %}
+        {% endelement %}
+
+        {% element button href=url_account_profile %}
+            {% translate "button.cancel" %}
         {% endelement %}
     </p>
 </form>

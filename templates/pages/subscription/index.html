@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {% translate "title.subscription" %}
+    {% endelement %}
+
+    <div class="row row-cols-1 row-cols-md-2 my-5 text-center">
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">
+                        {% translate "subscription.plan.free.title" %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% translate "subscription.plan.free.description" %}
+
+                    {% if user.is_authenticated %}
+                        {% if user.has_subscription %}
+                            <a class="w-100 btn btn-lg btn-outline-primary" href="{% url 'account_profile' %}">
+                                {% translate "subscription.plan.free.button-with-subscription" %}
+                            </a>
+                        {% else %}
+                            <a class="w-100 btn btn-lg btn-outline-primary" href="{% url 'account_profile' %}">
+                                {% translate "subscription.plan.free.button-without-subscription" %}
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        <a class="w-100 btn btn-lg btn-outline-primary" href="{% url 'account_signup' %}">
+                            {% translate "subscription.plan.free.button-not-authenticated" %}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-white bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">
+                        {% translate "subscription.plan.premium.title" %}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% translate "subscription.plan.premium.description" %}
+
+                    {% if user.is_authenticated %}
+                        {% if user.has_subscription %}
+                            <a class="w-100 btn btn-lg btn-primary" href="{% url 'account_profile' %}">
+                                {% translate "subscription.plan.premium.button-with-subscription" %}
+                            </a>
+                        {% else %}
+                            <a class="w-100 btn btn-lg btn-primary" href="{% url 'account_profile' %}">
+                                {% translate "subscription.plan.premium.button-without-subscription" %}
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        <a class="w-100 btn btn-lg btn-primary" href="{% url 'account_signup' %}">
+                            {% translate "subscription.plan.premium.button-not-authenticated" %}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

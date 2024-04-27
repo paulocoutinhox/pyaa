@@ -1,7 +1,9 @@
+from django.conf.urls import include
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from apps.customers.forms import (
@@ -14,7 +16,14 @@ from apps.customers.models import Customer
 
 @login_required
 def profile_view(request):
-    return render(request, "account/profile.html")
+    customer = Customer.objects.get(user=request.user)
+    return render(
+        request,
+        "account/profile.html",
+        {
+            "customer": customer,
+        },
+    )
 
 
 @login_required
@@ -72,3 +81,31 @@ def delete_view(request):
         form = CustomerDeleteForm(instance=customer)
 
     return render(request, "account/delete.html", {"form": form})
+
+
+urlpatterns = [
+    path(
+        "accounts/",
+        include("allauth.urls"),
+    ),
+    path(
+        "account/profile/",
+        profile_view,
+        name="account_profile",
+    ),
+    path(
+        "account/delete/",
+        delete_view,
+        name="account_delete",
+    ),
+    path(
+        "account/profile/update/",
+        update_profile_view,
+        name="account_update_profile",
+    ),
+    path(
+        "account/avatar/update/",
+        update_avatar_view,
+        name="account_update_avatar",
+    ),
+]

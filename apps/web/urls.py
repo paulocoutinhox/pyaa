@@ -14,38 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf.urls import include
-from django.urls import path
-from .views import account, home
+from .views import account, home, subscription
 
-urlpatterns = [
-    path(
-        "accounts/",
-        include("allauth.urls"),
-    ),
-    path(
-        "account/profile/",
-        account.profile_view,
-        name="account_profile",
-    ),
-    path(
-        "account/delete/",
-        account.delete_view,
-        name="account_delete",
-    ),
-    path(
-        "account/profile/update/",
-        account.update_profile_view,
-        name="account_update_profile",
-    ),
-    path(
-        "account/avatar/update/",
-        account.update_avatar_view,
-        name="account_update_avatar",
-    ),
-    path(
-        "",
-        home.index_view,
-        name="home",
-    ),
-]
+urlpatterns = []
+
+urlpatterns += home.urlpatterns
+urlpatterns += account.urlpatterns
+urlpatterns += subscription.urlpatterns

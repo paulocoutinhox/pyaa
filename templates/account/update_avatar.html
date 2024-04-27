@@ -5,15 +5,15 @@
 
 {% block content %}
 
+{% url 'account_profile' as url_account_profile %}
+
 {% element page_title %}
     {% translate "title.account-update-avatar" %}
 {% endelement %}
 
-{% if customer.avatar %}
-<img class="rounded mx-auto d-block w-25" src="{{ customer.avatar.url }}">
-{% endif %}
+{% include "partials/customer_avatar.html" %}
 
-<form method="post" enctype="multipart/form-data" class="overflow-hidden" novalidate>
+<form method="post" enctype="multipart/form-data" class="text-break" novalidate>
     {% csrf_token %}
 
     {% element fields form=form %}
@@ -22,6 +22,10 @@
     <p>
         {% element button type="submit" %}
             {% translate "button.update" %}
+        {% endelement %}
+
+        {% element button href=url_account_profile %}
+            {% translate "button.cancel" %}
         {% endelement %}
     </p>
 </form>

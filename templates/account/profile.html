@@ -5,6 +5,7 @@
 
 {% block content %}
 
+{% url 'subscription' as url_subscription %}
 {% url 'account_email' as url_account_email %}
 {% url 'account_update_profile' as url_account_update_profile %}
 {% url 'account_update_avatar' as url_account_update_avatar %}
@@ -20,6 +21,16 @@
 </p>
 
 <div class="text-center">
+    {% include "partials/customer_avatar.html" %}
+
+    <p>
+        {% element button href=url_subscription %}
+            {% translate "button.my-subscription" %}
+        {% endelement %}
+    </p>
+
+    {% element hr %}{% endelement %}
+
     <p>
         {% element button href=url_account_email %}
             {% translate "button.change-email" %}
@@ -38,13 +49,13 @@
         {% endelement %}
     </p>
 
+    {% element hr %}{% endelement %}
+
     <p>
         {% element button href=url_account_delete tags="danger" %}
             {% translate "button.account-delete" %}
         {% endelement %}
     </p>
-
-    {% element hr %}{% endelement %}
 
     <p>
         {% element button href=url_account_logout tags="danger" %}

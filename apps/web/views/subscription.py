@@ -3,13 +3,13 @@ from django.urls import path
 
 
 def index_view(request):
-    return render(request, "pages/home/index.html")
+    return render(request, "pages/subscription/index.html")
 
 
 urlpatterns = [
     path(
-        "",
+        "subscription/",
         index_view,
-        name="home",
+        name="subscription",
     ),
 ]

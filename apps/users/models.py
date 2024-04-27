@@ -59,6 +59,10 @@ class User(AbstractUser):
 
     objects = UserManager()
 
+    @property
+    def has_subscription(self):
+        return False
+
 
 @receiver(user_signed_up)
 def on_user_signed_up(request, user: User, **kwargs):

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-27 08:28+0000\n"
+"POT-Creation-Date: 2024-04-27 20:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,11 +161,11 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: apps/web/views/account.py:26 apps/web/views/account.py:40
+#: apps/web/views/account.py:35 apps/web/views/account.py:49
 msgid "message.account-updated"
 msgstr "Sua conta foi atualizada"
 
-#: apps/web/views/account.py:69
+#: apps/web/views/account.py:78
 msgid "message.account-deleted"
 msgstr "Sua conta foi removida"
 
@@ -191,55 +191,62 @@ msgstr "Apagar Conta"
 
 #: templates/account/delete.html:15
 msgid "subtitle.account-delete"
-msgstr "Tem certeza de que deseja excluir sua conta?<br>Isso excluirá permanentemente seu perfil e qualquer conteúdo que você tenha gerado."
+msgstr ""
+"Tem certeza de que deseja excluir sua conta?<br>Isso excluirá "
+"permanentemente seu perfil e qualquer conteúdo que você tenha gerado."
 
 #: templates/account/delete.html:25
 msgid "button.account-delete-confirm"
 msgstr "Sim, apagar minha conta"
 
-#: templates/account/delete.html:31
+#: templates/account/delete.html:31 templates/account/update_avatar.html:28
+#: templates/account/update_profile.html:26
 msgid "button.cancel"
 msgstr "Cancelar"
 
-#: templates/account/profile.html:15
+#: templates/account/profile.html:16
 msgid "title.account-profile"
 msgstr "Perfil"
 
-#: templates/account/profile.html:19 templates/pages/home/index.html:16
+#: templates/account/profile.html:20 templates/pages/home/index.html:16
 #, python-format
 msgid "Hi %(name)s!"
 msgstr "Olá %(name)s!"
 
-#: templates/account/profile.html:25
+#: templates/account/profile.html:28
+msgid "button.my-subscription"
+msgstr "Minha Assinatura"
+
+#: templates/account/profile.html:36
 msgid "button.change-email"
 msgstr "Alterar e-mail"
 
-#: templates/account/profile.html:31
+#: templates/account/profile.html:42
 msgid "button.update-profile"
 msgstr "Alterar Perfil"
 
-#: templates/account/profile.html:37
+#: templates/account/profile.html:48
 msgid "button.update-avatar"
 msgstr "Alterar Avatar"
 
-#: templates/account/profile.html:43
+#: templates/account/profile.html:56
 msgid "button.account-delete"
 msgstr "Apagar Conta"
 
-#: templates/account/profile.html:51
+#: templates/account/profile.html:62
 msgid "button.account-logout"
 msgstr "Sair da minha conta"
 
-#: templates/account/update_avatar.html:9
+#: templates/account/update_avatar.html:11
 msgid "title.account-update-avatar"
 msgstr "Alterar Avatar"
 
-#: templates/account/update_avatar.html:23
-#: templates/account/update_profile.html:19
+#: templates/account/update_avatar.html:24
+#: templates/account/update_profile.html:22
 msgid "button.update"
 msgstr "Alterar"
 
-#: templates/account/update_profile.html:9
+#: templates/account/update_profile.html:11
 msgid "title.account-update-profile"
 msgstr "Alterar Perfil"
 
@@ -275,6 +282,64 @@ msgstr "Sair"
 #: templates/pages/home/index.html:28 templates/partials/header.html:38
 msgid "menu.login"
 msgstr "Entrar"
+
+#: templates/pages/subscription/index.html:9
+msgid "title.subscription"
+msgstr "Minha Assinatura"
+
+#: templates/pages/subscription/index.html:17
+msgid "subscription.plan.free.title"
+msgstr "Plano Gratuito"
+
+#: templates/pages/subscription/index.html:21
+msgid "subscription.plan.free.description"
+msgstr ""
+"<h1 class=\"card-title pricing-card-title\">R$ 0,00<small class=\"text-muted fw-light\">/mês</small></h1>"
+"<ul class=\"list-unstyled mt-3 mb-4\">"
+"<li>Linha 1</li>"
+"<li>Linha 2</li>"
+"<li>Linha 3</li>"
+"<li>Linha 4</li>"
+"</ul>"
+
+#: templates/pages/subscription/index.html:33
+msgid "subscription.plan.free.button-with-subscription"
+msgstr "Grátis"
+
+#: templates/pages/subscription/index.html:37
+msgid "subscription.plan.free.button-without-subscription"
+msgstr "Grátis"
+
+#: templates/pages/subscription/index.html:42
+msgid "subscription.plan.free.button-not-authenticated"
+msgstr "Cadastre-se gratuitamente"
+
+#: templates/pages/subscription/index.html:53
+msgid "subscription.plan.premium.title"
+msgstr "Plano Premium"
+
+#: templates/pages/subscription/index.html:57
+msgid "subscription.plan.premium.description"
+msgstr ""
+"<h1 class=\"card-title pricing-card-title\">R$ 24,99<small class=\"text-muted fw-light\">/mês</small></h1>"
+"<ul class=\"list-unstyled mt-3 mb-4\">"
+"<li>Linha 1</li>"
+"<li>Linha 2</li>"
+"<li>Linha 3</li>"
+"<li>Linha 4</li>"
+"</ul>"
+
+#: templates/pages/subscription/index.html:69
+msgid "subscription.plan.premium.button-with-subscription"
+msgstr "Premium"
+
+#: templates/pages/subscription/index.html:73
+msgid "subscription.plan.premium.button-without-subscription"
+msgstr "Assinar"
+
+#: templates/pages/subscription/index.html:78
+msgid "subscription.plan.premium.button-not-authenticated"
+msgstr "Premium"
 
 #: templates/partials/header.html:7
 msgid "pyaa.site.small-name"
