@@ -10,7 +10,6 @@ Execute the following commands:
 make setup
 make migrate
 make create-su
-make build-static
 make run
 ```
 
@@ -69,26 +68,6 @@ DJANGO_SUPERUSER_PASSWORD="admin"
 ```
 
 Obs: Obviously you must change this data for your real data, referring to your server.
-
-## Static files
-
-Webpack is used to generate the static files. You can use your prefered javascript framework to build frontend.
-
-To build static files in development mode, execute:
-
-```
-npm install
-npm run dev-watch
-```
-
-To build static files in production mode, execute:
-
-```
-npm install
-npm run build
-```
-
-And inside `apps/web` there is a folder called `static` that contains web static files for site frontend.
 
 ## References
 

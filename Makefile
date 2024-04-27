@@ -16,8 +16,6 @@ help:
 	@echo ""
 	@echo "- run"
 	@echo ""
-	@echo "- build-static"
-	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-run"
 	@echo "- docker-run-prod"
@@ -76,6 +74,3 @@ docker-run-prod:
 		-e DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
 		-e DJANGO_SUPERUSER_PASSWORD="admin" \
 		-p 8000:8000 pyaa
-
-build-static:
-	npm run build
