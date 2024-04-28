@@ -14,6 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from apps.subscriptions import views as subscriptions
+
 from .views import account, home, subscription
 
 urlpatterns = []
@@ -21,3 +23,4 @@ urlpatterns = []
 urlpatterns += home.urlpatterns
 urlpatterns += account.urlpatterns
 urlpatterns += subscription.urlpatterns
+urlpatterns += subscriptions.urlpatterns

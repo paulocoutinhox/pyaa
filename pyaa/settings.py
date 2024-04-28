@@ -311,8 +311,17 @@ COMPRESS_ENABLED = True
 
 # Subscription
 
-SUBSCRIPTION_PLANS = {"premium": {"code": "prod_Q0IO9R3y0kxkxl"}}
+SUBSCRIPTION_PLANS = {
+    "premium-monthly": {
+        "code": os.environ.get("STRIPE_PREMIUM_MONTHLY"),
+    },
+    "premium-yearly": {
+        "code": os.environ.get("STRIPE_PREMIUM_YEARLY"),
+    },
+}
 
 # Stripe
 
-SUBSCRIPTION_PLANS = {"premium": {"code": "prod_Q0IO9R3y0kxkxl"}}
+STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_ENDPOINT_SECRET = os.environ.get("STRIPE_ENDPOINT_SECRET")

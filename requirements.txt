@@ -16,3 +16,4 @@ django-allauth==0.62.1
 django-widget-tweaks==1.5.0
 django-compressor==4.4
 django-bootstrap5==24.2
+stripe==9.4.0
