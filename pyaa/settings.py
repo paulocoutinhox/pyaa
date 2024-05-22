@@ -88,6 +88,7 @@ PROJECT_APPS = [
     "apps.web.apps.WebAppConfig",
     "apps.customer.apps.CustomerAppConfig",
     "apps.language.apps.LanguageAppConfig",
+    "apps.content.apps.ContentAppConfig",
     "apps.payment.apps.PaymentAppConfig",
 ]
 

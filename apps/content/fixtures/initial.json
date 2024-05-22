@@ -1,0 +1,32 @@
+[
+  {
+    "model": "language.language",
+    "pk": 1,
+    "fields": {
+      "name": "English",
+      "native_name": "English",
+      "code_iso_639_1": "en",
+      "code_iso_language": "en-US"
+    }
+  },
+  {
+    "model": "language.language",
+    "pk": 2,
+    "fields": {
+      "name": "Portuguese",
+      "native_name": "Português",
+      "code_iso_639_1": "pt",
+      "code_iso_language": "pt-BR"
+    }
+  },
+  {
+    "model": "language.language",
+    "pk": 3,
+    "fields": {
+      "name": "Spanish",
+      "native_name": "Español",
+      "code_iso_639_1": "es",
+      "code_iso_language": "es-ES"
+    }
+  }
+]

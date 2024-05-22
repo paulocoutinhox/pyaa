@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-27 20:05+0000\n"
+"POT-Creation-Date: 2024-05-22 18:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,15 +12,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/customer/admin.py:39 apps/language/models.py:25
+#: apps/content/apps.py:8
+msgid "apps.content.description"
+msgstr "Content"
+
+#: apps/content/filters.py:8
+msgid "filter.title"
+msgstr "Title"
+
+#: apps/content/models.py:12
+msgid "model.content.name"
+msgstr "content"
+
+#: apps/content/models.py:13
+msgid "model.content.name.plural"
+msgstr "contents"
+
+#: apps/content/models.py:31 apps/customer/models.py:38
+#: apps/language/models.py:19 apps/payment/models.py:25 apps/user/models.py:51
+msgid "model.field.id"
+msgstr "ID"
+
+#: apps/content/models.py:37
+msgid "model.field.title"
+msgstr "Title"
+
+#: apps/content/models.py:49 apps/customer/forms.py:115
+#: apps/customer/models.py:56
+msgid "model.field.language"
+msgstr "Language"
+
+#: apps/content/models.py:53
+msgid "model.field.tag"
+msgstr "Tag"
+
+#: apps/content/models.py:58
+msgid "model.field.tag.help"
+msgstr "Leave empty for auto generation"
+
+#: apps/content/models.py:62
+msgid "model.field.content"
+msgstr "Content"
+
+#: apps/content/models.py:68
+msgid "model.field.active"
+msgstr "Active"
+
+#: apps/customer/admin.py:41 apps/language/models.py:25
 msgid "model.field.name"
 msgstr "Name"
 
-#: apps/customer/admin.py:48 apps/user/models.py:55
+#: apps/customer/admin.py:50 apps/user/models.py:57
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customer/admin.py:56
+#: apps/customer/admin.py:58
 msgid "model.field.is_active"
 msgstr "Active"
 
@@ -71,10 +117,6 @@ msgstr "Last name"
 msgid "model.field.gender"
 msgstr "Gender"
 
-#: apps/customer/forms.py:115 apps/customer/models.py:56
-msgid "model.field.language"
-msgstr "Language"
-
 #: apps/customer/forms.py:120 apps/customer/models.py:96
 #: apps/customer/serializers.py:53
 msgid "model.field.timezone"
@@ -88,12 +130,7 @@ msgstr "customer"
 msgid "model.customer.name.plural"
 msgstr "customers"
 
-#: apps/customer/models.py:38 apps/language/models.py:19
-#: apps/user/models.py:49
-msgid "model.field.id"
-msgstr "ID"
-
-#: apps/customer/models.py:47
+#: apps/customer/models.py:47 apps/payment/models.py:34
 msgid "model.field.user"
 msgstr "User"
 
@@ -161,11 +198,11 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: apps/web/views/account.py:35 apps/web/views/account.py:49
+#: apps/web/views/account.py:39 apps/web/views/account.py:53
 msgid "message.account-updated"
 msgstr "Your account was updated"
 
-#: apps/web/views/account.py:78
+#: apps/web/views/account.py:82
 msgid "message.account-deleted"
 msgstr "Your account was removed"
 
@@ -177,11 +214,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site Content"
 
-#: pyaa/settings.py:183
+#: pyaa/settings.py:185
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings.py:184
+#: pyaa/settings.py:186
 msgid "language.pt-br"
 msgstr "Portuguese"
 
@@ -294,50 +331,42 @@ msgstr "Free Plan"
 #: templates/pages/subscription/index.html:21
 msgid "subscription.plan.free.description"
 msgstr ""
-"<h1 class=\"card-title pricing-card-title\">$0<small class=\"text-muted fw-light\">/mo</small></h1>"
-"<ul class=\"list-unstyled mt-3 mb-4\">"
-"<li>Line 1</li>"
-"<li>Line 2</li>"
-"<li>Line 3</li>"
-"<li>Line 4</li>"
-"</ul>"
+"<h1 class=\"card-title pricing-card-title\">$0<small class=\"text-muted fw-"
+"light\">/mo</small></h1><ul class=\"list-unstyled mt-3 mb-4\"><li>Line 1</"
+"li><li>Line 2</li><li>Line 3</li><li>Line 4</li></ul>"
 
-#: templates/pages/subscription/index.html:33
+#: templates/pages/subscription/index.html:26
 msgid "subscription.plan.free.button-with-subscription"
 msgstr "Free"
 
-#: templates/pages/subscription/index.html:37
+#: templates/pages/subscription/index.html:30
 msgid "subscription.plan.free.button-without-subscription"
 msgstr "Free"
 
-#: templates/pages/subscription/index.html:42
+#: templates/pages/subscription/index.html:35
 msgid "subscription.plan.free.button-not-authenticated"
 msgstr "Sign up for free"
 
-#: templates/pages/subscription/index.html:53
+#: templates/pages/subscription/index.html:46
 msgid "subscription.plan.premium.title"
 msgstr "Premium Plan"
 
-#: templates/pages/subscription/index.html:57
+#: templates/pages/subscription/index.html:50
 msgid "subscription.plan.premium.description"
 msgstr ""
-"<h1 class=\"card-title pricing-card-title\">$9<small class=\"text-muted fw-light\">/mo</small></h1>"
-"<ul class=\"list-unstyled mt-3 mb-4\">"
-"<li>Line 1</li>"
-"<li>Line 2</li>"
-"<li>Line 3</li>"
-"<li>Line 4</li>"
-"</ul>"
+"<h1 class=\"card-title pricing-card-title\">$9<small class=\"text-muted fw-"
+"light\">/mo</small></h1><ul class=\"list-unstyled mt-3 mb-4\"><li>Line 1</"
+"li><li>Line 2</li><li>Line 3</li><li>Line 4</li></ul>"
 
-#: templates/pages/subscription/index.html:69
+#: templates/pages/subscription/index.html:55
 msgid "subscription.plan.premium.button-with-subscription"
 msgstr "Premium"
 
-#: templates/pages/subscription/index.html:73
+#: templates/pages/subscription/index.html:59
 msgid "subscription.plan.premium.button-without-subscription"
 msgstr "Subscribe"
 
-#: templates/pages/subscription/index.html:78
+#: templates/pages/subscription/index.html:64
 msgid "subscription.plan.premium.button-not-authenticated"
 msgstr "Premium"
 
