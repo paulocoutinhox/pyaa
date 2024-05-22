@@ -19,7 +19,7 @@ def profile_view(request):
     try:
         customer = Customer.objects.get(user=request.user)
     except Customer.DoesNotExist:
-        return redirect('home')
+        return redirect("home")
 
     return render(
         request,

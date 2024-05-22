@@ -10,6 +10,7 @@ Execute the following commands:
 make setup
 make migrate
 make create-su
+make fixtures
 make run
 ```
 

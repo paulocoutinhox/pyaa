@@ -23,6 +23,8 @@ class LanguageAdmin(admin.ModelAdmin):
 
     ordering = ("-id",)
 
+    search_fields = ["name"]
+
     def get_queryset(self, request):
         qs = super(LanguageAdmin, self).get_queryset(request)
         return qs

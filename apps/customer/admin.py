@@ -28,6 +28,8 @@ class CustomerAdmin(admin.ModelAdmin):
 
     ordering = ("-id",)
 
+    autocomplete_fields = ["user", "language"]
+
     form = forms.CustomerAdminForm
 
     def get_queryset(self, request):
