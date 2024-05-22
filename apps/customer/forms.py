@@ -63,7 +63,7 @@ class CustomerDeleteForm(forms.ModelForm):
 
 class CustomerSignupForm(SignupForm):
     def save(self, request):
-        user = super(CustomerSignupForm, self).save(request)
+        user: User = super(CustomerSignupForm, self).save(request)
 
         language = LanguageHelper.get_current()
         timezone = DEFAULT_TIME_ZONE
@@ -123,7 +123,7 @@ class CustomerUpdateProfileForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop("user", None)
+        user: User = kwargs.pop("user", None)
         super(CustomerUpdateProfileForm, self).__init__(*args, **kwargs)
 
         if user:
@@ -138,7 +138,7 @@ class CustomerUpdateProfileForm(forms.Form):
                 self.fields["gender"].initial = customer.gender
                 self.fields["timezone"].initial = customer.timezone
 
-    def save(self, user):
+    def save(self, user: User):
         user.first_name = self.cleaned_data["first_name"]
         user.last_name = self.cleaned_data["last_name"]
         user.save()
@@ -156,7 +156,7 @@ class CustomerUpdateAvatarForm(forms.Form):
     avatar = forms.ImageField(required=False)
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop("user", None)
+        user: User = kwargs.pop("user", None)
         super(CustomerUpdateAvatarForm, self).__init__(*args, **kwargs)
 
         if user:
@@ -164,7 +164,7 @@ class CustomerUpdateAvatarForm(forms.Form):
                 customer = user.customer
                 self.fields["avatar"].initial = customer.avatar
 
-    def save(self, user):
+    def save(self, user: User):
         customer = user.customer
         customer.avatar = self.cleaned_data["avatar"]
         customer.save()
