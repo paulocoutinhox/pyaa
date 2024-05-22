@@ -29,5 +29,15 @@ class LanguageAdmin(admin.ModelAdmin):
         qs = super(LanguageAdmin, self).get_queryset(request)
         return qs
 
+    def get_search_results(self, request, queryset, search_term):
+        queryset, use_distinct = super().get_search_results(
+            request, queryset, search_term
+        )
+
+        if "autocomplete" in request.path:
+            queryset = queryset.order_by("name")
+
+        return queryset, use_distinct
+
 
 admin.site.register(models.Language, LanguageAdmin)

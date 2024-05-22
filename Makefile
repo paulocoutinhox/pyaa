@@ -9,6 +9,7 @@ help:
 	@echo "- help"
 	@echo "- format"
 	@echo "- setup"
+	@echo "- pcu"
 	@echo ""
 	@echo "- migrate"
 	@echo "- migration-reset"
@@ -29,6 +30,10 @@ setup:
 	python3 -m pip install -r requirements.txt --upgrade
 	mkdir -p db
 	mkdir -p static
+
+pcu:
+	python3 -m pip install pip-check-updates
+	pcu -u
 
 migration-reset:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete

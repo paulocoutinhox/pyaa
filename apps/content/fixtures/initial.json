@@ -1,32 +1,22 @@
 [
   {
-    "model": "language.language",
+    "model": "content.content",
     "pk": 1,
     "fields": {
-      "name": "English",
-      "native_name": "English",
-      "code_iso_639_1": "en",
-      "code_iso_language": "en-US"
+      "title": "Terms and Conditions",
+      "tag": "terms-and-conditions",
+      "content": "<p>Add your content here!</p>",
+      "active": true
     }
   },
   {
-    "model": "language.language",
+    "model": "content.content",
     "pk": 2,
     "fields": {
-      "name": "Portuguese",
-      "native_name": "Português",
-      "code_iso_639_1": "pt",
-      "code_iso_language": "pt-BR"
-    }
-  },
-  {
-    "model": "language.language",
-    "pk": 3,
-    "fields": {
-      "name": "Spanish",
-      "native_name": "Español",
-      "code_iso_639_1": "es",
-      "code_iso_language": "es-ES"
+      "title": "Privacy Policy",
+      "tag": "privacy-policy",
+      "content": "<p>Add your content here!</p>",
+      "active": true
     }
   }
 ]
