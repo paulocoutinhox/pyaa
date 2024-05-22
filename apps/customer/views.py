@@ -1,8 +1,8 @@
 from rest_framework.generics import GenericAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.mixins import CreateModelMixin, ListModelMixin
 
-from apps.customers.models import Customer
-from apps.customers.serializers import CustomerSerializer
+from apps.customer.models import Customer
+from apps.customer.serializers import CustomerSerializer
 from pyaa.helpers import AppModelPermissions
 
 

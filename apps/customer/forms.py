@@ -3,12 +3,12 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from timezone_field import TimeZoneFormField
 
-from apps.customers import models
-from apps.customers.enums import CustomerGender
-from apps.customers.models import Customer
-from apps.languages.helpers import LanguageHelper
-from apps.languages.models import Language
-from apps.users.models import User
+from apps.customer import models
+from apps.customer.enums import CustomerGender
+from apps.customer.models import Customer
+from apps.language.helpers import LanguageHelper
+from apps.language.models import Language
+from apps.user.models import User
 from pyaa.fields import OnlyNumberCharField
 from pyaa.settings import DEFAULT_TIME_ZONE
 

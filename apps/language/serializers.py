@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.languages.models import Language
+from apps.language.models import Language
 
 
 class LanguageSerializer(serializers.ModelSerializer):

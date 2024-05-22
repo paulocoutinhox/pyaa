@@ -32,8 +32,8 @@ from apps.web.urls import urlpatterns as app_urlpatterns
 from . import views
 
 urlpatterns = [
-    path("api/", include("apps.customers.urls")),
-    path("api/", include("apps.languages.urls")),
+    path("api/", include("apps.customer.urls")),
+    path("api/", include("apps.language.urls")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),

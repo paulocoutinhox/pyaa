@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from apps.languages import filters, models
+from apps.language import filters, models
 
 
 class LanguageAdmin(admin.ModelAdmin):

@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.utils.translation import get_language
 
-from apps.languages.models import Language
+from apps.language.models import Language
 
 
 class LanguageHelper:

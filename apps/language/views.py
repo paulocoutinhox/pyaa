@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from apps.languages.models import Language
-from apps.languages.serializers import LanguageSerializer
+from apps.language.models import Language
+from apps.language.serializers import LanguageSerializer
 from pyaa.helpers import AppModelPermissions
 
 

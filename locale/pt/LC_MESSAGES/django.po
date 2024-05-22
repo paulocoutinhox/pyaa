@@ -12,152 +12,152 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/customers/admin.py:39 apps/languages/models.py:25
+#: apps/customer/admin.py:39 apps/language/models.py:25
 msgid "model.field.name"
 msgstr "Nome"
 
-#: apps/customers/admin.py:48 apps/users/models.py:55
+#: apps/customer/admin.py:48 apps/user/models.py:55
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customers/admin.py:56
+#: apps/customer/admin.py:56
 msgid "model.field.is_active"
 msgstr "Ativo"
 
-#: apps/customers/apps.py:8
-msgid "apps.customers.description"
-msgstr "Clientes"
+#: apps/customer/apps.py:8
+msgid "apps.customer.description"
+msgstr "Cliente"
 
-#: apps/customers/enums.py:6
+#: apps/customer/enums.py:6
 msgid "enum.customer-gender.male"
 msgstr "masculino"
 
-#: apps/customers/enums.py:7
+#: apps/customer/enums.py:7
 msgid "enum.customer-gender.female"
 msgstr "feminino"
 
-#: apps/customers/enums.py:8
+#: apps/customer/enums.py:8
 msgid "enum.customer-gender.none"
 msgstr "não informado"
 
-#: apps/customers/filters.py:8 apps/languages/filters.py:8
+#: apps/customer/filters.py:8 apps/language/filters.py:8
 msgid "filter.name"
 msgstr "nome"
 
-#: apps/customers/filters.py:24
+#: apps/customer/filters.py:24
 msgid "filter.email"
 msgstr "email"
 
-#: apps/customers/forms.py:34 apps/customers/forms.py:96
-#: apps/customers/models.py:60 apps/customers/serializers.py:27
+#: apps/customer/forms.py:34 apps/customer/forms.py:96
+#: apps/customer/models.py:60 apps/customer/serializers.py:27
 msgid "model.field.mobile-phone"
 msgstr "Telefone celular"
 
-#: apps/customers/forms.py:40 apps/customers/forms.py:102
-#: apps/customers/models.py:67 apps/customers/serializers.py:32
+#: apps/customer/forms.py:40 apps/customer/forms.py:102
+#: apps/customer/models.py:67 apps/customer/serializers.py:32
 msgid "model.field.home-phone"
 msgstr "Telefone residencial"
 
-#: apps/customers/forms.py:82
+#: apps/customer/forms.py:82
 msgid "model.field.first-name"
 msgstr "Nome"
 
-#: apps/customers/forms.py:88
+#: apps/customer/forms.py:88
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customers/forms.py:106 apps/customers/models.py:74
-#: apps/customers/serializers.py:36
+#: apps/customer/forms.py:106 apps/customer/models.py:74
+#: apps/customer/serializers.py:36
 msgid "model.field.gender"
 msgstr "Gênero"
 
-#: apps/customers/forms.py:115 apps/customers/models.py:56
+#: apps/customer/forms.py:115 apps/customer/models.py:56
 msgid "model.field.language"
 msgstr "Idioma"
 
-#: apps/customers/forms.py:120 apps/customers/models.py:96
-#: apps/customers/serializers.py:53
+#: apps/customer/forms.py:120 apps/customer/models.py:96
+#: apps/customer/serializers.py:53
 msgid "model.field.timezone"
 msgstr "Fuso-horário"
 
-#: apps/customers/models.py:15
+#: apps/customer/models.py:15
 msgid "model.customer.name"
 msgstr "cliente"
 
-#: apps/customers/models.py:16
+#: apps/customer/models.py:16
 msgid "model.customer.name.plural"
 msgstr "clientes"
 
-#: apps/customers/models.py:38 apps/languages/models.py:19
-#: apps/users/models.py:49
+#: apps/customer/models.py:38 apps/language/models.py:19
+#: apps/user/models.py:49
 msgid "model.field.id"
 msgstr "ID"
 
-#: apps/customers/models.py:47
+#: apps/customer/models.py:47
 msgid "model.field.user"
 msgstr "Usuário"
 
-#: apps/customers/models.py:83 apps/customers/serializers.py:42
+#: apps/customer/models.py:83 apps/customer/serializers.py:42
 msgid "model.field.avatar"
 msgstr "Avatar"
 
-#: apps/customers/models.py:90 apps/customers/serializers.py:47
+#: apps/customer/models.py:90 apps/customer/serializers.py:47
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customers/models.py:104
+#: apps/customer/models.py:104
 msgid "model.field.created-at"
 msgstr "Criado em"
 
-#: apps/customers/models.py:109
+#: apps/customer/models.py:109
 msgid "model.field.updated-at"
 msgstr "Alterado em"
 
-#: apps/languages/apps.py:8
-msgid "apps.languages.description"
-msgstr "Idiomas"
+#: apps/language/apps.py:8
+msgid "apps.language.description"
+msgstr "Idioma"
 
-#: apps/languages/models.py:8
+#: apps/language/models.py:8
 msgid "model.language.name"
 msgstr "idioma"
 
-#: apps/languages/models.py:9
+#: apps/language/models.py:9
 msgid "model.language.name.plural"
 msgstr "idiomas"
 
-#: apps/languages/models.py:30
+#: apps/language/models.py:30
 msgid "model.field.native_name"
 msgstr "Nome nativo"
 
-#: apps/languages/models.py:32
+#: apps/language/models.py:32
 msgid "model.hint.native_name"
 msgstr "Nome nativo sem tradução"
 
-#: apps/languages/models.py:36
+#: apps/language/models.py:36
 msgid "model.field.code_iso_639_1"
 msgstr "Código ISO 639-1"
 
-#: apps/languages/models.py:38
+#: apps/language/models.py:38
 msgid "model.hint.code_iso_639_1"
 msgstr "Exemplos: en ou pt"
 
-#: apps/languages/models.py:42
+#: apps/language/models.py:42
 msgid "model.field.code_iso_language"
 msgstr "Código ISO"
 
-#: apps/languages/models.py:43
+#: apps/language/models.py:43
 msgid "model.hint.code_iso_language"
 msgstr "Exemplos: en-US ou pt-BR"
 
-#: apps/users/admin.py:14
+#: apps/user/admin.py:14
 msgid "Personal info"
 msgstr ""
 
-#: apps/users/admin.py:16
+#: apps/user/admin.py:16
 msgid "Permissions"
 msgstr ""
 
-#: apps/users/admin.py:27
+#: apps/user/admin.py:27
 msgid "Important dates"
 msgstr ""
 

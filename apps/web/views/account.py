@@ -6,17 +6,21 @@ from django.shortcuts import redirect, render
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
-from apps.customers.forms import (
+from apps.customer.forms import (
     CustomerDeleteForm,
     CustomerUpdateAvatarForm,
     CustomerUpdateProfileForm,
 )
-from apps.customers.models import Customer
+from apps.customer.models import Customer
 
 
 @login_required
 def profile_view(request):
-    customer = Customer.objects.get(user=request.user)
+    try:
+        customer = Customer.objects.get(user=request.user)
+    except Customer.DoesNotExist:
+        return redirect('home')
+
     return render(
         request,
         "account/profile.html",

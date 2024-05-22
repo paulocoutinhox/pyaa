@@ -4,8 +4,8 @@ from django.db import models
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
-from apps.customers.models import Customer
-from apps.languages.helpers import LanguageHelper
+from apps.customer.models import Customer
+from apps.language.helpers import LanguageHelper
 from pyaa.settings import DEFAULT_TIME_ZONE
 
 

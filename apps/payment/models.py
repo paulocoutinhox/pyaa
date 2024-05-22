@@ -30,7 +30,7 @@ class Subscription(models.Model):
     user = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="subscriptions",
+        related_name="payment",
         verbose_name=_("model.field.user"),
     )
 

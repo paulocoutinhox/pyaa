@@ -1,9 +1,9 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
-from apps.customers import enums
-from apps.customers.forms import CustomerAdminForm
-from apps.customers.models import Customer
+from apps.customer import enums
+from apps.customer.forms import CustomerAdminForm
+from apps.customer.models import Customer
 from pyaa.settings import DEFAULT_TIME_ZONE
 
 
