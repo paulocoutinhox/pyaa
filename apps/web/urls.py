@@ -16,7 +16,7 @@ Including another URLconf
 
 from apps.payment import views as payment
 
-from .views import account, home, subscription
+from .views import account, content, home, subscription
 
 urlpatterns = []
 
@@ -24,3 +24,4 @@ urlpatterns += home.urlpatterns
 urlpatterns += account.urlpatterns
 urlpatterns += subscription.urlpatterns
 urlpatterns += payment.urlpatterns
+urlpatterns += content.urlpatterns
