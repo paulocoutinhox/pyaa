@@ -1,10 +1,10 @@
 import os
 import uuid
 
-from sorl.thumbnail import ImageField
+from django_resized import ResizedImageField
 
 
-class CustomerImageField(ImageField):
+class CustomerImageField(ResizedImageField):
     def generate_filename(self, instance, filename):
         _, ext = os.path.splitext(filename)
         name = f"{uuid.uuid4().hex}{ext}"

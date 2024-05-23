@@ -81,6 +81,8 @@ class Customer(models.Model):
 
     avatar = fields.CustomerImageField(
         _("model.field.avatar"),
+        size=[1024, 1024],
+        crop=["middle", "center"],
         upload_to="images/customer/avatar/%Y/%m/%d",
         blank=True,
         null=True,
