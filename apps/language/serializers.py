@@ -9,4 +9,7 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "native_name",
+            "code_iso_639_1",
+            "code_iso_language",
         ]

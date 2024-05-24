@@ -26,7 +26,7 @@ class AppAdmin(AdminSite):
         groups = [
             {
                 "name": _("admin.group.site-content"),
-                "app_labels": ["customer", "language", "content"],
+                "app_labels": ["customer", "language", "content", "gallery"],
                 "group_label": "site-content",
             },
             # You can add more groups here as needed

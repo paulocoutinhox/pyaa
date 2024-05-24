@@ -10,6 +10,7 @@ class ContentAdmin(admin.ModelAdmin):
         "title",
         "tag",
         "language",
+        "published_at",
         "active",
     )
 
@@ -18,6 +19,7 @@ class ContentAdmin(admin.ModelAdmin):
         "title",
         "tag",
         "language",
+        "published_at",
         "active",
     )
 

@@ -1,17 +1,17 @@
 from rest_framework import serializers
 
-from apps.content.models import Content
+from apps.gallery.models import Gallery
 
 
-class ContentSerializer(serializers.ModelSerializer):
+class GallerySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Content
+        model = Gallery
         fields = [
             "id",
             "title",
             "tag",
-            "content",
             "language",
             "published_at",
+            "photos_count",
             "active",
         ]

@@ -64,6 +64,12 @@ class Content(models.Model):
         null=True,
     )
 
+    published_at = models.DateField(
+        _("model.field.published-at"),
+        blank=True,
+        null=True,
+    )
+
     active = models.BooleanField(
         _("model.field.active"),
         default=True,

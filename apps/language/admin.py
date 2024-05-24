@@ -8,11 +8,17 @@ class LanguageAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "name",
+        "native_name",
+        "code_iso_639_1",
+        "code_iso_language",
     )
 
     list_display_links = (
         "id",
         "name",
+        "native_name",
+        "code_iso_639_1",
+        "code_iso_language",
     )
 
     list_filter = [
