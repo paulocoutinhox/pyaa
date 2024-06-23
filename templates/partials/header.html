@@ -20,6 +20,11 @@
                             {% translate "menu.home" %}
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 {% nav_active 'gallery_home' %}" aria-current="page" href="{% url 'gallery_home' %}">
+                            {% translate "menu.gallery" %}
+                        </a>
+                    </li>
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">

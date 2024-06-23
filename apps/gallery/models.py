@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.html import format_html
 from django.utils.text import slugify
@@ -67,6 +68,14 @@ class Gallery(models.Model):
         blank=False,
         null=False,
     )
+
+    def get_main_photo_url(self):
+        main_photo = self.gallery_photos.filter(main=True).first()
+
+        if main_photo and main_photo.image:
+            return main_photo.image.url
+        else:
+            return settings.STATIC_URL + "images/no-image.png"
 
     def photos_count(self):
         return self.gallery_photos.count()

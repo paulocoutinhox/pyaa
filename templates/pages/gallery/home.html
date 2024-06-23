@@ -1,0 +1,56 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+    <h1>Lista de Galerias (traduzir)</h1>
+    {% endelement %}
+
+    <section class="pb-4">
+        <div class="border rounded-5">
+
+            <section class="p-4 text-center w-100">
+                <section class="">
+                    <section class="">
+                        <div class="row">
+                            {% for item in page_obj %}
+                            <div class="col-lg-4 col-md-12 p-4 mb-lg-0">
+                                <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                                    data-ripple-color="light">
+                                    <img src="{{ item.get_main_photo_url }}" style="height: 100px;">
+                                    <a href="#!" data-mdb-modal-init="" data-mdb-target="#exampleModal1">
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </div>
+    </section>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; primeira</a>
+            <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">próxima</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endblock content %}

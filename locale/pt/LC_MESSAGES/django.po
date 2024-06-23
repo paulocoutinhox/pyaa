@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 03:07+0000\n"
+"POT-Creation-Date: 2024-06-23 18:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -357,11 +357,11 @@ msgstr ""
 msgid "pyaa.site.name"
 msgstr "Python Advanced Application"
 
-#: templates/pages/home/index.html:23 templates/partials/header.html:32
+#: templates/pages/home/index.html:23 templates/partials/header.html:37
 msgid "menu.logout"
 msgstr "Sair"
 
-#: templates/pages/home/index.html:28 templates/partials/header.html:38
+#: templates/pages/home/index.html:28 templates/partials/header.html:43
 msgid "menu.login"
 msgstr "Entrar"
 
@@ -423,10 +423,14 @@ msgstr "PYAA"
 msgid "menu.home"
 msgstr "Início"
 
-#: templates/partials/header.html:27
+#: templates/partials/header.html:25
+msgid "menu.gallery"
+msgstr "Galeria"
+
+#: templates/partials/header.html:32
 msgid "menu.profile"
 msgstr "Perfil"
 
-#: templates/partials/header.html:43
+#: templates/partials/header.html:48
 msgid "menu.signup"
 msgstr "Cadastrar"
