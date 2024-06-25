@@ -6,11 +6,24 @@
 
 <div class="container">
     {% element page_title %}
-    {{ gallery.title }}
+    <h1>{{ gallery.title }}</h1>
     {% endelement %}
 
-    <div>
-        {{ #content.content | safe }}
+    <div class="p-4 text-center w-100">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            {% for photo in gallery.gallery_photos.all %}
+            <div class="col">
+                <img src="{{ photo.image.url }}" style="height: 100px;" alt="{{ photo.caption }}" />
+                {% if photo.caption %}
+                <p>{{ photo.caption }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="p-4 text-center w-100">
+        <a class="btn btn-primary" href="{% url 'gallery_index' %}">Back</a>
     </div>
 </div>
 

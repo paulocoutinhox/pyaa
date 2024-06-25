@@ -9,30 +9,17 @@
     <h1>Lista de Galerias (traduzir)</h1>
     {% endelement %}
 
-    <section class="pb-4">
-        <div class="border rounded-5">
-
-            <section class="p-4 text-center w-100">
-                <section class="">
-                    <section class="">
-                        <div class="row">
-                            {% for item in page_obj %}
-                            <div class="col-lg-4 col-md-12 p-4 mb-lg-0">
-                                <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
-                                    data-ripple-color="light">
-                                    <img src="{{ item.get_main_photo_url }}" style="height: 100px;">
-                                    <a href="#!" data-mdb-modal-init="" data-mdb-target="#exampleModal1">
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                    </a>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </section>
-                </section>
-            </section>
+    <div class="p-4 text-center w-100">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            {% for item in page_obj %}
+            <div class="col">
+                <a href="{% url 'gallery_by_id' item.id %}">
+                    <img src="{{ item.get_main_photo_url }}" style="height: 100px;" />
+                </a>
+            </div>
+            {% endfor %}
         </div>
-    </section>
+    </div>
 
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">

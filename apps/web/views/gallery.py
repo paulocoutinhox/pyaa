@@ -5,7 +5,7 @@ from django.urls import path
 from apps.gallery.models import Gallery
 
 
-def gallery_home(request):
+def gallery_index(request):
     gallery_list = Gallery.objects.filter(active=True)
 
     paginator = Paginator(gallery_list, 9)
@@ -15,7 +15,7 @@ def gallery_home(request):
 
     return render(
         request,
-        "pages/gallery/home.html",
+        "pages/gallery/index.html",
         {
             "page_obj": page_obj,
         },
@@ -24,7 +24,7 @@ def gallery_home(request):
 
 def gallery_by_id_view(request, gallery_id):
     try:
-        gallery = Gallery.objects.get(id=gallery_id, active=True)
+        gallery = Gallery.objects.prefetch_related('gallery_photos').get(id=gallery_id, active=True)
     except Gallery.DoesNotExist:
         return redirect("home")
 
@@ -39,7 +39,7 @@ def gallery_by_id_view(request, gallery_id):
 
 def gallery_by_tag_view(request, gallery_tag):
     try:
-        gallery = Gallery.objects.get(tag=gallery_tag, active=True)
+        gallery = Gallery.objects.prefetch_related('gallery_photos').get(tag=gallery_tag, active=True)
     except Gallery.DoesNotExist:
         return redirect("home")
 
@@ -53,7 +53,7 @@ def gallery_by_tag_view(request, gallery_tag):
 
 
 urlpatterns = [
-    path("gallery/", gallery_home, name="gallery_home"),
-    path("g/i/<int:gallery>/", gallery_by_id_view, name="gallery_by_id"),
-    path("g/t/<slug:gallery>/", gallery_by_tag_view, name="gallery_by_tag"),
+    path("gallery/", gallery_index, name="gallery_index"),
+    path("gallery/i/<int:gallery_id>/", gallery_by_id_view, name="gallery_by_id"),
+    path("gallery/t/<slug:gallery_tag>/", gallery_by_tag_view, name="gallery_by_tag"),
 ]
