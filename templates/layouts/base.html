@@ -3,6 +3,7 @@
 <html class="h-100">
 <head>
     {% include "partials/head.html" %}
+    {% block extra_head %}{% endblock %}
 </head>
 <body class="d-flex flex-column h-100">
     {% include "partials/header.html" %}
@@ -16,5 +17,6 @@
     </main>
 
     {% include "partials/footer.html" %}
+    {% block extra_footer %}{% endblock %}
 </body>
 </html>

@@ -1,5 +1,10 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+{% load compress %}
+{% load static %}
+
+{% compress js %}
+<script src="{% static 'vendor/magnific-popup/js/jquery.magnific-popup.min.js'%}"></script>
+<script src="{% static 'vendor/jquery-mask/js/jquery.mask.min.js'%}"></script>
+{% endcompress %}
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">
     <div class="container">

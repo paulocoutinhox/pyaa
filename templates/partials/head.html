@@ -7,15 +7,15 @@
 
 {% compress css %}
 <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endcompress %}
 
 {% compress js %}
+<script src="{% static 'vendor/jquery/js/jquery-3.7.1.min.js'%}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 <script src="{% static 'js/main.js'%}"></script>
 {% endcompress %}
 
 <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
-
-{% block extra_head %} {% endblock %}
