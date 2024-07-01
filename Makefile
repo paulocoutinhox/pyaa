@@ -9,6 +9,7 @@ help:
 	@echo "- help"
 	@echo "- format"
 	@echo "- setup"
+	@echo "- setup-prod"
 	@echo "- pcu"
 	@echo ""
 	@echo "- migrate"
@@ -19,6 +20,7 @@ help:
 	@echo "- run"
 	@echo ""
 	@echo "- docker-build"
+	@echo "- docker-rebuild"
 	@echo "- docker-run"
 	@echo "- docker-run-prod"
 	@echo ""
@@ -28,8 +30,14 @@ format:
 
 setup:
 	python3 -m pip install -r requirements.txt --upgrade
+	mkdir -p logs
 	mkdir -p db
 	mkdir -p static
+
+setup-prod:
+	mkdir -p logs && chmod -R 777 logs
+	mkdir -p static/CACHE && chmod -R 777 static/CACHE
+	mkdir -p media && chmod -R 777 media
 
 pcu:
 	python3 -m pip install pip-check-updates
@@ -60,6 +68,9 @@ fixtures:
 	python3 manage.py loaddata initial
 
 docker-build:
+	docker build -t pyaa .
+
+docker-rebuild:
 	docker build --no-cache -t pyaa .
 
 docker-run:
@@ -67,9 +78,6 @@ docker-run:
 	@docker run --rm -v ${PWD}/db:/app/db \
 		-v ${PWD}/media:/app/media \
 		-e APP_ENV=dev \
-		-e DJANGO_SUPERUSER_USERNAME="admin" \
-		-e DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
-		-e DJANGO_SUPERUSER_PASSWORD="admin" \
 		-p 8000:8000 pyaa
 
 docker-run-prod:
@@ -79,7 +87,5 @@ docker-run-prod:
 		-e APP_ENV=prod \
 		-e APP_ALLOWED_HOSTS="localhost" \
 		-e APP_CSRF_TRUSTED_ORIGINS="http://localhost" \
-		-e DJANGO_SUPERUSER_USERNAME="admin" \
-		-e DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
-		-e DJANGO_SUPERUSER_PASSWORD="admin" \
+		-e DJANGO_SETTINGS_MODULE="pyaa.settings_production" \
 		-p 8000:8000 pyaa

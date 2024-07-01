@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# Apply database migrations
-echo "Apply database migrations"
+echo 'Running migrations...'
 python3 manage.py migrate
 
-# Create super user
-echo "Create super user"
-python3 manage.py createsuperuser --noinput
+echo 'Collecting static files...'
+python3 manage.py collectstatic --no-input
 
-# Start server
-echo "Starting server"
+echo "Starting server..."
 uwsgi --ini uwsgi.ini

@@ -16,39 +16,22 @@ from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# General
+
+DEBUG = True
 SECRET_KEY = "myapp-secret-key"
 
-# SECURITY WARNING: check if you are running in correct environment
-ENV_PRODUCTION = os.getenv("APP_ENV") == "prod"
-ENV_DEVELOPMENT = os.getenv("APP_ENV") != "prod"
+# Hosts
 
-if ENV_PRODUCTION:
-    DEBUG = False
-    ALLOWED_HOSTS = [os.getenv("APP_ALLOWED_HOSTS")]
-    CSRF_TRUSTED_ORIGINS = [os.getenv("APP_CSRF_TRUSTED_ORIGINS")]
-else:
-    DEBUG = True
-
-    # allowed hosts
-    allowed_hosts = os.getenv("APP_ALLOWED_HOSTS")
-
-    if allowed_hosts:
-        ALLOWED_HOSTS = [allowed_hosts]
-    else:
-        ALLOWED_HOSTS = ["*"]
-
-    # csrf trusted origins
-    csrf_origin = os.getenv("APP_CSRF_TRUSTED_ORIGINS")
-
-    if csrf_origin:
-        CSRF_TRUSTED_ORIGINS = [csrf_origin]
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["http://*", "https://*"]
 
 # Application definition
 
@@ -90,7 +73,7 @@ PROJECT_APPS = [
     "apps.language.apps.LanguageAppConfig",
     "apps.content.apps.ContentAppConfig",
     "apps.gallery.apps.GalleryAppConfig",
-    "apps.payment.apps.PaymentAppConfig",
+    "apps.photo.apps.PhotoAppConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -145,15 +128,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.0/topics/cache/
 # https://www.honeybadger.io/blog/caching-in-django/
 
-if ENV_PRODUCTION:
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-            "LOCATION": BASE_DIR / "cache",
-        }
-    }
-else:
-    CACHES = {"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
+CACHES = {"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -248,7 +223,7 @@ SIMPLE_JWT = {
 
 # Media
 
-MEDIA_URL = os.getenv("APP_MEDIA_URL", "/media/")
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # Editor
@@ -311,19 +286,27 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 COMPRESS_ROOT = BASE_DIR / "static"
 COMPRESS_ENABLED = True
 
-# Subscription
+# Logging
 
-SUBSCRIPTION_PLANS = {
-    "premium-monthly": {
-        "code": os.environ.get("STRIPE_PREMIUM_MONTHLY"),
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
     },
-    "premium-yearly": {
-        "code": os.environ.get("STRIPE_PREMIUM_YEARLY"),
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "logs" / "debug.log",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["file"],
+        "level": "DEBUG",
     },
 }
-
-# Stripe
-
-STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
-STRIPE_ENDPOINT_SECRET = os.environ.get("STRIPE_ENDPOINT_SECRET")

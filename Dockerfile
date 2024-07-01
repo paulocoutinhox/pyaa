@@ -32,22 +32,12 @@ RUN addgroup --gid "${GID}" "${GROUP}" \
     --uid "${UID}" \
     "${USER}"
 
-# create folders
-RUN mkdir -p /app/static && \
-    mkdir -p /app/media && \
-    mkdir -p /app/db && \
-    chown -R docker:docker /app && \
-    chmod -R 755 /app
-
-# install app
-COPY --chown=docker:docker . .
+# install python dependencies
+COPY --chown=docker:docker requirements.txt .
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
 # change to a non-root user
 USER ${USER}
-
-# collect static files
-RUN python3 manage.py collectstatic --noinput
 
 # expose ports
 EXPOSE 8000

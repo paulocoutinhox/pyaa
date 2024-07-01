@@ -3,9 +3,10 @@
 *.pot
 *.pyc
 __pycache__
-/media
+/logs
 /db
 /cache
+/media
 
 # Backup files #
 *.bak

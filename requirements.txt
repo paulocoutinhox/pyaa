@@ -18,3 +18,4 @@ django-compressor==4.4
 django-bootstrap5==24.2
 stripe==9.7.0
 django-resized==1.0.1
+requests==2.32.3

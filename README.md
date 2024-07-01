@@ -75,6 +75,7 @@ Obs: Obviously you must change this data for your real data, referring to your s
 - [Security](docs/security.md)
 - [Ngrok](docs/ngrok.md)
 - [API](docs/api.md)
+- [Troubleshooting](docs/troubleshooting.md)
 
 ## License
 

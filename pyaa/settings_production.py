@@ -2,6 +2,50 @@ from .settings import *  # noqa F401
 
 DEBUG = False
 
+SECRET_KEY = "my-prod-key"
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "db-name",
+        "USER": "db-user",
+        "PASSWORD": "db-pass",
+        "HOST": "db-host",
+        "PORT": "3306",
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / "cache",
+    }
+}
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "logs" / "error.log",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["file"],
+        "level": "ERROR",
+    },
+}
+
+
 # fix ssl mixed content issues
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
@@ -24,43 +68,38 @@ CSRF_COOKIE_SECURE = True
 
 USE_HTTPS_IN_ABSOLUTE_URLS = True
 
-ALLOWED_HOSTS = [
-    "*",  # update with your production hosts
-]
-
-
 # Your email config goes here.
 # see https://github.com/anymail/django-anymail for more details / examples
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="anymail.backends.mailgun.EmailBackend"
-)
-match EMAIL_BACKEND:
-    case "anymail.backends.mailgun.EmailBackend":
-        ANYMAIL = {
-            "MAILGUN_API_KEY": env("MAILGUN_API_KEY", default=None),
-            "MAILGUN_SENDER_DOMAIN": env(
-                "MAILGUN_SENDER_DOMAIN", default="chatbotmg.dimagi.com"
-            ),
-        }
-    case "anymail.backends.amazon_ses.EmailBackend":
-        ANYMAIL = {
-            "AMAZON_SES_CLIENT_PARAMS": {
-                "aws_access_key_id": env("AWS_SES_ACCESS_KEY", default=None),
-                "aws_secret_access_key": env("AWS_SES_SECRET_KEY", default=None),
-                "region_name": env("AWS_SES_REGION", default="us-east-1"),
-            },
-        }
-    case _:
-        raise Exception(f"Unknown email backend: {EMAIL_BACKEND}")
+# EMAIL_BACKEND = env(
+#     "DJANGO_EMAIL_BACKEND", default="anymail.backends.mailgun.EmailBackend"
+# )
+# match EMAIL_BACKEND:
+#     case "anymail.backends.mailgun.EmailBackend":
+#         ANYMAIL = {
+#             "MAILGUN_API_KEY": env("MAILGUN_API_KEY", default=None),
+#             "MAILGUN_SENDER_DOMAIN": env(
+#                 "MAILGUN_SENDER_DOMAIN", default="chatbotmg.dimagi.com"
+#             ),
+#         }
+#     case "anymail.backends.amazon_ses.EmailBackend":
+#         ANYMAIL = {
+#             "AMAZON_SES_CLIENT_PARAMS": {
+#                 "aws_access_key_id": env("AWS_SES_ACCESS_KEY", default=None),
+#                 "aws_secret_access_key": env("AWS_SES_SECRET_KEY", default=None),
+#                 "region_name": env("AWS_SES_REGION", default="us-east-1"),
+#             },
+#         }
+#     case _:
+#         raise Exception(f"Unknown email backend: {EMAIL_BACKEND}")
 
-SERVER_EMAIL = "noreply@dimagi.com"
-DEFAULT_FROM_EMAIL = "noreply@dimagi.com"
-ADMINS = [
-    ("Dimagi Bots", "noreply@dimagi.com"),
-]
+# SERVER_EMAIL = "noreply@dimagi.com"
+# DEFAULT_FROM_EMAIL = "noreply@dimagi.com"
+# ADMINS = [
+#     ("Dimagi Bots", "noreply@dimagi.com"),
+# ]
 
-# Mailchimp setup
+# # Mailchimp setup
 
-# set these values if you want to subscribe people to a mailchimp list after they sign up.
-MAILCHIMP_API_KEY = env("MAILCHIMP_API_KEY", default=None)
-MAILCHIMP_LIST_ID = env("MAILCHIMP_LIST_ID", default=None)
+# # set these values if you want to subscribe people to a mailchimp list after they sign up.
+# MAILCHIMP_API_KEY = env("MAILCHIMP_API_KEY", default=None)
+# MAILCHIMP_LIST_ID = env("MAILCHIMP_LIST_ID", default=None)
