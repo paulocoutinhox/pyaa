@@ -1,5 +1,6 @@
 {% load compress %}
 {% load static %}
+{% load i18n %}
 
 {% compress js %}
 <script src="{% static 'vendor/magnific-popup/js/jquery.magnific-popup.min.js'%}"></script>
@@ -8,7 +9,7 @@
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">
     <div class="container">
-        <p class="text-center">© 2024 Python Advanced Application</p>
+        <p class="text-center">© 2024 {% translate "pyaa.site.name" %}</p>
         <p class="text-center">
             <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="link-secondary">Privacy</a> · <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}" class="link-secondary">Terms</a>
         </p>

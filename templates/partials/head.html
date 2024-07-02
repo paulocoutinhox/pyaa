@@ -1,9 +1,10 @@
 {% load compress %}
 {% load static %}
+{% load i18n %}
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% block head_title %}{% endblock %}</title>
+<title>{% block head_title %}{% translate "pyaa.site.name" %}{% endblock %}</title>
 
 {% compress css %}
 <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
