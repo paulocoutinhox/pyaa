@@ -1,4 +1,5 @@
 from allauth.account.signals import user_signed_up
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.dispatch import receiver
@@ -6,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.customer.models import Customer
 from apps.language.helpers import LanguageHelper
-from pyaa.settings import DEFAULT_TIME_ZONE
 
 
 class UserManager(BaseUserManager):
@@ -69,7 +69,7 @@ class User(AbstractUser):
 @receiver(user_signed_up)
 def on_user_signed_up(request, user: User, **kwargs):
     language = LanguageHelper.get_current()
-    timezone = DEFAULT_TIME_ZONE
+    timezone = settings.DEFAULT_TIME_ZONE
 
     customer, created = Customer.objects.get_or_create(
         user=user,

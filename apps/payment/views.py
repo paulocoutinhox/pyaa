@@ -1,8 +1,7 @@
 import stripe
+from django.conf import settings
 from django.shortcuts import redirect
 from django.urls import path
-
-from pyaa import settings
 
 
 def create_view(request):

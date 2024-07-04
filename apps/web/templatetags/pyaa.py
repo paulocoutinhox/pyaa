@@ -1,11 +1,10 @@
 from django import template
+from django.conf import settings
 from django.template.base import FilterExpression, kwarg_re
 from django.template.loader import render_to_string
 from django.template.loader_tags import ExtendsNode
 from django.urls import NoReverseMatch, reverse
 from django.utils.safestring import mark_safe
-
-from pyaa import settings
 
 register = template.Library()
 

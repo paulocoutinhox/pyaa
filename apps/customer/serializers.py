@@ -1,10 +1,9 @@
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
-from apps.customer import enums
 from apps.customer.forms import CustomerAdminForm
 from apps.customer.models import Customer
-from pyaa.settings import DEFAULT_TIME_ZONE
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -52,7 +51,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         required=False,
         label=_("model.field.timezone"),
         max_length=255,
-        default=DEFAULT_TIME_ZONE,
+        default=settings.DEFAULT_TIME_ZONE,
     )
 
     def create(self, validated_data):

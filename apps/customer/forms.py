@@ -1,5 +1,6 @@
 from allauth.account.forms import SignupForm
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from timezone_field import TimeZoneFormField
 
@@ -10,7 +11,6 @@ from apps.language.helpers import LanguageHelper
 from apps.language.models import Language
 from apps.user.models import User
 from pyaa.fields import OnlyNumberCharField
-from pyaa.settings import DEFAULT_TIME_ZONE
 
 
 class CustomerAdminForm(forms.ModelForm):
@@ -66,7 +66,7 @@ class CustomerSignupForm(SignupForm):
         user: User = super(CustomerSignupForm, self).save(request)
 
         language = LanguageHelper.get_current()
-        timezone = DEFAULT_TIME_ZONE
+        timezone = settings.DEFAULT_TIME_ZONE
 
         Customer.objects.create(
             user=user,
@@ -119,7 +119,7 @@ class CustomerUpdateProfileForm(forms.Form):
     timezone = TimeZoneFormField(
         label=_("model.field.timezone"),
         required=True,
-        initial=DEFAULT_TIME_ZONE,
+        initial=settings.DEFAULT_TIME_ZONE,
     )
 
     def __init__(self, *args, **kwargs):

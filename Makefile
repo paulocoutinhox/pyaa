@@ -31,12 +31,14 @@ format:
 setup:
 	python3 -m pip install -r requirements.txt --upgrade
 	mkdir -p logs
+	mkdir -p cache
 	mkdir -p db
 	mkdir -p static
 
 setup-prod:
 	mkdir -p logs && chmod -R 777 logs
-	mkdir -p static/CACHE && chmod -R 777 static/CACHE
+	mkdir -p cache && chmod -R 777 cache
+	mkdir -p static && chmod -R 777 static
 	mkdir -p media && chmod -R 777 media
 
 pcu:
@@ -77,15 +79,11 @@ docker-run:
 	@echo "Running..."
 	@docker run --rm -v ${PWD}/db:/app/db \
 		-v ${PWD}/media:/app/media \
-		-e APP_ENV=dev \
 		-p 8000:8000 pyaa
 
 docker-run-prod:
 	@echo "Running..."
 	@docker run --rm -v ${PWD}/db:/app/db \
 		-v ${PWD}/media:/app/media \
-		-e APP_ENV=prod \
-		-e APP_ALLOWED_HOSTS="localhost" \
-		-e APP_CSRF_TRUSTED_ORIGINS="http://localhost" \
 		-e DJANGO_SETTINGS_MODULE="pyaa.settings_production" \
 		-p 8000:8000 pyaa

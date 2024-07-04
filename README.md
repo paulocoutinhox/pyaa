@@ -45,30 +45,8 @@ docker build --no-cache -t pyaa .
 
 docker run --rm -v ${PWD}/db:/app/db \
 		-v ${PWD}/media:/app/media \
-		-e APP_ENV=dev \
-		-e DJANGO_SUPERUSER_USERNAME="admin" \
-		-e DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
-		-e DJANGO_SUPERUSER_PASSWORD="admin" \
 		-p 8000:8000 pyaa
 ```
-
-## Environment
-
-You need change some environment variables:
-
-```
-APP_ENV=prod
-APP_ALLOWED_HOSTS=".mydomain.com"
-APP_CSRF_TRUSTED_ORIGINS="https://*.mydomain.com"
-
-APP_MEDIA_URL=/media/
-
-DJANGO_SUPERUSER_USERNAME="admin"
-DJANGO_SUPERUSER_EMAIL="admin@admin.com"
-DJANGO_SUPERUSER_PASSWORD="admin"
-```
-
-Obs: Obviously you must change this data for your real data, referring to your server.
 
 ## References
 

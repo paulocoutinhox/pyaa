@@ -1,7 +1,6 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-from pyaa.settings import AUTH_USER_MODEL
 
 
 class Subscription(models.Model):
@@ -28,7 +27,7 @@ class Subscription(models.Model):
     )
 
     user = models.ForeignKey(
-        AUTH_USER_MODEL,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="payment",
         verbose_name=_("model.field.user"),

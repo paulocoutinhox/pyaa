@@ -21,7 +21,7 @@ Get your static domain from `ngrok` endpoints.
 Start application with `ngrok` domain:
 
 ```bash
-APP_ALLOWED_HOSTS=ngrok-free.app APP_CSRF_TRUSTED_ORIGINS=https://xyz.ngrok-free.app python3 manage.py runserver "0.0.0.0:8000"
+APP_CSRF_TRUSTED_ORIGINS=https://*.ngrok-free.app python3 manage.py runserver
 ```
 
 or

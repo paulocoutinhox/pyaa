@@ -31,7 +31,14 @@ SECRET_KEY = "myapp-secret-key"
 # Hosts
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["http://*", "https://*"]
+
+csrf_trusted_origins = os.getenv('APP_CSRF_TRUSTED_ORIGINS')
+if csrf_trusted_origins:
+    CSRF_TRUSTED_ORIGINS = csrf_trusted_origins.split(',')
+
+allowed_hosts = os.getenv('APP_ALLOWED_HOSTS')
+if allowed_hosts:
+    ALLOWED_HOSTS = allowed_hosts.split(',')
 
 # Application definition
 
@@ -73,7 +80,6 @@ PROJECT_APPS = [
     "apps.language.apps.LanguageAppConfig",
     "apps.content.apps.ContentAppConfig",
     "apps.gallery.apps.GalleryAppConfig",
-    "apps.photo.apps.PhotoAppConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
@@ -6,7 +7,6 @@ from tinymce.models import HTMLField
 
 from apps.customer import enums, fields
 from apps.language import models as language_models
-from pyaa.settings import AUTH_USER_MODEL, DEFAULT_TIME_ZONE
 
 
 class Customer(models.Model):
@@ -41,7 +41,7 @@ class Customer(models.Model):
     )
 
     user = models.OneToOneField(
-        AUTH_USER_MODEL,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="customer",
         verbose_name=_("model.field.user"),
@@ -97,7 +97,7 @@ class Customer(models.Model):
     timezone = TimeZoneField(
         _("model.field.timezone"),
         max_length=255,
-        default=DEFAULT_TIME_ZONE,
+        default=settings.DEFAULT_TIME_ZONE,
         blank=False,
         null=False,
     )
