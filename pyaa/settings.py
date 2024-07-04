@@ -32,13 +32,13 @@ SECRET_KEY = "myapp-secret-key"
 
 ALLOWED_HOSTS = ["*"]
 
-csrf_trusted_origins = os.getenv('APP_CSRF_TRUSTED_ORIGINS')
+csrf_trusted_origins = os.getenv("APP_CSRF_TRUSTED_ORIGINS")
 if csrf_trusted_origins:
-    CSRF_TRUSTED_ORIGINS = csrf_trusted_origins.split(',')
+    CSRF_TRUSTED_ORIGINS = csrf_trusted_origins.split(",")
 
-allowed_hosts = os.getenv('APP_ALLOWED_HOSTS')
+allowed_hosts = os.getenv("APP_ALLOWED_HOSTS")
 if allowed_hosts:
-    ALLOWED_HOSTS = allowed_hosts.split(',')
+    ALLOWED_HOSTS = allowed_hosts.split(",")
 
 # Application definition
 

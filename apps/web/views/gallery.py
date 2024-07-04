@@ -24,7 +24,9 @@ def gallery_index(request):
 
 def gallery_by_id_view(request, gallery_id):
     try:
-        gallery = Gallery.objects.prefetch_related('gallery_photos').get(id=gallery_id, active=True)
+        gallery = Gallery.objects.prefetch_related("gallery_photos").get(
+            id=gallery_id, active=True
+        )
     except Gallery.DoesNotExist:
         return redirect("home")
 
@@ -39,7 +41,9 @@ def gallery_by_id_view(request, gallery_id):
 
 def gallery_by_tag_view(request, gallery_tag):
     try:
-        gallery = Gallery.objects.prefetch_related('gallery_photos').get(tag=gallery_tag, active=True)
+        gallery = Gallery.objects.prefetch_related("gallery_photos").get(
+            tag=gallery_tag, active=True
+        )
     except Gallery.DoesNotExist:
         return redirect("home")
 
