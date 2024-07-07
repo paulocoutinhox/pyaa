@@ -5,7 +5,7 @@ django-admin-extras==1.0.2
 django-cleanup==8.1.0
 sorl-thumbnail==12.10.0
 pillow==10.3.0
-django-timezone-field==6.1.0
+django-timezone-field==7.0.0
 django-tinymce==4.0.0
 tzdata==2024.1
 djangorestframework-simplejwt==5.3.1
