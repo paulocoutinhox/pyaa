@@ -8,7 +8,7 @@ from apps.gallery.models import Gallery
 def gallery_index(request):
     gallery_list = Gallery.objects.filter(active=True)
 
-    paginator = Paginator(gallery_list, 1)
+    paginator = Paginator(gallery_list, 9)
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
