@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
-from pyaa.helpers import FileHelper
+from pyaa.helpers.file import FileHelper
 
 
 @csrf_exempt

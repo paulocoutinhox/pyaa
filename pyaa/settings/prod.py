@@ -1,4 +1,4 @@
-from .settings import *  # noqa F401
+from .dev import *  # noqa F401
 
 DEBUG = False
 
@@ -6,13 +6,17 @@ SECRET_KEY = "my-prod-key"
 
 DATABASES = {
     "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db" / "db.sqlite3",
+    },
+    "mysql": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "db-name",
         "USER": "db-user",
         "PASSWORD": "db-pass",
         "HOST": "db-host",
         "PORT": "3306",
-    }
+    },
 }
 
 CACHES = {

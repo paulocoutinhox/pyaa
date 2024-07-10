@@ -3,7 +3,7 @@ from rest_framework.mixins import CreateModelMixin, ListModelMixin
 
 from apps.customer.models import Customer
 from apps.customer.serializers import CustomerSerializer
-from pyaa.helpers import AppModelPermissions
+from pyaa.helpers.rest import AppModelPermissions
 
 
 class CustomerView(ListModelMixin, CreateModelMixin, GenericAPIView):

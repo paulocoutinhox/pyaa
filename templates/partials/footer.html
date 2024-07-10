@@ -11,7 +11,13 @@
     <div class="container">
         <p class="text-center">© 2024 {% translate "pyaa.site.name" %}</p>
         <p class="text-center">
-            <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="link-secondary">Privacy</a> · <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}" class="link-secondary">Terms</a>
+            <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="link-secondary">
+                {% translate "pyaa.site.privacy" %}
+            </a>
+            •
+            <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}" class="link-secondary">
+                {% translate "pyaa.site.terms" %}
+            </a>
         </p>
     </div>
 </footer>

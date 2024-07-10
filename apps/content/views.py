@@ -2,7 +2,7 @@ from rest_framework import generics
 
 from apps.content.models import Content
 from apps.content.serializers import ContentSerializer
-from pyaa.helpers import AppModelPermissions
+from pyaa.helpers.rest import AppModelPermissions
 
 
 class ContentList(generics.ListCreateAPIView):

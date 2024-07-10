@@ -1,6 +1,6 @@
 from django import forms
 
-from pyaa.helpers import StringHelper
+from pyaa.helpers.string import StringHelper
 
 
 class OnlyNumberCharField(forms.CharField):

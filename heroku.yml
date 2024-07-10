@@ -3,7 +3,7 @@ setup:
     - plan: heroku-postgresql
       as: DATABASE
   config:
-    DJANGO_SETTINGS_MODULE: pyaa.settings_production
+    DJANGO_SETTINGS_MODULE: pyaa.settings.prod
 build:
   docker:
     django: Dockerfile.web

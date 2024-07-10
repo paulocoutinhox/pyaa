@@ -2,7 +2,7 @@ from rest_framework import generics
 
 from apps.language.models import Language
 from apps.language.serializers import LanguageSerializer
-from pyaa.helpers import AppModelPermissions
+from pyaa.helpers.rest import AppModelPermissions
 
 
 class LanguageList(generics.ListCreateAPIView):

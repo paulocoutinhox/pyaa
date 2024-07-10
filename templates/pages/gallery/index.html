@@ -6,7 +6,7 @@
 
 <div class="container">
     {% element page_title %}
-    <h1>Lista de Galerias (traduzir)</h1>
+    <h1>{% trans "title.gallery.index" %}</h1>
     {% endelement %}
 
     <div class="p-4 text-center w-100">
@@ -21,41 +21,46 @@
         </div>
     </div>
 
-    <nav aria-label="Page navigation">
+    {% if page_obj.paginator.num_pages > 1 %}
+    <nav aria-label="{% trans 'pyaa.pagination.navigation' %}">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page=1" aria-label="First">
-                    <span aria-hidden="true">&laquo; primeira</span>
+                <a class="page-link" href="?page=1" aria-label="{% trans 'pyaa.pagination.first' %}">
+                    <span aria-hidden="true">&laquo; {% trans "pyaa.pagination.first" %}</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                    <span aria-hidden="true">anterior</span>
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                    aria-label="{% trans 'pyaa.pagination.previous' %}">
+                    <span aria-hidden="true">{% trans "pyaa.pagination.previous" %}</span>
                 </a>
             </li>
             {% endif %}
 
             <li class="page-item active" aria-current="page">
                 <span class="page-link">
-                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                    {%blocktrans%} Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} {%endblocktrans%}
                 </span>
             </li>
 
             {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                    <span aria-hidden="true">próxima</span>
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+                    aria-label="{% trans 'pyaa.pagination.next' %}">
+                    <span aria-hidden="true">{% trans "pyaa.pagination.next" %}</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
-                    <span aria-hidden="true">última &raquo;</span>
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"
+                    aria-label="{% trans 'pyaa.pagination.last' %}">
+                    <span aria-hidden="true">{% trans "pyaa.pagination.last" %} &raquo;</span>
                 </a>
             </li>
             {% endif %}
         </ul>
     </nav>
+    {% endif %}
 </div>
 
 {% endblock content %}
