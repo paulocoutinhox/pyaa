@@ -14,8 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from apps.payment import views as payment
-
 from .views import account, content, gallery, home, subscription
 
 urlpatterns = []
@@ -23,6 +21,5 @@ urlpatterns = []
 urlpatterns += home.urlpatterns
 urlpatterns += account.urlpatterns
 urlpatterns += subscription.urlpatterns
-urlpatterns += payment.urlpatterns
 urlpatterns += content.urlpatterns
 urlpatterns += gallery.urlpatterns

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 19:57+0000\n"
+"POT-Creation-Date: 2024-07-10 20:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -274,9 +274,8 @@ msgstr "first"
 msgid "pyaa.pagination.previous"
 msgstr "previous"
 
-#, fuzzy, python-format
-#| msgid " Page %(page_obj.number)s of %(page_obj.paginator.num_pages)s "
-msgid " Page %(page_obj.number)s of %(page_obj.paginator.num_pages)s "
+#, python-format
+msgid "Page %(number)s of %(num_pages)s"
 msgstr "Page %(number)s of %(num_pages)s"
 
 msgid "pyaa.pagination.next"
@@ -293,45 +292,6 @@ msgstr "Logout"
 
 msgid "menu.login"
 msgstr "Sign In"
-
-msgid "title.subscription"
-msgstr "My Subscription"
-
-msgid "subscription.plan.free.title"
-msgstr "Free Plan"
-
-msgid "subscription.plan.free.description"
-msgstr ""
-"<h1 class=\"card-title pricing-card-title\">$0<small class=\"text-muted fw-"
-"light\">/mo</small></h1><ul class=\"list-unstyled mt-3 mb-4\"><li>Line 1</"
-"li><li>Line 2</li><li>Line 3</li><li>Line 4</li></ul>"
-
-msgid "subscription.plan.free.button-with-subscription"
-msgstr "Free"
-
-msgid "subscription.plan.free.button-without-subscription"
-msgstr "Free"
-
-msgid "subscription.plan.free.button-not-authenticated"
-msgstr "Sign up for free"
-
-msgid "subscription.plan.premium.title"
-msgstr "Premium Plan"
-
-msgid "subscription.plan.premium.description"
-msgstr ""
-"<h1 class=\"card-title pricing-card-title\">$9<small class=\"text-muted fw-"
-"light\">/mo</small></h1><ul class=\"list-unstyled mt-3 mb-4\"><li>Line 1</"
-"li><li>Line 2</li><li>Line 3</li><li>Line 4</li></ul>"
-
-msgid "subscription.plan.premium.button-with-subscription"
-msgstr "Premium"
-
-msgid "subscription.plan.premium.button-without-subscription"
-msgstr "Subscribe"
-
-msgid "subscription.plan.premium.button-not-authenticated"
-msgstr "Premium"
 
 msgid "pyaa.site.privacy"
 msgstr "Privacy of policy"

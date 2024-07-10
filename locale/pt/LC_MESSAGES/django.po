@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 19:56+0000\n"
+"POT-Creation-Date: 2024-07-10 20:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -171,31 +171,6 @@ msgstr "Código ISO"
 msgid "model.hint.code_iso_language"
 msgstr "Exemplos: en-US ou pt-BR"
 
-#, fuzzy
-#| msgid "apps.content.description"
-msgid "apps.payment.description"
-msgstr "Conteúdo"
-
-#, fuzzy
-#| msgid "model.customer.name"
-msgid "model.subscription.name"
-msgstr "cliente"
-
-#, fuzzy
-#| msgid "model.customer.name.plural"
-msgid "model.subscription.name.plural"
-msgstr "clientes"
-
-#, fuzzy
-#| msgid "model.field.id"
-msgid "model.field.external-id"
-msgstr "ID"
-
-#, fuzzy
-#| msgid "model.field.tag"
-msgid "model.field.gateway"
-msgstr "Tag"
-
 msgid "Personal info"
 msgstr ""
 
@@ -299,9 +274,8 @@ msgstr "primeira"
 msgid "pyaa.pagination.previous"
 msgstr "anterior"
 
-#, fuzzy, python-format
-#| msgid "Page %(number)s of %(num_pages)s"
-msgid " Page %(page_obj.number)s of %(page_obj.paginator.num_pages)s "
+#, python-format
+msgid "Page %(number)s of %(num_pages)s"
 msgstr "Página %(number)s de %(num_pages)s"
 
 msgid "pyaa.pagination.next"
@@ -318,45 +292,6 @@ msgstr "Sair"
 
 msgid "menu.login"
 msgstr "Entrar"
-
-msgid "title.subscription"
-msgstr "Minha Assinatura"
-
-msgid "subscription.plan.free.title"
-msgstr "Plano Gratuito"
-
-msgid "subscription.plan.free.description"
-msgstr ""
-"<h1 class=\"card-title pricing-card-title\">R$ 0,00<small class=\"text-muted "
-"fw-light\">/mês</small></h1><ul class=\"list-unstyled mt-3 mb-4\"><li>Linha "
-"1</li><li>Linha 2</li><li>Linha 3</li><li>Linha 4</li></ul>"
-
-msgid "subscription.plan.free.button-with-subscription"
-msgstr "Grátis"
-
-msgid "subscription.plan.free.button-without-subscription"
-msgstr "Grátis"
-
-msgid "subscription.plan.free.button-not-authenticated"
-msgstr "Cadastre-se gratuitamente"
-
-msgid "subscription.plan.premium.title"
-msgstr "Plano Premium"
-
-msgid "subscription.plan.premium.description"
-msgstr ""
-"<h1 class=\"card-title pricing-card-title\">R$ 24,99<small class=\"text-"
-"muted fw-light\">/mês</small></h1><ul class=\"list-unstyled mt-3 "
-"mb-4\"><li>Linha 1</li><li>Linha 2</li><li>Linha 3</li><li>Linha 4</li></ul>"
-
-msgid "subscription.plan.premium.button-with-subscription"
-msgstr "Premium"
-
-msgid "subscription.plan.premium.button-without-subscription"
-msgstr "Assinar"
-
-msgid "subscription.plan.premium.button-not-authenticated"
-msgstr "Premium"
 
 msgid "pyaa.site.privacy"
 msgstr "Política de privacidade"
