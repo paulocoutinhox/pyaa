@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 20:17+0000\n"
+"POT-Creation-Date: 2024-07-10 20:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgid "model.field.tag"
 msgstr "Tag"
 
 msgid "model.field.tag.help"
-msgstr "Deixe vazio para ser gerado automaticamente"
+msgstr "Deixe vazio para ser gerado automaticamente."
 
 msgid "model.field.content"
 msgstr "Conteúdo"
@@ -157,34 +157,34 @@ msgid "model.field.native_name"
 msgstr "Nome nativo"
 
 msgid "model.hint.native_name"
-msgstr "Nome nativo sem tradução"
+msgstr "Nome nativo sem tradução."
 
 msgid "model.field.code_iso_639_1"
 msgstr "Código ISO 639-1"
 
 msgid "model.hint.code_iso_639_1"
-msgstr "Exemplos: en ou pt"
+msgstr "Exemplos: en ou pt."
 
 msgid "model.field.code_iso_language"
 msgstr "Código ISO"
 
 msgid "model.hint.code_iso_language"
-msgstr "Exemplos: en-US ou pt-BR"
+msgstr "Exemplos: en-US ou pt-BR."
 
-msgid "Personal info"
-msgstr ""
+msgid "admin.user.fieldsets.personal-info"
+msgstr "Informações pessoais"
 
-msgid "Permissions"
-msgstr ""
+msgid "admin.user.fieldsets.permissions"
+msgstr "Permissões"
 
-msgid "Important dates"
-msgstr ""
+msgid "admin.user.fieldsets.important-dates"
+msgstr "Datas importantes"
 
 msgid "message.account-updated"
-msgstr "Sua conta foi atualizada"
+msgstr "Sua conta foi atualizada."
 
 msgid "message.account-deleted"
-msgstr "Sua conta foi removida"
+msgstr "Sua conta foi removida."
 
 msgid "pyaa.admin.name"
 msgstr "PyAA"
