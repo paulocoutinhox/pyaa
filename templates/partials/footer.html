@@ -9,15 +9,19 @@
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">
     <div class="container">
-        <p class="text-center">© 2024 {% translate "pyaa.site.name" %}</p>
-        <p class="text-center">
-            <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="link-secondary">
-                {% translate "pyaa.site.privacy" %}
-            </a>
-            •
-            <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}" class="link-secondary">
-                {% translate "pyaa.site.terms" %}
-            </a>
-        </p>
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+                <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="nav-link px-2 text-muted">
+                    {% translate "pyaa.site.privacy" %}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}"
+                    class="nav-link px-2 text-muted">
+                    {% translate "pyaa.site.terms" %}
+                </a>
+            </li>
+        </ul>
+        <p class="text-center text-muted">© 2024 {% translate "pyaa.site.name" %}</p>
     </div>
 </footer>
