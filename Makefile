@@ -30,11 +30,11 @@ format:
 
 setup:
 	python3 -m pip install -r requirements.txt --upgrade
-	mkdir -p logs
-	mkdir -p cache
-	mkdir -p db
-	mkdir -p static
-	mkdir -p media
+	mkdir -p logs && chmod -R 777 logs
+	mkdir -p cache && chmod -R 777 cache
+	mkdir -p cache && chmod -R 777 db
+	mkdir -p static && chmod -R 777 static
+	mkdir -p media && chmod -R 777 media
 
 setup-prod:
 	mkdir -p logs && chmod -R 777 logs
