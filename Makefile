@@ -80,14 +80,12 @@ docker-rebuild:
 docker-run:
 	@echo "Running..."
 	@docker run --rm \
-		-v ${PWD}/db:/app/db \
-		-v ${PWD}/media:/app/media \
+		-v ${PWD}:/app \
 		-p 8000:8000 pyaa
 
 docker-run-prod:
 	@echo "Running..."
 	@docker run --rm \
-		-v ${PWD}/db:/app/db \
-		-v ${PWD}/media:/app/media \
+		-v ${PWD}:/app \
 		-e DJANGO_SETTINGS_MODULE="pyaa.settings.prod" \
 		-p 8000:8000 pyaa
