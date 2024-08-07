@@ -1,6 +1,6 @@
-django==5.0.7
+django==5.0.8
 djangorestframework==3.15.2
-black==24.4.2
+black==24.8.0
 django-admin-extras==1.0.2
 django-cleanup==8.1.0
 sorl-thumbnail==12.10.0
@@ -12,10 +12,10 @@ djangorestframework-simplejwt==5.3.1
 drf-spectacular==0.27.2
 drf-spectacular-sidecar==2024.7.1
 django-cors-headers==4.4.0
-django-allauth==0.63.3
+django-allauth==64.0.0
 django-widget-tweaks==1.5.0
-django-compressor==4.5
+django-compressor==4.5.1
 django-bootstrap5==24.2
-stripe==10.2.0
+stripe==10.6.0
 django-resized==1.0.2
 requests==2.32.3
