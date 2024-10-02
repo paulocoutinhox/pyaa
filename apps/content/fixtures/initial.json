@@ -1,0 +1,26 @@
+[
+  {
+    "model": "content.content",
+    "pk": 1,
+    "fields": {
+      "title": "Terms and Conditions",
+      "tag": "terms-and-conditions",
+      "content": "<p>Add your content here!</p>",
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "content.content",
+    "pk": 2,
+    "fields": {
+      "title": "Privacy Policy",
+      "tag": "privacy-policy",
+      "content": "<p>Add your content here!</p>",
+      "active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]

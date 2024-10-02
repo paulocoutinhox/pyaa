@@ -1,0 +1,22 @@
+{% load compress %}
+{% load static %}
+{% load i18n %}
+{% load sass_tags %}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block head_title %}{% translate "site.name" %}{% endblock %}</title>
+
+{% compress css %}
+<link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
+<link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
+{% endcompress %}
+
+{% compress js %}
+<script src="{% static 'vendor/jquery/js/jquery-3.7.1.min.js'%}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'js/main.js'%}"></script>
+{% endcompress %}
+
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">

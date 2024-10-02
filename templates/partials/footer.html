@@ -1,0 +1,27 @@
+{% load compress %}
+{% load static %}
+{% load i18n %}
+
+{% compress js %}
+<script src="{% static 'vendor/magnific-popup/js/jquery.magnific-popup.min.js'%}"></script>
+<script src="{% static 'vendor/jquery-mask/1.14.16/js/jquery.mask.min.js' %}"></script>
+{% endcompress %}
+
+<footer class="footer mt-auto py-3 bg-light border-top">
+    <div class="container">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+                <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="nav-link px-2 text-muted">
+                    {% translate "site.privacy" %}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}"
+                    class="nav-link px-2 text-muted">
+                    {% translate "site.terms" %}
+                </a>
+            </li>
+        </ul>
+        <p class="text-center text-muted">© 2024 {% translate "site.name" %}</p>
+    </div>
+</footer>

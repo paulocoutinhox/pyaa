@@ -1,0 +1,89 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_subscriptions' as url_account_subscriptions %}
+
+{% with badge_class='text-success' icon_class='bi bi-shield-fill-check fs-1 text-success' bg_class='bg-success' %}
+    {% if subscription.status == 'initial' %}
+        {% with badge_class='text-warning' icon_class='bi bi-hourglass-split fs-1 text-warning' bg_class='bg-warning' %}
+        {% endwith %}
+    {% elif subscription.status == 'failed' %}
+        {% with badge_class='text-danger' icon_class='bi bi-x-circle-fill fs-1 text-danger' bg_class='bg-danger' %}
+        {% endwith %}
+    {% elif subscription.status == 'canceled' %}
+        {% with badge_class='text-secondary' icon_class='bi bi-exclamation-triangle-fill fs-1 text-secondary' bg_class='bg-secondary' %}
+        {% endwith %}
+    {% elif subscription.status == 'suspended' %}
+        {% with badge_class='text-warning' icon_class='bi bi-pause-circle-fill fs-1 text-warning' bg_class='bg-warning' %}
+        {% endwith %}
+    {% elif subscription.status == 'analysis' %}
+        {% with badge_class='text-info' icon_class='bi bi-search fs-1 text-info' bg_class='bg-info' %}
+        {% endwith %}
+    {% endif %}
+
+    <div class="container my-3">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <div class="checkout-scard card border-0">
+                    <div class="card-body text-center">
+                        <p class="card-icon">
+                            <i class="{{ icon_class }}"></i>
+                        </p>
+
+                        <h4 class="card-title">
+                            {% if subscription.status == 'initial' %}
+                                {% trans "title.shop.subscription.success.initial" %}
+                            {% elif subscription.status == 'failed' %}
+                                {% trans "title.shop.subscription.success.failed" %}
+                            {% elif subscription.status == 'canceled' %}
+                                {% trans "title.shop.subscription.success.canceled" %}
+                            {% elif subscription.status == 'suspended' %}
+                                {% trans "title.shop.subscription.success.suspended" %}
+                            {% elif subscription.status == 'analysis' %}
+                                {% trans "title.shop.subscription.success.analysis" %}
+                            {% else %}
+                                {% trans "title.shop.subscription.success.active" %}
+                            {% endif %}
+                        </h4>
+
+                        <p class="card-text mb-1">
+                            {% if subscription.status == 'initial' %}
+                                {% trans "message.shop.subscription.success.initial" %}
+                            {% elif subscription.status == 'failed' %}
+                                {% trans "message.shop.subscription.success.failed" %}
+                            {% elif subscription.status == 'canceled' %}
+                                {% trans "message.shop.subscription.success.canceled" %}
+                            {% elif subscription.status == 'suspended' %}
+                                {% trans "message.shop.subscription.success.suspended" %}
+                            {% elif subscription.status == 'analysis' %}
+                                {% trans "message.shop.subscription.success.analysis" %}
+                            {% else %}
+                                {% trans "message.shop.subscription.success.active" %}
+                            {% endif %}
+                        </p>
+
+                        <div class="card-text text-order badge {{ bg_class }} rounded my-3 p-2">
+                            {% trans "message.shop-subscription-code" %}
+                            <br />
+                            <br />
+                            <strong>{{ subscription.token }}</strong>
+                        </div>
+
+                        <p class="card-text mb-0">{% trans "message.shop-subscription-date" %} {{ subscription.created_at }}</p>
+
+                        <div class="my-5 text-center">
+                            {% element button href=url_account_subscriptions tags="success" %}
+                                {% translate "button.account-subscriptions" %}
+                            {% endelement %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endwith %}
+
+{% endblock content %}

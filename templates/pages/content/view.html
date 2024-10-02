@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {{ content.title }}
+    {% endelement %}
+
+    <div>
+        {{ content.content | safe }}
+    </div>
+</div>
+
+{% endblock content %}

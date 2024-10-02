@@ -1,0 +1,47 @@
+# PyAA - Python Advanced Application
+
+PyAA is a powerful, open-source Python + Django template application designed to build robust web applications with all the essential features pre-built. Whether you need a site, an e-commerce platform, or a SaaS application, PyAA has you covered – for free!
+
+## 🚀 Features
+
+- **User Management** – Handle user registration, login, profile management, and more.
+- **Subscription Management** – Manage user subscriptions by credits or expiration date.
+- **Admin Panel** – A fully functional admin dashboard for managing the application.
+- **Email Integration** – Send transactional emails with ease.
+- **Image Gallery** – Manage a gallery of images efficiently.
+- **Static Content Management** – Organize and manage static content across your site.
+- **Multi-language Support** – Easily handle multiple languages.
+- **Stripe Integration** – Seamlessly manage subscription payments through Stripe.
+- **Subscription Plans** – Control and configure different subscription tiers.
+- **Test Coverage** – Over 70% test coverage, ensuring reliability and robustness.
+- **Versatile Use** – Perfect for building websites, e-commerce platforms, or SaaS products.
+
+## 💻 How to Use
+
+Execute the following commands:
+
+```
+make deps
+make setup
+make migrate
+make create-su
+make fixtures
+make run
+```
+
+## 📚 Documentation
+
+- [Production](docs/production.md)
+- [Security](docs/security.md)
+- [Ngrok](docs/ngrok.md)
+- [API](docs/api.md)
+- [WebApp](docs/webapp.md)
+- [Docker](docs/docker.md)
+- [Stripe](docs/stripe.md)
+- [Troubleshooting](docs/troubleshooting.md)
+
+## 🛡️ License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2024, Paulo Coutinho

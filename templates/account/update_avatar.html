@@ -1,0 +1,33 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+{% element page_title %}
+    {% translate "title.account-update-avatar" %}
+{% endelement %}
+
+{% include "partials/customer_avatar.html" %}
+
+<form method="post" enctype="multipart/form-data" class="text-break" novalidate>
+    {% csrf_token %}
+
+    {% element fields form=form %}
+    {% endelement %}
+
+    <p>
+        {% element button type="submit" %}
+            {% translate "button.update" %}
+        {% endelement %}
+
+        {% element button href=url_account_profile %}
+            {% translate "button.cancel" %}
+        {% endelement %}
+    </p>
+</form>
+
+{% endblock content %}

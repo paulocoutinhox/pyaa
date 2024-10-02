@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {{ gallery.title }}
+    {% endelement %}
+
+    <div class="p-4 text-center w-100">
+        <div id="gallery" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            {% for photo in gallery.gallery_photos.all %}
+            <div class="col">
+                <a href="{{ photo.image.url }}" class="gallery-item" target="_blank">
+                    <img src="{{ photo.image.url }}" style="height: 100px;" alt="{{ photo.caption|default:'' }}" />
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="p-4 text-center w-100">
+        <a class="btn btn-primary" href="{% url 'gallery_index' %}">Back</a>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_footer %}
+<script>
+    $(document).ready(function () {
+        $('#gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            gallery: { enabled: true }
+        });
+    });
+</script>
+{% endblock extra_footer %}

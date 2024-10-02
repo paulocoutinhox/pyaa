@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+<div class="container my-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+            <div class="checkout-scard card border-0">
+                <div class="card-body text-center">
+                    <p class="card-icon">
+                        <i class="bi bi-x-circle-fill fs-1 text-danger"></i>
+                    </p>
+
+                    <h4 class="card-title">
+                        {% trans "title.shop-payment-failure" %}
+                    </h4>
+
+                    <p class="card-text mb-1">
+                        {% trans "message.shop-payment-failure-1" %}
+                    </p>
+
+                    <p class="card-text mb-1">
+                        {% trans "message.shop-payment-failure-2" %}
+                    </p>
+
+                    <div class="card-text text-order badge bg-danger rounded my-3 p-2">
+                        {% trans "message.shop-subscription-code" %}
+                        <br />
+                        <br />
+                        <strong>{{ subscription.token }}</strong>
+                    </div>
+
+                    <p class="card-text mb-0">{% trans "message.shop-subscription-date" %} {{ subscription.created_at }}</p>
+
+                    <div class="my-5 text-center">
+                        {% element button href=url_account_profile tags="dark" %}
+                            {% translate "button.profile" %}
+                        {% endelement %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

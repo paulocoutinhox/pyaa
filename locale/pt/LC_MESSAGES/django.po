@@ -1,0 +1,917 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-02 07:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/content/apps.py:8
+msgid "apps.content.description"
+msgstr "Conteúdo"
+
+#: apps/content/filters.py:8 apps/gallery/filters.py:8
+msgid "filter.title"
+msgstr "Título"
+
+#: apps/content/models.py:12
+msgid "model.content.name"
+msgstr "conteúdo"
+
+#: apps/content/models.py:13
+msgid "model.content.name.plural"
+msgstr "conteúdos"
+
+#: apps/content/models.py:31 apps/customer/models.py:41
+#: apps/gallery/models.py:31 apps/language/models.py:19 apps/shop/models.py:32
+#: apps/shop/models.py:188 apps/shop/models.py:336 apps/shop/models.py:411
+#: apps/user/models.py:62
+msgid "model.field.id"
+msgstr "ID"
+
+#: apps/content/models.py:37 apps/gallery/models.py:37
+msgid "model.field.title"
+msgstr "Título"
+
+#: apps/content/models.py:49 apps/customer/forms.py:128
+#: apps/customer/models.py:59 apps/gallery/models.py:49
+msgid "model.field.language"
+msgstr "Idioma"
+
+#: apps/content/models.py:53 apps/gallery/models.py:53 apps/shop/models.py:45
+msgid "model.field.tag"
+msgstr "Tag"
+
+#: apps/content/models.py:58 apps/gallery/models.py:58 apps/shop/models.py:50
+msgid "model.field.tag.help"
+msgstr "Deixe vazio para geração automática."
+
+#: apps/content/models.py:62
+msgid "model.field.content"
+msgstr "Conteúdo"
+
+#: apps/content/models.py:68 apps/gallery/models.py:62
+msgid "model.field.published-at"
+msgstr "Publicado em"
+
+#: apps/content/models.py:74 apps/gallery/models.py:68 apps/shop/models.py:121
+msgid "model.field.active"
+msgstr "Ativo"
+
+#: apps/content/models.py:81 apps/customer/models.py:115
+#: apps/gallery/models.py:75 apps/language/models.py:48 apps/shop/models.py:128
+#: apps/shop/models.py:233 apps/shop/models.py:376 apps/shop/models.py:464
+msgid "model.field.created-at"
+msgstr "Criado em"
+
+#: apps/content/models.py:86 apps/customer/models.py:120
+#: apps/gallery/models.py:80 apps/language/models.py:53 apps/shop/models.py:133
+#: apps/shop/models.py:238
+msgid "model.field.updated-at"
+msgstr "Atualizado em"
+
+#: apps/customer/admin.py:69 apps/language/models.py:25 apps/shop/models.py:38
+msgid "model.field.name"
+msgstr "Nome"
+
+#: apps/customer/admin.py:76 apps/customer/serializers.py:35
+#: apps/customer/serializers.py:94 apps/user/models.py:68
+msgid "model.field.email"
+msgstr "E-mail"
+
+#: apps/customer/admin.py:84
+msgid "model.field.is_active"
+msgstr "Ativo"
+
+#: apps/customer/apps.py:8
+msgid "apps.customer.description"
+msgstr "Cliente"
+
+#: apps/customer/enums.py:6
+msgid "enum.customer-gender.male"
+msgstr "masculino"
+
+#: apps/customer/enums.py:7
+msgid "enum.customer-gender.female"
+msgstr "feminino"
+
+#: apps/customer/enums.py:8
+msgid "enum.customer-gender.none"
+msgstr "nenhum"
+
+#: apps/customer/filters.py:8 apps/language/filters.py:8
+msgid "filter.name"
+msgstr "Nome"
+
+#: apps/customer/filters.py:24
+msgid "filter.email"
+msgstr "E-mail"
+
+#: apps/customer/forms.py:38 apps/customer/forms.py:109
+#: apps/customer/models.py:63 apps/customer/serializers.py:47
+#: apps/customer/serializers.py:106
+msgid "model.field.mobile-phone"
+msgstr "Celular"
+
+#: apps/customer/forms.py:44 apps/customer/forms.py:115
+#: apps/customer/models.py:70 apps/customer/serializers.py:52
+#: apps/customer/serializers.py:111
+msgid "model.field.home-phone"
+msgstr "Telefone fixo"
+
+#: apps/customer/forms.py:95 apps/customer/serializers.py:25
+#: apps/customer/serializers.py:84
+msgid "model.field.first-name"
+msgstr "Nome"
+
+#: apps/customer/forms.py:101 apps/customer/serializers.py:30
+#: apps/customer/serializers.py:89
+msgid "model.field.last-name"
+msgstr "Sobrenome"
+
+#: apps/customer/forms.py:119 apps/customer/models.py:77
+#: apps/customer/serializers.py:115
+msgid "model.field.gender"
+msgstr "Gênero"
+
+#: apps/customer/forms.py:133 apps/customer/models.py:101
+#: apps/customer/serializers.py:132
+msgid "model.field.timezone"
+msgstr "Fuso horário"
+
+#: apps/customer/models.py:18
+msgid "model.customer.name"
+msgstr "cliente"
+
+#: apps/customer/models.py:19
+msgid "model.customer.name.plural"
+msgstr "clientes"
+
+#: apps/customer/models.py:50
+msgid "model.field.user"
+msgstr "Usuário"
+
+#: apps/customer/models.py:86 apps/customer/serializers.py:121
+msgid "model.field.avatar"
+msgstr "Avatar"
+
+#: apps/customer/models.py:95 apps/customer/serializers.py:56
+#: apps/customer/serializers.py:126
+msgid "model.field.obs"
+msgstr "Obs"
+
+#: apps/customer/models.py:109 apps/shop/models.py:82
+msgid "model.field.credits"
+msgstr "Créditos"
+
+#: apps/customer/models.py:134
+#, python-brace-format
+msgid "model.str.customer #{id}"
+msgstr "Cliente #{id}"
+
+#: apps/customer/serializers.py:40 apps/customer/serializers.py:99
+msgid "model.field.password"
+msgstr "Senha"
+
+#: apps/gallery/apps.py:8
+msgid "apps.gallery.description"
+msgstr "Galeria"
+
+#: apps/gallery/models.py:16
+msgid "model.gallery.name"
+msgstr "galeria"
+
+#: apps/gallery/models.py:17
+msgid "model.gallery.name.plural"
+msgstr "galerias"
+
+#: apps/gallery/models.py:100
+msgid "model.field.photos-count"
+msgstr "Fotos"
+
+#: apps/gallery/models.py:114
+msgid "model.gallery-photo.name"
+msgstr "foto da galeria"
+
+#: apps/gallery/models.py:115
+msgid "model.gallery-photo.name.plural"
+msgstr "fotos da galeria"
+
+#: apps/gallery/models.py:122
+msgid "model.field.image"
+msgstr "Imagem"
+
+#: apps/gallery/models.py:130
+msgid "model.field.caption"
+msgstr "Legenda"
+
+#: apps/gallery/models.py:137
+msgid "model.field.main"
+msgstr "Principal"
+
+#: apps/gallery/models.py:151
+msgid "model.field.preview"
+msgstr "Pré-visualização"
+
+#: apps/language/apps.py:8
+msgid "apps.language.description"
+msgstr "Idioma"
+
+#: apps/language/models.py:8
+msgid "model.language.name"
+msgstr "idioma"
+
+#: apps/language/models.py:9
+msgid "model.language.name.plural"
+msgstr "idiomas"
+
+#: apps/language/models.py:30
+msgid "model.field.native_name"
+msgstr "Nome nativo"
+
+#: apps/language/models.py:32
+msgid "model.hint.native_name"
+msgstr "Nome nativo sem tradução."
+
+#: apps/language/models.py:36
+msgid "model.field.code_iso_639_1"
+msgstr "Código ISO 639-1"
+
+#: apps/language/models.py:38
+msgid "model.hint.code_iso_639_1"
+msgstr "Exemplos: en ou pt."
+
+#: apps/language/models.py:42
+msgid "model.field.code_iso_language"
+msgstr "Código ISO"
+
+#: apps/language/models.py:43
+msgid "model.hint.code_iso_language"
+msgstr "Exemplos: en-US ou pt-BR."
+
+#: apps/shop/admin.py:34
+msgid "button.copy"
+msgstr "Copiar"
+
+#: apps/shop/admin.py:35
+msgid "button.close"
+msgstr "Fechar"
+
+#: apps/shop/admin.py:36
+msgid "button.open"
+msgstr "Abrir"
+
+#: apps/shop/admin.py:37
+msgid "modal.title.message"
+msgstr "Mensagem"
+
+#: apps/shop/admin.py:75 apps/shop/models.py:103 apps/shop/models.py:370
+#: apps/shop/models.py:458
+msgid "model.field.description"
+msgstr "Descrição"
+
+#: apps/shop/apps.py:8
+msgid "apps.shop.description"
+msgstr "Loja"
+
+#: apps/shop/enums.py:6
+msgid "enum.shop-payment-gateway.stripe"
+msgstr "Stripe"
+
+#: apps/shop/enums.py:22
+msgid "enum.shop-plan-frequency-type.day"
+msgstr "Dia"
+
+#: apps/shop/enums.py:23
+msgid "enum.shop-plan-frequency-type.week"
+msgstr "Semana"
+
+#: apps/shop/enums.py:24
+msgid "enum.shop-plan-frequency-type.month"
+msgstr "Mês"
+
+#: apps/shop/enums.py:25
+msgid "enum.shop-plan-frequency-type.year"
+msgstr "Ano"
+
+#: apps/shop/enums.py:26
+msgid "enum.shop-plan-frequency-type.quarter"
+msgstr "Trimestre"
+
+#: apps/shop/enums.py:27
+msgid "enum.shop-plan-frequency-type.semi_annual"
+msgstr "Semestre"
+
+#: apps/shop/enums.py:31
+msgid "enum.shop-subscription-status.initial"
+msgstr "Inicial"
+
+#: apps/shop/enums.py:32
+msgid "enum.shop-subscription-status.analysis"
+msgstr "Análise"
+
+#: apps/shop/enums.py:33
+msgid "enum.shop-subscription-status.active"
+msgstr "Ativo"
+
+#: apps/shop/enums.py:34
+msgid "enum.shop-subscription-status.suspended"
+msgstr "Suspenso"
+
+#: apps/shop/enums.py:35
+msgid "enum.shop-subscription-status.canceled"
+msgstr "Cancelado"
+
+#: apps/shop/enums.py:36
+msgid "enum.shop-subscription-status.failed"
+msgstr "Falhou"
+
+#: apps/shop/enums.py:40
+msgid "enum.shop-object-type.general"
+msgstr "Geral"
+
+#: apps/shop/enums.py:41
+msgid "enum.shop-object-type.unknown"
+msgstr "Desconhecido"
+
+#: apps/shop/enums.py:42
+msgid "enum.shop-object-type.bonus"
+msgstr "Bônus"
+
+#: apps/shop/enums.py:43
+msgid "enum.shop-object-type.subscription"
+msgstr "Assinatura"
+
+#: apps/shop/filters.py:8
+msgid "filter.token"
+msgstr "Token"
+
+#: apps/shop/gateways/stripe.py:55
+msgid "message.subscription-canceled"
+msgstr "Sua assinatura foi cancelada com sucesso."
+
+#: apps/shop/gateways/stripe.py:58
+#, python-format
+msgid "message.error-cancel-subscription: %(error)s"
+msgstr "Erro ao cancelar a assinatura: %(error)s"
+
+#: apps/shop/models.py:19
+msgid "model.shop-plan.name"
+msgstr "plano"
+
+#: apps/shop/models.py:20
+msgid "model.shop-plan.name.plural"
+msgstr "planos"
+
+#: apps/shop/models.py:54
+msgid "model.field.payment-gateway"
+msgstr "Gateway de pagamento"
+
+#: apps/shop/models.py:62 apps/shop/models.py:211
+msgid "model.field.external_id"
+msgstr "ID externo"
+
+#: apps/shop/models.py:69 apps/shop/models.py:447
+msgid "model.field.currency"
+msgstr "Moeda"
+
+#: apps/shop/models.py:76
+msgid "model.field.price"
+msgstr "Preço"
+
+#: apps/shop/models.py:88
+msgid "model.field.frequency-type"
+msgstr "Tipo de Frequência"
+
+#: apps/shop/models.py:96
+msgid "model.field.frequency-amount"
+msgstr "Frequência"
+
+#: apps/shop/models.py:109
+msgid "model.field.sort-order"
+msgstr "Ordem"
+
+#: apps/shop/models.py:114
+msgid "model.field.featured"
+msgstr "Destaque"
+
+#: apps/shop/models.py:175
+msgid "model.shop-subscription.name"
+msgstr "assinatura"
+
+#: apps/shop/models.py:176
+msgid "model.shop-subscription.name.plural"
+msgstr "assinaturas"
+
+#: apps/shop/models.py:194
+msgid "model.field.token"
+msgstr "Token"
+
+#: apps/shop/models.py:218 apps/shop/models.py:440
+msgid "model.field.status"
+msgstr "Status"
+
+#: apps/shop/models.py:227
+msgid "model.field.expire-at"
+msgstr "Expira em"
+
+#: apps/shop/models.py:323
+msgid "model.shop-credit-log.name"
+msgstr "crédito"
+
+#: apps/shop/models.py:324
+msgid "model.shop-credit-log.name.plural"
+msgstr "créditos"
+
+#: apps/shop/models.py:344 apps/shop/models.py:435
+msgid "model.field.customer"
+msgstr "Cliente"
+
+#: apps/shop/models.py:349 apps/shop/models.py:454
+msgid "model.field.amount"
+msgstr "Valor"
+
+#: apps/shop/models.py:354 apps/shop/models.py:424
+msgid "model.field.object-type"
+msgstr "Tipo do objeto"
+
+#: apps/shop/models.py:363 apps/shop/models.py:417
+msgid "model.field.object-id"
+msgstr "ID do objeto"
+
+#: apps/shop/models.py:397
+msgid "model.shop-event-log.name"
+msgstr "log de evento"
+
+#: apps/shop/models.py:398
+msgid "model.shop-event-log.name.plural"
+msgstr "log de eventos"
+
+#: apps/user/admin.py:16
+msgid "admin.user.fieldsets.personal-info"
+msgstr "Informações pessoais"
+
+#: apps/user/admin.py:20
+msgid "admin.user.fieldsets.permissions"
+msgstr "Permissões"
+
+#: apps/user/admin.py:32
+msgid "admin.user.fieldsets.important-dates"
+msgstr "Datas importantes"
+
+#: apps/user/models.py:58
+msgid "model.user.name"
+msgstr "usuário"
+
+#: apps/user/models.py:59
+msgid "model.user.name.plural"
+msgstr "usuários"
+
+#: apps/user/models.py:84 apps/user/models.py:91
+msgid "error.email-already-used-by-other"
+msgstr "Este e-mail já está sendo usado."
+
+#: apps/web/views/account.py:42 apps/web/views/account.py:62
+msgid "message.account-updated"
+msgstr "Sua conta foi atualizada."
+
+#: apps/web/views/account.py:91
+msgid "message.error.account-has-subscriptions"
+msgstr ""
+"Sua conta tem assinaturas ativas. Você precisa cancelá-las antes de encerrar "
+"sua conta."
+
+#: apps/web/views/account.py:102
+msgid "message.account-deleted"
+msgstr "Sua conta e dados foram excluídos."
+
+#: apps/web/views/account.py:151
+msgid "message.shop-invalid-cancel-action"
+msgstr "Ação de cancelamento inválida."
+
+#: apps/web/views/shop/shop_web.py:17
+msgid "message.shop-plan-not-found"
+msgstr "Plano não encontrado."
+
+#: apps/web/views/shop/shop_web.py:32
+msgid "message.shop-invalid-action"
+msgstr "Ação inválida."
+
+#: apps/web/views/shop/shop_web.py:43 apps/web/views/shop/shop_web.py:60
+msgid "message.shop-subscription-not-found"
+msgstr "Assinatura não encontrada."
+
+#: apps/web/views/shop/shop_web.py:77
+msgid "message.shop-already-subscriber"
+msgstr ""
+"Você já é assinante. Para realizar uma nova assinatura, é necessário "
+"cancelar a assinatura atual primeiro."
+
+#: pyaa/admin.py:9
+msgid "admin.name"
+msgstr "PyAA"
+
+#: pyaa/admin.py:31
+msgid "admin.group.site-content"
+msgstr "Conteúdo do site"
+
+#: pyaa/settings/dev.py:173
+msgid "language.en"
+msgstr "Inglês"
+
+#: pyaa/settings/dev.py:174
+msgid "language.pt-br"
+msgstr "Português"
+
+#: templates/account/credits.html:12
+msgid "title.account-credits"
+msgstr "Meus créditos"
+
+#: templates/account/credits.html:16 templates/account/profile.html:21
+#: templates/account/subscriptions.html:16 templates/pages/home/index.html:17
+#, python-format
+msgid "Hi %(name)s!"
+msgstr "Oi %(name)s!"
+
+#: templates/account/credits.html:21 templates/account/profile.html:26
+#: templates/account/subscriptions.html:21
+#, python-format
+msgid "Credits: %(credits)s"
+msgstr "Seus créditos: %(credits)s"
+
+#: templates/account/credits.html:23 templates/account/profile.html:28
+#: templates/account/subscriptions.html:23
+msgid "customer.no-credits"
+msgstr "Sem créditos"
+
+#: templates/account/credits.html:35
+msgid "table.header.amount"
+msgstr "Quantidade"
+
+#: templates/account/credits.html:36
+msgid "table.header.description"
+msgstr "Descrição"
+
+#: templates/account/credits.html:37 templates/account/subscriptions.html:38
+msgid "table.header.created-at"
+msgstr "Criado em"
+
+#: templates/account/credits.html:60 templates/account/subscriptions.html:92
+#: templates/pages/gallery/index.html:24 templates/pages/shop/plans.html:42
+msgid "list-data.empty"
+msgstr "Nenhum dado encontrado."
+
+#: templates/account/credits.html:70 templates/account/subscriptions.html:102
+msgid "button.back"
+msgstr "Voltar"
+
+#: templates/account/delete.html:11
+msgid "title.account-delete"
+msgstr "Excluir conta"
+
+#: templates/account/delete.html:15
+msgid "subtitle.account-delete"
+msgstr ""
+"Tem certeza de que deseja excluir sua conta?<br>Isso excluirá "
+"permanentemente seu perfil e qualquer conteúdo que você tenha gerado."
+
+#: templates/account/delete.html:25
+msgid "button.account-delete-confirm"
+msgstr "Sim, excluir minha conta"
+
+#: templates/account/delete.html:31 templates/account/update_avatar.html:28
+#: templates/account/update_profile.html:26
+msgid "button.cancel"
+msgstr "Cancelar"
+
+#: templates/account/login.html:5 templates/account/login.html:9
+#: templates/account/login.html:37
+msgid "Sign In"
+msgstr ""
+
+#: templates/account/login.html:19
+#, python-format
+msgid ""
+"If you have not created an account yet, then please %(link)ssign "
+"up%(end_link)s first."
+msgstr ""
+
+#: templates/account/login.html:31
+msgid "message.forgot-password"
+msgstr "Esqueceu sua senha?"
+
+#: templates/account/login.html:48
+msgid "Sign in with a passkey"
+msgstr ""
+
+#: templates/account/login.html:53
+msgid "Mail me a sign-in code"
+msgstr ""
+
+#: templates/account/profile.html:17
+msgid "title.account-profile"
+msgstr "Perfil"
+
+#: templates/account/profile.html:37
+msgid "button.change-email"
+msgstr "Alterar e-mail"
+
+#: templates/account/profile.html:43
+msgid "button.update-profile"
+msgstr "Atualizar perfil"
+
+#: templates/account/profile.html:49
+msgid "button.update-avatar"
+msgstr "Atualizar avatar"
+
+#: templates/account/profile.html:57
+#: templates/pages/shop/payment_success.html:79
+msgid "button.account-subscriptions"
+msgstr "Minhas assinaturas"
+
+#: templates/account/profile.html:63
+msgid "button.account-credits"
+msgstr "Meus créditos"
+
+#: templates/account/profile.html:71
+msgid "button.account-delete"
+msgstr "Excluir conta"
+
+#: templates/account/profile.html:77
+msgid "button.account-logout"
+msgstr "Sair"
+
+#: templates/account/subscriptions.html:12
+msgid "title.account-subscriptions"
+msgstr "Minhas assinaturas"
+
+#: templates/account/subscriptions.html:35
+msgid "table.header.plan-name"
+msgstr "Plano"
+
+#: templates/account/subscriptions.html:36
+msgid "table.header.status"
+msgstr "Status"
+
+#: templates/account/subscriptions.html:37
+msgid "table.header.expire-at"
+msgstr "Expira em"
+
+#: templates/account/subscriptions.html:39
+msgid "table.header.actions"
+msgstr "Ações"
+
+#: templates/account/subscriptions.html:62
+msgid "button.cancel-subscription"
+msgstr "Cancelar assinatura"
+
+#: templates/account/subscriptions.html:70
+msgid "model.title.cancel-subscription"
+msgstr "Cancelar assinatura"
+
+#: templates/account/subscriptions.html:74
+msgid "message.subscription.cancel-confirmation"
+msgstr "Tem certeza de que deseja cancelar sua assinatura?"
+
+#: templates/account/subscriptions.html:77
+msgid "button.no"
+msgstr "Não"
+
+#: templates/account/subscriptions.html:79
+msgid "button.yes-cancel"
+msgstr "Sim, cancelar"
+
+#: templates/account/update_avatar.html:11
+msgid "title.account-update-avatar"
+msgstr "Atualizar avatar"
+
+#: templates/account/update_avatar.html:24
+#: templates/account/update_profile.html:22
+msgid "button.update"
+msgstr "Atualizar"
+
+#: templates/account/update_profile.html:11
+msgid "title.account-update-profile"
+msgstr "Atualizar perfil"
+
+#: templates/admin/app_list.html:9
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr "Modelos na aplicação %(name)s"
+
+#: templates/admin/app_list.html:26
+msgid "Add"
+msgstr "Adicionar"
+
+#: templates/admin/app_list.html:33
+msgid "View"
+msgstr "Visualizar"
+
+#: templates/admin/app_list.html:35
+msgid "Change"
+msgstr "Alterar"
+
+#: templates/admin/app_list.html:47
+msgid "You don’t have permission to view or edit anything."
+msgstr "Você não tem permissão para visualizar ou editar nada."
+
+#: templates/admin/login.html:4
+msgid "Error:"
+msgstr "Erro:"
+
+#: templates/admin/login.html:44
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Por favor, corrija o erro abaixo."
+msgstr[1] "Por favor, corrija os erros abaixo."
+
+#: templates/admin/login.html:60
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+"Você está autenticado como %(username)s, mas não tem autorização para "
+"acessar esta página. Gostaria de entrar com uma conta diferente?"
+
+#: templates/admin/login.html:85
+msgid "Forgotten your password or username?"
+msgstr "Esqueceu sua senha ou nome de usuário?"
+
+#: templates/admin/login.html:89
+msgid "Log in"
+msgstr "Entrar"
+
+#: templates/pages/gallery/index.html:9
+msgid "title.gallery.index"
+msgstr "Lista de Galerias"
+
+#: templates/pages/gallery/index.html:29
+msgid "pagination.navigation"
+msgstr "Navegação de Páginas"
+
+#: templates/pages/gallery/index.html:33 templates/pages/gallery/index.html:34
+msgid "pagination.first"
+msgstr "primeira"
+
+#: templates/pages/gallery/index.html:39 templates/pages/gallery/index.html:40
+msgid "pagination.previous"
+msgstr "anterior"
+
+#: templates/pages/gallery/index.html:47
+#, python-format
+msgid "Page %(number)s of %(num_pages)s"
+msgstr "Página %(number)s de %(num_pages)s"
+
+#: templates/pages/gallery/index.html:54 templates/pages/gallery/index.html:55
+msgid "pagination.next"
+msgstr "próxima"
+
+#: templates/pages/gallery/index.html:60 templates/pages/gallery/index.html:61
+msgid "pagination.last"
+msgstr "última"
+
+#: templates/pages/home/index.html:9 templates/partials/footer.html:25
+#: templates/partials/head.html:8
+msgid "site.name"
+msgstr "Aplicação Python Avançada"
+
+#: templates/pages/home/index.html:23 templates/partials/header.html:54
+msgid "menu.logout"
+msgstr "Sair"
+
+#: templates/pages/home/index.html:29 templates/partials/header.html:60
+msgid "menu.login"
+msgstr "Entrar"
+
+#: templates/pages/shop/payment_failure.html:19
+msgid "title.shop-payment-failure"
+msgstr "Pagamento Não Concluído"
+
+#: templates/pages/shop/payment_failure.html:23
+msgid "message.shop-payment-failure-1"
+msgstr ""
+"Parece que seu pagamento não foi concluído.<br />Você pode tentar novamente "
+"ou escolher outro método de pagamento."
+
+#: templates/pages/shop/payment_failure.html:27
+msgid "message.shop-payment-failure-2"
+msgstr ""
+"Se você cancelou o pagamento ou navegou para trás, nenhuma ação é necessária."
+"<br />Fique à vontade para retomar seu pedido quando estiver pronto."
+
+#: templates/pages/shop/payment_failure.html:31
+#: templates/pages/shop/payment_success.html:69
+msgid "message.shop-subscription-code"
+msgstr "Código da assinatura:"
+
+#: templates/pages/shop/payment_failure.html:37
+#: templates/pages/shop/payment_success.html:75
+msgid "message.shop-subscription-date"
+msgstr "Data da assinatura:"
+
+#: templates/pages/shop/payment_failure.html:41
+msgid "button.profile"
+msgstr "Minha conta"
+
+#: templates/pages/shop/payment_success.html:38
+msgid "title.shop.subscription.success.initial"
+msgstr "Assinatura Pendente"
+
+#: templates/pages/shop/payment_success.html:40
+msgid "title.shop.subscription.success.failed"
+msgstr "Assinatura Falhou"
+
+#: templates/pages/shop/payment_success.html:42
+msgid "title.shop.subscription.success.canceled"
+msgstr "Assinatura Cancelada"
+
+#: templates/pages/shop/payment_success.html:44
+msgid "title.shop.subscription.success.suspended"
+msgstr "Assinatura Suspensa"
+
+#: templates/pages/shop/payment_success.html:46
+msgid "title.shop.subscription.success.analysis"
+msgstr "Assinatura Sob Análise"
+
+#: templates/pages/shop/payment_success.html:48
+msgid "title.shop.subscription.success.active"
+msgstr "Obrigado por sua assinatura!"
+
+#: templates/pages/shop/payment_success.html:54
+msgid "message.shop.subscription.success.initial"
+msgstr ""
+"Sua assinatura está sendo processada.<br />Nós notificaremos assim que ela "
+"estiver ativa."
+
+#: templates/pages/shop/payment_success.html:56
+msgid "message.shop.subscription.success.failed"
+msgstr "Houve um problema ao processar sua assinatura."
+
+#: templates/pages/shop/payment_success.html:58
+msgid "message.shop.subscription.success.canceled"
+msgstr "Sua assinatura foi cancelada."
+
+#: templates/pages/shop/payment_success.html:60
+msgid "message.shop.subscription.success.suspended"
+msgstr "Sua assinatura está atualmente suspensa."
+
+#: templates/pages/shop/payment_success.html:62
+msgid "message.shop.subscription.success.analysis"
+msgstr "Análise"
+
+#: templates/pages/shop/payment_success.html:64
+msgid "message.shop.subscription.success.active"
+msgstr ""
+"Parabéns! Sua assinatura está ativa e você pode desfrutar dos serviços "
+"contratados."
+
+#: templates/pages/shop/plans.html:11
+msgid "title.shop.plans"
+msgstr "Preços"
+
+#: templates/pages/shop/plans.html:32
+msgid "button.shop-select-plan"
+msgstr "Escolher plano"
+
+#: templates/partials/footer.html:15
+msgid "site.privacy"
+msgstr "Política de Privacidade"
+
+#: templates/partials/footer.html:21
+msgid "site.terms"
+msgstr "Termos de uso"
+
+#: templates/partials/header.html:7
+msgid "site.small-name"
+msgstr "PYAA"
+
+#: templates/partials/header.html:22 templates/partials/header.html:24
+msgid "menu.credits"
+msgstr "Créditos"
+
+#: templates/partials/header.html:32
+msgid "menu.home"
+msgstr "Início"
+
+#: templates/partials/header.html:37
+msgid "menu.gallery"
+msgstr "Galerias"
+
+#: templates/partials/header.html:42
+msgid "menu.shop.plans"
+msgstr "Preços"
+
+#: templates/partials/header.html:49
+msgid "menu.profile"
+msgstr "Minha conta"
+
+#: templates/partials/header.html:65
+msgid "menu.signup"
+msgstr "Cadastre-se"

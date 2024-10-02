@@ -1,0 +1,88 @@
+{% load allauth %}
+
+{% if attrs.type == "radio" or attrs.type == "checkbox" %}
+<div class="form-check">
+{% else %}
+<div>
+{% endif %}
+
+{% if attrs.type == "radio" or attrs.type == "checkbox" %}
+<label for="{{ attrs.id }}" class="form-check-label">
+    {% slot label %}
+    {% endslot %}
+</label>
+{% else %}
+<label for="{{ attrs.id }}" class="form-label">
+    {% slot label %}
+    {% endslot %}
+</label>
+{% endif %}
+
+{% if attrs.type == "textarea" %}
+    <textarea {% if attrs.required %}required{% endif %}
+                {% if attrs.rows %}rows="{{ attrs.rows }}"{% endif %}
+                {% if attrs.disabled %}disabled{% endif %}
+                {% if attrs.readonly %}readonly{% endif %}
+                {% if attrs.checked %}checked{% endif %}
+                {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+                {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+                {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+                class="form-control">{% slot value %}{% endslot %}</textarea>
+{% elif attrs.type == "text" %}
+    <input {% if attrs.required %}required{% endif %}
+        {% if attrs.disabled %}disabled{% endif %}
+        {% if attrs.readonly %}readonly{% endif %}
+        {% if attrs.checked %}checked{% endif %}
+        {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+        {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+        {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+        {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+        value="{{ attrs.value|default_if_none:"" }}"
+        type="{{ attrs.type }}"
+        class="form-control">
+{% elif attrs.type == "radio" or attrs.type == "checkbox" %}
+    <input {% if attrs.required %}required{% endif %}
+        {% if attrs.disabled %}disabled{% endif %}
+        {% if attrs.readonly %}readonly{% endif %}
+        {% if attrs.checked %}checked{% endif %}
+        {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+        {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+        {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+        {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+        value="{{ attrs.value|default_if_none:"" }}"
+        type="{{ attrs.type }}"
+        class="form-check-input">
+{% elif attrs.type == "select" %}
+    <input {% if attrs.required %}required{% endif %}
+        {% if attrs.disabled %}disabled{% endif %}
+        {% if attrs.readonly %}readonly{% endif %}
+        {% if attrs.checked %}checked{% endif %}
+        {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+        {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+        {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+        {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+        value="{{ attrs.value|default_if_none:"" }}"
+        type="{{ attrs.type }}"
+        class="form-select">
+{% else %}
+    <input {% if attrs.required %}required{% endif %}
+            {% if attrs.disabled %}disabled{% endif %}
+            {% if attrs.readonly %}readonly{% endif %}
+            {% if attrs.checked %}checked{% endif %}
+            {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+            {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+            {% if attrs.placeholder %}placeholder="{{ attrs.placeholder }}"{% endif %}
+            {% if attrs.autocomplete %}autocomplete="{{ attrs.autocomplete }}"{% endif %}
+            value="{{ attrs.value|default_if_none:"" }}"
+            type="{{ attrs.type }}"
+            class="form-control">
+{% endif %}
+
+{% if slots.help_text %}
+    <small class="form-text text-muted">
+        {% slot help_text %}
+        {% endslot %}
+    </small>
+{% endif %}
+
+</div>

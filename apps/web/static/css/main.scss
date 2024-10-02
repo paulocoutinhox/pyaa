@@ -1,0 +1,15 @@
+// import bootstrap and bootswatch
+@import "../vendor/bootswatch/cosmo/variables";
+@import "../vendor/bootswatch/cosmo/bootstrap";
+@import "../vendor/bootswatch/cosmo/bootswatch";
+@import "../vendor/bootstrap-icons/bootstrap-icons.min";
+
+// custom variables
+/*
+:root, [data-bs-theme=light] {
+    --bs-primary: #000000;
+}
+*/
+
+// custom
+@import "custom";

@@ -1,0 +1,24 @@
+{% extends 'admin/base.html' %}
+
+{% load static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/custom.css' %}">
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'vendor/jquery-ui/1.14.0/css/jquery-ui.min.css' %}">
+
+    <script src="{% static 'vendor/jquery/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-ui/1.14.0/js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-mask/1.14.16/js/jquery.mask.min.js' %}"></script>
+
+    <script>
+        function removeMasksFromInputs(form) {
+            $(form).find(':input[class*="-mask"]').unmask();
+        }
+    </script>
+{% endblock %}

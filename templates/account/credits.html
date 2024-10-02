@@ -1,0 +1,74 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+{% load shop %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+{% element page_title %}
+    {% translate "title.account-credits" %}
+{% endelement %}
+
+<p class="text-center">
+    {% blocktranslate with name=user.get_full_name %}Hi {{ name }}!{% endblocktranslate %}
+</p>
+
+<p class="text-center">
+    {% if customer.credits %}
+        {% blocktranslate with credits=customer.credits %}Credits: {{ credits }}{% endblocktranslate %}
+    {% else %}
+        {% translate "customer.no-credits" %}
+    {% endif %}
+</p>
+
+<div class="text-center">
+    {% include "partials/customer_avatar.html" %}
+</div>
+
+<div class="credits-list">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{% translate "table.header.amount" %}</th>
+                <th>{% translate "table.header.description" %}</th>
+                <th>{% translate "table.header.created-at" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if credits %}
+                {% for credit in credits %}
+                    <tr class="align-middle">
+                        <td>
+                            {% if credit.amount > 0 %}
+                                <span class="badge bg-success">{{ credit.amount }}</span>
+                            {% elif credit.amount < 0 %}
+                                <span class="badge bg-danger">{{ credit.amount }}</span>
+                            {% else %}
+                                <span class="badge bg-dark">{{ credit.amount }}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ credit.get_description }}</td>
+                        <td>{{ credit.created_at }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">
+                        {% translate "list-data.empty" %}
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="my-5 text-center">
+    {% element button href=url_account_profile %}
+        {% translate "button.back" %}
+    {% endelement %}
+</p>
+
+{% endblock content %}

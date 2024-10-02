@@ -1,0 +1,50 @@
+name: Build
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'extras/images/**'
+
+jobs:
+  build:
+    name: ${{ matrix.config.name }} - Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: "Linux", os: ubuntu-latest }
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Upgrade PIP
+        run: python3 -m pip install --upgrade pip setuptools wheel
+
+      - name: Display Python Version
+        run: python3 --version
+
+      - name: Display PIP Version
+        run: python3 -m pip --version
+
+      - name: Setup
+        run: |
+          make deps
+          make setup
+          make migrate
+          make create-su
+          make fixtures
+
+      - name: Test
+        run: make test
+
+      - name: Test Coverage
+        run: make test-coverage-ci

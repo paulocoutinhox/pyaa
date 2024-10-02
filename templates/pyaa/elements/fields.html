@@ -1,0 +1,49 @@
+{% load widget_tweaks %}
+
+{% for hidden_field in attrs.form.hidden_fields %}
+    {{ hidden_field }}
+{% endfor %}
+
+{% if attrs.form.non_field_errors %}
+<div class="alert alert-danger" role="alert">
+    <ul>
+        {% for error in attrs.form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% for field in attrs.form.visible_fields %}
+<div class="mb-3">
+    {{ field|add_label_class:"form-label" }}
+
+    {% if field.errors %}
+        {% if field.field.widget.input_type == "checkbox" %}
+            {% render_field field class="form-check-input is-invalid" %}
+        {% elif field.field.widget.input_type == "radio" %}
+            {% render_field field class="form-check-input is-invalid" %}
+        {% elif field.field.widget.input_type == "select" %}
+            {% render_field field class="form-select is-invalid" %}
+        {% else %}
+            {% render_field field class="form-control is-invalid" %}
+        {% endif %}
+    {% else %}
+        {% if field.field.widget.input_type == "checkbox" %}
+            {% render_field field class="form-check-input" %}
+        {% elif field.field.widget.input_type == "radio" %}
+            {% render_field field class="form-check-input" %}
+        {% elif field.field.widget.input_type == "select" %}
+            {% render_field field class="form-select" %}
+        {% else %}
+            {% render_field field class="form-control" %}
+        {% endif %}
+    {% endif %}
+
+    {% for error in field.errors %}
+    <div class="invalid-feedback">
+        {{ error }}
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}

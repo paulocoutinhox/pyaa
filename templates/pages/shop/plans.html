@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+{% load pyaa_format %}
+{% load shop %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {% trans "title.shop.plans" %}
+    {% endelement %}
+
+    {% if plans %}
+        <div class="row justify-content-center my-5">
+            {% for plan in plans %}
+            <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+                <div class="card w-100 {% if plan.featured %} shadow-lg pt-md-4 pb-md-4 {% else %} shadow-sm {% endif %} rounded-3">
+                    <div class="card-body p-4 p-xxl-5">
+                        <div class="text-center">
+                            <h2 class="h4 mb-2">{{ plan.name }}</h2>
+                            <h4 class="display-3 fw-bold text-primary mb-0">{{ plan.price|format_currency:plan.currency }}</h4>
+                            <p class="text-secondary mb-4">{{ plan.currency }} / {{ plan.frequency_type|format_frequency_type|capfirst }}</p>
+                        </div>
+
+                        <div class="text-center">
+                            {{ plan.description|safe }}
+                        </div>
+
+                        <div class="text-center">
+                            <a href="{% url 'shop_buy_by_tag' plan.tag %}" class="btn btn-lg btn-primary rounded-pill text-capitalize">
+                                {% trans "button.shop-select-plan" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center my-5">
+            <p>{% trans "list-data.empty" %}</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock content %}

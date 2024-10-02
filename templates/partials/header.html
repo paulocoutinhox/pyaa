@@ -1,0 +1,73 @@
+{% load i18n %}
+{% load pyaa %}
+<header id="header">
+    <nav class="navbar navbar-expand-lg p-3 border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                {% translate "site.small-name" %}
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto ">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="nav-link mx-2">
+                                {% if user.customer.credits %}
+                                    {% translate "menu.credits" %}: {{ user.customer.credits }}
+                                {% else %}
+                                    {% translate "menu.credits" %}: 0
+                                {% endif %}
+                            </span>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 {% nav_active 'home' %}" aria-current="page" href="{% url 'home' %}">
+                            {% translate "menu.home" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 {% nav_active 'gallery_index' %}" aria-current="page" href="{% url 'gallery_index' %}">
+                            {% translate "menu.gallery" %}
+                        </a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link mx-2 {% nav_active 'shop_plans' %}" aria-current="page" href="{% url 'shop_plans' %}">
+                            {% translate "menu.shop.plans" %}
+                        </a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'account_profile' %}" class="nav-link mx-2 {% nav_active 'account_profile' %}">
+                            {% translate "menu.profile" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'account_logout' %}" class="nav-link mx-2 {% nav_active 'account_logout' %}">
+                            {% translate "menu.logout" %}
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'account_login' %}" class="nav-link mx-2 {% nav_active 'account_login' %}">
+                            {% translate "menu.login" %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'account_signup' %}" class="nav-link mx-2 {% nav_active 'account_signup' %}">
+                            {% translate "menu.signup" %}
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

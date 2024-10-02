@@ -1,0 +1,26 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+  config:
+    DJANGO_SETTINGS_MODULE: pyaa.settings.prod
+build:
+  docker:
+    django: Dockerfile.web
+release:
+  image: django
+  command:
+    - python manage.py migrate --noinput
+run:
+  web:
+    command:
+      - gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 gpt_playground.wsgi:application
+    image: django
+  worker:
+    command:
+      - celery -A gpt_playground worker -l INFO --pool gevent --concurrency 100
+    image: django
+  beat:
+    command:
+      - celery -A gpt_playground beat -l INFO
+    image: django
