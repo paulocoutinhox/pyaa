@@ -2,6 +2,10 @@
 
 PyAA is a powerful, open-source Python + Django template application designed to build robust web applications with all the essential features pre-built. Whether you need a site, an e-commerce platform, or a SaaS application, PyAA has you covered – for free!
 
+[![Build](https://github.com/paulocoutinhox/pyaa/actions/workflows/build.yml/badge.svg)](https://github.com/paulocoutinhox/pyaa/actions/workflows/build.yml)
+
+[![codecov](https://codecov.io/gh/paulocoutinhox/pyaa/graph/badge.svg?token=KQ1H9SVD4Y)](https://codecov.io/gh/paulocoutinhox/pyaa)
+
 ## 🚀 Features
 
 - **User Management** – Handle user registration, login, profile management, and more.
