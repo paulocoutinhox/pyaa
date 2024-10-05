@@ -14,6 +14,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
 from django.utils.translation import gettext_lazy as _
 
 # Quick-start development settings - unsuitable for production
@@ -206,6 +207,16 @@ SASS_PROCESSOR_ROOT = BASE_DIR / "apps" / "web" / "static"
 COMPRESS_ROOT = BASE_DIR / "static"
 COMPRESS_ENABLED = True
 COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
+
+# Messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: "alert-secondary",
+    messages.INFO: "alert-info",
+    messages.SUCCESS: "alert-success",
+    messages.WARNING: "alert-warning",
+    messages.ERROR: "alert-danger",
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

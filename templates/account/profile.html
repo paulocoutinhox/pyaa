@@ -18,7 +18,7 @@
 {% endelement %}
 
 <p class="text-center">
-    {% blocktranslate with name=user.get_full_name %}Hi {{ name }}!{% endblocktranslate %}
+    {% blocktranslate with name=user.customer %}Hi {{ name }}!{% endblocktranslate %}
 </p>
 
 <p class="text-center">
@@ -58,7 +58,7 @@
         {% endelement %}
     </p>
 
-    <p></p>
+    <p>
         {% element button href=url_account_credits %}
             {% translate "button.account-credits" %}
         {% endelement %}
