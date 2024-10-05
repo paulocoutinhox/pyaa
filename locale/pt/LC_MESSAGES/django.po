@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-02 07:23+0000\n"
+"POT-Creation-Date: 2024-10-05 21:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -521,11 +521,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:173
+#: pyaa/settings/dev.py:174
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:174
+#: pyaa/settings/dev.py:175
 msgid "language.pt-br"
 msgstr "Português"
 
@@ -533,19 +533,19 @@ msgstr "Português"
 msgid "title.account-credits"
 msgstr "Meus créditos"
 
-#: templates/account/credits.html:16 templates/account/profile.html:21
+#: templates/account/credits.html:16 templates/account/profile.html:22
 #: templates/account/subscriptions.html:16 templates/pages/home/index.html:17
 #, python-format
 msgid "Hi %(name)s!"
 msgstr "Oi %(name)s!"
 
-#: templates/account/credits.html:21 templates/account/profile.html:26
+#: templates/account/credits.html:21 templates/account/profile.html:27
 #: templates/account/subscriptions.html:21
 #, python-format
 msgid "Credits: %(credits)s"
 msgstr "Seus créditos: %(credits)s"
 
-#: templates/account/credits.html:23 templates/account/profile.html:28
+#: templates/account/credits.html:23 templates/account/profile.html:29
 #: templates/account/subscriptions.html:23
 msgid "customer.no-credits"
 msgstr "Sem créditos"
@@ -614,36 +614,44 @@ msgstr ""
 msgid "Mail me a sign-in code"
 msgstr ""
 
-#: templates/account/profile.html:17
+#: templates/account/profile.html:18
 msgid "title.account-profile"
 msgstr "Perfil"
 
-#: templates/account/profile.html:37
+#: templates/account/profile.html:36
+msgid "subtitle.my-account"
+msgstr "Minha Conta"
+
+#: templates/account/profile.html:42
 msgid "button.change-email"
 msgstr "Alterar e-mail"
 
-#: templates/account/profile.html:43
+#: templates/account/profile.html:48
 msgid "button.update-profile"
 msgstr "Atualizar perfil"
 
-#: templates/account/profile.html:49
+#: templates/account/profile.html:54
 msgid "button.update-avatar"
 msgstr "Atualizar avatar"
 
-#: templates/account/profile.html:57
+#: templates/account/profile.html:62
 #: templates/pages/shop/payment_success.html:79
 msgid "button.account-subscriptions"
 msgstr "Minhas assinaturas"
 
-#: templates/account/profile.html:63
+#: templates/account/profile.html:68
 msgid "button.account-credits"
 msgstr "Meus créditos"
 
-#: templates/account/profile.html:71
+#: templates/account/profile.html:74
+msgid "subtitle.danger-zone"
+msgstr "Danger Zone"
+
+#: templates/account/profile.html:78
 msgid "button.account-delete"
 msgstr "Excluir conta"
 
-#: templates/account/profile.html:77
+#: templates/account/profile.html:84
 msgid "button.account-logout"
 msgstr "Sair"
 
