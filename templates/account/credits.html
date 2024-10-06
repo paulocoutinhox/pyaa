@@ -12,23 +12,11 @@
     {% translate "title.account-credits" %}
 {% endelement %}
 
-<p class="text-center">
-    {% blocktranslate with name=user.customer %}Hi {{ name }}!{% endblocktranslate %}
-</p>
-
-<p class="text-center">
-    {% if customer.credits %}
-        {% blocktranslate with credits=customer.credits %}Credits: {{ credits }}{% endblocktranslate %}
-    {% else %}
-        {% translate "customer.no-credits" %}
-    {% endif %}
-</p>
-
 <div class="text-center">
-    {% include "partials/customer_avatar.html" %}
+    {% include "partials/customer_data.html" %}
 </div>
 
-<div class="credits-list">
+<div class="table-responsive credits-list">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -69,6 +57,6 @@
     {% element button href=url_account_profile %}
         {% translate "button.back" %}
     {% endelement %}
-</p>
+</div>
 
 {% endblock content %}

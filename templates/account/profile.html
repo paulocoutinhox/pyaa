@@ -18,24 +18,14 @@
     {% translate "title.account-profile" %}
 {% endelement %}
 
-<p class="text-center">
-    {% blocktranslate with name=user.customer %}Hi {{ name }}!{% endblocktranslate %}
-</p>
-
-<p class="text-center">
-    {% if customer.credits %}
-        {% blocktranslate with credits=customer.credits %}Credits: {{ credits }}{% endblocktranslate %}
-    {% else %}
-        {% translate "customer.no-credits" %}
-    {% endif %}
-</p>
+<div class="text-center">
+    {% include "partials/customer_data.html" %}
+</div>
 
 {% element hr %}{% endelement %}
 
 <div class="text-center">
     <h3>{% translate "subtitle.my-account" %}</h3>
-
-    {% include "partials/customer_avatar.html" %}
 
     <p>
         {% element button href=url_account_email %}
