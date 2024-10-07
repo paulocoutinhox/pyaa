@@ -95,15 +95,15 @@ msgstr "Customer"
 
 #: apps/customer/enums.py:6
 msgid "enum.customer-gender.male"
-msgstr "male"
+msgstr "Male"
 
 #: apps/customer/enums.py:7
 msgid "enum.customer-gender.female"
-msgstr "female"
+msgstr "Female"
 
 #: apps/customer/enums.py:8
 msgid "enum.customer-gender.none"
-msgstr "none"
+msgstr "None"
 
 #: apps/customer/filters.py:8 apps/language/filters.py:8
 msgid "filter.name"
