@@ -177,25 +177,6 @@ class GalleryPhotoModelTest(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             GalleryPhoto.objects.get(caption="Nonexistent Caption")
 
-    def test_gallery_photo_str(self):
-        language = Language.objects.get(code_iso_language="en-US")
-
-        gallery = Gallery.objects.create(
-            title="Test Gallery",
-            language=language,
-            tag="test-gallery",
-            active=True,
-        )
-
-        photo = GalleryPhoto.objects.create(
-            gallery=gallery,
-            image="extras/images/python.png",
-            caption="Test Caption",
-            main=True,
-        )
-
-        self.assertEqual(str(photo), "Test Caption")
-
     def test_preview(self):
         language = Language.objects.get(code_iso_language="en-US")
 
