@@ -13,7 +13,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto ">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
@@ -37,7 +37,7 @@
                             {% translate "menu.gallery" %}
                         </a>
                     </li>
-                    <li class="nav-item"></li>
+                    <li class="nav-item">
                         <a class="nav-link mx-2 {% nav_active 'shop_plans' %}" aria-current="page" href="{% url 'shop_plans' %}">
                             {% translate "menu.shop.plans" %}
                         </a>

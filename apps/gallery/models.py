@@ -150,6 +150,3 @@ class GalleryPhoto(models.Model):
 
     preview.short_description = _("model.field.preview")
     preview.allow_tags = True
-
-    def __str__(self):
-        return self.caption
