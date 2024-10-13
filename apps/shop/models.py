@@ -395,7 +395,12 @@ class CreditLog(models.Model):
             return self.description
 
         key = f"enum.shop-object-type.{self.object_type}"
-        return _(key)
+        result = _(key)
+
+        if self.is_refund:
+            result = result + " " + _("message.refund-in-list")
+
+        return result
 
 
 class EventLog(models.Model):
