@@ -380,7 +380,7 @@ class SubscriptionModelTest(TestCase):
             status="active",
         )
 
-        self.customer = CustomerHelper.add_credits(
+        self.customer, _ = CustomerHelper.add_credits(
             self.customer,
             self.plan.credits,
             True,

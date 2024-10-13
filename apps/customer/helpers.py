@@ -13,7 +13,7 @@ class CustomerHelper:
     @transaction.atomic
     def post_save(customer: Customer):
         # add initial credits
-        CustomerHelper.add_credits(
+        customer, log = CustomerHelper.add_credits(
             customer,
             settings.CUSTOMER_INITIAL_CREDITS,
             True,
@@ -21,16 +21,18 @@ class CustomerHelper:
             ObjectType.BONUS,
         )
 
-        return customer
+        return customer, log
 
     @staticmethod
     @transaction.atomic
     def add_credits(customer, amount, add_log=False, object_id=0, object_type=None):
         if amount == 0:
-            return None
+            return customer, None
 
         # ensure credits is treated as 0 if it's null
         current_credits = Coalesce(F("credits"), Value(0))
+
+        log_entry = None
 
         # atomically check and update credits
         if amount < 0:
@@ -40,8 +42,8 @@ class CustomerHelper:
             ).update(credits=current_credits + amount)
 
             if updated_rows == 0:
-                # not enough credits to deduct, return None
-                return None
+                # not enough credits to deduct, return customer without log
+                return customer, None
         else:
             # add credits without any condition
             Customer.objects.filter(id=customer.id).update(
@@ -53,11 +55,12 @@ class CustomerHelper:
 
         # optionally log the credit change
         if add_log:
-            CreditLog.objects.create(
+            log_entry = CreditLog.objects.create(
                 object_id=object_id,
                 object_type=object_type,
                 customer=customer,
                 amount=amount,
             )
 
-        return customer
+        # return the customer and the log entry (if created)
+        return customer, log_entry
