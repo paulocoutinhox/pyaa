@@ -260,6 +260,7 @@ class Subscription(models.Model):
         CustomerHelper.add_credits(
             customer=self.customer,
             amount=self.plan.credits,
+            is_refund=False,
             add_log=True,
             object_id=self.id,
             object_type=ObjectType.SUBSCRIPTION,
@@ -286,6 +287,7 @@ class Subscription(models.Model):
         CustomerHelper.add_credits(
             customer=self.customer,
             amount=-self.plan.credits,
+            is_refund=False,
             add_log=True,
             object_id=self.id,
             object_type=ObjectType.SUBSCRIPTION,
@@ -364,6 +366,11 @@ class CreditLog(models.Model):
         blank=True,
         null=True,
         default=0,
+    )
+
+    is_refund = models.BooleanField(
+        _("model.field.is-refund"),
+        default=False,
     )
 
     description = models.TextField(

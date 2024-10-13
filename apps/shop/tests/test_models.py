@@ -383,6 +383,7 @@ class SubscriptionModelTest(TestCase):
         self.customer, _ = CustomerHelper.add_credits(
             self.customer,
             self.plan.credits,
+            False,
             True,
             0,
             ObjectType.GENERAL,

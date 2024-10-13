@@ -16,6 +16,7 @@ class CustomerHelper:
         customer, log = CustomerHelper.add_credits(
             customer,
             settings.CUSTOMER_INITIAL_CREDITS,
+            False,
             True,
             0,
             ObjectType.BONUS,
@@ -25,7 +26,9 @@ class CustomerHelper:
 
     @staticmethod
     @transaction.atomic
-    def add_credits(customer, amount, add_log=False, object_id=0, object_type=None):
+    def add_credits(
+        customer, amount, is_refund=False, add_log=False, object_id=0, object_type=None
+    ):
         if amount == 0:
             return customer, None
 
@@ -60,6 +63,7 @@ class CustomerHelper:
                 object_type=object_type,
                 customer=customer,
                 amount=amount,
+                is_refund=is_refund,
             )
 
         # return the customer and the log entry (if created)
