@@ -51,6 +51,9 @@ class CustomerAdminForm(forms.ModelForm):
         if self.instance and self.instance.pk:
             self.fields["user"].disabled = True
 
+        # make the 'credits' field read-only
+        self.fields["credits"].disabled = True
+
     def is_adding(self):
         if self.instance.pk is None:
             return True
