@@ -108,6 +108,7 @@ class CustomerHelperTest(TestCase):
             object_type=ObjectType.BONUS,
             customer=customer,
             amount=initial_credits,
+            is_refund=False,
         )
 
     def test_post_save_no_credit_log_created_when_no_credits(self):
