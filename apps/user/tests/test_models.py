@@ -91,7 +91,7 @@ class UserManagerTest(TestCase):
         self.assertIsNotNone(customer)
         self.assertEqual(customer.language.id, 1)
         self.assertEqual(str(customer.timezone), settings.DEFAULT_TIME_ZONE)
-        self.assertEqual(customer.credits, None)
+        self.assertEqual(customer.credits, 0)
 
     def test_on_user_signed_up_updates_existing_customer(self):
         user = User.objects.create_user(
@@ -106,7 +106,7 @@ class UserManagerTest(TestCase):
 
         self.assertEqual(customer.language.id, 1)
         self.assertEqual(str(customer.timezone), settings.DEFAULT_TIME_ZONE)
-        self.assertEqual(customer.credits, None)
+        self.assertEqual(customer.credits, 0)
 
     def test_clean_email_raises_validation_error(self):
         # create two users

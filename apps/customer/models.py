@@ -107,8 +107,9 @@ class Customer(models.Model):
 
     credits = models.IntegerField(
         _("model.field.credits"),
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
+        default=0,
     )
 
     created_at = models.DateTimeField(
