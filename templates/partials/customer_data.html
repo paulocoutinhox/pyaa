@@ -5,8 +5,8 @@
 </p>
 
 <p class="text-center">
-    {% if customer.credits %}
-        {% blocktranslate with credits=customer.credits %}Credits: {{ credits }}{% endblocktranslate %}
+    {% if user.customer.credits %}
+        {% blocktranslate with credits=user.customer.credits %}Credits: {{ credits }}{% endblocktranslate %}
     {% else %}
         {% translate "customer.no-credits" %}
     {% endif %}
