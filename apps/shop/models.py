@@ -388,19 +388,21 @@ class CreditLog(models.Model):
         result = ""
 
         if self.object_type == enums.ObjectType.SUBSCRIPTION:
-            # if the object type is SUBSCRIPTION
+            # if the object type is subscription
             subscription = Subscription.objects.filter(id=self.object_id).first()
 
             if subscription and subscription.plan:
                 result = subscription.plan.name
             else:
-                result = _(f"enum.shop-object-type.{self.object_type}")
+                key = f"enum.shop-object-type.{self.object_type}"
+                result = _(key)
         elif self.description:
             # if there is a specific description
             result = self.description
         else:
             # default case for other object types
-            result = _(f"enum.shop-object-type.{self.object_type}")
+            key = f"enum.shop-object-type.{self.object_type}"
+            result = result = _(key)
 
         # if it is a refund, add the refund string
         if self.is_refund:

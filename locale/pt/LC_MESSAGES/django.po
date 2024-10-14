@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-13 07:10+0000\n"
+"POT-Creation-Date: 2024-10-14 17:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr "conteúdos"
 
 #: apps/content/models.py:31 apps/customer/models.py:41
 #: apps/gallery/models.py:31 apps/language/models.py:19 apps/shop/models.py:32
-#: apps/shop/models.py:188 apps/shop/models.py:338 apps/shop/models.py:423
+#: apps/shop/models.py:188 apps/shop/models.py:338 apps/shop/models.py:431
 #: apps/user/models.py:62
 msgid "model.field.id"
 msgstr "ID"
@@ -66,7 +66,7 @@ msgstr "Ativo"
 
 #: apps/content/models.py:81 apps/customer/models.py:116
 #: apps/gallery/models.py:75 apps/language/models.py:48 apps/shop/models.py:128
-#: apps/shop/models.py:233 apps/shop/models.py:383 apps/shop/models.py:476
+#: apps/shop/models.py:233 apps/shop/models.py:383 apps/shop/models.py:484
 msgid "model.field.created-at"
 msgstr "Criado em"
 
@@ -272,7 +272,7 @@ msgid "modal.title.message"
 msgstr "Mensagem"
 
 #: apps/shop/admin.py:75 apps/shop/models.py:103 apps/shop/models.py:377
-#: apps/shop/models.py:470
+#: apps/shop/models.py:478
 msgid "model.field.description"
 msgstr "Descrição"
 
@@ -377,7 +377,7 @@ msgstr "Gateway de pagamento"
 msgid "model.field.external_id"
 msgstr "ID externo"
 
-#: apps/shop/models.py:69 apps/shop/models.py:459
+#: apps/shop/models.py:69 apps/shop/models.py:467
 msgid "model.field.currency"
 msgstr "Moeda"
 
@@ -413,7 +413,7 @@ msgstr "assinaturas"
 msgid "model.field.token"
 msgstr "Token"
 
-#: apps/shop/models.py:218 apps/shop/models.py:452
+#: apps/shop/models.py:218 apps/shop/models.py:460
 msgid "model.field.status"
 msgstr "Status"
 
@@ -429,19 +429,19 @@ msgstr "crédito"
 msgid "model.shop-credit-log.name.plural"
 msgstr "créditos"
 
-#: apps/shop/models.py:346 apps/shop/models.py:447
+#: apps/shop/models.py:346 apps/shop/models.py:455
 msgid "model.field.customer"
 msgstr "Cliente"
 
-#: apps/shop/models.py:351 apps/shop/models.py:466
+#: apps/shop/models.py:351 apps/shop/models.py:474
 msgid "model.field.amount"
 msgstr "Valor"
 
-#: apps/shop/models.py:356 apps/shop/models.py:436
+#: apps/shop/models.py:356 apps/shop/models.py:444
 msgid "model.field.object-type"
 msgstr "Tipo do objeto"
 
-#: apps/shop/models.py:365 apps/shop/models.py:429
+#: apps/shop/models.py:365 apps/shop/models.py:437
 msgid "model.field.object-id"
 msgstr "ID do objeto"
 
@@ -449,15 +449,15 @@ msgstr "ID do objeto"
 msgid "model.field.is-refund"
 msgstr "Estorno"
 
-#: apps/shop/models.py:401
+#: apps/shop/models.py:409
 msgid "message.refund-in-list"
 msgstr "(estorno)"
 
-#: apps/shop/models.py:409
+#: apps/shop/models.py:417
 msgid "model.shop-event-log.name"
 msgstr "log de evento"
 
-#: apps/shop/models.py:410
+#: apps/shop/models.py:418
 msgid "model.shop-event-log.name.plural"
 msgstr "log de eventos"
 
@@ -899,7 +899,7 @@ msgstr "Política de Privacidade"
 
 #: templates/partials/footer.html:21
 msgid "site.terms"
-msgstr "Termos de uso"
+msgstr "Termos e Condições"
 
 #: templates/partials/header.html:7
 msgid "site.small-name"
