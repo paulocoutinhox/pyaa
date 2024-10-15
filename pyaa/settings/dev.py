@@ -140,7 +140,11 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.0/topics/cache/
 # https://www.honeybadger.io/blog/caching-in-django/
 
-CACHES = {"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
