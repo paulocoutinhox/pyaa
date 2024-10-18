@@ -11,17 +11,17 @@
     <div class="container">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item">
-                <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="nav-link px-2 text-muted">
+                <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="nav-link px-2 text-body-secondary">
                     {% translate "site.privacy" %}
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}"
-                    class="nav-link px-2 text-muted">
+                    class="nav-link px-2 text-body-secondary">
                     {% translate "site.terms" %}
                 </a>
             </li>
         </ul>
-        <p class="text-center text-muted">© 2024 {% translate "site.name" %}</p>
+        <p class="text-center text-body-secondary">© 2024 {% translate "site.name" %}</p>
     </div>
 </footer>

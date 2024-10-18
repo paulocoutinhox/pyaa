@@ -260,6 +260,7 @@ class Subscription(models.Model):
         CustomerHelper.add_credits(
             customer=self.customer,
             amount=self.plan.credits,
+            is_refund=False,
             add_log=True,
             object_id=self.id,
             object_type=ObjectType.SUBSCRIPTION,
@@ -286,6 +287,7 @@ class Subscription(models.Model):
         CustomerHelper.add_credits(
             customer=self.customer,
             amount=-self.plan.credits,
+            is_refund=False,
             add_log=True,
             object_id=self.id,
             object_type=ObjectType.SUBSCRIPTION,
@@ -366,6 +368,11 @@ class CreditLog(models.Model):
         default=0,
     )
 
+    is_refund = models.BooleanField(
+        _("model.field.is-refund"),
+        default=False,
+    )
+
     description = models.TextField(
         _("model.field.description"),
         blank=True,
@@ -378,17 +385,30 @@ class CreditLog(models.Model):
     )
 
     def get_description(self):
+        result = ""
+
         if self.object_type == enums.ObjectType.SUBSCRIPTION:
+            # if the object type is subscription
             subscription = Subscription.objects.filter(id=self.object_id).first()
 
             if subscription and subscription.plan:
-                return subscription.plan.name
+                result = subscription.plan.name
+            else:
+                key = f"enum.shop-object-type.{self.object_type}"
+                result = _(key)
+        elif self.description:
+            # if there is a specific description
+            result = self.description
+        else:
+            # default case for other object types
+            key = f"enum.shop-object-type.{self.object_type}"
+            result = result = _(key)
 
-        if self.description:
-            return self.description
+        # if it is a refund, add the refund string
+        if self.is_refund:
+            result = result + " " + _("message.refund-in-list")
 
-        key = f"enum.shop-object-type.{self.object_type}"
-        return _(key)
+        return result
 
 
 class EventLog(models.Model):

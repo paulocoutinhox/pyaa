@@ -8,7 +8,8 @@ When you setup this app in production with docker, you need configure somethings
 
 ```bash
 mkdir -p logs && chmod -R 777 logs
-mkdir -p static/CACHE && chmod -R 777 static/CACHE
+mkdir -p cache && chmod -R 777 cache
+mkdir -p static && chmod -R 777 static
 mkdir -p media && chmod -R 777 media
 ```
 

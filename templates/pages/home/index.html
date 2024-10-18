@@ -14,7 +14,7 @@
     {% if user.is_authenticated %}
     <div class="text-center">
         <p>
-            {% blocktranslate with name=user.get_full_name %}Hi {{ name }}!{% endblocktranslate %}
+            {% blocktranslate with name=user.customer %}Hi {{ name }}!{% endblocktranslate %}
         </p>
 
         <br>

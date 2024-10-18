@@ -14,6 +14,13 @@ You can set these keys in one of two ways:
 - In the `dev.py` file
 - As environment variables
 
+In the Stripe Webhook configuration, select all events from the following categories to receive notifications:
+
+- Charge
+- Checkout
+- Invoice
+- Payment Intent
+
 ## Local Testing
 
 To test the Stripe integration locally, you'll need to use the `stripe-cli` tool. Follow these steps:
