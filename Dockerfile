@@ -1,5 +1,8 @@
 FROM python:3.10
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 # install dependencies
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -17,8 +20,7 @@ ENV USER=docker \
     GROUP=docker \
     UID=12345 \
     GID=23456 \
-    HOME=/app \
-    PYTHONUNBUFFERED=1
+    HOME=/app
 
 WORKDIR ${HOME}
 
@@ -48,4 +50,4 @@ RUN make deps
 EXPOSE 8000
 
 # entrypoint
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/app/app-entrypoint.sh"]

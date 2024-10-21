@@ -12,25 +12,20 @@
 {% url 'account_logout' as url_account_logout %}
 {% url 'account_subscriptions' as url_account_subscriptions %}
 {% url 'account_credits' as url_account_credits %}
+{% url 'flux_index' as url_flux_index %}
 
 {% element page_title %}
     {% translate "title.account-profile" %}
 {% endelement %}
 
-<p class="text-center">
-    {% blocktranslate with name=user.get_full_name %}Hi {{ name }}!{% endblocktranslate %}
-</p>
+<div class="text-center">
+    {% include "partials/customer_data.html" %}
+</div>
 
-<p class="text-center">
-    {% if customer.credits %}
-        {% blocktranslate with credits=customer.credits %}Credits: {{ credits }}{% endblocktranslate %}
-    {% else %}
-        {% translate "customer.no-credits" %}
-    {% endif %}
-</p>
+{% element hr %}{% endelement %}
 
 <div class="text-center">
-    {% include "partials/customer_avatar.html" %}
+    <h3>{% translate "subtitle.my-account" %}</h3>
 
     <p>
         {% element button href=url_account_email %}
@@ -58,13 +53,15 @@
         {% endelement %}
     </p>
 
-    <p></p>
+    <p>
         {% element button href=url_account_credits %}
             {% translate "button.account-credits" %}
         {% endelement %}
     </p>
 
     {% element hr %}{% endelement %}
+
+    <h3>{% translate "subtitle.danger-zone" %}</h3>
 
     <p>
         {% element button href=url_account_delete tags="danger" %}

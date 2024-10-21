@@ -39,6 +39,7 @@ class CustomerFormTest(TestCase):
             "mobile_phone": "1234567890",
             "home_phone": "0987654321",
             "gender": "male",
+            "credits": 123,
             "timezone": "America/Sao_Paulo",
         }
 

@@ -1,8 +1,27 @@
 {% if messages %}
 <div class="px-2 py-2">
     {% for message in messages %}
-    <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags %}alert-{{ message.tags }}{% else %}alert-primary{% endif %}" role="alert">
-        {{ message }}
+    <div class="alert {{ message.tags }}" role="alert">
+        <div class="d-flex gap-4">
+            <span>
+                {% if message.tags == 'alert-success' %}
+                <i class="bi bi-check-circle-fill icon-success"></i>
+                {% elif message.tags == 'alert-danger' %}
+                <i class="bi bi-x-circle-fill icon-danger"></i>
+                {% elif message.tags == 'alert-warning' %}
+                <i class="bi bi-exclamation-triangle-fill icon-warning"></i>
+                {% elif message.tags == 'alert-info' %}
+                <i class="bi bi-info-circle-fill icon-info"></i>
+                {% elif message.tags == 'alert-secondary' %}
+                <i class="bi bi-info-circle-fill icon-secondary"></i>
+                {% else %}
+                <i class="bi bi-info-circle-fill icon-secondary"></i>
+                {% endif %}
+            </span>
+            <div>
+                {{ message }}
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>
