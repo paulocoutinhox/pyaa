@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 17:06+0000\n"
+"POT-Creation-Date: 2024-10-24 20:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,64 +21,80 @@ msgid "filter.title"
 msgstr "Title"
 
 #: apps/content/models.py:12
-msgid "model.content.name"
-msgstr "content"
+msgid "model.content-category.name"
+msgstr "Content Category"
 
 #: apps/content/models.py:13
-msgid "model.content.name.plural"
-msgstr "contents"
+msgid "model.content-category.name.plural"
+msgstr "Content categories"
 
-#: apps/content/models.py:31 apps/customer/models.py:41
-#: apps/gallery/models.py:31 apps/language/models.py:19 apps/shop/models.py:32
-#: apps/shop/models.py:188 apps/shop/models.py:338 apps/shop/models.py:431
-#: apps/user/models.py:62
+#: apps/content/models.py:16 apps/content/models.py:78
+#: apps/customer/models.py:40 apps/gallery/models.py:31
+#: apps/language/models.py:27 apps/shop/models.py:32 apps/shop/models.py:188
+#: apps/shop/models.py:338 apps/shop/models.py:431 apps/user/models.py:62
 msgid "model.field.id"
 msgstr "ID"
 
-#: apps/content/models.py:37 apps/gallery/models.py:37
-msgid "model.field.title"
-msgstr "Title"
+#: apps/content/models.py:22 apps/customer/admin.py:69
+#: apps/language/models.py:33 apps/shop/models.py:38
+msgid "model.field.name"
+msgstr "Name"
 
-#: apps/content/models.py:49 apps/customer/forms.py:131
-#: apps/customer/models.py:59 apps/gallery/models.py:49
-msgid "model.field.language"
-msgstr "Language"
-
-#: apps/content/models.py:53 apps/gallery/models.py:53 apps/shop/models.py:45
+#: apps/content/models.py:29 apps/content/models.py:109
+#: apps/gallery/models.py:53 apps/shop/models.py:45
 msgid "model.field.tag"
 msgstr "Tag"
 
-#: apps/content/models.py:58 apps/gallery/models.py:58 apps/shop/models.py:50
+#: apps/content/models.py:34 apps/content/models.py:114
+#: apps/gallery/models.py:58 apps/shop/models.py:50
 msgid "model.field.tag.help"
 msgstr "Leave empty for auto generation."
 
-#: apps/content/models.py:62
-msgid "model.field.content"
-msgstr "Content"
-
-#: apps/content/models.py:68 apps/gallery/models.py:62
-msgid "model.field.published-at"
-msgstr "Published at"
-
-#: apps/content/models.py:74 apps/gallery/models.py:68 apps/shop/models.py:121
-msgid "model.field.active"
-msgstr "Active"
-
-#: apps/content/models.py:81 apps/customer/models.py:116
-#: apps/gallery/models.py:75 apps/language/models.py:48 apps/shop/models.py:128
-#: apps/shop/models.py:233 apps/shop/models.py:383 apps/shop/models.py:484
+#: apps/content/models.py:38 apps/content/models.py:137
+#: apps/customer/models.py:116 apps/gallery/models.py:75
+#: apps/language/models.py:56 apps/shop/models.py:128 apps/shop/models.py:233
+#: apps/shop/models.py:383 apps/shop/models.py:484
 msgid "model.field.created-at"
 msgstr "Created at"
 
-#: apps/content/models.py:86 apps/customer/models.py:121
-#: apps/gallery/models.py:80 apps/language/models.py:53 apps/shop/models.py:133
-#: apps/shop/models.py:238
+#: apps/content/models.py:43 apps/content/models.py:142
+#: apps/customer/models.py:121 apps/gallery/models.py:80
+#: apps/language/models.py:61 apps/shop/models.py:133 apps/shop/models.py:238
 msgid "model.field.updated-at"
 msgstr "Updated at"
 
-#: apps/customer/admin.py:69 apps/language/models.py:25 apps/shop/models.py:38
-msgid "model.field.name"
-msgstr "Name"
+#: apps/content/models.py:59
+msgid "model.content.name"
+msgstr "content"
+
+#: apps/content/models.py:60
+msgid "model.content.name.plural"
+msgstr "contents"
+
+#: apps/content/models.py:84 apps/gallery/models.py:37
+msgid "model.field.title"
+msgstr "Title"
+
+#: apps/content/models.py:96
+msgid "model.field.category"
+msgstr "Category"
+
+#: apps/content/models.py:105 apps/customer/forms.py:131
+#: apps/customer/models.py:58 apps/gallery/models.py:49
+msgid "model.field.language"
+msgstr "Language"
+
+#: apps/content/models.py:118
+msgid "model.field.content"
+msgstr "Content"
+
+#: apps/content/models.py:124 apps/gallery/models.py:62
+msgid "model.field.published-at"
+msgstr "Published at"
+
+#: apps/content/models.py:130 apps/gallery/models.py:68 apps/shop/models.py:121
+msgid "model.field.active"
+msgstr "Active"
 
 #: apps/customer/admin.py:76 apps/customer/serializers.py:35
 #: apps/customer/serializers.py:94 apps/user/models.py:68
@@ -114,13 +130,13 @@ msgid "filter.email"
 msgstr "E-mail"
 
 #: apps/customer/forms.py:38 apps/customer/forms.py:112
-#: apps/customer/models.py:63 apps/customer/serializers.py:47
+#: apps/customer/models.py:62 apps/customer/serializers.py:47
 #: apps/customer/serializers.py:106
 msgid "model.field.mobile-phone"
 msgstr "Mobile phone"
 
 #: apps/customer/forms.py:44 apps/customer/forms.py:118
-#: apps/customer/models.py:70 apps/customer/serializers.py:52
+#: apps/customer/models.py:69 apps/customer/serializers.py:52
 #: apps/customer/serializers.py:111
 msgid "model.field.home-phone"
 msgstr "Home phone"
@@ -135,7 +151,7 @@ msgstr "First name"
 msgid "model.field.last-name"
 msgstr "Last name"
 
-#: apps/customer/forms.py:122 apps/customer/models.py:77
+#: apps/customer/forms.py:122 apps/customer/models.py:76
 #: apps/customer/serializers.py:115
 msgid "model.field.gender"
 msgstr "Gender"
@@ -145,19 +161,19 @@ msgstr "Gender"
 msgid "model.field.timezone"
 msgstr "Timezone"
 
-#: apps/customer/models.py:18
+#: apps/customer/models.py:17
 msgid "model.customer.name"
 msgstr "customer"
 
-#: apps/customer/models.py:19
+#: apps/customer/models.py:18
 msgid "model.customer.name.plural"
 msgstr "customers"
 
-#: apps/customer/models.py:50
+#: apps/customer/models.py:49
 msgid "model.field.user"
 msgstr "User"
 
-#: apps/customer/models.py:86 apps/customer/serializers.py:121
+#: apps/customer/models.py:85 apps/customer/serializers.py:121
 msgid "model.field.avatar"
 msgstr "Avatar"
 
@@ -207,15 +223,15 @@ msgstr "gallery photos"
 msgid "model.field.image"
 msgstr "Image"
 
-#: apps/gallery/models.py:130
+#: apps/gallery/models.py:131
 msgid "model.field.caption"
 msgstr "Caption"
 
-#: apps/gallery/models.py:137
+#: apps/gallery/models.py:138
 msgid "model.field.main"
 msgstr "Main"
 
-#: apps/gallery/models.py:151
+#: apps/gallery/models.py:152
 msgid "model.field.preview"
 msgstr "Preview"
 
@@ -231,27 +247,27 @@ msgstr "language"
 msgid "model.language.name.plural"
 msgstr "languages"
 
-#: apps/language/models.py:30
+#: apps/language/models.py:38
 msgid "model.field.native_name"
 msgstr "Native name"
 
-#: apps/language/models.py:32
+#: apps/language/models.py:40
 msgid "model.hint.native_name"
 msgstr "Native name without translation."
 
-#: apps/language/models.py:36
+#: apps/language/models.py:44
 msgid "model.field.code_iso_639_1"
 msgstr "Code ISO 639-1"
 
-#: apps/language/models.py:38
+#: apps/language/models.py:46
 msgid "model.hint.code_iso_639_1"
 msgstr "Examples: en or pt."
 
-#: apps/language/models.py:42
+#: apps/language/models.py:50
 msgid "model.field.code_iso_language"
 msgstr "Code ISO"
 
-#: apps/language/models.py:43
+#: apps/language/models.py:51
 msgid "model.hint.code_iso_language"
 msgstr "Examples: en-us ou pt-br."
 
@@ -529,11 +545,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site Content"
 
-#: pyaa/settings/dev.py:174
+#: pyaa/settings/dev.py:177
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings/dev.py:175
+#: pyaa/settings/dev.py:178
 msgid "language.pt-br"
 msgstr "Portuguese"
 
@@ -554,7 +570,8 @@ msgid "table.header.created-at"
 msgstr "Created at"
 
 #: templates/account/credits.html:48 templates/account/subscriptions.html:82
-#: templates/pages/gallery/index.html:24 templates/pages/shop/plans.html:42
+#: templates/pages/gallery/index.html:24 templates/pages/gallery/view.html:24
+#: templates/pages/shop/plans.html:42
 msgid "list-data.empty"
 msgstr "No data found."
 
