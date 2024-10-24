@@ -2,6 +2,8 @@ import os
 import pathlib
 
 from django.conf import settings
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.http import JsonResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -32,30 +34,21 @@ def upload_image(request):
         # create file name and path
         file_name = FileHelper.generate_filename(file_obj)
         upload_time = timezone.now()
-        path = os.path.join(
-            settings.MEDIA_ROOT,
-            settings.UPLOAD_PATH,
-            str(upload_time.year),
-            str(upload_time.month),
-            str(upload_time.day),
-        )
+        path = f"{settings.UPLOAD_PATH}/{upload_time.year}/{upload_time.month}/{upload_time.day}"
 
-        # if there is no such path, create
-        if not os.path.exists(path):
-            os.makedirs(path)
-
-        # create final paths
-        file_path = os.path.join(path, file_name)
-        file_url = f"{settings.MEDIA_URL}{settings.UPLOAD_PATH}/{upload_time.year}/{upload_time.month}/{upload_time.day}/{file_name}"
+        # full file path with name
+        file_path = f"{path}/{file_name}"
 
         # check if file exists
-        if os.path.exists(file_path):
-            return JsonResponse({"message": "File already exist", "location": file_url})
+        if default_storage.exists(file_path):
+            file_url = default_storage.url(file_path)
+            return JsonResponse(
+                {"message": "File already exists", "location": file_url}
+            )
 
-        # write file contents
-        with open(file_path, "wb+") as f:
-            for chunk in file_obj.chunks():
-                f.write(chunk)
+        # save file using default storage
+        file_path_saved = default_storage.save(file_path, ContentFile(file_obj.read()))
+        file_url = default_storage.url(file_path_saved)
 
         # return success
         return JsonResponse(
