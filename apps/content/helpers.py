@@ -19,6 +19,7 @@ class ContentHelper:
         elif content_tag:
             # get browser's language
             user_language = get_language()
+
             if user_language:
                 user_language = user_language.lower()
 
@@ -29,9 +30,21 @@ class ContentHelper:
                 Content.objects.filter(**filter_kwargs)
                 .order_by(
                     models.Case(
-                        models.When(language__code_iso_language=user_language, then=0),
-                        models.When(language__code_iso_language="en-us", then=1),
-                        models.When(language__code_iso_language=None, then=2),
+                        # check both code_iso_639_1 and code_iso_language for the user's language
+                        models.When(
+                            models.Q(language__code_iso_language=user_language)
+                            | models.Q(language__code_iso_639_1=user_language),
+                            then=0,
+                        ),
+                        # fallback to 'en-us' by checking both code_iso_639_1 and code_iso_language
+                        models.When(
+                            models.Q(language__code_iso_language="en-us")
+                            | models.Q(language__code_iso_639_1="en"),
+                            then=1,
+                        ),
+                        # lastly, consider global content (language=None)
+                        models.When(language__isnull=True, then=2),
+                        # default to the highest number if no match is found
                         default=models.Value(3),
                         output_field=models.IntegerField(),
                     )

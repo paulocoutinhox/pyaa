@@ -39,8 +39,12 @@ class GalleryHelper:
                             | models.Q(language__code_iso_639_1=user_language),
                             then=0,
                         ),
-                        # then fallback to 'en-us' language galleries
-                        models.When(language__code_iso_language="en-us", then=1),
+                        # fallback to 'en-us' by checking both code_iso_639_1 and code_iso_language
+                        models.When(
+                            models.Q(language__code_iso_language="en-us")
+                            | models.Q(language__code_iso_639_1="en"),
+                            then=1,
+                        ),
                         # lastly, consider global galleries (language=None)
                         models.When(language__isnull=True, then=2),
                         # default to the highest number if no match is found
