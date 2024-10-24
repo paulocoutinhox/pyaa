@@ -2,7 +2,7 @@
 
 You can place your static application in the `static/app` directory. This setup allows you to serve the application from the `/app` URL path on your host. This is particularly useful for applications built with frameworks like Vue.js or React.
 
-## Steps to Deploy a Static Application
+## Steps To Deploy A Static Application
 
 1. **Build Your Application**: Ensure your Vue.js or React application is built and ready for deployment. Typically, this involves running a build command such as `npm run build` or `yarn build`.
 

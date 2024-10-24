@@ -2,7 +2,7 @@
 
 Some problems that you can find and their solutions.
 
-## Production setup with docker
+## Production Setup With Docker
 
 When you setup this app in production with docker, you need configure somethings to make it work:
 
@@ -19,7 +19,7 @@ If you use SQLite:
 mkdir -p db && chmod -R 777 db
 ```
 
-## MySQL Client on macOS
+## MySQL Client On Apple System
 
 Install MySQL Client on macOS with the commands:
 

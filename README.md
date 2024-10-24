@@ -20,7 +20,7 @@ PyAA is a powerful, open-source Python + Django template application designed to
 - **Test Coverage** – Over 70% test coverage, ensuring reliability and robustness.
 - **Versatile Use** – Perfect for building websites, e-commerce platforms, or SaaS products.
 
-## 💻 How to Use
+## 💻 How To Use
 
 Execute the following commands:
 
@@ -35,14 +35,14 @@ make run
 
 ## 📚 Documentation
 
+- [API](docs/api.md)
+- [Docker](docs/docker.md)
+- [Ngrok](docs/ngrok.md)
 - [Production](docs/production.md)
 - [Security](docs/security.md)
-- [Ngrok](docs/ngrok.md)
-- [API](docs/api.md)
-- [WebApp](docs/webapp.md)
-- [Docker](docs/docker.md)
 - [Stripe](docs/stripe.md)
 - [Troubleshooting](docs/troubleshooting.md)
+- [WebApp](docs/webapp.md)
 
 ## 🛡️ License
 

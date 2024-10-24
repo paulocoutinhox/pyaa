@@ -1,4 +1,4 @@
-# NGROK
+# Ngrok
 
 Install `ngrok` from their documentation: https://dashboard.ngrok.com/get-started/setup.
 
@@ -14,7 +14,7 @@ or edit configuration using:
 ngrok config edit
 ```
 
-## Start app with ngrok domain
+## Start App With Ngrok Domain
 
 Get your static domain from `ngrok` endpoints.
 
