@@ -99,6 +99,7 @@ docker-run:
 		-v ${PWD}/cache:/app/cache \
 		-v ${PWD}/db:/app/db \
 		-v ${PWD}/media:/app/media \
+		-v ${PWD}/static:/app/static \
 		-p 8000:8000 pyaa
 
 docker-run-prod:
@@ -108,5 +109,6 @@ docker-run-prod:
 		-v ${PWD}/cache:/app/cache \
 		-v ${PWD}/db:/app/db \
 		-v ${PWD}/media:/app/media \
+		-v ${PWD}/static:/app/static \
 		-e DJANGO_SETTINGS_MODULE="pyaa.settings.prod" \
 		-p 8000:8000 pyaaa
