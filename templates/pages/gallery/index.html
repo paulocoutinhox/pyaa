@@ -11,11 +11,11 @@
 
     <div class="p-4 text-center w-100">
         {% if page_obj %}
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center d-flex">
             {% for item in page_obj %}
             <div class="col">
                 <a href="{% url 'gallery_by_id' item.id %}">
-                    <img src="{{ item.get_main_photo_url }}" style="height: 100px;" />
+                    <img src="{{ item.get_main_photo_url }}" style="height: 100px;" class="img-fluid" />
                 </a>
             </div>
             {% endfor %}

@@ -82,7 +82,7 @@ class ContentHelperTest(TestCase):
 
     def test_fallback_to_global_content_if_no_language_match(self):
         # test fallback to global content (language=None) when no specific language matches
-        activate("fr")  # Unavailable language to trigger fallback
+        activate("fr")
 
         content = ContentHelper.get_content(content_tag="global-content")
         self.assertEqual(content, self.content_global)

@@ -2,11 +2,11 @@ from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.urls import path
 
-from apps.gallery.models import Gallery
+from apps.gallery.helpers import GalleryHelper
 
 
 def gallery_index_view(request):
-    gallery_list = Gallery.objects.filter(active=True)
+    gallery_list = GalleryHelper.get_gallery_list()
 
     paginator = Paginator(gallery_list, 9)
 
@@ -23,11 +23,9 @@ def gallery_index_view(request):
 
 
 def gallery_by_id_view(request, gallery_id):
-    try:
-        gallery = Gallery.objects.prefetch_related("gallery_photos").get(
-            id=gallery_id, active=True
-        )
-    except Gallery.DoesNotExist:
+    gallery = GalleryHelper.get_gallery(gallery_id=gallery_id)
+
+    if not gallery:
         return redirect("home")
 
     return render(
@@ -40,11 +38,9 @@ def gallery_by_id_view(request, gallery_id):
 
 
 def gallery_by_tag_view(request, gallery_tag):
-    try:
-        gallery = Gallery.objects.prefetch_related("gallery_photos").get(
-            tag=gallery_tag, active=True
-        )
-    except Gallery.DoesNotExist:
+    gallery = GalleryHelper.get_gallery(gallery_tag=gallery_tag)
+
+    if not gallery:
         return redirect("home")
 
     return render(

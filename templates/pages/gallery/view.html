@@ -10,15 +10,19 @@
     {% endelement %}
 
     <div class="p-4 text-center w-100">
-        <div id="gallery" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        {% if gallery.gallery_photos.exists %}
+        <div id="gallery" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center d-flex">
             {% for photo in gallery.gallery_photos.all %}
-            <div class="col">
+            <div class="col d-flex justify-content-center">
                 <a href="{{ photo.image.url }}" class="gallery-item" target="_blank">
-                    <img src="{{ photo.image.url }}" style="height: 100px;" alt="{{ photo.caption|default:'' }}" />
+                    <img src="{{ photo.image.url }}" style="height: 100px;" alt="{{ photo.caption|default:'' }}" class="img-fluid" />
                 </a>
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <p>{% trans "list-data.empty" %}</p>
+        {% endif %}
     </div>
 
     <div class="p-4 text-center w-100">
