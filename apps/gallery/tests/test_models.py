@@ -9,7 +9,7 @@ class GalleryModelTest(TestCase):
     fixtures = ["apps/language/fixtures/initial.json"]
 
     def test_gallery_creation(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         Gallery.objects.create(
             title="Test Gallery",
@@ -21,7 +21,7 @@ class GalleryModelTest(TestCase):
         self.assertTrue(Gallery.objects.filter(title="Test Gallery").exists())
 
     def test_gallery_deletion(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -35,7 +35,7 @@ class GalleryModelTest(TestCase):
         self.assertFalse(Gallery.objects.filter(title="Test Gallery").exists())
 
     def test_get_gallery(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         Gallery.objects.create(
             title="Test Gallery",
@@ -53,7 +53,7 @@ class GalleryModelTest(TestCase):
             Gallery.objects.get(title="Nonexistent Gallery")
 
     def test_gallery_str(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -65,7 +65,7 @@ class GalleryModelTest(TestCase):
         self.assertEqual(str(gallery), "Test Gallery")
 
     def test_get_main_photo_url(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -86,7 +86,7 @@ class GalleryModelTest(TestCase):
         )
 
     def test_get_main_photo_url_no_main_photo(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -98,7 +98,7 @@ class GalleryModelTest(TestCase):
         self.assertEqual(gallery.get_main_photo_url(), "/static/images/no-image.png")
 
     def test_gallery_tag_creation(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -113,7 +113,7 @@ class GalleryPhotoModelTest(TestCase):
     fixtures = ["apps/language/fixtures/initial.json"]
 
     def test_gallery_photo_creation(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -132,7 +132,7 @@ class GalleryPhotoModelTest(TestCase):
         self.assertTrue(GalleryPhoto.objects.filter(gallery=gallery).exists())
 
     def test_gallery_photo_deletion(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -153,7 +153,7 @@ class GalleryPhotoModelTest(TestCase):
         self.assertFalse(GalleryPhoto.objects.filter(gallery=gallery).exists())
 
     def test_get_gallery_photo(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -178,7 +178,7 @@ class GalleryPhotoModelTest(TestCase):
             GalleryPhoto.objects.get(caption="Nonexistent Caption")
 
     def test_preview(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",
@@ -197,7 +197,7 @@ class GalleryPhotoModelTest(TestCase):
         self.assertIn('href="/media/extras/images/python.png', photo.preview())
 
     def test_preview_no_image(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         gallery = Gallery.objects.create(
             title="Test Gallery",

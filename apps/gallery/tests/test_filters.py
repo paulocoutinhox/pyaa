@@ -20,7 +20,7 @@ class GalleryFilterTest(TestCase):
         self.model_admin = MockModelAdmin(Gallery, admin_site=None)
 
     def test_title_filter_with_value(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         Gallery.objects.create(
             title="Test Gallery",

@@ -56,3 +56,9 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.code_iso_639_1 = self.code_iso_639_1.lower()
+        self.code_iso_language = self.code_iso_language.lower()
+
+        super(Language, self).save(*args, **kwargs)
