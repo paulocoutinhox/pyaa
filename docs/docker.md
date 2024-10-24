@@ -29,7 +29,7 @@ docker exec -it pyaa make fixtures
 docker exec -it pyaa make create-su
 ```
 
-## Docker volumes
+## Docker Volumes
 
 By default, this project uses an SQLite database, which is stored in the db folder that is created automatically.
 
@@ -48,7 +48,7 @@ docker run --rm \
     -p 8000:8000 pyaa
 ```
 
-## Docker compose
+## Docker Compose
 
 You can use this configuration when use Docker Compose:
 

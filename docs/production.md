@@ -12,7 +12,7 @@ APP_MEDIA_URL=/media/
 
 Obs: Obviously you must change this data for your real data, referring to your server.
 
-## Super admin user
+## Super Admin User
 
 The super admin user is typically created using the command `make create-su`, with the default email `admin@admin.com` and password `admin`.
 

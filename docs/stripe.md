@@ -28,7 +28,7 @@ To test the Stripe integration locally, you'll need to use the `stripe-cli` tool
 1. Install the `stripe-cli` tool on your system.
 2. Authenticate with your Stripe account using the CLI.
 
-### Setting Up the Webhook Listener
+### Setting Up The Webhook Listener
 
 Open a terminal and run the following command to start listening for webhook events:
 
@@ -38,7 +38,7 @@ stripe listen --forward-to localhost:8000/shop/webhook/stripe/
 
 This command will forward Stripe events to your local development server.
 
-### Simulating a Completed Order
+### Simulating A Completed Order
 
 In a separate terminal, you can simulate a completed checkout session using this command:
 
