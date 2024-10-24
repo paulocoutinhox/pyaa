@@ -16,7 +16,7 @@ class AppAdmin(AdminSite):
         app_dict = self._build_app_dict(request)
 
         if app_label is not None:
-            # Filter the app_dict to only include the specified app_label if it's provided
+            # filter the app_dict to only include the specified app_label if it's provided
             app_dict = {
                 key: value
                 for key, value in app_dict.items()
@@ -25,14 +25,19 @@ class AppAdmin(AdminSite):
 
         app_list = sorted(app_dict.values(), key=lambda x: x["name"].lower())
 
-        # Define a list of groups with their names and the apps they contain
+        # define a list of groups with their names and the apps they contain
         groups = [
             {
                 "name": _("admin.group.site-content"),
-                "app_labels": ["customer", "language", "content", "gallery"],
+                "app_labels": [
+                    "customer",
+                    "language",
+                    "content",
+                    "gallery",
+                ],
                 "group_label": "site-content",
             },
-            # You can add more groups here as needed
+            # you can add more groups here as needed
             # {
             #     "name": _("admin.group.xyz"),
             #     "app_labels": ["app1", "app2"],
@@ -40,21 +45,21 @@ class AppAdmin(AdminSite):
             # },
         ]
 
-        # Collect all app_labels from groups to know which ones to exclude later
+        # collect all app_labels from groups to know which ones to exclude later
         grouped_app_labels = [app for group in groups for app in group["app_labels"]]
 
-        # Variable to store the final app list after filtering and grouping
+        # variable to store the final app list after filtering and grouping
         filtered_app_list = []
 
         for group in groups:
             group_models = []
 
-            # Collect models for the current group
+            # collect models for the current group
             for app in app_list:
                 if app["app_label"].lower() in group["app_labels"]:
                     group_models.extend(app["models"])
 
-            # Only add the group if it matches the filtered app_label or if no app_label is specified
+            # only add the group if it matches the filtered app_label or if no app_label is specified
             if not app_label or group["group_label"] == app_label:
                 filtered_app_list.insert(
                     0,
@@ -65,7 +70,7 @@ class AppAdmin(AdminSite):
                     },
                 )
 
-        # Filter out apps that have been grouped if no specific app_label is provided for filtering
+        # filter out apps that have been grouped if no specific app_label is provided for filtering
         if app_label is None:
             app_list = [
                 app
@@ -73,12 +78,12 @@ class AppAdmin(AdminSite):
                 if app["app_label"].lower() not in grouped_app_labels
             ]
         else:
-            # If a specific app_label is provided, include only apps with that label
+            # if a specific app_label is provided, include only apps with that label
             app_list = [
                 app for app in app_list if app["app_label"].lower() == app_label.lower()
             ]
 
-        # Combine the filtered app list with the rest of the apps
+        # combine the filtered app list with the rest of the apps
         final_app_list = filtered_app_list + app_list
 
         return final_app_list

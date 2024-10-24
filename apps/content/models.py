@@ -6,6 +6,54 @@ from tinymce.models import HTMLField
 from apps.language import models as language_models
 
 
+class ContentCategory(models.Model):
+    class Meta:
+        db_table = "content_category"
+        verbose_name = _("model.content-category.name")
+        verbose_name_plural = _("model.content-category.name.plural")
+
+    id = models.BigAutoField(
+        _("model.field.id"),
+        unique=True,
+        primary_key=True,
+    )
+
+    name = models.CharField(
+        _("model.field.name"),
+        max_length=255,
+        blank=False,
+        null=False,
+    )
+
+    tag = models.SlugField(
+        _("model.field.tag"),
+        max_length=255,
+        blank=True,
+        null=True,
+        default=None,
+        help_text=_("model.field.tag.help"),
+    )
+
+    created_at = models.DateTimeField(
+        _("model.field.created-at"),
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        _("model.field.updated-at"),
+        auto_now=True,
+    )
+
+    def save(self, *args, **kwargs):
+        if not self.tag:
+            self.tag = slugify(self.name)
+
+        super(ContentCategory, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
 class Content(models.Model):
     class Meta:
         db_table = "content"
@@ -38,6 +86,15 @@ class Content(models.Model):
         max_length=255,
         blank=False,
         null=False,
+    )
+
+    category = models.ForeignKey(
+        ContentCategory,
+        on_delete=models.RESTRICT,
+        related_name="contents",
+        blank=True,
+        null=True,
+        verbose_name=_("model.field.category"),
     )
 
     language = models.ForeignKey(
