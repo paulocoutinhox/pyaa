@@ -309,7 +309,7 @@ TINYMCE_DEFAULT_CONFIG = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Auth
+# Authentication
 
 SITE_ID = 1
 
@@ -338,6 +338,27 @@ ACCOUNT_FORMS = {
     "signup": "apps.customer.forms.CustomerSignupForm",
 }
 AUTH_USER_MODEL = "user.User"
+
+# Authentication - We need these lines below to allow the Google sign in popup to work
+
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
+# Authentication - Social providers
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "OAUTH_PKCE_ENABLED": True,
+        "FETCH_USERINFO": True,
+    }
+}
 
 # Email
 
