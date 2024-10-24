@@ -13,7 +13,7 @@ class GalleryAPITest(APITestCase):
         self.client = APIClient()
 
     def test_get_galleries(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
 
         Gallery.objects.create(
             title="Test Gallery",
@@ -31,7 +31,7 @@ class GalleryAPITest(APITestCase):
         )
 
     def test_get_gallery_by_tag(self):
-        language = Language.objects.get(code_iso_language="en-US")
+        language = Language.objects.get(code_iso_language="en-us")
         gallery = Gallery.objects.create(
             title="Test Gallery",
             language=language,

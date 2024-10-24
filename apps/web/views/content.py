@@ -1,13 +1,13 @@
 from django.shortcuts import redirect, render
 from django.urls import path
 
-from apps.content.models import Content
+from apps.content.helpers import ContentHelper
 
 
 def content_by_id_view(request, content_id):
-    try:
-        content = Content.objects.get(id=content_id, active=True)
-    except Content.DoesNotExist:
+    content = ContentHelper.get_content(content_id=content_id)
+
+    if not content:
         return redirect("home")
 
     return render(
@@ -20,9 +20,9 @@ def content_by_id_view(request, content_id):
 
 
 def content_by_tag_view(request, content_tag):
-    try:
-        content = Content.objects.get(tag=content_tag, active=True)
-    except Content.DoesNotExist:
+    content = ContentHelper.get_content(content_tag=content_tag)
+
+    if not content:
         return redirect("home")
 
     return render(

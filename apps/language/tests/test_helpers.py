@@ -1,7 +1,7 @@
 from unittest.mock import patch
 
 from django.test import TestCase
-from django.utils.translation import activate
+from django.utils.translation import activate, deactivate
 
 from apps.language.helpers import LanguageHelper
 from apps.language.models import Language
@@ -12,8 +12,12 @@ class LanguageHelperTest(TestCase):
 
     def setUp(self):
         # setup initial languages for testing
-        self.language_en = Language.objects.get(code_iso_language="en-US")
-        self.language_pt = Language.objects.get(code_iso_language="pt-BR")
+        self.language_en = Language.objects.get(code_iso_language="en-us")
+        self.language_pt = Language.objects.get(code_iso_language="pt-br")
+
+    def tearDown(self):
+        # deactivate translation after each test
+        deactivate()
 
     def test_get_current_exact_match(self):
         # test exact match for language code

@@ -253,7 +253,7 @@ msgstr "Code ISO"
 
 #: apps/language/models.py:43
 msgid "model.hint.code_iso_language"
-msgstr "Examples: en-US ou pt-BR."
+msgstr "Examples: en-us ou pt-br."
 
 #: apps/shop/admin.py:34
 msgid "button.copy"

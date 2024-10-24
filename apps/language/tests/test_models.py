@@ -7,11 +7,11 @@ from apps.language.models import Language
 class LanguageModelTest(TestCase):
     def test_language_creation(self):
         # create a language instance and verify its existence in the database
-        language = Language.objects.create(
+        Language.objects.create(
             name="English",
             native_name="English",
             code_iso_639_1="en",
-            code_iso_language="en-US",
+            code_iso_language="en-us",
         )
         self.assertTrue(Language.objects.filter(name="English").exists())
 
@@ -21,7 +21,7 @@ class LanguageModelTest(TestCase):
             name="English",
             native_name="English",
             code_iso_639_1="en",
-            code_iso_language="en-US",
+            code_iso_language="en-us",
         )
         language.delete()
         self.assertFalse(Language.objects.filter(name="English").exists())
@@ -32,7 +32,7 @@ class LanguageModelTest(TestCase):
             name="English",
             native_name="English",
             code_iso_639_1="en",
-            code_iso_language="en-US",
+            code_iso_language="en-us",
         )
         fetched_language = Language.objects.get(name="English")
         self.assertEqual(fetched_language.name, "English")
@@ -48,6 +48,6 @@ class LanguageModelTest(TestCase):
             name="English",
             native_name="English",
             code_iso_639_1="en",
-            code_iso_language="en-US",
+            code_iso_language="en-us",
         )
         self.assertEqual(str(language), "English")
