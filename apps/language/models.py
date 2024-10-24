@@ -13,6 +13,14 @@ class Language(models.Model):
                 fields=["name"],
                 name="{0}_name".format(db_table),
             ),
+            models.Index(
+                fields=["code_iso_639_1"],
+                name="{0}_code_iso_639_1".format(db_table),
+            ),
+            models.Index(
+                fields=["code_iso_language"],
+                name="{0}_code_iso_language".format(db_table),
+            ),
         ]
 
     id = models.BigAutoField(

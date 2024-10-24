@@ -121,6 +121,7 @@ class GalleryPhoto(models.Model):
     image = fields.GalleryPhotoImageField(
         _("model.field.image"),
         size=[1024, 1024],
+        quality=100,
         upload_to="images/gallery/%Y/%m/%d",
         blank=False,
         null=False,

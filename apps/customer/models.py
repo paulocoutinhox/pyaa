@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import models, transaction
-from django.db.models import Q
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -86,6 +85,7 @@ class Customer(models.Model):
         _("model.field.avatar"),
         size=[1024, 1024],
         crop=["middle", "center"],
+        quality=100,
         upload_to="images/customer/avatar/%Y/%m/%d",
         blank=True,
         null=True,
