@@ -45,6 +45,7 @@ docker run --rm \
     -v ${PWD}/cache:/app/cache \
     -v ${PWD}/db:/app/db \
     -v ${PWD}/media:/app/media \
+    -v ${PWD}/static:/app/static \
     -p 8000:8000 pyaa
 ```
 
@@ -78,6 +79,7 @@ services:
       - ./pyaa/cache:/app/cache
       - ./pyaa/db:/app/db
       - ./pyaa/media:/app/media
+      - ./pyaa/static:/app/static
 
   mysql:
     image: mysql:8.4.0
