@@ -56,7 +56,7 @@ def upload_image(request):
         )
 
     # return generic request error
-    return JsonResponse({"detail": "Wrong request"})
+    return JsonResponse({"message": "Wrong request"})
 
 
 def serve_app_files(request, path):
