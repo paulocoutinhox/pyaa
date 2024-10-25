@@ -14,6 +14,7 @@ django-sass-processor==1.4.1
 django-cache-cleaner==0.1.0
 django-simple-captcha==0.6.0
 django-nonrelated-inlines==0.2
+django-storages==1.14.4
 
 # general
 requests==2.32.3
