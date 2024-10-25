@@ -68,7 +68,7 @@ USE_HTTPS_IN_ABSOLUTE_URLS = True
 
 # EMAIL_BACKEND = "anymail.backends.amazon_ses.EmailBackend"
 # DEFAULT_FROM_EMAIL = "your-email@gmail.com"
-# SERVER_EMAIL = "your-email@gmail.com"
+# DEFAULT_TO_EMAIL = "your-email@gmail.com"
 
 # Anymail
 
