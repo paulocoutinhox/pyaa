@@ -36,6 +36,10 @@
         {% endif %}
     {% endif %}
 
+    {% if field.help_text %}
+    <small class="form-text text-muted">{{ field.help_text }}</small>
+    {% endif %}
+
     {% for error in field.errors %}
     <div class="invalid-feedback">
         {{ error }}
