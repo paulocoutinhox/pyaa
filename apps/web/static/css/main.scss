@@ -4,12 +4,16 @@
 @import "../vendor/bootswatch/cosmo/bootswatch";
 @import "../vendor/bootstrap-icons/bootstrap-icons.min";
 
-// custom variables
+// custom variables for bootswatch
 /*
 :root, [data-bs-theme=light] {
     --bs-primary: #000000;
 }
 */
+
+// custom variables for bootstrap
+// $primary: #34AD54;
+// @import "../vendor/bootstrap/scss/bootstrap";
 
 // custom
 @import "custom";
