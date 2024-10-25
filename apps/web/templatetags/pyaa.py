@@ -1,3 +1,5 @@
+from urllib.parse import parse_qs, urlparse
+
 from django import template
 from django.conf import settings
 from django.template.base import FilterExpression, kwarg_re
@@ -132,13 +134,31 @@ def parse_tag(token, parser):
 
 
 @register.simple_tag(takes_context=True)
-def nav_active(context, url_name):
+def nav_active(context, url_name, *args, **kwargs):
     try:
-        pattern = reverse(url_name)
+        # try to resolve the url with the given args and kwargs
+        pattern = reverse(url_name, args=args, kwargs=kwargs)
     except NoReverseMatch:
+        # if reverse fails, use the url_name as the pattern directly
         pattern = url_name
+
+    # get the current request path
     path = context["request"].path
-    return "active" if path == pattern else ""
+
+    # get the query parameters from the current request
+    query_params = context["request"].GET
+
+    # parse the generated url to extract its path and query parameters
+    url_parts = urlparse(pattern)
+    url_query_params = parse_qs(url_parts.query)
+
+    # compare the current path with the resolved url path
+    if path == url_parts.path:
+        # check if all query parameters match
+        if all(query_params.get(k) == v for k, v in url_query_params.items()):
+            return "active"
+
+    return ""
 
 
 @register.tag(name="slot")
