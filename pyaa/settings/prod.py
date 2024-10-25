@@ -44,7 +44,7 @@ LOGGING = {
 # Storage
 
 # STORAGES["default"] = STORAGES["s3"]
-# MEDIA_URL = f"https://{STORAGES["default"]["OPTIONS"]["bucket_name"]}.s3.amazonaws.com/"
+# MEDIA_URL = f"https://{STORAGES['default']['OPTIONS']['bucket_name']}.s3.amazonaws.com/"
 
 # Security
 # More details here: https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
