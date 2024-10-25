@@ -19,6 +19,7 @@ django-nonrelated-inlines==0.2
 requests==2.32.3
 libsass==0.23.0
 boto3==1.35.48
+beautifulsoup4==4.12.3
 
 # local
 tzdata==2024.2

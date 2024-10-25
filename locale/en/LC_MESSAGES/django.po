@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-24 20:20+0000\n"
+"POT-Creation-Date: 2024-10-25 04:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,11 @@ msgstr "Content"
 msgid "filter.title"
 msgstr "Title"
 
+#: apps/content/filters.py:19 apps/customer/filters.py:8
+#: apps/language/filters.py:8
+msgid "filter.name"
+msgstr "Name"
+
 #: apps/content/models.py:12
 msgid "model.content-category.name"
 msgstr "Content Category"
@@ -28,7 +33,7 @@ msgstr "Content Category"
 msgid "model.content-category.name.plural"
 msgstr "Content categories"
 
-#: apps/content/models.py:16 apps/content/models.py:78
+#: apps/content/models.py:16 apps/content/models.py:79
 #: apps/customer/models.py:40 apps/gallery/models.py:31
 #: apps/language/models.py:27 apps/shop/models.py:32 apps/shop/models.py:188
 #: apps/shop/models.py:338 apps/shop/models.py:431 apps/user/models.py:62
@@ -37,67 +42,69 @@ msgstr "ID"
 
 #: apps/content/models.py:22 apps/customer/admin.py:69
 #: apps/language/models.py:33 apps/shop/models.py:38
+#: apps/web/forms/contact.py:11 templates/email/site/contact.html:11
 msgid "model.field.name"
 msgstr "Name"
 
-#: apps/content/models.py:29 apps/content/models.py:109
+#: apps/content/models.py:29 apps/content/models.py:110
 #: apps/gallery/models.py:53 apps/shop/models.py:45
 msgid "model.field.tag"
 msgstr "Tag"
 
-#: apps/content/models.py:34 apps/content/models.py:114
+#: apps/content/models.py:34 apps/content/models.py:115
 #: apps/gallery/models.py:58 apps/shop/models.py:50
 msgid "model.field.tag.help"
 msgstr "Leave empty for auto generation."
 
-#: apps/content/models.py:38 apps/content/models.py:137
+#: apps/content/models.py:38 apps/content/models.py:138
 #: apps/customer/models.py:116 apps/gallery/models.py:75
 #: apps/language/models.py:56 apps/shop/models.py:128 apps/shop/models.py:233
 #: apps/shop/models.py:383 apps/shop/models.py:484
 msgid "model.field.created-at"
 msgstr "Created at"
 
-#: apps/content/models.py:43 apps/content/models.py:142
+#: apps/content/models.py:43 apps/content/models.py:143
 #: apps/customer/models.py:121 apps/gallery/models.py:80
 #: apps/language/models.py:61 apps/shop/models.py:133 apps/shop/models.py:238
 msgid "model.field.updated-at"
 msgstr "Updated at"
 
-#: apps/content/models.py:59
+#: apps/content/models.py:60
 msgid "model.content.name"
 msgstr "content"
 
-#: apps/content/models.py:60
+#: apps/content/models.py:61
 msgid "model.content.name.plural"
 msgstr "contents"
 
-#: apps/content/models.py:84 apps/gallery/models.py:37
+#: apps/content/models.py:85 apps/gallery/models.py:37
 msgid "model.field.title"
 msgstr "Title"
 
-#: apps/content/models.py:96
+#: apps/content/models.py:97
 msgid "model.field.category"
 msgstr "Category"
 
-#: apps/content/models.py:105 apps/customer/forms.py:131
+#: apps/content/models.py:106 apps/customer/forms.py:131
 #: apps/customer/models.py:58 apps/gallery/models.py:49
 msgid "model.field.language"
 msgstr "Language"
 
-#: apps/content/models.py:118
+#: apps/content/models.py:119
 msgid "model.field.content"
 msgstr "Content"
 
-#: apps/content/models.py:124 apps/gallery/models.py:62
+#: apps/content/models.py:125 apps/gallery/models.py:62
 msgid "model.field.published-at"
 msgstr "Published at"
 
-#: apps/content/models.py:130 apps/gallery/models.py:68 apps/shop/models.py:121
+#: apps/content/models.py:131 apps/gallery/models.py:68 apps/shop/models.py:121
 msgid "model.field.active"
 msgstr "Active"
 
 #: apps/customer/admin.py:76 apps/customer/serializers.py:35
 #: apps/customer/serializers.py:94 apps/user/models.py:68
+#: apps/web/forms/contact.py:22 templates/email/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
@@ -120,10 +127,6 @@ msgstr "Female"
 #: apps/customer/enums.py:8
 msgid "enum.customer-gender.none"
 msgstr "None"
-
-#: apps/customer/filters.py:8 apps/language/filters.py:8
-msgid "filter.name"
-msgstr "Name"
 
 #: apps/customer/filters.py:24
 msgid "filter.email"
@@ -501,6 +504,18 @@ msgstr "users"
 msgid "error.email-already-used-by-other"
 msgstr "This e-mail is already in use."
 
+#: apps/web/forms/contact.py:32 templates/email/site/contact.html:13
+msgid "model.field.message"
+msgstr "Message"
+
+#: apps/web/forms/contact.py:43
+msgid "model.field.captcha"
+msgstr "Captcha"
+
+#: apps/web/forms/contact.py:47 templates/email/site/contact.html:5
+msgid "email.contact.subject"
+msgstr "New Contact Message"
+
 #: apps/web/views/account.py:42 apps/web/views/account.py:62
 msgid "message.account-updated"
 msgstr "Your account was updated."
@@ -518,6 +533,10 @@ msgstr "Your account and data was deleted."
 #: apps/web/views/account.py:151
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
+
+#: apps/web/views/contact.py:15
+msgid "message.contact-message-sent"
+msgstr "Your contact message was sent with success."
 
 #: apps/web/views/shop/shop_web.py:17
 msgid "message.shop-plan-not-found"
@@ -762,6 +781,26 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
+#: templates/email/layouts/base.html:72
+msgid "email.base.content"
+msgstr "Thank you for contacting us. We will get back to you soon."
+
+#: templates/email/layouts/base.html:82
+msgid "email.base.footer"
+msgstr "You are receiving this email because you interacted with our website."
+
+#: templates/email/site/contact.html:9
+msgid "email.contact.title"
+msgstr "You have received a new message through the contact form on website."
+
+#: templates/pages/contact/index.html:9
+msgid "title.contact"
+msgstr "Contact Us"
+
+#: templates/pages/contact/index.html:21
+msgid "button.send"
+msgstr "Send"
+
 #: templates/pages/gallery/index.html:9
 msgid "title.gallery.index"
 msgstr "Gallery List"
@@ -943,3 +982,7 @@ msgstr "My account"
 #: templates/partials/header.html:65
 msgid "menu.signup"
 msgstr "Sign Up"
+
+#: templates/partials/header.html:72
+msgid "menu.contact"
+msgstr "Contact"

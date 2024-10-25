@@ -363,6 +363,8 @@ SOCIALACCOUNT_PROVIDERS = {
 # Email
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "webmaster@localhost"
+DEFAULT_TO_EMAIL = "webmaster@localhost"
 
 # Logging
 

@@ -1,0 +1,93 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style type="text/css">
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            height: 100% !important;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse !important;
+        }
+
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+
+            .fluid {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #f4f4f4; margin: 0; padding: 0;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f4;">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table class="email-container" width="600" cellpadding="0" cellspacing="0"
+                    style="background-color: #ffffff; border-radius: 5px; overflow: hidden; max-width: 600px;">
+                    <tr>
+                        <td style="background-color: #007bff; padding: 20px; text-align: center;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 24px;">
+                                {% block email_subject %}
+                                {{ block.super }}
+                                {% endblock %}
+                            </h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 20px; font-size: 16px; color: #333333; line-height: 1.5;">
+                            {% block email_content %}
+                            <p style="margin: 0;">
+                                {% blocktranslate %}email.base.content{% endblocktranslate %}
+                            </p>
+                            {% endblock %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td
+                            style="background-color: #f4f4f4; padding: 20px; text-align: center; font-size: 14px; color: #999999;">
+                            <p style="margin: 0;">
+                                {% block email_footer %}
+                                {% blocktranslate %}email.base.footer{% endblocktranslate %}
+                                {% endblock %}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

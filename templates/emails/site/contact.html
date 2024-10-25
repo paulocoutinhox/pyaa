@@ -1,0 +1,14 @@
+{% extends 'email/layouts/base.html' %}
+{% load i18n %}
+
+{% block email_subject %}
+    {% translate "email.contact.subject" %}
+{% endblock %}
+
+{% block email_content %}
+    <p>{% blocktranslate %}email.contact.title{% endblocktranslate %}</p>
+
+    <p><strong>{% translate "model.field.name" %}:</strong> {{ form.cleaned_data.name }}</p>
+    <p><strong>{% translate "model.field.email" %}:</strong> {{ form.cleaned_data.email }}</p>
+    <p><strong>{% translate "model.field.message" %}:</strong> {{ form.cleaned_data.message | linebreaksbr }}</p>
+{% endblock %}
