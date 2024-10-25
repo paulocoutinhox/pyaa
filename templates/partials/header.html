@@ -66,6 +66,12 @@
                         </a>
                     </li>
                     {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 {% nav_active 'contact_index' %}" aria-current="page" href="{% url 'contact_index' %}">
+                            {% translate "menu.contact" %}
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
