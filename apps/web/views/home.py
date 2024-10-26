@@ -2,14 +2,14 @@ from django.shortcuts import render
 from django.urls import path
 
 
-def index_view(request):
+def home_index_view(request):
     return render(request, "pages/home/index.html")
 
 
 urlpatterns = [
     path(
         "",
-        index_view,
+        home_index_view,
         name="home",
     ),
 ]

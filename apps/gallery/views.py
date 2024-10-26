@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.gallery.helpers import GalleryHelper
 from apps.gallery.models import Gallery
 from apps.gallery.serializers import GalleryListSerializer, GallerySerializer
 
@@ -17,13 +18,10 @@ class GalleryByTag(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, tag):
-        try:
-            gallery = Gallery.objects.prefetch_related("gallery_photos").get(
-                tag=tag, active=True
-            )
+        gallery = GalleryHelper.get_gallery(gallery_tag=tag)
 
+        if gallery:
             serializer = GallerySerializer(gallery, context={"request": request})
-
             return Response(serializer.data)
-        except Gallery.DoesNotExist:
-            return Response({"detail": "Not found."}, status=404)
+
+        return Response({"detail": "Not found."}, status=404)

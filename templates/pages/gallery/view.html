@@ -4,6 +4,8 @@
 
 {% block content %}
 
+{% url 'gallery_index' as url_gallery_index %}
+
 <div class="container">
     {% element page_title %}
         {{ gallery.title }}
@@ -26,7 +28,9 @@
     </div>
 
     <div class="p-4 text-center w-100">
-        <a class="btn btn-primary" href="{% url 'gallery_index' %}">Back</a>
+        {% element button href=url_gallery_index %}
+            {% translate "button.back" %}
+        {% endelement %}
     </div>
 </div>
 

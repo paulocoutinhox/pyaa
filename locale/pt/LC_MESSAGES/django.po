@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-25 04:28+0000\n"
+"POT-Creation-Date: 2024-10-26 06:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "ID"
 
 #: apps/content/models.py:22 apps/customer/admin.py:69
 #: apps/language/models.py:33 apps/shop/models.py:38
-#: apps/web/forms/contact.py:11 templates/email/site/contact.html:11
+#: apps/web/forms/contact.py:11 templates/emails/site/contact.html:11
 msgid "model.field.name"
 msgstr "Nome"
 
@@ -104,7 +104,7 @@ msgstr "Ativo"
 
 #: apps/customer/admin.py:76 apps/customer/serializers.py:35
 #: apps/customer/serializers.py:94 apps/user/models.py:68
-#: apps/web/forms/contact.py:22 templates/email/site/contact.html:12
+#: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
@@ -504,7 +504,7 @@ msgstr "usuários"
 msgid "error.email-already-used-by-other"
 msgstr "Este e-mail já está sendo usado."
 
-#: apps/web/forms/contact.py:32 templates/email/site/contact.html:13
+#: apps/web/forms/contact.py:32 templates/emails/site/contact.html:13
 msgid "model.field.message"
 msgstr "Mensagem"
 
@@ -512,7 +512,7 @@ msgstr "Mensagem"
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/web/forms/contact.py:47 templates/email/site/contact.html:5
+#: apps/web/forms/contact.py:47 templates/emails/site/contact.html:5
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
@@ -589,12 +589,13 @@ msgid "table.header.created-at"
 msgstr "Criado em"
 
 #: templates/account/credits.html:48 templates/account/subscriptions.html:82
-#: templates/pages/gallery/index.html:24 templates/pages/gallery/view.html:24
+#: templates/pages/gallery/index.html:24 templates/pages/gallery/view.html:26
 #: templates/pages/shop/plans.html:42
 msgid "list-data.empty"
 msgstr "Nenhum dado encontrado."
 
 #: templates/account/credits.html:58 templates/account/subscriptions.html:92
+#: templates/pages/gallery/view.html:32
 msgid "button.back"
 msgstr "Voltar"
 
@@ -617,68 +618,44 @@ msgstr "Sim, excluir minha conta"
 msgid "button.cancel"
 msgstr "Cancelar"
 
-#: templates/account/login.html:5 templates/account/login.html:9
-#: templates/account/login.html:37
-msgid "Sign In"
-msgstr ""
-
-#: templates/account/login.html:19
-#, python-format
-msgid ""
-"If you have not created an account yet, then please %(link)ssign "
-"up%(end_link)s first."
-msgstr ""
-
-#: templates/account/login.html:31
-msgid "message.forgot-password"
-msgstr "Esqueceu sua senha?"
-
-#: templates/account/login.html:48
-msgid "Sign in with a passkey"
-msgstr ""
-
-#: templates/account/login.html:53
-msgid "Mail me a sign-in code"
-msgstr ""
-
-#: templates/account/profile.html:18
+#: templates/account/profile.html:17
 msgid "title.account-profile"
 msgstr "Perfil"
 
-#: templates/account/profile.html:28
+#: templates/account/profile.html:27
 msgid "subtitle.my-account"
 msgstr "Minha Conta"
 
-#: templates/account/profile.html:32
+#: templates/account/profile.html:31
 msgid "button.change-email"
 msgstr "Alterar e-mail"
 
-#: templates/account/profile.html:38
+#: templates/account/profile.html:37
 msgid "button.update-profile"
 msgstr "Atualizar perfil"
 
-#: templates/account/profile.html:44
+#: templates/account/profile.html:43
 msgid "button.update-avatar"
 msgstr "Atualizar avatar"
 
-#: templates/account/profile.html:52
+#: templates/account/profile.html:51
 #: templates/pages/shop/payment_success.html:79
 msgid "button.account-subscriptions"
 msgstr "Minhas assinaturas"
 
-#: templates/account/profile.html:58
+#: templates/account/profile.html:57
 msgid "button.account-credits"
 msgstr "Meus créditos"
 
-#: templates/account/profile.html:64
+#: templates/account/profile.html:63
 msgid "subtitle.danger-zone"
 msgstr "Danger Zone"
 
-#: templates/account/profile.html:68
+#: templates/account/profile.html:67
 msgid "button.account-delete"
 msgstr "Excluir conta"
 
-#: templates/account/profile.html:74
+#: templates/account/profile.html:73
 msgid "button.account-logout"
 msgstr "Sair"
 
@@ -783,17 +760,17 @@ msgstr "Esqueceu sua senha ou nome de usuário?"
 msgid "Log in"
 msgstr "Entrar"
 
-#: templates/email/layouts/base.html:72
+#: templates/emails/layouts/base.html:72
 msgid "email.base.content"
 msgstr ""
 "Obrigado por entrar em contato conosco. Entraremos em contato com você em "
 "breve."
 
-#: templates/email/layouts/base.html:82
+#: templates/emails/layouts/base.html:82
 msgid "email.base.footer"
 msgstr "Você está recebendo este e-mail porque interagiu com nosso site."
 
-#: templates/email/site/contact.html:9
+#: templates/emails/site/contact.html:9
 msgid "email.contact.title"
 msgstr ""
 "Você recebeu uma nova mensagem através do formulário de contato no site."
@@ -991,3 +968,6 @@ msgstr "Cadastre-se"
 #: templates/partials/header.html:72
 msgid "menu.contact"
 msgstr "Contato"
+
+#~ msgid "message.forgot-password"
+#~ msgstr "Esqueceu sua senha?"
