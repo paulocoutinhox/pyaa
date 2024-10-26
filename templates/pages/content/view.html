@@ -9,6 +9,12 @@
         {{ content.title }}
     {% endelement %}
 
+    <div class="text-center mb-5">
+        <small>
+            {{ content.published_at|date:"M d, Y" }}
+        </small>
+    </div>
+
     <div>
         {{ content.content | safe }}
     </div>

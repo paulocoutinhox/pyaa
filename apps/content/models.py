@@ -12,6 +12,17 @@ class ContentCategory(models.Model):
         verbose_name = _("model.content-category.name")
         verbose_name_plural = _("model.content-category.name.plural")
 
+        indexes = [
+            models.Index(
+                fields=["name"],
+                name="{0}_name".format(db_table),
+            ),
+            models.Index(
+                fields=["tag"],
+                name="{0}_tag".format(db_table),
+            ),
+        ]
+
     id = models.BigAutoField(
         _("model.field.id"),
         unique=True,
@@ -72,6 +83,10 @@ class Content(models.Model):
             models.Index(
                 fields=["title"],
                 name="{0}_title".format(db_table),
+            ),
+            models.Index(
+                fields=["published_at"],
+                name="{0}_published_at".format(db_table),
             ),
         ]
 
