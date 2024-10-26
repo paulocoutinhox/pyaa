@@ -43,7 +43,7 @@ class ContactForm(forms.Form):
         label=_("model.field.captcha"),
     )
 
-    def send_email(self):
+    def send_mail(self):
         subject = _("email.contact.subject")
         from_email = self.cleaned_data["email"]
         recipient_list = [settings.DEFAULT_TO_EMAIL]
