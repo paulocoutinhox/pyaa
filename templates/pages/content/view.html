@@ -9,13 +9,15 @@
         {{ content.title }}
     {% endelement %}
 
-    <div class="text-center mb-5">
+    {% if content.published_at %}
+    <div class="text-center">
         <small>
             {{ content.published_at|date:"M d, Y" }}
         </small>
     </div>
+    {% endif %}
 
-    <div>
+    <div class="mt-5 content-body">
         {{ content.content | safe }}
     </div>
 </div>
