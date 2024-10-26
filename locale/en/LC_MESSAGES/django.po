@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-26 08:37+0000\n"
+"POT-Creation-Date: 2024-10-26 08:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -816,8 +816,9 @@ msgid "title.gallery.index"
 msgstr "Gallery List"
 
 #: templates/pages/home/index.html:9 templates/partials/footer.html:25
-#: templates/partials/head.html:12 templates/partials/head.html:15
-#: templates/partials/head.html:23
+#: templates/partials/head.html:15 templates/partials/head.html:18
+#: templates/partials/head.html:26 templates/partials/head.html:33
+#: templates/partials/head.html:34
 msgid "site.name"
 msgstr "Python Advanced Application"
 
@@ -941,15 +942,22 @@ msgstr "Privacy Policy"
 msgid "site.terms"
 msgstr "Terms and Conditions"
 
-#: templates/partials/head.html:8 templates/partials/head.html:16
+#: templates/partials/head.html:10 templates/partials/head.html:19
 msgid "site.description"
-msgstr "PyAA is a powerful, open-source Python + Django template application designed to build robust web applications"
+msgstr ""
+"PyAA is a powerful, open-source Python + Django template application "
+"designed to build robust web applications"
 
-#: templates/partials/head.html:9
+#: templates/partials/head.html:11
 msgid "site.keywords"
-msgstr "python, django, web applications, open-source, python framework, django template, python development, django development, web app builder, python web development, django web development, robust applications, django templates, open-source web apps, django framework, pyaa, python templates, open-source framework"
+msgstr ""
+"python, django, web applications, open-source, python framework, django "
+"template, python development, django development, web app builder, python "
+"web development, django web development, robust applications, django "
+"templates, open-source web apps, django framework, pyaa, python templates, "
+"open-source framework"
 
-#: templates/partials/head.html:10
+#: templates/partials/head.html:12
 msgid "site.author"
 msgstr "Paulo Coutinho"
 
