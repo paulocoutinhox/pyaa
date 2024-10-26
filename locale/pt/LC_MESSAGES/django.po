@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-26 07:19+0000\n"
+"POT-Creation-Date: 2024-10-26 08:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -821,7 +821,8 @@ msgid "title.gallery.index"
 msgstr "Lista de Galerias"
 
 #: templates/pages/home/index.html:9 templates/partials/footer.html:25
-#: templates/partials/head.html:8
+#: templates/partials/head.html:12 templates/partials/head.html:15
+#: templates/partials/head.html:23
 msgid "site.name"
 msgstr "Aplicação Python Avançada"
 
@@ -944,6 +945,18 @@ msgstr "Política de Privacidade"
 #: templates/partials/footer.html:21
 msgid "site.terms"
 msgstr "Termos e Condições"
+
+#: templates/partials/head.html:8 templates/partials/head.html:16
+msgid "site.description"
+msgstr "PyAA é uma poderosa aplicação de template em Python + Django, open-source, projetada para construir aplicações web robustas"
+
+#: templates/partials/head.html:9
+msgid "site.keywords"
+msgstr "python, django, web applications, open-source, python framework, django template, python development, django development, web app builder, python web development, django web development, robust applications, django templates, open-source web apps, django framework, pyaa, python templates, open-source framework"
+
+#: templates/partials/head.html:10
+msgid "site.author"
+msgstr "Paulo Coutinho"
 
 #: templates/partials/header.html:7
 msgid "site.small-name"

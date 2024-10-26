@@ -5,7 +5,33 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% block head_title %}{% translate "site.name" %}{% endblock %}</title>
+<meta name="description" content="{% block head_description %}{% if page_description %}{{ page_description }}{% else %}{% translate "site.description" %}{% endif %}{% endblock %}">
+<meta name="keywords" content="{% block head_keywords %}{% if page_keywords %}{{ page_keywords }}{% else %}{% translate "site.keywords" %}{% endif %}{% endblock %}">
+<meta name="author" content="{% block head_author %}{% if page_author %}{{ page_author }}{% else %}{% translate "site.author" %}{% endif %}{% endblock %}">
+
+<title>{% block head_title %}{% if page_title %}{{ page_title }}{% else %}{% translate "site.name" %}{% endif %}{% endblock %}</title>
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
+<meta property="og:description" content="{% if page_description %}{{ page_description }}{% else %}{% translate 'site.description' %}{% endif %}">
+<meta property="og:type" content="{% if page_og_type %}{{ page_og_type }}{% else %}website{% endif %}">
+<meta property="og:url" content="{{ page_url }}">
+<meta property="og:image" content="{% if page_og_image %}{{ page_og_image }}{% else %}{% static 'images/logo-og.png' %}{% endif %}">
+<meta property="og:image:width" content="{{ page_og_image_width }}">
+<meta property="og:image:height" content="{{ page_og_image_height }}">
+<meta property="og:locale" content="{{ page_og_locale }}">
+<meta property="og:site_name" content="{% translate 'site.name' %}">
+
+<!-- Twitter Meta Tags -->
+<meta property="twitter:card" content="{{ page_twitter_card }}">
+<meta property="twitter:site" content="{{ page_twitter_site }}">
+
+<!-- Apple Meta Tags -->
+<meta name="apple-mobile-web-app-title" content="{{ page_apple_mobile_web_app_title }}">
+<meta name="application-name" content="{{ page_application_name }}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ page_url }}">
 
 {% compress css %}
 <link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
