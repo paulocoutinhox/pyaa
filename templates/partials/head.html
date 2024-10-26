@@ -5,17 +5,20 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="{% block head_description %}{% if page_description %}{{ page_description }}{% else %}{% translate "site.description" %}{% endif %}{% endblock %}">
-<meta name="keywords" content="{% block head_keywords %}{% if page_keywords %}{{ page_keywords }}{% else %}{% translate "site.keywords" %}{% endif %}{% endblock %}">
-<meta name="author" content="{% block head_author %}{% if page_author %}{{ page_author }}{% else %}{% translate "site.author" %}{% endif %}{% endblock %}">
 
-<title>{% block head_title %}{% if page_title %}{{ page_title }}{% else %}{% translate "site.name" %}{% endif %}{% endblock %}</title>
+<!-- Meta Tags -->
+<meta name="description" content="{% if page_description %}{{ page_description }}{% else %}{% translate 'site.description' %}{% endif %}">
+<meta name="keywords" content="{% if page_keywords %}{{ page_keywords }}{% else %}{% translate 'site.keywords' %}{% endif %}">
+<meta name="author" content="{% if page_author %}{{ page_author }}{% else %}{% translate 'site.author' %}{% endif %}">
+
+<!-- Title -->
+<title>{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}</title>
 
 <!-- Open Graph Meta Tags -->
 <meta property="og:title" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
 <meta property="og:description" content="{% if page_description %}{{ page_description }}{% else %}{% translate 'site.description' %}{% endif %}">
 <meta property="og:type" content="{% if page_og_type %}{{ page_og_type }}{% else %}website{% endif %}">
-<meta property="og:url" content="{{ page_url }}">
+<meta property="og:url" content="{% if page_url %}{{ page_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
 <meta property="og:image" content="{% if page_og_image %}{{ page_og_image }}{% else %}{% static 'images/logo-og.png' %}{% endif %}">
 <meta property="og:image:width" content="{{ page_og_image_width }}">
 <meta property="og:image:height" content="{{ page_og_image_height }}">
@@ -27,21 +30,21 @@
 <meta property="twitter:site" content="{{ page_twitter_site }}">
 
 <!-- Apple Meta Tags -->
-<meta name="apple-mobile-web-app-title" content="{{ page_apple_mobile_web_app_title }}">
-<meta name="application-name" content="{{ page_application_name }}">
+<meta name="apple-mobile-web-app-title" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
+<meta name="application-name" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
 
 <!-- Canonical URL -->
-<link rel="canonical" href="{{ page_url }}">
+<link rel="canonical" href="{% if page_url %}{{ page_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
 
 {% compress css %}
-<link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
-<link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
+    <link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
 {% endcompress %}
 
 {% compress js %}
-<script src="{% static 'vendor/jquery/js/jquery-3.7.1.min.js'%}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-<script src="{% static 'js/main.js'%}"></script>
+    <script src="{% static 'vendor/jquery/js/jquery-3.7.1.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 {% endcompress %}
 
 <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
