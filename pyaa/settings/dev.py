@@ -292,13 +292,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 UPLOAD_PATH = "uploads"
 
 TINYMCE_DEFAULT_CONFIG = {
-    "height": "320px",
+    "height": "400px",
     "width": "100%",
-    "menubar": False,
+    "menubar": True,
     "plugins": "advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount",
     "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | insertfile image media pageembed template link anchor codesample | charmap emoticons | fullscreen preview save print | a11ycheck ltr rtl | showcomments addcomment code",
     "custom_undo_redo_levels": 10,
-    "images_upload_url": "/upload_image/",
+    "images_upload_url": "/upload-image/",
     "relative_urls": False,
     "remove_script_host": False,
     "convert_urls": True,
