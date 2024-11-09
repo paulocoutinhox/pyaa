@@ -31,7 +31,7 @@ class BaseReportAdmin(admin.ModelAdmin):
 
     def has_pdf_export(self):
         """method to indicate if the report supports PDF export"""
-        return False
+        return True
 
     def init_chart_lib(self):
         """method to initialize the chart library"""
@@ -41,11 +41,17 @@ class BaseReportAdmin(admin.ModelAdmin):
         """method to get the list of filters for the report"""
         return [ExportDataFilter]
 
+    def get_report_title(self):
+        """method to return the translated report title"""
+        return ""
+
     def add_general_context(self, request):
         """method to add general context data"""
 
         return {
             "font_path": settings.BASE_DIR / "apps/web/static/vendor/fonts",
+            "report_title": self.get_report_title(),
+            "has_pdf_export": self.has_pdf_export(),
         }
 
     def export_to_pdf(self, context, template_name):

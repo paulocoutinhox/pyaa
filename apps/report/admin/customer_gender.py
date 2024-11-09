@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from django.contrib import admin
 from django.db.models import Count
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from apps.customer import filters
 from apps.customer.enums import CustomerGender
@@ -18,10 +19,10 @@ class CustomerGendeSummaryAdmin(BaseReportAdmin):
     change_list_template = "admin/report/customer-gender-summary/view.html"
     pdf_template = "admin/report/customer-gender-summary/pdf.html"
 
-    def has_chart(self):
-        return True
+    def get_report_title(self):
+        return _("title.report.customer-gender-summary")
 
-    def has_pdf_export(self):
+    def has_chart(self):
         return True
 
     def get_list_filter(self, request):

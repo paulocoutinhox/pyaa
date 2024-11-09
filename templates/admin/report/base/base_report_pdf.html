@@ -1,0 +1,33 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ report_title }}</title>
+</head>
+
+<body>
+    <h1 class="report-title">{{ report_title }}</h1>
+
+    {% if has_data %}
+        <div class="report-results">
+            {% block report_table %}{% endblock %}
+        </div>
+
+        {% if has_chart %}
+            <h2 class="report-chart-title">
+                {% trans 'title.report.chart' %}
+            </h2>
+
+            <div class="report-chart-container">
+                <img src="{{ chart_image }}" alt="{% trans 'title.report.chart' %}" class="report-chart">
+            </div>
+        {% endif %}
+    {% else %}
+        <p>{% trans 'admin.report-list-data.empty' %}</p>
+    {% endif %}
+</body>
+
+</html>

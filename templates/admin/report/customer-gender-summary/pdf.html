@@ -1,57 +1,31 @@
-{% load static %}
+{% extends "admin/report/base/base_report_pdf.html" %}
+
 {% load i18n %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>{% trans 'title.report.customer-gender-summary' %}</title>
-</head>
+{% block report_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    {% trans 'model.field.gender' %}
+                </th>
+                <th>
+                    {% trans 'model.field.amount' %}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.gender_display }}</td>
+                <td>{{ row.total }}</td>
+            </tr>
+            {% endfor %}
 
-<body>
-    <h1 class="report-title">{% trans 'title.report.customer-gender-summary' %}</h1>
-
-    {% if has_data %}
-        <div class="report-results">
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            {% trans 'model.field.gender' %}
-                        </th>
-                        <th>
-                            {% trans 'model.field.amount' %}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in data %}
-                    <tr>
-                        <td>{{ row.gender_display }}</td>
-                        <td>{{ row.total }}</td>
-                    </tr>
-                    {% endfor %}
-
-                    <tr class="footer">
-                        <td>{% trans 'model.field.footer-total' %}</td>
-                        <td>{{ data_footer.total }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        {% if has_chart %}
-            <h2 class="report-chart-title">
-                {% trans 'title.report.chart' %}
-            </h2>
-
-            <div class="report-chart-container">
-                <img src="{{ chart_image }}" alt="{% trans 'title.report.chart' %}" class="report-chart">
-            </div>
-        {% endif %}
-    {% else %}
-        <p>{% trans 'admin.report-list-data.empty' %}</p>
-    {% endif %}
-</body>
-
-</html>
+            <tr class="footer">
+                <td>{% trans 'model.field.footer-total' %}</td>
+                <td>{{ data_footer.total }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
