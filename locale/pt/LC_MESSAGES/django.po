@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-09 06:04+0000\n"
+"POT-Creation-Date: 2024-11-09 06:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,8 +160,8 @@ msgstr "Sobrenome"
 
 #: apps/customer/forms.py:122 apps/customer/models.py:80
 #: apps/customer/serializers.py:115
-#: templates/admin/report/customer-gender-summary/pdf.html:20
-#: templates/admin/report/customer-gender-summary/view.html:28
+#: templates/admin/report/customer-gender-summary/pdf.html:10
+#: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
 msgstr "Gênero"
 
@@ -279,6 +279,10 @@ msgstr "Código ISO"
 #: apps/language/models.py:51
 msgid "model.hint.code_iso_language"
 msgstr "Exemplos: en-us ou pt-br."
+
+#: apps/report/admin/customer_gender.py:23
+msgid "title.report.customer-gender-summary"
+msgstr "Relatório de Gênero do Cliente"
 
 #: apps/report/apps.py:8
 msgid "apps.report.description"
@@ -467,8 +471,8 @@ msgid "model.field.customer"
 msgstr "Cliente"
 
 #: apps/shop/models.py:351 apps/shop/models.py:474
-#: templates/admin/report/customer-gender-summary/pdf.html:23
-#: templates/admin/report/customer-gender-summary/view.html:35
+#: templates/admin/report/customer-gender-summary/pdf.html:13
+#: templates/admin/report/customer-gender-summary/view.html:21
 msgid "model.field.amount"
 msgstr "Valor"
 
@@ -776,32 +780,26 @@ msgstr "Esqueceu sua senha ou nome de usuário?"
 msgid "Log in"
 msgstr "Entrar"
 
-#: templates/admin/report/customer-gender-summary/pdf.html:8
-#: templates/admin/report/customer-gender-summary/pdf.html:12
-#: templates/admin/report/customer-gender-summary/view.html:5
-msgid "title.report.customer-gender-summary"
-msgstr "Relatório de Gênero do Cliente"
+#: templates/admin/report/base/base_report.html:12
+msgid "button.export-to-pdf"
+msgstr "Exportar para PDF"
 
-#: templates/admin/report/customer-gender-summary/pdf.html:36
-#: templates/admin/report/customer-gender-summary/view.html:50
-msgid "model.field.footer-total"
-msgstr "Total"
-
-#: templates/admin/report/customer-gender-summary/pdf.html:45
-#: templates/admin/report/customer-gender-summary/pdf.html:49
-#: templates/admin/report/customer-gender-summary/view.html:59
-#: templates/admin/report/customer-gender-summary/view.html:63
+#: templates/admin/report/base/base_report_pdf.html:21
+#: templates/admin/report/base/base_report_pdf.html:25
+#: templates/admin/report/customer-gender-summary/view.html:45
+#: templates/admin/report/customer-gender-summary/view.html:49
 msgid "title.report.chart"
 msgstr "Gráfico do Relatório"
 
-#: templates/admin/report/customer-gender-summary/pdf.html:53
-#: templates/admin/report/customer-gender-summary/view.html:68
+#: templates/admin/report/base/base_report_pdf.html:29
+#: templates/admin/report/customer-gender-summary/view.html:54
 msgid "admin.report-list-data.empty"
 msgstr "Nenhum dado encontrado."
 
-#: templates/admin/report/customer-gender-summary/view.html:10
-msgid "button.export-to-pdf"
-msgstr "Exportar para PDF"
+#: templates/admin/report/customer-gender-summary/pdf.html:26
+#: templates/admin/report/customer-gender-summary/view.html:36
+msgid "model.field.footer-total"
+msgstr "Total"
 
 #: templates/emails/layouts/base.html:72
 msgid "email.base.content"
