@@ -6,77 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <title>{% trans 'title.report.customer-gender-summary' %}</title>
-
-    <style>
-        @font-face {
-            font-family: 'Roboto';
-            src: url('file://{{ font_path }}/roboto/Roboto-Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        body {
-            font-family: 'Roboto', 'Arial', sans-serif;
-            margin: 20px;
-        }
-
-        .results table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .results th,
-        .results td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .results tr:nth-child(odd) {
-            background: #fff;
-        }
-
-        .results tr:nth-child(even) {
-            background: #F8F8F8;
-        }
-
-        .results tr.summary {
-            font-weight: bold;
-            border-top: 2px solid #DDDDDD;
-        }
-
-        .results th {
-            background-color: #000000;
-            color: #ffffff;
-        }
-
-        .report-title {
-            text-align: center;
-        }
-
-        .report-chart-title {
-            margin: 0;
-            padding: 8px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        .report-chart {
-            max-width: 500px;
-            width: 100%;
-            height: auto;
-        }
-    </style>
 </head>
 
 <body>
     <h1 class="report-title">{% trans 'title.report.customer-gender-summary' %}</h1>
 
     {% if has_data %}
-        <div class="results">
+        <div class="report-results">
             <table>
                 <thead>
                     <tr>
@@ -84,33 +20,35 @@
                             {% trans 'model.field.gender' %}
                         </th>
                         <th>
-                            {% trans 'model.field.total-amount' %}
+                            {% trans 'model.field.amount' %}
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for row in summary %}
-                    <tr class="{% cycle 'row1' 'row2' %}">
+                    {% for row in data %}
+                    <tr>
                         <td>{{ row.gender_display }}</td>
                         <td>{{ row.total }}</td>
                     </tr>
                     {% endfor %}
 
-                    <tr class="summary">
-                        <td>{% trans 'model.field.summary-total' %}</td>
-                        <td>{{ summary_total.total }}</td>
+                    <tr class="footer">
+                        <td>{% trans 'model.field.footer-total' %}</td>
+                        <td>{{ data_footer.total }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <h2 class="report-chart-title">
-            {% trans 'title.report.chart' %}
-        </h2>
+        {% if has_chart %}
+            <h2 class="report-chart-title">
+                {% trans 'title.report.chart' %}
+            </h2>
 
-        <div style="text-align: center; margin-top: 20px;">
-            <img src="{{ chart_image }}" alt="{% trans 'title.report.chart' %}" class="report-chart">
-        </div>
+            <div class="report-chart-container">
+                <img src="{{ chart_image }}" alt="{% trans 'title.report.chart' %}" class="report-chart">
+            </div>
+        {% endif %}
     {% else %}
         <p>{% trans 'admin.report-list-data.empty' %}</p>
     {% endif %}

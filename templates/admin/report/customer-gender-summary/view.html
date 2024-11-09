@@ -1,4 +1,6 @@
 {% extends "admin/change_list.html" %}
+
+{% load static %}
 {% load i18n %}
 
 {% block content_title %}
@@ -18,7 +20,7 @@
 {% block result_list %}
 
 {% if has_data %}
-    <div class="results">
+    <div class="results report-results">
         <table>
             <thead>
                 <tr>
@@ -32,28 +34,29 @@
                     <th>
                         <div class="text">
                             <a href="#">
-                                {% trans 'model.field.total-amount' %}
+                                {% trans 'model.field.amount' %}
                             </a>
                         </div>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                {% for row in summary %}
+                {% for row in data %}
                 <tr>
                     <td>{{ row.gender_display }}</td>
                     <td>{{ row.total }}</td>
                 </tr>
                 {% endfor %}
 
-                <tr class="summary">
-                    <td>{% trans 'model.field.summary-total' %}</td>
-                    <td>{{ summary_total.total }}</td>
+                <tr class="footer">
+                    <td>{% trans 'model.field.footer-total' %}</td>
+                    <td>{{ data_footer.total }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
+    {% if has_chart %}
     <h2 class="report-chart-title">
         {% trans 'title.report.chart' %}
     </h2>
@@ -61,6 +64,7 @@
     <div class="report-chart-container">
         <img class="report-chart" src="{{ chart_image }}" alt="{% trans 'title.report.chart' %}">
     </div>
+    {% endif %}
 {% else %}
     <p class="report-data-empty">
         {% trans 'admin.report-list-data.empty' %}
@@ -70,3 +74,8 @@
 {% endblock %}
 
 {% block pagination %}{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/report.css' %}">
+{% endblock %}

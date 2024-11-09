@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-09 01:13+0000\n"
+"POT-Creation-Date: 2024-11-09 06:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,7 @@ msgstr "Last name"
 
 #: apps/customer/forms.py:122 apps/customer/models.py:80
 #: apps/customer/serializers.py:115
-#: templates/admin/report/customer-gender-summary/pdf.html:59
+#: templates/admin/report/customer-gender-summary/pdf.html:20
 #: templates/admin/report/customer-gender-summary/view.html:28
 msgid "model.field.gender"
 msgstr "Gender"
@@ -467,6 +467,8 @@ msgid "model.field.customer"
 msgstr "Customer"
 
 #: apps/shop/models.py:351 apps/shop/models.py:474
+#: templates/admin/report/customer-gender-summary/pdf.html:23
+#: templates/admin/report/customer-gender-summary/view.html:35
 msgid "model.field.amount"
 msgstr "Amount"
 
@@ -578,11 +580,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site Content"
 
-#: pyaa/settings/dev.py:178
+#: pyaa/settings/dev.py:180
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings/dev.py:179
+#: pyaa/settings/dev.py:181
 msgid "language.pt-br"
 msgstr "Portuguese"
 
@@ -772,31 +774,26 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: templates/admin/report/customer-gender-summary/pdf.html:6
-#: templates/admin/report/customer-gender-summary/pdf.html:51
+#: templates/admin/report/customer-gender-summary/pdf.html:8
+#: templates/admin/report/customer-gender-summary/pdf.html:12
 #: templates/admin/report/customer-gender-summary/view.html:5
 msgid "title.report.customer-gender-summary"
 msgstr "Customer Gender Report"
 
-#: templates/admin/report/customer-gender-summary/pdf.html:62
-#: templates/admin/report/customer-gender-summary/view.html:35
-msgid "model.field.total-amount"
-msgstr "Total amount"
-
-#: templates/admin/report/customer-gender-summary/pdf.html:75
+#: templates/admin/report/customer-gender-summary/pdf.html:36
 #: templates/admin/report/customer-gender-summary/view.html:50
-msgid "model.field.summary-total"
+msgid "model.field.footer-total"
 msgstr "Total"
 
-#: templates/admin/report/customer-gender-summary/pdf.html:83
-#: templates/admin/report/customer-gender-summary/pdf.html:87
-#: templates/admin/report/customer-gender-summary/view.html:58
-#: templates/admin/report/customer-gender-summary/view.html:62
+#: templates/admin/report/customer-gender-summary/pdf.html:45
+#: templates/admin/report/customer-gender-summary/pdf.html:49
+#: templates/admin/report/customer-gender-summary/view.html:59
+#: templates/admin/report/customer-gender-summary/view.html:63
 msgid "title.report.chart"
 msgstr "Chart"
 
-#: templates/admin/report/customer-gender-summary/pdf.html:90
-#: templates/admin/report/customer-gender-summary/view.html:66
+#: templates/admin/report/customer-gender-summary/pdf.html:53
+#: templates/admin/report/customer-gender-summary/view.html:68
 msgid "admin.report-list-data.empty"
 msgstr "No data found."
 
