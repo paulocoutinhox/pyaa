@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-26 08:54+0000\n"
+"POT-Creation-Date: 2024-11-09 01:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr "Conteúdo"
 msgid "filter.title"
 msgstr "Título"
 
-#: apps/content/filters.py:19 apps/customer/filters.py:8
+#: apps/content/filters.py:19 apps/customer/filters.py:9
 #: apps/language/filters.py:8
 msgid "filter.name"
 msgstr "Nome"
@@ -34,7 +34,7 @@ msgid "model.content-category.name.plural"
 msgstr "Categorias de conteúdos"
 
 #: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:40 apps/gallery/models.py:31
+#: apps/customer/models.py:44 apps/gallery/models.py:31
 #: apps/language/models.py:27 apps/shop/models.py:32 apps/shop/models.py:188
 #: apps/shop/models.py:338 apps/shop/models.py:431 apps/user/models.py:62
 msgid "model.field.id"
@@ -57,14 +57,14 @@ msgid "model.field.tag.help"
 msgstr "Deixe vazio para geração automática."
 
 #: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:116 apps/gallery/models.py:75
+#: apps/customer/models.py:120 apps/gallery/models.py:75
 #: apps/language/models.py:56 apps/shop/models.py:128 apps/shop/models.py:233
 #: apps/shop/models.py:383 apps/shop/models.py:484
 msgid "model.field.created-at"
 msgstr "Criado em"
 
 #: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:121 apps/gallery/models.py:80
+#: apps/customer/models.py:125 apps/gallery/models.py:80
 #: apps/language/models.py:61 apps/shop/models.py:133 apps/shop/models.py:238
 msgid "model.field.updated-at"
 msgstr "Atualizado em"
@@ -86,7 +86,7 @@ msgid "model.field.category"
 msgstr "Categoria"
 
 #: apps/content/models.py:121 apps/customer/forms.py:131
-#: apps/customer/models.py:58 apps/gallery/models.py:49
+#: apps/customer/models.py:62 apps/gallery/models.py:49
 msgid "model.field.language"
 msgstr "Idioma"
 
@@ -128,18 +128,22 @@ msgstr "Feminino"
 msgid "enum.customer-gender.none"
 msgstr "Nenhum"
 
-#: apps/customer/filters.py:24
+#: apps/customer/filters.py:25
 msgid "filter.email"
 msgstr "E-mail"
 
+#: apps/customer/filters.py:37
+msgid "filter.created-at"
+msgstr "Criado em"
+
 #: apps/customer/forms.py:38 apps/customer/forms.py:112
-#: apps/customer/models.py:62 apps/customer/serializers.py:47
+#: apps/customer/models.py:66 apps/customer/serializers.py:47
 #: apps/customer/serializers.py:106
 msgid "model.field.mobile-phone"
 msgstr "Celular"
 
 #: apps/customer/forms.py:44 apps/customer/forms.py:118
-#: apps/customer/models.py:69 apps/customer/serializers.py:52
+#: apps/customer/models.py:73 apps/customer/serializers.py:52
 #: apps/customer/serializers.py:111
 msgid "model.field.home-phone"
 msgstr "Telefone fixo"
@@ -154,12 +158,14 @@ msgstr "Nome"
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customer/forms.py:122 apps/customer/models.py:76
+#: apps/customer/forms.py:122 apps/customer/models.py:80
 #: apps/customer/serializers.py:115
+#: templates/admin/report/customer-gender-summary/pdf.html:59
+#: templates/admin/report/customer-gender-summary/view.html:28
 msgid "model.field.gender"
 msgstr "Gênero"
 
-#: apps/customer/forms.py:136 apps/customer/models.py:101
+#: apps/customer/forms.py:136 apps/customer/models.py:105
 #: apps/customer/serializers.py:132
 msgid "model.field.timezone"
 msgstr "Fuso horário"
@@ -172,24 +178,24 @@ msgstr "cliente"
 msgid "model.customer.name.plural"
 msgstr "clientes"
 
-#: apps/customer/models.py:49
+#: apps/customer/models.py:53
 msgid "model.field.user"
 msgstr "Usuário"
 
-#: apps/customer/models.py:85 apps/customer/serializers.py:121
+#: apps/customer/models.py:89 apps/customer/serializers.py:121
 msgid "model.field.avatar"
 msgstr "Avatar"
 
-#: apps/customer/models.py:95 apps/customer/serializers.py:56
+#: apps/customer/models.py:99 apps/customer/serializers.py:56
 #: apps/customer/serializers.py:126
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customer/models.py:109 apps/shop/models.py:82
+#: apps/customer/models.py:113 apps/shop/models.py:82
 msgid "model.field.credits"
 msgstr "Créditos"
 
-#: apps/customer/models.py:135
+#: apps/customer/models.py:139
 #, python-brace-format
 msgid "model.str.customer #{id}"
 msgstr "Cliente #{id}"
@@ -273,6 +279,14 @@ msgstr "Código ISO"
 #: apps/language/models.py:51
 msgid "model.hint.code_iso_language"
 msgstr "Exemplos: en-us ou pt-br."
+
+#: apps/report/apps.py:8
+msgid "apps.report.description"
+msgstr "Relatório"
+
+#: apps/report/models.py:9
+msgid "model.customer-gender-summary.name"
+msgstr "Gênero do cliente"
 
 #: apps/shop/admin.py:34
 msgid "button.copy"
@@ -564,11 +578,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:177
+#: pyaa/settings/dev.py:178
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:178
+#: pyaa/settings/dev.py:179
 msgid "language.pt-br"
 msgstr "Português"
 
@@ -759,6 +773,38 @@ msgstr "Esqueceu sua senha ou nome de usuário?"
 #: templates/admin/login.html:89
 msgid "Log in"
 msgstr "Entrar"
+
+#: templates/admin/report/customer-gender-summary/pdf.html:6
+#: templates/admin/report/customer-gender-summary/pdf.html:51
+#: templates/admin/report/customer-gender-summary/view.html:5
+msgid "title.report.customer-gender-summary"
+msgstr "Relatório de Gênero do Cliente"
+
+#: templates/admin/report/customer-gender-summary/pdf.html:62
+#: templates/admin/report/customer-gender-summary/view.html:35
+msgid "model.field.total-amount"
+msgstr "Quantidade total"
+
+#: templates/admin/report/customer-gender-summary/pdf.html:75
+#: templates/admin/report/customer-gender-summary/view.html:50
+msgid "model.field.summary-total"
+msgstr "Total"
+
+#: templates/admin/report/customer-gender-summary/pdf.html:83
+#: templates/admin/report/customer-gender-summary/pdf.html:87
+#: templates/admin/report/customer-gender-summary/view.html:58
+#: templates/admin/report/customer-gender-summary/view.html:62
+msgid "title.report.chart"
+msgstr "Gráfico do Relatório"
+
+#: templates/admin/report/customer-gender-summary/pdf.html:90
+#: templates/admin/report/customer-gender-summary/view.html:66
+msgid "admin.report-list-data.empty"
+msgstr "Nenhum dado encontrado."
+
+#: templates/admin/report/customer-gender-summary/view.html:10
+msgid "button.export-to-pdf"
+msgstr "Exportar para PDF"
 
 #: templates/emails/layouts/base.html:72
 msgid "email.base.content"
@@ -997,6 +1043,3 @@ msgstr "Cadastre-se"
 #: templates/partials/header.html:72
 msgid "menu.contact"
 msgstr "Contato"
-
-#~ msgid "message.forgot-password"
-#~ msgstr "Esqueceu sua senha?"

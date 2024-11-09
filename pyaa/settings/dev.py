@@ -74,11 +74,14 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "cache_cleaner",
     "captcha",
+    "rangefilter",
+    "django_admin_listfilter_dropdown",
 ]
 
 PROJECT_APPS = [
     "apps.user.apps.UserAppConfig",
     "apps.web.apps.WebAppConfig",
+    "apps.report.apps.ReportAppConfig",
     "apps.customer.apps.CustomerAppConfig",
     "apps.language.apps.LanguageAppConfig",
     "apps.content.apps.ContentAppConfig",

@@ -34,6 +34,10 @@ class Customer(models.Model):
                 fields=["gender"],
                 name="{0}_gender".format(db_table),
             ),
+            models.Index(
+                fields=["created_at"],
+                name="{0}_created_at".format(db_table),
+            ),
         ]
 
     id = models.BigAutoField(

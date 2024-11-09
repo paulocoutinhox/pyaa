@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from django_admin_extras import InputFilter
+from rangefilter.filters import DateRangeFilter
 
 
 class NameFilter(InputFilter):
@@ -30,3 +31,7 @@ class EmailFilter(InputFilter):
 
             return queryset.filter(Q(user__email=value))
         return queryset
+
+
+class CreatedAtFilter(DateRangeFilter):
+    title = _("filter.created-at")

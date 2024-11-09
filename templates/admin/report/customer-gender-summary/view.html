@@ -1,0 +1,72 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block content_title %}
+    <h1 style="float:left">{% trans 'title.report.customer-gender-summary' %}</h1>
+
+    {% if has_data %}
+    <div class="report-button-container">
+        <a href="?{{ request.GET.urlencode }}&export-data=pdf" class="button" target="_blank">
+            {% trans 'button.export-to-pdf' %}
+        </a>
+    </div>
+    {% endif %}
+
+    <div style="clear: both;"></div>
+{% endblock %}
+
+{% block result_list %}
+
+{% if has_data %}
+    <div class="results">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <div class="text">
+                            <a href="#">
+                                {% trans 'model.field.gender' %}
+                            </a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">
+                                {% trans 'model.field.total-amount' %}
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in summary %}
+                <tr>
+                    <td>{{ row.gender_display }}</td>
+                    <td>{{ row.total }}</td>
+                </tr>
+                {% endfor %}
+
+                <tr class="summary">
+                    <td>{% trans 'model.field.summary-total' %}</td>
+                    <td>{{ summary_total.total }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="report-chart-title">
+        {% trans 'title.report.chart' %}
+    </h2>
+
+    <div class="report-chart-container">
+        <img class="report-chart" src="{{ chart_image }}" alt="{% trans 'title.report.chart' %}">
+    </div>
+{% else %}
+    <p class="report-data-empty">
+        {% trans 'admin.report-list-data.empty' %}
+    </p>
+{% endif %}
+
+{% endblock %}
+
+{% block pagination %}{% endblock %}

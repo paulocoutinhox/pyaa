@@ -15,6 +15,8 @@ django-cache-cleaner==0.1.0
 django-simple-captcha==0.6.0
 django-nonrelated-inlines==0.2
 django-storages==1.14.4
+django-admin-rangefilter==0.13.2
+django-admin-list-filter-dropdown==1.0.3
 
 # general
 requests==2.32.3
@@ -47,3 +49,9 @@ coverage==7.6.4
 # formatter
 black==24.10.0
 babel==2.16.0
+
+# chart
+matplotlib==3.9.2
+
+# pdf
+git+https://github.com/Kozea/WeasyPrint.git@main
