@@ -1,0 +1,57 @@
+{% extends "admin/report/base/base_report.html" %}
+
+{% load i18n %}
+
+{% block result_list %}
+    {% if has_data %}
+        <div class="results report-results">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="text">
+                                <a href="#">
+                                    {% trans 'model.field.gender' %}
+                                </a>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="text">
+                                <a href="#">
+                                    {% trans 'model.field.amount' %}
+                                </a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row.gender_display }}</td>
+                        <td>{{ row.total }}</td>
+                    </tr>
+                    {% endfor %}
+
+                    <tr class="footer">
+                        <td>{% trans 'model.field.footer-total' %}</td>
+                        <td>{{ data_footer.total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        {% if has_chart %}
+        <h2 class="report-chart-title">
+            {% trans 'title.report.chart' %}
+        </h2>
+
+        <div class="report-chart-container">
+            <img class="report-chart" src="{{ chart_image }}" alt="{% trans 'title.report.chart' %}">
+        </div>
+        {% endif %}
+    {% else %}
+        <p class="report-data-empty">
+            {% trans 'admin.report-list-data.empty' %}
+        </p>
+    {% endif %}
+{% endblock %}

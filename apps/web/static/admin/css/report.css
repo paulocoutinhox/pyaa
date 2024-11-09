@@ -1,0 +1,42 @@
+.report-chart-title {
+    margin-top: 20px !important;
+}
+
+.report-data-empty {
+    padding: 10px;
+    text-align: center;
+}
+
+.report-button-container {
+    margin-left: 30px;
+    margin-bottom: 15px;
+    float: left;
+}
+
+.report-button-container .button {
+    display: inline-flex;
+}
+
+.report-button-container a.button {
+    text-decoration: none;
+}
+
+.report-chart-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.report-chart {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+}
+
+.report-results tr.footer {
+    font-weight: bold;
+    border-top: 2px solid #DDDDDD;
+}
+
+#changelist-filter-extra-actions .viewlink {
+    display: none;
+}
