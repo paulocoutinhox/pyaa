@@ -36,3 +36,7 @@
     font-weight: bold;
     border-top: 2px solid #DDDDDD;
 }
+
+#changelist-filter-extra-actions .viewlink {
+    display: none;
+}
