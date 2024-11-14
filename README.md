@@ -36,6 +36,7 @@ make run
 ## 📚 Documentation
 
 - [API](docs/api.md)
+- [Database](docs/database.md)
 - [Docker](docs/docker.md)
 - [Ngrok](docs/ngrok.md)
 - [Production](docs/production.md)
