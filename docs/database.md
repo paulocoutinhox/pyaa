@@ -101,7 +101,7 @@ The command will look for AWS S3 credentials prefixed with `BACKUP_*` in your Dj
 > brew install mysql-client
 > ```
 
-> For Linux, use the package manager (e.g., `sudo apt install mysql-client` on Ubuntu). On Windows, download the MySQL client from the [MySQL website](https://dev.mysql.com/downloads/mysql/) and add it to your system path.
+> For Linux, use the package manager (e.g., `sudo apt install default-mysql-client` on Ubuntu). On Windows, download the MySQL client from the [MySQL website](https://dev.mysql.com/downloads/mysql/) and add it to your system path.
 
 ## Restore Command Usage
 
