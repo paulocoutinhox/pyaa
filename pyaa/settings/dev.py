@@ -79,6 +79,7 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
+    "apps.backup",
     "apps.user.apps.UserAppConfig",
     "apps.web.apps.WebAppConfig",
     "apps.report.apps.ReportAppConfig",
@@ -277,7 +278,7 @@ STORAGES = {
         "OPTIONS": {
             "access_key": os.getenv("AWS_ACCESS_KEY_ID"),
             "secret_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
-            "bucket_name": os.getenv("AWS_STORAGE_BUCKET_NAME"),
+            "bucket_name": os.getenv("AWS_S3_BUCKET_NAME"),
             "region_name": os.getenv("AWS_REGION"),
             "default_acl": "public-read",
             "querystring_auth": False,
