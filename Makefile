@@ -111,4 +111,4 @@ docker-run-prod:
 		-v ${PWD}/media:/app/media \
 		-v ${PWD}/static:/app/static \
 		-e DJANGO_SETTINGS_MODULE="pyaa.settings.prod" \
-		-p 8000:8000 pyaaa
+		-p 8000:8000 pyaa
