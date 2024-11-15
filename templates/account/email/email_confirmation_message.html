@@ -1,0 +1,25 @@
+{% extends 'emails/layouts/base.html' %}
+{% load account %}
+{% load i18n %}
+
+{% block email_subject %}
+    {% include "account/email/email_confirmation_subject.txt" %}
+{% endblock %}
+
+{% block email_content %}
+    {% autoescape off %}
+    {% user_display user as user_display %}
+
+    <p>{% blocktranslate with site_name=current_site.name site_domain=current_site.domain %}
+        You're receiving this email because user {{ user_display }} has given your email address to register an account on {{ site_domain }}.
+    {% endblocktranslate %}</p>
+
+    {% if code %}
+        <p>{% blocktranslate %}Your email verification code is listed below. Please enter it in your open browser window.{% endblocktranslate %}</p>
+        <p><strong>{{ code }}</strong></p>
+    {% else %}
+        <p>{% blocktranslate %}To confirm this is correct, go to the following link:{% endblocktranslate %}</p>
+        <p><a href="{{ activate_url }}">{{ activate_url }}</a></p>
+    {% endif %}
+    {% endautoescape %}
+{% endblock %}
