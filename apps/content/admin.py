@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
 
 from apps.content import filters, models
 from apps.language.models import Language
@@ -30,6 +31,7 @@ class ContentAdmin(admin.ModelAdmin):
 
     list_filter = [
         filters.TitleFilter,
+        ("category", RelatedDropdownFilter),
     ]
 
     list_per_page = 10
