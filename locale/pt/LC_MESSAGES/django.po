@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-09 06:46+0000\n"
+"POT-Creation-Date: 2024-11-15 06:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -584,11 +584,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:180
+#: pyaa/settings/dev.py:181
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:181
+#: pyaa/settings/dev.py:182
 msgid "language.pt-br"
 msgstr "Português"
 
@@ -637,6 +637,100 @@ msgstr "Sim, excluir minha conta"
 #: templates/account/update_profile.html:26
 msgid "button.cancel"
 msgstr "Cancelar"
+
+#: templates/account/email/already_exists_message.html:11
+#, python-format
+msgid ""
+"You are receiving this email because you or someone else tried to signup for "
+"an\n"
+"account using email address:\n"
+"\n"
+"%(email)s\n"
+"\n"
+"However, an account using that email address already exists.  In case you "
+"have\n"
+"forgotten about this, please use the password forgotten procedure to "
+"recover\n"
+"your account:\n"
+"\n"
+"%(password_reset_url)s"
+msgstr ""
+
+#: templates/account/email/email_changed_message.html:9
+#, python-format
+msgid "Your email has been changed from %(from_email)s to %(to_email)s."
+msgstr ""
+
+#: templates/account/email/email_confirmation_message.html:14
+#, python-format
+msgid ""
+"You're receiving this email because user %(user_display)s has given your "
+"email address to register an account on %(site_domain)s."
+msgstr ""
+
+#: templates/account/email/email_confirmation_message.html:18
+msgid ""
+"Your email verification code is listed below. Please enter it in your open "
+"browser window."
+msgstr ""
+
+#: templates/account/email/email_confirmation_message.html:21
+#, python-format
+msgid "To confirm this is correct, go to %(activate_url)s"
+msgstr ""
+
+#: templates/account/email/email_deleted_message.html:9
+#, python-format
+msgid "Email address %(deleted_email)s has been removed from your account."
+msgstr ""
+
+#: templates/account/email/login_code_message.html:10
+msgid ""
+"Your sign-in code is listed below. Please enter it in your open browser "
+"window."
+msgstr ""
+
+#: templates/account/email/login_code_message.html:14
+#: templates/account/email/unknown_account_message.html:11
+msgid "This mail can be safely ignored if you did not initiate this action."
+msgstr ""
+
+#: templates/account/email/password_changed_message.html:9
+msgid "Your password has been changed."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.html:13
+msgid ""
+"You're receiving this email because you or someone else has requested a "
+"password reset for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.html:18
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr ""
+
+#: templates/account/email/password_reset_message.html:9
+msgid "Your password has been reset."
+msgstr ""
+
+#: templates/account/email/password_set_message.html:9
+msgid "Your password has been set."
+msgstr ""
+
+#: templates/account/email/unknown_account_message.html:9
+#, python-format
+msgid ""
+"You are receiving this email because you, or someone else, tried to access "
+"an account with email %(email)s. However, we do not have any record of such "
+"an account in our database."
+msgstr ""
+
+#: templates/account/email/unknown_account_message.html:13
+msgid "If it was you, you can sign up for an account using the link below."
+msgstr ""
 
 #: templates/account/profile.html:17
 msgid "title.account-profile"

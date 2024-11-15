@@ -6,14 +6,19 @@
 {% endblock %}
 
 {% block email_content %}
-    <p>{% blocktrans %}You are receiving this email because you or someone else tried to sign up for an
-    account using the email address:{% endblocktrans %}</p>
+{% autoescape off %}
 
-    <p><strong>{{ email }}</strong></p>
+{% blocktrans %}You are receiving this email because you or someone else tried to signup for an
+account using email address:
 
-    <p>{% blocktrans %}However, an account using that email address already exists. In case you have
-    forgotten about this, please use the password forgotten procedure to recover
-    your account:{% endblocktrans %}</p>
+{{ email }}
 
-    <p><a href="{{ password_reset_url }}">{{ password_reset_url }}</a></p>
+However, an account using that email address already exists.  In case you have
+forgotten about this, please use the password forgotten procedure to recover
+your account:
+
+{{ password_reset_url }}{% endblocktrans %}
+
+{% endautoescape %}
+
 {% endblock %}
