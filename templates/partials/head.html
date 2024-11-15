@@ -20,9 +20,9 @@
 <meta property="og:type" content="{% if page_og_type %}{{ page_og_type }}{% else %}website{% endif %}">
 <meta property="og:url" content="{% if page_url %}{{ page_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
 <meta property="og:image" content="{% if page_og_image %}{{ page_og_image }}{% else %}{{ request.scheme }}://{{ request.get_host }}/static/images/logo-og.png{% endif %}">
-<meta property="og:image:width" content="{{ page_og_image_width }}">
-<meta property="og:image:height" content="{{ page_og_image_height }}">
-<meta property="og:locale" content="{{ page_og_locale }}">
+<meta property="og:image:width" content="{% if page_og_image_width %}{{ page_og_image_width }}{% else %}512{% endif %}">
+<meta property="og:image:height" content="{% if page_og_image_height %}{{ page_og_image_height }}{% else %}512{% endif %}">
+<meta property="og:locale" content="{% if page_og_locale %}{{ page_og_locale }}{% else %}en{% endif %}">
 <meta property="og:site_name" content="{% translate 'site.name' %}">
 
 <!-- Twitter Meta Tags -->
