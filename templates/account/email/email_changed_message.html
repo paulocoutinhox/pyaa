@@ -1,0 +1,10 @@
+{% extends 'emails/layouts/base.html' %}
+{% load i18n %}
+
+{% block email_subject %}
+    {% include "account/email/email_changed_subject.txt" %}
+{% endblock %}
+
+{% block email_content %}
+    <p>{% blocktrans %}Your email has been changed from {{ from_email }} to {{ to_email }}.{% endblocktrans %}</p>
+{% endblock %}

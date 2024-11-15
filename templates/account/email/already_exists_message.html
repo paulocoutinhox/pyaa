@@ -1,0 +1,19 @@
+{% extends 'emails/layouts/base.html' %}
+{% load i18n %}
+
+{% block email_subject %}
+    {% include "account/email/account_already_exists_subject.txt" %}
+{% endblock %}
+
+{% block email_content %}
+    <p>{% blocktrans %}You are receiving this email because you or someone else tried to sign up for an
+    account using the email address:{% endblocktrans %}</p>
+
+    <p><strong>{{ email }}</strong></p>
+
+    <p>{% blocktrans %}However, an account using that email address already exists. In case you have
+    forgotten about this, please use the password forgotten procedure to recover
+    your account:{% endblocktrans %}</p>
+
+    <p><a href="{{ password_reset_url }}">{{ password_reset_url }}</a></p>
+{% endblock %}
