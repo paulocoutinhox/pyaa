@@ -7,3 +7,4 @@ class CustomerGenderSummary(Customer):
     class Meta:
         proxy = True
         verbose_name = _("model.customer-gender-summary.name")
+        verbose_name_plural = _("model.customer-gender-summary.name")
