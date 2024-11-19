@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-15 06:23+0000\n"
+"POT-Creation-Date: 2024-11-19 21:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -288,7 +288,7 @@ msgstr "Relatório de Gênero do Cliente"
 msgid "apps.report.description"
 msgstr "Relatório"
 
-#: apps/report/models.py:9
+#: apps/report/models.py:9 apps/report/models.py:10
 msgid "model.customer-gender-summary.name"
 msgstr "Gênero do cliente"
 
@@ -501,15 +501,15 @@ msgid "model.shop-event-log.name.plural"
 msgstr "log de eventos"
 
 #: apps/user/admin.py:16
-msgid "admin.user.fieldsets.personal-info"
+msgid "admin.fieldsets.personal-info"
 msgstr "Informações pessoais"
 
-#: apps/user/admin.py:20
-msgid "admin.user.fieldsets.permissions"
+#: apps/user/admin.py:22
+msgid "admin.fieldsets.permissions"
 msgstr "Permissões"
 
-#: apps/user/admin.py:32
-msgid "admin.user.fieldsets.important-dates"
+#: apps/user/admin.py:34
+msgid "admin.fieldsets.important-dates"
 msgstr "Datas importantes"
 
 #: apps/user/models.py:58

@@ -13,11 +13,13 @@ class UserAdmin(DjangoUserAdmin):
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         (
-            _("admin.user.fieldsets.personal-info"),
-            {"fields": ("first_name", "last_name")},
+            _("admin.fieldsets.personal-info"),
+            {
+                "fields": ("first_name", "last_name"),
+            },
         ),
         (
-            _("admin.user.fieldsets.permissions"),
+            _("admin.fieldsets.permissions"),
             {
                 "fields": (
                     "is_active",
@@ -29,8 +31,10 @@ class UserAdmin(DjangoUserAdmin):
             },
         ),
         (
-            _("admin.user.fieldsets.important-dates"),
-            {"fields": ("last_login", "date_joined")},
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": ("last_login", "date_joined"),
+            },
         ),
     )
 
