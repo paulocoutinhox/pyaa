@@ -534,7 +534,7 @@ msgstr "Captcha"
 
 #: apps/web/forms/contact.py:47 templates/emails/site/contact.html:5
 msgid "email.contact.subject"
-msgstr "New Contact Message"
+msgstr "Nova Mensagem de Contato"
 
 #: apps/web/views/account.py:42 apps/web/views/account.py:62
 msgid "message.account-updated"
