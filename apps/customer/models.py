@@ -19,10 +19,6 @@ class Customer(models.Model):
 
         indexes = [
             models.Index(
-                fields=["language"],
-                name="{0}_language".format(db_table),
-            ),
-            models.Index(
                 fields=["mobile_phone"],
                 name="{0}_mobile_phone".format(db_table),
             ),
