@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="{% translate 'site.name' %}">
 
 <!-- Twitter Meta Tags -->
-<meta property="twitter:card" content="{{ page_twitter_card }}">
-<meta property="twitter:site" content="{{ page_twitter_site }}">
+<meta property="twitter:card" content="{% if page_twitter_card %}{{ page_twitter_card }}{% else %}summary{% endif %}">
+<meta property="twitter:site" content="{% if page_twitter_site %}{{ page_twitter_site }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
 
 <!-- Apple Meta Tags -->
 <meta name="apple-mobile-web-app-title" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
