@@ -502,15 +502,15 @@ msgstr "events"
 
 #: apps/user/admin.py:16
 msgid "admin.fieldsets.personal-info"
-msgstr "Personal info"
+msgstr "PERSONAL INFO"
 
 #: apps/user/admin.py:22
 msgid "admin.fieldsets.permissions"
-msgstr "Permissions"
+msgstr "PERMISSIONS"
 
 #: apps/user/admin.py:34
 msgid "admin.fieldsets.important-dates"
-msgstr "Important dates"
+msgstr "IMPORTANT DATES"
 
 #: apps/user/models.py:58
 msgid "model.user.name"
