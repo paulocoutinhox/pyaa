@@ -4,6 +4,6 @@ function removeMasksFromInputs(form) {
 }
 
 // ready
-$(document).ready(function () {
+$(function() {
     // add code after page loaded
 });
