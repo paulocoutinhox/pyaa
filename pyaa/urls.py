@@ -27,7 +27,7 @@ from drf_spectacular.views import (
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from apps.web.urls import urlpatterns as app_urlpatterns
+from apps.web.urls import urlpatterns as web_urlpatterns
 
 from . import views
 
@@ -56,7 +56,7 @@ urlpatterns = [
     re_path(r"^app/(?P<path>.*)$", views.serve_app_files),
 ]
 
-urlpatterns += app_urlpatterns
+urlpatterns += web_urlpatterns
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
