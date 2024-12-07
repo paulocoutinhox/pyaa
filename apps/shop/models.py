@@ -99,12 +99,6 @@ class Plan(models.Model):
         null=True,
     )
 
-    description = HTMLField(
-        _("model.field.description"),
-        blank=True,
-        null=True,
-    )
-
     sort_order = models.IntegerField(
         _("model.field.sort-order"),
         default=0,
@@ -122,6 +116,12 @@ class Plan(models.Model):
         default=True,
         blank=False,
         null=False,
+    )
+
+    description = HTMLField(
+        _("model.field.description"),
+        blank=True,
+        null=True,
     )
 
     created_at = models.DateTimeField(
@@ -347,11 +347,6 @@ class CreditLog(models.Model):
         null=False,
     )
 
-    amount = models.IntegerField(
-        _("model.field.amount"),
-        default=0,
-    )
-
     object_type = models.CharField(
         _("model.field.object-type"),
         max_length=255,
@@ -365,6 +360,11 @@ class CreditLog(models.Model):
         _("model.field.object-id"),
         blank=True,
         null=True,
+        default=0,
+    )
+
+    amount = models.IntegerField(
+        _("model.field.amount"),
         default=0,
     )
 
@@ -433,11 +433,11 @@ class EventLog(models.Model):
         primary_key=True,
     )
 
-    object_id = models.BigIntegerField(
-        _("model.field.object-id"),
-        blank=True,
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        verbose_name=_("model.field.customer"),
         null=True,
-        default=0,
     )
 
     object_type = models.CharField(
@@ -449,11 +449,11 @@ class EventLog(models.Model):
         null=False,
     )
 
-    customer = models.ForeignKey(
-        Customer,
-        on_delete=models.CASCADE,
-        verbose_name=_("model.field.customer"),
+    object_id = models.BigIntegerField(
+        _("model.field.object-id"),
+        blank=True,
         null=True,
+        default=0,
     )
 
     status = models.CharField(
