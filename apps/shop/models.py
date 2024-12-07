@@ -59,7 +59,7 @@ class Plan(models.Model):
     )
 
     external_id = models.CharField(
-        _("model.field.external_id"),
+        _("model.field.external-id"),
         max_length=255,
         blank=True,
         null=True,
@@ -190,13 +190,6 @@ class Subscription(models.Model):
         primary_key=True,
     )
 
-    token = models.UUIDField(
-        _("model.field.token"),
-        default=uuid.uuid4,
-        editable=False,
-        unique=True,
-    )
-
     customer = models.ForeignKey(
         Customer,
         on_delete=models.CASCADE,
@@ -207,8 +200,15 @@ class Subscription(models.Model):
         on_delete=models.CASCADE,
     )
 
+    token = models.UUIDField(
+        _("model.field.token"),
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
+    )
+
     external_id = models.CharField(
-        _("model.field.external_id"),
+        _("model.field.external-id"),
         max_length=255,
         blank=True,
         null=True,

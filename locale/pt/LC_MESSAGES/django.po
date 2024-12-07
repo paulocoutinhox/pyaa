@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-19 21:29+0000\n"
+"POT-Creation-Date: 2024-12-07 03:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgid "model.content-category.name.plural"
 msgstr "Categorias de conteúdos"
 
 #: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:44 apps/gallery/models.py:31
+#: apps/customer/models.py:40 apps/gallery/models.py:31
 #: apps/language/models.py:27 apps/shop/models.py:32 apps/shop/models.py:188
 #: apps/shop/models.py:338 apps/shop/models.py:431 apps/user/models.py:62
 msgid "model.field.id"
@@ -57,14 +57,14 @@ msgid "model.field.tag.help"
 msgstr "Deixe vazio para geração automática."
 
 #: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:120 apps/gallery/models.py:75
+#: apps/customer/models.py:116 apps/gallery/models.py:75
 #: apps/language/models.py:56 apps/shop/models.py:128 apps/shop/models.py:233
 #: apps/shop/models.py:383 apps/shop/models.py:484
 msgid "model.field.created-at"
 msgstr "Criado em"
 
 #: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:125 apps/gallery/models.py:80
+#: apps/customer/models.py:121 apps/gallery/models.py:80
 #: apps/language/models.py:61 apps/shop/models.py:133 apps/shop/models.py:238
 msgid "model.field.updated-at"
 msgstr "Atualizado em"
@@ -86,7 +86,7 @@ msgid "model.field.category"
 msgstr "Categoria"
 
 #: apps/content/models.py:121 apps/customer/forms.py:131
-#: apps/customer/models.py:62 apps/gallery/models.py:49
+#: apps/customer/models.py:58 apps/gallery/models.py:49
 msgid "model.field.language"
 msgstr "Idioma"
 
@@ -98,7 +98,7 @@ msgstr "Conteúdo"
 msgid "model.field.published-at"
 msgstr "Publicado em"
 
-#: apps/content/models.py:146 apps/gallery/models.py:68 apps/shop/models.py:121
+#: apps/content/models.py:146 apps/gallery/models.py:68 apps/shop/models.py:115
 msgid "model.field.active"
 msgstr "Ativo"
 
@@ -137,13 +137,13 @@ msgid "filter.created-at"
 msgstr "Criado em"
 
 #: apps/customer/forms.py:38 apps/customer/forms.py:112
-#: apps/customer/models.py:66 apps/customer/serializers.py:47
+#: apps/customer/models.py:62 apps/customer/serializers.py:47
 #: apps/customer/serializers.py:106
 msgid "model.field.mobile-phone"
 msgstr "Celular"
 
 #: apps/customer/forms.py:44 apps/customer/forms.py:118
-#: apps/customer/models.py:73 apps/customer/serializers.py:52
+#: apps/customer/models.py:69 apps/customer/serializers.py:52
 #: apps/customer/serializers.py:111
 msgid "model.field.home-phone"
 msgstr "Telefone fixo"
@@ -158,14 +158,14 @@ msgstr "Nome"
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customer/forms.py:122 apps/customer/models.py:80
+#: apps/customer/forms.py:122 apps/customer/models.py:76
 #: apps/customer/serializers.py:115
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
 msgstr "Gênero"
 
-#: apps/customer/forms.py:136 apps/customer/models.py:105
+#: apps/customer/forms.py:136 apps/customer/models.py:101
 #: apps/customer/serializers.py:132
 msgid "model.field.timezone"
 msgstr "Fuso horário"
@@ -178,24 +178,24 @@ msgstr "cliente"
 msgid "model.customer.name.plural"
 msgstr "clientes"
 
-#: apps/customer/models.py:53
+#: apps/customer/models.py:49
 msgid "model.field.user"
 msgstr "Usuário"
 
-#: apps/customer/models.py:89 apps/customer/serializers.py:121
+#: apps/customer/models.py:85 apps/customer/serializers.py:121
 msgid "model.field.avatar"
 msgstr "Avatar"
 
-#: apps/customer/models.py:99 apps/customer/serializers.py:56
+#: apps/customer/models.py:95 apps/customer/serializers.py:56
 #: apps/customer/serializers.py:126
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customer/models.py:113 apps/shop/models.py:82
+#: apps/customer/models.py:109 apps/shop/models.py:82
 msgid "model.field.credits"
 msgstr "Créditos"
 
-#: apps/customer/models.py:139
+#: apps/customer/models.py:135
 #, python-brace-format
 msgid "model.str.customer #{id}"
 msgstr "Cliente #{id}"
@@ -308,7 +308,7 @@ msgstr "Abrir"
 msgid "modal.title.message"
 msgstr "Mensagem"
 
-#: apps/shop/admin.py:75 apps/shop/models.py:103 apps/shop/models.py:377
+#: apps/shop/admin.py:75 apps/shop/models.py:122 apps/shop/models.py:377
 #: apps/shop/models.py:478
 msgid "model.field.description"
 msgstr "Descrição"
@@ -411,7 +411,7 @@ msgid "model.field.payment-gateway"
 msgstr "Gateway de pagamento"
 
 #: apps/shop/models.py:62 apps/shop/models.py:211
-msgid "model.field.external_id"
+msgid "model.field.external-id"
 msgstr "ID externo"
 
 #: apps/shop/models.py:69 apps/shop/models.py:467
@@ -430,11 +430,11 @@ msgstr "Tipo de Frequência"
 msgid "model.field.frequency-amount"
 msgstr "Frequência"
 
-#: apps/shop/models.py:109
+#: apps/shop/models.py:103
 msgid "model.field.sort-order"
 msgstr "Ordem"
 
-#: apps/shop/models.py:114
+#: apps/shop/models.py:108
 msgid "model.field.featured"
 msgstr "Destaque"
 
@@ -446,7 +446,7 @@ msgstr "assinatura"
 msgid "model.shop-subscription.name.plural"
 msgstr "assinaturas"
 
-#: apps/shop/models.py:194
+#: apps/shop/models.py:204
 msgid "model.field.token"
 msgstr "Token"
 
@@ -466,23 +466,23 @@ msgstr "crédito"
 msgid "model.shop-credit-log.name.plural"
 msgstr "créditos"
 
-#: apps/shop/models.py:346 apps/shop/models.py:455
+#: apps/shop/models.py:346 apps/shop/models.py:439
 msgid "model.field.customer"
 msgstr "Cliente"
 
-#: apps/shop/models.py:351 apps/shop/models.py:474
+#: apps/shop/models.py:351 apps/shop/models.py:444
+msgid "model.field.object-type"
+msgstr "Tipo do objeto"
+
+#: apps/shop/models.py:360 apps/shop/models.py:453
+msgid "model.field.object-id"
+msgstr "ID do objeto"
+
+#: apps/shop/models.py:367 apps/shop/models.py:474
 #: templates/admin/report/customer-gender-summary/pdf.html:13
 #: templates/admin/report/customer-gender-summary/view.html:21
 msgid "model.field.amount"
 msgstr "Valor"
-
-#: apps/shop/models.py:356 apps/shop/models.py:444
-msgid "model.field.object-type"
-msgstr "Tipo do objeto"
-
-#: apps/shop/models.py:365 apps/shop/models.py:437
-msgid "model.field.object-id"
-msgstr "ID do objeto"
 
 #: apps/shop/models.py:372
 msgid "model.field.is-refund"
