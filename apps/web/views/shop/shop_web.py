@@ -39,7 +39,7 @@ def shop_payment_success_view(request, token):
         token=token, customer=request.user.customer
     ).first()
 
-    if not token:
+    if not subscription:
         messages.error(request, _("message.shop-subscription-not-found"))
         return redirect("home")
 
@@ -56,7 +56,7 @@ def shop_payment_failure_view(request, token):
         token=token, customer=request.user.customer
     ).first()
 
-    if not token:
+    if not subscription:
         messages.error(request, _("message.shop-subscription-not-found"))
         return redirect("home")
 
