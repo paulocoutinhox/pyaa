@@ -28,3 +28,25 @@ brew install mysql-client pkg-config
 export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
 python3 -m pip install mysqlclient
 ```
+
+## WeasyPrint
+
+Install the WeasyPrint libraries to generate reports.
+
+Official website: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation
+
+**macOS:**
+
+```bash
+brew install weasyprint
+```
+
+**Ubuntu Linux:**
+
+```bash
+apt install weasyprint
+```
+
+**Windows:**
+
+Download latest release here: https://github.com/Kozea/WeasyPrint/releases

@@ -40,6 +40,8 @@ DATABASES = {
 
 Make sure that the MySQL server is running and accessible, and that you've replaced the placeholders (db-name, db-user, db-pass, etc.) with your actual database credentials.
 
+If you encounter issues while installing the MySQL Client, please refer to the [troubleshooting](docs/troubleshooting.md) documentation.
+
 ## Backup Command Usage
 
 The `backup_db` command allows you to back up your database and upload it to an S3 bucket (or other storage service if configured). The command supports options for compressing the backup and controlling access permissions.
