@@ -40,7 +40,7 @@ DATABASES = {
 
 Make sure that the MySQL server is running and accessible, and that you've replaced the placeholders (db-name, db-user, db-pass, etc.) with your actual database credentials.
 
-If you encounter issues while installing the MySQL Client, please refer to the [troubleshooting](docs/troubleshooting.md) documentation.
+If you encounter issues while installing the MySQL Client, please refer to the [troubleshooting](troubleshooting.md) documentation.
 
 ## Backup Command Usage
 
