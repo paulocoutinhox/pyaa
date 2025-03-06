@@ -49,4 +49,4 @@ make run
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2024, Paulo Coutinho
+Copyright (c) 2024-2025, Paulo Coutinho
