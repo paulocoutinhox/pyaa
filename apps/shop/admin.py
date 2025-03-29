@@ -1,28 +1,44 @@
 from django.contrib import admin
-from django.db import models, transaction
+from django.db import models
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from nonrelated_inlines.admin import NonrelatedStackedInline
+from nonrelated_inlines.admin import NonrelatedTabularInline
 
-from apps.customer.helpers import CustomerHelper
 from apps.shop import filters, models
 from apps.shop.enums import ObjectType
+from pyaa.helpers.status import StatusHelper
 
 
-class ShopEventLogInlineAdmin(NonrelatedStackedInline):
+class BaseEventLogInlineAdmin(NonrelatedTabularInline):
     model = models.EventLog
     extra = 0
     can_delete = False
     ordering = ["-id"]
     exclude = ["id", "object_type", "object_id", "customer", "description"]
 
-    def get_nonrelated_queryset(self, obj):
-        return models.EventLog.objects.filter(
-            object_type=ObjectType.SUBSCRIPTION, object_id=obj.id
-        ).order_by("-id")
+    readonly_fields = ["description_modal"] + [
+        field.name
+        for field in models.EventLog._meta.fields
+        if field.name != "description"
+    ]
 
-    def get_form_queryset(self, obj):
-        return self.get_nonrelated_queryset(obj)
+    readonly_fields = (
+        "site",
+        "status_badge",
+        "currency",
+        "amount",
+        "description_modal",
+        "created_at",
+    )
+
+    fields = (
+        "site",
+        "status_badge",
+        "currency",
+        "amount",
+        "description_modal",
+        "created_at",
+    )
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -74,19 +90,39 @@ class ShopEventLogInlineAdmin(NonrelatedStackedInline):
 
     description_modal.short_description = _("model.field.description")
 
-    readonly_fields = ["description_modal"] + [
-        field.name
-        for field in models.EventLog._meta.fields
-        if field.name != "description"
-    ]
+    def status_badge(self, obj):
+        colors = StatusHelper.get_status_color(obj.status, "hex")
+        bg_color = colors["bg"]
+        text_color = colors["text"]
 
-    readonly_fields = (
-        "status",
-        "currency",
-        "amount",
-        "description_modal",
-        "created_at",
-    )
+        return format_html(
+            '<span style="color: {}; background-color: {}; padding: 2px 8px; border-radius: 10px;">{}</span>',
+            text_color,
+            bg_color,
+            obj.status,
+        )
+
+    status_badge.short_description = _("model.field.status")
+
+
+class ShopSubscriptionEventLogInlineAdmin(BaseEventLogInlineAdmin):
+    def get_nonrelated_queryset(self, obj):
+        return models.EventLog.objects.filter(
+            object_type=ObjectType.SUBSCRIPTION, object_id=obj.id
+        ).order_by("-id")
+
+    def get_form_queryset(self, obj):
+        return self.get_nonrelated_queryset(obj)
+
+
+class ShopCreditPurchaseEventLogInlineAdmin(BaseEventLogInlineAdmin):
+    def get_nonrelated_queryset(self, obj):
+        return models.EventLog.objects.filter(
+            object_type=ObjectType.CREDIT_PURCHASE, object_id=obj.id
+        ).order_by("-id")
+
+    def get_form_queryset(self, obj):
+        return self.get_nonrelated_queryset(obj)
 
 
 class PlanAdmin(admin.ModelAdmin):
@@ -94,11 +130,8 @@ class PlanAdmin(admin.ModelAdmin):
         "id",
         "name",
         "gateway",
-        "currency",
-        "price",
+        "plan_type",
         "credits",
-        "sort_order",
-        "featured",
         "active",
         "created_at",
     )
@@ -107,11 +140,8 @@ class PlanAdmin(admin.ModelAdmin):
         "id",
         "name",
         "gateway",
-        "currency",
-        "price",
+        "plan_type",
         "credits",
-        "sort_order",
-        "featured",
         "active",
         "created_at",
     )
@@ -121,9 +151,87 @@ class PlanAdmin(admin.ModelAdmin):
         "gateway",
     )
 
-    search_fields = ("name", "tag", "gateway")
+    search_fields = ("name",)
     readonly_fields = ("created_at", "updated_at")
     ordering = ("-id",)
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "site",
+                    "name",
+                    "tag",
+                    "gateway",
+                    "plan_type",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.pricing"),
+            {
+                "fields": (
+                    "currency",
+                    "price",
+                    "credits",
+                    "bonus",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.frequency"),
+            {
+                "fields": (
+                    "frequency_type",
+                    "frequency_amount",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.features"),
+            {
+                "fields": (
+                    "sort_order",
+                    "featured",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.expiration"),
+            {
+                "fields": (
+                    "expire_at",
+                    "expire_after",
+                    "bonus_expire_after",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.description"),
+            {
+                "fields": (
+                    "description",
+                    "image",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.status"),
+            {
+                "fields": ("active",),
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+    )
 
 
 class SubscriptionAdmin(admin.ModelAdmin):
@@ -132,7 +240,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "plan",
-        "status",
+        "status_badge",
         "created_at",
     )
 
@@ -141,7 +249,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "plan",
-        "status",
+        "status_badge",
         "created_at",
     )
 
@@ -160,13 +268,27 @@ class SubscriptionAdmin(admin.ModelAdmin):
     search_fields = ("token",)
     ordering = ("-id",)
 
-    inlines = [ShopEventLogInlineAdmin]
+    inlines = [ShopSubscriptionEventLogInlineAdmin]
 
     def has_add_permission(self, request):
         return False
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def status_badge(self, obj):
+        colors = StatusHelper.get_status_color(obj.status, "hex")
+        bg_color = colors["bg"]
+        text_color = colors["text"]
+
+        return format_html(
+            '<span style="color: {}; background-color: {}; padding: 2px 8px; border-radius: 10px;">{}</span>',
+            text_color,
+            bg_color,
+            obj.get_status_display().lower(),
+        )
+
+    status_badge.short_description = _("model.field.status")
 
 
 class EventLogAdmin(admin.ModelAdmin):
@@ -175,7 +297,7 @@ class EventLogAdmin(admin.ModelAdmin):
         "object_id",
         "object_type",
         "customer",
-        "status",
+        "status_badge",
         "created_at",
     )
 
@@ -184,7 +306,7 @@ class EventLogAdmin(admin.ModelAdmin):
         "object_id",
         "object_type",
         "customer",
-        "status",
+        "status_badge",
         "created_at",
     )
 
@@ -204,48 +326,127 @@ class EventLogAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+    def status_badge(self, obj):
+        colors = StatusHelper.get_status_color(obj.status)
+        bg_color = colors["bg"]
+        text_color = colors["text"]
 
-class CreditLogAdmin(admin.ModelAdmin):
+        return format_html(
+            '<span style="color: {}; background-color: {}; padding: 2px 8px; border-radius: 10px;">{}</span>',
+            text_color,
+            bg_color,
+            obj.status,
+        )
+
+    status_badge.short_description = _("model.field.status")
+
+
+class CreditPurchaseAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "object_id",
-        "object_type",
+        "token",
         "customer",
-        "amount",
+        "plan",
+        "price",
+        "status_badge",
         "created_at",
     )
 
     list_display_links = (
         "id",
-        "object_id",
-        "object_type",
+        "token",
         "customer",
-        "amount",
+        "plan",
+        "price",
+        "status_badge",
         "created_at",
     )
 
     list_filter = (
-        "object_type",
+        "status",
+        "invoice_generated",
         "created_at",
     )
 
-    search_fields = ("object_id", "object_type", "customer__user__email")
+    search_fields = (
+        "token",
+        "customer__user__email",
+        "plan__name",
+    )
+
+    readonly_fields = (
+        "site",
+        "customer",
+        "plan",
+        "token",
+        "price",
+        "status",
+        "invoice_generated",
+        "created_at",
+        "updated_at",
+    )
+
     ordering = ("-id",)
-    autocomplete_fields = ["customer"]
+
+    autocomplete_fields = ["customer", "plan"]
+
+    inlines = [ShopCreditPurchaseEventLogInlineAdmin]
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "site",
+                    "customer",
+                    "plan",
+                    "token",
+                    "status",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.pricing"),
+            {
+                "fields": (
+                    "price",
+                    "invoice_generated",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+    )
+
+    def has_add_permission(self, request):
+        return False
 
     def has_delete_permission(self, request, obj=None):
         return False
 
-    def has_change_permission(self, request, obj=None):
-        return False
+    def status_badge(self, obj):
+        colors = StatusHelper.get_status_color(obj.status)
+        bg_color = colors["bg"]
+        text_color = colors["text"]
 
-    def save_model(self, request, obj, form, change):
-        with transaction.atomic():
-            super().save_model(request, obj, form, change)
-            CustomerHelper.add_credits(obj.customer, obj.amount)
+        return format_html(
+            '<span style="color: {}; background-color: {}; padding: 2px 8px; border-radius: 10px;">{}</span>',
+            text_color,
+            bg_color,
+            obj.get_status_display().lower(),
+        )
+
+    status_badge.short_description = _("model.field.status")
 
 
 admin.site.register(models.Plan, PlanAdmin)
 admin.site.register(models.Subscription, SubscriptionAdmin)
 admin.site.register(models.EventLog, EventLogAdmin)
-admin.site.register(models.CreditLog, CreditLogAdmin)
+admin.site.register(models.CreditPurchase, CreditPurchaseAdmin)

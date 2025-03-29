@@ -18,6 +18,8 @@ help:
 	@echo "- fixtures"
 	@echo ""
 	@echo "- run"
+	@echo "- run-worker"
+	@echo ""
 	@echo "- test"
 	@echo "- test-coverage"
 	@echo "- test-coverage-ci"
@@ -26,6 +28,10 @@ help:
 	@echo "- docker-rebuild"
 	@echo "- docker-run"
 	@echo "- docker-run-prod"
+	@echo ""
+	@echo "- docker-cron-build"
+	@echo "- docker-cron-run"
+	@echo "- docker-cron-run-prod"
 	@echo ""
 
 format:
@@ -62,13 +68,13 @@ migrate:
 	python3 manage.py migrate
 
 create-su:
-	DJANGO_SUPERUSER_USERNAME="admin" \
-	DJANGO_SUPERUSER_EMAIL="admin@admin.com" \
-	DJANGO_SUPERUSER_PASSWORD="admin" \
-	python3 manage.py createsuperuser --noinput
+	python3 manage.py createadmin --username admin --email admin@admin.com --password admin --noinput
 
 run:
 	python3 manage.py runserver "0.0.0.0:8000"
+
+run-worker:
+	python3 manage.py qcluster
 
 fixtures:
 	python3 manage.py loaddata initial
@@ -112,3 +118,27 @@ docker-run-prod:
 		-v ${PWD}/static:/app/static \
 		-e DJANGO_SETTINGS_MODULE="pyaa.settings.prod" \
 		-p 8000:8000 pyaa
+
+docker-cron-build:
+	docker build -t pyaa-cron -f Dockerfile.cron .
+
+docker-cron-run:
+	@echo "Running..."
+	@docker run --rm \
+		-v ${PWD}/logs:/app/logs \
+		-v ${PWD}/cache:/app/cache \
+		-v ${PWD}/db:/app/db \
+		-v ${PWD}/media:/app/media \
+		-v ${PWD}/static:/app/static \
+		pyaa-cron
+
+docker-cron-run-prod:
+	@echo "Running..."
+	@docker run --rm \
+		-v ${PWD}/logs:/app/logs \
+		-v ${PWD}/cache:/app/cache \
+		-v ${PWD}/db:/app/db \
+		-v ${PWD}/media:/app/media \
+		-v ${PWD}/static:/app/static \
+		-e DJANGO_SETTINGS_MODULE="pyaa.settings.prod" \
+		pyaa-cron

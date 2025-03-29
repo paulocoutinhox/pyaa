@@ -1,0 +1,45 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="account-box">
+    <div class="container">
+        <div class="section-head text-center pt-0">
+            <h1>{% translate "title.account-login" %}</h1>
+            <p>{% translate "message.account-login.welcome-back" %}</p>
+        </div>
+
+        <div class="account-area">
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% if next_url %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+
+                {% element fields form=form %}
+                {% endelement %}
+
+                <button type="submit" class="btn mb-3 btn-primary w-100">
+                    {% translate "button.send" %}
+                </button>
+
+                <div class="text-center mt-3 mb-3">
+                    <a href="{% url 'account_signup' %}" class="btn-link text-center mb-3 text-dark">
+                        {% translate "message.account-login.no-account" %}
+                    </a>
+
+                    <a href="{% url 'account_signup' %}" class="btn mb-3 btn-outline-primary w-100">
+                        {% translate "message.account-login.signup" %}
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

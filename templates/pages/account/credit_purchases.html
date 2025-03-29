@@ -1,0 +1,62 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+{% load pyaa_status %}
+{% load shop %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+{% element page_title %}
+    {% translate "title.account-credit-purchases" %}
+{% endelement %}
+
+<div>
+    {% if purchases %}
+        {% for purchase in purchases %}
+            <div class="col-12">
+                <div class="dz-order">
+                    <div class="order-info">
+                        <div class="pe-2">
+                            <h6 class="title">
+                                {{ purchase.plan.name }}
+                            </h6>
+                            <div class="order-detail">
+                                <span>
+                                    {{ purchase.created_at }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="media media-70">
+                            {% if purchase.plan.get_image_url %}
+                                <img src="{{ purchase.plan.get_image_url }}" alt="">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="pt-3 border-top">
+                        <strong>
+                            {% translate "table.header.status" %}:
+                        </strong>
+                        <span class="badge rounded-pill text-lowercase" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
+                            {{ purchase.get_status_display }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center">
+            {% translate "list-data.empty" %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="my-5 text-center">
+    {% element button href=url_account_profile %}
+        {% translate "button.back" %}
+    {% endelement %}
+</div>
+
+{% endblock content %}

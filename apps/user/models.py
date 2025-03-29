@@ -1,55 +1,71 @@
-from allauth.account.models import EmailAddress
-from allauth.account.signals import user_signed_up
+import uuid
+
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
-from apps.customer.helpers import CustomerHelper
-from apps.customer.models import Customer
-from apps.language.helpers import LanguageHelper
+from apps.site.models import Site
+from apps.user.helpers import UserHelper
 
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, email, password, **extra_fields):
-        if not email:
-            raise ValueError("The given email must be set.")
+    def _create_user(self, username=None, password=None, **extra_fields):
+        site_id = settings.SITE_ID
+        if not site_id:
+            raise ValidationError({"site_id": _("error.site-id-required")})
 
-        if (
-            User.objects.filter(email=email).exists()
-            or EmailAddress.objects.filter(email=email).exists()
-        ):
-            raise ValueError("This email is already in use.")
+        email = extra_fields.get("email")
+        cpf = extra_fields.get("cpf")
+        mobile_phone = extra_fields.get("mobile_phone")
 
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        if not any([email, cpf, mobile_phone]):
+            raise ValidationError(
+                {"non_field_errors": _("error.at-least-one-login-provider-is-required")}
+            )
+
+        UserHelper.validate_unique_fields(
+            email=email,
+            cpf=cpf,
+            mobile_phone=mobile_phone,
+            site_id=site_id,
+        )
+
+        user = self.model(site_id=site_id, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
-
         return user
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, username=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
+        return self._create_user(username, password, **extra_fields)
 
-        return self._create_user(email, password, **extra_fields)
-
-    def create_superuser(self, email, password, **extra_fields):
+    def create_superuser(self, username, password, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
-        extra_fields.setdefault("first_name", "Super")
-        extra_fields.setdefault("last_name", "User")
 
         if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+            raise ValidationError({"is_staff": _("Superuser must have is_staff=True.")})
 
-        return self._create_user(email, password, **extra_fields)
+        if extra_fields.get("is_superuser") is not True:
+            raise ValidationError(
+                {"is_superuser": _("Superuser must have is_superuser=True.")}
+            )
+
+        email = extra_fields.get("email")
+        cpf = extra_fields.get("cpf")
+        mobile_phone = extra_fields.get("mobile_phone")
+
+        if not any([email, cpf, mobile_phone]):
+            raise ValidationError(
+                {"non_field_errors": _("error.at-least-one-login-provider-is-required")}
+            )
+
+        return self._create_user(username, password, **extra_fields)
 
 
 class User(AbstractUser):
@@ -57,6 +73,18 @@ class User(AbstractUser):
         db_table = "user"
         verbose_name = _("model.user.name")
         verbose_name_plural = _("model.user.name.plural")
+        unique_together = (("email", "site"), ("cpf", "site"), ("mobile_phone", "site"))
+
+        indexes = [
+            models.Index(
+                fields=["first_name"],
+                name="{0}_first_name".format(db_table),
+            ),
+            models.Index(
+                fields=["last_name"],
+                name="{0}_last_name".format(db_table),
+            ),
+        ]
 
     id = models.BigAutoField(
         _("model.field.id"),
@@ -64,62 +92,129 @@ class User(AbstractUser):
         primary_key=True,
     )
 
-    username = None
-    email = models.EmailField(_("model.field.email"), unique=True)
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="users",
+        verbose_name=_("model.field.site"),
+        blank=False,
+        null=False,
+    )
 
-    USERNAME_FIELD = "email"
+    username = models.CharField(
+        _("model.field.admin-username"),
+        max_length=255,
+        default=uuid.uuid4,
+        unique=True,
+        editable=False,
+    )
+
+    email = models.EmailField(
+        _("model.field.email"),
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+
+    cpf = models.CharField(
+        _("model.field.cpf"),
+        max_length=11,
+        blank=True,
+        null=True,
+    )
+
+    mobile_phone = models.CharField(
+        _("model.field.mobile-phone"),
+        max_length=11,
+        blank=True,
+        null=True,
+    )
+
+    USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
 
     objects = UserManager()
 
-    def clean_email(self):
-        if self.pk:
-            # instance is being updated
-            if (
-                User.objects.filter(email=self.email).exclude(id=self.id).exists()
-                or EmailAddress.objects.filter(email=self.email)
-                .exclude(user=self)
-                .exists()
-            ):
-                raise ValidationError({"email": _("error.email-already-used-by-other")})
-        else:
-            # instance is being created
-            if (
-                User.objects.filter(email=self.email).exists()
-                or EmailAddress.objects.filter(email=self.email).exists()
-            ):
-                raise ValidationError({"email": _("error.email-already-used-by-other")})
-
     def clean(self):
         super().clean()
-        self.clean_email()
+
+        if self.pk is None:
+            site_id = self.site_id or settings.SITE_ID
+
+            if not site_id:
+                raise ValidationError({"site_id": _("error.site-id-required")})
+
+            if not self.email and not self.cpf and not self.mobile_phone:
+                raise ValidationError(
+                    {
+                        "non_field_errors": _(
+                            "error.at-least-one-login-provider-is-required"
+                        )
+                    }
+                )
+
+            UserHelper.validate_unique_fields(
+                email=self.email,
+                cpf=self.cpf,
+                mobile_phone=self.mobile_phone,
+                site_id=site_id,
+            )
+
+    def save(self, *args, **kwargs):
+        if not self.site_id:
+            self.site_id = settings.SITE_ID
+
+        self.full_clean()
+
+        super().save(*args, **kwargs)
 
     def get_customer(self):
+        from apps.customer.models import Customer
+
         if self.is_authenticated:
             try:
                 return self.customer
             except Customer.DoesNotExist:
                 return None
+
         return None
 
+    def validate_unique(self, exclude=None):
+        pass
 
-@receiver(user_signed_up)
-def on_user_signed_up(request, user: User, **kwargs):
-    language = LanguageHelper.get_current()
-    timezone = settings.DEFAULT_TIME_ZONE
+    def has_customer(self):
+        if self.is_authenticated:
+            try:
+                if self.customer != None:
+                    return True
+            except:
+                return False
 
-    customer, created = Customer.objects.get_or_create(
-        user=user,
-        defaults={
-            "language": language,
-            "timezone": timezone,
-        },
-    )
+        return False
 
-    if not created:
-        customer.language = language
-        customer.timezone = timezone
-        customer.save()
+    def get_full_name(self):
+        full_name = self.first_name + " " + self.last_name
+        return full_name.strip()
 
-    if customer:
-        CustomerHelper.post_save(customer)
+    def __str__(self):
+        result = ""
+
+        if self.first_name or self.last_name:
+            result = self.first_name + " " + self.last_name
+            result = result.strip()
+
+        if self.email:
+            if result:
+                result += " - " + self.email
+            else:
+                result += self.email
+
+        site = getattr(self, "site", None)
+
+        if site:
+            if result:
+                result += " - " + site.name
+            else:
+                result += site.name
+
+        return result

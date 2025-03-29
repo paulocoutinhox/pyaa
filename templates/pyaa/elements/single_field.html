@@ -1,0 +1,39 @@
+{% load widget_tweaks %}
+
+{% if attrs.field %}
+    {% if attrs.field.label %}
+        {{ attrs.field.label_tag }}
+    {% endif %}
+
+    {% if attrs.field.errors %}
+        {% if attrs.field.field.widget.input_type == "checkbox" %}
+            {% render_field attrs.field class="form-check-input is-invalid" %}
+        {% elif attrs.field.field.widget.input_type == "radio" %}
+            {% render_field attrs.field class="form-check-input is-invalid" %}
+        {% elif attrs.field.field.widget.input_type == "select" %}
+            {% render_field attrs.field class="form-select is-invalid" %}
+        {% else %}
+            {% render_field attrs.field class="form-control is-invalid" %}
+        {% endif %}
+    {% else %}
+        {% if attrs.field.field.widget.input_type == "checkbox" %}
+            {% render_field attrs.field class="form-check-input" %}
+        {% elif attrs.field.field.widget.input_type == "radio" %}
+            {% render_field attrs.field class="form-check-input" %}
+        {% elif attrs.field.field.widget.input_type == "select" %}
+            {% render_field attrs.field class="form-select" %}
+        {% else %}
+            {% render_field attrs.field class="form-control" %}
+        {% endif %}
+    {% endif %}
+
+    {% if attrs.field.help_text %}
+    <small class="form-text text-muted">{{ attrs.field.help_text }}</small>
+    {% endif %}
+
+    {% for error in attrs.field.errors %}
+    <div class="invalid-feedback">
+        {{ error }}
+    </div>
+    {% endfor %}
+{% endif %}

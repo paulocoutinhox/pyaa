@@ -1,0 +1,61 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+{% load pyaa_status %}
+{% load static %}
+
+{% block content %}
+
+<div class="container my-5 text-center">
+    <h1 class="text-danger">
+        {% trans "message.shop-payment-error.title" %}
+    </h1>
+
+    <p class="lead">
+        {% trans "message.shop-payment-error.subtitle" %}
+    </p>
+
+    <div class="my-4">
+        <span class="fs-1 text-danger">
+            <i class="bi bi-x-circle-fill"></i>
+        </span>
+    </div>
+
+    <p class="fs-6">
+        <strong>
+            {% trans "message.shop-payment-date" %}
+        </strong>
+        <br />
+        {{ paid_item.created_at }}
+    </p>
+
+    <p class="fs-6">
+        <strong>
+            {% trans "message.shop-payment-status" %}
+        </strong>
+        <br />
+        <span class="badge badge-danger rounded-pill text-lowercase">
+            {{ paid_item.get_status_display }}
+        </span>
+    </p>
+
+    {% if paid_item_type == "subcription" %}
+        <div class="my-5 text-center">
+            {% url 'account_subscriptions' as url_area %}
+
+            {% element button href=url_area tags="danger" %}
+                {% translate "button.account-subscriptions" %}
+            {% endelement %}
+        </div>
+    {% elif paid_item_type == "credit-purchase" %}
+        <div class="my-5 text-center">
+            {% url 'account_credit_purchases' as url_area %}
+
+            {% element button href=url_area tags="danger" %}
+                {% translate "button.account-credit-purchases" %}
+            {% endelement %}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock content %}

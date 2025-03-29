@@ -1,7 +1,7 @@
-from captcha.fields import CaptchaField
 from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
 
 from pyaa.helpers.mail import MailHelper
 
@@ -39,7 +39,8 @@ class ContactForm(forms.Form):
         ),
     )
 
-    captcha = CaptchaField(
+    captcha = ReCaptchaField(
+        widget=ReCaptchaV3,
         label=_("model.field.captcha"),
     )
 
@@ -49,10 +50,10 @@ class ContactForm(forms.Form):
         recipient_list = [settings.DEFAULT_TO_EMAIL]
 
         context = {
-            "form": self,
+            "form": self.cleaned_data,
         }
 
-        MailHelper.send_mail(
+        MailHelper.send_mail_async(
             subject=subject,
             to=recipient_list,
             template="emails/site/contact.html",

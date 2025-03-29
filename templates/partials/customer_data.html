@@ -5,11 +5,15 @@
 </p>
 
 <p class="text-center">
-    {% if user.customer.credits %}
-        {% blocktranslate with credits=user.customer.credits %}Credits: {{ credits }}{% endblocktranslate %}
-    {% else %}
-        {% translate "customer.no-credits" %}
-    {% endif %}
+    {% with user.customer.get_remaining_credits as remaining_credits %}
+        <p class="text-center">
+            {% if remaining_credits %}
+                {% translate "customer.credits" %}: <span class="customer-credits-data">{{ remaining_credits }}</span>
+            {% else %}
+                {% translate "customer.no-credits" %}
+            {% endif %}
+        </p>
+    {% endwith %}
 </p>
 
 <div class="text-center">

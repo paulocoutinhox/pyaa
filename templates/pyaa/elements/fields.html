@@ -5,12 +5,13 @@
 {% endfor %}
 
 {% if attrs.form.non_field_errors %}
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
     <ul>
         {% for error in attrs.form.non_field_errors %}
             <li>{{ error }}</li>
         {% endfor %}
     </ul>
+    {% include "partials/message_close_button.html" %}
 </div>
 {% endif %}
 

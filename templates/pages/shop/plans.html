@@ -18,19 +18,28 @@
                 <div class="card w-100 {% if plan.featured %} shadow-lg pt-md-4 pb-md-4 {% else %} shadow-sm {% endif %} rounded-3">
                     <div class="card-body p-4 p-xxl-5">
                         <div class="text-center">
-                            <h2 class="h4 mb-2">{{ plan.name }}</h2>
-                            <h4 class="display-3 fw-bold text-primary mb-0">{{ plan.price|format_currency:plan.currency }}</h4>
-                            <p class="text-secondary mb-4">{{ plan.currency }} / {{ plan.frequency_type|format_frequency_type|capfirst }}</p>
+                            <h2 class="fs-4 fw-bold mb-2">{{ plan.get_description }}</h2>
+                            <h3 class="display-5 fw-bold text-primary mb-0">{{ plan.price|format_currency:plan.currency }}</h3>
                         </div>
 
-                        <div class="text-center">
-                            {{ plan.description|safe }}
-                        </div>
-
-                        <div class="text-center">
-                            <a href="{% url 'shop_buy_by_tag' plan.tag %}" class="btn btn-lg btn-primary rounded-pill text-capitalize">
-                                {% trans "button.shop-select-plan" %}
+                        <div class="text-center mb-4">
+                            <a href="{% url 'shop_checkout' 'credit-purchase' plan.id %}">
+                                {% if plan.get_image_url %}
+                                    <img src="{{ plan.get_image_url }}" style="height: 180px;" alt="" class="img-fluid" />
+                                {% endif %}
                             </a>
+                        </div>
+
+                        <div class="text-center">
+                            {% if plan.plan_type == 'subscription' %}
+                                <a href="{% url 'shop_checkout' 'subscription' plan.id %}" class="btn btn-lg btn-primary rounded-pill text-capitalize">
+                                    {% trans "button.shop-select-subscription-plan" %}
+                                </a>
+                            {% else %}
+                                <a href="{% url 'shop_checkout' 'credit-purchase' plan.id %}" class="btn btn-lg btn-primary rounded-pill text-capitalize">
+                                    {% trans "button.shop-select-credit-plan" %}
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

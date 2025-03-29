@@ -1,0 +1,42 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+<div class="container">
+    <div class="section-head text-center pt-0">
+        <h1>
+            {% translate "title.account-signup-success" %}
+        </h1>
+    </div>
+
+    <div class="text-center">
+        <img src="{% static 'images/success.png' %}" class="img-fluid" style="width: 100px;">
+    </div>
+
+    <div class="mt-5 text-center">
+        <p class="mb-5">
+            {% translate "subtitle.account-signup-success" %}
+        </p>
+        <p>
+            {% element button href=url_account_profile tags="success" %}
+                {% translate "button.profile" %}
+            {% endelement %}
+        </p>
+
+        {% if next_url %}
+        <p>
+            {% element button href=next_url tags="primary" %}
+                {% translate "button.continue-next-url" %}
+            {% endelement %}
+        </p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

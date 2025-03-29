@@ -1,0 +1,20 @@
+[
+  {
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+      "name": "My WebSite",
+      "domain": "mywebsite.com"
+    }
+  },
+  {
+    "model": "site.siteprofile",
+    "pk": 1,
+    "fields": {
+      "site": 1,
+      "title": "My WebSite Title",
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-01-01T00:00:00Z"
+    }
+  }
+]

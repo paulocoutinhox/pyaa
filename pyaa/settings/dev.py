@@ -69,17 +69,16 @@ THIRD_PARTY_APPS = [
     "drf_spectacular_sidecar",
     "corsheaders",
     "widget_tweaks",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
     "cache_cleaner",
-    "captcha",
+    "django_recaptcha",
     "rangefilter",
     "django_admin_listfilter_dropdown",
+    "django_q",
 ]
 
 PROJECT_APPS = [
     "apps.backup",
+    "apps.site.apps.SiteAppConfig",
     "apps.user.apps.UserAppConfig",
     "apps.web.apps.WebAppConfig",
     "apps.report.apps.ReportAppConfig",
@@ -102,7 +101,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "pyaa.urls"
@@ -313,56 +311,19 @@ TINYMCE_DEFAULT_CONFIG = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Authentication
+# Site
 
 SITE_ID = 1
 
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
+# Authentication
+
+AUTHENTICATION_BACKENDS = ("apps.user.backends.MultiFieldModelBackend",)
 
 LOGIN_REDIRECT_URL = "home"
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET = True
-ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_EMAIL_NOTIFICATIONS = True
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_ADAPTER = "apps.web.adapter.AppAccountAdapter"
-ACCOUNT_FORMS = {
-    "signup": "apps.customer.forms.CustomerSignupForm",
-}
 AUTH_USER_MODEL = "user.User"
 
-# Authentication - We need these lines below to allow the Google sign in popup to work
-
-SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
-SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
-
-# Authentication - Social providers
-
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
-        "AUTH_PARAMS": {
-            "access_type": "online",
-        },
-        "OAUTH_PKCE_ENABLED": True,
-        "FETCH_USERINFO": True,
-    }
-}
+LOGIN_URL = "account_login"
 
 # Email
 
@@ -397,9 +358,36 @@ LOGGING = {
 
 # Customer
 
-CUSTOMER_INITIAL_CREDITS = 0
+CUSTOMER_SIGNUP_PLAN = 0
 
 # Stripe
 
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET", "")
+
+# Mercado Pago
+
+MERCADO_PAGO_ACCESS_TOKEN = os.getenv("MERCADO_PAGO_ACCESS_TOKEN", "")
+MERCADO_PAGO_PUB_TOKEN = os.getenv("MERCADO_PAGO_PUB_TOKEN", "")
+
+# Webhook
+
+WEBHOOK_LOG_REQUESTS = True
+
+# Recaptcha
+
+RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY", "")
+RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY", "")
+
+# Django Q
+
+Q_CLUSTER = {
+    "name": "djangoq",  # name of the cluster for identification
+    "workers": 4,  # number of worker processes handling tasks (reduce if using a low-resource server)
+    "recycle": 500,  # number of tasks a worker processes before being replaced (helps prevent memory leaks)
+    "timeout": 600,  # maximum execution time (in seconds) for a task before being terminated
+    "retry": 600,  # delay (in seconds) before retrying a failed task
+    "max_attempts": 2,  # maximum number of retry attempts for failed tasks
+    "bulk": 20,  # number of tasks fetched from the database at once (reduces db queries)
+    "orm": "default",  # defines the orm for job persistence (default database in django settings)
+}

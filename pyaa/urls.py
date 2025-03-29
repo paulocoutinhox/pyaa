@@ -52,7 +52,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("upload-image/", views.upload_image),
     path("tinymce/", include("tinymce.urls")),
-    path("captcha/", include("captcha.urls")),
     re_path(r"^app/(?P<path>.*)$", views.serve_app_files),
 ]
 

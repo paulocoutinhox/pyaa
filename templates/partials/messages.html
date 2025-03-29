@@ -1,7 +1,7 @@
 {% if messages %}
 <div class="px-2 py-2">
     {% for message in messages %}
-    <div class="alert {{ message.tags }}" role="alert">
+    <div class="alert {{ message.tags }} solid alert-dismissible fade show" role="alert">
         <div class="d-flex gap-4">
             <span>
                 {% if message.tags == 'alert-success' %}
@@ -22,6 +22,7 @@
                 {{ message }}
             </div>
         </div>
+        {% include "partials/message_close_button.html" %}
     </div>
     {% endfor %}
 </div>

@@ -1,4 +1,5 @@
 import re
+import uuid
 
 
 class StringHelper:
@@ -9,3 +10,11 @@ class StringHelper:
             return data
         else:
             return None
+
+    @staticmethod
+    def generate_subscription_token():
+        return f"subscription.{uuid.uuid4()}"
+
+    @staticmethod
+    def generate_credit_purchase_token():
+        return f"credit-purchase.{uuid.uuid4()}"

@@ -1,20 +1,97 @@
-from django.conf.urls import include
+from urllib.parse import urlencode
+
 from django.contrib import messages
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, resolve_url
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer.forms import (
     CustomerDeleteForm,
+    CustomerLoginForm,
+    CustomerSignupForm,
     CustomerUpdateAvatarForm,
     CustomerUpdateProfileForm,
 )
-from apps.customer.models import Customer
-from apps.shop import helpers as gh
+from apps.customer.models import Customer, CustomerCredit
 from apps.shop.enums import PaymentGatewayCancelAction, SubscriptionStatus
-from apps.shop.models import CreditLog, Subscription
+from apps.shop.helpers import ShopHelper
+from apps.shop.models import CreditPurchase, Subscription
+from pyaa.helpers.request import RequestHelper
+
+
+def account_login_view(request):
+    next_url = RequestHelper.get_next_url(request)
+
+    if request.method == "POST":
+        form = CustomerLoginForm(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+
+            user = authenticate(
+                request,
+                username=username,
+                password=password,
+            )
+
+            if user:
+                login(request, user)
+                messages.success(request, _("message.login-success"))
+
+                if next_url:
+                    return redirect(next_url)
+                else:
+                    return redirect("account_profile")
+            else:
+                messages.error(request, _("error.invalid-login-data"))
+    else:
+        form = CustomerLoginForm()
+
+    return render(
+        request,
+        "pages/account/login.html",
+        {
+            "form": form,
+            "next_url": next_url,
+        },
+    )
+
+
+def account_signup_view(request):
+    next_url = RequestHelper.get_next_url(request)
+
+    if request.method == "POST":
+        form = CustomerSignupForm(request.POST)
+
+        if form.is_valid():
+            customer = form.save()
+            login(request, customer.user)
+
+            query_params = {"next": next_url} if next_url else {}
+
+            return redirect(
+                f"{resolve_url('account_signup_success')}?{urlencode(query_params)}"
+            )
+    else:
+        form = CustomerSignupForm()
+
+    return render(
+        request,
+        "pages/account/signup.html",
+        {
+            "form": form,
+            "next": next_url,
+        },
+    )
+
+
+@login_required
+def account_logout_view(request):
+    logout(request)
+    return redirect("account_logout_success")
 
 
 @login_required
@@ -26,7 +103,7 @@ def account_profile_view(request):
 
     return render(
         request,
-        "account/profile.html",
+        "pages/account/profile.html",
         {
             "customer": customer,
         },
@@ -38,7 +115,7 @@ def account_update_profile_view(request):
     if request.method == "POST":
         form = CustomerUpdateProfileForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
-            form.save(request.user)
+            form.save()
             messages.success(request, _("message.account-updated"))
             return redirect("account_profile")
     else:
@@ -46,7 +123,7 @@ def account_update_profile_view(request):
 
     return render(
         request,
-        "account/update_profile.html",
+        "pages/account/update_profile.html",
         {
             "form": form,
         },
@@ -69,7 +146,7 @@ def account_update_avatar_view(request):
 
     return render(
         request,
-        "account/update_avatar.html",
+        "pages/account/update_avatar.html",
         {
             "form": form,
             "customer": customer,
@@ -107,7 +184,7 @@ def account_delete_view(request):
     # render the account delete page with the delete form
     return render(
         request,
-        "account/delete.html",
+        "pages/account/delete.html",
         {
             "form": form,
         },
@@ -127,7 +204,7 @@ def account_subscriptions_view(request):
 
     return render(
         request,
-        "account/subscriptions.html",
+        "pages/account/subscriptions.html",
         {
             "customer": customer,
             "subscriptions": subscriptions,
@@ -142,7 +219,7 @@ def account_subscription_cancel_view(request, token):
     except Subscription.DoesNotExist:
         return redirect("home")
 
-    cancel_data = gh.process_cancel(request, subscription)
+    cancel_data = ShopHelper.process_cancel_for_subscription(request, subscription)
     action = cancel_data["action"]
 
     if action == PaymentGatewayCancelAction.REDIRECT:
@@ -159,13 +236,13 @@ def account_credits_view(request):
     except Customer.DoesNotExist:
         return redirect("home")
 
-    credits = CreditLog.objects.filter(
-        customer=request.user.customer,
+    credits = CustomerCredit.objects.filter(
+        customer=customer,
     ).order_by("-id")
 
     return render(
         request,
-        "account/credits.html",
+        "pages/account/credits.html",
         {
             "customer": customer,
             "credits": credits,
@@ -173,10 +250,58 @@ def account_credits_view(request):
     )
 
 
+@login_required
+def account_credit_purchases_view(request):
+    try:
+        customer = Customer.objects.get(user=request.user)
+    except Customer.DoesNotExist:
+        return redirect("home")
+
+    purchases = CreditPurchase.objects.filter(
+        customer=customer,
+    ).order_by("-id")
+
+    return render(
+        request,
+        "pages/account/credit_purchases.html",
+        {
+            "customer": customer,
+            "purchases": purchases,
+        },
+    )
+
+
+def account_signup_success_view(request):
+    next_url = RequestHelper.get_next_url(request)
+
+    return render(
+        request,
+        "pages/account/signup_success.html",
+        {
+            "next_url": next_url,
+        },
+    )
+
+
+def account_logout_success_view(request):
+    return render(request, "pages/account/logout_success.html")
+
+
 urlpatterns = [
     path(
-        "accounts/",
-        include("allauth.urls"),
+        "account/signup/",
+        account_signup_view,
+        name="account_signup",
+    ),
+    path(
+        "account/login/",
+        account_login_view,
+        name="account_login",
+    ),
+    path(
+        "account/logout/",
+        account_logout_view,
+        name="account_logout",
     ),
     path(
         "account/profile/",
@@ -212,5 +337,20 @@ urlpatterns = [
         "account/credits/",
         account_credits_view,
         name="account_credits",
+    ),
+    path(
+        "account/credit-purchases/",
+        account_credit_purchases_view,
+        name="account_credit_purchases",
+    ),
+    path(
+        "account/signup/success",
+        account_signup_success_view,
+        name="account_signup_success",
+    ),
+    path(
+        "account/logout/success",
+        account_logout_success_view,
+        name="account_logout_success",
     ),
 ]

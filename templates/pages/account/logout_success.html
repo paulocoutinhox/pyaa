@@ -1,0 +1,34 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_login' as url_account_login %}
+
+<div class="container">
+    <div class="section-head text-center pt-0">
+        <h1>
+            {% translate "title.account-logout-success" %}
+        </h1>
+    </div>
+
+    <div class="text-center">
+        <img src="{% static 'images/account-logout-banner.png' %}" class="img-fluid" style="width: 200px;">
+    </div>
+
+    <div class="mt-5 text-center">
+        <p class="mb-5">
+            {% translate "subtitle.account-logout-success" %}
+        </p>
+        <p>
+            {% element button href=url_account_login tags="success" %}
+                {% translate "button.login-my-account" %}
+            {% endelement %}
+        </p>
+    </div>
+</div>
+
+{% endblock content %}

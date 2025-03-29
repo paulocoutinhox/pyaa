@@ -9,8 +9,10 @@ from django.utils.translation import gettext_lazy as _
 from tinymce.models import HTMLField
 
 from apps.customer.models import Customer
-from apps.shop import enums
+from apps.shop import enums, fields
 from apps.shop.enums import ObjectType, PlanFrequencyType
+from apps.site.models import Site
+from pyaa.helpers.string import StringHelper
 
 
 class Plan(models.Model):
@@ -24,6 +26,7 @@ class Plan(models.Model):
             models.Index(fields=["tag"], name="shop_plan_tag"),
             models.Index(fields=["gateway"], name="shop_plan_gateway"),
             models.Index(fields=["currency"], name="shop_plan_currency"),
+            models.Index(fields=["plan_type"], name="shop_plan_plan_type"),
             models.Index(fields=["frequency_type"], name="shop_plan_frequency_type"),
             models.Index(fields=["active"], name="shop_plan_active"),
         ]
@@ -32,6 +35,15 @@ class Plan(models.Model):
         _("model.field.id"),
         unique=True,
         primary_key=True,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="plans",
+        verbose_name=_("model.field.site"),
+        blank=True,
+        null=True,
     )
 
     name = models.CharField(
@@ -48,6 +60,15 @@ class Plan(models.Model):
         null=True,
         default=None,
         help_text=_("model.field.tag.help"),
+    )
+
+    plan_type = models.CharField(
+        _("model.field.plan-type"),
+        max_length=255,
+        choices=enums.PlanType.choices,
+        default=enums.PlanType.SUBSCRIPTION,
+        blank=False,
+        null=False,
     )
 
     gateway = models.CharField(
@@ -111,6 +132,44 @@ class Plan(models.Model):
         null=False,
     )
 
+    expire_at = models.DateTimeField(
+        _("model.field.expire-at"),
+        blank=True,
+        null=True,
+        help_text=_("model.hint.plan-expire-at"),
+    )
+
+    expire_after = models.IntegerField(
+        _("model.field.expire-after"),
+        blank=True,
+        null=True,
+        help_text=_("model.hint.plan-expire-after"),
+    )
+
+    bonus = models.IntegerField(
+        _("model.field.bonus"),
+        blank=True,
+        null=True,
+        help_text=_("model.hint.plan-bonus"),
+    )
+
+    bonus_expire_after = models.IntegerField(
+        _("model.field.bonus-expire-after"),
+        blank=True,
+        null=True,
+        help_text=_("model.hint.plan-bonus-expire-after"),
+    )
+
+    image = fields.PlanImageField(
+        _("model.field.image"),
+        size=[1024, 1024],
+        crop=["middle", "center"],
+        quality=100,
+        upload_to="images/plan/%Y/%m/%d",
+        blank=True,
+        null=True,
+    )
+
     active = models.BooleanField(
         _("model.field.active"),
         default=True,
@@ -151,6 +210,7 @@ class Plan(models.Model):
     def get_frequency_in_days(self):
         if self.frequency_type is None or not self.frequency_type:
             return 0
+
         if self.frequency_amount is None or self.frequency_amount <= 0:
             return 0
 
@@ -164,6 +224,26 @@ class Plan(models.Model):
         }
 
         return frequency_mapping.get(self.frequency_type, 0) * self.frequency_amount
+
+    def get_image_url(self):
+        if not self.image:
+            return None
+
+        image_url = str(self.image)
+
+        if image_url.startswith(("http://", "https://")):
+            return image_url
+
+        return self.image.url
+
+    def get_description(self):
+        if self.bonus and self.bonus > 0:
+            return _("plan.bonus.description: %(name)s %(bonus)s") % {
+                "name": self.name,
+                "bonus": self.bonus,
+            }
+
+        return self.name
 
     def __str__(self):
         return self.name
@@ -190,6 +270,15 @@ class Subscription(models.Model):
         primary_key=True,
     )
 
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="subscriptions",
+        verbose_name=_("model.field.site"),
+        blank=False,
+        null=False,
+    )
+
     customer = models.ForeignKey(
         Customer,
         on_delete=models.CASCADE,
@@ -200,9 +289,10 @@ class Subscription(models.Model):
         on_delete=models.CASCADE,
     )
 
-    token = models.UUIDField(
+    token = models.CharField(
         _("model.field.token"),
-        default=uuid.uuid4,
+        max_length=255,
+        default=StringHelper.generate_subscription_token,
         editable=False,
         unique=True,
     )
@@ -319,19 +409,25 @@ class Subscription(models.Model):
         return str(self.token)
 
 
-class CreditLog(models.Model):
+class CreditPurchase(models.Model):
     class Meta:
-        db_table = "shop_credit_log"
-        verbose_name = _("model.shop-credit-log.name")
-        verbose_name_plural = _("model.shop-credit-log.name.plural")
+        db_table = "credit_purchase"
+        verbose_name = _("model.credit-puchase.name")
+        verbose_name_plural = _("model.credit-purchase.name.plural")
 
         indexes = [
             models.Index(
-                fields=["object_id", "object_type"], name="shop_credit_log_object"
+                fields=["token"],
+                name="credit_purchase_token",
             ),
-            models.Index(fields=["object_type"], name="shop_credit_log_object_type"),
-            models.Index(fields=["customer"], name="shop_credit_log_customer"),
-            models.Index(fields=["created_at"], name="shop_credit_log_created_at"),
+            models.Index(
+                fields=["status"],
+                name="credit_purchase_status",
+            ),
+            models.Index(
+                fields=["invoice_generated"],
+                name="credit_purchase_invoice_gen",
+            ),
         ]
 
     id = models.BigAutoField(
@@ -340,43 +436,58 @@ class CreditLog(models.Model):
         primary_key=True,
     )
 
-    customer = models.ForeignKey(
-        Customer,
+    site = models.ForeignKey(
+        Site,
         on_delete=models.CASCADE,
-        verbose_name=_("model.field.customer"),
+        related_name="credit_purchases",
+        verbose_name=_("model.field.site"),
+        blank=False,
         null=False,
     )
 
-    object_type = models.CharField(
-        _("model.field.object-type"),
+    customer = models.ForeignKey(
+        "customer.Customer",
+        on_delete=models.CASCADE,
+        verbose_name=_("model.field.customer"),
+    )
+
+    customer_credit = models.ForeignKey(
+        "customer.CustomerCredit",
+        on_delete=models.CASCADE,
+        verbose_name=_("model.field.customer-credit"),
+        null=True,
+    )
+
+    plan = models.ForeignKey(
+        Plan,
+        on_delete=models.CASCADE,
+        verbose_name=_("model.field.plan"),
+    )
+
+    token = models.CharField(
+        _("model.field.token"),
         max_length=255,
-        choices=enums.ObjectType.choices,
-        default=enums.ObjectType.UNKNOWN,
-        blank=True,
-        null=True,
+        default=StringHelper.generate_credit_purchase_token,
+        editable=False,
+        unique=True,
     )
 
-    object_id = models.BigIntegerField(
-        _("model.field.object-id"),
-        blank=True,
-        null=True,
-        default=0,
+    price = models.DecimalField(
+        _("model.field.price"),
+        max_digits=10,
+        decimal_places=2,
     )
 
-    amount = models.IntegerField(
-        _("model.field.amount"),
-        default=0,
-    )
-
-    is_refund = models.BooleanField(
-        _("model.field.is-refund"),
+    invoice_generated = models.BooleanField(
+        _("model.field.invoice-generated"),
         default=False,
     )
 
-    description = models.TextField(
-        _("model.field.description"),
-        blank=True,
-        null=True,
+    status = models.CharField(
+        _("model.field.status"),
+        max_length=255,
+        choices=enums.CreditPurchaseStatus.choices,
+        default=enums.CreditPurchaseStatus.INITIAL,
     )
 
     created_at = models.DateTimeField(
@@ -384,31 +495,17 @@ class CreditLog(models.Model):
         auto_now_add=True,
     )
 
-    def get_description(self):
-        result = ""
+    updated_at = models.DateTimeField(
+        _("model.field.updated-at"),
+        auto_now=True,
+    )
 
-        if self.object_type == enums.ObjectType.SUBSCRIPTION:
-            # if the object type is subscription
-            subscription = Subscription.objects.filter(id=self.object_id).first()
+    def __str__(self):
+        return str(self.token)
 
-            if subscription and subscription.plan:
-                result = subscription.plan.name
-            else:
-                key = f"enum.shop-object-type.{self.object_type}"
-                result = _(key)
-        elif self.description:
-            # if there is a specific description
-            result = self.description
-        else:
-            # default case for other object types
-            key = f"enum.shop-object-type.{self.object_type}"
-            result = result = _(key)
-
-        # if it is a refund, add the refund string
-        if self.is_refund:
-            result = result + " " + _("message.refund-in-list")
-
-        return result
+    @staticmethod
+    def generate_token():
+        return f"credit-purchase.{uuid.uuid4()}"
 
 
 class EventLog(models.Model):
@@ -433,8 +530,17 @@ class EventLog(models.Model):
         primary_key=True,
     )
 
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="event_logs",
+        verbose_name=_("model.field.site"),
+        blank=False,
+        null=False,
+    )
+
     customer = models.ForeignKey(
-        Customer,
+        "customer.Customer",
         on_delete=models.CASCADE,
         verbose_name=_("model.field.customer"),
         null=True,
@@ -456,13 +562,6 @@ class EventLog(models.Model):
         default=0,
     )
 
-    status = models.CharField(
-        _("model.field.status"),
-        max_length=255,
-        blank=True,
-        null=True,
-    )
-
     currency = models.CharField(
         _("model.field.currency"),
         max_length=3,
@@ -471,7 +570,17 @@ class EventLog(models.Model):
     )
 
     amount = models.DecimalField(
-        _("model.field.amount"), max_digits=10, decimal_places=2, default=0
+        _("model.field.amount"),
+        max_digits=10,
+        decimal_places=2,
+        default=0,
+    )
+
+    status = models.CharField(
+        _("model.field.status"),
+        max_length=255,
+        blank=True,
+        null=True,
     )
 
     description = models.TextField(

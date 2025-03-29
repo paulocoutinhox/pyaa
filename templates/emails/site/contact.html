@@ -8,7 +8,7 @@
 {% block email_content %}
     <p>{% blocktranslate %}email.contact.title{% endblocktranslate %}</p>
 
-    <p><strong>{% translate "model.field.name" %}:</strong> {{ form.cleaned_data.name }}</p>
-    <p><strong>{% translate "model.field.email" %}:</strong> {{ form.cleaned_data.email }}</p>
-    <p><strong>{% translate "model.field.message" %}:</strong> {{ form.cleaned_data.message | linebreaksbr }}</p>
+    <p><strong>{% translate "model.field.name" %}:</strong> {{ form.name }}</p>
+    <p><strong>{% translate "model.field.email" %}:</strong> {{ form.email }}</p>
+    <p><strong>{% translate "model.field.message" %}:</strong> {{ form.message | linebreaksbr }}</p>
 {% endblock %}

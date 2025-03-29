@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-07 03:24+0000\n"
+"POT-Creation-Date: 2025-03-29 02:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,40 +34,43 @@ msgid "model.content-category.name.plural"
 msgstr "content categories"
 
 #: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:40 apps/gallery/models.py:31
-#: apps/language/models.py:27 apps/shop/models.py:32 apps/shop/models.py:188
-#: apps/shop/models.py:338 apps/shop/models.py:431 apps/user/models.py:62
+#: apps/customer/models.py:58 apps/customer/models.py:273
+#: apps/gallery/models.py:31 apps/language/models.py:27 apps/shop/models.py:35
+#: apps/shop/models.py:268 apps/shop/models.py:434 apps/shop/models.py:528
+#: apps/user/models.py:90
 msgid "model.field.id"
 msgstr "ID"
 
-#: apps/content/models.py:33 apps/customer/admin.py:69
-#: apps/language/models.py:33 apps/shop/models.py:38
+#: apps/content/models.py:33 apps/customer/admin.py:129
+#: apps/language/models.py:33 apps/shop/models.py:50
 #: apps/web/forms/contact.py:11 templates/emails/site/contact.html:11
 msgid "model.field.name"
 msgstr "Name"
 
 #: apps/content/models.py:40 apps/content/models.py:125
-#: apps/gallery/models.py:53 apps/shop/models.py:45
+#: apps/gallery/models.py:53 apps/shop/models.py:57
 msgid "model.field.tag"
 msgstr "Tag"
 
 #: apps/content/models.py:45 apps/content/models.py:130
-#: apps/gallery/models.py:58 apps/shop/models.py:50
+#: apps/gallery/models.py:58 apps/shop/models.py:62
 msgid "model.field.tag.help"
 msgstr "Leave empty for auto generation."
 
 #: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:116 apps/gallery/models.py:75
-#: apps/language/models.py:56 apps/shop/models.py:128 apps/shop/models.py:233
-#: apps/shop/models.py:383 apps/shop/models.py:484
+#: apps/customer/models.py:143 apps/customer/models.py:349
+#: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:187
+#: apps/shop/models.py:323 apps/shop/models.py:494 apps/shop/models.py:593
+#: apps/site/models.py:30
 msgid "model.field.created-at"
-msgstr "Created at"
+msgstr "Created At"
 
 #: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:121 apps/gallery/models.py:80
-#: apps/language/models.py:61 apps/shop/models.py:133 apps/shop/models.py:238
+#: apps/customer/models.py:148 apps/customer/models.py:354
+#: apps/gallery/models.py:80 apps/language/models.py:61 apps/shop/models.py:192
+#: apps/shop/models.py:328 apps/shop/models.py:499 apps/site/models.py:35
 msgid "model.field.updated-at"
-msgstr "Updated at"
+msgstr "Updated At"
 
 #: apps/content/models.py:71
 msgid "model.content.name"
@@ -77,7 +80,7 @@ msgstr "content"
 msgid "model.content.name.plural"
 msgstr "contents"
 
-#: apps/content/models.py:100 apps/gallery/models.py:37
+#: apps/content/models.py:100 apps/gallery/models.py:37 apps/site/models.py:23
 msgid "model.field.title"
 msgstr "Title"
 
@@ -85,8 +88,8 @@ msgstr "Title"
 msgid "model.field.category"
 msgstr "Category"
 
-#: apps/content/models.py:121 apps/customer/forms.py:131
-#: apps/customer/models.py:58 apps/gallery/models.py:49
+#: apps/content/models.py:121 apps/customer/models.py:85
+#: apps/gallery/models.py:49
 msgid "model.field.language"
 msgstr "Language"
 
@@ -96,21 +99,67 @@ msgstr "Content"
 
 #: apps/content/models.py:140 apps/gallery/models.py:62
 msgid "model.field.published-at"
-msgstr "Published at"
+msgstr "Published At"
 
-#: apps/content/models.py:146 apps/gallery/models.py:68 apps/shop/models.py:115
+#: apps/content/models.py:146 apps/gallery/models.py:68 apps/shop/models.py:174
 msgid "model.field.active"
 msgstr "Active"
 
-#: apps/customer/admin.py:76 apps/customer/serializers.py:35
-#: apps/customer/serializers.py:94 apps/user/models.py:68
+#: apps/customer/admin.py:72
+msgid "admin.fieldsets.user"
+msgstr "USER INFORMATION"
+
+#: apps/customer/admin.py:84
+msgid "admin.fieldsets.profile"
+msgstr "PROFILE INFORMATION"
+
+#: apps/customer/admin.py:90
+msgid "admin.fieldsets.additional-info"
+msgstr "ADDITIONAL INFORMATION"
+
+#: apps/customer/admin.py:96 apps/customer/admin.py:251 apps/shop/admin.py:226
+#: apps/shop/admin.py:418 apps/site/admin.py:38 apps/user/admin.py:32
+msgid "admin.fieldsets.important-dates"
+msgstr "IMPORTANT DATES"
+
+#: apps/customer/admin.py:136 apps/customer/forms.py:78
+#: apps/customer/forms.py:187 apps/customer/serializers.py:35
+#: apps/customer/serializers.py:94 apps/user/models.py:113
 #: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customer/admin.py:84
+#: apps/customer/admin.py:143 apps/customer/forms.py:194
+#: apps/user/models.py:120
+msgid "model.field.cpf"
+msgstr "CPF"
+
+#: apps/customer/admin.py:150 apps/customer/forms.py:201
+#: apps/customer/serializers.py:47 apps/customer/serializers.py:106
+#: apps/user/models.py:127
+msgid "model.field.mobile-phone"
+msgstr "Mobile Phone"
+
+#: apps/customer/admin.py:158
 msgid "model.field.is_active"
 msgstr "Active"
+
+#: apps/customer/admin.py:227 apps/shop/admin.py:160 apps/shop/admin.py:397
+#: apps/site/admin.py:32
+msgid "admin.fieldsets.general"
+msgstr "PERSONAL DATA"
+
+#: apps/customer/admin.py:237
+msgid "admin.fieldsets.details"
+msgstr "DETAILS"
+
+#: apps/customer/admin.py:274 apps/customer/models.py:318
+msgid "model.field.credit-type"
+msgstr "Credit Type"
+
+#: apps/customer/admin.py:283
+msgid "model.field.credit-amount"
+msgstr "Amount"
 
 #: apps/customer/apps.py:8
 msgid "apps.customer.description"
@@ -134,75 +183,179 @@ msgstr "E-mail"
 
 #: apps/customer/filters.py:37
 msgid "filter.created-at"
-msgstr "Created at"
+msgstr "Created At"
 
-#: apps/customer/forms.py:38 apps/customer/forms.py:112
-#: apps/customer/models.py:62 apps/customer/serializers.py:47
-#: apps/customer/serializers.py:106
-msgid "model.field.mobile-phone"
-msgstr "Mobile phone"
+#: apps/customer/forms.py:41
+msgid "model.field.login-username"
+msgstr "Username"
 
-#: apps/customer/forms.py:44 apps/customer/forms.py:118
-#: apps/customer/models.py:69 apps/customer/serializers.py:52
-#: apps/customer/serializers.py:111
-msgid "model.field.home-phone"
-msgstr "Home phone"
+#: apps/customer/forms.py:48
+msgid "model.field.login-password"
+msgstr "Password"
 
-#: apps/customer/forms.py:98 apps/customer/serializers.py:25
-#: apps/customer/serializers.py:84
+#: apps/customer/forms.py:57 apps/customer/forms.py:175
+#: apps/customer/serializers.py:25 apps/customer/serializers.py:84
 msgid "model.field.first-name"
-msgstr "First name"
+msgstr "First Name"
 
-#: apps/customer/forms.py:104 apps/customer/serializers.py:30
-#: apps/customer/serializers.py:89
+#: apps/customer/forms.py:64 apps/customer/forms.py:181
+#: apps/customer/serializers.py:30 apps/customer/serializers.py:89
 msgid "model.field.last-name"
-msgstr "Last name"
+msgstr "Last Name"
 
-#: apps/customer/forms.py:122 apps/customer/models.py:76
-#: apps/customer/serializers.py:115
+#: apps/customer/forms.py:71 apps/customer/forms.py:211
+#: apps/customer/models.py:96 apps/customer/serializers.py:115
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
 msgstr "Gender"
 
-#: apps/customer/forms.py:136 apps/customer/models.py:101
-#: apps/customer/serializers.py:132
-msgid "model.field.timezone"
-msgstr "Timezone"
+#: apps/customer/forms.py:85 apps/customer/serializers.py:40
+#: apps/customer/serializers.py:99
+msgid "model.field.password"
+msgstr "Password"
 
-#: apps/customer/models.py:17
+#: apps/customer/forms.py:91
+msgid "model.field.accept-terms"
+msgstr "Accept Terms"
+
+#: apps/customer/forms.py:97 apps/web/forms/contact.py:44
+msgid "model.field.captcha"
+msgstr "Captcha"
+
+#: apps/customer/forms.py:205 apps/customer/models.py:89
+msgid "model.field.nickname"
+msgstr "Nickname"
+
+#: apps/customer/helpers.py:160
+msgid "error.nickname-already-used-by-other"
+msgstr "This nickname is already in use."
+
+#: apps/customer/helpers.py:183
+msgid "email.signup.subject"
+msgstr "Welcome to %(site_name)s!"
+
+#: apps/customer/helpers.py:219
+msgid "email.credits.subject"
+msgstr "Credits added to your account"
+
+#: apps/customer/helpers.py:279
+msgid "email.bonus-credits.subject"
+msgstr "Credits added to your account"
+
+#: apps/customer/helpers.py:328
+msgid "email.credit-purchase-paid.subject"
+msgstr "Payment confirmation"
+
+#: apps/customer/models.py:31
 msgid "model.customer.name"
 msgstr "customer"
 
-#: apps/customer/models.py:18
+#: apps/customer/models.py:32
 msgid "model.customer.name.plural"
 msgstr "customers"
 
-#: apps/customer/models.py:49
+#: apps/customer/models.py:67
 msgid "model.field.user"
 msgstr "User"
 
-#: apps/customer/models.py:85 apps/customer/serializers.py:121
+#: apps/customer/models.py:74 apps/customer/models.py:282
+#: apps/shop/models.py:44 apps/shop/models.py:277 apps/shop/models.py:443
+#: apps/shop/models.py:537 apps/site/models.py:19 apps/user/models.py:99
+msgid "model.field.site"
+msgstr "Site"
+
+#: apps/customer/models.py:105 apps/customer/serializers.py:121
 msgid "model.field.avatar"
 msgstr "Avatar"
 
-#: apps/customer/models.py:95 apps/customer/serializers.py:56
+#: apps/customer/models.py:115 apps/customer/serializers.py:56
 #: apps/customer/serializers.py:126
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customer/models.py:109 apps/shop/models.py:82
-msgid "model.field.credits"
-msgstr "Credits"
+#: apps/customer/models.py:121 apps/customer/serializers.py:132
+msgid "model.field.timezone"
+msgstr "Timezone"
 
-#: apps/customer/models.py:135
+#: apps/customer/models.py:129
+msgid "model.field.activate-token"
+msgstr "Activation Token"
+
+#: apps/customer/models.py:136
+msgid "model.field.recovery-token"
+msgstr "Recovery Token"
+
+#: apps/customer/models.py:165
 #, python-brace-format
 msgid "model.str.customer #{id}"
 msgstr "Customer #{id}"
 
-#: apps/customer/serializers.py:40 apps/customer/serializers.py:99
-msgid "model.field.password"
-msgstr "Password"
+#: apps/customer/models.py:183 apps/user/models.py:19 apps/user/models.py:145
+msgid "error.site-id-required"
+msgstr "The site code is required."
+
+#: apps/customer/models.py:246
+msgid "model.customer-credit.name"
+msgstr "customer credit"
+
+#: apps/customer/models.py:247
+msgid "model.customer-credit.name.plural"
+msgstr "customer credits"
+
+#: apps/customer/models.py:290 apps/shop/models.py:451 apps/shop/models.py:545
+msgid "model.field.customer"
+msgstr "Customer"
+
+#: apps/customer/models.py:295 apps/shop/models.py:464
+msgid "model.field.plan"
+msgstr "Plan"
+
+#: apps/customer/models.py:302 apps/shop/models.py:550
+msgid "model.field.object-type"
+msgstr "Object Type"
+
+#: apps/customer/models.py:311 apps/shop/models.py:559
+msgid "model.field.object-id"
+msgstr "Object ID"
+
+#: apps/customer/models.py:327
+msgid "model.field.initial-amount"
+msgstr "Initial Amount"
+
+#: apps/customer/models.py:332
+msgid "model.field.current-amount"
+msgstr "Current Amount"
+
+#: apps/customer/models.py:337 apps/shop/models.py:97 apps/shop/models.py:476
+msgid "model.field.price"
+msgstr "Price"
+
+#: apps/customer/models.py:343 apps/shop/models.py:136 apps/shop/models.py:317
+msgid "model.field.expire-at"
+msgstr "Expire At"
+
+#: apps/customer/models.py:363
+msgid "credit-type.bonus.description"
+msgstr "Bonus"
+
+#: apps/customer/models.py:430
+msgid "plan.validity.no-expiration"
+msgstr "Does not expire"
+
+#: apps/customer/models.py:436
+#, python-format
+msgid "plan.validity.expired: %(expire-at)s"
+msgstr "%(expire-at)s (Expired)"
+
+#: apps/customer/models.py:440
+#, python-format
+msgid "plan.validity.not-expired: %(expire-at)s"
+msgstr "%(expire-at)s"
+
+#: apps/customer/serializers.py:52 apps/customer/serializers.py:111
+msgid "model.field.home-phone"
+msgstr "Home Phone"
 
 #: apps/gallery/apps.py:8
 msgid "apps.gallery.description"
@@ -228,7 +381,7 @@ msgstr "gallery photo"
 msgid "model.gallery-photo.name.plural"
 msgstr "gallery photos"
 
-#: apps/gallery/models.py:122
+#: apps/gallery/models.py:122 apps/shop/models.py:164
 msgid "model.field.image"
 msgstr "Image"
 
@@ -258,7 +411,7 @@ msgstr "languages"
 
 #: apps/language/models.py:38
 msgid "model.field.native_name"
-msgstr "Native name"
+msgstr "Native Name"
 
 #: apps/language/models.py:40
 msgid "model.hint.native_name"
@@ -278,7 +431,7 @@ msgstr "Code ISO"
 
 #: apps/language/models.py:51
 msgid "model.hint.code_iso_language"
-msgstr "Examples: en-us ou pt-br."
+msgstr "Examples: en-us or pt-br."
 
 #: apps/report/admin/customer_gender.py:23
 msgid "title.report.customer-gender-summary"
@@ -290,28 +443,57 @@ msgstr "Report"
 
 #: apps/report/models.py:9 apps/report/models.py:10
 msgid "model.customer-gender-summary.name"
-msgstr "Customer gender"
+msgstr "customer gender"
 
-#: apps/shop/admin.py:34
+#: apps/shop/admin.py:50
 msgid "button.copy"
 msgstr "Copy"
 
-#: apps/shop/admin.py:35
+#: apps/shop/admin.py:51
 msgid "button.close"
 msgstr "Close"
 
-#: apps/shop/admin.py:36
+#: apps/shop/admin.py:52
 msgid "button.open"
 msgstr "Open"
 
-#: apps/shop/admin.py:37
+#: apps/shop/admin.py:53
 msgid "modal.title.message"
 msgstr "Message"
 
-#: apps/shop/admin.py:75 apps/shop/models.py:122 apps/shop/models.py:377
-#: apps/shop/models.py:478
+#: apps/shop/admin.py:91 apps/shop/models.py:181 apps/shop/models.py:587
 msgid "model.field.description"
 msgstr "Description"
+
+#: apps/shop/admin.py:105 apps/shop/admin.py:291 apps/shop/admin.py:341
+#: apps/shop/admin.py:446 apps/shop/models.py:308 apps/shop/models.py:487
+#: apps/shop/models.py:580
+msgid "model.field.status"
+msgstr "Status"
+
+#: apps/shop/admin.py:172 apps/shop/admin.py:409
+msgid "admin.fieldsets.pricing"
+msgstr "PRICING"
+
+#: apps/shop/admin.py:183
+msgid "admin.fieldsets.frequency"
+msgstr "FREQUENCY"
+
+#: apps/shop/admin.py:192
+msgid "admin.fieldsets.features"
+msgstr "FEATURES"
+
+#: apps/shop/admin.py:201
+msgid "admin.fieldsets.expiration"
+msgstr "EXPIRATION"
+
+#: apps/shop/admin.py:211
+msgid "admin.fieldsets.description"
+msgstr "DESCRIPTION"
+
+#: apps/shop/admin.py:220
+msgid "admin.fieldsets.status"
+msgstr "STATUS"
 
 #: apps/shop/apps.py:8
 msgid "apps.shop.description"
@@ -321,260 +503,416 @@ msgstr "Shop"
 msgid "enum.shop-payment-gateway.stripe"
 msgstr "Stripe"
 
-#: apps/shop/enums.py:22
+#: apps/shop/enums.py:7
+msgid "enum.shop-payment-gateway.mercado-pago"
+msgstr "Mercado Pago"
+
+#: apps/shop/enums.py:23
 msgid "enum.shop-plan-frequency-type.day"
 msgstr "Day"
 
-#: apps/shop/enums.py:23
+#: apps/shop/enums.py:24
 msgid "enum.shop-plan-frequency-type.week"
 msgstr "Week"
 
-#: apps/shop/enums.py:24
+#: apps/shop/enums.py:25
 msgid "enum.shop-plan-frequency-type.month"
 msgstr "Month"
 
-#: apps/shop/enums.py:25
+#: apps/shop/enums.py:26
 msgid "enum.shop-plan-frequency-type.year"
 msgstr "Year"
 
-#: apps/shop/enums.py:26
+#: apps/shop/enums.py:27
 msgid "enum.shop-plan-frequency-type.quarter"
 msgstr "Quarter"
 
-#: apps/shop/enums.py:27
+#: apps/shop/enums.py:28
 msgid "enum.shop-plan-frequency-type.semi_annual"
-msgstr "Semi annual"
+msgstr "Semi Annual"
 
-#: apps/shop/enums.py:31
+#: apps/shop/enums.py:32
 msgid "enum.shop-subscription-status.initial"
 msgstr "Initial"
 
-#: apps/shop/enums.py:32
+#: apps/shop/enums.py:33
 msgid "enum.shop-subscription-status.analysis"
 msgstr "Analysis"
 
-#: apps/shop/enums.py:33
+#: apps/shop/enums.py:34
 msgid "enum.shop-subscription-status.active"
 msgstr "Active"
 
-#: apps/shop/enums.py:34
+#: apps/shop/enums.py:35
 msgid "enum.shop-subscription-status.suspended"
 msgstr "Suspended"
 
-#: apps/shop/enums.py:35
+#: apps/shop/enums.py:36
 msgid "enum.shop-subscription-status.canceled"
 msgstr "Canceled"
 
-#: apps/shop/enums.py:36
+#: apps/shop/enums.py:37
 msgid "enum.shop-subscription-status.failed"
 msgstr "Failed"
 
+#: apps/shop/enums.py:38
+msgid "enum.shop-subscription-status.charged-back"
+msgstr "Chargeback performed"
+
+#: apps/shop/enums.py:39
+msgid "enum.shop-subscription-status.rejected"
+msgstr "Rejected"
+
 #: apps/shop/enums.py:40
+msgid "enum.shop-subscription-status.refunded"
+msgstr "Refunded"
+
+#: apps/shop/enums.py:48
 msgid "enum.shop-object-type.general"
 msgstr "General"
 
-#: apps/shop/enums.py:41
+#: apps/shop/enums.py:49
 msgid "enum.shop-object-type.unknown"
 msgstr "Unknown"
 
-#: apps/shop/enums.py:42
+#: apps/shop/enums.py:50
 msgid "enum.shop-object-type.bonus"
 msgstr "Bonus"
 
-#: apps/shop/enums.py:43
+#: apps/shop/enums.py:51
+msgid "enum.shop-object-type.credit-purchase"
+msgstr "Credit Purchase"
+
+#: apps/shop/enums.py:52
 msgid "enum.shop-object-type.subscription"
 msgstr "Subscription"
+
+#: apps/shop/enums.py:53
+msgid "enum.shop-object-type.voucher"
+msgstr "Voucher"
+
+#: apps/shop/enums.py:61
+msgid "enum.shop-plan-type.credit-purchase"
+msgstr "Credit Purchase"
+
+#: apps/shop/enums.py:62
+msgid "enum.shop-plan-type.subscription"
+msgstr "Subscription"
+
+#: apps/shop/enums.py:63
+msgid "enum.shop-plan-type.voucher"
+msgstr "Voucher"
+
+#: apps/shop/enums.py:71
+msgid "enum.shop-credit-purchase-status.initial"
+msgstr "Initial"
+
+#: apps/shop/enums.py:72
+msgid "enum.shop-credit-purchase-status.analysis"
+msgstr "Under Analysis"
+
+#: apps/shop/enums.py:73
+msgid "enum.shop-credit-purchase-status.approved"
+msgstr "Approved"
+
+#: apps/shop/enums.py:74
+msgid "enum.shop-credit-purchase-status.canceled"
+msgstr "Canceled"
+
+#: apps/shop/enums.py:75
+msgid "enum.shop-credit-purchase-status.failed"
+msgstr "Failed"
+
+#: apps/shop/enums.py:76
+msgid "enum.shop-credit-purchase-status.charged-back"
+msgstr "Charged back"
+
+#: apps/shop/enums.py:77
+msgid "enum.shop-credit-purchase-status.rejected"
+msgstr "Rejected"
+
+#: apps/shop/enums.py:78
+msgid "enum.shop-credit-purchase-status.refunded"
+msgstr "Refunded"
+
+#: apps/shop/enums.py:86
+msgid "enum.shop-credit-type.paid"
+msgstr "Paid"
+
+#: apps/shop/enums.py:87
+msgid "enum.shop-credit-type.bonus"
+msgstr "Bonus"
 
 #: apps/shop/filters.py:8
 msgid "filter.token"
 msgstr "Token"
 
+#: apps/shop/forms.py:54
+msgid "checkout.description.subscription"
+msgstr "Subscription"
+
+#: apps/shop/forms.py:75
+msgid "checkout.description.credit-purchase"
+msgstr "Credit Purchase"
+
 #: apps/shop/gateways/stripe.py:55
 msgid "message.subscription-canceled"
-msgstr "Your subscription was canceled with success."
+msgstr "Your subscription was canceled successfully."
 
 #: apps/shop/gateways/stripe.py:58
 #, python-format
 msgid "message.error-cancel-subscription: %(error)s"
-msgstr "Error when cancel subscription: %(error)s"
+msgstr "Error when canceling subscription: %(error)s"
 
-#: apps/shop/models.py:19
+#: apps/shop/models.py:21
 msgid "model.shop-plan.name"
 msgstr "plan"
 
-#: apps/shop/models.py:20
+#: apps/shop/models.py:22
 msgid "model.shop-plan.name.plural"
 msgstr "plans"
 
-#: apps/shop/models.py:54
-msgid "model.field.payment-gateway"
-msgstr "Gateway"
+#: apps/shop/models.py:66
+msgid "model.field.plan-type"
+msgstr "Plan Type"
 
-#: apps/shop/models.py:62 apps/shop/models.py:211
+#: apps/shop/models.py:75
+msgid "model.field.payment-gateway"
+msgstr "Payment Gateway"
+
+#: apps/shop/models.py:83 apps/shop/models.py:301
 msgid "model.field.external-id"
 msgstr "External ID"
 
-#: apps/shop/models.py:69 apps/shop/models.py:467
+#: apps/shop/models.py:90 apps/shop/models.py:566
 msgid "model.field.currency"
 msgstr "Currency"
 
-#: apps/shop/models.py:76
-msgid "model.field.price"
-msgstr "Price"
+#: apps/shop/models.py:103
+msgid "model.field.credits"
+msgstr "Credits"
 
-#: apps/shop/models.py:88
+#: apps/shop/models.py:109
 msgid "model.field.frequency-type"
-msgstr "Frequency type"
+msgstr "Frequency Type"
 
-#: apps/shop/models.py:96
+#: apps/shop/models.py:117
 msgid "model.field.frequency-amount"
 msgstr "Frequency"
 
-#: apps/shop/models.py:103
+#: apps/shop/models.py:124
 msgid "model.field.sort-order"
 msgstr "Order"
 
-#: apps/shop/models.py:108
+#: apps/shop/models.py:129
 msgid "model.field.featured"
 msgstr "Featured"
 
-#: apps/shop/models.py:175
+#: apps/shop/models.py:139
+msgid "model.hint.plan-expire-at"
+msgstr "Specific date when the plan expires."
+
+#: apps/shop/models.py:143
+msgid "model.field.expire-after"
+msgstr "Expire After"
+
+#: apps/shop/models.py:146
+msgid "model.hint.plan-expire-after"
+msgstr "Number of seconds after which the plan expires."
+
+#: apps/shop/models.py:150
+msgid "model.field.bonus"
+msgstr "Bonus"
+
+#: apps/shop/models.py:153
+msgid "model.hint.plan-bonus"
+msgstr "Amount of bonus associated with the plan."
+
+#: apps/shop/models.py:157
+msgid "model.field.bonus-expire-after"
+msgstr "Bonus Expires After"
+
+#: apps/shop/models.py:160
+msgid "model.hint.plan-bonus-expire-after"
+msgstr "Number of seconds after which the bonus expires."
+
+#: apps/shop/models.py:241
+#, python-format
+msgid "plan.bonus.description: %(name)s %(bonus)s"
+msgstr "%(name)s (bonus of %(bonus)s)"
+
+#: apps/shop/models.py:255
 msgid "model.shop-subscription.name"
 msgstr "subscription"
 
-#: apps/shop/models.py:176
+#: apps/shop/models.py:256
 msgid "model.shop-subscription.name.plural"
 msgstr "subscriptions"
 
-#: apps/shop/models.py:204
+#: apps/shop/models.py:293 apps/shop/models.py:468
 msgid "model.field.token"
 msgstr "Token"
 
-#: apps/shop/models.py:218 apps/shop/models.py:460
-msgid "model.field.status"
-msgstr "Status"
+#: apps/shop/models.py:415
+msgid "model.credit-puchase.name"
+msgstr "credit purchase"
 
-#: apps/shop/models.py:227
-msgid "model.field.expire-at"
-msgstr "Expire at"
+#: apps/shop/models.py:416
+msgid "model.credit-purchase.name.plural"
+msgstr "credit purchases"
 
-#: apps/shop/models.py:325
-msgid "model.shop-credit-log.name"
-msgstr "credit"
+#: apps/shop/models.py:457
+msgid "model.field.customer-credit"
+msgstr "Customer Credit"
 
-#: apps/shop/models.py:326
-msgid "model.shop-credit-log.name.plural"
-msgstr "credits"
+#: apps/shop/models.py:482
+msgid "model.field.invoice-generated"
+msgstr "Invoice Generated"
 
-#: apps/shop/models.py:346 apps/shop/models.py:439
-msgid "model.field.customer"
-msgstr "Customer"
+#: apps/shop/models.py:514
+msgid "model.shop-event-log.name"
+msgstr "event log"
 
-#: apps/shop/models.py:351 apps/shop/models.py:444
-msgid "model.field.object-type"
-msgstr "Object type"
+#: apps/shop/models.py:515
+msgid "model.shop-event-log.name.plural"
+msgstr "event logs"
 
-#: apps/shop/models.py:360 apps/shop/models.py:453
-msgid "model.field.object-id"
-msgstr "Object ID"
-
-#: apps/shop/models.py:367 apps/shop/models.py:474
+#: apps/shop/models.py:573
 #: templates/admin/report/customer-gender-summary/pdf.html:13
 #: templates/admin/report/customer-gender-summary/view.html:21
 msgid "model.field.amount"
 msgstr "Amount"
 
-#: apps/shop/models.py:372
-msgid "model.field.is-refund"
-msgstr "Refund"
+#: apps/site/apps.py:8
+msgid "apps.site.description"
+msgstr "Site"
 
-#: apps/shop/models.py:409
-msgid "message.refund-in-list"
-msgstr "(refund)"
+#: apps/site/models.py:9
+msgid "model.site-profile.name"
+msgstr "site profile"
 
-#: apps/shop/models.py:417
-msgid "model.shop-event-log.name"
-msgstr "event"
+#: apps/site/models.py:10
+msgid "model.site-profile.name.plural"
+msgstr "site profiles"
 
-#: apps/shop/models.py:418
-msgid "model.shop-event-log.name.plural"
-msgstr "events"
-
-#: apps/user/admin.py:16
+#: apps/user/admin.py:14
 msgid "admin.fieldsets.personal-info"
 msgstr "PERSONAL INFO"
 
-#: apps/user/admin.py:22
+#: apps/user/admin.py:20
 msgid "admin.fieldsets.permissions"
 msgstr "PERMISSIONS"
 
-#: apps/user/admin.py:34
-msgid "admin.fieldsets.important-dates"
-msgstr "IMPORTANT DATES"
+#: apps/user/helpers.py:17
+msgid "error.email-already-used-by-other"
+msgstr "This e-mail is already in use."
 
-#: apps/user/models.py:58
+#: apps/user/helpers.py:30
+msgid "error.cpf-already-used-by-other"
+msgstr "This CPF is already in use."
+
+#: apps/user/helpers.py:46
+msgid "error.mobile-phone-already-used-by-other"
+msgstr "This mobile phone is already in use."
+
+#: apps/user/management/commands/createadmin.py:53 apps/user/models.py:27
+#: apps/user/models.py:65 apps/user/models.py:151
+msgid "error.at-least-one-login-provider-is-required"
+msgstr "At least one login method is required."
+
+#: apps/user/management/commands/createadmin.py:56
+msgid "error.password-required"
+msgstr "Password is required."
+
+#: apps/user/management/commands/createadmin.py:70
+msgid "message.superuser-created-successfully"
+msgstr "The super user was created successfully."
+
+#: apps/user/management/commands/createadmin.py:74
+#, python-brace-format
+msgid "error.superuser-creation-failed: {error}"
+msgstr "Super user creation failed: {error}"
+
+#: apps/user/models.py:52
+msgid "Superuser must have is_staff=True."
+msgstr "Superuser must have is_staff=True."
+
+#: apps/user/models.py:56
+msgid "Superuser must have is_superuser=True."
+msgstr "Superuser must have is_superuser=True."
+
+#: apps/user/models.py:74
 msgid "model.user.name"
 msgstr "user"
 
-#: apps/user/models.py:59
+#: apps/user/models.py:75
 msgid "model.user.name.plural"
 msgstr "users"
 
-#: apps/user/models.py:84 apps/user/models.py:91
-msgid "error.email-already-used-by-other"
-msgstr "This e-mail is already in use."
+#: apps/user/models.py:105
+msgid "model.field.admin-username"
+msgstr "E-mail"
 
 #: apps/web/forms/contact.py:32 templates/emails/site/contact.html:13
 msgid "model.field.message"
 msgstr "Message"
 
-#: apps/web/forms/contact.py:43
-msgid "model.field.captcha"
-msgstr "Captcha"
-
-#: apps/web/forms/contact.py:47 templates/emails/site/contact.html:5
+#: apps/web/forms/contact.py:48 templates/emails/site/contact.html:5
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
-#: apps/web/views/account.py:42 apps/web/views/account.py:62
+#: apps/web/views/account.py:42
+msgid "message.login-success"
+msgstr "Login successful."
+
+#: apps/web/views/account.py:49
+msgid "error.invalid-login-data"
+msgstr "Incorrect login data, please check and try again."
+
+#: apps/web/views/account.py:119 apps/web/views/account.py:139
 msgid "message.account-updated"
 msgstr "Your account was updated."
 
-#: apps/web/views/account.py:91
+#: apps/web/views/account.py:168
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Your account has active subscriptions. You need to cancel them before "
 "closing your account."
 
-#: apps/web/views/account.py:102
+#: apps/web/views/account.py:179
 msgid "message.account-deleted"
-msgstr "Your account and data was deleted."
+msgstr "Your account and data were deleted."
 
-#: apps/web/views/account.py:151
+#: apps/web/views/account.py:228
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
 
 #: apps/web/views/contact.py:15
 msgid "message.contact-message-sent"
-msgstr "Your contact message was sent with success."
+msgstr "Your contact message was sent successfully."
 
-#: apps/web/views/shop/shop_web.py:17
-msgid "message.shop-plan-not-found"
-msgstr "Plan not found."
-
-#: apps/web/views/shop/shop_web.py:32
-msgid "message.shop-invalid-action"
-msgstr "Invalid action."
-
-#: apps/web/views/shop/shop_web.py:43 apps/web/views/shop/shop_web.py:60
-msgid "message.shop-subscription-not-found"
-msgstr "Subscription not found."
-
-#: apps/web/views/shop/shop_web.py:77
+#: apps/web/views/shop/shop_web.py:33
 msgid "message.shop-already-subscriber"
 msgstr ""
 "You are already a subscriber. To make a new subscription, you must first "
 "cancel your current subscription."
+
+#: apps/web/views/shop/shop_web.py:60 apps/web/views/shop/shop_web.py:83
+msgid "message.shop-plan-not-found"
+msgstr "Plan not found."
+
+#: apps/web/views/shop/shop_web.py:105 apps/web/views/shop/shop_web.py:143
+msgid "message.shop-invalid-type"
+msgstr "Invalid action."
+
+#: apps/web/views/shop/shop_web.py:112
+msgid "message.shop-invalid-external-reference"
+msgstr "Invalid action."
+
+#: apps/web/views/shop/shop_web.py:164 apps/web/views/shop/shop_web.py:185
+#: apps/web/views/shop/shop_web.py:206
+msgid "message.shop-paid-item-not-found"
+msgstr "Paid item not found."
 
 #: pyaa/admin.py:9
 msgid "admin.name"
@@ -582,280 +920,46 @@ msgstr "PyAA"
 
 #: pyaa/admin.py:31
 msgid "admin.group.site-content"
-msgstr "Site Content"
+msgstr "Site content"
 
-#: pyaa/settings/dev.py:181
+#: pyaa/settings/dev.py:179
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings/dev.py:182
+#: pyaa/settings/dev.py:180
 msgid "language.pt-br"
 msgstr "Portuguese"
-
-#: templates/account/credits.html:12
-msgid "title.account-credits"
-msgstr "My Credits"
-
-#: templates/account/credits.html:23
-msgid "table.header.amount"
-msgstr "Amount"
-
-#: templates/account/credits.html:24
-msgid "table.header.description"
-msgstr "Description"
-
-#: templates/account/credits.html:25 templates/account/subscriptions.html:26
-msgid "table.header.created-at"
-msgstr "Created at"
-
-#: templates/account/credits.html:48 templates/account/subscriptions.html:82
-#: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
-#: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:42
-msgid "list-data.empty"
-msgstr "No data found."
-
-#: templates/account/credits.html:58 templates/account/subscriptions.html:92
-#: templates/pages/gallery/view.html:32
-msgid "button.back"
-msgstr "Back"
-
-#: templates/account/delete.html:11
-msgid "title.account-delete"
-msgstr "Delete Account"
-
-#: templates/account/delete.html:15
-msgid "subtitle.account-delete"
-msgstr ""
-"Are you sure you want to delete your account?<br>This will permanently "
-"delete your profile and any content you have generated."
-
-#: templates/account/delete.html:25
-msgid "button.account-delete-confirm"
-msgstr "Yes, delete my account"
-
-#: templates/account/delete.html:31 templates/account/update_avatar.html:28
-#: templates/account/update_profile.html:26
-msgid "button.cancel"
-msgstr "Cancel"
-
-#: templates/account/email/already_exists_message.html:11
-#, python-format
-msgid ""
-"You are receiving this email because you or someone else tried to signup for "
-"an\n"
-"account using email address:\n"
-"\n"
-"%(email)s\n"
-"\n"
-"However, an account using that email address already exists.  In case you "
-"have\n"
-"forgotten about this, please use the password forgotten procedure to "
-"recover\n"
-"your account:\n"
-"\n"
-"%(password_reset_url)s"
-msgstr ""
-
-#: templates/account/email/email_changed_message.html:9
-#, python-format
-msgid "Your email has been changed from %(from_email)s to %(to_email)s."
-msgstr ""
-
-#: templates/account/email/email_confirmation_message.html:14
-#, python-format
-msgid ""
-"You're receiving this email because user %(user_display)s has given your "
-"email address to register an account on %(site_domain)s."
-msgstr ""
-
-#: templates/account/email/email_confirmation_message.html:18
-msgid ""
-"Your email verification code is listed below. Please enter it in your open "
-"browser window."
-msgstr ""
-
-#: templates/account/email/email_confirmation_message.html:21
-#, python-format
-msgid "To confirm this is correct, go to %(activate_url)s"
-msgstr ""
-
-#: templates/account/email/email_deleted_message.html:9
-#, python-format
-msgid "Email address %(deleted_email)s has been removed from your account."
-msgstr ""
-
-#: templates/account/email/login_code_message.html:10
-msgid ""
-"Your sign-in code is listed below. Please enter it in your open browser "
-"window."
-msgstr ""
-
-#: templates/account/email/login_code_message.html:14
-#: templates/account/email/unknown_account_message.html:11
-msgid "This mail can be safely ignored if you did not initiate this action."
-msgstr ""
-
-#: templates/account/email/password_changed_message.html:9
-msgid "Your password has been changed."
-msgstr ""
-
-#: templates/account/email/password_reset_key_message.html:13
-msgid ""
-"You're receiving this email because you or someone else has requested a "
-"password reset for your user account.\n"
-"It can be safely ignored if you did not request a password reset. Click the "
-"link below to reset your password."
-msgstr ""
-
-#: templates/account/email/password_reset_key_message.html:18
-#, python-format
-msgid "In case you forgot, your username is %(username)s."
-msgstr ""
-
-#: templates/account/email/password_reset_message.html:9
-msgid "Your password has been reset."
-msgstr ""
-
-#: templates/account/email/password_set_message.html:9
-msgid "Your password has been set."
-msgstr ""
-
-#: templates/account/email/unknown_account_message.html:9
-#, python-format
-msgid ""
-"You are receiving this email because you, or someone else, tried to access "
-"an account with email %(email)s. However, we do not have any record of such "
-"an account in our database."
-msgstr ""
-
-#: templates/account/email/unknown_account_message.html:13
-msgid "If it was you, you can sign up for an account using the link below."
-msgstr ""
-
-#: templates/account/profile.html:17
-msgid "title.account-profile"
-msgstr "Profile"
-
-#: templates/account/profile.html:27
-msgid "subtitle.my-account"
-msgstr "My Account"
-
-#: templates/account/profile.html:31
-msgid "button.change-email"
-msgstr "Change e-mail"
-
-#: templates/account/profile.html:37
-msgid "button.update-profile"
-msgstr "Update profile"
-
-#: templates/account/profile.html:43
-msgid "button.update-avatar"
-msgstr "Update avatar"
-
-#: templates/account/profile.html:51
-#: templates/pages/shop/payment_success.html:79
-msgid "button.account-subscriptions"
-msgstr "My subscriptions"
-
-#: templates/account/profile.html:57
-msgid "button.account-credits"
-msgstr "My credits"
-
-#: templates/account/profile.html:63
-msgid "subtitle.danger-zone"
-msgstr "Danger Zone"
-
-#: templates/account/profile.html:67
-msgid "button.account-delete"
-msgstr "Delete account"
-
-#: templates/account/profile.html:73
-msgid "button.account-logout"
-msgstr "Logout"
-
-#: templates/account/subscriptions.html:12
-msgid "title.account-subscriptions"
-msgstr "My Subscriptions"
-
-#: templates/account/subscriptions.html:23
-msgid "table.header.plan-name"
-msgstr "Plan"
-
-#: templates/account/subscriptions.html:24
-msgid "table.header.status"
-msgstr "Status"
-
-#: templates/account/subscriptions.html:25
-msgid "table.header.expire-at"
-msgstr "Expire at"
-
-#: templates/account/subscriptions.html:27
-msgid "table.header.actions"
-msgstr "Actions"
-
-#: templates/account/subscriptions.html:51
-msgid "button.cancel-subscription"
-msgstr "Cancel subscription"
-
-#: templates/account/subscriptions.html:59
-msgid "model.title.cancel-subscription"
-msgstr "Caption subscription"
-
-#: templates/account/subscriptions.html:63
-msgid "message.subscription.cancel-confirmation"
-msgstr "Are you sure you want to cancel your subscription?"
-
-#: templates/account/subscriptions.html:66
-msgid "button.no"
-msgstr "No"
-
-#: templates/account/subscriptions.html:68
-msgid "button.yes-cancel"
-msgstr "Yes, cancel"
-
-#: templates/account/update_avatar.html:11
-msgid "title.account-update-avatar"
-msgstr "Update Avatar"
-
-#: templates/account/update_avatar.html:24
-#: templates/account/update_profile.html:22
-msgid "button.update"
-msgstr "Update"
-
-#: templates/account/update_profile.html:11
-msgid "title.account-update-profile"
-msgstr "Update Profile"
 
 #: templates/admin/app_list.html:9
 #, python-format
 msgid "Models in the %(name)s application"
-msgstr ""
+msgstr "Models in the %(name)s application"
 
 #: templates/admin/app_list.html:26
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: templates/admin/app_list.html:33
 msgid "View"
-msgstr ""
+msgstr "View"
 
 #: templates/admin/app_list.html:35
 msgid "Change"
-msgstr ""
+msgstr "Change"
 
 #: templates/admin/app_list.html:47
-msgid "You don’t have permission to view or edit anything."
-msgstr ""
+msgid "You don't have permission to view or edit anything."
+msgstr "You don't have permission to view or edit anything."
 
 #: templates/admin/login.html:4
 msgid "Error:"
-msgstr ""
+msgstr "Error:"
 
 #: templates/admin/login.html:44
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Please correct the error below."
+msgstr[1] "Please correct the errors below."
 
 #: templates/admin/login.html:60
 #, python-format
@@ -863,14 +967,16 @@ msgid ""
 "You are authenticated as %(username)s, but are not authorized to access this "
 "page. Would you like to login to a different account?"
 msgstr ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
 
 #: templates/admin/login.html:85
 msgid "Forgotten your password or username?"
-msgstr ""
+msgstr "Forgotten your password or username?"
 
 #: templates/admin/login.html:89
 msgid "Log in"
-msgstr ""
+msgstr "Log in"
 
 #: templates/admin/report/base/base_report.html:12
 msgid "button.export-to-pdf"
@@ -881,7 +987,7 @@ msgstr "Export to PDF"
 #: templates/admin/report/customer-gender-summary/view.html:45
 #: templates/admin/report/customer-gender-summary/view.html:49
 msgid "title.report.chart"
-msgstr "Chart"
+msgstr "Report Chart"
 
 #: templates/admin/report/base/base_report_pdf.html:29
 #: templates/admin/report/customer-gender-summary/view.html:54
@@ -905,44 +1011,278 @@ msgstr "You are receiving this email because you interacted with our website."
 msgid "email.contact.title"
 msgstr "You have received a new message through the contact form on website."
 
-#: templates/pages/contact/index.html:9
-msgid "title.contact"
-msgstr "Contact Us"
+#: templates/pages/account/credit_purchases.html:13
+msgid "title.account-credit-purchases"
+msgstr "My Credit Purchases"
 
+#: templates/pages/account/credit_purchases.html:40
+#: templates/pages/account/subscriptions.html:20
+msgid "table.header.status"
+msgstr "Actions"
+
+#: templates/pages/account/credit_purchases.html:51
+#: templates/pages/account/credits.html:59
+#: templates/pages/account/subscriptions.html:74
+#: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
+#: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:51
+msgid "list-data.empty"
+msgstr "No data found."
+
+#: templates/pages/account/credit_purchases.html:58
+#: templates/pages/account/credits.html:66
+#: templates/pages/account/subscriptions.html:84
+#: templates/pages/gallery/view.html:32
+msgid "button.back"
+msgstr "Back"
+
+#: templates/pages/account/credits.html:12
+msgid "title.account-credits"
+msgstr "My credits"
+
+#: templates/pages/account/credits.html:36
+msgid "table.header.validity"
+msgstr "Validity"
+
+#: templates/pages/account/credits.html:42
+msgid "table.header.amount-current-and-initial"
+msgstr "Current and Initial Amount"
+
+#: templates/pages/account/delete.html:11
+msgid "title.account-delete"
+msgstr "Delete account"
+
+#: templates/pages/account/delete.html:15
+msgid "subtitle.account-delete"
+msgstr ""
+"Are you sure you want to delete your account?<br>This will permanently "
+"delete your profile and any content you have generated."
+
+#: templates/pages/account/delete.html:25
+msgid "button.account-delete-confirm"
+msgstr "Yes, delete my account"
+
+#: templates/pages/account/delete.html:31
+#: templates/pages/account/update_avatar.html:30
+#: templates/pages/account/update_profile.html:28
+msgid "button.cancel"
+msgstr "Cancel"
+
+#: templates/pages/account/login.html:12
+msgid "title.account-login"
+msgstr "Login"
+
+#: templates/pages/account/login.html:13
+msgid "message.account-login.welcome-back"
+msgstr "Welcome back! We missed you!"
+
+#: templates/pages/account/login.html:28 templates/pages/account/signup.html:28
 #: templates/pages/contact/index.html:21
 msgid "button.send"
 msgstr "Send"
+
+#: templates/pages/account/login.html:33
+msgid "message.account-login.no-account"
+msgstr "Don't have an account?"
+
+#: templates/pages/account/login.html:37
+msgid "message.account-login.signup"
+msgstr "Sign Up"
+
+#: templates/pages/account/logout_success.html:14
+msgid "title.account-logout-success"
+msgstr "You've Signed Out"
+
+#: templates/pages/account/logout_success.html:24
+msgid "subtitle.account-logout-success"
+msgstr ""
+"You have successfully logged out.<br><br>We'll miss you around here!"
+"<br><br>When you're ready to return, we'll be here with open arms waiting "
+"for you.<br><br>See you soon!"
+
+#: templates/pages/account/logout_success.html:28
+msgid "button.login-my-account"
+msgstr "Login to My Account"
+
+#: templates/pages/account/profile.html:25
+msgid "title.account-profile"
+msgstr "Profile"
+
+#: templates/pages/account/profile.html:26
+msgid "subtitle.my-account"
+msgstr "My Account"
+
+#: templates/pages/account/profile.html:31
+#: templates/partials/customer_data.html:11
+msgid "customer.credits"
+msgstr "Credits"
+
+#: templates/pages/account/profile.html:33
+#: templates/partials/customer_data.html:13
+msgid "customer.no-credits"
+msgstr "No credits"
+
+#: templates/pages/account/profile.html:50
+msgid "button.account-credits"
+msgstr "My credits"
+
+#: templates/pages/account/profile.html:58
+#: templates/pages/shop/payment/error.html:55
+#: templates/pages/shop/payment/pending.html:55
+#: templates/pages/shop/payment/success.html:55
+msgid "button.account-credit-purchases"
+msgstr "My Credit Purchases"
+
+#: templates/pages/account/profile.html:64
+msgid "subtitle.account-settings"
+msgstr "My Account"
+
+#: templates/pages/account/profile.html:72
+msgid "button.update-profile"
+msgstr "Update profile"
+
+#: templates/pages/account/profile.html:82
+msgid "button.update-avatar"
+msgstr "Update avatar"
+
+#: templates/pages/account/profile.html:89
+msgid "subtitle.danger-zone"
+msgstr "Danger Zone"
+
+#: templates/pages/account/profile.html:97
+msgid "button.account-delete"
+msgstr "Delete account"
+
+#: templates/pages/account/profile.html:107
+msgid "button.account-logout"
+msgstr "Logout"
+
+#: templates/pages/account/signup.html:12
+msgid "title.account-signup"
+msgstr "Signup"
+
+#: templates/pages/account/signup.html:13
+msgid "message.account-signup.create-account"
+msgstr "Create an account to continue!"
+
+#: templates/pages/account/signup.html:33
+msgid "message.account-signup.has-account"
+msgstr "Already have an account?"
+
+#: templates/pages/account/signup.html:35
+msgid "message.account-signup.login"
+msgstr "Log in"
+
+#: templates/pages/account/signup_success.html:14
+msgid "title.account-signup-success"
+msgstr "Registration Completed Successfully!"
+
+#: templates/pages/account/signup_success.html:24
+msgid "subtitle.account-signup-success"
+msgstr ""
+"Welcome to our platform! Your account has been successfully created and "
+"we're happy to have you with us."
+
+#: templates/pages/account/signup_success.html:28
+msgid "button.profile"
+msgstr "My account"
+
+#: templates/pages/account/signup_success.html:35
+msgid "button.continue-next-url"
+msgstr "Continue"
+
+#: templates/pages/account/subscriptions.html:12
+msgid "title.account-subscriptions"
+msgstr "My subscriptions"
+
+#: templates/pages/account/subscriptions.html:19
+msgid "table.header.plan-name"
+msgstr "Plan"
+
+#: templates/pages/account/subscriptions.html:21
+msgid "table.header.expire-at"
+msgstr "Expires on"
+
+#: templates/pages/account/subscriptions.html:22
+msgid "table.header.created-at"
+msgstr "Created on"
+
+#: templates/pages/account/subscriptions.html:23
+msgid "table.header.actions"
+msgstr "Actions"
+
+#: templates/pages/account/subscriptions.html:43
+msgid "button.cancel-subscription"
+msgstr "Cancel subscription"
+
+#: templates/pages/account/subscriptions.html:51
+msgid "model.title.cancel-subscription"
+msgstr "Cancel subscription"
+
+#: templates/pages/account/subscriptions.html:55
+msgid "message.subscription.cancel-confirmation"
+msgstr "Are you sure you want to cancel your subscription?"
+
+#: templates/pages/account/subscriptions.html:58
+msgid "button.no"
+msgstr "No"
+
+#: templates/pages/account/subscriptions.html:60
+msgid "button.yes-cancel"
+msgstr "Yes, cancel"
+
+#: templates/pages/account/update_avatar.html:11
+msgid "title.account-update-avatar"
+msgstr "Update avatar"
+
+#: templates/pages/account/update_avatar.html:24
+#: templates/pages/account/update_profile.html:22
+msgid "button.update"
+msgstr "Update"
+
+#: templates/pages/account/update_profile.html:11
+msgid "title.account-update-profile"
+msgstr "Update profile"
+
+#: templates/pages/contact/index.html:9
+msgid "title.contact"
+msgstr "Contact Us"
 
 #: templates/pages/content/index.html:23
 msgid "button.continue-reading"
 msgstr "Continue reading"
 
 #: templates/pages/content/index.html:36 templates/pages/gallery/index.html:29
+#: templates/partials/paginator.html:4
 msgid "pagination.navigation"
 msgstr "Page Navigation"
 
 #: templates/pages/content/index.html:40 templates/pages/content/index.html:41
 #: templates/pages/gallery/index.html:33 templates/pages/gallery/index.html:34
+#: templates/partials/paginator.html:8 templates/partials/paginator.html:9
 msgid "pagination.first"
 msgstr "first"
 
 #: templates/pages/content/index.html:46 templates/pages/content/index.html:47
 #: templates/pages/gallery/index.html:39 templates/pages/gallery/index.html:40
+#: templates/partials/paginator.html:14 templates/partials/paginator.html:15
 msgid "pagination.previous"
 msgstr "previous"
 
 #: templates/pages/content/index.html:54 templates/pages/gallery/index.html:47
+#: templates/partials/paginator.html:22
 #, python-format
 msgid "Page %(number)s of %(num_pages)s"
 msgstr "Page %(number)s of %(num_pages)s"
 
 #: templates/pages/content/index.html:61 templates/pages/content/index.html:62
 #: templates/pages/gallery/index.html:54 templates/pages/gallery/index.html:55
+#: templates/partials/paginator.html:29 templates/partials/paginator.html:30
 msgid "pagination.next"
 msgstr "next"
 
 #: templates/pages/content/index.html:67 templates/pages/content/index.html:68
 #: templates/pages/gallery/index.html:60 templates/pages/gallery/index.html:61
+#: templates/partials/paginator.html:35 templates/partials/paginator.html:36
 msgid "pagination.last"
 msgstr "last"
 
@@ -970,104 +1310,95 @@ msgstr "Logout"
 msgid "menu.login"
 msgstr "Sign In"
 
-#: templates/pages/shop/payment_failure.html:19
-msgid "title.shop-payment-failure"
-msgstr "Payment Not Completed"
+#: templates/pages/shop/checkout/index.html:55
+msgid "subtitle.checkout-details"
+msgstr "Details"
 
-#: templates/pages/shop/payment_failure.html:23
-msgid "message.shop-payment-failure-1"
-msgstr ""
-"It seems your payment was not completed.<br />You can try again or choose "
-"another payment method."
+#: templates/pages/shop/checkout/index.html:60
+msgid "checkout.price"
+msgstr "Sale price"
 
-#: templates/pages/shop/payment_failure.html:27
-msgid "message.shop-payment-failure-2"
-msgstr ""
-"If you canceled the payment or navigated back, no action is needed.<br /"
-">Feel free to resume your order whenever you're ready."
+#: templates/pages/shop/checkout/index.html:69
+msgid "checkout.discount"
+msgstr "Discount"
 
-#: templates/pages/shop/payment_failure.html:31
-#: templates/pages/shop/payment_success.html:69
-msgid "message.shop-subscription-code"
-msgstr "Subscription code:"
+#: templates/pages/shop/checkout/index.html:78
+msgid "checkout.shipping"
+msgstr "Shipping"
 
-#: templates/pages/shop/payment_failure.html:37
-#: templates/pages/shop/payment_success.html:75
-msgid "message.shop-subscription-date"
-msgstr "Subscription date:"
+#: templates/pages/shop/checkout/index.html:87
+msgid "checkout.delivery"
+msgstr "Delivery time (estimated)"
 
-#: templates/pages/shop/payment_failure.html:41
-msgid "button.profile"
-msgstr "Minha conta"
+#: templates/pages/shop/checkout/index.html:95
+msgid "checkout.total-price"
+msgstr "Total price"
 
-#: templates/pages/shop/payment_success.html:38
-msgid "title.shop.subscription.success.initial"
-msgstr "Pending Subscription"
+#: templates/pages/shop/checkout/index.html:109
+msgid "subtitle.shipping-address"
+msgstr "Shipping Address"
 
-#: templates/pages/shop/payment_success.html:40
-msgid "title.shop.subscription.success.failed"
-msgstr "Subscription Failed"
+#: templates/pages/shop/checkout/index.html:122
+msgid "subtitle.options"
+msgstr "Options"
 
-#: templates/pages/shop/payment_success.html:42
-msgid "title.shop.subscription.success.canceled"
-msgstr "Subscription Canceled"
+#: templates/pages/shop/checkout/index.html:137
+msgid "button.pay"
+msgstr "Make Payment"
 
-#: templates/pages/shop/payment_success.html:44
-msgid "title.shop.subscription.success.suspended"
-msgstr "Subscription Suspended"
+#: templates/pages/shop/payment/error.html:11
+msgid "message.shop-payment-error.title"
+msgstr "Payment Failed"
 
-#: templates/pages/shop/payment_success.html:46
-msgid "title.shop.subscription.success.analysis"
-msgstr "Subscription Under Review"
+#: templates/pages/shop/payment/error.html:15
+msgid "message.shop-payment-error.subtitle"
+msgstr "Your payment was not completed or an error occurred."
 
-#: templates/pages/shop/payment_success.html:48
-msgid "title.shop.subscription.success.active"
-msgstr "Thank you for your subscription!"
+#: templates/pages/shop/payment/error.html:26
+#: templates/pages/shop/payment/pending.html:26
+#: templates/pages/shop/payment/success.html:26
+msgid "message.shop-payment-date"
+msgstr "Payment date:"
 
-#: templates/pages/shop/payment_success.html:54
-msgid "message.shop.subscription.success.initial"
-msgstr ""
-"Your subscription is being processed.<br />We will notify you as soon as it "
-"is active."
+#: templates/pages/shop/payment/error.html:34
+#: templates/pages/shop/payment/pending.html:34
+#: templates/pages/shop/payment/success.html:34
+msgid "message.shop-payment-status"
+msgstr "Payment status:"
 
-#: templates/pages/shop/payment_success.html:56
-msgid "message.shop.subscription.success.failed"
-msgstr "There was a problem processing your subscription."
+#: templates/pages/shop/payment/error.html:47
+#: templates/pages/shop/payment/pending.html:47
+#: templates/pages/shop/payment/success.html:47
+msgid "button.account-subscriptions"
+msgstr "My subscriptions"
 
-#: templates/pages/shop/payment_success.html:58
-msgid "message.shop.subscription.success.canceled"
-msgstr "Your subscription has been canceled."
+#: templates/pages/shop/payment/pending.html:11
+msgid "message.shop-payment-pending.title"
+msgstr "Payment Pending"
 
-#: templates/pages/shop/payment_success.html:60
-msgid "message.shop.subscription.success.suspended"
-msgstr "Your subscription is currently suspended."
+#: templates/pages/shop/payment/pending.html:15
+msgid "message.shop-payment-pending.subtitle"
+msgstr "Your payment is being processed."
 
-#: templates/pages/shop/payment_success.html:62
-msgid "message.shop.subscription.success.analysis"
-msgstr "Analysis"
+#: templates/pages/shop/payment/success.html:11
+msgid "message.shop-payment-success.title"
+msgstr "Payment Completed"
 
-#: templates/pages/shop/payment_success.html:64
-msgid "message.shop.subscription.success.active"
-msgstr ""
-"Congratulations! Your subscription is active and you can now enjoy all of "
-"our services."
+#: templates/pages/shop/payment/success.html:15
+msgid "message.shop-payment-success.subtitle"
+msgstr "Your payment was processed successfully."
 
 #: templates/pages/shop/plans.html:11
 msgid "title.shop.plans"
 msgstr "Pricing"
 
-#: templates/pages/shop/plans.html:32
-msgid "button.shop-select-plan"
-msgstr "Choose plan"
+#: templates/pages/shop/plans.html:36
+msgid "button.shop-select-subscription-plan"
+msgstr "Choose Plan"
 
-#: templates/partials/customer_data.html:9
-#, python-format
-msgid "Credits: %(credits)s"
-msgstr "Your credits: %(credits)s"
-
-#: templates/partials/customer_data.html:11
-msgid "customer.no-credits"
-msgstr "No credits"
+#: templates/pages/shop/plans.html:40
+msgid "button.shop-select-credit-plan"
+msgstr "Choose Plan"
 
 #: templates/partials/footer.html:15
 msgid "site.privacy"
@@ -1127,3 +1458,7 @@ msgstr "Sign Up"
 #: templates/partials/header.html:72
 msgid "menu.contact"
 msgstr "Contact"
+
+#, python-format
+#~ msgid "Credits: %(credits)s"
+#~ msgstr "Your credits: %(credits)s"

@@ -1,0 +1,88 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+{% load shop %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+{% element page_title %}
+    {% translate "title.account-subscriptions" %}
+{% endelement %}
+
+<div class="table-responsive subscriptions-list">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{% translate "table.header.plan-name" %}</th>
+                <th>{% translate "table.header.status" %}</th>
+                <th>{% translate "table.header.expire-at" %}</th>
+                <th>{% translate "table.header.created-at" %}</th>
+                <th>{% translate "table.header.actions" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if subscriptions %}
+                {% for subscription in subscriptions %}
+                    <tr class="align-middle">
+                        <td>{{ subscription.plan.get_description }}</td>
+                        <td>
+                            <span class="badge rounded-pill text-lowercase" style="background-color: {{ subscription.status|status_bg_color_hex }}; color: {{ subscription.status|status_text_color_hex }};">
+                                {{ subscription.status|format_subscription_status }}
+                            </span>
+                        </td>
+                        <td>{{ subscription.expire_at }}</td>
+                        <td>{{ subscription.created_at }}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                {% if subscription.can_be_canceled %}
+                                    <!-- cancel button -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal-{{ subscription.token }}">
+                                        {% translate "button.cancel-subscription" %}
+                                    </button>
+
+                                    <!-- confirmation modal -->
+                                    <div class="modal fade" id="cancelModal-{{ subscription.token }}" tabindex="-1" aria-labelledby="cancelModalLabel-{{ subscription.token }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="cancelModalLabel-{{ subscription.token }}">{% translate "model.title.cancel-subscription" %}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {% translate "message.subscription.cancel-confirmation" %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% translate "button.no" %}</button>
+                                                    <a href="{% url 'account_subscription_cancel' subscription.token %}" class="btn btn-danger">
+                                                        {% translate "button.yes-cancel" %}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">
+                        {% translate "list-data.empty" %}
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="my-5 text-center">
+    {% element button href=url_account_profile %}
+        {% translate "button.back" %}
+    {% endelement %}
+</div>
+
+{% endblock content %}
