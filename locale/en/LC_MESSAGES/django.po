@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-29 02:57+0000\n"
+"POT-Creation-Date: 2025-03-30 18:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgid "model.content-category.name.plural"
 msgstr "content categories"
 
 #: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:58 apps/customer/models.py:273
+#: apps/customer/models.py:58 apps/customer/models.py:271
 #: apps/gallery/models.py:31 apps/language/models.py:27 apps/shop/models.py:35
 #: apps/shop/models.py:268 apps/shop/models.py:434 apps/shop/models.py:528
 #: apps/user/models.py:90
@@ -58,7 +58,7 @@ msgid "model.field.tag.help"
 msgstr "Leave empty for auto generation."
 
 #: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:143 apps/customer/models.py:349
+#: apps/customer/models.py:143 apps/customer/models.py:347
 #: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:187
 #: apps/shop/models.py:323 apps/shop/models.py:494 apps/shop/models.py:593
 #: apps/site/models.py:30
@@ -66,7 +66,7 @@ msgid "model.field.created-at"
 msgstr "Created At"
 
 #: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:148 apps/customer/models.py:354
+#: apps/customer/models.py:148 apps/customer/models.py:352
 #: apps/gallery/models.py:80 apps/language/models.py:61 apps/shop/models.py:192
 #: apps/shop/models.py:328 apps/shop/models.py:499 apps/site/models.py:35
 msgid "model.field.updated-at"
@@ -153,7 +153,7 @@ msgstr "PERSONAL DATA"
 msgid "admin.fieldsets.details"
 msgstr "DETAILS"
 
-#: apps/customer/admin.py:274 apps/customer/models.py:318
+#: apps/customer/admin.py:274 apps/customer/models.py:316
 msgid "model.field.credit-type"
 msgstr "Credit Type"
 
@@ -259,7 +259,7 @@ msgstr "customers"
 msgid "model.field.user"
 msgstr "User"
 
-#: apps/customer/models.py:74 apps/customer/models.py:282
+#: apps/customer/models.py:74 apps/customer/models.py:280
 #: apps/shop/models.py:44 apps/shop/models.py:277 apps/shop/models.py:443
 #: apps/shop/models.py:537 apps/site/models.py:19 apps/user/models.py:99
 msgid "model.field.site"
@@ -295,60 +295,60 @@ msgstr "Customer #{id}"
 msgid "error.site-id-required"
 msgstr "The site code is required."
 
-#: apps/customer/models.py:246
+#: apps/customer/models.py:244
 msgid "model.customer-credit.name"
 msgstr "customer credit"
 
-#: apps/customer/models.py:247
+#: apps/customer/models.py:245
 msgid "model.customer-credit.name.plural"
 msgstr "customer credits"
 
-#: apps/customer/models.py:290 apps/shop/models.py:451 apps/shop/models.py:545
+#: apps/customer/models.py:288 apps/shop/models.py:451 apps/shop/models.py:545
 msgid "model.field.customer"
 msgstr "Customer"
 
-#: apps/customer/models.py:295 apps/shop/models.py:464
+#: apps/customer/models.py:293 apps/shop/models.py:464
 msgid "model.field.plan"
 msgstr "Plan"
 
-#: apps/customer/models.py:302 apps/shop/models.py:550
+#: apps/customer/models.py:300 apps/shop/models.py:550
 msgid "model.field.object-type"
 msgstr "Object Type"
 
-#: apps/customer/models.py:311 apps/shop/models.py:559
+#: apps/customer/models.py:309 apps/shop/models.py:559
 msgid "model.field.object-id"
 msgstr "Object ID"
 
-#: apps/customer/models.py:327
+#: apps/customer/models.py:325
 msgid "model.field.initial-amount"
 msgstr "Initial Amount"
 
-#: apps/customer/models.py:332
+#: apps/customer/models.py:330
 msgid "model.field.current-amount"
 msgstr "Current Amount"
 
-#: apps/customer/models.py:337 apps/shop/models.py:97 apps/shop/models.py:476
+#: apps/customer/models.py:335 apps/shop/models.py:97 apps/shop/models.py:476
 msgid "model.field.price"
 msgstr "Price"
 
-#: apps/customer/models.py:343 apps/shop/models.py:136 apps/shop/models.py:317
+#: apps/customer/models.py:341 apps/shop/models.py:136 apps/shop/models.py:317
 msgid "model.field.expire-at"
 msgstr "Expire At"
 
-#: apps/customer/models.py:363
+#: apps/customer/models.py:361
 msgid "credit-type.bonus.description"
 msgstr "Bonus"
 
-#: apps/customer/models.py:430
+#: apps/customer/models.py:428
 msgid "plan.validity.no-expiration"
 msgstr "Does not expire"
 
-#: apps/customer/models.py:436
+#: apps/customer/models.py:434
 #, python-format
 msgid "plan.validity.expired: %(expire-at)s"
 msgstr "%(expire-at)s (Expired)"
 
-#: apps/customer/models.py:440
+#: apps/customer/models.py:438
 #, python-format
 msgid "plan.validity.not-expired: %(expire-at)s"
 msgstr "%(expire-at)s"
@@ -1016,13 +1016,13 @@ msgid "title.account-credit-purchases"
 msgstr "My Credit Purchases"
 
 #: templates/pages/account/credit_purchases.html:40
-#: templates/pages/account/subscriptions.html:20
+#: templates/pages/account/subscriptions.html:21
 msgid "table.header.status"
-msgstr "Actions"
+msgstr "Status"
 
 #: templates/pages/account/credit_purchases.html:51
 #: templates/pages/account/credits.html:59
-#: templates/pages/account/subscriptions.html:74
+#: templates/pages/account/subscriptions.html:75
 #: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
 #: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:51
 msgid "list-data.empty"
@@ -1030,7 +1030,7 @@ msgstr "No data found."
 
 #: templates/pages/account/credit_purchases.html:58
 #: templates/pages/account/credits.html:66
-#: templates/pages/account/subscriptions.html:84
+#: templates/pages/account/subscriptions.html:85
 #: templates/pages/gallery/view.html:32
 msgid "button.back"
 msgstr "Back"
@@ -1132,27 +1132,34 @@ msgstr "My credits"
 msgid "button.account-credit-purchases"
 msgstr "My Credit Purchases"
 
-#: templates/pages/account/profile.html:64
+#: templates/pages/account/profile.html:70
+#: templates/pages/shop/payment/error.html:47
+#: templates/pages/shop/payment/pending.html:47
+#: templates/pages/shop/payment/success.html:47
+msgid "button.account-subscriptions"
+msgstr "My subscriptions"
+
+#: templates/pages/account/profile.html:76
 msgid "subtitle.account-settings"
 msgstr "My Account"
 
-#: templates/pages/account/profile.html:72
+#: templates/pages/account/profile.html:84
 msgid "button.update-profile"
 msgstr "Update profile"
 
-#: templates/pages/account/profile.html:82
+#: templates/pages/account/profile.html:94
 msgid "button.update-avatar"
 msgstr "Update avatar"
 
-#: templates/pages/account/profile.html:89
+#: templates/pages/account/profile.html:101
 msgid "subtitle.danger-zone"
 msgstr "Danger Zone"
 
-#: templates/pages/account/profile.html:97
+#: templates/pages/account/profile.html:109
 msgid "button.account-delete"
 msgstr "Delete account"
 
-#: templates/pages/account/profile.html:107
+#: templates/pages/account/profile.html:119
 msgid "button.account-logout"
 msgstr "Logout"
 
@@ -1190,43 +1197,43 @@ msgstr "My account"
 msgid "button.continue-next-url"
 msgstr "Continue"
 
-#: templates/pages/account/subscriptions.html:12
+#: templates/pages/account/subscriptions.html:13
 msgid "title.account-subscriptions"
 msgstr "My subscriptions"
 
-#: templates/pages/account/subscriptions.html:19
+#: templates/pages/account/subscriptions.html:20
 msgid "table.header.plan-name"
 msgstr "Plan"
 
-#: templates/pages/account/subscriptions.html:21
+#: templates/pages/account/subscriptions.html:22
 msgid "table.header.expire-at"
 msgstr "Expires on"
 
-#: templates/pages/account/subscriptions.html:22
+#: templates/pages/account/subscriptions.html:23
 msgid "table.header.created-at"
 msgstr "Created on"
 
-#: templates/pages/account/subscriptions.html:23
+#: templates/pages/account/subscriptions.html:24
 msgid "table.header.actions"
 msgstr "Actions"
 
-#: templates/pages/account/subscriptions.html:43
+#: templates/pages/account/subscriptions.html:44
 msgid "button.cancel-subscription"
 msgstr "Cancel subscription"
 
-#: templates/pages/account/subscriptions.html:51
+#: templates/pages/account/subscriptions.html:52
 msgid "model.title.cancel-subscription"
 msgstr "Cancel subscription"
 
-#: templates/pages/account/subscriptions.html:55
+#: templates/pages/account/subscriptions.html:56
 msgid "message.subscription.cancel-confirmation"
 msgstr "Are you sure you want to cancel your subscription?"
 
-#: templates/pages/account/subscriptions.html:58
+#: templates/pages/account/subscriptions.html:59
 msgid "button.no"
 msgstr "No"
 
-#: templates/pages/account/subscriptions.html:60
+#: templates/pages/account/subscriptions.html:61
 msgid "button.yes-cancel"
 msgstr "Yes, cancel"
 
@@ -1366,12 +1373,6 @@ msgstr "Payment date:"
 msgid "message.shop-payment-status"
 msgstr "Payment status:"
 
-#: templates/pages/shop/payment/error.html:47
-#: templates/pages/shop/payment/pending.html:47
-#: templates/pages/shop/payment/success.html:47
-msgid "button.account-subscriptions"
-msgstr "My subscriptions"
-
 #: templates/pages/shop/payment/pending.html:11
 msgid "message.shop-payment-pending.title"
 msgstr "Payment Pending"
@@ -1458,7 +1459,3 @@ msgstr "Sign Up"
 #: templates/partials/header.html:72
 msgid "menu.contact"
 msgstr "Contact"
-
-#, python-format
-#~ msgid "Credits: %(credits)s"
-#~ msgstr "Your credits: %(credits)s"

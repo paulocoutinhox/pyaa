@@ -3,7 +3,7 @@
 
 // bootstrap variables
 @import "../vendor/bootstrap/scss/functions";
-@import "../vendor/bootswatch/litera/_variables.scss";
+@import "../vendor/bootswatch/flatly/_variables.scss";
 @import "../vendor/bootstrap/scss/variables";
 @import "../vendor/bootstrap/scss/mixins";
 
@@ -11,7 +11,7 @@
 @import "../vendor/bootstrap/scss/bootstrap";
 
 // bootswatch customizations
-@import "../vendor/bootswatch/litera/_bootswatch.scss";
+@import "../vendor/bootswatch/flatly/_bootswatch.scss";
 
 // custom
 @import "custom";
