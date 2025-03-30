@@ -27,17 +27,17 @@
 
         <!-- Page Title -->
         <h1 class="text-center mb-4">
-            {{ checkout.description }}
+            {{ checkout.title }}
         </h1>
 
         <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
             {% csrf_token %}
 
-            <!-- Product Name and Image -->
+            <!-- Name and Image -->
             <div class="row mb-5">
                 <div class="col-12 text-center">
                     <h4 class="mb-3">
-                        {{ checkout.title }}
+                        {{ checkout.description }}
                     </h4>
 
                     {% if checkout.photo_url %}
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <!-- Product Details -->
+            <!-- Details -->
             <div class="row mb-4">
                 <div class="col-12">
                     <h5 class="mb-3 fw-bold">
@@ -114,7 +114,7 @@
                 </div>
             {% endif %}
 
-            <!-- Product Options -->
+            <!-- Options -->
             {% if checkout.options and checkout.options|length > 0 %}
             <div class="row mb-4">
                 <div class="col-12">
@@ -133,7 +133,7 @@
             <!-- Pay Button -->
             <div class="row">
                 <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <button type="submit" class="btn btn-primary w-100">
                         {% trans 'button.pay' %}
                     </button>
                 </div>

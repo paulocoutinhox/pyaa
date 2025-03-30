@@ -1,19 +1,17 @@
-// import bootstrap and bootswatch
-@import "../vendor/bootswatch/cosmo/variables";
-@import "../vendor/bootswatch/cosmo/bootstrap";
-@import "../vendor/bootswatch/cosmo/bootswatch";
+// bootstrap icons
 @import "../vendor/bootstrap-icons/bootstrap-icons.min";
 
-// custom variables for bootswatch
-/*
-:root, [data-bs-theme=light] {
-    --bs-primary: #000000;
-}
-*/
+// bootstrap variables
+@import "../vendor/bootstrap/scss/functions";
+@import "../vendor/bootswatch/litera/_variables.scss";
+@import "../vendor/bootstrap/scss/variables";
+@import "../vendor/bootstrap/scss/mixins";
 
-// custom variables for bootstrap
-// $primary: #34AD54;
-// @import "../vendor/bootstrap/scss/bootstrap";
+// bootstrap components
+@import "../vendor/bootstrap/scss/bootstrap";
+
+// bootswatch customizations
+@import "../vendor/bootswatch/litera/_bootswatch.scss";
 
 // custom
 @import "custom";

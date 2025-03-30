@@ -51,13 +51,13 @@ class CheckoutForm(forms.Form):
 
     def create_for_subscription(self, plan: Plan, customer: Customer):
         self.gateway = PaymentGateway.MERCADO_PAGO
-        self.description = _("checkout.description.subscription")
+        self.title = _("checkout.description.subscription")
+        self.description = plan.name
         self.object_type = ObjectType.SUBSCRIPTION
         self.object_id = plan.id
 
         self.customer = customer
 
-        self.title = plan.name
         self.photo_url = plan.get_image_url()
         self.price = plan.price
         self.discount = 0.0
