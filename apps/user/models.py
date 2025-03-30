@@ -179,9 +179,6 @@ class User(AbstractUser):
 
         return None
 
-    def validate_unique(self, exclude=None):
-        pass
-
     def has_customer(self):
         if self.is_authenticated:
             try:
