@@ -1,13 +1,14 @@
 from datetime import datetime
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 from django.utils import timezone
 
 User = get_user_model()
 
 
 def populate_users():
-    # password = 123mudar@
+    password = "user@123456"
 
     users_data = [
         {
@@ -21,7 +22,7 @@ def populate_users():
             "is_superuser": False,
             "date_joined": timezone.make_aware(datetime(2025, 1, 1, 0, 0, 0)),
             "last_login": timezone.make_aware(datetime(2025, 1, 1, 0, 0, 0)),
-            "password": "pbkdf2_sha256$870000$5xeORUxmnMoodlG3iPH8wM$L7s7aG8Ku2tUF7ktQmXz2A7C2YCNsa2Z8hdgregXKiM=",
+            "password": make_password(password),
         },
     ]
 
