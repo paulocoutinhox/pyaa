@@ -1,5 +1,11 @@
+{% load static %}
+
 {% if customer.avatar %}
-<div class="text-center mb-4">
-    <img class="rounded-circle" src="{{ customer.avatar.url }}" style="width: 80px;">
+<div class="rounded-circle me-3" style="width: 60px; height: 60px; overflow: hidden;">
+    <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+</div>
+{% else %}
+<div class="rounded-circle me-3" style="width: 60px; height: 60px; overflow: hidden;">
+    <img src="{% static 'images/no-image.png' %}" alt="profile-image" class="img-fluid">
 </div>
 {% endif %}
