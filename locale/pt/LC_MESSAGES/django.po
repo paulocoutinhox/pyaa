@@ -1133,7 +1133,7 @@ msgstr "Meus créditos"
 #: templates/pages/shop/payment/pending.html:55
 #: templates/pages/shop/payment/success.html:55
 msgid "button.account-credit-purchases"
-msgstr "Minhas Compras de Crédito"
+msgstr "Minhas compras de crédito"
 
 #: templates/pages/account/profile.html:70
 #: templates/pages/shop/payment/error.html:47
