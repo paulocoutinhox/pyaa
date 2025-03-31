@@ -16,7 +16,11 @@
 <div class="container py-4">
     <!-- Profile Header -->
     <div class="d-flex align-items-center mb-4 position-relative">
-        {% include "partials/customer_avatar.html" %}
+        {% if customer.avatar %}
+        <div class="rounded-circle me-3" style="width: 60px; height: 60px; overflow: hidden;">
+            <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+        </div>
+        {% endif %}
         <div>
             <h5 class="mb-1">{% translate "title.account-profile" %}</h5>
             <p class="text-muted small mb-1">{% translate "subtitle.my-account" %}</p>

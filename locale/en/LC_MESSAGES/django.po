@@ -1165,7 +1165,7 @@ msgstr "Logout"
 
 #: templates/pages/account/signup.html:12
 msgid "title.account-signup"
-msgstr "Signup"
+msgstr "Sign Up"
 
 #: templates/pages/account/signup.html:13
 msgid "message.account-signup.create-account"
@@ -1315,7 +1315,7 @@ msgstr "Logout"
 
 #: templates/pages/home/index.html:29 templates/partials/header.html:60
 msgid "menu.login"
-msgstr "Sign In"
+msgstr "Login"
 
 #: templates/pages/shop/checkout/index.html:55
 msgid "subtitle.checkout-details"
@@ -1442,7 +1442,7 @@ msgstr "Home"
 
 #: templates/partials/header.html:37
 msgid "menu.gallery"
-msgstr "Galleries"
+msgstr "Gallery"
 
 #: templates/partials/header.html:42
 msgid "menu.shop.plans"
