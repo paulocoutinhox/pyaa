@@ -67,6 +67,7 @@ def shop_checkout_view(request, type, code):
                 form_is_valid = True
 
                 subscription = Subscription.objects.create(
+                    site=Site.objects.get_current(),
                     customer=customer,
                     plan=plan,
                     status=SubscriptionStatus.INITIAL,

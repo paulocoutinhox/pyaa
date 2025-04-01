@@ -26,12 +26,12 @@ def process_checkout_for_subscription(request, subscription):
 
     success_url = request.build_absolute_uri(
         reverse(
-            "shop_subscription_payment_success", kwargs={"token": subscription.token}
+            "shop_payment_success", kwargs={"token": subscription.token}
         )
     )
     cancel_url = request.build_absolute_uri(
         reverse(
-            "shop_subscription_payment_failure", kwargs={"token": subscription.token}
+            "shop_payment_error", kwargs={"token": subscription.token}
         )
     )
 

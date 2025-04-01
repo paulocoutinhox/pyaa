@@ -6,148 +6,150 @@
 {% load pyaa_format %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container py-5">
     {% if checkout.back_url %}
         {% include "partials/back_button.html" with back_url=checkout.back_url %}
     {% endif %}
 
     {% if checkout.checkout_step == "checkout" %}
-
-        <!-- Errors -->
-        {% if checkout.non_field_errors %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <ul>
-                    {% for error in checkout.non_field_errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% include "partials/message_close_button.html" %}
-            </div>
-        {% endif %}
-
-        <!-- Page Title -->
-        <h1 class="text-center mb-4">
-            {{ checkout.title }}
-        </h1>
-
-        <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
-            {% csrf_token %}
-
-            <!-- Name and Image -->
-            <div class="row mb-5">
-                <div class="col-12 text-center">
-                    <h4 class="mb-3">
-                        {{ checkout.description }}
-                    </h4>
-
-                    {% if checkout.photo_url %}
-                        <img src="{{ checkout.photo_url }}"
-                            class="img-fluid rounded"
-                            style="max-height: 150px; object-fit: contain;">
-                    {% endif %}
-                </div>
-            </div>
-
-            <!-- Details -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <h5 class="mb-3 fw-bold">
-                        {% trans 'subtitle.checkout-details' %}
-                    </h5>
-                    <ul class="list-group list-group-flush">
-                        {% if checkout.show_price_data %}
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>{% trans 'checkout.price' %}:</span>
-                            <strong>
-                                {% format_currency checkout.price "BRL" false %}
-                            </strong>
-                        </li>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="card border-0 bg-body-tertiary rounded-3">
+                    <div class="card-body p-4">
+                        <!-- Errors -->
+                        {% if checkout.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <ul class="mb-0">
+                                    {% for error in checkout.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% include "partials/message_close_button.html" %}
+                            </div>
                         {% endif %}
 
-                        {% if checkout.show_discount_data %}
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>{% trans 'checkout.discount' %}:</span>
-                            <strong>
-                                {% format_currency checkout.discount "BRL" false %}
-                            </strong>
-                        </li>
-                        {% endif %}
+                        <!-- Page Title -->
+                        <h1 class="text-center h3 mb-4">
+                            {{ checkout.title }}
+                        </h1>
 
-                        {% if checkout.show_shipping_data %}
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>{% trans 'checkout.shipping' %}:</span>
-                            <strong>
-                                {% format_currency checkout.shipping_price "BRL" false %}
-                            </strong>
-                        </li>
-                        {% endif %}
+                        <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
+                            {% csrf_token %}
 
-                        {% if checkout.show_delivery_data %}
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>{% trans 'checkout.delivery' %}:</span>
-                            <strong>
-                                {{ checkout.delivery_description }}
-                            </strong>
-                        </li>
-                        {% endif %}
+                            <!-- Name and Image -->
+                            <div class="text-center mb-4">
+                                <h4 class="h5 mb-3">
+                                    {{ checkout.description }}
+                                </h4>
 
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>{% trans 'checkout.total-price' %}:</span>
-                            <strong>
-                                {% format_currency checkout.total_price "BRL" false %}
-                            </strong>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                                {% if checkout.photo_url %}
+                                    <img src="{{ checkout.photo_url }}"
+                                        class="img-fluid rounded"
+                                        style="max-height: 150px; object-fit: contain;">
+                                {% endif %}
+                            </div>
 
-            <!-- Shipping Address -->
-            {% if checkout.show_address_data %}
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <h5 class="mb-3 fw-bold">
-                            {% trans 'subtitle.shipping-address' %}
-                        </h5>
+                            <!-- Details -->
+                            <div class="mb-4">
+                                <h5 class="mb-3 fw-bold">
+                                    {% trans 'subtitle.checkout-details' %}
+                                </h5>
+                                <ul class="list-group list-group-flush bg-transparent">
+                                    {% if checkout.show_price_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.price' %}:</span>
+                                        <strong>
+                                            {% format_currency checkout.price "BRL" false %}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
 
-                        <p class="mb-0">{{ checkout.shipping_address_description }}</p>
+                                    {% if checkout.show_discount_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.discount' %}:</span>
+                                        <strong>
+                                            {% format_currency checkout.discount "BRL" false %}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if checkout.show_shipping_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.shipping' %}:</span>
+                                        <strong>
+                                            {% format_currency checkout.shipping_price "BRL" false %}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if checkout.show_delivery_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.delivery' %}:</span>
+                                        <strong>
+                                            {{ checkout.delivery_description }}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
+
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent border-bottom">
+                                        <span>{% trans 'checkout.total-price' %}:</span>
+                                        <strong class="text-primary-emphasis">
+                                            {% format_currency checkout.total_price "BRL" false %}
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Shipping Address -->
+                            {% if checkout.show_address_data %}
+                                <div class="mb-4">
+                                    <h5 class="mb-3 fw-bold">
+                                        {% trans 'subtitle.shipping-address' %}
+                                    </h5>
+
+                                    <p class="mb-0">{{ checkout.shipping_address_description }}</p>
+                                </div>
+                            {% endif %}
+
+                            <!-- Options -->
+                            {% if checkout.options and checkout.options|length > 0 %}
+                            <div class="mb-4">
+                                <h5 class="mb-3 fw-bold">
+                                    {% trans 'subtitle.options' %}
+                                </h5>
+
+                                <div class="mb-3 {% if checkout.options|length <= 1 %} d-none {% endif %}">
+                                    {% element single_field field=checkout.options %}
+                                    {% endelement %}
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <!-- Pay Button -->
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    {% trans 'button.pay' %}
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            {% endif %}
-
-            <!-- Options -->
-            {% if checkout.options and checkout.options|length > 0 %}
-            <div class="row mb-4">
-                <div class="col-12">
-                    <h5 class="mb-3 fw-bold">
-                        {% trans 'subtitle.options' %}
-                    </h5>
-
-                    <div class="mb-3 {% if checkout.options|length <= 1 %} hidden {% endif %}">
-                        {% element single_field field=checkout.options %}
-                        {% endelement %}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            <!-- Pay Button -->
-            <div class="row">
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary w-100">
-                        {% trans 'button.pay' %}
-                    </button>
-                </div>
-            </div>
-        </form>
-
-    {% elif checkout.checkout_step == "payment" %}
-
-        <div class="row">
-            <div class="col-12">
-               TODO: SHOW REDIRECT LINK
             </div>
         </div>
 
+    {% elif checkout.checkout_step == "payment" %}
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card border-0 bg-body-tertiary rounded-3">
+                    <div class="card-body p-4 text-center">
+                        <h4 class="mb-4">{% trans 'subtitle.payment-redirect' %}</h4>
+                        <div class="alert alert-info">
+                            {% trans 'message.payment-redirect' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endif %}
 </div>
 {% endblock content %}

@@ -11,7 +11,7 @@ from apps.shop.enums import PaymentGatewayAction, PaymentGatewayCancelAction
 from apps.shop.models import EventLog, Subscription
 
 
-def process_checkout(request, subscription):
+def process_checkout_for_subscription(request, subscription):
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     success_url = request.build_absolute_uri(
@@ -19,7 +19,7 @@ def process_checkout(request, subscription):
     )
 
     cancel_url = request.build_absolute_uri(
-        reverse("shop_payment_failure", kwargs={"token": subscription.token})
+        reverse("shop_payment_error", kwargs={"token": subscription.token})
     )
 
     session = stripe.checkout.Session.create(
