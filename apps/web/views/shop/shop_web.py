@@ -1,24 +1,20 @@
-from datetime import timedelta
-
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
 from django.middleware.csrf import get_token
 from django.shortcuts import redirect, render
 from django.urls import path
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from apps.shop.enums import (
     CheckoutStep,
     CreditPurchaseStatus,
     ObjectType,
+    PaymentGatewayAction,
     PlanType,
     SubscriptionStatus,
 )
 from apps.shop.forms import CheckoutForm
-from apps.shop.gateways import mercado_pago
 from apps.shop.helpers import ShopHelper
 from apps.shop.models import CreditPurchase, Plan, Subscription
 
@@ -77,6 +73,12 @@ def shop_checkout_view(request, type, code):
                     request, subscription
                 )
 
+                if checkout_data.get("action") == PaymentGatewayAction.REDIRECT:
+                    return redirect(checkout_data.get("url"))
+                else:
+                    messages.error(request, _("message.shop-invalid-action"))
+                    return redirect("home")
+
         elif type == ObjectType.CREDIT_PURCHASE:
             plan = Plan.objects.filter(id=code, active=True).first()
 
@@ -102,6 +104,12 @@ def shop_checkout_view(request, type, code):
                     request, purchase
                 )
 
+                if checkout_data.get("action") == PaymentGatewayAction.REDIRECT:
+                    return redirect(checkout_data.get("url"))
+                else:
+                    messages.error(request, _("message.shop-invalid-action"))
+                    return redirect("home")
+
         else:
             messages.error(request, _("message.shop-invalid-type"))
             return redirect("home")
@@ -113,7 +121,6 @@ def shop_checkout_view(request, type, code):
                 messages.error(request, _("message.shop-invalid-external-reference"))
                 return redirect("home")
 
-            form.gateway_key = settings.MERCADO_PAGO_PUB_TOKEN
             form.gateway_code = external_reference
             form.checkout_step = CheckoutStep.PAYMENT
 
