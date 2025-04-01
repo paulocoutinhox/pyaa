@@ -83,7 +83,7 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         (
             _("admin.fieldsets.profile"),
             {
-                "fields": ("nickname", "gender", "avatar", "is_new_winner"),
+                "fields": ("nickname", "gender", "avatar"),
             },
         ),
         (

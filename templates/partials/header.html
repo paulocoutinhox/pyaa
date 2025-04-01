@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load pyaa %}
 <header id="header">
-    <nav class="navbar navbar-expand-lg p-3 border-bottom">
+    <nav class="navbar navbar-expand-lg p-3 border-bottom bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
                 {% translate "site.small-name" %}
@@ -17,7 +17,7 @@
                 <ul class="navbar-nav ms-auto ">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <span class="nav-link mx-2">
+                            <span class="nav-link mx-2 text-body-secondary">
                                 {% if user.customer.credits %}
                                     {% translate "menu.credits" %}: {{ user.customer.credits }}
                                 {% else %}

@@ -365,7 +365,7 @@ class CustomerCredit(models.Model):
             subscription = Subscription.objects.filter(id=self.object_id).first()
 
             if subscription and subscription.plan:
-                return subscription.plan.get_description()
+                return subscription.plan.get_name()
             else:
                 key = f"enum.shop-object-type.{self.object_type}"
                 return _(key)
@@ -374,7 +374,7 @@ class CustomerCredit(models.Model):
             purchase = CreditPurchase.objects.filter(id=self.object_id).first()
 
             if purchase and purchase.plan:
-                return purchase.plan.get_description()
+                return purchase.plan.get_name()
         else:
             # default case for other object types
             key = f"enum.shop-object-type.{self.object_type}"

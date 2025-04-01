@@ -28,7 +28,7 @@
             {% if subscriptions %}
                 {% for subscription in subscriptions %}
                     <tr class="align-middle">
-                        <td>{{ subscription.plan.get_description }}</td>
+                        <td>{{ subscription.plan.get_name }}</td>
                         <td>
                             <span class="badge rounded-pill text-lowercase" style="background-color: {{ subscription.status|status_bg_color_hex }}; color: {{ subscription.status|status_text_color_hex }};">
                                 {{ subscription.status|format_subscription_status }}

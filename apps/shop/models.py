@@ -120,11 +120,6 @@ class Plan(models.Model):
         null=True,
     )
 
-    sort_order = models.IntegerField(
-        _("model.field.sort-order"),
-        default=0,
-    )
-
     featured = models.BooleanField(
         _("model.field.featured"),
         default=False,
@@ -168,6 +163,11 @@ class Plan(models.Model):
         upload_to="images/plan/%Y/%m/%d",
         blank=True,
         null=True,
+    )
+
+    sort_order = models.IntegerField(
+        _("model.field.sort-order"),
+        default=0,
     )
 
     active = models.BooleanField(
@@ -236,7 +236,7 @@ class Plan(models.Model):
 
         return self.image.url
 
-    def get_description(self):
+    def get_name(self):
         if self.bonus and self.bonus > 0:
             return _("plan.bonus.description: %(name)s %(bonus)s") % {
                 "name": self.name,
