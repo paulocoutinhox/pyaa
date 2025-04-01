@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-30 18:57+0000\n"
+"POT-Creation-Date: 2025-04-01 16:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,11 +74,11 @@ msgstr "Updated At"
 
 #: apps/content/models.py:71
 msgid "model.content.name"
-msgstr "content"
+msgstr "Content"
 
 #: apps/content/models.py:72
 msgid "model.content.name.plural"
-msgstr "contents"
+msgstr "Contents"
 
 #: apps/content/models.py:100 apps/gallery/models.py:37 apps/site/models.py:23
 msgid "model.field.title"
@@ -249,11 +249,11 @@ msgstr "Payment confirmation"
 
 #: apps/customer/models.py:31
 msgid "model.customer.name"
-msgstr "customer"
+msgstr "Customer"
 
 #: apps/customer/models.py:32
 msgid "model.customer.name.plural"
-msgstr "customers"
+msgstr "Customers"
 
 #: apps/customer/models.py:67
 msgid "model.field.user"
@@ -297,11 +297,11 @@ msgstr "The site code is required."
 
 #: apps/customer/models.py:244
 msgid "model.customer-credit.name"
-msgstr "customer credit"
+msgstr "Customer Credit"
 
 #: apps/customer/models.py:245
 msgid "model.customer-credit.name.plural"
-msgstr "customer credits"
+msgstr "Customer Credits"
 
 #: apps/customer/models.py:288 apps/shop/models.py:451 apps/shop/models.py:545
 msgid "model.field.customer"
@@ -331,7 +331,7 @@ msgstr "Current Amount"
 msgid "model.field.price"
 msgstr "Price"
 
-#: apps/customer/models.py:341 apps/shop/models.py:136 apps/shop/models.py:317
+#: apps/customer/models.py:341 apps/shop/models.py:131 apps/shop/models.py:317
 msgid "model.field.expire-at"
 msgstr "Expire At"
 
@@ -363,11 +363,11 @@ msgstr "Gallery"
 
 #: apps/gallery/models.py:16
 msgid "model.gallery.name"
-msgstr "gallery"
+msgstr "Gallery"
 
 #: apps/gallery/models.py:17
 msgid "model.gallery.name.plural"
-msgstr "galleries"
+msgstr "Galleries"
 
 #: apps/gallery/models.py:100
 msgid "model.field.photos-count"
@@ -375,13 +375,13 @@ msgstr "Photos"
 
 #: apps/gallery/models.py:114
 msgid "model.gallery-photo.name"
-msgstr "gallery photo"
+msgstr "Gallery Photo"
 
 #: apps/gallery/models.py:115
 msgid "model.gallery-photo.name.plural"
-msgstr "gallery photos"
+msgstr "Gallery Photos"
 
-#: apps/gallery/models.py:122 apps/shop/models.py:164
+#: apps/gallery/models.py:122 apps/shop/models.py:159
 msgid "model.field.image"
 msgstr "Image"
 
@@ -403,11 +403,11 @@ msgstr "Language"
 
 #: apps/language/models.py:8
 msgid "model.language.name"
-msgstr "language"
+msgstr "Language"
 
 #: apps/language/models.py:9
 msgid "model.language.name.plural"
-msgstr "languages"
+msgstr "Languages"
 
 #: apps/language/models.py:38
 msgid "model.field.native_name"
@@ -443,7 +443,7 @@ msgstr "Report"
 
 #: apps/report/models.py:9 apps/report/models.py:10
 msgid "model.customer-gender-summary.name"
-msgstr "customer gender"
+msgstr "Customer Gender"
 
 #: apps/shop/admin.py:50
 msgid "button.copy"
@@ -666,11 +666,11 @@ msgstr "Error when canceling subscription: %(error)s"
 
 #: apps/shop/models.py:21
 msgid "model.shop-plan.name"
-msgstr "plan"
+msgstr "Plan"
 
 #: apps/shop/models.py:22
 msgid "model.shop-plan.name.plural"
-msgstr "plans"
+msgstr "Plans"
 
 #: apps/shop/models.py:66
 msgid "model.field.plan-type"
@@ -701,40 +701,40 @@ msgid "model.field.frequency-amount"
 msgstr "Frequency"
 
 #: apps/shop/models.py:124
-msgid "model.field.sort-order"
-msgstr "Order"
-
-#: apps/shop/models.py:129
 msgid "model.field.featured"
 msgstr "Featured"
 
-#: apps/shop/models.py:139
+#: apps/shop/models.py:134
 msgid "model.hint.plan-expire-at"
 msgstr "Specific date when the plan expires."
 
-#: apps/shop/models.py:143
+#: apps/shop/models.py:138
 msgid "model.field.expire-after"
 msgstr "Expire After"
 
-#: apps/shop/models.py:146
+#: apps/shop/models.py:141
 msgid "model.hint.plan-expire-after"
 msgstr "Number of seconds after which the plan expires."
 
-#: apps/shop/models.py:150
+#: apps/shop/models.py:145
 msgid "model.field.bonus"
 msgstr "Bonus"
 
-#: apps/shop/models.py:153
+#: apps/shop/models.py:148
 msgid "model.hint.plan-bonus"
 msgstr "Amount of bonus associated with the plan."
 
-#: apps/shop/models.py:157
+#: apps/shop/models.py:152
 msgid "model.field.bonus-expire-after"
 msgstr "Bonus Expires After"
 
-#: apps/shop/models.py:160
+#: apps/shop/models.py:155
 msgid "model.hint.plan-bonus-expire-after"
 msgstr "Number of seconds after which the bonus expires."
+
+#: apps/shop/models.py:169
+msgid "model.field.sort-order"
+msgstr "Order"
 
 #: apps/shop/models.py:241
 #, python-format
@@ -743,11 +743,11 @@ msgstr "%(name)s (bonus of %(bonus)s)"
 
 #: apps/shop/models.py:255
 msgid "model.shop-subscription.name"
-msgstr "subscription"
+msgstr "Subscription"
 
 #: apps/shop/models.py:256
 msgid "model.shop-subscription.name.plural"
-msgstr "subscriptions"
+msgstr "Subscriptions"
 
 #: apps/shop/models.py:293 apps/shop/models.py:468
 msgid "model.field.token"
@@ -755,11 +755,11 @@ msgstr "Token"
 
 #: apps/shop/models.py:415
 msgid "model.credit-puchase.name"
-msgstr "credit purchase"
+msgstr "Credit Purchase"
 
 #: apps/shop/models.py:416
 msgid "model.credit-purchase.name.plural"
-msgstr "credit purchases"
+msgstr "Credit Purchases"
 
 #: apps/shop/models.py:457
 msgid "model.field.customer-credit"
@@ -771,11 +771,11 @@ msgstr "Invoice Generated"
 
 #: apps/shop/models.py:514
 msgid "model.shop-event-log.name"
-msgstr "event log"
+msgstr "Event Log"
 
 #: apps/shop/models.py:515
 msgid "model.shop-event-log.name.plural"
-msgstr "event logs"
+msgstr "Event Logs"
 
 #: apps/shop/models.py:573
 #: templates/admin/report/customer-gender-summary/pdf.html:13
@@ -789,11 +789,11 @@ msgstr "Site"
 
 #: apps/site/models.py:9
 msgid "model.site-profile.name"
-msgstr "site profile"
+msgstr "Site Profile"
 
 #: apps/site/models.py:10
 msgid "model.site-profile.name.plural"
-msgstr "site profiles"
+msgstr "Site Profiles"
 
 #: apps/user/admin.py:14
 msgid "admin.fieldsets.personal-info"
@@ -843,11 +843,11 @@ msgstr "Superuser must have is_superuser=True."
 
 #: apps/user/models.py:74
 msgid "model.user.name"
-msgstr "user"
+msgstr "User"
 
 #: apps/user/models.py:75
 msgid "model.user.name.plural"
-msgstr "users"
+msgstr "Users"
 
 #: apps/user/models.py:105
 msgid "model.field.admin-username"
@@ -1024,7 +1024,7 @@ msgstr "Status"
 #: templates/pages/account/credits.html:59
 #: templates/pages/account/subscriptions.html:75
 #: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
-#: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:51
+#: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:57
 msgid "list-data.empty"
 msgstr "No data found."
 
@@ -1037,7 +1037,7 @@ msgstr "Back"
 
 #: templates/pages/account/credits.html:12
 msgid "title.account-credits"
-msgstr "My credits"
+msgstr "My Credits"
 
 #: templates/pages/account/credits.html:36
 msgid "table.header.validity"
@@ -1049,7 +1049,7 @@ msgstr "Current and Initial Amount"
 
 #: templates/pages/account/delete.html:11
 msgid "title.account-delete"
-msgstr "Delete account"
+msgstr "Delete Account"
 
 #: templates/pages/account/delete.html:15
 msgid "subtitle.account-delete"
@@ -1059,7 +1059,7 @@ msgstr ""
 
 #: templates/pages/account/delete.html:25
 msgid "button.account-delete-confirm"
-msgstr "Yes, delete my account"
+msgstr "Yes, Delete My Account"
 
 #: templates/pages/account/delete.html:31
 #: templates/pages/account/update_avatar.html:30
@@ -1067,24 +1067,24 @@ msgstr "Yes, delete my account"
 msgid "button.cancel"
 msgstr "Cancel"
 
-#: templates/pages/account/login.html:12
+#: templates/pages/account/login.html:15
 msgid "title.account-login"
 msgstr "Login"
 
-#: templates/pages/account/login.html:13
+#: templates/pages/account/login.html:16
 msgid "message.account-login.welcome-back"
 msgstr "Welcome back! We missed you!"
 
-#: templates/pages/account/login.html:28 templates/pages/account/signup.html:28
-#: templates/pages/contact/index.html:21
+#: templates/pages/account/login.html:30 templates/pages/account/signup.html:30
+#: templates/pages/contact/index.html:23
 msgid "button.send"
 msgstr "Send"
 
-#: templates/pages/account/login.html:33
+#: templates/pages/account/login.html:35
 msgid "message.account-login.no-account"
 msgstr "Don't have an account?"
 
-#: templates/pages/account/login.html:37
+#: templates/pages/account/login.html:39
 msgid "message.account-login.signup"
 msgstr "Sign Up"
 
@@ -1123,21 +1123,21 @@ msgstr "No credits"
 
 #: templates/pages/account/profile.html:50
 msgid "button.account-credits"
-msgstr "My credits"
+msgstr "My Credits"
 
 #: templates/pages/account/profile.html:58
 #: templates/pages/shop/payment/error.html:55
 #: templates/pages/shop/payment/pending.html:55
 #: templates/pages/shop/payment/success.html:55
 msgid "button.account-credit-purchases"
-msgstr "My credit purchases"
+msgstr "My Credit Purchases"
 
 #: templates/pages/account/profile.html:70
 #: templates/pages/shop/payment/error.html:47
 #: templates/pages/shop/payment/pending.html:47
 #: templates/pages/shop/payment/success.html:47
 msgid "button.account-subscriptions"
-msgstr "My subscriptions"
+msgstr "My Subscriptions"
 
 #: templates/pages/account/profile.html:76
 msgid "subtitle.account-settings"
@@ -1145,11 +1145,11 @@ msgstr "My Account"
 
 #: templates/pages/account/profile.html:84
 msgid "button.update-profile"
-msgstr "Update profile"
+msgstr "Update Profile"
 
 #: templates/pages/account/profile.html:94
 msgid "button.update-avatar"
-msgstr "Update avatar"
+msgstr "Update Avatar"
 
 #: templates/pages/account/profile.html:101
 msgid "subtitle.danger-zone"
@@ -1157,25 +1157,25 @@ msgstr "Danger Zone"
 
 #: templates/pages/account/profile.html:109
 msgid "button.account-delete"
-msgstr "Delete account"
+msgstr "Delete Account"
 
 #: templates/pages/account/profile.html:119
 msgid "button.account-logout"
 msgstr "Logout"
 
-#: templates/pages/account/signup.html:12
+#: templates/pages/account/signup.html:15
 msgid "title.account-signup"
 msgstr "Sign Up"
 
-#: templates/pages/account/signup.html:13
+#: templates/pages/account/signup.html:16
 msgid "message.account-signup.create-account"
 msgstr "Create an account to continue!"
 
-#: templates/pages/account/signup.html:33
+#: templates/pages/account/signup.html:35
 msgid "message.account-signup.has-account"
 msgstr "Already have an account?"
 
-#: templates/pages/account/signup.html:35
+#: templates/pages/account/signup.html:37
 msgid "message.account-signup.login"
 msgstr "Log in"
 
@@ -1191,7 +1191,7 @@ msgstr ""
 
 #: templates/pages/account/signup_success.html:28
 msgid "button.profile"
-msgstr "My account"
+msgstr "My Account"
 
 #: templates/pages/account/signup_success.html:35
 msgid "button.continue-next-url"
@@ -1199,7 +1199,7 @@ msgstr "Continue"
 
 #: templates/pages/account/subscriptions.html:13
 msgid "title.account-subscriptions"
-msgstr "My subscriptions"
+msgstr "My Subscriptions"
 
 #: templates/pages/account/subscriptions.html:20
 msgid "table.header.plan-name"
@@ -1219,11 +1219,11 @@ msgstr "Actions"
 
 #: templates/pages/account/subscriptions.html:44
 msgid "button.cancel-subscription"
-msgstr "Cancel subscription"
+msgstr "Cancel Subscription"
 
 #: templates/pages/account/subscriptions.html:52
 msgid "model.title.cancel-subscription"
-msgstr "Cancel subscription"
+msgstr "Cancel Subscription"
 
 #: templates/pages/account/subscriptions.html:56
 msgid "message.subscription.cancel-confirmation"
@@ -1235,11 +1235,11 @@ msgstr "No"
 
 #: templates/pages/account/subscriptions.html:61
 msgid "button.yes-cancel"
-msgstr "Yes, cancel"
+msgstr "Yes, Cancel"
 
 #: templates/pages/account/update_avatar.html:11
 msgid "title.account-update-avatar"
-msgstr "Update avatar"
+msgstr "Update Avatar"
 
 #: templates/pages/account/update_avatar.html:24
 #: templates/pages/account/update_profile.html:22
@@ -1248,15 +1248,15 @@ msgstr "Update"
 
 #: templates/pages/account/update_profile.html:11
 msgid "title.account-update-profile"
-msgstr "Update profile"
+msgstr "Update Profile"
 
-#: templates/pages/contact/index.html:9
+#: templates/pages/contact/index.html:13
 msgid "title.contact"
 msgstr "Contact Us"
 
 #: templates/pages/content/index.html:23
 msgid "button.continue-reading"
-msgstr "Continue reading"
+msgstr "Continue Reading"
 
 #: templates/pages/content/index.html:36 templates/pages/gallery/index.html:29
 #: templates/partials/paginator.html:4
@@ -1267,13 +1267,13 @@ msgstr "Page Navigation"
 #: templates/pages/gallery/index.html:33 templates/pages/gallery/index.html:34
 #: templates/partials/paginator.html:8 templates/partials/paginator.html:9
 msgid "pagination.first"
-msgstr "first"
+msgstr "First"
 
 #: templates/pages/content/index.html:46 templates/pages/content/index.html:47
 #: templates/pages/gallery/index.html:39 templates/pages/gallery/index.html:40
 #: templates/partials/paginator.html:14 templates/partials/paginator.html:15
 msgid "pagination.previous"
-msgstr "previous"
+msgstr "Previous"
 
 #: templates/pages/content/index.html:54 templates/pages/gallery/index.html:47
 #: templates/partials/paginator.html:22
@@ -1285,13 +1285,13 @@ msgstr "Page %(number)s of %(num_pages)s"
 #: templates/pages/gallery/index.html:54 templates/pages/gallery/index.html:55
 #: templates/partials/paginator.html:29 templates/partials/paginator.html:30
 msgid "pagination.next"
-msgstr "next"
+msgstr "Next"
 
 #: templates/pages/content/index.html:67 templates/pages/content/index.html:68
 #: templates/pages/gallery/index.html:60 templates/pages/gallery/index.html:61
 #: templates/partials/paginator.html:35 templates/partials/paginator.html:36
 msgid "pagination.last"
-msgstr "last"
+msgstr "Last"
 
 #: templates/pages/gallery/index.html:9
 msgid "title.gallery.index"
@@ -1393,11 +1393,11 @@ msgstr "Your payment was processed successfully."
 msgid "title.shop.plans"
 msgstr "Pricing"
 
-#: templates/pages/shop/plans.html:36
+#: templates/pages/shop/plans.html:42
 msgid "button.shop-select-subscription-plan"
 msgstr "Choose Plan"
 
-#: templates/pages/shop/plans.html:40
+#: templates/pages/shop/plans.html:46
 msgid "button.shop-select-credit-plan"
 msgstr "Choose Plan"
 
@@ -1450,7 +1450,7 @@ msgstr "Pricing"
 
 #: templates/partials/header.html:49
 msgid "menu.profile"
-msgstr "My account"
+msgstr "My Account"
 
 #: templates/partials/header.html:65
 msgid "menu.signup"
