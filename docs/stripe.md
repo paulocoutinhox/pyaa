@@ -38,15 +38,15 @@ stripe listen --forward-to localhost:8000/shop/webhook/stripe/
 
 This command will forward Stripe events to your local development server.
 
-### Simulating A Completed Order
+### Simulating A Successful Payment
 
-In a separate terminal, you can simulate a completed checkout session using this command:
+To simulate a successful payment for a subscription, use this command:
 
 ```
-stripe trigger checkout.session.completed --add checkout_session:client_reference_id=[ORDER-TOKEN]
+stripe trigger invoice.payment_succeeded --add subscription=sub_XXXXXXXXXXXXXXX
 ```
 
-Replace `[ORDER-TOKEN]` with your actual order token.
+Replace `sub_XXXXXXXXXXXXXXX` with your subscription's external ID.
 
 ### Resend Events Already Sent Before
 
