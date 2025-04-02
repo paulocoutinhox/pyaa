@@ -349,9 +349,7 @@ class Subscription(models.Model):
 
         CustomerHelper.add_credits(
             customer=self.customer,
-            amount=self.plan.credits,
-            is_refund=False,
-            add_log=True,
+            plan=self.plan,
             object_id=self.id,
             object_type=ObjectType.SUBSCRIPTION,
         )
@@ -376,9 +374,7 @@ class Subscription(models.Model):
 
         CustomerHelper.add_credits(
             customer=self.customer,
-            amount=-self.plan.credits,
-            is_refund=False,
-            add_log=True,
+            plan=self.plan,
             object_id=self.id,
             object_type=ObjectType.SUBSCRIPTION,
         )

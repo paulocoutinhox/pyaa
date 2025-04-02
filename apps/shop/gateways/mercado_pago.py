@@ -25,14 +25,10 @@ def process_checkout_for_subscription(request, subscription):
     sdk = mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
 
     success_url = request.build_absolute_uri(
-        reverse(
-            "shop_payment_success", kwargs={"token": subscription.token}
-        )
+        reverse("shop_payment_success", kwargs={"token": subscription.token})
     )
     cancel_url = request.build_absolute_uri(
-        reverse(
-            "shop_payment_error", kwargs={"token": subscription.token}
-        )
+        reverse("shop_payment_error", kwargs={"token": subscription.token})
     )
 
     preapproval_data = {

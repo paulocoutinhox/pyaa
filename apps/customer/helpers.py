@@ -236,7 +236,7 @@ class CustomerHelper:
             if plan_image.startswith(("http://", "https://")):
                 plan_image_url = plan_image
             else:
-                plan_image_url = f"https://{current_site.domain}{plan_image.url}"
+                plan_image_url = f"https://{current_site.domain}{plan.image.url}"
 
         context = {
             "subject": subject,

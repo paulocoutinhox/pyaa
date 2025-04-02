@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-01 16:27+0000\n"
+"POT-Creation-Date: 2025-04-02 03:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr "categorias de conteúdos"
 #: apps/content/models.py:27 apps/content/models.py:94
 #: apps/customer/models.py:58 apps/customer/models.py:271
 #: apps/gallery/models.py:31 apps/language/models.py:27 apps/shop/models.py:35
-#: apps/shop/models.py:268 apps/shop/models.py:434 apps/shop/models.py:528
+#: apps/shop/models.py:268 apps/shop/models.py:430 apps/shop/models.py:524
 #: apps/user/models.py:90
 msgid "model.field.id"
 msgstr "ID"
@@ -60,7 +60,7 @@ msgstr "Deixe vazio para geração automática."
 #: apps/content/models.py:49 apps/content/models.py:153
 #: apps/customer/models.py:143 apps/customer/models.py:347
 #: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:187
-#: apps/shop/models.py:323 apps/shop/models.py:494 apps/shop/models.py:593
+#: apps/shop/models.py:323 apps/shop/models.py:490 apps/shop/models.py:589
 #: apps/site/models.py:30
 msgid "model.field.created-at"
 msgstr "Criado Em"
@@ -68,7 +68,7 @@ msgstr "Criado Em"
 #: apps/content/models.py:54 apps/content/models.py:158
 #: apps/customer/models.py:148 apps/customer/models.py:352
 #: apps/gallery/models.py:80 apps/language/models.py:61 apps/shop/models.py:192
-#: apps/shop/models.py:328 apps/shop/models.py:499 apps/site/models.py:35
+#: apps/shop/models.py:328 apps/shop/models.py:495 apps/site/models.py:35
 msgid "model.field.updated-at"
 msgstr "Atualizado Em"
 
@@ -260,8 +260,8 @@ msgid "model.field.user"
 msgstr "Usuário"
 
 #: apps/customer/models.py:74 apps/customer/models.py:280
-#: apps/shop/models.py:44 apps/shop/models.py:277 apps/shop/models.py:443
-#: apps/shop/models.py:537 apps/site/models.py:19 apps/user/models.py:99
+#: apps/shop/models.py:44 apps/shop/models.py:277 apps/shop/models.py:439
+#: apps/shop/models.py:533 apps/site/models.py:19 apps/user/models.py:99
 msgid "model.field.site"
 msgstr "Site"
 
@@ -303,19 +303,19 @@ msgstr "Crédito do Cliente"
 msgid "model.customer-credit.name.plural"
 msgstr "Créditos do Cliente"
 
-#: apps/customer/models.py:288 apps/shop/models.py:451 apps/shop/models.py:545
+#: apps/customer/models.py:288 apps/shop/models.py:447 apps/shop/models.py:541
 msgid "model.field.customer"
 msgstr "Cliente"
 
-#: apps/customer/models.py:293 apps/shop/models.py:464
+#: apps/customer/models.py:293 apps/shop/models.py:460
 msgid "model.field.plan"
 msgstr "Plano"
 
-#: apps/customer/models.py:300 apps/shop/models.py:550
+#: apps/customer/models.py:300 apps/shop/models.py:546
 msgid "model.field.object-type"
 msgstr "Tipo do Objeto"
 
-#: apps/customer/models.py:309 apps/shop/models.py:559
+#: apps/customer/models.py:309 apps/shop/models.py:555
 msgid "model.field.object-id"
 msgstr "ID do Objeto"
 
@@ -327,7 +327,7 @@ msgstr "Quantidade Inicial"
 msgid "model.field.current-amount"
 msgstr "Quantidade Atual"
 
-#: apps/customer/models.py:335 apps/shop/models.py:97 apps/shop/models.py:476
+#: apps/customer/models.py:335 apps/shop/models.py:97 apps/shop/models.py:472
 msgid "model.field.price"
 msgstr "Preço"
 
@@ -461,13 +461,13 @@ msgstr "Abrir"
 msgid "modal.title.message"
 msgstr "Mensagem"
 
-#: apps/shop/admin.py:91 apps/shop/models.py:181 apps/shop/models.py:587
+#: apps/shop/admin.py:91 apps/shop/models.py:181 apps/shop/models.py:583
 msgid "model.field.description"
 msgstr "Descrição"
 
 #: apps/shop/admin.py:105 apps/shop/admin.py:291 apps/shop/admin.py:341
-#: apps/shop/admin.py:446 apps/shop/models.py:308 apps/shop/models.py:487
-#: apps/shop/models.py:580
+#: apps/shop/admin.py:446 apps/shop/models.py:308 apps/shop/models.py:483
+#: apps/shop/models.py:576
 msgid "model.field.status"
 msgstr "Status"
 
@@ -655,11 +655,11 @@ msgstr "Assinatura"
 msgid "checkout.description.credit-purchase"
 msgstr "Compra de Créditos"
 
-#: apps/shop/gateways/stripe.py:55
+#: apps/shop/gateways/stripe.py:56
 msgid "message.subscription-canceled"
 msgstr "Sua assinatura foi cancelada com sucesso."
 
-#: apps/shop/gateways/stripe.py:58
+#: apps/shop/gateways/stripe.py:59
 #, python-format
 msgid "message.error-cancel-subscription: %(error)s"
 msgstr "Erro ao cancelar a assinatura: %(error)s"
@@ -684,7 +684,7 @@ msgstr "Gateway de Pagamento"
 msgid "model.field.external-id"
 msgstr "ID Externo"
 
-#: apps/shop/models.py:90 apps/shop/models.py:566
+#: apps/shop/models.py:90 apps/shop/models.py:562
 msgid "model.field.currency"
 msgstr "Moeda"
 
@@ -749,35 +749,35 @@ msgstr "Assinatura"
 msgid "model.shop-subscription.name.plural"
 msgstr "Assinaturas"
 
-#: apps/shop/models.py:293 apps/shop/models.py:468
+#: apps/shop/models.py:293 apps/shop/models.py:464
 msgid "model.field.token"
 msgstr "Token"
 
-#: apps/shop/models.py:415
+#: apps/shop/models.py:411
 msgid "model.credit-puchase.name"
 msgstr "Compra de Crédito"
 
-#: apps/shop/models.py:416
+#: apps/shop/models.py:412
 msgid "model.credit-purchase.name.plural"
 msgstr "Compras de Créditos"
 
-#: apps/shop/models.py:457
+#: apps/shop/models.py:453
 msgid "model.field.customer-credit"
 msgstr "Crédito de Cliente"
 
-#: apps/shop/models.py:482
+#: apps/shop/models.py:478
 msgid "model.field.invoice-generated"
 msgstr "Nota Fiscal Gerada"
 
-#: apps/shop/models.py:514
+#: apps/shop/models.py:510
 msgid "model.shop-event-log.name"
 msgstr "Log de Evento"
 
-#: apps/shop/models.py:515
+#: apps/shop/models.py:511
 msgid "model.shop-event-log.name.plural"
 msgstr "Log de Eventos"
 
-#: apps/shop/models.py:573
+#: apps/shop/models.py:569
 #: templates/admin/report/customer-gender-summary/pdf.html:13
 #: templates/admin/report/customer-gender-summary/view.html:21
 msgid "model.field.amount"
@@ -891,26 +891,30 @@ msgstr "Ação de cancelamento inválida."
 msgid "message.contact-message-sent"
 msgstr "Sua mensagem de contato foi enviada com sucesso."
 
-#: apps/web/views/shop/shop_web.py:33
+#: apps/web/views/shop/shop_web.py:29
 msgid "message.shop-already-subscriber"
 msgstr ""
 "Você já é assinante. Para realizar uma nova assinatura, é necessário "
 "cancelar a assinatura atual primeiro."
 
-#: apps/web/views/shop/shop_web.py:60 apps/web/views/shop/shop_web.py:83
+#: apps/web/views/shop/shop_web.py:56 apps/web/views/shop/shop_web.py:86
 msgid "message.shop-plan-not-found"
 msgstr "Plano não encontrado."
 
-#: apps/web/views/shop/shop_web.py:105 apps/web/views/shop/shop_web.py:143
+#: apps/web/views/shop/shop_web.py:79 apps/web/views/shop/shop_web.py:110
+msgid "message.shop-invalid-action"
+msgstr "Ação inválida."
+
+#: apps/web/views/shop/shop_web.py:114 apps/web/views/shop/shop_web.py:151
 msgid "message.shop-invalid-type"
 msgstr "Ação inválida."
 
-#: apps/web/views/shop/shop_web.py:112
+#: apps/web/views/shop/shop_web.py:121
 msgid "message.shop-invalid-external-reference"
 msgstr "Ação inválida."
 
-#: apps/web/views/shop/shop_web.py:164 apps/web/views/shop/shop_web.py:185
-#: apps/web/views/shop/shop_web.py:206
+#: apps/web/views/shop/shop_web.py:172 apps/web/views/shop/shop_web.py:193
+#: apps/web/views/shop/shop_web.py:214
 msgid "message.shop-paid-item-not-found"
 msgstr "Item pago não encontrado."
 
@@ -1018,21 +1022,36 @@ msgstr ""
 msgid "title.account-credit-purchases"
 msgstr "Minhas Compras de Crédito"
 
-#: templates/pages/account/credit_purchases.html:40
+#: templates/pages/account/credit_purchases.html:20
+#: templates/pages/account/credits.html:19
+msgid "table.header.image"
+msgstr "Imagem"
+
+#: templates/pages/account/credit_purchases.html:21
+msgid "table.header.plan"
+msgstr "Plano"
+
+#: templates/pages/account/credit_purchases.html:22
+#: templates/pages/account/credits.html:23
+#: templates/pages/account/subscriptions.html:23
+msgid "table.header.created-at"
+msgstr "Criado Em"
+
+#: templates/pages/account/credit_purchases.html:23
 #: templates/pages/account/subscriptions.html:21
 msgid "table.header.status"
 msgstr "Status"
 
-#: templates/pages/account/credit_purchases.html:51
-#: templates/pages/account/credits.html:59
+#: templates/pages/account/credit_purchases.html:47
+#: templates/pages/account/credits.html:50
 #: templates/pages/account/subscriptions.html:75
 #: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
 #: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:57
 msgid "list-data.empty"
 msgstr "Nenhum dado encontrado."
 
-#: templates/pages/account/credit_purchases.html:58
-#: templates/pages/account/credits.html:66
+#: templates/pages/account/credit_purchases.html:57
+#: templates/pages/account/credits.html:60
 #: templates/pages/account/subscriptions.html:85
 #: templates/pages/gallery/view.html:32
 msgid "button.back"
@@ -1042,13 +1061,17 @@ msgstr "Voltar"
 msgid "title.account-credits"
 msgstr "Meus Créditos"
 
-#: templates/pages/account/credits.html:36
-msgid "table.header.validity"
-msgstr "Validade"
+#: templates/pages/account/credits.html:20
+msgid "table.header.description"
+msgstr "Descrição"
 
-#: templates/pages/account/credits.html:42
+#: templates/pages/account/credits.html:21
 msgid "table.header.amount-current-and-initial"
 msgstr "Quantidade Atual e Inicial"
+
+#: templates/pages/account/credits.html:22
+msgid "table.header.validity"
+msgstr "Validade"
 
 #: templates/pages/account/delete.html:11
 msgid "title.account-delete"
@@ -1129,16 +1152,16 @@ msgid "button.account-credits"
 msgstr "Meus Créditos"
 
 #: templates/pages/account/profile.html:58
-#: templates/pages/shop/payment/error.html:55
-#: templates/pages/shop/payment/pending.html:55
-#: templates/pages/shop/payment/success.html:55
+#: templates/pages/shop/payment/error.html:57
+#: templates/pages/shop/payment/pending.html:57
+#: templates/pages/shop/payment/success.html:57
 msgid "button.account-credit-purchases"
 msgstr "Minhas Compras de Crédito"
 
 #: templates/pages/account/profile.html:70
-#: templates/pages/shop/payment/error.html:47
-#: templates/pages/shop/payment/pending.html:47
-#: templates/pages/shop/payment/success.html:47
+#: templates/pages/shop/payment/error.html:49
+#: templates/pages/shop/payment/pending.html:49
+#: templates/pages/shop/payment/success.html:49
 msgid "button.account-subscriptions"
 msgstr "Minhas Assinaturas"
 
@@ -1210,11 +1233,7 @@ msgstr "Plano"
 
 #: templates/pages/account/subscriptions.html:22
 msgid "table.header.expire-at"
-msgstr "Expira em"
-
-#: templates/pages/account/subscriptions.html:23
-msgid "table.header.created-at"
-msgstr "Criado em"
+msgstr "Expira Em"
 
 #: templates/pages/account/subscriptions.html:24
 msgid "table.header.actions"
@@ -1344,51 +1363,59 @@ msgstr "Prazo de entrega (estimado)"
 msgid "checkout.total-price"
 msgstr "Valor total"
 
-#: templates/pages/shop/checkout/index.html:109
+#: templates/pages/shop/checkout/index.html:107
 msgid "subtitle.shipping-address"
 msgstr "Endereço de Entrega"
 
-#: templates/pages/shop/checkout/index.html:122
+#: templates/pages/shop/checkout/index.html:118
 msgid "subtitle.options"
 msgstr "Opções"
 
-#: templates/pages/shop/checkout/index.html:137
+#: templates/pages/shop/checkout/index.html:131
 msgid "button.pay"
 msgstr "Efetuar Pagamento"
 
-#: templates/pages/shop/payment/error.html:11
+#: templates/pages/shop/checkout/index.html:145
+msgid "subtitle.payment-redirect"
+msgstr "Redirecionamento de Pagamento"
+
+#: templates/pages/shop/checkout/index.html:147
+msgid "message.payment-redirect"
+msgstr "Você será redirecionado para o processador de pagamento..."
+
+#: templates/pages/shop/payment/error.html:17
 msgid "message.shop-payment-error.title"
 msgstr "Falha no Pagamento"
 
-#: templates/pages/shop/payment/error.html:15
+#: templates/pages/shop/payment/error.html:21
 msgid "message.shop-payment-error.subtitle"
 msgstr "Seu pagamento não foi concluído ou ocorreu algum erro."
 
-#: templates/pages/shop/payment/error.html:26
-#: templates/pages/shop/payment/pending.html:26
-#: templates/pages/shop/payment/success.html:26
+#: templates/pages/shop/payment/error.html:27
+#: templates/pages/shop/payment/pending.html:27
+#: templates/pages/shop/payment/success.html:27
 msgid "message.shop-payment-date"
 msgstr "Data do pagamento:"
 
-#: templates/pages/shop/payment/error.html:34
-#: templates/pages/shop/payment/pending.html:34
-#: templates/pages/shop/payment/success.html:34
+#: templates/pages/shop/payment/error.html:35
+#: templates/pages/shop/payment/pending.html:35
+#: templates/pages/shop/payment/success.html:35
 msgid "message.shop-payment-status"
 msgstr "Status do pagamento:"
 
-#: templates/pages/shop/payment/pending.html:11
+#: templates/pages/shop/payment/pending.html:17
 msgid "message.shop-payment-pending.title"
 msgstr "Pagamento Pendente"
 
-#: templates/pages/shop/payment/pending.html:15
+#: templates/pages/shop/payment/pending.html:21
 msgid "message.shop-payment-pending.subtitle"
 msgstr "Seu pagamento está sendo processado."
 
-#: templates/pages/shop/payment/success.html:11
+#: templates/pages/shop/payment/success.html:17
 msgid "message.shop-payment-success.title"
 msgstr "Pagamento Concluído"
 
-#: templates/pages/shop/payment/success.html:15
+#: templates/pages/shop/payment/success.html:21
 msgid "message.shop-payment-success.subtitle"
 msgstr "Seu pagamento foi processado com sucesso."
 
@@ -1462,3 +1489,8 @@ msgstr "Cadastre-se"
 #: templates/partials/header.html:72
 msgid "menu.contact"
 msgstr "Contato"
+
+#, fuzzy
+#~| msgid "table.header.actions"
+#~ msgid "table.header.amount"
+#~ msgstr "Ações"

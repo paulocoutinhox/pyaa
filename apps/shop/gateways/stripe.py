@@ -3,6 +3,7 @@ from decimal import Decimal
 import stripe
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.sites.models import Site
 from django.http import JsonResponse
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -43,7 +44,7 @@ def process_checkout_for_subscription(request, subscription):
     }
 
 
-def process_cancel(request, subscription):
+def process_cancel_for_subscription(request, subscription):
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     stripe_subscription = subscription.external_id
@@ -126,6 +127,7 @@ def process_webhook(request):
 
     # create initial event log
     event_log = EventLog.objects.create(
+        site=Site.objects.get_current(),
         status=event_type,
         amount=amount,
         currency=currency,
@@ -150,22 +152,15 @@ def process_webhook(request):
             subscription.save()
             subscription.refresh_from_db()
 
-        try:
-            if event_type == "invoice.payment_succeeded":
-                # handle successful payment for a new or renewed subscription
-                subscription.process_completed()
-            elif event_type == "customer.subscription.deleted":
-                # handle subscription cancellation
-                subscription.process_canceled()
-            elif event_type == "charge.refunded":
-                # handle refunded payment (full or partial)
-                subscription.process_refunded()
-        except Exception as e:
-            return {
-                "response": JsonResponse(
-                    {"error": f"failed to process event: {str(e)}"}, status=500
-                )
-            }
+        if event_type == "invoice.payment_succeeded":
+            # handle successful payment for a new or renewed subscription
+            subscription.process_completed()
+        elif event_type == "customer.subscription.deleted":
+            # handle subscription cancellation
+            subscription.process_canceled()
+        elif event_type == "charge.refunded":
+            # handle refunded payment (full or partial)
+            subscription.process_refunded()
 
     return {"response": JsonResponse({"status": "success"}, status=200)}
 
