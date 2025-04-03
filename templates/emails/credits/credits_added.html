@@ -1,0 +1,39 @@
+{% extends 'emails/layouts/base.html' %}
+{% load i18n %}
+
+{% block email_subject %}
+    {% translate "email.credits.subject" %}
+{% endblock %}
+
+{% block email_content %}
+    <p style="margin-bottom: 15px;">Olá {{ customer.user.get_full_name }},</p>
+
+    <p style="margin-bottom: 15px;">Temos boas notícias! Créditos foram adicionados à sua conta no {{ site.name }}.</p>
+
+    <div style="background-color: #f8f9fa; border-left: 4px solid #007bff; padding: 15px; margin: 20px 0;">
+        <h3 style="margin-top: 0; color: #333;">{{ plan.name }}</h3>
+
+        {% if plan_image_url %}
+        <div style="text-align: center; margin-bottom: 15px;">
+            <img src="{{ plan_image_url }}" alt="{{ plan.name }}" style="max-width: 200px; height: auto;">
+        </div>
+        {% endif %}
+
+        {% if bonus_amount > 0 %}
+        <p style="margin-bottom: 5px;"><strong>Créditos Principais:</strong> {{ credits_amount }}</p>
+        <p style="margin-bottom: 5px;"><strong>Créditos Bônus:</strong> {{ bonus_amount }}</p>
+        {% endif %}
+
+        <p style="margin-bottom: 0;"><strong>Total de Créditos:</strong> {{ total_credits }}</p>
+    </div>
+
+    <p style="margin-bottom: 15px;">Aproveite seus créditos para desfrutar de todos os recursos disponíveis em nossa plataforma.</p>
+
+    <div style="text-align: center; margin: 25px 0;">
+        <a href="{{ profile_url }}" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+            Ver Meus Créditos
+        </a>
+    </div>
+
+    <p style="margin-top: 20px;">Obrigado por escolher o {{ site.name }}!</p>
+{% endblock %}

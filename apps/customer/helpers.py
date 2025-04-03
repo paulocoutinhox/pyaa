@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db import transaction
+from django.db.models import F
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -59,11 +60,14 @@ class CustomerHelper:
             object_id=object_id,
             object_type=object_type,
             credit_type=credit_type,
-            initial_amount=amount,
-            current_amount=amount,
+            amount=amount,
             price=plan.price,
             expire_at=expire_at,
             plan_id=plan.id,
+        )
+
+        Customer.objects.filter(id=customer.id).update(
+            credits=F("credits") + amount,
         )
 
         # if the plan includes bonus, add extra bonus credits
@@ -91,11 +95,14 @@ class CustomerHelper:
                 object_id=object_id,
                 object_type=object_type,
                 credit_type=CreditType.BONUS,
-                initial_amount=bonus_amount,
-                current_amount=bonus_amount,
+                amount=bonus_amount,
                 price=0,
                 expire_at=bonus_expire_at,
                 plan_id=plan.id,
+            )
+
+            Customer.objects.filter(id=customer.id).update(
+                credits=F("credits") + bonus_amount,
             )
 
         # link customer credit with the transaction, if applicable
@@ -136,11 +143,14 @@ class CustomerHelper:
             object_id=None,
             object_type=ObjectType.BONUS,
             credit_type=CreditType.BONUS,
-            initial_amount=amount,
-            current_amount=amount,
+            amount=amount,
             price=0,
             expire_at=expire_at,
             plan_id=None,
+        )
+
+        Customer.objects.filter(id=customer.id).update(
+            credits=F("credits") + amount,
         )
 
         # send email notification
@@ -253,7 +263,7 @@ class CustomerHelper:
         MailHelper.send_mail_async(
             subject=subject,
             to=recipient_list,
-            template="emails/site/credits_added.html",
+            template="emails/credits/credits_added.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
         )
@@ -302,7 +312,7 @@ class CustomerHelper:
         MailHelper.send_mail_async(
             subject=subject,
             to=recipient_list,
-            template="emails/site/bonus_credits_added.html",
+            template="emails/credits/bonus_credits_added.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
         )
@@ -365,7 +375,7 @@ class CustomerHelper:
         MailHelper.send_mail_async(
             subject=subject,
             to=recipient_list,
-            template="emails/site/credit_purchase_paid.html",
+            template="emails/credits/credit_purchase_paid.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
         )

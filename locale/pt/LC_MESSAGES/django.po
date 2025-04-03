@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-02 03:45+0000\n"
+"POT-Creation-Date: 2025-04-03 05:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,7 @@ msgid "model.content-category.name.plural"
 msgstr "categorias de conteúdos"
 
 #: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:58 apps/customer/models.py:271
+#: apps/customer/models.py:58 apps/customer/models.py:243
 #: apps/gallery/models.py:31 apps/language/models.py:27 apps/shop/models.py:35
 #: apps/shop/models.py:268 apps/shop/models.py:430 apps/shop/models.py:524
 #: apps/user/models.py:90
@@ -58,7 +58,7 @@ msgid "model.field.tag.help"
 msgstr "Deixe vazio para geração automática."
 
 #: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:143 apps/customer/models.py:347
+#: apps/customer/models.py:150 apps/customer/models.py:314
 #: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:187
 #: apps/shop/models.py:323 apps/shop/models.py:490 apps/shop/models.py:589
 #: apps/site/models.py:30
@@ -66,7 +66,7 @@ msgid "model.field.created-at"
 msgstr "Criado Em"
 
 #: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:148 apps/customer/models.py:352
+#: apps/customer/models.py:155 apps/customer/models.py:319
 #: apps/gallery/models.py:80 apps/language/models.py:61 apps/shop/models.py:192
 #: apps/shop/models.py:328 apps/shop/models.py:495 apps/site/models.py:35
 msgid "model.field.updated-at"
@@ -117,7 +117,7 @@ msgstr "INFORMAÇÕES DO PERFIL"
 msgid "admin.fieldsets.additional-info"
 msgstr "INFORMAÇÕES ADICIONAIS"
 
-#: apps/customer/admin.py:96 apps/customer/admin.py:251 apps/shop/admin.py:226
+#: apps/customer/admin.py:96 apps/customer/admin.py:249 apps/shop/admin.py:226
 #: apps/shop/admin.py:418 apps/site/admin.py:38 apps/user/admin.py:32
 msgid "admin.fieldsets.important-dates"
 msgstr "DATAS IMPORTANTES"
@@ -144,22 +144,18 @@ msgstr "Celular"
 msgid "model.field.is_active"
 msgstr "Ativo"
 
-#: apps/customer/admin.py:227 apps/shop/admin.py:160 apps/shop/admin.py:397
+#: apps/customer/admin.py:226 apps/shop/admin.py:160 apps/shop/admin.py:397
 #: apps/site/admin.py:32
 msgid "admin.fieldsets.general"
 msgstr "DADOS PESSOAIS"
 
-#: apps/customer/admin.py:237
+#: apps/customer/admin.py:236
 msgid "admin.fieldsets.details"
 msgstr "DETALHES"
 
-#: apps/customer/admin.py:274 apps/customer/models.py:316
+#: apps/customer/admin.py:272 apps/customer/models.py:288
 msgid "model.field.credit-type"
 msgstr "Tipo de Crédito"
-
-#: apps/customer/admin.py:283
-msgid "model.field.credit-amount"
-msgstr "Quantidade"
 
 #: apps/customer/apps.py:8
 msgid "apps.customer.description"
@@ -227,23 +223,23 @@ msgstr "Captcha"
 msgid "model.field.nickname"
 msgstr "Apelido"
 
-#: apps/customer/helpers.py:160
+#: apps/customer/helpers.py:157
 msgid "error.nickname-already-used-by-other"
 msgstr "Este apelido já está sendo usado."
 
-#: apps/customer/helpers.py:183
+#: apps/customer/helpers.py:180
 msgid "email.signup.subject"
 msgstr "Bem-vindo ao %(site_name)s!"
 
-#: apps/customer/helpers.py:219
+#: apps/customer/helpers.py:216
 msgid "email.credits.subject"
 msgstr "Créditos adicionados à sua conta"
 
-#: apps/customer/helpers.py:279
+#: apps/customer/helpers.py:276
 msgid "email.bonus-credits.subject"
 msgstr "Créditos adicionados à sua conta"
 
-#: apps/customer/helpers.py:328
+#: apps/customer/helpers.py:325
 msgid "email.credit-purchase-paid.subject"
 msgstr "Confirmação de pagamento"
 
@@ -259,7 +255,7 @@ msgstr "Clientes"
 msgid "model.field.user"
 msgstr "Usuário"
 
-#: apps/customer/models.py:74 apps/customer/models.py:280
+#: apps/customer/models.py:74 apps/customer/models.py:252
 #: apps/shop/models.py:44 apps/shop/models.py:277 apps/shop/models.py:439
 #: apps/shop/models.py:533 apps/site/models.py:19 apps/user/models.py:99
 msgid "model.field.site"
@@ -269,86 +265,88 @@ msgstr "Site"
 msgid "model.field.avatar"
 msgstr "Avatar"
 
-#: apps/customer/models.py:115 apps/customer/serializers.py:56
+#: apps/customer/models.py:115 apps/customer/serializers.py:132
+msgid "model.field.timezone"
+msgstr "Fuso Horário"
+
+#: apps/customer/models.py:123
+msgid "model.field.activate-token"
+msgstr "Token de Ativação"
+
+#: apps/customer/models.py:130
+msgid "model.field.recovery-token"
+msgstr "Token de Recuperação"
+
+#: apps/customer/models.py:137 apps/shop/models.py:103
+msgid "model.field.credits"
+msgstr "Créditos"
+
+#: apps/customer/models.py:144 apps/customer/serializers.py:56
 #: apps/customer/serializers.py:126
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customer/models.py:121 apps/customer/serializers.py:132
-msgid "model.field.timezone"
-msgstr "Fuso Horário"
-
-#: apps/customer/models.py:129
-msgid "model.field.activate-token"
-msgstr "Token de Ativação"
-
-#: apps/customer/models.py:136
-msgid "model.field.recovery-token"
-msgstr "Token de Recuperação"
-
-#: apps/customer/models.py:165
+#: apps/customer/models.py:172
 #, python-brace-format
 msgid "model.str.customer #{id}"
 msgstr "Cliente #{id}"
 
-#: apps/customer/models.py:183 apps/user/models.py:19 apps/user/models.py:145
+#: apps/customer/models.py:190 apps/user/models.py:19 apps/user/models.py:145
 msgid "error.site-id-required"
 msgstr "O código do site é obrigatório."
 
-#: apps/customer/models.py:244
+#: apps/customer/models.py:216
 msgid "model.customer-credit.name"
 msgstr "Crédito do Cliente"
 
-#: apps/customer/models.py:245
+#: apps/customer/models.py:217
 msgid "model.customer-credit.name.plural"
 msgstr "Créditos do Cliente"
 
-#: apps/customer/models.py:288 apps/shop/models.py:447 apps/shop/models.py:541
+#: apps/customer/models.py:260 apps/shop/models.py:447 apps/shop/models.py:541
 msgid "model.field.customer"
 msgstr "Cliente"
 
-#: apps/customer/models.py:293 apps/shop/models.py:460
+#: apps/customer/models.py:265 apps/shop/models.py:460
 msgid "model.field.plan"
 msgstr "Plano"
 
-#: apps/customer/models.py:300 apps/shop/models.py:546
+#: apps/customer/models.py:272 apps/shop/models.py:546
 msgid "model.field.object-type"
 msgstr "Tipo do Objeto"
 
-#: apps/customer/models.py:309 apps/shop/models.py:555
+#: apps/customer/models.py:281 apps/shop/models.py:555
 msgid "model.field.object-id"
 msgstr "ID do Objeto"
 
-#: apps/customer/models.py:325
-msgid "model.field.initial-amount"
-msgstr "Quantidade Inicial"
+#: apps/customer/models.py:297 apps/shop/models.py:569
+#: templates/admin/report/customer-gender-summary/pdf.html:13
+#: templates/admin/report/customer-gender-summary/view.html:21
+msgid "model.field.amount"
+msgstr "Valor"
 
-#: apps/customer/models.py:330
-msgid "model.field.current-amount"
-msgstr "Quantidade Atual"
-
-#: apps/customer/models.py:335 apps/shop/models.py:97 apps/shop/models.py:472
+#: apps/customer/models.py:302 apps/shop/models.py:97 apps/shop/models.py:472
 msgid "model.field.price"
 msgstr "Preço"
 
-#: apps/customer/models.py:341 apps/shop/models.py:131 apps/shop/models.py:317
+#: apps/customer/models.py:308 apps/shop/models.py:131 apps/shop/models.py:317
 msgid "model.field.expire-at"
 msgstr "Expira Em"
 
-#: apps/customer/models.py:361
+#: apps/customer/models.py:328
 msgid "credit-type.bonus.description"
 msgstr "Bônus"
 
-#: apps/customer/models.py:428
+#: apps/customer/models.py:395
 msgid "plan.validity.no-expiration"
 msgstr "Não expira"
 
-#: apps/customer/models.py:434
+#: apps/customer/models.py:401
 #, python-format
 msgid "plan.validity.expired: %(expire-at)s"
 msgstr "%(expire-at)s (Expirado)"
 
-#: apps/customer/models.py:438
+#: apps/customer/models.py:405
 #, python-format
 msgid "plan.validity.not-expired: %(expire-at)s"
 msgstr "%(expire-at)s"
@@ -688,10 +686,6 @@ msgstr "ID Externo"
 msgid "model.field.currency"
 msgstr "Moeda"
 
-#: apps/shop/models.py:103
-msgid "model.field.credits"
-msgstr "Créditos"
-
 #: apps/shop/models.py:109
 msgid "model.field.frequency-type"
 msgstr "Tipo de Frequência"
@@ -776,12 +770,6 @@ msgstr "Log de Evento"
 #: apps/shop/models.py:511
 msgid "model.shop-event-log.name.plural"
 msgstr "Log de Eventos"
-
-#: apps/shop/models.py:569
-#: templates/admin/report/customer-gender-summary/pdf.html:13
-#: templates/admin/report/customer-gender-summary/view.html:21
-msgid "model.field.amount"
-msgstr "Valor"
 
 #: apps/site/apps.py:8
 msgid "apps.site.description"
@@ -1043,7 +1031,7 @@ msgid "table.header.status"
 msgstr "Status"
 
 #: templates/pages/account/credit_purchases.html:47
-#: templates/pages/account/credits.html:50
+#: templates/pages/account/credits.html:46
 #: templates/pages/account/subscriptions.html:75
 #: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
 #: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:57
@@ -1051,7 +1039,7 @@ msgid "list-data.empty"
 msgstr "Nenhum dado encontrado."
 
 #: templates/pages/account/credit_purchases.html:57
-#: templates/pages/account/credits.html:60
+#: templates/pages/account/credits.html:56
 #: templates/pages/account/subscriptions.html:85
 #: templates/pages/gallery/view.html:32
 msgid "button.back"
@@ -1066,8 +1054,8 @@ msgid "table.header.description"
 msgstr "Descrição"
 
 #: templates/pages/account/credits.html:21
-msgid "table.header.amount-current-and-initial"
-msgstr "Quantidade Atual e Inicial"
+msgid "table.header.amount"
+msgstr "Quantidade"
 
 #: templates/pages/account/credits.html:22
 msgid "table.header.validity"
@@ -1489,8 +1477,3 @@ msgstr "Cadastre-se"
 #: templates/partials/header.html:72
 msgid "menu.contact"
 msgstr "Contato"
-
-#, fuzzy
-#~| msgid "table.header.actions"
-#~ msgid "table.header.amount"
-#~ msgstr "Ações"

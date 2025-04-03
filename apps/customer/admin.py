@@ -54,7 +54,7 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         "recovery_token",
     )
 
-    readonly_fields_links = ["site", "user"]
+    readonly_fields_links = ["site", "user", "credits"]
 
     search_fields = [
         "user__first_name",
@@ -89,7 +89,7 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         (
             _("admin.fieldsets.additional-info"),
             {
-                "fields": ("activate_token", "recovery_token", "obs"),
+                "fields": ("credits", "activate_token", "recovery_token", "obs"),
             },
         ),
         (
@@ -172,7 +172,7 @@ class CustomerCreditAdmin(admin.ModelAdmin):
         "id",
         "customer",
         "credit_type_badge",
-        "credit_amount",
+        "amount",
         "price",
         "expire_at",
         "created_at",
@@ -182,7 +182,7 @@ class CustomerCreditAdmin(admin.ModelAdmin):
         "id",
         "customer",
         "credit_type_badge",
-        "credit_amount",
+        "amount",
         "price",
         "expire_at",
         "created_at",
@@ -212,8 +212,7 @@ class CustomerCreditAdmin(admin.ModelAdmin):
         "object_type",
         "object_id",
         "credit_type",
-        "current_amount",
-        "initial_amount",
+        "amount",
         "price",
         "expire_at",
         "created_at",
@@ -241,8 +240,7 @@ class CustomerCreditAdmin(admin.ModelAdmin):
                     "object_type",
                     "object_id",
                     "credit_type",
-                    "current_amount",
-                    "initial_amount",
+                    "amount",
                     "price",
                 )
             },
@@ -272,15 +270,6 @@ class CustomerCreditAdmin(admin.ModelAdmin):
         )
 
     credit_type_badge.short_description = _("model.field.credit-type")
-
-    def credit_amount(self, obj):
-        return format_html(
-            "{}/{}",
-            obj.current_amount,
-            obj.initial_amount,
-        )
-
-    credit_amount.short_description = _("model.field.credit-amount")
 
 
 admin.site.register(models.Customer, CustomerAdmin)

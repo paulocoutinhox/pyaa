@@ -5,9 +5,9 @@
 </p>
 
 <p class="text-center">
-    {% with user.customer.get_remaining_credits as remaining_credits %}
+    {% with user.customer.credits as credits %}
         <p class="text-center">
-            {% if remaining_credits %}
+            {% if credits > 0 %}
                 {% translate "customer.credits" %}: <span class="customer-credits-data">{{ remaining_credits }}</span>
             {% else %}
                 {% translate "customer.no-credits" %}

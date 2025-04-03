@@ -111,12 +111,6 @@ class Customer(models.Model):
         null=True,
     )
 
-    obs = HTMLField(
-        _("model.field.obs"),
-        blank=True,
-        null=True,
-    )
-
     timezone = TimeZoneField(
         _("model.field.timezone"),
         max_length=255,
@@ -137,6 +131,19 @@ class Customer(models.Model):
         default=uuid.uuid4,
         editable=False,
         unique=True,
+    )
+
+    credits = models.IntegerField(
+        _("model.field.credits"),
+        blank=False,
+        null=False,
+        default=0,
+    )
+
+    obs = HTMLField(
+        _("model.field.obs"),
+        blank=True,
+        null=True,
     )
 
     created_at = models.DateTimeField(
@@ -201,41 +208,6 @@ class Customer(models.Model):
                 .select_for_update()
                 .exists()
             )
-
-    def get_remaining_credits(self):
-        from apps.customer.models import CustomerCredit
-
-        credits = CustomerCredit.objects.filter(
-            customer=self, current_amount__gt=0, expire_at__gt=now()
-        ).aggregate(total_credits=Sum("current_amount"))
-
-        return credits["total_credits"] or 0
-
-    def get_active_credit(self, only_paid=False):
-        """
-        Retrieves the active customer credit based on the provided conditions.
-
-        :param only_paid: flag to determine if only paid credits should be considered.
-        :return: the active customer credit instance or None if no valid credit is found.
-        """
-        from apps.customer.models import CustomerCredit
-
-        # filter for valid credits
-        credits_queryset = CustomerCredit.objects.annotate(current_time=Now()).filter(
-            customer=self,
-            current_amount__gt=0,
-            expire_at__gt=F("current_time"),
-        )
-
-        # if only_paid is true, filter for paid credits
-        if only_paid:
-            credits_queryset = credits_queryset.filter(credit_type=CreditType.PAID)
-
-        # order by expiration date
-        credits_queryset = credits_queryset.order_by("expire_at")
-
-        # return the first valid credit or None
-        return credits_queryset.first()
 
 
 class CustomerCredit(models.Model):
@@ -321,13 +293,8 @@ class CustomerCredit(models.Model):
         null=True,
     )
 
-    initial_amount = models.IntegerField(
-        _("model.field.initial-amount"),
-        default=0,
-    )
-
-    current_amount = models.IntegerField(
-        _("model.field.current-amount"),
+    amount = models.IntegerField(
+        _("model.field.amount"),
         default=0,
     )
 

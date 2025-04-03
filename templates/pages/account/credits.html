@@ -18,7 +18,7 @@
             <tr>
                 <th>{% translate "table.header.image" %}</th>
                 <th>{% translate "table.header.description" %}</th>
-                <th>{% translate "table.header.amount-current-and-initial" %}</th>
+                <th>{% translate "table.header.amount" %}</th>
                 <th>{% translate "table.header.validity" %}</th>
                 <th>{% translate "table.header.created-at" %}</th>
             </tr>
@@ -32,12 +32,14 @@
                         </td>
                         <td>{{ credit.get_description }}</td>
                         <td>
-                            {% if credit.current_amount > 0 %}
-                                <span class="badge bg-success rounded-pill text-lowercase">{{ credit.current_amount }} / {{ credit.initial_amount }}</span>
-                            {% elif credit.current_amount < 0 %}
-                                <span class="badge bg-danger rounded-pill text-lowercase">{{ credit.current_amount }} / {{ credit.initial_amount }}</span>
+                            {% if credit.amount > 0 %}
+                                <span class="badge bg-success rounded-pill text-lowercase">
+                                    {{ credit.amount }}
+                                </span>
                             {% else %}
-                                <span class="badge bg-dark rounded-pill text-lowercase">{{ credit.current_amount }} / {{ credit.initial_amount }}</span>
+                                <span class="badge bg-danger rounded-pill text-lowercase">
+                                    {{ credit.amount }}
+                                </span>
                             {% endif %}
                         </td>
                         <td>{{ credit.get_validity_description }}</td>
