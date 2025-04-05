@@ -79,20 +79,36 @@ class StatusHelper:
 
     STATUS_PATTERNS = {
         "success": {
-            "patterns": ["completed", "succeeded", "paid"],
+            "patterns": ["completed", "succeeded", "paid", "created"],
             "colors": {
                 "hex": "#28a745",
                 "bs": "success",
                 "text": "#ffffff",
             },  # green with white text
         },
-        "info": {
-            "patterns": ["created", "updated"],
+        "updated": {
+            "patterns": ["updated", "finalized"],
             "colors": {
                 "hex": "#ffc107",
                 "bs": "warning",
                 "text": "#000000",
             },  # yellow with black text
+        },
+        "info": {
+            "patterns": ["attached"],
+            "colors": {
+                "hex": "#007bff",
+                "bs": "primary",
+                "text": "#ffffff",
+            },  # blue with white text
+        },
+        "refunded": {
+            "patterns": ["refunded"],
+            "colors": {
+                "hex": "#825690",
+                "bs": "purple",
+                "text": "#ffffff",
+            },  # purple with white text
         },
         "error": {
             "patterns": ["deleted"],

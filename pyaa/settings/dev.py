@@ -372,7 +372,7 @@ MERCADO_PAGO_PUB_TOKEN = os.getenv("MERCADO_PAGO_PUB_TOKEN", "")
 
 # Webhook
 
-WEBHOOK_LOG_REQUESTS = True
+WEBHOOK_LOG_REQUESTS = False
 
 # Recaptcha
 

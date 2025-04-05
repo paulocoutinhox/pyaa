@@ -503,6 +503,37 @@ class CreditPurchase(models.Model):
     def generate_token():
         return f"credit-purchase.{uuid.uuid4()}"
 
+    @transaction.atomic
+    def process_completed(self):
+        # update the status to approved
+        self.status = enums.CreditPurchaseStatus.APPROVED
+        self.save(update_fields=["status"])
+
+        # add credits to customer
+        from apps.customer.helpers import CustomerHelper
+
+        CustomerHelper.add_credits(
+            customer=self.customer,
+            plan=self.plan,
+            object_id=self.id,
+            object_type=ObjectType.CREDIT_PURCHASE,
+        )
+
+        # send confirmation email
+        CustomerHelper.send_credit_purchase_paid_email(self)
+
+    @transaction.atomic
+    def process_canceled(self):
+        # update the status to canceled
+        self.status = enums.CreditPurchaseStatus.CANCELED
+        self.save(update_fields=["status"])
+
+    @transaction.atomic
+    def process_refunded(self):
+        # update the status to refunded
+        self.status = enums.CreditPurchaseStatus.REFUNDED
+        self.save(update_fields=["status"])
+
 
 class EventLog(models.Model):
     class Meta:
