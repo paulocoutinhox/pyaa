@@ -18,7 +18,9 @@
     <div class="d-flex align-items-center mb-4 position-relative">
         {% include 'partials/customer_avatar.html' %}
         <div>
-            <h5 class="mb-1">{% translate "title.account-profile" %}</h5>
+            {% element page_title %}
+                {% translate "title.account-profile" %}
+            {% endelement %}
             <p class="mb-1 small">{% translate "subtitle.my-account" %}</p>
 
             {% with user.customer.credits as credits %}

@@ -12,7 +12,9 @@
             <div class="card border-0 bg-body-tertiary rounded-3">
                 <div class="card-body p-4 p-md-5">
                     <div class="text-center mb-4">
-                        <h1 class="h3">{% translate "title.account-login" %}</h1>
+                        {% element page_title %}
+                            {% translate "title.account-login" %}
+                        {% endelement %}
                         <p class="text-body-secondary">{% translate "message.account-login.welcome-back" %}</p>
                     </div>
 

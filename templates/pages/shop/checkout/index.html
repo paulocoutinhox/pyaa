@@ -29,9 +29,9 @@
                         {% endif %}
 
                         <!-- Page Title -->
-                        <h1 class="text-center h3 mb-4">
+                        {% element page_title %}
                             {{ checkout.title }}
-                        </h1>
+                        {% endelement %}
 
                         <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
                             {% csrf_token %}

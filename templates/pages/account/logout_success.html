@@ -9,11 +9,9 @@
 {% url 'account_login' as url_account_login %}
 
 <div class="container">
-    <div class="section-head text-center pt-0">
-        <h1>
-            {% translate "title.account-logout-success" %}
-        </h1>
-    </div>
+    {% element page_title %}
+        {% translate "title.account-logout-success" %}
+    {% endelement %}
 
     <div class="text-center mt-5">
         <img src="{% static 'images/account-logout-banner.png' %}" class="img-fluid" style="width: 90px;">

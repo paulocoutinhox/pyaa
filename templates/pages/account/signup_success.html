@@ -9,11 +9,9 @@
 {% url 'account_profile' as url_account_profile %}
 
 <div class="container">
-    <div class="section-head text-center pt-0">
-        <h1>
-            {% translate "title.account-signup-success" %}
-        </h1>
-    </div>
+    {% element page_title %}
+        {% translate "title.account-signup-success" %}
+    {% endelement %}
 
     <div class="text-center">
         <img src="{% static 'images/success.png' %}" class="img-fluid" style="width: 100px;">

@@ -10,7 +10,9 @@
             <div class="card border-0 bg-body-tertiary rounded-3">
                 <div class="card-body p-4 p-md-5">
                     <div class="text-center mb-4">
-                        <h1 class="h3">{% translate "title.contact" %}</h1>
+                        {% element page_title %}
+                            {% translate "title.contact" %}
+                        {% endelement %}
                     </div>
 
                     <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
