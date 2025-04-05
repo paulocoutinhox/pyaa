@@ -299,9 +299,7 @@ class CustomerHelperTest(TestCase):
 
         # get the log entry
         log_entry = CreditLog.objects.get(
-            customer=customer,
-            object_type=ObjectType.BONUS,
-            amount=100
+            customer=customer, object_type=ObjectType.BONUS, amount=100
         )
 
         # modify the log entry

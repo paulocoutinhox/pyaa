@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
+from django.core.cache import cache
 from django.middleware.csrf import get_token
 from django.shortcuts import redirect, render
 from django.urls import path
@@ -19,23 +20,39 @@ from apps.shop.helpers import ShopHelper
 from apps.shop.models import CreditPurchase, Plan, Subscription
 
 
-def shop_plans_view(request):
+def shop_plans_view(request, plan_type):
     customer = None
+
+    # allowed plan types
+    allowed_plan_types = [
+        PlanType.SUBSCRIPTION,
+        PlanType.CREDIT_PURCHASE,
+        PlanType.VOUCHER,
+    ]
+
+    if plan_type not in [pt.value for pt in allowed_plan_types]:
+        messages.error(request, _("message.shop-invalid-plan-type"))
+        return redirect("home")
 
     if request.user.is_authenticated:
         customer = request.user.get_customer()
 
-    if customer and customer.has_active_subscription():
-        messages.info(request, _("message.shop-already-subscriber"))
-        return redirect("account_profile")
+    # for subscription plans, check if the customer already has an active subscription
+    if plan_type == PlanType.SUBSCRIPTION:
+        if customer and customer.has_active_subscription():
+            messages.info(request, _("message.shop-already-subscriber"))
+            return redirect("account_profile")
 
-    plans1 = ShopHelper.get_plans_by_type(PlanType.SUBSCRIPTION)
-    plans2 = ShopHelper.get_plans_by_type(PlanType.CREDIT_PURCHASE)
+    cache_key = f"shop_plans_{plan_type}"
+    plans = cache.get(cache_key)
 
-    plans = list(plans1) + list(plans2)
+    if plans is None:
+        plans = list(ShopHelper.get_plans_by_type(plan_type))
+        cache.set(cache_key, plans, 3600)
 
     context = {
         "plans": plans,
+        "plan_type": plan_type,
     }
 
     return render(request, "pages/shop/plans.html", context)
@@ -229,7 +246,7 @@ def shop_payment_pending_view(request, token):
 
 urlpatterns = [
     path(
-        "shop/plans/",
+        "shop/plans/<str:plan_type>/",
         shop_plans_view,
         name="shop_plans",
     ),

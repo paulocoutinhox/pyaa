@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 18:37+0000\n"
+"POT-Creation-Date: 2025-04-05 19:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -831,30 +831,34 @@ msgstr "Ação de cancelamento inválida."
 msgid "message.contact-message-sent"
 msgstr "Sua mensagem de contato foi enviada com sucesso."
 
-#: apps/web/views/shop/shop_web.py:29
+#: apps/web/views/shop/shop_web.py:34
+msgid "message.shop-invalid-plan-type"
+msgstr "Ação inválida."
+
+#: apps/web/views/shop/shop_web.py:43
 msgid "message.shop-already-subscriber"
 msgstr ""
 "Você já é assinante. Para realizar uma nova assinatura, é necessário "
 "cancelar a assinatura atual primeiro."
 
-#: apps/web/views/shop/shop_web.py:59 apps/web/views/shop/shop_web.py:89
+#: apps/web/views/shop/shop_web.py:76 apps/web/views/shop/shop_web.py:106
 msgid "message.shop-plan-not-found"
 msgstr "Plano não encontrado."
 
-#: apps/web/views/shop/shop_web.py:82 apps/web/views/shop/shop_web.py:113
+#: apps/web/views/shop/shop_web.py:99 apps/web/views/shop/shop_web.py:130
 msgid "message.shop-invalid-action"
 msgstr "Ação inválida."
 
-#: apps/web/views/shop/shop_web.py:117 apps/web/views/shop/shop_web.py:154
+#: apps/web/views/shop/shop_web.py:134 apps/web/views/shop/shop_web.py:171
 msgid "message.shop-invalid-type"
 msgstr "Ação inválida."
 
-#: apps/web/views/shop/shop_web.py:124
+#: apps/web/views/shop/shop_web.py:141
 msgid "message.shop-invalid-external-reference"
 msgstr "Ação inválida."
 
-#: apps/web/views/shop/shop_web.py:175 apps/web/views/shop/shop_web.py:196
-#: apps/web/views/shop/shop_web.py:217
+#: apps/web/views/shop/shop_web.py:192 apps/web/views/shop/shop_web.py:213
+#: apps/web/views/shop/shop_web.py:234
 msgid "message.shop-paid-item-not-found"
 msgstr "Item pago não encontrado."
 
@@ -1101,7 +1105,7 @@ msgstr "Status"
 #: templates/pages/account/credits.html:52
 #: templates/pages/account/subscriptions.html:75
 #: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
-#: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:57
+#: templates/pages/gallery/view.html:26 templates/pages/shop/plans.html:61
 msgid "list-data.empty"
 msgstr "Nenhum dado encontrado."
 
@@ -1382,11 +1386,11 @@ msgstr "Aplicação Python Avançada"
 msgid "Hi %(name)s!"
 msgstr "Oi %(name)s!"
 
-#: templates/pages/home/index.html:23 templates/partials/header.html:54
+#: templates/pages/home/index.html:23 templates/partials/header.html:66
 msgid "menu.logout"
 msgstr "Sair"
 
-#: templates/pages/home/index.html:29 templates/partials/header.html:60
+#: templates/pages/home/index.html:29 templates/partials/header.html:72
 msgid "menu.login"
 msgstr "Entrar"
 
@@ -1470,15 +1474,19 @@ msgstr "Pagamento Concluído"
 msgid "message.shop-payment-success.subtitle"
 msgstr "Seu pagamento foi processado com sucesso."
 
-#: templates/pages/shop/plans.html:11
+#: templates/pages/shop/plans.html:12
+msgid "title.shop.plans.credit-purchase"
+msgstr "Comprar Créditos"
+
+#: templates/pages/shop/plans.html:14
 msgid "title.shop.plans"
 msgstr "Preços"
 
-#: templates/pages/shop/plans.html:42
+#: templates/pages/shop/plans.html:46
 msgid "button.shop-select-subscription-plan"
 msgstr "Escolher Plano"
 
-#: templates/pages/shop/plans.html:46
+#: templates/pages/shop/plans.html:50
 msgid "button.shop-select-credit-plan"
 msgstr "Escolher Plano"
 
@@ -1529,14 +1537,22 @@ msgstr "Galerias"
 msgid "menu.shop.plans"
 msgstr "Preços"
 
-#: templates/partials/header.html:49
+#: templates/partials/header.html:47
+msgid "menu.shop.plans-subscription"
+msgstr "Assinaturas"
+
+#: templates/partials/header.html:52
+msgid "menu.shop.plans-credit-purchase"
+msgstr "Créditos"
+
+#: templates/partials/header.html:61
 msgid "menu.profile"
 msgstr "Minha Conta"
 
-#: templates/partials/header.html:65
+#: templates/partials/header.html:77
 msgid "menu.signup"
 msgstr "Cadastre-se"
 
-#: templates/partials/header.html:72
+#: templates/partials/header.html:84
 msgid "menu.contact"
 msgstr "Contato"

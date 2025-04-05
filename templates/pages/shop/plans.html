@@ -8,7 +8,11 @@
 
 <div class="container">
     {% element page_title %}
-        {% trans "title.shop.plans" %}
+        {% if plan_type == 'credit-purchase' %}
+            {% trans "title.shop.plans.credit-purchase" %}
+        {% else %}
+            {% trans "title.shop.plans" %}
+        {% endif %}
     {% endelement %}
 
     {% if plans %}
