@@ -28,7 +28,9 @@
                 {% for credit in credits %}
                     <tr class="align-middle">
                         <td>
-                            <img src="{{ credit.get_image_url }}" alt="" class="img-fluid" style="max-width: 50px;">
+                            {% if credit.get_image_url %}
+                                <img src="{{ credit.get_image_url }}" alt="" class="img-fluid" style="max-width: 50px;">
+                            {% endif %}
                         </td>
                         <td>{{ credit.get_description }}</td>
                         <td>
