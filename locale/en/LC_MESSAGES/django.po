@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 21:14+0000\n"
+"POT-Creation-Date: 2025-04-05 21:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -878,6 +878,22 @@ msgstr "English"
 msgid "language.pt-br"
 msgstr "Portuguese"
 
+#: pyaa/views.py:33
+msgid "error.upload-image.invalid-format"
+msgstr "Wrong file format"
+
+#: pyaa/views.py:47
+msgid "error.upload-image.file-exists"
+msgstr "File already exists"
+
+#: pyaa/views.py:56
+msgid "error.upload-image.success"
+msgstr "Image uploaded successfully"
+
+#: pyaa/views.py:60
+msgid "error.upload-image.invalid-request"
+msgstr "Wrong request"
+
 #: templates/admin/app_list.html:9
 #, python-format
 msgid "Models in the %(name)s application"
@@ -1100,8 +1116,8 @@ msgstr "Status"
 #: templates/pages/account/credit_purchases.html:47
 #: templates/pages/account/credits.html:52
 #: templates/pages/account/subscriptions.html:75
-#: templates/pages/content/index.html:31 templates/pages/gallery/index.html:24
-#: templates/pages/gallery/view.html:26
+#: templates/pages/content/index.html:31 templates/pages/gallery/index.html:25
+#: templates/pages/gallery/view.html:27
 #: templates/pages/shop/checkout/index.html:143
 #: templates/pages/shop/plans.html:61
 msgid "list-data.empty"
@@ -1110,7 +1126,7 @@ msgstr "No data found."
 #: templates/pages/account/credit_purchases.html:61
 #: templates/pages/account/credits.html:66
 #: templates/pages/account/subscriptions.html:89
-#: templates/pages/gallery/view.html:36
+#: templates/pages/gallery/view.html:37
 msgid "button.back"
 msgstr "Back"
 

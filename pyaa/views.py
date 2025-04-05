@@ -6,6 +6,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.http import JsonResponse
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.static import serve
 
@@ -29,7 +30,7 @@ def upload_image(request):
             ".jpeg",
             ".webp",
         ]:
-            return JsonResponse({"message": "Wrong file format"})
+            return JsonResponse({"message": _("error.upload-image.invalid-format")})
 
         # create file name and path
         file_name = FileHelper.generate_filename(file_obj)
@@ -43,7 +44,7 @@ def upload_image(request):
         if default_storage.exists(file_path):
             file_url = default_storage.url(file_path)
             return JsonResponse(
-                {"message": "File already exists", "location": file_url}
+                {"message": _("error.upload-image.file-exists"), "location": file_url}
             )
 
         # save file using default storage
@@ -52,11 +53,11 @@ def upload_image(request):
 
         # return success
         return JsonResponse(
-            {"message": "Image uploaded successfully", "location": file_url}
+            {"message": _("error.upload-image.success"), "location": file_url}
         )
 
     # return generic request error
-    return JsonResponse({"message": "Wrong request"})
+    return JsonResponse({"message": _("error.upload-image.invalid-request")})
 
 
 def serve_app_files(request, path):
