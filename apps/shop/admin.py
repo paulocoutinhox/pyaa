@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.db import models
+from django.db import models, transaction
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from nonrelated_inlines.admin import NonrelatedTabularInline
 
+from apps.customer.helpers import CustomerHelper
 from apps.shop import filters, models
 from apps.shop.enums import ObjectType
 from pyaa.helpers.status import StatusHelper
@@ -198,16 +199,6 @@ class PlanAdmin(admin.ModelAdmin):
             },
         ),
         (
-            _("admin.fieldsets.expiration"),
-            {
-                "fields": (
-                    "expire_at",
-                    "expire_after",
-                    "bonus_expire_after",
-                )
-            },
-        ),
-        (
             _("admin.fieldsets.description"),
             {
                 "fields": (
@@ -289,6 +280,79 @@ class SubscriptionAdmin(admin.ModelAdmin):
         )
 
     status_badge.short_description = _("model.field.status")
+
+
+class CreditLogAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "object_id",
+        "object_type",
+        "customer",
+        "amount",
+        "created_at",
+    )
+
+    list_display_links = (
+        "id",
+        "object_id",
+        "object_type",
+        "customer",
+        "amount",
+        "created_at",
+    )
+
+    list_filter = (
+        "object_type",
+        "created_at",
+    )
+
+    search_fields = ("object_id", "object_type", "customer__user__email")
+    ordering = ("-id",)
+    autocomplete_fields = ["customer"]
+    readonly_fields = ("created_at",)
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "site",
+                    "customer",
+                    "object_type",
+                    "object_id",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.details"),
+            {
+                "fields": (
+                    "amount",
+                    "description",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {"fields": ("created_at",)},
+        ),
+    )
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def save_model(self, request, obj, form, change):
+        with transaction.atomic():
+            super().save_model(request, obj, form, change)
+
+            if not change:
+                CustomerHelper.update_customer_credits(
+                    obj.customer.id,
+                    obj.amount,
+                )
 
 
 class EventLogAdmin(admin.ModelAdmin):
@@ -448,5 +512,6 @@ class CreditPurchaseAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Plan, PlanAdmin)
 admin.site.register(models.Subscription, SubscriptionAdmin)
+admin.site.register(models.CreditLog, CreditLogAdmin)
 admin.site.register(models.EventLog, EventLogAdmin)
 admin.site.register(models.CreditPurchase, CreditPurchaseAdmin)

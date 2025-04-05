@@ -31,14 +31,16 @@ class CustomerHelperTest(TestCase):
 
         # add initial credits via post_save
         initial_credits = 100
-        customer, _ = CustomerHelper.add_credits(
+        success = CustomerHelper.add_credits(
             customer,
             initial_credits,
             is_refund=False,
-            add_log=True,
             object_id=0,
             object_type=ObjectType.BONUS,
         )
+
+        # verify the operation was successful
+        self.assertTrue(success)
 
         # verify the customer credits were updated
         customer.refresh_from_db()
@@ -61,14 +63,16 @@ class CustomerHelperTest(TestCase):
 
         # add initial credits via post_save
         initial_credits = 100
-        customer, _ = CustomerHelper.add_credits(
+        success = CustomerHelper.add_credits(
             customer,
             initial_credits,
             is_refund=False,
-            add_log=True,
             object_id=0,
             object_type=ObjectType.BONUS,
         )
+
+        # verify the operation was successful
+        self.assertTrue(success)
 
         # verify the credit log was created
         self.assertTrue(
@@ -93,11 +97,10 @@ class CustomerHelperTest(TestCase):
 
         # add initial credits via post_save
         initial_credits = 100
-        customer, _ = CustomerHelper.add_credits(
+        CustomerHelper.add_credits(
             customer,
             initial_credits,
             is_refund=False,
-            add_log=True,
             object_id=0,
             object_type=ObjectType.BONUS,
         )
@@ -127,14 +130,16 @@ class CustomerHelperTest(TestCase):
         )
 
         # call post_save with zero credits to avoid creating a log
-        customer, _ = CustomerHelper.add_credits(
+        success = CustomerHelper.add_credits(
             customer,
             0,
             is_refund=False,
-            add_log=True,
             object_id=0,
             object_type=ObjectType.BONUS,
         )
+
+        # verify operation was not successful
+        self.assertFalse(success)
 
         # verify no credit log was created
         self.assertFalse(CreditLog.objects.filter(customer=customer).exists())
@@ -155,7 +160,10 @@ class CustomerHelperTest(TestCase):
         )
 
         # deduct 50 credits
-        customer, _ = CustomerHelper.add_credits(customer, -50, is_refund=False)
+        success = CustomerHelper.add_credits(customer, -50, is_refund=False)
+
+        # verify operation was successful
+        self.assertTrue(success)
 
         # verify the updated credits
         customer.refresh_from_db()
@@ -177,7 +185,10 @@ class CustomerHelperTest(TestCase):
         )
 
         # try to deduct more credits than available
-        customer, _ = CustomerHelper.add_credits(customer, -50, is_refund=False)
+        success = CustomerHelper.add_credits(customer, -50, is_refund=False)
+
+        # verify operation was not successful
+        self.assertFalse(success)
 
         # verify that credits were not deducted
         customer.refresh_from_db()
@@ -199,14 +210,16 @@ class CustomerHelperTest(TestCase):
         )
 
         # deduct 50 credits and log the transaction
-        customer, _ = CustomerHelper.add_credits(
+        success = CustomerHelper.add_credits(
             customer,
             -50,
             is_refund=False,
-            add_log=True,
             object_id=1,
             object_type=ObjectType.SUBSCRIPTION,
         )
+
+        # verify operation was successful
+        self.assertTrue(success)
 
         # verify the credit log was created
         self.assertTrue(
@@ -233,14 +246,16 @@ class CustomerHelperTest(TestCase):
         )
 
         # refund 50 credits
-        customer, _ = CustomerHelper.add_credits(
+        success = CustomerHelper.add_credits(
             customer,
             50,
             is_refund=True,
-            add_log=True,
             object_id=1,
             object_type=ObjectType.SUBSCRIPTION,
         )
+
+        # verify operation was successful
+        self.assertTrue(success)
 
         # verify the updated credits
         customer.refresh_from_db()
@@ -270,15 +285,23 @@ class CustomerHelperTest(TestCase):
             credits=0,  # starting credits
         )
 
-        # add initial credits and capture the log entry
-        initial_credits = 100
-        customer, log_entry = CustomerHelper.add_credits(
+        # add initial credits
+        success = CustomerHelper.add_credits(
             customer,
-            initial_credits,
+            100,
             is_refund=False,
-            add_log=True,
             object_id=0,
             object_type=ObjectType.BONUS,
+        )
+
+        # verify operation was successful
+        self.assertTrue(success)
+
+        # get the log entry
+        log_entry = CreditLog.objects.get(
+            customer=customer,
+            object_type=ObjectType.BONUS,
+            amount=100
         )
 
         # modify the log entry
@@ -288,3 +311,43 @@ class CustomerHelperTest(TestCase):
         # verify the log entry was updated in the database
         updated_log = CreditLog.objects.get(id=log_entry.id)
         self.assertEqual(updated_log.amount, 200)
+
+    def test_no_log_created_when_insufficient_credits(self):
+        # create a customer with only 10 credits
+        user = User.objects.create(
+            email="testuser@example.com", password="testpassword"
+        )
+        customer = Customer.objects.create(
+            user=user,
+            language_id=1,
+            mobile_phone="1234567890",
+            home_phone="0987654321",
+            gender="male",
+            timezone="America/Sao_Paulo",
+            credits=10,  # starting credits
+        )
+
+        # try to deduct 50 credits (more than available)
+        success = CustomerHelper.add_credits(
+            customer,
+            -50,
+            is_refund=False,
+            object_id=0,
+            object_type=ObjectType.SUBSCRIPTION,
+        )
+
+        # verify operation was not successful
+        self.assertFalse(success)
+
+        # verify that credits were not deducted
+        customer.refresh_from_db()
+        self.assertEqual(customer.credits, 10)
+
+        # verify that no log entry was created for the failed operation
+        self.assertFalse(
+            CreditLog.objects.filter(
+                customer=customer,
+                amount=-50,
+                object_type=ObjectType.SUBSCRIPTION,
+            ).exists()
+        )

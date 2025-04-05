@@ -39,7 +39,6 @@ drf-spectacular-sidecar==2025.4.1
 
 # payment
 stripe==12.0.0
-mercadopago==2.3.0
 
 # email
 django-anymail[amazon-ses]==13.0

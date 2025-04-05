@@ -3,7 +3,7 @@ from django.core.cache import cache
 from django.db.models import Q
 
 from apps.shop.enums import ObjectType, PaymentGateway
-from apps.shop.gateways import mercado_pago, stripe
+from apps.shop.gateways import stripe
 from apps.shop.models import CreditPurchase, Plan, Subscription
 
 
@@ -14,8 +14,6 @@ class ShopHelper:
 
         if gateway == PaymentGateway.STRIPE:
             return stripe.process_checkout_for_subscription(request, subscription)
-        elif gateway == PaymentGateway.MERCADO_PAGO:
-            return mercado_pago.process_checkout_for_subscription(request, subscription)
 
         return None
 
@@ -25,8 +23,6 @@ class ShopHelper:
 
         if gateway == PaymentGateway.STRIPE:
             return stripe.process_checkout_for_credit_purchase(request, purchase)
-        elif gateway == PaymentGateway.MERCADO_PAGO:
-            return mercado_pago.process_checkout_for_credit_purchase(request, purchase)
 
         return None
 
@@ -36,8 +32,6 @@ class ShopHelper:
 
         if gateway == PaymentGateway.STRIPE:
             return stripe.process_cancel_for_subscription(request, subscription)
-        elif gateway == PaymentGateway.MERCADO_PAGO:
-            return mercado_pago.process_cancel_for_subscription(request, subscription)
 
         return None
 
@@ -45,8 +39,6 @@ class ShopHelper:
     def process_webhook(request, gateway):
         if gateway == PaymentGateway.STRIPE:
             return stripe.process_webhook(request)
-        elif gateway == PaymentGateway.MERCADO_PAGO:
-            return mercado_pago.process_webhook(request)
 
         return None
 

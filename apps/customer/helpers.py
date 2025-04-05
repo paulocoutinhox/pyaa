@@ -4,13 +4,14 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db import transaction
-from django.db.models import F
+from django.db.models import F, Value
+from django.db.models.functions import Coalesce
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from apps.customer.models import Customer, CustomerCredit
-from apps.shop.enums import CreditType, ObjectType, PlanType
-from apps.shop.models import CreditPurchase, Plan
+from apps.customer.models import Customer
+from apps.shop.enums import ObjectType, PlanType
+from apps.shop.models import CreditLog, CreditPurchase, Plan
 from pyaa.helpers.mail import MailHelper
 
 
@@ -28,135 +29,155 @@ class CustomerHelper:
             plan = Plan.objects.filter(id=plan_id).first()
 
             if plan:
-                CustomerHelper.add_credits(customer, plan)
+                success = CustomerHelper.add_credits(customer, plan=plan)
+
+                # refresh customer if credits were added successfully
+                if success:
+                    customer.refresh_from_db()
+
+        return customer
 
     @staticmethod
     @transaction.atomic
-    def add_credits(customer, plan, object_id=0, object_type=None):
-        # determine credit amount based on the plan
-        amount = plan.credits
+    def add_credits(
+        customer,
+        amount=None,
+        plan=None,
+        is_refund=False,
+        object_id=0,
+        object_type=None,
+    ):
+        """
+        add credits to a customer based on either a plan or a direct amount value
 
-        if amount <= 0:
-            return None
+        :param customer: the customer to add credits to
+        :param amount: the direct amount of credits to add (used if plan is None)
+        :param plan: the plan object containing credits information (takes precedence over amount)
+        :param is_refund: whether this is a refund operation
+        :param object_id: the ID of the related object (for logging)
+        :param object_type: the type of the related object (for logging)
+        :return: boolean indicating whether credits were successfully added
+        """
+        # if a plan is provided, use its credits value
+        if plan:
+            # determine credit amount based on the plan
+            credit_amount = plan.credits
 
-        # calculate expiration date for the credits
-        if plan.expire_after:
-            expire_at = datetime.now(timezone.utc) + timedelta(
-                seconds=plan.expire_after
+            if credit_amount <= 0:
+                return False
+
+            # update customer's credit balance
+            Customer.objects.filter(id=customer.id).update(
+                credits=F("credits") + credit_amount,
             )
-        else:
-            expire_at = datetime(9999, 12, 31, 23, 59, 59, tzinfo=timezone.utc)
 
-        # set credit type based on plan type
-        credit_type = CreditType.PAID
+            # refresh the customer instance to reflect the updated credits
+            customer.refresh_from_db()
 
-        if plan.plan_type == PlanType.VOUCHER:
-            credit_type = CreditType.BONUS
-
-        # create customer credit record
-        customer_credit = CustomerCredit.objects.create(
-            site=Site.objects.get_current(),
-            customer=customer,
-            object_id=object_id,
-            object_type=object_type,
-            credit_type=credit_type,
-            amount=amount,
-            price=plan.price,
-            expire_at=expire_at,
-            plan_id=plan.id,
-        )
-
-        Customer.objects.filter(id=customer.id).update(
-            credits=F("credits") + amount,
-        )
-
-        # if the plan includes bonus, add extra bonus credits
-        if plan.bonus:
-            bonus_amount = plan.bonus
-
-            if plan.bonus_expire_after:
-                bonus_expire_at = datetime.now(timezone.utc) + timedelta(
-                    seconds=plan.bonus_expire_after
-                )
-
-                # make extra bonus expire 1 second earlier if it shares the same validity as the credit
-                if bonus_expire_at.replace(microsecond=0) == expire_at.replace(
-                    microsecond=0
-                ):
-                    bonus_expire_at -= timedelta(seconds=1)
-            else:
-                bonus_expire_at = datetime(
-                    9999, 12, 31, 23, 59, 59, tzinfo=timezone.utc
-                )
-
-            CustomerCredit.objects.create(
-                site=Site.objects.get_current(),
+            # create customer credit
+            customer_credit = CreditLog.objects.create(
                 customer=customer,
                 object_id=object_id,
                 object_type=object_type,
-                credit_type=CreditType.BONUS,
-                amount=bonus_amount,
-                price=0,
-                expire_at=bonus_expire_at,
-                plan_id=plan.id,
+                amount=credit_amount,
+                is_refund=is_refund,
             )
 
-            Customer.objects.filter(id=customer.id).update(
-                credits=F("credits") + bonus_amount,
+            # link customer credit with the transaction, if applicable
+            if object_type == ObjectType.CREDIT_PURCHASE:
+                CreditPurchase.objects.filter(
+                    object_type=ObjectType.CREDIT_PURCHASE,
+                    id=object_id,
+                ).update(customer_credit=customer_credit)
+
+            # send email for plan credits
+            CustomerHelper.send_credits_email(
+                customer,
+                credit_amount,
+                object_type=object_type,
+                plan=plan,
             )
 
-        # link customer credit with the transaction, if applicable
-        if object_type == ObjectType.CREDIT_PURCHASE:
-            CreditPurchase.objects.filter(id=object_id).update(
-                customer_credit=customer_credit
+            # if the plan includes bonus, add extra bonus credits
+            if plan.bonus and plan.bonus > 0:
+                bonus_amount = plan.bonus
+
+                # update customer's credit balance with bonus
+                Customer.objects.filter(id=customer.id).update(
+                    credits=F("credits") + bonus_amount,
+                )
+
+                # refresh the customer instance to reflect the updated credits
+                customer.refresh_from_db()
+
+                # add bonus log
+                CreditLog.objects.create(
+                    customer=customer,
+                    object_id=object_id,
+                    object_type=ObjectType.BONUS,
+                    amount=bonus_amount,
+                    is_refund=False,
+                )
+
+                # send email notification for bonus
+                CustomerHelper.send_credits_email(
+                    customer,
+                    bonus_amount,
+                    object_type=ObjectType.BONUS,
+                )
+
+            return True
+
+        # if direct amount is provided
+        elif amount is not None:
+            if amount == 0:
+                return False
+
+            # ensure credits is treated as 0 if it's null
+            current_credits = Coalesce(F("credits"), Value(0))
+
+            # atomically check and update credits
+            if amount < 0:
+                # attempt to deduct credits only if sufficient credits are available
+                updated_rows = Customer.objects.filter(
+                    id=customer.id,
+                    credits__gte=abs(amount),
+                ).update(
+                    credits=current_credits + amount,
+                )
+
+                if updated_rows == 0:
+                    # not enough credits to deduct
+                    return False
+            else:
+                # add credits without any condition
+                Customer.objects.filter(id=customer.id).update(
+                    credits=current_credits + amount,
+                )
+
+            # refresh the customer instance to reflect the updated credits
+            customer.refresh_from_db()
+
+            # create log entry
+            CreditLog.objects.create(
+                customer=customer,
+                object_id=object_id,
+                object_type=object_type,
+                amount=amount,
+                is_refund=is_refund,
             )
 
-        # send email
-        CustomerHelper.send_credits_mail(customer, plan)
+            # send email for direct credit additions
+            CustomerHelper.send_credits_email(
+                customer,
+                amount,
+                object_type=object_type,
+            )
 
-        return customer_credit
+            return True
 
-    @staticmethod
-    @transaction.atomic
-    def add_bonus_credits(customer, amount, expire_after=None):
-        """
-        Add bonus credits to a customer without requiring a plan
-
-        :param customer: the customer to add credits to
-        :param amount: the number of bonus credits to add
-        :param expire_after: seconds until expiration (optional)
-        :return: the created customer credit object
-        """
-        if amount <= 0:
-            return None
-
-        # calculate expiration date for the credits
-        if expire_after:
-            expire_at = datetime.now(timezone.utc) + timedelta(seconds=expire_after)
-        else:
-            expire_at = datetime(9999, 12, 31, 23, 59, 59, tzinfo=timezone.utc)
-
-        # create customer credit record
-        customer_credit = CustomerCredit.objects.create(
-            site=Site.objects.get_current(),
-            customer=customer,
-            object_id=None,
-            object_type=ObjectType.BONUS,
-            credit_type=CreditType.BONUS,
-            amount=amount,
-            price=0,
-            expire_at=expire_at,
-            plan_id=None,
-        )
-
-        Customer.objects.filter(id=customer.id).update(
-            credits=F("credits") + amount,
-        )
-
-        # send email notification
-        CustomerHelper.send_bonus_credits_mail(customer, amount)
-
-        return customer_credit
+        # if neither plan nor amount is provided
+        return False
 
     @staticmethod
     def validate_unique_nickname(
@@ -215,7 +236,15 @@ class CustomerHelper:
         )
 
     @staticmethod
-    def send_credits_mail(customer, plan):
+    def send_credits_email(customer, amount, object_type=None, plan=None):
+        """
+        send email notification for credits added to a customer
+
+        :param customer: the customer who received the credits
+        :param amount: the number of credits added
+        :param object_type: the type of object related to this credit operation
+        :param plan: the plan used to add credits (optional)
+        """
         # get the customer's email
         customer_email = customer.user.email
 
@@ -225,8 +254,13 @@ class CustomerHelper:
         # get the current site
         current_site = customer.site
 
-        # set the subject
-        subject = _("email.credits.subject")
+        # determine the subject and template based on credit type
+        if object_type == ObjectType.BONUS:
+            subject = _("email.bonus-credits-added.subject")
+        else:
+            subject = _("email.credits-added.subject")
+
+        template = "emails/credits/credits_added.html"
 
         # set recipient
         recipient_list = [customer_email]
@@ -235,84 +269,50 @@ class CustomerHelper:
         profile_path = reverse("account_credits")
         profile_url = f"https://{current_site.domain}{profile_path}"
 
-        total_credits = (plan.credits or 0) + (plan.bonus or 0)
-
-        # ensure plan_image_url is absolute
+        # determine image URL
         plan_image_url = None
 
         if plan and plan.image:
+            # if plan has image, use it
             plan_image = str(plan.image)
-
             if plan_image.startswith(("http://", "https://")):
                 plan_image_url = plan_image
             else:
                 plan_image_url = f"https://{current_site.domain}{plan.image.url}"
+        elif object_type == ObjectType.BONUS:
+            # use bonus image
+            plan_image_url = f"https://{current_site.domain}{settings.STATIC_URL}images/credit-bonus.png"
+        else:
+            # use standard credit image
+            plan_image_url = (
+                f"https://{current_site.domain}{settings.STATIC_URL}images/no-image.png"
+            )
 
+        # build context with all possible parameters
         context = {
             "subject": subject,
             "customer": customer,
             "site": current_site,
             "profile_url": profile_url,
-            "plan": plan,
-            "credits_amount": plan.credits,
-            "bonus_amount": plan.bonus,
-            "total_credits": total_credits,
+            "credits_amount": amount,
             "plan_image_url": plan_image_url,
+            "object_type": object_type,
         }
+
+        # add plan-specific context if available
+        if plan:
+            context.update(
+                {
+                    "plan": plan,
+                    "bonus_amount": plan.bonus,
+                    "total_credits": (plan.credits or 0) + (plan.bonus or 0),
+                }
+            )
 
         MailHelper.send_mail_async(
             subject=subject,
             to=recipient_list,
-            template="emails/credits/credits_added.html",
-            context=context,
-            reply_to=[settings.DEFAULT_TO_EMAIL],
-        )
-
-    @staticmethod
-    def send_bonus_credits_mail(customer, credits_amount):
-        """
-        Send email notification for bonus credits added to a customer
-
-        :param customer: the customer who received the bonus credits
-        :param credits_amount: the number of bonus credits added
-        """
-        # get the customer's email
-        customer_email = customer.user.email
-
-        if not customer_email:
-            return
-
-        # get the current site
-        current_site = customer.site
-
-        # set the subject
-        subject = _("email.bonus-credits.subject")
-
-        # set recipient
-        recipient_list = [customer_email]
-
-        # set context
-        profile_path = reverse("account_credits")
-        profile_url = f"https://{current_site.domain}{profile_path}"
-
-        # absolute image url for bonus credits
-        plan_image_url = (
-            f"https://{current_site.domain}{settings.STATIC_URL}images/credit-bonus.png"
-        )
-
-        context = {
-            "subject": subject,
-            "customer": customer,
-            "site": current_site,
-            "profile_url": profile_url,
-            "credits_amount": credits_amount,
-            "plan_image_url": plan_image_url,
-        }
-
-        MailHelper.send_mail_async(
-            subject=subject,
-            to=recipient_list,
-            template="emails/credits/bonus_credits_added.html",
+            template=template,
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
         )
@@ -378,4 +378,25 @@ class CustomerHelper:
             template="emails/credits/credit_purchase_paid.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
+        )
+
+    @staticmethod
+    @transaction.atomic
+    def update_customer_credits(customer_id, amount):
+        """
+        update customer credits without creating any log entries
+        used specifically by admin interfaces to avoid duplicate logs
+
+        :param customer: the customer whose credits to update
+        :param amount: the amount to add (positive) or remove (negative)
+        """
+        if amount == 0:
+            return False
+
+        # ensure credits is treated as 0 if it's null
+        current_credits = Coalesce(F("credits"), Value(0))
+
+        # update credits
+        Customer.objects.filter(id=customer_id).update(
+            credits=current_credits + amount,
         )

@@ -14,10 +14,10 @@ from apps.customer.forms import (
     CustomerUpdateAvatarForm,
     CustomerUpdateProfileForm,
 )
-from apps.customer.models import Customer, CustomerCredit
+from apps.customer.models import Customer
 from apps.shop.enums import PaymentGatewayCancelAction, SubscriptionStatus
 from apps.shop.helpers import ShopHelper
-from apps.shop.models import CreditPurchase, Subscription
+from apps.shop.models import CreditLog, CreditPurchase, Subscription
 from pyaa.helpers.request import RequestHelper
 
 
@@ -236,7 +236,7 @@ def account_credits_view(request):
     except Customer.DoesNotExist:
         return redirect("home")
 
-    credits = CustomerCredit.objects.filter(
+    credits = CreditLog.objects.filter(
         customer=customer,
     ).order_by("-id")
 

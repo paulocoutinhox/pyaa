@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer.models import Customer
-from apps.shop.enums import CheckoutStep, ObjectType, PaymentGateway
+from apps.shop.enums import CheckoutStep, ObjectType
 from apps.shop.models import Plan
 
 
@@ -50,7 +50,7 @@ class CheckoutForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def create_for_subscription(self, plan: Plan, customer: Customer):
-        self.gateway = PaymentGateway.MERCADO_PAGO
+        self.gateway = plan.gateway
         self.title = _("checkout.description.subscription")
         self.description = plan.name
         self.object_type = ObjectType.SUBSCRIPTION
@@ -71,7 +71,7 @@ class CheckoutForm(forms.Form):
         self.show_price_data = False
 
     def create_for_credit_purchase(self, plan: Plan, customer: Customer):
-        self.gateway = PaymentGateway.MERCADO_PAGO
+        self.gateway = plan.gateway
         self.description = _("checkout.description.credit-purchase")
         self.object_type = ObjectType.CREDIT_PURCHASE
         self.object_id = plan.id

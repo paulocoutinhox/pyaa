@@ -19,10 +19,7 @@ def populate_plans():
             "frequency_amount": 1,
             "sort_order": 1,
             "featured": False,
-            "expire_at": None,
-            "expire_after": 30 * 24 * 60 * 60,
             "bonus": 0.0,
-            "bonus_expire_after": None,
             "active": True,
             "image": None,
             "description": """<ul class="list-group list-group-flush mb-4">

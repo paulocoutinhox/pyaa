@@ -26,6 +26,13 @@ class SiteProfile(models.Model):
         null=True,
     )
 
+    template_folder = models.CharField(
+        _("model.field.template-folder"),
+        max_length=255,
+        blank=True,
+        null=True,
+    )
+
     created_at = models.DateTimeField(
         _("model.field.created-at"),
         auto_now_add=True,

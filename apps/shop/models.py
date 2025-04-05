@@ -3,6 +3,7 @@ from datetime import timedelta
 
 from django.db import models, transaction
 from django.db.models import F
+from django.templatetags.static import static
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
@@ -10,7 +11,12 @@ from tinymce.models import HTMLField
 
 from apps.customer.models import Customer
 from apps.shop import enums, fields
-from apps.shop.enums import ObjectType, PlanFrequencyType
+from apps.shop.enums import (
+    CreditPurchaseStatus,
+    ObjectType,
+    PlanFrequencyType,
+    SubscriptionStatus,
+)
 from apps.site.models import Site
 from pyaa.helpers.string import StringHelper
 
@@ -66,7 +72,7 @@ class Plan(models.Model):
         _("model.field.plan-type"),
         max_length=255,
         choices=enums.PlanType.choices,
-        default=enums.PlanType.SUBSCRIPTION,
+        default=None,
         blank=False,
         null=False,
     )
@@ -127,32 +133,11 @@ class Plan(models.Model):
         null=False,
     )
 
-    expire_at = models.DateTimeField(
-        _("model.field.expire-at"),
-        blank=True,
-        null=True,
-        help_text=_("model.hint.plan-expire-at"),
-    )
-
-    expire_after = models.IntegerField(
-        _("model.field.expire-after"),
-        blank=True,
-        null=True,
-        help_text=_("model.hint.plan-expire-after"),
-    )
-
     bonus = models.IntegerField(
         _("model.field.bonus"),
         blank=True,
         null=True,
         help_text=_("model.hint.plan-bonus"),
-    )
-
-    bonus_expire_after = models.IntegerField(
-        _("model.field.bonus-expire-after"),
-        blank=True,
-        null=True,
-        help_text=_("model.hint.plan-bonus-expire-after"),
     )
 
     image = fields.PlanImageField(
@@ -447,13 +432,6 @@ class CreditPurchase(models.Model):
         verbose_name=_("model.field.customer"),
     )
 
-    customer_credit = models.ForeignKey(
-        "customer.CustomerCredit",
-        on_delete=models.CASCADE,
-        verbose_name=_("model.field.customer-credit"),
-        null=True,
-    )
-
     plan = models.ForeignKey(
         Plan,
         on_delete=models.CASCADE,
@@ -466,6 +444,13 @@ class CreditPurchase(models.Model):
         default=StringHelper.generate_credit_purchase_token,
         editable=False,
         unique=True,
+    )
+
+    currency = models.CharField(
+        _("model.field.currency"),
+        max_length=3,
+        blank=False,
+        null=False,
     )
 
     price = models.DecimalField(
@@ -533,6 +518,158 @@ class CreditPurchase(models.Model):
         # update the status to refunded
         self.status = enums.CreditPurchaseStatus.REFUNDED
         self.save(update_fields=["status"])
+
+
+class CreditLog(models.Model):
+    class Meta:
+        db_table = "shop_credit_log"
+        verbose_name = _("model.shop-credit-log.name")
+        verbose_name_plural = _("model.shop-credit-log.name.plural")
+
+        indexes = [
+            models.Index(
+                fields=["object_id", "object_type"], name="shop_credit_log_object"
+            ),
+            models.Index(fields=["object_type"], name="shop_credit_log_object_type"),
+            models.Index(fields=["is_refund"], name="shop_credit_log_is_refund"),
+            models.Index(fields=["created_at"], name="shop_credit_log_created_at"),
+        ]
+
+    id = models.BigAutoField(
+        _("model.field.id"),
+        unique=True,
+        primary_key=True,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="credit_logs",
+        verbose_name=_("model.field.site"),
+        blank=False,
+        null=False,
+    )
+
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        verbose_name=_("model.field.customer"),
+        null=False,
+    )
+
+    object_type = models.CharField(
+        _("model.field.object-type"),
+        max_length=255,
+        choices=enums.ObjectType.choices,
+        default=enums.ObjectType.UNKNOWN,
+        blank=True,
+        null=True,
+    )
+
+    object_id = models.BigIntegerField(
+        _("model.field.object-id"),
+        blank=True,
+        null=True,
+        default=0,
+    )
+
+    amount = models.IntegerField(
+        _("model.field.amount"),
+        default=0,
+    )
+
+    is_refund = models.BooleanField(
+        _("model.field.is-refund"),
+        default=False,
+    )
+
+    description = models.TextField(
+        _("model.field.description"),
+        blank=True,
+        null=True,
+    )
+
+    created_at = models.DateTimeField(
+        _("model.field.created-at"),
+        auto_now_add=True,
+    )
+
+    def get_description(self):
+        result = ""
+
+        if self.object_type == enums.ObjectType.SUBSCRIPTION:
+            # if the object type is subscription
+            subscription = Subscription.objects.filter(id=self.object_id).first()
+
+            if subscription and subscription.plan:
+                result = subscription.plan.name
+            else:
+                key = f"enum.shop-object-type.{self.object_type}"
+                result = _(key)
+        elif self.object_type == enums.ObjectType.CREDIT_PURCHASE:
+            # if the object type is credit purchase
+            purchase = CreditPurchase.objects.filter(id=self.object_id).first()
+
+            if purchase and purchase.plan:
+                result = purchase.plan.get_name()
+            else:
+                key = f"enum.shop-object-type.{self.object_type}"
+                result = _(key)
+        elif self.object_type == enums.ObjectType.BONUS:
+            return _("enum.shop-object-type.bonus")
+        elif self.description:
+            # if there is a specific description
+            result = self.description
+        else:
+            # default case for other object types
+            key = f"enum.shop-object-type.{self.object_type}"
+            result = result = _(key)
+
+        # if it is a refund, add the refund string
+        if self.is_refund:
+            result = result + " " + _("message.refund-in-list")
+
+        return result
+
+    def get_image_url(self):
+        from apps.shop.models import CreditPurchase, Subscription
+
+        if self.object_type == enums.ObjectType.SUBSCRIPTION:
+            # subscription
+            subscription = Subscription.objects.filter(id=self.object_id).first()
+
+            if subscription and subscription.plan:
+                return subscription.plan.get_image_url()
+        elif self.object_type == enums.ObjectType.CREDIT_PURCHASE:
+            # credit purchase
+            purchase = CreditPurchase.objects.filter(id=self.object_id).first()
+
+            if purchase and purchase.plan:
+                return purchase.plan.get_image_url()
+        elif self.object_type == enums.ObjectType.BONUS:
+            # bonus
+            return static("images/credit-bonus.png")
+
+        # default case for other object types
+        return static("images/plan-default.png")
+
+    def get_status(self):
+        from apps.shop.models import CreditPurchase, Subscription
+
+        if self.object_type == ObjectType.SUBSCRIPTION:
+            # subscription
+            subscription = Subscription.objects.filter(id=self.object_id).first()
+
+            if subscription:
+                return SubscriptionStatus(subscription.status).label
+        elif self.object_type == ObjectType.CREDIT_PURCHASE:
+            # credit purchase
+            purchase = CreditPurchase.objects.filter(id=self.object_id).first()
+
+            if purchase:
+                return CreditPurchaseStatus(purchase.status).label
+
+        return None
 
 
 class EventLog(models.Model):

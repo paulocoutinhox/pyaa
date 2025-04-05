@@ -1,27 +1,15 @@
 import uuid
-from datetime import datetime
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
-from django.db.models import F, Sum
-from django.db.models.functions import Now
-from django.dispatch import receiver
-from django.templatetags.static import static
 from django.utils import timezone
-from django.utils.timezone import make_aware, now
 from django.utils.translation import gettext_lazy as _
 from timezone_field import TimeZoneField
 from tinymce.models import HTMLField
 
 from apps.customer import enums, fields
 from apps.language import models as language_models
-from apps.shop.enums import (
-    CreditPurchaseStatus,
-    CreditType,
-    ObjectType,
-    SubscriptionStatus,
-)
 from apps.site.models import Site
 
 
@@ -195,6 +183,20 @@ class Customer(models.Model):
         if not self.pk:
             self.site = Site.objects.filter(id=settings.SITE_ID).first()
 
+    def save(self, *args, **kwargs):
+        self.setup_initial_data()
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        user = self.user
+
+        result = super().delete(*args, **kwargs)
+
+        if user:
+            user.delete()
+
+        return result
+
     def has_active_subscription(self):
         from apps.shop.enums import SubscriptionStatus
 
@@ -209,212 +211,7 @@ class Customer(models.Model):
                 .exists()
             )
 
-
-class CustomerCredit(models.Model):
-    class Meta:
-        db_table = "customer_credit"
-        verbose_name = _("model.customer-credit.name")
-        verbose_name_plural = _("model.customer-credit.name.plural")
-
-        indexes = [
-            models.Index(
-                fields=["object_id", "object_type"],
-                name="customer_credit_object",
-            ),
-            models.Index(
-                fields=["object_type"],
-                name="customer_credit_object_type",
-            ),
-            models.Index(
-                fields=["credit_type"],
-                name="customer_credit_credit_type",
-            ),
-            models.Index(
-                fields=["expire_at"],
-                name="customer_credit_expire_at",
-            ),
-            models.Index(
-                fields=["created_at"],
-                name="customer_credit_created_at",
-            ),
-        ]
-
-    id = models.BigAutoField(
-        _("model.field.id"),
-        unique=True,
-        primary_key=True,
-    )
-
-    site = models.ForeignKey(
-        Site,
-        on_delete=models.CASCADE,
-        related_name="customer_credits",
-        verbose_name=_("model.field.site"),
-        blank=False,
-        null=False,
-    )
-
-    customer = models.ForeignKey(
-        Customer,
-        on_delete=models.CASCADE,
-        verbose_name=_("model.field.customer"),
-        null=False,
-    )
-
-    plan_id = models.BigIntegerField(
-        _("model.field.plan"),
-        blank=True,
-        null=True,
-        default=0,
-    )
-
-    object_type = models.CharField(
-        _("model.field.object-type"),
-        max_length=255,
-        choices=ObjectType.choices,
-        default=ObjectType.UNKNOWN,
-        blank=True,
-        null=True,
-    )
-
-    object_id = models.BigIntegerField(
-        _("model.field.object-id"),
-        blank=True,
-        null=True,
-        default=0,
-    )
-
-    credit_type = models.CharField(
-        _("model.field.credit-type"),
-        max_length=255,
-        choices=CreditType.choices,
-        default=CreditType.PAID,
-        blank=True,
-        null=True,
-    )
-
-    amount = models.IntegerField(
-        _("model.field.amount"),
-        default=0,
-    )
-
-    price = models.DecimalField(
-        _("model.field.price"),
-        max_digits=10,
-        decimal_places=2,
-    )
-
-    expire_at = models.DateTimeField(
-        _("model.field.expire-at"),
-        blank=True,
-        null=True,
-    )
-
-    created_at = models.DateTimeField(
-        _("model.field.created-at"),
-        auto_now_add=True,
-    )
-
-    updated_at = models.DateTimeField(
-        _("model.field.updated-at"),
-        auto_now=True,
-    )
-
-    def get_description(self):
-        from apps.shop.models import CreditPurchase, Subscription
-
-        # bonus
-        if self.credit_type == CreditType.BONUS:
-            return _("credit-type.bonus.description")
-
-        if self.object_type == ObjectType.SUBSCRIPTION:
-            # if the object type is subscription
-            subscription = Subscription.objects.filter(id=self.object_id).first()
-
-            if subscription and subscription.plan:
-                return subscription.plan.get_name()
-            else:
-                key = f"enum.shop-object-type.{self.object_type}"
-                return _(key)
-        elif self.object_type == ObjectType.CREDIT_PURCHASE:
-            # if the object type is credit purchase
-            purchase = CreditPurchase.objects.filter(id=self.object_id).first()
-
-            if purchase and purchase.plan:
-                return purchase.plan.get_name()
-        else:
-            # default case for other object types
-            key = f"enum.shop-object-type.{self.object_type}"
-            return _(key)
-
-        return None
-
-    def get_image_url(self):
-        from apps.shop.models import CreditPurchase, Subscription
-
-        # bonus
-        if self.credit_type == CreditType.BONUS:
-            return static("images/credit-bonus.png")
-
-        if self.object_type == ObjectType.SUBSCRIPTION:
-            # subscription
-            subscription = Subscription.objects.filter(id=self.object_id).first()
-
-            if subscription and subscription.plan:
-                return subscription.plan.get_image_url()
-        elif self.object_type == ObjectType.CREDIT_PURCHASE:
-            # purchase
-            purchase = CreditPurchase.objects.filter(id=self.object_id).first()
-
-            if purchase and purchase.plan:
-                return purchase.plan.get_image_url()
-
-        return static("images/plan-default.png")
-
-    def get_status(self):
-        from apps.shop.models import CreditPurchase, Subscription
-
-        if self.object_type == ObjectType.SUBSCRIPTION:
-            subscription = Subscription.objects.filter(id=self.object_id).first()
-
-            if subscription:
-                return SubscriptionStatus(subscription.status).label
-
-        elif self.object_type == ObjectType.CREDIT_PURCHASE:
-            purchase = CreditPurchase.objects.filter(id=self.object_id).first()
-
-            if purchase:
-                return CreditPurchaseStatus(purchase.status).label
-
-        return None
-
-    def get_validity_description(self):
-        max_date = make_aware(datetime(9999, 12, 31, 23, 59, 59))
-
-        if self.expire_at == max_date:
-            return _("plan.validity.no-expiration")
-
-        if self.expire_at:
-            current_time = now()
-
-            if self.expire_at < current_time:
-                return _("plan.validity.expired: %(expire-at)s") % {
-                    "expire-at": self.expire_at.strftime("%d/%m/%Y %H:%M:%S")
-                }
-            else:
-                return _("plan.validity.not-expired: %(expire-at)s") % {
-                    "expire-at": self.expire_at.strftime("%d/%m/%Y %H:%M:%S")
-                }
-
-        return None
-
-
-@receiver(models.signals.pre_save, sender=Customer)
-def customer_pre_save_callback(sender, instance: Customer, *args, **kwargs):
-    instance.setup_initial_data()
-
-
-@receiver(models.signals.post_delete, sender=Customer)
-def customer_post_delete_callback(sender, instance: Customer, **kwargs):
-    if instance.user:
-        instance.user.delete()
+    def has_credits(self, amount=0):
+        with transaction.atomic():
+            self.refresh_from_db(fields=["credits"])
+            return self.credits is not None and self.credits >= amount

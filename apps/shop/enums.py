@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 
 class PaymentGateway(TextChoices):
     STRIPE = "stripe", _("enum.shop-payment-gateway.stripe")
-    MERCADO_PAGO = "mercado-pago", _("enum.shop-payment-gateway.mercado-pago")
 
     @classmethod
     def get_choices(cls):
@@ -76,15 +75,6 @@ class CreditPurchaseStatus(TextChoices):
     CHARGED_BACK = "charged-back", _("enum.shop-credit-purchase-status.charged-back")
     REJECTED = "rejected", _("enum.shop-credit-purchase-status.rejected")
     REFUNDED = "refunded", _("enum.shop-credit-purchase-status.refunded")
-
-    @classmethod
-    def get_choices(cls):
-        return tuple((i.name, i.value) for i in cls)
-
-
-class CreditType(TextChoices):
-    PAID = "paid", _("enum.shop-credit-type.paid")
-    BONUS = "bonus", _("enum.shop-credit-type.bonus")
 
     @classmethod
     def get_choices(cls):

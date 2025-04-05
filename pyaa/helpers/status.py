@@ -120,24 +120,6 @@ class StatusHelper:
         },
     }
 
-    CREDIT_TYPE_COLORS = {
-        "paid": {
-            "hex": "#28a745",
-            "bs": "success",
-            "text": "#ffffff",
-        },  # green
-        "bonus": {
-            "hex": "#ffc107",
-            "bs": "warning",
-            "text": "#000000",
-        },  # yellow
-        None: {
-            "hex": "#6c757d",
-            "bs": "secondary",
-            "text": "#ffffff",
-        },  # gray
-    }
-
     @staticmethod
     def get_status_color(status: str, style="hex") -> dict:
         if not status:
@@ -167,17 +149,4 @@ class StatusHelper:
         return {
             "bg": "#000000" if style == "hex" else "dark",
             "text": "#ffffff",
-        }
-
-    @staticmethod
-    def get_credit_type_color(credit_type: str, style="hex") -> dict:
-        credit_type = credit_type.lower() if credit_type else None
-
-        colors = StatusHelper.CREDIT_TYPE_COLORS.get(
-            credit_type, StatusHelper.CREDIT_TYPE_COLORS[None]
-        )
-
-        return {
-            "bg": colors.get(style, "#6c757d"),
-            "text": colors["text"],
         }
