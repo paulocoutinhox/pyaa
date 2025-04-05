@@ -170,7 +170,7 @@ msgstr "Created At"
 
 #: apps/customer/forms.py:41
 msgid "model.field.login-username"
-msgstr "Username"
+msgstr "E-mail"
 
 #: apps/customer/forms.py:48
 msgid "model.field.login-password"
