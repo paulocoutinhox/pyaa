@@ -138,18 +138,11 @@
         </div>
 
     {% elif checkout.checkout_step == "payment" %}
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
-                <div class="card border-0 bg-body-tertiary rounded-3">
-                    <div class="card-body p-4 text-center">
-                        <h4 class="mb-4">{% trans 'subtitle.payment-redirect' %}</h4>
-                        <div class="alert alert-info">
-                            {% trans 'message.payment-redirect' %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        <p class="text-center">
+            {% trans "list-data.empty" %}
+        </p>
+
     {% endif %}
 </div>
 {% endblock content %}
