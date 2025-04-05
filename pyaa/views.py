@@ -61,7 +61,15 @@ def upload_image(request):
 
 
 def serve_app_files(request, path):
-    file_path = os.path.join(settings.BASE_DIR, "static", "app", path)
+    document_root = os.path.join(
+        settings.BASE_DIR,
+        "apps",
+        "web",
+        "static",
+        "app",
+    )
+
+    file_path = os.path.join(document_root, path)
 
     if os.path.isdir(file_path):
         file_path = os.path.join(file_path, "index.html")
@@ -70,5 +78,5 @@ def serve_app_files(request, path):
     return serve(
         request,
         path,
-        document_root=os.path.join(settings.BASE_DIR, "static", "app"),
+        document_root=document_root,
     )
