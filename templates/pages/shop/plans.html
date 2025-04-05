@@ -21,6 +21,14 @@
             <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
                 <div class="card w-100 {% if plan.featured %} border-primary-subtle pt-md-4 pb-md-4 {% endif %} rounded-3 bg-body-tertiary">
                     <div class="card-body p-4 p-xxl-5">
+                        <div class="text-center mb-4">
+                            <a href="{% url 'shop_checkout' 'credit-purchase' plan.id %}">
+                                {% if plan.get_image_url %}
+                                    <img src="{{ plan.get_image_url }}" style="height: 180px;" alt="" class="img-fluid" />
+                                {% endif %}
+                            </a>
+                        </div>
+
                         <div class="text-center">
                             <h2 class="fs-4 fw-bold mb-2">{{ plan.get_name }}</h2>
                             <h3 class="display-5 fw-bold text-primary-emphasis mb-0">{{ plan.price|format_currency:plan.currency }}</h3>
@@ -31,14 +39,6 @@
                             <p class="mb-0">{{ plan.description|safe }}</p>
                         </div>
                         {% endif %}
-
-                        <div class="text-center mb-4">
-                            <a href="{% url 'shop_checkout' 'credit-purchase' plan.id %}">
-                                {% if plan.get_image_url %}
-                                    <img src="{{ plan.get_image_url }}" style="height: 180px;" alt="" class="img-fluid" />
-                                {% endif %}
-                            </a>
-                        </div>
 
                         <div class="text-center">
                             {% if plan.plan_type == 'subscription' %}
