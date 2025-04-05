@@ -358,7 +358,7 @@ LOGGING = {
 
 # Customer
 
-CUSTOMER_SIGNUP_PLAN = 0
+CUSTOMER_SIGNUP_PLAN = 3
 
 # Stripe
 

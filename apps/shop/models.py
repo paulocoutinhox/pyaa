@@ -598,7 +598,10 @@ class CreditLog(models.Model):
     def get_description(self):
         result = ""
 
-        if self.object_type == enums.ObjectType.SUBSCRIPTION:
+        if self.description:
+            # if there is a specific description
+            result = self.description
+        elif self.object_type == enums.ObjectType.SUBSCRIPTION:
             # if the object type is subscription
             subscription = Subscription.objects.filter(id=self.object_id).first()
 
@@ -617,18 +620,28 @@ class CreditLog(models.Model):
                 key = f"enum.shop-object-type.{self.object_type}"
                 result = _(key)
         elif self.object_type == enums.ObjectType.BONUS:
-            return _("enum.shop-object-type.bonus")
-        elif self.description:
-            # if there is a specific description
-            result = self.description
-        else:
+            result = _("enum.shop-object-type.bonus")
+        elif self.object_type == enums.ObjectType.VOUCHER:
+            if self.object_id:
+                plan = Plan.objects.filter(id=self.object_id).first()
+
+                if plan:
+                    result = plan.get_name()
+                else:
+                    result = _("enum.shop-object-type.voucher")
+            else:
+                result = _("enum.shop-object-type.voucher")
+        elif self.object_type:
             # default case for other object types
             key = f"enum.shop-object-type.{self.object_type}"
-            result = result = _(key)
+            result = _(key)
+        else:
+            result = ""
 
         # if it is a refund, add the refund string
         if self.is_refund:
             result = result + " " + _("message.refund-in-list")
+            result = result.strip()
 
         return result
 

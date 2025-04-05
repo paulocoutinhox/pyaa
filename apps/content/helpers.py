@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 from django.utils.translation import get_language
 
@@ -7,13 +8,38 @@ from apps.content.models import Content
 class ContentHelper:
     @staticmethod
     def get_content(content_id=None, content_tag=None):
+        # create cache key based on parameters
+        cache_key = None
+
+        if content_id:
+            cache_key = f"content-by-id-{content_id}"
+        elif content_tag:
+            user_language = get_language()
+
+            if user_language:
+                user_language = user_language.lower()
+            cache_key = f"content-by-tag-{content_tag}-{user_language}"
+
+        # try to get from cache first
+        if cache_key:
+            cached_content = cache.get(cache_key)
+
+            if cached_content is not None:
+                return cached_content
+
         # define filter criteria based on passed parameters (id or tag)
         filter_kwargs = {"active": True}
 
         # if content_id is provided, ignore language and return the content directly
         if content_id:
             filter_kwargs["id"] = content_id
-            return Content.objects.filter(**filter_kwargs).first()
+            content = Content.objects.filter(**filter_kwargs).first()
+
+            if content:
+                # cache for 1 hour
+                cache.set(cache_key, content, timeout=3600)
+
+            return content
 
         # if content_tag is provided, apply language priority logic
         elif content_tag:
@@ -26,7 +52,7 @@ class ContentHelper:
             filter_kwargs["tag"] = content_tag
 
             # filter content based on language priority (user's language, then en-us, then any language)
-            return (
+            content = (
                 Content.objects.filter(**filter_kwargs)
                 .order_by(
                     models.Case(
@@ -51,5 +77,11 @@ class ContentHelper:
                 )
                 .first()
             )
+
+            if content:
+                # cache for 1 hour
+                cache.set(cache_key, content, timeout=3600)
+
+            return content
         else:
             raise ValueError("content_id or content_tag must be provided.")

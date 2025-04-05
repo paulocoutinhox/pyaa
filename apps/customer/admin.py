@@ -1,11 +1,9 @@
 from django.contrib import admin
 from django.db.models import Q
-from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer import filters, forms, models
 from apps.customer.helpers import CustomerHelper
-from pyaa.helpers.status import StatusHelper
 from pyaa.mixins import ReadonlyLinksMixin
 
 

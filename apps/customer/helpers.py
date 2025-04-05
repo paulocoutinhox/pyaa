@@ -27,7 +27,12 @@ class CustomerHelper:
             plan = Plan.objects.filter(id=plan_id).first()
 
             if plan:
-                success = CustomerHelper.add_credits(customer, plan=plan)
+                success = CustomerHelper.add_credits(
+                    customer,
+                    plan=plan,
+                    object_type=ObjectType.VOUCHER,
+                    object_id=plan.id,
+                )
 
                 # refresh customer if credits were added successfully
                 if success:
