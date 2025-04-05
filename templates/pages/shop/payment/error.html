@@ -45,7 +45,7 @@
         <div class="mt-4">
             {% url 'account_subscriptions' as url_area %}
 
-            {% element button href=url_area tags="primary" %}
+            {% element button href=url_area tags="danger" %}
                 {% translate "button.account-subscriptions" %}
             {% endelement %}
         </div>
@@ -53,7 +53,7 @@
         <div class="mt-4">
             {% url 'account_credit_purchases' as url_area %}
 
-            {% element button href=url_area tags="primary" %}
+            {% element button href=url_area tags="danger" %}
                 {% translate "button.account-credit-purchases" %}
             {% endelement %}
         </div>

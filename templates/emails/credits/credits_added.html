@@ -14,10 +14,10 @@
 
     {% if object_type == 'bonus' %}
         <p style="margin-bottom: 15px;">{% translate "email.bonus-credits.message" %}</p>
-        <div style="background-color: #f8f9fa; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0;">
+        <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0;">
             <h3 style="margin-top: 0; color: #333;">{% translate "email.bonus-credits.title" %}</h3>
 
-            <div style="text-align: center; margin-bottom: 15px;">
+            <div style="margin-bottom: 15px;">
                 <img src="{{ plan_image_url }}" alt="{% translate 'email.bonus-credits.title' %}" style="max-width: 200px; height: auto;">
             </div>
 
@@ -25,7 +25,7 @@
         </div>
     {% else %}
         <p style="margin-bottom: 15px;">{% translate "email.credits.message" %}</p>
-        <div style="background-color: #f8f9fa; border-left: 4px solid #007bff; padding: 15px; margin: 20px 0;">
+        <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0; text-align: center; ">
             {% if plan %}
                 <h3 style="margin-top: 0; color: #333;">{{ plan.name }}</h3>
             {% else %}
@@ -33,7 +33,7 @@
             {% endif %}
 
             {% if plan_image_url %}
-                <div style="text-align: center; margin-bottom: 15px;">
+                <div style="margin-bottom: 15px;">
                     <img src="{{ plan_image_url }}" alt="{{ plan.name|default:_('email.credits.title') }}" style="max-width: 200px; height: auto;">
                 </div>
             {% endif %}
@@ -48,7 +48,7 @@
         </div>
     {% endif %}
 
-    <p style="margin-bottom: 15px;">{% translate "email.credits.enjoy-message" %}</p>
+    <p style="text-align: center; margin-bottom: 15px;">{% translate "email.credits.enjoy-message" %}</p>
 
     <div style="text-align: center; margin: 25px 0;">
         <a href="{{ profile_url }}" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
@@ -56,5 +56,5 @@
         </a>
     </div>
 
-    <p style="margin-top: 20px;">{% translate "email.credits.thank-you" %}</p>
+    <p style="text-align: center; margin-top: 20px;">{% translate "email.credits.thank-you" %}</p>
 {% endblock %}

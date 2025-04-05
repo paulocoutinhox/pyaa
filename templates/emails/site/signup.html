@@ -6,21 +6,21 @@
 {% endblock %}
 
 {% block email_content %}
-    <p style="margin-bottom: 15px;">Olá,</p>
+    <p style="margin-bottom: 15px;">{% translate "email.greeting" %},</p>
 
-    <p style="margin-bottom: 15px;">Estamos muito felizes em ter você como parte da nossa comunidade. Sua conta foi criada com sucesso e você já pode começar a aproveitar todos os benefícios da nossa plataforma.</p>
+    <p style="margin-bottom: 15px;">{% translate "email.signup.welcome-message" %}</p>
 
-    <div style="background-color: #f8f9fa; border-left: 4px solid #007bff; padding: 15px; margin: 20px 0;">
-        <p style="margin: 0;">Sua conta está pronta para uso. Você pode acessar a plataforma a qualquer momento usando seu email e senha cadastrados.</p>
+    <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0; text-align: center;">
+        <p style="margin: 0;">{% translate "email.signup.account-ready" %}</p>
     </div>
 
-    <p style="margin-bottom: 15px;">Para começar, recomendamos que você complete seu perfil e explore as diversas funcionalidades que oferecemos.</p>
+    <p style="text-align: center; margin-bottom: 15px;">{% translate "email.signup.recommendation" %}</p>
 
     <div style="text-align: center; margin: 25px 0;">
         <a href="{{ profile_url }}" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
-            Acessar Minha Conta
+            {% translate "email.signup.access-button" %}
         </a>
     </div>
 
-    <p style="margin-top: 20px;">Se você tiver alguma dúvida ou precisar de ajuda, não hesite em entrar em contato com nossa equipe de suporte.</p>
+    <p style="text-align: center; margin-top: 20px;">{% translate "email.signup.support-message" %}</p>
 {% endblock %}

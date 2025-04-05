@@ -1,6 +1,7 @@
 import uuid
 from datetime import timedelta
 
+from django.contrib.sites.models import Site
 from django.db import models, transaction
 from django.db.models import F
 from django.templatetags.static import static
@@ -212,7 +213,7 @@ class Plan(models.Model):
 
     def get_image_url(self):
         if not self.image:
-            return None
+            return static("images/plan-no-image.png")
 
         image_url = str(self.image)
 
@@ -651,7 +652,7 @@ class CreditLog(models.Model):
             return static("images/credit-bonus.png")
 
         # default case for other object types
-        return static("images/plan-default.png")
+        return static("images/no-image.png")
 
     def get_status(self):
         from apps.shop.models import CreditPurchase, Subscription

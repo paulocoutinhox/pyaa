@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta, timezone
-
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
@@ -10,8 +8,8 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer.models import Customer
-from apps.shop.enums import ObjectType, PlanType
-from apps.shop.models import CreditLog, CreditPurchase, Plan
+from apps.shop.enums import ObjectType
+from apps.shop.models import CreditLog, Plan
 from pyaa.helpers.mail import MailHelper
 
 
@@ -81,14 +79,8 @@ class CustomerHelper:
                 object_type=object_type,
                 amount=credit_amount,
                 is_refund=is_refund,
+                site=customer.site,
             )
-
-            # link customer credit with the transaction, if applicable
-            if object_type == ObjectType.CREDIT_PURCHASE:
-                CreditPurchase.objects.filter(
-                    object_type=ObjectType.CREDIT_PURCHASE,
-                    id=object_id,
-                ).update(customer_credit=customer_credit)
 
             # send email for plan credits
             CustomerHelper.send_credits_email(
@@ -117,6 +109,7 @@ class CustomerHelper:
                     object_type=ObjectType.BONUS,
                     amount=bonus_amount,
                     is_refund=False,
+                    site=customer.site,
                 )
 
                 # send email notification for bonus
@@ -165,6 +158,7 @@ class CustomerHelper:
                 object_type=object_type,
                 amount=amount,
                 is_refund=is_refund,
+                site=customer.site,
             )
 
             # send email for direct credit additions
