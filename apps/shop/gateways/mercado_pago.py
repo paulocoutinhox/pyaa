@@ -17,69 +17,6 @@ from apps.shop.enums import (
     SubscriptionStatus,
 )
 from apps.shop.models import CreditPurchase, EventLog, Subscription
-from pyaa.helpers.mail import MailHelper
-from pyaa.helpers.string import StringHelper
-
-
-def process_checkout_for_subscription(request, subscription):
-    sdk = mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
-
-    success_url = request.build_absolute_uri(
-        reverse("shop_payment_success", kwargs={"token": subscription.token})
-    )
-    cancel_url = request.build_absolute_uri(
-        reverse("shop_payment_error", kwargs={"token": subscription.token})
-    )
-
-    preapproval_data = {
-        "reason": subscription.plan.name,
-        "auto_recurring": {
-            "frequency": subscription.plan.frequency_amount,
-            "frequency_type": subscription.plan.frequency_type.lower(),
-            "transaction_amount": float(subscription.plan.price),
-            "currency_id": subscription.plan.currency,
-            "start_date": timezone.now().isoformat(),
-        },
-        "payer_email": request.user.email,
-        "external_reference": str(subscription.token),
-        "back_url": success_url,
-    }
-
-    preapproval = sdk.preapproval().create(preapproval_data)
-
-    EventLog.objects.create(
-        site=Site.objects.get_current(),
-        object_type=ObjectType.SUBSCRIPTION,
-        object_id=subscription.id,
-        status=subscription.status,
-        amount=Decimal(subscription.plan.price),
-        customer=request.user.customer,
-        description="Subscription preapproval created",
-    )
-
-    subscription.external_id = preapproval["response"]["id"]
-    subscription.save(update_fields=["external_id"])
-
-    return {
-        "action": PaymentGatewayAction.REDIRECT,
-        "url": preapproval["response"]["init_point"],
-    }
-
-
-def process_checkout_for_credit_purchase(request, purchase):
-    EventLog.objects.create(
-        site=Site.objects.get_current(),
-        object_type=ObjectType.CREDIT_PURCHASE,
-        object_id=purchase.id,
-        status=purchase.status,
-        amount=Decimal(purchase.price),
-        customer=request.user.customer,
-        description="Credit purchase preference created on Mercado Pago",
-    )
-
-    return {
-        "external_reference": purchase.token,
-    }
 
 
 def process_webhook(request):
@@ -236,6 +173,67 @@ def process_webhook_subscription(subscription_data):
         return {"response": JsonResponse({"status": "success"}, status=200)}
 
     return {"response": JsonResponse({"error": "Subscription not found."}, status=404)}
+
+
+def process_checkout_for_subscription(request, subscription):
+    sdk = mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
+
+    success_url = request.build_absolute_uri(
+        reverse("shop_payment_success", kwargs={"token": subscription.token})
+    )
+    cancel_url = request.build_absolute_uri(
+        reverse("shop_payment_error", kwargs={"token": subscription.token})
+    )
+
+    preapproval_data = {
+        "reason": subscription.plan.name,
+        "auto_recurring": {
+            "frequency": subscription.plan.frequency_amount,
+            "frequency_type": subscription.plan.frequency_type.lower(),
+            "transaction_amount": float(subscription.plan.price),
+            "currency_id": subscription.plan.currency,
+            "start_date": timezone.now().isoformat(),
+        },
+        "payer_email": request.user.email,
+        "external_reference": str(subscription.token),
+        "back_url": success_url,
+    }
+
+    preapproval = sdk.preapproval().create(preapproval_data)
+
+    EventLog.objects.create(
+        site=Site.objects.get_current(),
+        object_type=ObjectType.SUBSCRIPTION,
+        object_id=subscription.id,
+        status=subscription.status,
+        amount=Decimal(subscription.plan.price),
+        customer=request.user.customer,
+        description="Subscription preapproval created",
+    )
+
+    subscription.external_id = preapproval["response"]["id"]
+    subscription.save(update_fields=["external_id"])
+
+    return {
+        "action": PaymentGatewayAction.REDIRECT,
+        "url": preapproval["response"]["init_point"],
+    }
+
+
+def process_checkout_for_credit_purchase(request, purchase):
+    EventLog.objects.create(
+        site=Site.objects.get_current(),
+        object_type=ObjectType.CREDIT_PURCHASE,
+        object_id=purchase.id,
+        status=purchase.status,
+        amount=Decimal(purchase.price),
+        customer=request.user.customer,
+        description="Credit purchase preference created on Mercado Pago",
+    )
+
+    return {
+        "external_reference": purchase.token,
+    }
 
 
 def process_cancel_for_subscription(request, subscription):

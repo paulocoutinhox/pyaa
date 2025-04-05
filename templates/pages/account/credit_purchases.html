@@ -35,7 +35,7 @@
                         <td>{{ purchase.plan.name }}</td>
                         <td>{{ purchase.created_at }}</td>
                         <td>
-                            <span class="badge rounded-pill text-lowercase status-badge-{{ purchase.status }}">
+                            <span class="badge rounded-pill text-lowercase" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
                                 {{ purchase.get_status_display }}
                             </span>
                         </td>

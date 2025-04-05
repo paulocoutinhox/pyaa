@@ -77,6 +77,33 @@ class StatusHelper:
         },  # dark red with white text
     }
 
+    STATUS_PATTERNS = {
+        "success": {
+            "patterns": ["completed", "succeeded", "paid"],
+            "colors": {
+                "hex": "#28a745",
+                "bs": "success",
+                "text": "#ffffff",
+            },  # green with white text
+        },
+        "info": {
+            "patterns": ["created", "updated"],
+            "colors": {
+                "hex": "#ffc107",
+                "bs": "warning",
+                "text": "#000000",
+            },  # yellow with black text
+        },
+        "error": {
+            "patterns": ["deleted"],
+            "colors": {
+                "hex": "#dc3545",
+                "bs": "danger",
+                "text": "#ffffff",
+            },  # red with white text
+        },
+    }
+
     CREDIT_TYPE_COLORS = {
         "paid": {
             "hex": "#28a745",
@@ -97,15 +124,33 @@ class StatusHelper:
 
     @staticmethod
     def get_status_color(status: str, style="hex") -> dict:
-        status = status.lower() if status else "unknown"
+        if not status:
+            status = "unknown"
+        else:
+            status = status.lower()
 
-        colors = StatusHelper.STATUS_COLORS.get(
-            status, {"hex": "#000000", "bs": "dark", "text": "#ffffff"}
-        )
+        # first check exact matches
+        if status in StatusHelper.STATUS_COLORS:
+            colors = StatusHelper.STATUS_COLORS[status]
+            return {
+                "bg": colors[style],
+                "text": colors["text"],
+            }
 
+        # then check pattern-based matches
+        for _, pattern_data in StatusHelper.STATUS_PATTERNS.items():
+            for pattern in pattern_data["patterns"]:
+                if pattern in status:
+                    colors = pattern_data["colors"]
+                    return {
+                        "bg": colors[style],
+                        "text": colors["text"],
+                    }
+
+        # default fallback
         return {
-            "bg": colors[style],
-            "text": colors["text"],
+            "bg": "#000000" if style == "hex" else "dark",
+            "text": "#ffffff",
         }
 
     @staticmethod

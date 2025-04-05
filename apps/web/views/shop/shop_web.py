@@ -29,7 +29,10 @@ def shop_plans_view(request):
         messages.info(request, _("message.shop-already-subscriber"))
         return redirect("account_profile")
 
-    plans = ShopHelper.get_plans_by_type(PlanType.SUBSCRIPTION)
+    plans1 = ShopHelper.get_plans_by_type(PlanType.SUBSCRIPTION)
+    plans2 = ShopHelper.get_plans_by_type(PlanType.CREDIT_PURCHASE)
+
+    plans = list(plans1) + list(plans2)
 
     context = {
         "plans": plans,
