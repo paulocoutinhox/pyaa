@@ -19,6 +19,7 @@ from apps.shop.enums import PaymentGatewayCancelAction, SubscriptionStatus
 from apps.shop.helpers import ShopHelper
 from apps.shop.models import CreditLog, CreditPurchase, Subscription
 from pyaa.helpers.request import RequestHelper
+from pyaa.utils.cached_paginator import Paginator
 
 
 def account_login_view(request):
@@ -202,12 +203,26 @@ def account_subscriptions_view(request):
         customer=request.user.customer,
     ).order_by("-id")
 
+    # get the page parameter from request
+    page = request.GET.get("page", 1)
+
+    # setup paginator with cache key
+    paginator = Paginator(
+        subscriptions,
+        per_page=10,
+        cache_key="account-subscriptions",
+        cache_timeout=300,
+    )
+
+    # get the page object
+    page_obj = paginator.page(page)
+
     return render(
         request,
         "pages/account/subscriptions.html",
         {
             "customer": customer,
-            "subscriptions": subscriptions,
+            "page_obj": page_obj,
         },
     )
 
@@ -240,12 +255,26 @@ def account_credits_view(request):
         customer=customer,
     ).order_by("-id")
 
+    # get the page parameter from request
+    page = request.GET.get("page", 1)
+
+    # setup paginator with cache key
+    paginator = Paginator(
+        credits,
+        per_page=10,
+        cache_key="account-credits",
+        cache_timeout=300,
+    )
+
+    # get the page object
+    page_obj = paginator.page(page)
+
     return render(
         request,
         "pages/account/credits.html",
         {
             "customer": customer,
-            "credits": credits,
+            "page_obj": page_obj,
         },
     )
 
@@ -261,12 +290,26 @@ def account_credit_purchases_view(request):
         customer=customer,
     ).order_by("-id")
 
+    # get the page parameter from request
+    page = request.GET.get("page", 1)
+
+    # setup paginator with cache key
+    paginator = Paginator(
+        purchases,
+        per_page=10,
+        cache_key="account-credit-purchases",
+        cache_timeout=300,
+    )
+
+    # get the page object
+    page_obj = paginator.page(page)
+
     return render(
         request,
         "pages/account/credit_purchases.html",
         {
             "customer": customer,
-            "purchases": purchases,
+            "page_obj": page_obj,
         },
     )
 

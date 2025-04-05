@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 20:37+0000\n"
+"POT-Creation-Date: 2025-04-05 21:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -801,29 +801,29 @@ msgstr "Message"
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
-#: apps/web/views/account.py:42
+#: apps/web/views/account.py:43
 msgid "message.login-success"
 msgstr "Login successful."
 
-#: apps/web/views/account.py:49
+#: apps/web/views/account.py:50
 msgid "error.invalid-login-data"
 msgstr "Incorrect login data, please check and try again."
 
-#: apps/web/views/account.py:119 apps/web/views/account.py:139
+#: apps/web/views/account.py:120 apps/web/views/account.py:140
 msgid "message.account-updated"
 msgstr "Your account was updated."
 
-#: apps/web/views/account.py:168
+#: apps/web/views/account.py:169
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Your account has active subscriptions. You need to cancel them before "
 "closing your account."
 
-#: apps/web/views/account.py:179
+#: apps/web/views/account.py:180
 msgid "message.account-deleted"
 msgstr "Your account and data were deleted."
 
-#: apps/web/views/account.py:228
+#: apps/web/views/account.py:243
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
 
@@ -947,11 +947,75 @@ msgstr "No data found."
 msgid "model.field.footer-total"
 msgstr "Total"
 
+#: templates/emails/credits/credit_added.html:6
+msgid "email.bonus-credits.subject"
+msgstr "Credits Added to Your Account"
+
+#: templates/emails/credits/credit_added.html:8
+msgid "email.credits.subject"
+msgstr "Credits Added to Your Account"
+
+#: templates/emails/credits/credit_added.html:13
 #: templates/emails/credits/credit_purchase_paid.html:9
-#: templates/emails/credits/credits_added.html:13
 #: templates/emails/site/signup.html:9
 msgid "email.greeting"
 msgstr "Hello"
+
+#: templates/emails/credits/credit_added.html:16
+msgid "email.bonus-credits.message"
+msgstr ""
+"Great news! Bonus credits have been added to your account on our platform."
+
+#: templates/emails/credits/credit_added.html:18
+#: templates/emails/credits/credit_added.html:21
+msgid "email.bonus-credits.title"
+msgstr "Bonus Credits"
+
+#: templates/emails/credits/credit_added.html:24
+msgid "email.bonus-credits.amount"
+msgstr "Bonus Credits Added"
+
+#: templates/emails/credits/credit_added.html:27
+msgid "email.credits.message"
+msgstr "Great news! Credits have been added to your account on our platform."
+
+#: templates/emails/credits/credit_added.html:32
+#: templates/emails/credits/credit_added.html:37
+msgid "email.credits.title"
+msgstr "Credits"
+
+#: templates/emails/credits/credit_added.html:42
+msgid "email.credits.main-credits"
+msgstr "Main Credits"
+
+#: templates/emails/credits/credit_added.html:43
+#: templates/emails/credits/credit_purchase_paid.html:27
+msgid "email.credits.bonus-credits"
+msgstr "Bonus Credits"
+
+#: templates/emails/credits/credit_added.html:44
+#: templates/emails/credits/credit_purchase_paid.html:28
+msgid "email.credits.total-credits"
+msgstr "Total Credits"
+
+#: templates/emails/credits/credit_added.html:46
+msgid "email.credits.amount"
+msgstr "Credits Added"
+
+#: templates/emails/credits/credit_added.html:51
+msgid "email.credits.enjoy-message"
+msgstr ""
+"Enjoy your credits and use them to access various features on our platform."
+
+#: templates/emails/credits/credit_added.html:55
+#: templates/emails/credits/credit_purchase_paid.html:36
+msgid "email.credits.view-button"
+msgstr "View My Credits"
+
+#: templates/emails/credits/credit_added.html:59
+#: templates/emails/credits/credit_purchase_paid.html:40
+msgid "email.credits.thank-you"
+msgstr "Thank you for choosing us!"
 
 #: templates/emails/credits/credit_purchase_paid.html:11
 msgid "email.credit-purchase-paid.confirmation-message"
@@ -970,75 +1034,11 @@ msgstr "Purchase Date"
 msgid "email.credit-purchase-paid.acquired-credits"
 msgstr "Acquired Credits"
 
-#: templates/emails/credits/credit_purchase_paid.html:27
-#: templates/emails/credits/credits_added.html:43
-msgid "email.credits.bonus-credits"
-msgstr "Bonus Credits"
-
-#: templates/emails/credits/credit_purchase_paid.html:28
-#: templates/emails/credits/credits_added.html:44
-msgid "email.credits.total-credits"
-msgstr "Total Credits"
-
 #: templates/emails/credits/credit_purchase_paid.html:32
 msgid "email.credit-purchase-paid.enjoy-message"
 msgstr ""
 "Enjoy your newly purchased credits and use them to access various features "
 "on our platform."
-
-#: templates/emails/credits/credit_purchase_paid.html:36
-#: templates/emails/credits/credits_added.html:55
-msgid "email.credits.view-button"
-msgstr "View My Credits"
-
-#: templates/emails/credits/credit_purchase_paid.html:40
-#: templates/emails/credits/credits_added.html:59
-msgid "email.credits.thank-you"
-msgstr "Thank you for choosing us!"
-
-#: templates/emails/credits/credits_added.html:6
-msgid "email.bonus-credits.subject"
-msgstr "Credits Added to Your Account"
-
-#: templates/emails/credits/credits_added.html:8
-msgid "email.credits.subject"
-msgstr "Credits Added to Your Account"
-
-#: templates/emails/credits/credits_added.html:16
-msgid "email.bonus-credits.message"
-msgstr ""
-"Great news! Bonus credits have been added to your account on our platform."
-
-#: templates/emails/credits/credits_added.html:18
-#: templates/emails/credits/credits_added.html:21
-msgid "email.bonus-credits.title"
-msgstr "Bonus Credits"
-
-#: templates/emails/credits/credits_added.html:24
-msgid "email.bonus-credits.amount"
-msgstr "Bonus Credits Added"
-
-#: templates/emails/credits/credits_added.html:27
-msgid "email.credits.message"
-msgstr "Great news! Credits have been added to your account on our platform."
-
-#: templates/emails/credits/credits_added.html:32
-#: templates/emails/credits/credits_added.html:37
-msgid "email.credits.title"
-msgstr "Credits"
-
-#: templates/emails/credits/credits_added.html:42
-msgid "email.credits.main-credits"
-msgstr "Main Credits"
-
-#: templates/emails/credits/credits_added.html:46
-msgid "email.credits.amount"
-msgstr "Credits Added"
-
-#: templates/emails/credits/credits_added.html:51
-msgid "email.credits.enjoy-message"
-msgstr ""
-"Enjoy your credits and use them to access various features on our platform."
 
 #: templates/emails/layouts/base.html:72
 msgid "email.base.content"
@@ -1107,9 +1107,9 @@ msgstr "Status"
 msgid "list-data.empty"
 msgstr "No data found."
 
-#: templates/pages/account/credit_purchases.html:57
-#: templates/pages/account/credits.html:62
-#: templates/pages/account/subscriptions.html:85
+#: templates/pages/account/credit_purchases.html:61
+#: templates/pages/account/credits.html:66
+#: templates/pages/account/subscriptions.html:89
 #: templates/pages/gallery/view.html:36
 msgid "button.back"
 msgstr "Back"

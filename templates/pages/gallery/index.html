@@ -11,11 +11,12 @@
 
     <div class="p-4 text-center w-100">
         {% if page_obj %}
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 justify-content-center d-flex">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center d-flex">
                 {% for item in page_obj %}
-                <div class="col">
-                    <a href="{% url 'gallery_by_id' item.id %}">
-                        <img src="{{ item.get_main_photo_url }}" style="height: 100px;" class="img-fluid" />
+                <div class="col mb-3">
+                    <a href="{% url 'gallery_by_id' item.id %}" class="text-decoration-none">
+                        <img src="{{ item.get_main_photo_url }}" style="height: 100px;" class="img-fluid mb-1" />
+                        <p class="small text-dark mb-0 text-truncate">{{ item.title }}</p>
                     </a>
                 </div>
                 {% endfor %}

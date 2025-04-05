@@ -259,7 +259,7 @@ class CustomerHelper:
         else:
             subject = _("email.credits-added.subject")
 
-        template = "emails/credits/credits_added.html"
+        template = "emails/credits/credit_added.html"
 
         # set recipient
         recipient_list = [customer_email]

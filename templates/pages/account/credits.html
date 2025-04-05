@@ -23,8 +23,8 @@
             </tr>
         </thead>
         <tbody>
-            {% if credits %}
-                {% for credit in credits %}
+            {% if page_obj %}
+                {% for credit in page_obj %}
                     <tr class="align-middle">
                         <td>
                             {% if credit.get_image_url %}
@@ -55,6 +55,10 @@
             {% endif %}
         </tbody>
     </table>
+</div>
+
+<div class="mt-4">
+    {% include 'partials/paginator.html' %}
 </div>
 
 <div class="my-5 text-center">

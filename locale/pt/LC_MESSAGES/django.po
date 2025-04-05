@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 20:37+0000\n"
+"POT-Creation-Date: 2025-04-05 21:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -801,29 +801,29 @@ msgstr "Mensagem"
 msgid "email.contact.subject"
 msgstr "Nova Mensagem de Contato"
 
-#: apps/web/views/account.py:42
+#: apps/web/views/account.py:43
 msgid "message.login-success"
 msgstr "Login realizado com sucesso."
 
-#: apps/web/views/account.py:49
+#: apps/web/views/account.py:50
 msgid "error.invalid-login-data"
 msgstr "Dados de login incorretos, verifique e tente novamente."
 
-#: apps/web/views/account.py:119 apps/web/views/account.py:139
+#: apps/web/views/account.py:120 apps/web/views/account.py:140
 msgid "message.account-updated"
 msgstr "Sua conta foi atualizada."
 
-#: apps/web/views/account.py:168
+#: apps/web/views/account.py:169
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Sua conta tem assinaturas ativas. Você precisa cancelá-las antes de encerrar "
 "sua conta."
 
-#: apps/web/views/account.py:179
+#: apps/web/views/account.py:180
 msgid "message.account-deleted"
 msgstr "Sua conta e dados foram excluídos."
 
-#: apps/web/views/account.py:228
+#: apps/web/views/account.py:243
 msgid "message.shop-invalid-cancel-action"
 msgstr "Ação de cancelamento inválida."
 
@@ -947,11 +947,79 @@ msgstr "Nenhum dado encontrado."
 msgid "model.field.footer-total"
 msgstr "Total"
 
+#: templates/emails/credits/credit_added.html:6
+msgid "email.bonus-credits.subject"
+msgstr "Créditos Adicionados à Sua Conta"
+
+#: templates/emails/credits/credit_added.html:8
+msgid "email.credits.subject"
+msgstr "Créditos Adicionados à Sua Conta"
+
+#: templates/emails/credits/credit_added.html:13
 #: templates/emails/credits/credit_purchase_paid.html:9
-#: templates/emails/credits/credits_added.html:13
 #: templates/emails/site/signup.html:9
 msgid "email.greeting"
 msgstr "Olá"
+
+#: templates/emails/credits/credit_added.html:16
+msgid "email.bonus-credits.message"
+msgstr ""
+"Temos ótimas notícias! Créditos bônus foram adicionados à sua conta em nossa "
+"plataforma."
+
+#: templates/emails/credits/credit_added.html:18
+#: templates/emails/credits/credit_added.html:21
+msgid "email.bonus-credits.title"
+msgstr "Créditos Bônus"
+
+#: templates/emails/credits/credit_added.html:24
+msgid "email.bonus-credits.amount"
+msgstr "Créditos Bônus Adicionados"
+
+#: templates/emails/credits/credit_added.html:27
+msgid "email.credits.message"
+msgstr ""
+"Temos ótimas notícias! Créditos foram adicionados à sua conta em nossa "
+"plataforma."
+
+#: templates/emails/credits/credit_added.html:32
+#: templates/emails/credits/credit_added.html:37
+msgid "email.credits.title"
+msgstr "Créditos"
+
+#: templates/emails/credits/credit_added.html:42
+msgid "email.credits.main-credits"
+msgstr "Créditos Principais"
+
+#: templates/emails/credits/credit_added.html:43
+#: templates/emails/credits/credit_purchase_paid.html:27
+msgid "email.credits.bonus-credits"
+msgstr "Créditos Bônus"
+
+#: templates/emails/credits/credit_added.html:44
+#: templates/emails/credits/credit_purchase_paid.html:28
+msgid "email.credits.total-credits"
+msgstr "Total de Créditos"
+
+#: templates/emails/credits/credit_added.html:46
+msgid "email.credits.amount"
+msgstr "Créditos Adicionados"
+
+#: templates/emails/credits/credit_added.html:51
+msgid "email.credits.enjoy-message"
+msgstr ""
+"Aproveite seus créditos para usar os recursos disponíveis em nossa "
+"plataforma."
+
+#: templates/emails/credits/credit_added.html:55
+#: templates/emails/credits/credit_purchase_paid.html:36
+msgid "email.credits.view-button"
+msgstr "Ver Meus Créditos"
+
+#: templates/emails/credits/credit_added.html:59
+#: templates/emails/credits/credit_purchase_paid.html:40
+msgid "email.credits.thank-you"
+msgstr "Obrigado por nos escolher!"
 
 #: templates/emails/credits/credit_purchase_paid.html:11
 msgid "email.credit-purchase-paid.confirmation-message"
@@ -969,78 +1037,10 @@ msgstr "Data da compra"
 msgid "email.credit-purchase-paid.acquired-credits"
 msgstr "Créditos adquiridos"
 
-#: templates/emails/credits/credit_purchase_paid.html:27
-#: templates/emails/credits/credits_added.html:43
-msgid "email.credits.bonus-credits"
-msgstr "Créditos Bônus"
-
-#: templates/emails/credits/credit_purchase_paid.html:28
-#: templates/emails/credits/credits_added.html:44
-msgid "email.credits.total-credits"
-msgstr "Total de Créditos"
-
 #: templates/emails/credits/credit_purchase_paid.html:32
 msgid "email.credit-purchase-paid.enjoy-message"
 msgstr ""
 "Aproveite seus créditos adquiridos para usar os recursos da nossa plataforma."
-
-#: templates/emails/credits/credit_purchase_paid.html:36
-#: templates/emails/credits/credits_added.html:55
-msgid "email.credits.view-button"
-msgstr "Ver Meus Créditos"
-
-#: templates/emails/credits/credit_purchase_paid.html:40
-#: templates/emails/credits/credits_added.html:59
-msgid "email.credits.thank-you"
-msgstr "Obrigado por nos escolher!"
-
-#: templates/emails/credits/credits_added.html:6
-msgid "email.bonus-credits.subject"
-msgstr "Créditos Adicionados à Sua Conta"
-
-#: templates/emails/credits/credits_added.html:8
-msgid "email.credits.subject"
-msgstr "Créditos Adicionados à Sua Conta"
-
-#: templates/emails/credits/credits_added.html:16
-msgid "email.bonus-credits.message"
-msgstr ""
-"Temos ótimas notícias! Créditos bônus foram adicionados à sua conta em nossa "
-"plataforma."
-
-#: templates/emails/credits/credits_added.html:18
-#: templates/emails/credits/credits_added.html:21
-msgid "email.bonus-credits.title"
-msgstr "Créditos Bônus"
-
-#: templates/emails/credits/credits_added.html:24
-msgid "email.bonus-credits.amount"
-msgstr "Créditos Bônus Adicionados"
-
-#: templates/emails/credits/credits_added.html:27
-msgid "email.credits.message"
-msgstr ""
-"Temos ótimas notícias! Créditos foram adicionados à sua conta em nossa "
-"plataforma."
-
-#: templates/emails/credits/credits_added.html:32
-#: templates/emails/credits/credits_added.html:37
-msgid "email.credits.title"
-msgstr "Créditos"
-
-#: templates/emails/credits/credits_added.html:42
-msgid "email.credits.main-credits"
-msgstr "Créditos Principais"
-
-#: templates/emails/credits/credits_added.html:46
-msgid "email.credits.amount"
-msgstr "Créditos Adicionados"
-
-#: templates/emails/credits/credits_added.html:51
-msgid "email.credits.enjoy-message"
-msgstr ""
-"Aproveite seus créditos para usar os recursos disponíveis em nossa "
-"plataforma."
 
 #: templates/emails/layouts/base.html:72
 msgid "email.base.content"
@@ -1111,9 +1111,9 @@ msgstr "Status"
 msgid "list-data.empty"
 msgstr "Nenhum dado encontrado."
 
-#: templates/pages/account/credit_purchases.html:57
-#: templates/pages/account/credits.html:62
-#: templates/pages/account/subscriptions.html:85
+#: templates/pages/account/credit_purchases.html:61
+#: templates/pages/account/credits.html:66
+#: templates/pages/account/subscriptions.html:89
 #: templates/pages/gallery/view.html:36
 msgid "button.back"
 msgstr "Voltar"

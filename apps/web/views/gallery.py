@@ -6,7 +6,7 @@ from pyaa.utils.cached_paginator import Paginator
 
 
 def gallery_index_view(request):
-    page_number = request.GET.get("page")
+    page_number = request.GET.get("page", 1)
     gallery_list = GalleryHelper.get_gallery_list()
 
     paginator = Paginator(
@@ -32,7 +32,7 @@ def gallery_by_id_view(request, gallery_id):
     if not gallery:
         return redirect("home")
 
-    page_number = request.GET.get("page")
+    page_number = request.GET.get("page", 1)
     photos = gallery.gallery_photos.all()
 
     paginator = Paginator(
@@ -59,7 +59,7 @@ def gallery_by_tag_view(request, gallery_tag):
     if not gallery:
         return redirect("home")
 
-    page_number = request.GET.get("page")
+    page_number = request.GET.get("page", 1)
     photos = gallery.gallery_photos.all()
 
     paginator = Paginator(

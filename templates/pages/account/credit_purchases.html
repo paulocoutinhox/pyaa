@@ -24,8 +24,8 @@
             </tr>
         </thead>
         <tbody>
-            {% if purchases %}
-                {% for purchase in purchases %}
+            {% if page_obj %}
+                {% for purchase in page_obj %}
                     <tr class="align-middle">
                         <td>
                             {% if purchase.plan.get_image_url %}
@@ -50,6 +50,10 @@
             {% endif %}
         </tbody>
     </table>
+</div>
+
+<div class="mt-4">
+    {% include 'partials/paginator.html' %}
 </div>
 
 <div class="my-5 text-center">
