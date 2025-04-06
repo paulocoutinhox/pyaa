@@ -2,7 +2,6 @@
 {% load i18n %}
 {% load pyaa %}
 {% load pyaa_format %}
-{% load shop %}
 
 {% block content %}
 
@@ -40,7 +39,7 @@
                         </div>
                         {% endif %}
 
-                        <div class="text-center">
+                        <div class="text-center my-3">
                             {% if plan.plan_type == 'subscription' %}
                                 <a href="{% url 'shop_checkout' 'subscription' plan.id %}" class="btn btn-lg btn-primary rounded-pill text-capitalize">
                                     {% trans "button.shop-select-subscription-plan" %}
