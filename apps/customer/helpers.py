@@ -78,10 +78,10 @@ class CustomerHelper:
             customer.refresh_from_db()
 
             # create customer credit
-            customer_credit = CreditLog.objects.create(
+            CreditLog.objects.create(
                 customer=customer,
-                object_id=object_id,
                 object_type=object_type,
+                object_id=object_id,
                 amount=credit_amount,
                 is_refund=is_refund,
                 site=customer.site,
@@ -159,8 +159,8 @@ class CustomerHelper:
             # create log entry
             CreditLog.objects.create(
                 customer=customer,
-                object_id=object_id,
                 object_type=object_type,
+                object_id=object_id,
                 amount=amount,
                 is_refund=is_refund,
                 site=customer.site,
