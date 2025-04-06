@@ -51,6 +51,7 @@ make run
 - [Stripe](docs/stripe.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [WebApp](docs/webapp.md)
+- [Cron](docs/cron.md)
 
 ## 🛡️ License
 

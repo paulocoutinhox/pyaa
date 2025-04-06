@@ -1,0 +1,1 @@
+* * * * * /app/.venv/bin/python /app/manage.py check >> /var/log/app-check.log 2>&1
