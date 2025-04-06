@@ -18,6 +18,7 @@ from apps.customer.models import Customer
 from apps.shop.enums import PaymentGatewayCancelAction, SubscriptionStatus
 from apps.shop.helpers import ShopHelper
 from apps.shop.models import CreditLog, CreditPurchase, Subscription
+from pyaa.decorators.customer import customer_required
 from pyaa.helpers.request import RequestHelper
 from pyaa.utils.cached_paginator import Paginator
 
@@ -95,18 +96,13 @@ def account_logout_view(request):
     return redirect("account_logout_success")
 
 
-@login_required
+@customer_required
 def account_profile_view(request):
-    try:
-        customer = Customer.objects.get(user=request.user)
-    except Customer.DoesNotExist:
-        return redirect("home")
-
     return render(
         request,
         "pages/account/profile.html",
         {
-            "customer": customer,
+            "customer": request.customer,
         },
     )
 
@@ -192,15 +188,10 @@ def account_delete_view(request):
     )
 
 
-@login_required
+@customer_required
 def account_subscriptions_view(request):
-    try:
-        customer = Customer.objects.get(user=request.user)
-    except Customer.DoesNotExist:
-        return redirect("home")
-
     subscriptions = Subscription.objects.filter(
-        customer=request.user.customer,
+        customer=request.customer,
     ).order_by("-id")
 
     # get the page parameter from request
@@ -221,7 +212,7 @@ def account_subscriptions_view(request):
         request,
         "pages/account/subscriptions.html",
         {
-            "customer": customer,
+            "customer": request.customer,
             "page_obj": page_obj,
         },
     )
