@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/paulocoutinhox/pyaa" target="_blank" rel="noopener noreferrer">
-        <img width="250" src="extras/images/logo.jpg" alt="PyAA Logo">
+        <img width="250" src="extras/images/logo.png" alt="PyAA Logo">
     </a>
     <br>
     PyAA - Python Advanced Application
