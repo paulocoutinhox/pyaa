@@ -17,6 +17,7 @@ django-admin-rangefilter==0.13.2
 django-admin-list-filter-dropdown==1.0.3
 django-recaptcha==4.1.0
 django-q2==1.7.6
+django-translation-flags==1.0.5
 
 # general
 requests==2.32.3

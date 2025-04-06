@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-05 21:39+0000\n"
+"POT-Creation-Date: 2025-04-06 04:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -870,11 +870,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:179
+#: pyaa/settings/dev.py:180
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:180
+#: pyaa/settings/dev.py:181
 msgid "language.pt-br"
 msgstr "Português"
 
@@ -1560,3 +1560,16 @@ msgstr "Cadastre-se"
 #: templates/partials/header.html:84
 msgid "menu.contact"
 msgstr "Contato"
+
+#: templates/partials/language-selector.html:8
+#: templates/partials/language-selector.html:40
+msgid "title.language-selector"
+msgstr "Seletor de Idioma"
+
+#: templates/partials/language-selector.html:16
+msgid "language.selector.label"
+msgstr "Selecione o Idioma"
+
+#: templates/partials/language-selector.html:32
+msgid "button.change"
+msgstr "Mudar"

@@ -52,6 +52,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("upload-image/", views.upload_image),
     path("tinymce/", include("tinymce.urls")),
+    path("i18n/", include("django_translation_flags.urls")),
     re_path(r"^app/(?P<path>.*)$", views.serve_app_files),
 ]
 
