@@ -1,4 +1,11 @@
-# PyAA - Python Advanced Application
+<p align="center">
+    <a href="https://github.com/paulocoutinhox/pyaa" target="_blank" rel="noopener noreferrer">
+        <img width="250" src="extras/images/logo.jpg" alt="PyAA Logo">
+    </a>
+    <br>
+    PyAA - Python Advanced Application
+    <br>
+</p>
 
 PyAA is a powerful, open-source Python + Django template application designed to build robust web applications with all the essential features pre-built. Whether you need a site, an e-commerce platform, or a SaaS application, PyAA has you covered – for free!
 

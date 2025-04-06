@@ -47,7 +47,7 @@ LOGGING = {
 # MEDIA_URL = f"https://{STORAGES['default']['OPTIONS']['bucket_name']}.s3.amazonaws.com/"
 
 # Security
-# More details here: https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+# More details here: https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = False
