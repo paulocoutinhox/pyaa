@@ -25,6 +25,8 @@ class CheckoutForm(forms.Form):
     shipping_price = 0.0
     total_price = 0.0
 
+    currency = ""
+
     shipping_description = ""
     address_description = ""
     delivery_description = ""
@@ -64,6 +66,8 @@ class CheckoutForm(forms.Form):
         self.shipping_price = 0.0
         self.total_price = plan.price
 
+        self.currency = plan.currency
+
         self.show_shipping_data = False
         self.show_delivery_data = False
         self.show_address_data = False
@@ -84,6 +88,8 @@ class CheckoutForm(forms.Form):
         self.discount = 0.0
         self.shipping_price = 0.0
         self.total_price = plan.price
+
+        self.currency = plan.currency
 
         self.show_shipping_data = False
         self.show_delivery_data = False
