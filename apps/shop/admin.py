@@ -253,13 +253,46 @@ class SubscriptionAdmin(admin.ModelAdmin):
     readonly_fields = [
         field.name
         for field in models.Subscription._meta.fields
-        if field.name not in ["status"]
+        if field.name not in ["expire_at", "status"]
     ]
 
     search_fields = ("token",)
     ordering = ("-id",)
 
     inlines = [ShopSubscriptionEventLogInlineAdmin]
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "site",
+                    "customer",
+                    "plan",
+                    "token",
+                    "external_id",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.subscription"),
+            {
+                "fields": (
+                    "status",
+                    "expire_at",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+    )
 
     def has_add_permission(self, request):
         return False
@@ -384,6 +417,35 @@ class EventLogAdmin(admin.ModelAdmin):
     readonly_fields = [field.name for field in models.EventLog._meta.fields]
     ordering = ("-id",)
 
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "site",
+                    "customer",
+                    "object_type",
+                    "object_id",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.details"),
+            {
+                "fields": (
+                    "currency",
+                    "amount",
+                    "status",
+                    "description",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {"fields": ("created_at",)},
+        ),
+    )
+
     def has_add_permission(self, request):
         return False
 
@@ -444,6 +506,7 @@ class CreditPurchaseAdmin(admin.ModelAdmin):
         "plan",
         "token",
         "price",
+        "currency",
         "status",
         "invoice_generated",
         "created_at",
@@ -474,6 +537,7 @@ class CreditPurchaseAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "price",
+                    "currency",
                     "invoice_generated",
                 )
             },

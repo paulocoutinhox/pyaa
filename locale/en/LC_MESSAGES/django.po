@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-06 04:34+0000\n"
+"POT-Creation-Date: 2025-04-06 05:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,8 +117,9 @@ msgstr "PROFILE INFORMATION"
 msgid "admin.fieldsets.additional-info"
 msgstr "ADDITIONAL INFORMATION"
 
-#: apps/customer/admin.py:94 apps/shop/admin.py:217 apps/shop/admin.py:336
-#: apps/shop/admin.py:482 apps/site/admin.py:38 apps/user/admin.py:32
+#: apps/customer/admin.py:94 apps/shop/admin.py:217 apps/shop/admin.py:287
+#: apps/shop/admin.py:369 apps/shop/admin.py:515 apps/site/admin.py:38
+#: apps/user/admin.py:32
 msgid "admin.fieldsets.important-dates"
 msgstr "IMPORTANT DATES"
 
@@ -396,18 +397,18 @@ msgstr "Message"
 msgid "model.field.description"
 msgstr "Description"
 
-#: apps/shop/admin.py:106 apps/shop/admin.py:282 apps/shop/admin.py:405
-#: apps/shop/admin.py:510 apps/shop/models.py:294 apps/shop/models.py:469
+#: apps/shop/admin.py:106 apps/shop/admin.py:315 apps/shop/admin.py:438
+#: apps/shop/admin.py:543 apps/shop/models.py:294 apps/shop/models.py:469
 #: apps/shop/models.py:758
 msgid "model.field.status"
 msgstr "Status"
 
-#: apps/shop/admin.py:161 apps/shop/admin.py:316 apps/shop/admin.py:461
-#: apps/site/admin.py:32
+#: apps/shop/admin.py:161 apps/shop/admin.py:266 apps/shop/admin.py:349
+#: apps/shop/admin.py:494 apps/site/admin.py:32
 msgid "admin.fieldsets.general"
 msgstr "GENERAL"
 
-#: apps/shop/admin.py:173 apps/shop/admin.py:473
+#: apps/shop/admin.py:173 apps/shop/admin.py:506
 msgid "admin.fieldsets.pricing"
 msgstr "PRICING"
 
@@ -427,7 +428,11 @@ msgstr "DESCRIPTION"
 msgid "admin.fieldsets.status"
 msgstr "STATUS"
 
-#: apps/shop/admin.py:327
+#: apps/shop/admin.py:278
+msgid "admin.fieldsets.subscription"
+msgstr "SUBSCRIPTION"
+
+#: apps/shop/admin.py:360
 msgid "admin.fieldsets.details"
 msgstr "DETAILS"
 
@@ -801,29 +806,29 @@ msgstr "Message"
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
-#: apps/web/views/account.py:43
+#: apps/web/views/account.py:44
 msgid "message.login-success"
 msgstr "Login successful."
 
-#: apps/web/views/account.py:50
+#: apps/web/views/account.py:51
 msgid "error.invalid-login-data"
 msgstr "Incorrect login data, please check and try again."
 
-#: apps/web/views/account.py:120 apps/web/views/account.py:140
+#: apps/web/views/account.py:116 apps/web/views/account.py:136
 msgid "message.account-updated"
 msgstr "Your account was updated."
 
-#: apps/web/views/account.py:169
+#: apps/web/views/account.py:165
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Your account has active subscriptions. You need to cancel them before "
 "closing your account."
 
-#: apps/web/views/account.py:180
+#: apps/web/views/account.py:176
 msgid "message.account-deleted"
 msgstr "Your account and data were deleted."
 
-#: apps/web/views/account.py:243
+#: apps/web/views/account.py:234
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
 
@@ -870,11 +875,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site content"
 
-#: pyaa/settings/dev.py:180
+#: pyaa/settings/dev.py:179
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings/dev.py:181
+#: pyaa/settings/dev.py:180
 msgid "language.pt-br"
 msgstr "Portuguese"
 
