@@ -52,6 +52,7 @@ make run
 - [Troubleshooting](docs/troubleshooting.md)
 - [WebApp](docs/webapp.md)
 - [Cron](docs/cron.md)
+- [Queue](docs/queue.md)
 
 ## 🛡️ License
 
