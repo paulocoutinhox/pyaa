@@ -63,7 +63,6 @@ THIRD_PARTY_APPS = [
     "sass_processor",
     "django_admin_extras",
     "django_cleanup.apps.CleanupConfig",
-    "sorl.thumbnail",
     "tinymce",
     "drf_spectacular",
     "drf_spectacular_sidecar",
@@ -359,7 +358,7 @@ LOGGING = {
 
 # Customer
 
-CUSTOMER_SIGNUP_PLAN = 3
+CUSTOMER_SIGNUP_PLAN = 0
 
 # Stripe
 

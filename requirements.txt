@@ -17,19 +17,18 @@ django-admin-rangefilter==0.13.2
 django-admin-list-filter-dropdown==1.0.3
 django-recaptcha==4.1.0
 django-q2==1.7.6
-django-translation-flags==1.0.5
+django-translation-flags==1.0.6
 
 # general
 requests==2.32.3
 libsass==0.23.0
-boto3==1.37.27
+boto3==1.37.28
 beautifulsoup4==4.13.3
 
 # local
 tzdata==2025.2
 
 # image
-sorl-thumbnail==12.11.0
 pillow==11.1.0
 
 # rest framework
