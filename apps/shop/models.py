@@ -588,9 +588,6 @@ class Subscription(models.Model):
             return False
         return timezone.now() > self.expire_at
 
-    def __str__(self):
-        return str(self.token)
-
 
 class CreditPurchase(models.Model):
     class Meta:
@@ -682,9 +679,6 @@ class CreditPurchase(models.Model):
         _("model.field.updated-at"),
         auto_now=True,
     )
-
-    def __str__(self):
-        return str(self.token)
 
     @transaction.atomic
     def process_completed(self):
@@ -808,9 +802,6 @@ class ProductPurchase(models.Model):
         _("model.field.updated-at"),
         auto_now=True,
     )
-
-    def __str__(self):
-        return str(self.token)
 
     @transaction.atomic
     def process_completed(self):

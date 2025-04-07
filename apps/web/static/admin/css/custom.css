@@ -12,3 +12,8 @@
 .tox .tox-promotion {
     display: none !important;
 }
+
+/* shop */
+.content .object-tools {
+    margin-bottom: 20px;
+}

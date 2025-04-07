@@ -535,7 +535,7 @@ msgstr "Credit Purchase"
 
 #: apps/shop/enums.py:51
 msgid "enum.shop-object-type.product-purchase"
-msgstr "Credit Purchase"
+msgstr "Product Purchase"
 
 #: apps/shop/enums.py:52
 msgid "enum.shop-object-type.subscription"

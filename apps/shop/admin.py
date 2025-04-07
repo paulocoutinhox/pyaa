@@ -126,6 +126,16 @@ class ShopCreditPurchaseEventLogInlineAdmin(BaseEventLogInlineAdmin):
         return self.get_nonrelated_queryset(obj)
 
 
+class ShopProductPurchaseEventLogInlineAdmin(BaseEventLogInlineAdmin):
+    def get_nonrelated_queryset(self, obj):
+        return models.EventLog.objects.filter(
+            object_type=ObjectType.PRODUCT_PURCHASE, object_id=obj.id
+        ).order_by("-id")
+
+    def get_form_queryset(self, obj):
+        return self.get_nonrelated_queryset(obj)
+
+
 class PlanAdmin(admin.ModelAdmin):
     list_display = (
         "id",
@@ -686,9 +696,117 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
+class ProductPurchaseAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "token",
+        "customer",
+        "product",
+        "price",
+        "status_badge",
+        "created_at",
+    )
+
+    list_display_links = (
+        "id",
+        "token",
+        "customer",
+        "product",
+        "price",
+        "status_badge",
+        "created_at",
+    )
+
+    list_filter = (
+        "status",
+        "invoice_generated",
+        "created_at",
+    )
+
+    search_fields = (
+        "token",
+        "customer__user__email",
+        "product__name",
+    )
+
+    readonly_fields = (
+        "site",
+        "customer",
+        "product",
+        "token",
+        "price",
+        "currency",
+        "status",
+        "invoice_generated",
+        "created_at",
+        "updated_at",
+    )
+
+    ordering = ("-id",)
+
+    autocomplete_fields = ["customer", "product"]
+
+    inlines = [ShopProductPurchaseEventLogInlineAdmin]
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "site",
+                    "customer",
+                    "product",
+                    "token",
+                    "status",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.pricing"),
+            {
+                "fields": (
+                    "price",
+                    "currency",
+                    "invoice_generated",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def status_badge(self, obj):
+        colors = StatusHelper.get_status_color(obj.status)
+        bg_color = colors["bg"]
+        text_color = colors["text"]
+
+        return format_html(
+            '<span style="color: {}; background-color: {}; padding: 2px 8px; border-radius: 10px;">{}</span>',
+            text_color,
+            bg_color,
+            obj.get_status_display().lower(),
+        )
+
+    status_badge.short_description = _("model.field.status")
+
+
 admin.site.register(models.Plan, PlanAdmin)
 admin.site.register(models.Subscription, SubscriptionAdmin)
 admin.site.register(models.CreditLog, CreditLogAdmin)
 admin.site.register(models.EventLog, EventLogAdmin)
 admin.site.register(models.CreditPurchase, CreditPurchaseAdmin)
+admin.site.register(models.ProductPurchase, ProductPurchaseAdmin)
 admin.site.register(models.Product, ProductAdmin)
