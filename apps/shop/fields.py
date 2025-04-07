@@ -1,6 +1,7 @@
 import os
 import uuid
 
+from django.db.models import FileField
 from django_resized import ResizedImageField
 
 
@@ -12,6 +13,13 @@ class ProductImageField(ResizedImageField):
 
 
 class PlanImageField(ResizedImageField):
+    def generate_filename(self, instance, filename):
+        _, ext = os.path.splitext(filename)
+        name = f"{uuid.uuid4().hex}{ext}"
+        return super().generate_filename(instance, name)
+
+
+class ProductFileField(FileField):
     def generate_filename(self, instance, filename):
         _, ext = os.path.splitext(filename)
         name = f"{uuid.uuid4().hex}{ext}"

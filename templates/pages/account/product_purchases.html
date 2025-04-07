@@ -18,12 +18,12 @@
         <div class="row row-cols-1 g-4">
             {% for purchase in page_obj %}
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-header bg-light">
+                    <div class="border h-100">
+                        <div class="p-3 bg-light {% with files=purchase.product.get_active_files %}{% if purchase.status == 'approved' and files %}border-bottom{% endif %}{% endwith %}">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     {% if purchase.product.get_image_url %}
-                                        <img src="{{ purchase.product.get_image_url }}" alt="" class="rounded me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                        <img src="{{ purchase.product.get_image_url }}" alt="" class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
                                     {% endif %}
                                     <div>
                                         <h5 class="mb-0">{{ purchase.product.name }}</h5>
@@ -39,7 +39,7 @@
                         {% if purchase.status == 'approved' %}
                             {% with files=purchase.product.get_active_files %}
                                 {% if files %}
-                                    <div class="card-body pt-3">
+                                    <div class="p-3">
                                         <h6 class="mb-3 border-bottom pb-2">{% translate "title.shop-product-files" %}</h6>
                                         <div class="list-group list-group-flush">
                                             {% for file in files %}

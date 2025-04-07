@@ -17,3 +17,8 @@
 .content .object-tools {
     margin-bottom: 20px;
 }
+
+/* recaptcha */
+.grecaptcha-badge {
+    visibility: hidden;
+}

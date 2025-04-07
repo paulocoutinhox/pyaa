@@ -14,7 +14,7 @@
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center d-flex">
                 {% for item in page_obj %}
                 <div class="col mb-3">
-                    <a href="{% url 'shop_product_details' item.id %}" class="text-decoration-none">
+                    <a href="{% url 'shop_product_details' item.id item.slug %}" class="text-decoration-none">
                         <img src="{{ item.get_image_url }}" style="height: 100px;" class="img-fluid mb-1" />
                         <p class="small text-dark mb-0 text-truncate">{{ item.name }}</p>
                     </a>

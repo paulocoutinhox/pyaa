@@ -31,6 +31,7 @@ class Product(models.Model):
             models.Index(fields=["name"], name="shop_product_name"),
             models.Index(fields=["currency"], name="shop_product_currency"),
             models.Index(fields=["active"], name="shop_product_active"),
+            models.Index(fields=["slug"], name="shop_product_slug"),
         ]
 
     id = models.BigAutoField(
@@ -53,6 +54,14 @@ class Product(models.Model):
         max_length=255,
         blank=False,
         null=False,
+    )
+
+    slug = models.SlugField(
+        _("model.field.slug"),
+        max_length=255,
+        blank=True,
+        null=True,
+        unique=True,
     )
 
     description = HTMLField(
@@ -125,6 +134,9 @@ class Product(models.Model):
         if self.currency:
             self.currency = self.currency.upper()
 
+        if not self.slug:
+            self.slug = slugify(self.name)
+
         super(Product, self).save(*args, **kwargs)
 
 
@@ -166,7 +178,7 @@ class ProductFile(models.Model):
         null=True,
     )
 
-    file = models.FileField(
+    file = fields.ProductFileField(
         _("model.field.file"),
         upload_to="files/product/%Y/%m/%d",
         max_length=255,

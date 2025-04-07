@@ -142,20 +142,6 @@ def process_checkout_for_product_purchase(request, purchase):
                     "currency": purchase.currency.lower(),
                     "product_data": {
                         "name": purchase.product.name,
-                        "description": (
-                            purchase.product.description[:255]
-                            if purchase.product.description
-                            else None
-                        ),
-                        "images": (
-                            [
-                                request.build_absolute_uri(
-                                    purchase.product.get_image_url()
-                                )
-                            ]
-                            if purchase.product.image
-                            else []
-                        ),
                     },
                     "unit_amount": int(purchase.price * 100),
                 },

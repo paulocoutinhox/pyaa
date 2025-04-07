@@ -322,7 +322,7 @@ def shop_payment_pending_view(request, token):
     return render(request, "pages/shop/payment/pending.html", context)
 
 
-def shop_product_details_view(request, product_id):
+def shop_product_details_view(request, product_id, slug=None):
     # get the current site
     current_site = Site.objects.get_current()
 
@@ -333,6 +333,12 @@ def shop_product_details_view(request, product_id):
     product = Product.objects.filter(filters).first()
 
     if product:
+        # Redirect to the correct URL if slug doesn't match
+        if slug != product.slug:
+            return redirect(
+                "shop_product_details", product_id=product_id, slug=product.slug
+            )
+
         # get all active files for this product
         product_files = product.get_active_files()
 
@@ -360,6 +366,11 @@ urlpatterns = [
     ),
     path(
         "shop/product/<int:product_id>/",
+        shop_product_details_view,
+        name="shop_product_details_no_slug",
+    ),
+    path(
+        "shop/product/<int:product_id>/<slug:slug>/",
         shop_product_details_view,
         name="shop_product_details",
     ),
