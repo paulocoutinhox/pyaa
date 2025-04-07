@@ -48,6 +48,7 @@ class ObjectType(TextChoices):
     UNKNOWN = "unknown", _("enum.shop-object-type.unknown")
     BONUS = "bonus", _("enum.shop-object-type.bonus")
     CREDIT_PURCHASE = "credit-purchase", _("enum.shop-object-type.credit-purchase")
+    PRODUCT_PURCHASE = "product-purchase", _("enum.shop-object-type.product-purchase")
     SUBSCRIPTION = "subscription", _("enum.shop-object-type.subscription")
     VOUCHER = "voucher", _("enum.shop-object-type.voucher")
 
@@ -75,6 +76,21 @@ class CreditPurchaseStatus(TextChoices):
     CHARGED_BACK = "charged-back", _("enum.shop-credit-purchase-status.charged-back")
     REJECTED = "rejected", _("enum.shop-credit-purchase-status.rejected")
     REFUNDED = "refunded", _("enum.shop-credit-purchase-status.refunded")
+
+    @classmethod
+    def get_choices(cls):
+        return tuple((i.name, i.value) for i in cls)
+
+
+class ProductPurchaseStatus(TextChoices):
+    INITIAL = "initial", _("enum.shop-product-purchase-status.initial")
+    ANALYSIS = "analysis", _("enum.shop-product-purchase-status.analysis")
+    APPROVED = "approved", _("enum.shop-product-purchase-status.approved")
+    CANCELED = "canceled", _("enum.shop-product-purchase-status.canceled")
+    FAILED = "failed", _("enum.shop-product-purchase-status.failed")
+    CHARGED_BACK = "charged-back", _("enum.shop-product-purchase-status.charged-back")
+    REJECTED = "rejected", _("enum.shop-product-purchase-status.rejected")
+    REFUNDED = "refunded", _("enum.shop-product-purchase-status.refunded")
 
     @classmethod
     def get_choices(cls):

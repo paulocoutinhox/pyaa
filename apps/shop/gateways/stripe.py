@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.shop.enums import ObjectType, PaymentGatewayAction, PaymentGatewayCancelAction
-from apps.shop.models import CreditPurchase, EventLog, Subscription
+from apps.shop.models import CreditPurchase, EventLog, ProductPurchase, Subscription
 
 
 def process_checkout_for_subscription(request, subscription):
@@ -121,6 +121,78 @@ def process_checkout_for_credit_purchase(request, purchase):
     }
 
 
+def process_checkout_for_product_purchase(request, purchase):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    success_url = request.build_absolute_uri(
+        reverse("shop_payment_success", kwargs={"token": purchase.token})
+    )
+
+    cancel_url = request.build_absolute_uri(
+        reverse("shop_payment_error", kwargs={"token": purchase.token})
+    )
+
+    # create a stripe checkout session for one-time payment
+    session = stripe.checkout.Session.create(
+        payment_method_types=["card"],
+        mode="payment",
+        line_items=[
+            {
+                "price_data": {
+                    "currency": purchase.currency.lower(),
+                    "product_data": {
+                        "name": purchase.product.name,
+                        "description": (
+                            purchase.product.description[:255]
+                            if purchase.product.description
+                            else None
+                        ),
+                        "images": (
+                            [
+                                request.build_absolute_uri(
+                                    purchase.product.get_image_url()
+                                )
+                            ]
+                            if purchase.product.image
+                            else []
+                        ),
+                    },
+                    "unit_amount": int(purchase.price * 100),
+                },
+                "quantity": 1,
+            }
+        ],
+        client_reference_id=str(purchase.token),
+        customer_email=request.user.email,
+        success_url=success_url,
+        cancel_url=cancel_url,
+        metadata={
+            "token": purchase.token,
+        },
+        payment_intent_data={
+            "metadata": {
+                "token": purchase.token,
+            }
+        },
+    )
+
+    # log the product purchase event
+    EventLog.objects.create(
+        site=Site.objects.get_current(),
+        object_type=ObjectType.PRODUCT_PURCHASE,
+        object_id=purchase.id,
+        status=purchase.status,
+        amount=Decimal(purchase.price),
+        customer=purchase.customer,
+        description="Product Purchase checkout session created on Stripe",
+    )
+
+    return {
+        "action": PaymentGatewayAction.REDIRECT,
+        "url": session.url,
+    }
+
+
 def process_cancel_for_subscription(request, subscription):
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -180,6 +252,8 @@ def process_webhook(request):
         handle_subscription_event(event_type, event_data, token, event_log)
     elif token.startswith("credit-purchase."):
         handle_credit_purchase_event(event_type, event_data, token, event_log)
+    elif token.startswith("product-purchase."):
+        handle_product_purchase_event(event_type, event_data, token, event_log)
 
     return {"response": JsonResponse({"status": "success"}, status=200)}
 
@@ -224,6 +298,31 @@ def handle_credit_purchase_event(event_type, event_data, token, event_log):
     # update event log with purchase details
     event_log.object_id = purchase.id
     event_log.object_type = ObjectType.CREDIT_PURCHASE
+    event_log.customer = purchase.customer
+    event_log.save()
+
+    # handle based on event type
+    if event_type in ["checkout.session.completed"]:
+        # successful payment
+        purchase.process_completed()
+    elif event_type in ["payment_intent.canceled"]:
+        # canceled payment
+        purchase.process_canceled()
+    elif event_type in ["charge.refunded"]:
+        # refunded payment
+        purchase.process_refunded()
+
+
+def handle_product_purchase_event(event_type, event_data, token, event_log):
+    # find the product purchase object
+    purchase = ProductPurchase.objects.filter(token=token).first()
+
+    if not purchase:
+        return
+
+    # update event log with purchase details
+    event_log.object_id = purchase.id
+    event_log.object_type = ObjectType.PRODUCT_PURCHASE
     event_log.customer = purchase.customer
     event_log.save()
 

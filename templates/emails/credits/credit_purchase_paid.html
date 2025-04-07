@@ -20,7 +20,7 @@
         {% endif %}
 
         <p style="margin-bottom: 5px;"><strong>{% translate "email.credit-purchase-paid.total-value" %}:</strong> {{ purchase.price|floatformat:2 }}</p>
-        <p style="margin-bottom: 5px;"><strong>{% translate "email.credit-purchase-paid.purchase-date" %}:</strong> {{ purchase.created_at|date:"d/m/Y H:i" }}</p>
+        <p style="margin-bottom: 5px;"><strong>{% translate "email.credit-purchase-paid.purchase-date" %}:</strong> {{ purchase.created_at }}</p>
         <p style="margin-bottom: 5px;"><strong>{% translate "email.credit-purchase-paid.acquired-credits" %}:</strong> {{ plan.credits }}</p>
 
         {% if plan.bonus_credits > 0 %}

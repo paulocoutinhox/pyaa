@@ -1,0 +1,91 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+{% load pyaa_status %}
+{% load static %}
+
+{% block content %}
+
+{% url 'account_profile' as url_account_profile %}
+
+{% element page_title %}
+    {% translate "title.account-product-purchases" %}
+{% endelement %}
+
+<div class="container py-4">
+    {% if page_obj %}
+        <div class="row row-cols-1 g-4">
+            {% for purchase in page_obj %}
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-header bg-light">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    {% if purchase.product.get_image_url %}
+                                        <img src="{{ purchase.product.get_image_url }}" alt="" class="rounded me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                    {% endif %}
+                                    <div>
+                                        <h5 class="mb-0">{{ purchase.product.name }}</h5>
+                                        <small class="text-muted">{{ purchase.created_at }}</small>
+                                    </div>
+                                </div>
+                                <span class="badge rounded-pill text-lowercase" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
+                                    {{ purchase.get_status_display }}
+                                </span>
+                            </div>
+                        </div>
+
+                        {% if purchase.status == 'approved' %}
+                            {% with files=purchase.product.get_active_files %}
+                                {% if files %}
+                                    <div class="card-body pt-3">
+                                        <h6 class="mb-3 border-bottom pb-2">{% translate "title.shop-product-files" %}</h6>
+                                        <div class="list-group list-group-flush">
+                                            {% for file in files %}
+                                                <div class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-start-0 border-end-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="{% static 'images/file.png' %}" alt="File" class="me-3" style="width: 40px;">
+                                                        <div>
+                                                            <h6 class="mb-1">{{ file.name }}</h6>
+                                                            {% if file.description %}
+                                                                <p class="mb-1 text-muted small">{{ file.description }}</p>
+                                                            {% endif %}
+                                                            <small class="text-muted">
+                                                                {% if file.file_type %}{{ file.file_type }} · {% endif %}
+                                                                {% if file.file_size %}{{ file.file_size|filesizeformat }}{% endif %}
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                    <a href="{{ file.get_file_url }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                                        <i class="bi bi-download me-1"></i> {% translate "button.download" %}
+                                                    </a>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4">
+            {% include 'partials/paginator.html' %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            {% translate "list-data.empty" %}
+        </div>
+    {% endif %}
+
+    <div class="my-5 text-center">
+        {% element button href=url_account_profile %}
+            {% translate "button.back" %}
+        {% endelement %}
+    </div>
+</div>
+
+{% endblock content %}

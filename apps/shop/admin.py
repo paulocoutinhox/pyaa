@@ -574,8 +574,121 @@ class CreditPurchaseAdmin(admin.ModelAdmin):
     status_badge.short_description = _("model.field.status")
 
 
+class ProductFileInline(admin.TabularInline):
+    model = models.ProductFile
+    extra = 1
+    fields = (
+        "name",
+        "file",
+        "file_type",
+        "file_size",
+        "active",
+        "sort_order",
+    )
+    readonly_fields = ("file_type", "file_size")
+
+    def get_formset(self, request, obj=None, **kwargs):
+        from django import forms
+
+        class ProductFileForm(forms.ModelForm):
+            class Meta:
+                model = models.ProductFile
+                fields = "__all__"
+
+            def clean_file(self):
+                file = self.cleaned_data.get("file", None)
+
+                if file and hasattr(file, "content_type") and hasattr(file, "size"):
+                    # only update if the file has changed
+                    if self.instance.pk is None or "file" in self.changed_data:
+                        self.instance.file_type = file.content_type
+                        self.instance.file_size = file.size
+
+                return file
+
+        kwargs["form"] = ProductFileForm
+        return super().get_formset(request, obj, **kwargs)
+
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "name",
+        "price",
+        "currency",
+        "active",
+        "created_at",
+    )
+
+    list_display_links = (
+        "id",
+        "name",
+        "price",
+        "currency",
+        "active",
+        "created_at",
+    )
+
+    list_filter = (
+        "active",
+        "currency",
+        "created_at",
+    )
+
+    search_fields = ("name",)
+    readonly_fields = ("created_at", "updated_at")
+    ordering = ("-id",)
+    inlines = [ProductFileInline]
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "site",
+                    "name",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.pricing"),
+            {
+                "fields": (
+                    "currency",
+                    "price",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.description"),
+            {
+                "fields": (
+                    "description",
+                    "image",
+                )
+            },
+        ),
+        (
+            _("admin.fieldsets.status"),
+            {
+                "fields": ("active",),
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": (
+                    "created_at",
+                    "updated_at",
+                )
+            },
+        ),
+    )
+
+
 admin.site.register(models.Plan, PlanAdmin)
 admin.site.register(models.Subscription, SubscriptionAdmin)
 admin.site.register(models.CreditLog, CreditLogAdmin)
 admin.site.register(models.EventLog, EventLogAdmin)
 admin.site.register(models.CreditPurchase, CreditPurchaseAdmin)
+admin.site.register(models.Product, ProductAdmin)

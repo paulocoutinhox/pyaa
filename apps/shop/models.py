@@ -1,4 +1,3 @@
-import uuid
 from datetime import timedelta
 
 from django.contrib.sites.models import Site
@@ -20,6 +19,208 @@ from apps.shop.enums import (
 )
 from apps.site.models import Site
 from pyaa.helpers.string import StringHelper
+
+
+class Product(models.Model):
+    class Meta:
+        db_table = "shop_product"
+        verbose_name = _("model.shop-product.name")
+        verbose_name_plural = _("model.shop-product.name.plural")
+
+        indexes = [
+            models.Index(fields=["name"], name="shop_product_name"),
+            models.Index(fields=["currency"], name="shop_product_currency"),
+            models.Index(fields=["active"], name="shop_product_active"),
+        ]
+
+    id = models.BigAutoField(
+        _("model.field.id"),
+        unique=True,
+        primary_key=True,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="products",
+        verbose_name=_("model.field.site"),
+        blank=True,
+        null=True,
+    )
+
+    name = models.CharField(
+        _("model.field.name"),
+        max_length=255,
+        blank=False,
+        null=False,
+    )
+
+    description = HTMLField(
+        _("model.field.description"),
+        blank=True,
+        null=True,
+    )
+
+    image = fields.ProductImageField(
+        _("model.field.image"),
+        size=[1024, 1024],
+        crop=["middle", "center"],
+        quality=100,
+        upload_to="images/product/%Y/%m/%d",
+        blank=True,
+        null=True,
+    )
+
+    currency = models.CharField(
+        _("model.field.currency"),
+        max_length=3,
+        blank=False,
+        null=False,
+    )
+
+    price = models.DecimalField(
+        _("model.field.price"),
+        max_digits=10,
+        decimal_places=2,
+    )
+
+    active = models.BooleanField(
+        _("model.field.active"),
+        default=True,
+        blank=False,
+        null=False,
+    )
+
+    created_at = models.DateTimeField(
+        _("model.field.created-at"),
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        _("model.field.updated-at"),
+        auto_now=True,
+    )
+
+    def get_active_files(self):
+        """
+        Return all active files for this product
+        """
+        return self.files.filter(active=True).order_by("sort_order")
+
+    def get_image_url(self):
+        if not self.image:
+            return static("images/product-no-image.png")
+
+        image_url = str(self.image)
+
+        if image_url.startswith(("http://", "https://")):
+            return image_url
+
+        return self.image.url
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if self.currency:
+            self.currency = self.currency.upper()
+
+        super(Product, self).save(*args, **kwargs)
+
+
+class ProductFile(models.Model):
+    class Meta:
+        db_table = "shop_product_file"
+        verbose_name = _("model.shop-product-file.name")
+        verbose_name_plural = _("model.shop-product-file.name.plural")
+
+        indexes = [
+            models.Index(fields=["product"], name="shop_product_file_product"),
+            models.Index(fields=["file_type"], name="shop_product_file_file_type"),
+            models.Index(fields=["active"], name="shop_product_file_active"),
+        ]
+
+    id = models.BigAutoField(
+        _("model.field.id"),
+        unique=True,
+        primary_key=True,
+    )
+
+    product = models.ForeignKey(
+        "Product",
+        on_delete=models.CASCADE,
+        related_name="files",
+        verbose_name=_("model.field.product"),
+    )
+
+    name = models.CharField(
+        _("model.field.name"),
+        max_length=255,
+        blank=False,
+        null=False,
+    )
+
+    description = models.TextField(
+        _("model.field.description"),
+        blank=True,
+        null=True,
+    )
+
+    file = models.FileField(
+        _("model.field.file"),
+        upload_to="files/product/%Y/%m/%d",
+        max_length=255,
+    )
+
+    file_type = models.CharField(
+        _("model.field.file-type"),
+        max_length=50,
+        blank=True,
+        null=True,
+    )
+
+    file_size = models.PositiveIntegerField(
+        _("model.field.file-size"),
+        default=0,
+        blank=True,
+        null=True,
+    )
+
+    active = models.BooleanField(
+        _("model.field.active"),
+        default=True,
+        blank=False,
+        null=False,
+    )
+
+    sort_order = models.IntegerField(
+        _("model.field.sort-order"),
+        default=0,
+    )
+
+    created_at = models.DateTimeField(
+        _("model.field.created-at"),
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        _("model.field.updated-at"),
+        auto_now=True,
+    )
+
+    def __str__(self):
+        return self.name
+
+    def get_file_url(self):
+        if not self.file:
+            return None
+
+        file_url = str(self.file)
+
+        if file_url.startswith(("http://", "https://")):
+            return file_url
+
+        return self.file.url
 
 
 class Plan(models.Model):
@@ -400,15 +601,15 @@ class CreditPurchase(models.Model):
         indexes = [
             models.Index(
                 fields=["token"],
-                name="credit_purchase_token",
+                name="shop_credit_purchase_token",
             ),
             models.Index(
                 fields=["status"],
-                name="credit_purchase_status",
+                name="shop_credit_purchase_status",
             ),
             models.Index(
                 fields=["invoice_generated"],
-                name="credit_purchase_invoice_gen",
+                name="shop_credit_purchase_inv_gen",
             ),
         ]
 
@@ -485,10 +686,6 @@ class CreditPurchase(models.Model):
     def __str__(self):
         return str(self.token)
 
-    @staticmethod
-    def generate_token():
-        return f"credit-purchase.{uuid.uuid4()}"
-
     @transaction.atomic
     def process_completed(self):
         # update the status to approved
@@ -521,6 +718,124 @@ class CreditPurchase(models.Model):
         self.save(update_fields=["status"])
 
 
+class ProductPurchase(models.Model):
+    class Meta:
+        db_table = "product_purchase"
+        verbose_name = _("model.product-purchase.name")
+        verbose_name_plural = _("model.product-purchase.name.plural")
+
+        indexes = [
+            models.Index(
+                fields=["token"],
+                name="shop_product_purchase_token",
+            ),
+            models.Index(
+                fields=["status"],
+                name="shop_product_purchase_status",
+            ),
+            models.Index(
+                fields=["invoice_generated"],
+                name="shop_product_purchase_inv_gen",
+            ),
+        ]
+
+    id = models.BigAutoField(
+        _("model.field.id"),
+        unique=True,
+        primary_key=True,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="product_purchases",
+        verbose_name=_("model.field.site"),
+        blank=False,
+        null=False,
+    )
+
+    customer = models.ForeignKey(
+        "customer.Customer",
+        on_delete=models.CASCADE,
+        verbose_name=_("model.field.customer"),
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        verbose_name=_("model.field.product"),
+    )
+
+    token = models.CharField(
+        _("model.field.token"),
+        max_length=255,
+        default=StringHelper.generate_product_purchase_token,
+        editable=False,
+        unique=True,
+    )
+
+    currency = models.CharField(
+        _("model.field.currency"),
+        max_length=3,
+        blank=False,
+        null=False,
+    )
+
+    price = models.DecimalField(
+        _("model.field.price"),
+        max_digits=10,
+        decimal_places=2,
+    )
+
+    invoice_generated = models.BooleanField(
+        _("model.field.invoice-generated"),
+        default=False,
+    )
+
+    status = models.CharField(
+        _("model.field.status"),
+        max_length=255,
+        choices=enums.ProductPurchaseStatus.choices,
+        default=enums.ProductPurchaseStatus.INITIAL,
+    )
+
+    created_at = models.DateTimeField(
+        _("model.field.created-at"),
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        _("model.field.updated-at"),
+        auto_now=True,
+    )
+
+    def __str__(self):
+        return str(self.token)
+
+    @transaction.atomic
+    def process_completed(self):
+        # update the status to approved
+        self.status = enums.ProductPurchaseStatus.APPROVED
+        self.save(update_fields=["status"])
+
+        # send confirmation email
+        from apps.customer.helpers import CustomerHelper
+
+        CustomerHelper.send_product_purchase_paid_email(self)
+
+    @transaction.atomic
+    def process_canceled(self):
+        # update the status to canceled
+        self.status = enums.ProductPurchaseStatus.CANCELED
+        self.save(update_fields=["status"])
+
+    @transaction.atomic
+    def process_refunded(self):
+        # update the status to refunded
+        self.status = enums.ProductPurchaseStatus.REFUNDED
+        self.save(update_fields=["status"])
+
+
 class CreditLog(models.Model):
     class Meta:
         db_table = "shop_credit_log"
@@ -529,7 +844,8 @@ class CreditLog(models.Model):
 
         indexes = [
             models.Index(
-                fields=["object_id", "object_type"], name="shop_credit_log_object"
+                fields=["object_id", "object_type"],
+                name="shop_credit_log_object",
             ),
             models.Index(fields=["object_type"], name="shop_credit_log_object_type"),
             models.Index(fields=["is_refund"], name="shop_credit_log_is_refund"),

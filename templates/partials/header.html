@@ -39,7 +39,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {% translate "menu.shop.plans" %}
+                            {% translate "menu.shop" %}
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -50,6 +50,11 @@
                             <li>
                                 <a class="dropdown-item {% nav_active 'shop_plans' 'credit-purchase' %}" href="{% url 'shop_plans' 'credit-purchase' %}">
                                     {% translate "menu.shop.plans-credit-purchase" %}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {% nav_active 'shop_products' %}" href="{% url 'shop_products' %}">
+                                    {% translate "menu.shop.products" %}
                                 </a>
                             </li>
                         </ul>

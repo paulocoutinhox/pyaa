@@ -380,6 +380,49 @@ class CustomerHelper:
         )
 
     @staticmethod
+    def send_product_purchase_paid_email(purchase):
+        """
+        Send confirmation email for a product purchase
+
+        :param purchase: the product purchase object
+        """
+        # get the customer's email
+        customer = purchase.customer
+        customer_email = customer.user.email
+
+        if not customer_email:
+            return
+
+        # get the current site
+        current_site = customer.site
+
+        # set the subject
+        subject = _("email.product-purchase-paid.subject")
+
+        # set recipient
+        recipient_list = [customer_email]
+
+        # set context
+        profile_path = reverse("account_product_purchases")
+        profile_url = f"https://{current_site.domain}{profile_path}"
+
+        context = {
+            "subject": subject,
+            "customer": customer,
+            "site": current_site,
+            "profile_url": profile_url,
+            "purchase": purchase,
+        }
+
+        MailHelper.send_mail_async(
+            subject=subject,
+            to=recipient_list,
+            template="emails/products/product_purchase_paid.html",
+            context=context,
+            reply_to=[settings.DEFAULT_TO_EMAIL],
+        )
+
+    @staticmethod
     @transaction.atomic
     def update_customer_credits(customer_id, amount):
         """

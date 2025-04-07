@@ -18,3 +18,7 @@ class StringHelper:
     @staticmethod
     def generate_credit_purchase_token():
         return f"credit-purchase.{uuid.uuid4()}"
+
+    @staticmethod
+    def generate_product_purchase_token():
+        return f"product-purchase.{uuid.uuid4()}"

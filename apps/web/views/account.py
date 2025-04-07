@@ -17,7 +17,7 @@ from apps.customer.forms import (
 from apps.customer.models import Customer
 from apps.shop.enums import PaymentGatewayCancelAction, SubscriptionStatus
 from apps.shop.helpers import ShopHelper
-from apps.shop.models import CreditLog, CreditPurchase, Subscription
+from apps.shop.models import CreditLog, CreditPurchase, ProductPurchase, Subscription
 from pyaa.decorators.customer import customer_required
 from pyaa.helpers.request import RequestHelper
 from pyaa.utils.cached_paginator import Paginator
@@ -202,7 +202,7 @@ def account_subscriptions_view(request):
         subscriptions,
         per_page=10,
         cache_key="account-subscriptions",
-        cache_timeout=300,
+        cache_timeout=0,
     )
 
     # get the page object
@@ -218,7 +218,7 @@ def account_subscriptions_view(request):
     )
 
 
-@login_required
+@customer_required
 def account_subscription_cancel_view(request, token):
     try:
         subscription = Subscription.objects.get(token=token)
@@ -235,15 +235,10 @@ def account_subscription_cancel_view(request, token):
     return redirect("home")
 
 
-@login_required
+@customer_required
 def account_credits_view(request):
-    try:
-        customer = Customer.objects.get(user=request.user)
-    except Customer.DoesNotExist:
-        return redirect("home")
-
     credits = CreditLog.objects.filter(
-        customer=customer,
+        customer=request.customer,
     ).order_by("-id")
 
     # get the page parameter from request
@@ -254,7 +249,7 @@ def account_credits_view(request):
         credits,
         per_page=10,
         cache_key="account-credits",
-        cache_timeout=300,
+        cache_timeout=0,
     )
 
     # get the page object
@@ -264,21 +259,16 @@ def account_credits_view(request):
         request,
         "pages/account/credits.html",
         {
-            "customer": customer,
+            "customer": request.customer,
             "page_obj": page_obj,
         },
     )
 
 
-@login_required
+@customer_required
 def account_credit_purchases_view(request):
-    try:
-        customer = Customer.objects.get(user=request.user)
-    except Customer.DoesNotExist:
-        return redirect("home")
-
     purchases = CreditPurchase.objects.filter(
-        customer=customer,
+        customer=request.customer,
     ).order_by("-id")
 
     # get the page parameter from request
@@ -289,7 +279,7 @@ def account_credit_purchases_view(request):
         purchases,
         per_page=10,
         cache_key="account-credit-purchases",
-        cache_timeout=300,
+        cache_timeout=0,
     )
 
     # get the page object
@@ -299,7 +289,37 @@ def account_credit_purchases_view(request):
         request,
         "pages/account/credit_purchases.html",
         {
-            "customer": customer,
+            "customer": request.customer,
+            "page_obj": page_obj,
+        },
+    )
+
+
+@customer_required
+def account_product_purchases_view(request):
+    purchases = ProductPurchase.objects.filter(
+        customer=request.customer,
+    ).order_by("-id")
+
+    # get the page parameter from request
+    page = request.GET.get("page", 1)
+
+    # setup paginator with cache key
+    paginator = Paginator(
+        purchases,
+        per_page=10,
+        cache_key="account-product-purchases",
+        cache_timeout=0,
+    )
+
+    # get the page object
+    page_obj = paginator.page(page)
+
+    return render(
+        request,
+        "pages/account/product_purchases.html",
+        {
+            "customer": request.customer,
             "page_obj": page_obj,
         },
     )
@@ -376,6 +396,11 @@ urlpatterns = [
         "account/credit-purchases/",
         account_credit_purchases_view,
         name="account_credit_purchases",
+    ),
+    path(
+        "account/product-purchases/",
+        account_product_purchases_view,
+        name="account_product_purchases",
     ),
     path(
         "account/signup/success",

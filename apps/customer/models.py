@@ -215,3 +215,14 @@ class Customer(models.Model):
         with transaction.atomic():
             self.refresh_from_db(fields=["credits"])
             return self.credits is not None and self.credits >= amount
+
+    def has_purchased_product(self, product_id):
+        """
+        Check if the customer has purchased a specific product
+        """
+        from apps.shop.enums import ProductPurchaseStatus
+        from apps.shop.models import ProductPurchase
+
+        return ProductPurchase.objects.filter(
+            customer=self, product_id=product_id, status=ProductPurchaseStatus.APPROVED
+        ).exists()

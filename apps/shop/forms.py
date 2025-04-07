@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer.models import Customer
-from apps.shop.enums import CheckoutStep, ObjectType
+from apps.shop.enums import CheckoutStep, ObjectType, PaymentGateway
 from apps.shop.models import Plan
 
 
@@ -97,6 +97,29 @@ class CheckoutForm(forms.Form):
         self.show_discount_data = False
         self.show_price_data = False
 
+    def create_for_product_purchase(self, product, customer: Customer):
+        self.gateway = PaymentGateway.STRIPE
+        self.title = _("checkout.description.product-purchase")
+        self.description = product.name
+        self.object_type = ObjectType.PRODUCT_PURCHASE
+        self.object_id = product.id
+
+        self.customer = customer
+
+        self.photo_url = product.get_image_url()
+        self.price = product.price
+        self.discount = 0.0
+        self.shipping_price = 0.0
+        self.total_price = product.price
+
+        self.currency = product.currency
+
+        self.show_shipping_data = False
+        self.show_delivery_data = False
+        self.show_address_data = False
+        self.show_discount_data = False
+        self.show_price_data = True
+
     def clean(self):
         cleaned_data = super().clean()
 
@@ -108,6 +131,9 @@ class CheckoutForm(forms.Form):
                 pass
             elif object_type == ObjectType.CREDIT_PURCHASE:
                 # validate credit purchase if needed
+                pass
+            elif object_type == ObjectType.PRODUCT_PURCHASE:
+                # validate product purchase if needed
                 pass
 
         return cleaned_data

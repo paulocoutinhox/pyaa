@@ -12,6 +12,7 @@
 {% url 'account_subscriptions' as url_account_subscriptions %}
 {% url 'account_credits' as url_account_credits %}
 {% url 'account_credit_purchases' as url_account_credit_purchases %}
+{% url 'account_product_purchases' as url_account_product_purchases %}
 
 <div class="container py-4">
     <!-- Profile Header -->
@@ -36,6 +37,18 @@
         <a href="{{ url_account_update_profile }}" class="btn btn-sm position-absolute top-0 end-0 btn-secondary rounded">
             <i class="bi bi-pencil"></i>
         </a>
+    </div>
+
+    <!-- Product Purchases -->
+    <div class="row g-2 text-center mb-4">
+        <div class="col-12 d-flex">
+            <a href="{{ url_account_product_purchases }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
+                <div class="mb-2 text-body">
+                    <i class="bi bi-cart fs-4"></i>
+                </div>
+                <span class="text-body">{% translate "button.account-product-purchases" %}</span>
+            </a>
+        </div>
     </div>
 
     <!-- Credits and Purchases -->

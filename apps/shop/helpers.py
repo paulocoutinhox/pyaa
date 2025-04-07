@@ -4,7 +4,7 @@ from django.db.models import Q
 
 from apps.shop.enums import ObjectType, PaymentGateway
 from apps.shop.gateways import stripe
-from apps.shop.models import CreditPurchase, Plan, Subscription
+from apps.shop.models import CreditPurchase, Plan, ProductPurchase, Subscription
 
 
 class ShopHelper:
@@ -23,6 +23,16 @@ class ShopHelper:
 
         if gateway == PaymentGateway.STRIPE:
             return stripe.process_checkout_for_credit_purchase(request, purchase)
+
+        return None
+
+    @staticmethod
+    def process_checkout_for_product_purchase(request, purchase):
+        # For product purchases, we'll use the default gateway
+        gateway = PaymentGateway.STRIPE
+
+        if gateway == PaymentGateway.STRIPE:
+            return stripe.process_checkout_for_product_purchase(request, purchase)
 
         return None
 
@@ -105,6 +115,11 @@ class ShopHelper:
             ).first()
         elif object_type == ObjectType.SUBSCRIPTION:
             return Subscription.objects.filter(
+                token=token,
+                customer=customer,
+            ).first()
+        elif object_type == ObjectType.PRODUCT_PURCHASE:
+            return ProductPurchase.objects.filter(
                 token=token,
                 customer=customer,
             ).first()
