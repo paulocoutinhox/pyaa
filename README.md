@@ -21,6 +21,7 @@ PyAA is a powerful, open-source Python + Django template application designed to
 - **Checkout System** – Complete payment flow for products and services.
 - **Digital Products** – Sell digital products with secure download links after purchase.
 - **Admin Panel** – A fully functional admin dashboard for managing the application.
+- **Theme Selector** – Support for light, dark, and auto theme modes.
 - **Email Integration** – Send transactional emails with ease.
 - **Recaptcha Support** – Enhance security with Recaptcha integration.
 - **Image Gallery** – Manage a gallery of images efficiently.
