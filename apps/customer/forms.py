@@ -197,6 +197,7 @@ class CustomerUpdateProfileForm(forms.Form):
         widget=forms.TextInput(attrs={"data-mask": "000.000.000-00"}),
         label=_("model.field.cpf"),
         required=False,
+        validators=[UserHelper.validate_cpf],
     )
 
     mobile_phone = OnlyNumberCharField(

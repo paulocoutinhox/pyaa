@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-08 01:20+0000\n"
+"POT-Creation-Date: 2025-04-08 05:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,9 +141,9 @@ msgstr "E-mail"
 msgid "model.field.cpf"
 msgstr "CPF"
 
-#: apps/customer/admin.py:148 apps/customer/forms.py:205
+#: apps/customer/admin.py:148 apps/customer/forms.py:206
 #: apps/customer/serializers.py:47 apps/customer/serializers.py:106
-#: apps/user/admin.py:23 apps/user/admin.py:41 apps/user/models.py:118
+#: apps/user/admin.py:23 apps/user/admin.py:41 apps/user/models.py:119
 msgid "model.field.mobile-phone"
 msgstr "Celular"
 
@@ -193,7 +193,7 @@ msgstr "Nome"
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customer/forms.py:74 apps/customer/forms.py:215
+#: apps/customer/forms.py:74 apps/customer/forms.py:216
 #: apps/customer/models.py:84 apps/customer/serializers.py:115
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
@@ -213,27 +213,27 @@ msgstr "Aceitar Termos"
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/customer/forms.py:209 apps/customer/models.py:77
+#: apps/customer/forms.py:210 apps/customer/models.py:77
 msgid "model.field.nickname"
 msgstr "Apelido"
 
-#: apps/customer/forms.py:284 apps/user/helpers.py:17
+#: apps/customer/forms.py:285 apps/user/helpers.py:18
 msgid "error.email-already-used-by-other"
 msgstr "Este e-mail já está sendo usado."
 
-#: apps/customer/forms.py:286 apps/user/helpers.py:30
+#: apps/customer/forms.py:287 apps/user/helpers.py:31
 msgid "error.cpf-already-used-by-other"
 msgstr "Este CPF já está sendo usado."
 
-#: apps/customer/forms.py:289 apps/user/helpers.py:46
+#: apps/customer/forms.py:290 apps/user/helpers.py:47
 msgid "error.mobile-phone-already-used-by-other"
 msgstr "Este celular já está sendo usado."
 
-#: apps/customer/forms.py:293
+#: apps/customer/forms.py:294
 msgid "error.database-constraint-error"
 msgstr ""
 
-#: apps/customer/forms.py:297
+#: apps/customer/forms.py:298
 msgid "error.protected-object-cannot-be-deleted"
 msgstr ""
 
@@ -870,8 +870,12 @@ msgstr "DADOS PESSOAIS"
 msgid "admin.fieldsets.permissions"
 msgstr "PERMISSÕES"
 
+#: apps/user/helpers.py:67
+msgid "error.invalid-cpf"
+msgstr "CPF inválido."
+
 #: apps/user/management/commands/createadmin.py:61 apps/user/models.py:23
-#: apps/user/models.py:59 apps/user/models.py:133
+#: apps/user/models.py:59 apps/user/models.py:134
 msgid "error.at-least-one-login-provider-is-required"
 msgstr "Pelo menos uma forma de fazer login é obrigatória."
 

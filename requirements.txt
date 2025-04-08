@@ -22,8 +22,11 @@ django-translation-flags==1.0.6
 # general
 requests==2.32.3
 libsass==0.23.0
-boto3==1.37.28
+boto3==1.37.29
 beautifulsoup4==4.13.3
+
+# validation
+pycpfcnpj==1.8
 
 # local
 tzdata==2025.2

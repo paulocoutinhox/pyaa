@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from pycpfcnpj import cpf
 
 
 class UserHelper:
@@ -58,3 +59,11 @@ class UserHelper:
         UserHelper.validate_unique_email(email, site_id, pk, error_class)
         UserHelper.validate_unique_cpf(cpf, site_id, pk, error_class)
         UserHelper.validate_unique_mobile_phone(mobile_phone, site_id, pk, error_class)
+
+    @staticmethod
+    def validate_cpf(value):
+        if value:
+            if not cpf.validate(value):
+                raise ValidationError(_("error.invalid-cpf"))
+
+        return value

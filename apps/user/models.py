@@ -112,6 +112,7 @@ class User(AbstractUser):
         max_length=11,
         blank=True,
         null=True,
+        validators=[UserHelper.validate_cpf],
     )
 
     mobile_phone = models.CharField(
