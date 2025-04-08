@@ -17,13 +17,22 @@ PyAA is a powerful, open-source Python + Django template application designed to
 
 - **User Management** – Handle user registration, login, profile management, and more.
 - **Subscription Management** – Manage user subscriptions by credits or expiration date.
+- **Credit System** – Support for selling and managing user credits.
+- **Checkout System** – Complete payment flow for products and services.
+- **Digital Products** – Sell digital products with secure download links after purchase.
 - **Admin Panel** – A fully functional admin dashboard for managing the application.
 - **Email Integration** – Send transactional emails with ease.
+- **Recaptcha Support** – Enhance security with Recaptcha integration.
 - **Image Gallery** – Manage a gallery of images efficiently.
 - **Static Content Management** – Organize and manage static content across your site.
 - **Multi-language Support** – Easily handle multiple languages.
-- **Stripe Integration** – Seamlessly manage subscription payments through Stripe.
+- **Multiple Currency Support** – Process payments in different currencies.
+- **Stripe Integration** – Seamlessly manage subscription payments and one-time purchases through Stripe.
 - **Subscription Plans** – Control and configure different subscription tiers.
+- **Background Queue** – Powered by DjangoQ with worker support for handling asynchronous tasks.
+- **Status Color System** – Visual indicators for various statuses throughout the application.
+- **Cached Paginator** – Optimized pagination for better performance.
+- **Docker Support** – Docker configurations for web application and cron jobs.
 - **Test Coverage** – Over 70% test coverage, ensuring reliability and robustness.
 - **Versatile Use** – Perfect for building websites, e-commerce platforms, or SaaS products.
 

@@ -12,37 +12,39 @@
     {% translate "title.account-update-avatar" %}
 {% endelement %}
 
-<div class="text-center my-5">
-    {% if customer.avatar %}
-    <div class="rounded-circle" style="width: 60px; height: 60px; overflow: hidden; margin: 0 auto;">
-        <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+<div class="container">
+    <div class="text-center my-5">
+        {% if customer.avatar %}
+        <div class="rounded-circle" style="width: 60px; height: 60px; overflow: hidden; margin: 0 auto;">
+            <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+        </div>
+        {% else %}
+        <div class="rounded-circle" style="width: 60px; height: 60px; overflow: hidden; margin: 0 auto;">
+            <img src="{% static 'images/no-image.png' %}" alt="profile-image" class="img-fluid">
+        </div>
+        {% endif %}
     </div>
-    {% else %}
-    <div class="rounded-circle" style="width: 60px; height: 60px; overflow: hidden; margin: 0 auto;">
-        <img src="{% static 'images/no-image.png' %}" alt="profile-image" class="img-fluid">
-    </div>
-    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="text-break" novalidate>
+        {% csrf_token %}
+
+        {% element fields form=form %}
+        {% endelement %}
+
+        <div class="my-5 text-center">
+            <p>
+                {% element button type="submit" %}
+                    {% translate "button.update" %}
+                {% endelement %}
+            </p>
+
+            <p>
+                {% element button href=url_account_profile %}
+                    {% translate "button.cancel" %}
+                {% endelement %}
+            </p>
+        </div>
+    </form>
 </div>
-
-<form method="post" enctype="multipart/form-data" class="text-break" novalidate>
-    {% csrf_token %}
-
-    {% element fields form=form %}
-    {% endelement %}
-
-    <div class="my-5 text-center">
-        <p>
-            {% element button type="submit" %}
-                {% translate "button.update" %}
-            {% endelement %}
-        </p>
-
-        <p>
-            {% element button href=url_account_profile %}
-                {% translate "button.cancel" %}
-            {% endelement %}
-        </p>
-    </div>
-</form>
 
 {% endblock content %}

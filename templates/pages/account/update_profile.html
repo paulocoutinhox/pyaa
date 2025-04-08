@@ -11,25 +11,27 @@
     {% translate "title.account-update-profile" %}
 {% endelement %}
 
-<form method="post" novalidate>
-    {% csrf_token %}
+<div class="container">
+    <form method="post" novalidate>
+        {% csrf_token %}
 
-    {% element fields form=form %}
-    {% endelement %}
+        {% element fields form=form %}
+        {% endelement %}
 
-    <div class="my-5 text-center">
-        <p>
-            {% element button type="submit" %}
-                {% translate "button.update" %}
-            {% endelement %}
-        </p>
+        <div class="my-5 text-center">
+            <p>
+                {% element button type="submit" %}
+                    {% translate "button.update" %}
+                {% endelement %}
+            </p>
 
-        <p>
-            {% element button href=url_account_profile %}
-                {% translate "button.cancel" %}
-            {% endelement %}
-        </p>
-    </div>
-</form>
+            <p>
+                {% element button href=url_account_profile %}
+                    {% translate "button.cancel" %}
+                {% endelement %}
+            </p>
+        </div>
+    </form>
+</div>
 
 {% endblock content %}

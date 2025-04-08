@@ -11,26 +11,28 @@
     {% translate "title.account-delete" %}
 {% endelement %}
 
-<p class="text-center">
-    {% translate "subtitle.account-delete" %}
-</p>
-
-<form action="{% url 'account_delete' %}" method="post" class="text-center" novalidate>
-    {% csrf_token %}
-
-    {{ form }}
-
-    <p>
-        {% element button type="submit" tags="danger" %}
-            {% translate "button.account-delete-confirm" %}
-        {% endelement %}
+<div class="container">
+    <p class="text-center">
+        {% translate "subtitle.account-delete" %}
     </p>
 
-    <p>
-        {% element button href=url_account_profile %}
-            {% translate "button.cancel" %}
-        {% endelement %}
-    </p>
-</form>
+    <form action="{% url 'account_delete' %}" method="post" class="text-center" novalidate>
+        {% csrf_token %}
+
+        {{ form }}
+
+        <p>
+            {% element button type="submit" tags="danger" %}
+                {% translate "button.account-delete-confirm" %}
+            {% endelement %}
+        </p>
+
+        <p>
+            {% element button href=url_account_profile %}
+                {% translate "button.cancel" %}
+            {% endelement %}
+        </p>
+    </form>
+</div>
 
 {% endblock content %}

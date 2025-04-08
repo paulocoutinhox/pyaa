@@ -7,13 +7,10 @@
 {% load pyaa_system %}
 
 {% block content %}
-<div class="container py-5">
-    {% if checkout.back_url %}
-        {% include "partials/back_button.html" with back_url=checkout.back_url %}
-    {% endif %}
-
+<div class="container">
     {% if checkout.checkout_step == "checkout" %}
-        <div class="row justify-content-center">
+
+        <div class="row justify-content-center py-5">
             <div class="col-12 col-lg-8">
                 <div class="card border-0 bg-body-tertiary rounded-3">
                     <div class="card-body p-4">
