@@ -1,6 +1,7 @@
 {% extends 'layouts/base_page.html' %}
 
 {% load i18n %}
+{% load static %}
 {% load pyaa %}
 
 {% block content %}
@@ -11,7 +12,17 @@
     {% translate "title.account-update-avatar" %}
 {% endelement %}
 
-{% include "partials/customer_avatar.html" %}
+<div class="text-center my-5">
+    {% if customer.avatar %}
+    <div class="rounded-circle" style="width: 60px; height: 60px; overflow: hidden; margin: 0 auto;">
+        <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+    </div>
+    {% else %}
+    <div class="rounded-circle" style="width: 60px; height: 60px; overflow: hidden; margin: 0 auto;">
+        <img src="{% static 'images/no-image.png' %}" alt="profile-image" class="img-fluid">
+    </div>
+    {% endif %}
+</div>
 
 <form method="post" enctype="multipart/form-data" class="text-break" novalidate>
     {% csrf_token %}
@@ -19,17 +30,19 @@
     {% element fields form=form %}
     {% endelement %}
 
-    <p class="text-center">
-        {% element button type="submit" %}
-            {% translate "button.update" %}
-        {% endelement %}
-    </p>
+    <div class="my-5 text-center">
+        <p>
+            {% element button type="submit" %}
+                {% translate "button.update" %}
+            {% endelement %}
+        </p>
 
-    <p class="text-center">
-        {% element button href=url_account_profile %}
-            {% translate "button.cancel" %}
-        {% endelement %}
-    </p>
+        <p>
+            {% element button href=url_account_profile %}
+                {% translate "button.cancel" %}
+            {% endelement %}
+        </p>
+    </div>
 </form>
 
 {% endblock content %}

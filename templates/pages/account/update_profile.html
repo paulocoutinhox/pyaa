@@ -17,17 +17,19 @@
     {% element fields form=form %}
     {% endelement %}
 
-    <p class="text-center">
-        {% element button type="submit" %}
-            {% translate "button.update" %}
-        {% endelement %}
-    </p>
+    <div class="my-5 text-center">
+        <p>
+            {% element button type="submit" %}
+                {% translate "button.update" %}
+            {% endelement %}
+        </p>
 
-    <p class="text-center">
-        {% element button href=url_account_profile %}
-            {% translate "button.cancel" %}
-        {% endelement %}
-    </p>
+        <p>
+            {% element button href=url_account_profile %}
+                {% translate "button.cancel" %}
+            {% endelement %}
+        </p>
+    </div>
 </form>
 
 {% endblock content %}
