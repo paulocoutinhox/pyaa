@@ -1,9 +1,9 @@
-from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.urls import path
 
 from apps.content.helpers import ContentHelper
 from apps.content.models import ContentCategory
+from pyaa.utils.cached_paginator import Paginator
 
 
 def contents_index_view(request, category_tag):
@@ -13,7 +13,13 @@ def contents_index_view(request, category_tag):
         return redirect("home")
 
     contents = category.contents.filter(active=True).order_by("-published_at")
-    paginator = Paginator(contents, 9)
+
+    paginator = Paginator(
+        contents,
+        9,
+        cache_key=f"contents-{category_tag}",
+    )
+
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
 
