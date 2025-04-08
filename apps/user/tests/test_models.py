@@ -36,7 +36,7 @@ class UserManagerTest(TestCase):
         with self.assertRaises(ValidationError) as context:
             User.objects.create_user(email="", password="password123")
         error = context.exception
-        self.assertIn("non_field_errors", error.message_dict)
+        self.assertEqual(error.message, "error.at-least-one-login-provider-is-required")
 
     def test_create_superuser_success(self):
         superuser = User.objects.create_superuser(

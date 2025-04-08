@@ -1,6 +1,5 @@
 import uuid
 
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -14,18 +13,14 @@ class UserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, username=None, password=None, **extra_fields):
-        site_id = settings.SITE_ID
-        if not site_id:
-            raise ValidationError({"site_id": _("error.site-id-required")})
+        site_id = extra_fields.get("site_id")
 
         email = extra_fields.get("email")
         cpf = extra_fields.get("cpf")
         mobile_phone = extra_fields.get("mobile_phone")
 
         if not any([email, cpf, mobile_phone]):
-            raise ValidationError(
-                {"non_field_errors": _("error.at-least-one-login-provider-is-required")}
-            )
+            raise ValidationError(_("error.at-least-one-login-provider-is-required"))
 
         UserHelper.validate_unique_fields(
             email=email,
@@ -34,7 +29,7 @@ class UserManager(BaseUserManager):
             site_id=site_id,
         )
 
-        user = self.model(site_id=site_id, **extra_fields)
+        user = self.model(**extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -61,9 +56,7 @@ class UserManager(BaseUserManager):
         mobile_phone = extra_fields.get("mobile_phone")
 
         if not any([email, cpf, mobile_phone]):
-            raise ValidationError(
-                {"non_field_errors": _("error.at-least-one-login-provider-is-required")}
-            )
+            raise ValidationError(_("error.at-least-one-login-provider-is-required"))
 
         return self._create_user(username, password, **extra_fields)
 
@@ -73,8 +66,6 @@ class User(AbstractUser):
         db_table = "user"
         verbose_name = _("model.user.name")
         verbose_name_plural = _("model.user.name.plural")
-        unique_together = (("email", "site"), ("cpf", "site"), ("mobile_phone", "site"))
-
         indexes = [
             models.Index(
                 fields=["first_name"],
@@ -97,8 +88,8 @@ class User(AbstractUser):
         on_delete=models.CASCADE,
         related_name="users",
         verbose_name=_("model.field.site"),
-        blank=False,
-        null=False,
+        blank=True,
+        null=True,
     )
 
     username = models.CharField(
@@ -138,34 +129,20 @@ class User(AbstractUser):
     def clean(self):
         super().clean()
 
-        if self.pk is None:
-            site_id = self.site_id or settings.SITE_ID
+        if not self.email and not self.cpf and not self.mobile_phone:
+            raise ValidationError(_("error.at-least-one-login-provider-is-required"))
 
-            if not site_id:
-                raise ValidationError({"site_id": _("error.site-id-required")})
-
-            if not self.email and not self.cpf and not self.mobile_phone:
-                raise ValidationError(
-                    {
-                        "non_field_errors": _(
-                            "error.at-least-one-login-provider-is-required"
-                        )
-                    }
-                )
-
-            UserHelper.validate_unique_fields(
-                email=self.email,
-                cpf=self.cpf,
-                mobile_phone=self.mobile_phone,
-                site_id=site_id,
-            )
+        # always validate uniqueness
+        UserHelper.validate_unique_fields(
+            email=self.email,
+            cpf=self.cpf,
+            mobile_phone=self.mobile_phone,
+            site_id=self.site_id,
+            pk=self.pk,
+        )
 
     def save(self, *args, **kwargs):
-        if not self.site_id:
-            self.site_id = settings.SITE_ID
-
         self.full_clean()
-
         super().save(*args, **kwargs)
 
     def get_customer(self):

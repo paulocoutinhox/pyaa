@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-07 23:04+0000\n"
+"POT-Creation-Date: 2025-04-08 01:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "categorias de conteúdos"
 #: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
 #: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:626
 #: apps/shop/models.py:749 apps/shop/models.py:859 apps/shop/models.py:1025
-#: apps/user/models.py:90
+#: apps/user/models.py:81
 msgid "model.field.id"
 msgstr "ID"
 
@@ -125,25 +125,25 @@ msgstr "INFORMAÇÕES ADICIONAIS"
 #: apps/customer/admin.py:94 apps/shop/admin.py:227 apps/shop/admin.py:297
 #: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
 #: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
-#: apps/user/admin.py:32
+#: apps/user/admin.py:86
 msgid "admin.fieldsets.important-dates"
 msgstr "DATAS IMPORTANTES"
 
-#: apps/customer/admin.py:134 apps/customer/forms.py:78
-#: apps/customer/forms.py:187 apps/customer/serializers.py:35
-#: apps/customer/serializers.py:94 apps/user/models.py:113
+#: apps/customer/admin.py:134 apps/customer/forms.py:81
+#: apps/customer/forms.py:191 apps/customer/serializers.py:35
+#: apps/customer/serializers.py:94 apps/user/models.py:104
 #: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customer/admin.py:141 apps/customer/forms.py:194
-#: apps/user/models.py:120
+#: apps/customer/admin.py:141 apps/customer/forms.py:198 apps/user/admin.py:16
+#: apps/user/admin.py:34 apps/user/models.py:111
 msgid "model.field.cpf"
 msgstr "CPF"
 
-#: apps/customer/admin.py:148 apps/customer/forms.py:201
+#: apps/customer/admin.py:148 apps/customer/forms.py:205
 #: apps/customer/serializers.py:47 apps/customer/serializers.py:106
-#: apps/user/models.py:127
+#: apps/user/admin.py:23 apps/user/admin.py:41 apps/user/models.py:118
 msgid "model.field.mobile-phone"
 msgstr "Celular"
 
@@ -175,47 +175,67 @@ msgstr "E-mail"
 msgid "filter.created-at"
 msgstr "Criado Em"
 
-#: apps/customer/forms.py:41
+#: apps/customer/forms.py:44
 msgid "model.field.login-username"
 msgstr "E-mail"
 
-#: apps/customer/forms.py:48
+#: apps/customer/forms.py:51
 msgid "model.field.login-password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:57 apps/customer/forms.py:175
+#: apps/customer/forms.py:60 apps/customer/forms.py:179
 #: apps/customer/serializers.py:25 apps/customer/serializers.py:84
 msgid "model.field.first-name"
 msgstr "Nome"
 
-#: apps/customer/forms.py:64 apps/customer/forms.py:181
+#: apps/customer/forms.py:67 apps/customer/forms.py:185
 #: apps/customer/serializers.py:30 apps/customer/serializers.py:89
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customer/forms.py:71 apps/customer/forms.py:211
+#: apps/customer/forms.py:74 apps/customer/forms.py:215
 #: apps/customer/models.py:84 apps/customer/serializers.py:115
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
 msgstr "Gênero"
 
-#: apps/customer/forms.py:85 apps/customer/serializers.py:40
+#: apps/customer/forms.py:88 apps/customer/serializers.py:40
 #: apps/customer/serializers.py:99
 msgid "model.field.password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:91
+#: apps/customer/forms.py:94
 msgid "model.field.accept-terms"
 msgstr "Aceitar Termos"
 
-#: apps/customer/forms.py:97 apps/web/forms/contact.py:44
+#: apps/customer/forms.py:100 apps/web/forms/contact.py:44
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/customer/forms.py:205 apps/customer/models.py:77
+#: apps/customer/forms.py:209 apps/customer/models.py:77
 msgid "model.field.nickname"
 msgstr "Apelido"
+
+#: apps/customer/forms.py:284 apps/user/helpers.py:17
+msgid "error.email-already-used-by-other"
+msgstr "Este e-mail já está sendo usado."
+
+#: apps/customer/forms.py:286 apps/user/helpers.py:30
+msgid "error.cpf-already-used-by-other"
+msgstr "Este CPF já está sendo usado."
+
+#: apps/customer/forms.py:289 apps/user/helpers.py:46
+msgid "error.mobile-phone-already-used-by-other"
+msgstr "Este celular já está sendo usado."
+
+#: apps/customer/forms.py:293
+msgid "error.database-constraint-error"
+msgstr ""
+
+#: apps/customer/forms.py:297
+msgid "error.protected-object-cannot-be-deleted"
+msgstr ""
 
 #: apps/customer/helpers.py:190
 msgid "error.nickname-already-used-by-other"
@@ -258,7 +278,7 @@ msgstr "Usuário"
 #: apps/customer/models.py:62 apps/shop/models.py:47 apps/shop/models.py:264
 #: apps/shop/models.py:476 apps/shop/models.py:635 apps/shop/models.py:758
 #: apps/shop/models.py:868 apps/shop/models.py:1034 apps/site/models.py:19
-#: apps/user/models.py:99
+#: apps/user/models.py:90
 msgid "model.field.site"
 msgstr "Site"
 
@@ -292,7 +312,7 @@ msgstr "Obs"
 msgid "model.str.customer #{id}"
 msgstr "Cliente #{id}"
 
-#: apps/customer/models.py:178 apps/user/models.py:19 apps/user/models.py:145
+#: apps/customer/models.py:178
 msgid "error.site-id-required"
 msgstr "O código do site é obrigatório."
 
@@ -378,7 +398,7 @@ msgstr "Exemplos: en-us ou pt-br."
 
 #: apps/report/admin/customer_gender.py:23
 msgid "title.report.customer-gender-summary"
-msgstr "Relatório de Gênero do Cliente"
+msgstr "Relatório de Gêneros dos Clientes"
 
 #: apps/report/apps.py:8
 msgid "apps.report.description"
@@ -386,7 +406,7 @@ msgstr "Relatório"
 
 #: apps/report/models.py:9 apps/report/models.py:10
 msgid "model.customer-gender-summary.name"
-msgstr "Gênero do Cliente"
+msgstr "Gêneros dos Clientes"
 
 #: apps/shop/admin.py:51
 msgid "button.copy"
@@ -639,11 +659,11 @@ msgstr "Compra de Créditos"
 msgid "checkout.description.product-purchase"
 msgstr "Compra de Produto"
 
-#: apps/shop/gateways/stripe.py:205
+#: apps/shop/gateways/stripe.py:191
 msgid "message.subscription-canceled"
 msgstr "Sua assinatura foi cancelada com sucesso."
 
-#: apps/shop/gateways/stripe.py:208
+#: apps/shop/gateways/stripe.py:194
 #, python-format
 msgid "message.error-cancel-subscription: %(error)s"
 msgstr "Erro ao cancelar a assinatura: %(error)s"
@@ -842,61 +862,49 @@ msgstr "Perfil dos Sites"
 msgid "model.field.template-folder"
 msgstr "Pasta de Template"
 
-#: apps/user/admin.py:14
+#: apps/user/admin.py:68
 msgid "admin.fieldsets.personal-info"
 msgstr "DADOS PESSOAIS"
 
-#: apps/user/admin.py:20
+#: apps/user/admin.py:74
 msgid "admin.fieldsets.permissions"
 msgstr "PERMISSÕES"
 
-#: apps/user/helpers.py:17
-msgid "error.email-already-used-by-other"
-msgstr "Este e-mail já está sendo usado."
-
-#: apps/user/helpers.py:30
-msgid "error.cpf-already-used-by-other"
-msgstr "Este CPF já está sendo usado."
-
-#: apps/user/helpers.py:46
-msgid "error.mobile-phone-already-used-by-other"
-msgstr "Este celular já está sendo usado."
-
-#: apps/user/management/commands/createadmin.py:53 apps/user/models.py:27
-#: apps/user/models.py:65 apps/user/models.py:151
+#: apps/user/management/commands/createadmin.py:61 apps/user/models.py:23
+#: apps/user/models.py:59 apps/user/models.py:133
 msgid "error.at-least-one-login-provider-is-required"
 msgstr "Pelo menos uma forma de fazer login é obrigatória."
 
-#: apps/user/management/commands/createadmin.py:56
+#: apps/user/management/commands/createadmin.py:64
 msgid "error.password-required"
 msgstr "A senha é obrigatória."
 
-#: apps/user/management/commands/createadmin.py:70
+#: apps/user/management/commands/createadmin.py:83
 msgid "message.superuser-created-successfully"
 msgstr "O super user foi criado com sucesso."
 
-#: apps/user/management/commands/createadmin.py:74
+#: apps/user/management/commands/createadmin.py:87
 #, python-brace-format
 msgid "error.superuser-creation-failed: {error}"
 msgstr "A criação do super user falhou: {error}"
 
-#: apps/user/models.py:52
+#: apps/user/models.py:47
 msgid "Superuser must have is_staff=True."
 msgstr "O superusuário deve ter is_staff=True."
 
-#: apps/user/models.py:56
+#: apps/user/models.py:51
 msgid "Superuser must have is_superuser=True."
 msgstr "O superusuário deve ter is_superuser=True."
 
-#: apps/user/models.py:74
+#: apps/user/models.py:67
 msgid "model.user.name"
 msgstr "Usuário"
 
-#: apps/user/models.py:75
+#: apps/user/models.py:68
 msgid "model.user.name.plural"
 msgstr "Usuários"
 
-#: apps/user/models.py:105
+#: apps/user/models.py:96
 msgid "model.field.admin-username"
 msgstr "E-mail"
 
@@ -957,7 +965,7 @@ msgstr "Plano não encontrado."
 msgid "message.shop-invalid-action"
 msgstr "Ação inválida."
 
-#: apps/web/views/shop/shop_web.py:177 apps/web/views/shop/shop_web.py:350
+#: apps/web/views/shop/shop_web.py:177 apps/web/views/shop/shop_web.py:352
 msgid "message.shop-product-not-found"
 msgstr "Produto não encontrado."
 

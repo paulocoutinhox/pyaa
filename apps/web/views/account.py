@@ -112,9 +112,9 @@ def account_update_profile_view(request):
     if request.method == "POST":
         form = CustomerUpdateProfileForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
-            form.save()
-            messages.success(request, _("message.account-updated"))
-            return redirect("account_profile")
+            if form.save():
+                messages.success(request, _("message.account-updated"))
+                return redirect("account_profile")
     else:
         form = CustomerUpdateProfileForm(user=request.user)
 

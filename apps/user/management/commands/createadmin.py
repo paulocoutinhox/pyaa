@@ -38,6 +38,13 @@ class Command(BaseCommand):
             help="Password for the superuser",
         )
 
+        parser.add_argument(
+            "--site_id",
+            type=int,
+            help="Site for the superuser",
+            required=False,
+        )
+
     def handle(self, *args, **options):
         username = options.get("username")
         email = options.get("email")
@@ -45,6 +52,7 @@ class Command(BaseCommand):
         mobile_phone = options.get("mobile_phone")
         password = options.get("password")
         database = options.get("database")
+        site_id = options.get("site_id")
 
         if not username:
             username = str(uuid.uuid4())
@@ -58,13 +66,18 @@ class Command(BaseCommand):
         UserModel = get_user_model()
 
         try:
-            UserModel.objects.db_manager(database).create_superuser(
-                username=username,
-                password=password,
-                email=email,
-                cpf=cpf,
-                mobile_phone=mobile_phone,
-            )
+            user_data = {
+                "username": username,
+                "password": password,
+                "email": email,
+                "cpf": cpf,
+                "mobile_phone": mobile_phone,
+            }
+
+            if site_id is not None:
+                user_data["site_id"] = site_id
+
+            UserModel.objects.db_manager(database).create_superuser(**user_data)
 
             self.stdout.write(
                 self.style.SUCCESS(_("message.superuser-created-successfully"))

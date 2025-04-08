@@ -15,7 +15,7 @@ class MultiFieldModelBackend(BaseBackend):
 
         # try to find the user using email, cpf or mobile_phone
         user = (
-            UserModel.objects.filter(site_id=site_id)
+            UserModel.objects.filter(Q(site_id=site_id) | Q(site_id__isnull=True))
             .filter(Q(email=username) | Q(cpf=username) | Q(mobile_phone=username))
             .first()
         )

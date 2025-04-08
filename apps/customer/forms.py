@@ -1,7 +1,10 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
+from django.db import IntegrityError, transaction
+from django.db.models import ProtectedError
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
 
@@ -132,7 +135,7 @@ class CustomerSignupForm(forms.ModelForm):
             email=email,
             cpf=cpf,
             mobile_phone=mobile_phone,
-            site_id=settings.SITE_ID,
+            site_id=Site.objects.get_current().id,
         )
 
         try:
@@ -154,6 +157,7 @@ class CustomerSignupForm(forms.ModelForm):
             mobile_phone=cleaned_data.get("mobile_phone"),
             first_name=cleaned_data.get("first_name"),
             last_name=cleaned_data.get("last_name"),
+            site_id=Site.objects.get_current().id,
         )
 
         # customer creation
@@ -255,19 +259,46 @@ class CustomerUpdateProfileForm(forms.Form):
         return cleaned_data
 
     def save(self):
-        # update User fields
-        self.user.first_name = self.cleaned_data["first_name"]
-        self.user.last_name = self.cleaned_data["last_name"]
-        self.user.email = self.cleaned_data["email"]
-        self.user.cpf = self.cleaned_data["cpf"]
-        self.user.mobile_phone = self.cleaned_data["mobile_phone"]
-        self.user.save()
+        try:
+            with transaction.atomic():
+                # update User fields
+                self.user.first_name = self.cleaned_data["first_name"]
+                self.user.last_name = self.cleaned_data["last_name"]
+                self.user.email = self.cleaned_data["email"]
+                self.user.cpf = self.cleaned_data["cpf"]
+                self.user.mobile_phone = self.cleaned_data["mobile_phone"]
+                self.user.save()
 
-        # update Customer fields
-        customer = self.user.customer
-        customer.nickname = self.cleaned_data["nickname"]
-        customer.gender = self.cleaned_data["gender"]
-        customer.save()
+                # update Customer fields
+                customer = self.user.customer
+                customer.nickname = self.cleaned_data["nickname"]
+                customer.gender = self.cleaned_data["gender"]
+                customer.save()
+
+            return True
+        except IntegrityError as e:
+            error_message = str(e)
+
+            # Mapear erros de constraint para campos específicos
+            if "user_unique_email" in error_message:
+                self.add_error("email", _("error.email-already-used-by-other"))
+            elif "user_unique_cpf" in error_message:
+                self.add_error("cpf", _("error.cpf-already-used-by-other"))
+            elif "user_unique_mobile_phone" in error_message:
+                self.add_error(
+                    "mobile_phone", _("error.mobile-phone-already-used-by-other")
+                )
+            else:
+                # Erro genérico
+                self.add_error(None, _("error.database-constraint-error"))
+
+            return False
+        except ProtectedError:
+            self.add_error(None, _("error.protected-object-cannot-be-deleted"))
+            return False
+        except Exception as e:
+            self.add_error(None, str(e))
+            return False
 
 
 class CustomerUpdateAvatarForm(forms.Form):
