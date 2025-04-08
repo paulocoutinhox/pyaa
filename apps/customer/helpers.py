@@ -229,7 +229,7 @@ class CustomerHelper:
         MailHelper.send_mail_async(
             subject=subject,
             to=recipient_list,
-            template="emails/site/signup.html",
+            template="emails/account/signup.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
         )
