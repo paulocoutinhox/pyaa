@@ -258,8 +258,8 @@ SPECTACULAR_SETTINGS = {
 # Simple JWT
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=365 * 1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=365 * 1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=365 * 999),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=365 * 999),
 }
 
 # Storage
