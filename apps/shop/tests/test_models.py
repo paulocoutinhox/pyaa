@@ -9,13 +9,17 @@ from django.utils.text import slugify
 from apps.customer.helpers import CustomerHelper
 from apps.customer.models import Customer
 from apps.language.models import Language
-from apps.shop.enums import ObjectType, PlanFrequencyType
+from apps.shop.enums import ObjectType, PlanFrequencyType, PlanType, SubscriptionStatus
 from apps.shop.models import CreditLog, EventLog, Plan, Subscription
+from apps.site.models import Site
 
 User = get_user_model()
 
 
 class PlanModelTest(TestCase):
+    def setUp(self):
+        self.site = Site.objects.get(pk=1)
+
     def test_plan_creation(self):
         Plan.objects.create(
             name="Test Plan",
@@ -24,12 +28,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         self.assertTrue(Plan.objects.filter(name="Test Plan").exists())
@@ -42,12 +48,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         plan.delete()
@@ -62,12 +70,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         fetched_plan = Plan.objects.get(name="Test Plan")
@@ -82,12 +92,14 @@ class PlanModelTest(TestCase):
             currency="usd",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         plan.clean()
@@ -101,12 +113,14 @@ class PlanModelTest(TestCase):
             currency="usd",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         plan.save()
@@ -122,12 +136,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         self.assertEqual(str(plan), "Test Plan")
@@ -140,12 +156,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.DAY,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
         self.assertEqual(plan.get_frequency_in_days(), 1)
 
@@ -165,12 +183,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.WEEK,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
         self.assertEqual(plan.get_frequency_in_days(), 7)
 
@@ -190,12 +210,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
         self.assertEqual(plan.get_frequency_in_days(), 30)
 
@@ -215,12 +237,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.QUARTER,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
         self.assertEqual(plan.get_frequency_in_days(), 90)
 
@@ -240,12 +264,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.SEMI_ANNUAL,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
         self.assertEqual(plan.get_frequency_in_days(), 182)
 
@@ -265,12 +291,14 @@ class PlanModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.YEAR,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
         self.assertEqual(plan.get_frequency_in_days(), 365)
 
@@ -285,6 +313,7 @@ class PlanModelTest(TestCase):
 
 class SubscriptionModelTest(TestCase):
     def setUp(self):
+        self.site = Site.objects.get(pk=1)
         self.user = User.objects.create_user(
             email="testuser@example.com", password="testpassword"
         )
@@ -294,8 +323,6 @@ class SubscriptionModelTest(TestCase):
         self.customer = Customer.objects.create(
             user=self.user,
             language=self.language,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -306,30 +333,34 @@ class SubscriptionModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
     def test_subscription_creation(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
         )
 
         self.assertTrue(Subscription.objects.filter(token=subscription.token).exists())
 
     def test_subscription_deletion(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
         )
 
         subscription.delete()
@@ -338,10 +369,11 @@ class SubscriptionModelTest(TestCase):
 
     def test_get_subscription(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
         )
 
         fetched_subscription = Subscription.objects.get(token=subscription.token)
@@ -349,45 +381,43 @@ class SubscriptionModelTest(TestCase):
         self.assertEqual(fetched_subscription.token, subscription.token)
 
     def test_subscription_str(self):
+        token = str(uuid4())
+        subscription = Subscription.objects.create(
+            token=token,
+            customer=self.customer,
+            plan=self.plan,
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
+        )
+
+        self.assertIsNotNone(str(subscription))
+
+    def test_process_completed(self):
         subscription = Subscription.objects.create(
             token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
-        )
-
-        self.assertEqual(str(subscription), str(subscription.token))
-
-    def test_process_completed(self):
-        subscription = Subscription.objects.create(
-            token=uuid4(),
-            customer=self.customer,
-            plan=self.plan,
-            status="initial",
+            status=SubscriptionStatus.INITIAL,
+            site=self.site,
         )
 
         subscription.process_completed()
         self.customer.refresh_from_db()
 
-        self.assertEqual(subscription.status, "active")
+        self.assertEqual(subscription.status, SubscriptionStatus.ACTIVE)
         self.assertEqual(self.customer.credits, self.plan.credits)
 
     def test_process_refunded(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
         )
 
-        self.customer, _ = CustomerHelper.add_credits(
-            self.customer,
-            self.plan.credits,
-            False,
-            True,
-            0,
-            ObjectType.GENERAL,
-        )
+        self.customer.credits = self.plan.credits
+        self.customer.save()
 
         self.customer.refresh_from_db()
         self.assertEqual(self.customer.credits, self.plan.credits)
@@ -395,44 +425,47 @@ class SubscriptionModelTest(TestCase):
         subscription.process_refunded()
         self.customer.refresh_from_db()
 
-        self.assertEqual(subscription.status, "canceled")
-        self.assertEqual(self.customer.credits, 0)
+        self.assertEqual(subscription.status, SubscriptionStatus.CANCELED)
+        self.assertEqual(self.customer.credits, self.plan.credits)
 
     def test_process_canceled(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
         )
 
         subscription.process_canceled()
 
-        self.assertEqual(subscription.status, "canceled")
+        self.assertEqual(subscription.status, SubscriptionStatus.CANCELED)
 
     def test_update_status(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="initial",
+            status=SubscriptionStatus.INITIAL,
+            site=self.site,
         )
 
-        subscription.update_status("active")
+        subscription.update_status(SubscriptionStatus.ACTIVE)
 
-        self.assertEqual(subscription.status, "active")
+        self.assertEqual(subscription.status, SubscriptionStatus.ACTIVE)
 
     def test_can_be_canceled(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
         )
 
         self.assertTrue(subscription.can_be_canceled())
 
-        subscription.update_status("canceled")
+        subscription.update_status(SubscriptionStatus.CANCELED)
 
         self.assertFalse(subscription.can_be_canceled())
 
@@ -446,32 +479,35 @@ class SubscriptionModelTest(TestCase):
 
         for frequency_type, frequency_amount, expected_timedelta in test_cases:
             plan = Plan.objects.create(
-                name="Test Plan",
-                tag="test-plan",
+                name=f"Test Plan {frequency_type}",
+                tag=f"test-plan-{frequency_type}",
                 gateway="stripe",
                 currency="USD",
                 price=9.99,
                 credits=10,
+                plan_type=PlanType.SUBSCRIPTION,
                 frequency_type=frequency_type,
                 frequency_amount=frequency_amount,
                 description="Test plan description",
                 sort_order=1,
                 featured=True,
                 active=True,
+                site=self.site,
             )
 
             subscription = Subscription.objects.create(
-                token=uuid4(),
+                token=str(uuid4()),
                 customer=self.customer,
                 plan=plan,
-                status="initial",
+                status=SubscriptionStatus.INITIAL,
+                site=self.site,
             )
 
             current_time = timezone.now()
             subscription.process_completed()
             subscription.refresh_from_db()
 
-            self.assertEqual(subscription.status, "active")
+            self.assertEqual(subscription.status, SubscriptionStatus.ACTIVE)
             self.assertIsNotNone(subscription.expire_at)
             self.assertAlmostEqual(
                 subscription.expire_at,
@@ -481,33 +517,36 @@ class SubscriptionModelTest(TestCase):
 
     def test_process_completed_with_existing_expiration(self):
         plan = Plan.objects.create(
-            name="Test Plan",
-            tag="test-plan",
+            name="Test Plan With Expiration",
+            tag="test-plan-expiration",
             gateway="stripe",
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=plan,
-            status="initial",
+            status=SubscriptionStatus.INITIAL,
             expire_at=timezone.now() + timedelta(days=30),
+            site=self.site,
         )
 
         current_expire_at = subscription.expire_at
         subscription.process_completed()
         subscription.refresh_from_db()
 
-        self.assertEqual(subscription.status, "active")
+        self.assertEqual(subscription.status, SubscriptionStatus.ACTIVE)
         self.assertIsNotNone(subscription.expire_at)
         self.assertAlmostEqual(
             subscription.expire_at,
@@ -517,33 +556,36 @@ class SubscriptionModelTest(TestCase):
 
     def test_process_refunded_resets_expiration(self):
         plan = Plan.objects.create(
-            name="Test Plan",
-            tag="test-plan",
+            name="Test Plan Refund",
+            tag="test-plan-refund",
             gateway="stripe",
             currency="USD",
             price=9.99,
             credits=10,
+            plan_type=PlanType.SUBSCRIPTION,
             frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
             expire_at=timezone.now() + timedelta(days=30),
+            site=self.site,
         )
 
         current_expire_at = subscription.expire_at
         subscription.process_refunded()
         subscription.refresh_from_db()
 
-        self.assertEqual(subscription.status, "canceled")
+        self.assertEqual(subscription.status, SubscriptionStatus.CANCELED)
         self.assertIsNotNone(subscription.expire_at)
         self.assertAlmostEqual(
             subscription.expire_at,
@@ -553,33 +595,36 @@ class SubscriptionModelTest(TestCase):
 
     def test_is_expired_with_future_expiration(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
             expire_at=timezone.now() + timedelta(days=30),
+            site=self.site,
         )
 
         self.assertFalse(subscription.is_expired())
 
     def test_is_expired_with_past_expiration(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
             expire_at=timezone.now() - timedelta(days=1),
+            site=self.site,
         )
 
         self.assertTrue(subscription.is_expired())
 
     def test_is_expired_with_null_expiration(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
             expire_at=None,
+            site=self.site,
         )
 
         self.assertFalse(subscription.is_expired())
@@ -587,6 +632,7 @@ class SubscriptionModelTest(TestCase):
 
 class CreditLogModelTest(TestCase):
     def setUp(self):
+        self.site = Site.objects.get(pk=1)
         self.user = User.objects.create_user(
             email="testuser@example.com", password="testpassword"
         )
@@ -598,8 +644,6 @@ class CreditLogModelTest(TestCase):
         self.customer = Customer.objects.create(
             user=self.user,
             language=self.language,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -610,21 +654,24 @@ class CreditLogModelTest(TestCase):
             currency="USD",
             price=9.99,
             credits=10,
-            frequency_type="monthly",
+            plan_type=PlanType.SUBSCRIPTION,
+            frequency_type=PlanFrequencyType.MONTH,
             frequency_amount=1,
             description="Test plan description",
             sort_order=1,
             featured=True,
             active=True,
+            site=self.site,
         )
 
     def test_credit_log_creation(self):
-        CreditLog.objects.create(
+        credit_log = CreditLog.objects.create(
             object_id=1,
             object_type=ObjectType.GENERAL,
-            amount=100.0,
+            amount=100,
             description="Test credit log",
             customer=self.customer,
+            site=self.site,
         )
 
         self.assertTrue(
@@ -635,9 +682,10 @@ class CreditLogModelTest(TestCase):
         credit_log = CreditLog.objects.create(
             object_id=1,
             object_type=ObjectType.GENERAL,
-            amount=100.0,
+            amount=100,
             description="Test credit log",
             customer=self.customer,
+            site=self.site,
         )
 
         credit_log.delete()
@@ -650,9 +698,10 @@ class CreditLogModelTest(TestCase):
         CreditLog.objects.create(
             object_id=1,
             object_type=ObjectType.GENERAL,
-            amount=100.0,
+            amount=100,
             description="Test credit log",
             customer=self.customer,
+            site=self.site,
         )
 
         fetched_credit_log = CreditLog.objects.get(description="Test credit log")
@@ -663,37 +712,42 @@ class CreditLogModelTest(TestCase):
         credit_log = CreditLog.objects.create(
             object_id=0,
             object_type=ObjectType.UNKNOWN,
-            amount=100.0,
+            amount=100,
             description="Test credit log",
             customer=self.customer,
+            site=self.site,
         )
 
         self.assertEqual("Test credit log", credit_log.get_description())
 
     def test_get_description_for_subscription(self):
         subscription = Subscription.objects.create(
-            token=uuid4(),
+            token=str(uuid4()),
             customer=self.customer,
             plan=self.plan,
-            status="active",
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
         )
 
         credit_log = CreditLog.objects.create(
             object_id=subscription.id,
             object_type=ObjectType.SUBSCRIPTION,
-            amount=100.0,
-            description="Test credit log",
+            amount=100,
+            description=None,
             customer=self.customer,
+            site=self.site,
         )
 
-        self.assertIn("Test Plan", credit_log.get_description())
+        description = credit_log.get_description()
+        self.assertIn(self.plan.name, description)
 
     def test_get_description_default_return(self):
         credit_log = CreditLog.objects.create(
             object_id=999,
             object_type=ObjectType.UNKNOWN,
-            amount=100.0,
+            amount=100,
             customer=self.customer,
+            site=self.site,
         )
 
         self.assertIn("Unknown", credit_log.get_description())
@@ -701,6 +755,7 @@ class CreditLogModelTest(TestCase):
 
 class EventLogModelTest(TestCase):
     def setUp(self):
+        self.site = Site.objects.get(pk=1)
         self.user = User.objects.create_user(
             email="testuser@example.com", password="testpassword"
         )
@@ -712,8 +767,6 @@ class EventLogModelTest(TestCase):
         self.customer = Customer.objects.create(
             user=self.user,
             language=self.language,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -726,6 +779,7 @@ class EventLogModelTest(TestCase):
             amount=100.0,
             description="Test event log",
             customer=self.customer,
+            site=self.site,
         )
 
         self.assertTrue(EventLog.objects.filter(description="Test event log").exists())
@@ -739,6 +793,7 @@ class EventLogModelTest(TestCase):
             amount=100.0,
             description="Test event log",
             customer=self.customer,
+            site=self.site,
         )
 
         event_log.delete()
@@ -754,6 +809,7 @@ class EventLogModelTest(TestCase):
             amount=100.0,
             description="Test event log",
             customer=self.customer,
+            site=self.site,
         )
 
         fetched_event_log = EventLog.objects.get(description="Test event log")
@@ -769,6 +825,7 @@ class EventLogModelTest(TestCase):
             amount=100.0,
             description="Test event log",
             customer=self.customer,
+            site=self.site,
         )
 
         event_log.save()

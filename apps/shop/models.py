@@ -568,16 +568,6 @@ class Subscription(models.Model):
 
         self.save(update_fields=["status", "expire_at"])
 
-        # remove credits from the customer using CustomerHelper
-        from apps.customer.helpers import CustomerHelper
-
-        CustomerHelper.add_credits(
-            customer=self.customer,
-            plan=self.plan,
-            object_id=self.id,
-            object_type=ObjectType.SUBSCRIPTION,
-        )
-
     @transaction.atomic
     def process_canceled(self):
         # update the status

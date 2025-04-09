@@ -36,11 +36,22 @@ class ShopEnumsTest(TestCase):
             "SUSPENDED",
             "CANCELED",
             "FAILED",
+            "CHARGED_BACK",
+            "REJECTED",
+            "REFUNDED",
         ]
         actual_keys = [status.name for status in SubscriptionStatus]
         self.assertCountEqual(actual_keys, expected_keys)
 
     def test_object_type_choices(self):
-        expected_keys = ["GENERAL", "UNKNOWN", "SUBSCRIPTION", "BONUS"]
+        expected_keys = [
+            "GENERAL",
+            "UNKNOWN",
+            "SUBSCRIPTION",
+            "BONUS",
+            "CREDIT_PURCHASE",
+            "PRODUCT_PURCHASE",
+            "VOUCHER",
+        ]
         actual_keys = [obj_type.name for obj_type in ObjectType]
         self.assertCountEqual(actual_keys, expected_keys)
