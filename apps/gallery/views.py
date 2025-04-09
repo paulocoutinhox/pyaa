@@ -1,7 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from apps.gallery.helpers import GalleryHelper
 from apps.gallery.models import Gallery
@@ -14,14 +13,15 @@ class GalleryList(generics.ListCreateAPIView):
     permission_classes = [AllowAny]
 
 
-class GalleryByTag(APIView):
+class GalleryByTag(generics.GenericAPIView):
     permission_classes = [AllowAny]
+    serializer_class = GallerySerializer
 
     def get(self, request, tag):
         gallery = GalleryHelper.get_gallery(gallery_tag=tag)
 
         if gallery:
-            serializer = GallerySerializer(gallery, context={"request": request})
+            serializer = self.get_serializer(gallery, context={"request": request})
             return Response(serializer.data)
 
         return Response({"detail": "Not found."}, status=404)

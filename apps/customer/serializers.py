@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from apps.customer.models import Customer
+from apps.language.serializers import LanguageSerializer
+from apps.user.serializers import UserSerializer
 
 
 class CustomerUserCreateSerializer(serializers.ModelSerializer):
@@ -11,11 +13,12 @@ class CustomerUserCreateSerializer(serializers.ModelSerializer):
         fields = [
             "first_name",
             "last_name",
+            "nickname",
             "email",
+            "cpf",
+            "mobile_phone",
             "password",
             "language",
-            "mobile_phone",
-            "home_phone",
             "gender",
             "obs",
             "timezone",
@@ -34,6 +37,19 @@ class CustomerUserCreateSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         label=_("model.field.email"),
         write_only=True,
+        required=False,
+    )
+
+    cpf = serializers.CharField(
+        label=_("model.field.cpf"),
+        write_only=True,
+        required=False,
+    )
+
+    mobile_phone = serializers.CharField(
+        label=_("model.field.mobile-phone"),
+        write_only=True,
+        required=False,
     )
 
     password = serializers.CharField(
@@ -42,19 +58,16 @@ class CustomerUserCreateSerializer(serializers.ModelSerializer):
         min_length=8,
     )
 
-    mobile_phone = serializers.CharField(
-        required=False,
-        label=_("model.field.mobile-phone"),
-    )
-
-    home_phone = serializers.CharField(
-        required=False,
-        label=_("model.field.home-phone"),
-    )
-
     obs = serializers.CharField(
         label=_("model.field.obs"),
         required=False,
+    )
+
+    timezone = serializers.CharField(
+        required=False,
+        label=_("model.field.timezone"),
+        max_length=255,
+        default=settings.DEFAULT_TIME_ZONE,
     )
 
     def validate(self, data):
@@ -69,13 +82,13 @@ class CustomerUserUpdateSerializer(serializers.ModelSerializer):
         fields = [
             "first_name",
             "last_name",
+            "nickname",
             "email",
+            "cpf",
+            "mobile_phone",
             "password",
             "language",
-            "mobile_phone",
-            "home_phone",
             "gender",
-            "avatar",
             "obs",
             "timezone",
         ]
@@ -93,33 +106,25 @@ class CustomerUserUpdateSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
         label=_("model.field.email"),
         write_only=True,
+        required=False,
+    )
+
+    cpf = serializers.CharField(
+        label=_("model.field.cpf"),
+        write_only=True,
+        required=False,
+    )
+
+    mobile_phone = serializers.CharField(
+        label=_("model.field.mobile-phone"),
+        write_only=True,
+        required=False,
     )
 
     password = serializers.CharField(
         label=_("model.field.password"),
         write_only=True,
         min_length=8,
-    )
-
-    mobile_phone = serializers.CharField(
-        required=False,
-        label=_("model.field.mobile-phone"),
-    )
-
-    home_phone = serializers.CharField(
-        required=False,
-        label=_("model.field.home-phone"),
-    )
-
-    gender = serializers.CharField(
-        label=_("model.field.gender"),
-        max_length=255,
-        required=False,
-    )
-
-    avatar = serializers.CharField(
-        label=_("model.field.avatar"),
-        required=False,
     )
 
     obs = serializers.CharField(
@@ -141,22 +146,23 @@ class CustomerUserUpdateSerializer(serializers.ModelSerializer):
 
 
 class CustomerMeSerializer(serializers.ModelSerializer):
-    first_name = serializers.CharField(source="user.first_name", read_only=True)
-    last_name = serializers.CharField(source="user.last_name", read_only=True)
-    email = serializers.EmailField(source="user.email", read_only=True)
+    user = UserSerializer(read_only=True)
+    language = LanguageSerializer(read_only=True)
     timezone = serializers.CharField(read_only=True)
 
     class Meta:
         model = Customer
+
         fields = [
-            "first_name",
-            "last_name",
-            "email",
+            "id",
+            "user",
             "language",
-            "mobile_phone",
-            "home_phone",
+            "nickname",
             "gender",
             "avatar",
+            "credits",
             "obs",
             "timezone",
+            "created_at",
+            "updated_at",
         ]

@@ -14,6 +14,8 @@ from apps.customer.serializers import (
     CustomerUserCreateSerializer,
     CustomerUserUpdateSerializer,
 )
+from apps.language.serializers import LanguageSerializer
+from apps.user.serializers import UserSerializer
 
 User = get_user_model()
 
@@ -38,9 +40,11 @@ class CustomerView(GenericAPIView):
         with transaction.atomic():
             # extract user data from validated_data
             user_data = {
-                "email": validated_data.pop("email"),
                 "first_name": validated_data.pop("first_name", ""),
                 "last_name": validated_data.pop("last_name", ""),
+                "email": validated_data.pop("email", ""),
+                "cpf": validated_data.pop("cpf", ""),
+                "mobile_phone": validated_data.pop("mobile_phone", ""),
             }
 
             # create the user manually
@@ -62,18 +66,25 @@ class CustomerView(GenericAPIView):
             # generate JWT token for the created user
             refresh = RefreshToken.for_user(user)
 
+            # serialize the user object
+            user_serializer = UserSerializer(user)
+
+            # serialize the language object
+            language_serializer = LanguageSerializer(customer.language)
+
             return Response(
                 {
-                    "first_name": customer.user.first_name,
-                    "last_name": customer.user.last_name,
-                    "email": customer.user.email,
-                    "language": customer.language.id,
-                    "mobile_phone": customer.mobile_phone,
-                    "home_phone": customer.home_phone,
+                    "id": customer.id,
+                    "user": user_serializer.data,
+                    "language": language_serializer.data,
+                    "nickname": customer.nickname,
                     "gender": customer.gender,
                     "avatar": customer.avatar.url if customer.avatar else None,
+                    "credits": customer.credits,
                     "obs": customer.obs,
                     "timezone": str(customer.timezone),
+                    "created_at": customer.created_at,
+                    "updated_at": customer.updated_at,
                     "token": {
                         "refresh": str(refresh),
                         "access": str(refresh.access_token),
@@ -113,10 +124,6 @@ class CustomerView(GenericAPIView):
         # manually update user and customer data inside a transaction
         with transaction.atomic():
             user_data = {
-                "email": validated_data.pop(
-                    "email",
-                    customer.user.email,
-                ),
                 "first_name": validated_data.pop(
                     "first_name", customer.user.first_name
                 ),
@@ -124,13 +131,27 @@ class CustomerView(GenericAPIView):
                     "last_name",
                     customer.user.last_name,
                 ),
+                "email": validated_data.pop(
+                    "email",
+                    customer.user.email,
+                ),
+                "cpf": validated_data.pop(
+                    "cpf",
+                    customer.user.cpf,
+                ),
+                "mobile_phone": validated_data.pop(
+                    "mobile_phone",
+                    customer.user.mobile_phone,
+                ),
             }
 
             # update user manually
             user = customer.user
-            user.email = user_data["email"]
             user.first_name = user_data["first_name"]
             user.last_name = user_data["last_name"]
+            user.email = user_data["email"]
+            user.cpf = user_data["cpf"]
+            user.mobile_phone = user_data["mobile_phone"]
 
             # check if password is provided and set it using set_password
             if "password" in validated_data and validated_data["password"]:
@@ -151,18 +172,25 @@ class CustomerView(GenericAPIView):
             # save updated customer data
             customer.save()
 
+        # serialize the user object
+        user_serializer = UserSerializer(user)
+
+        # serialize the language object
+        language_serializer = LanguageSerializer(customer.language)
+
         return Response(
             {
-                "first_name": customer.user.first_name,
-                "last_name": customer.user.last_name,
-                "email": customer.user.email,
-                "language": customer.language.id,
-                "mobile_phone": customer.mobile_phone,
-                "home_phone": customer.home_phone,
+                "id": customer.id,
+                "user": user_serializer.data,
+                "language": language_serializer.data,
+                "nickname": customer.nickname,
                 "gender": customer.gender,
                 "avatar": customer.avatar.url if customer.avatar else None,
+                "credits": customer.credits,
                 "obs": customer.obs,
                 "timezone": str(customer.timezone),
+                "created_at": customer.created_at,
+                "updated_at": customer.updated_at,
             },
             status=status.HTTP_200_OK,
         )

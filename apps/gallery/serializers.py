@@ -1,6 +1,9 @@
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
+from typing import Optional
 
 from apps.gallery.models import Gallery, GalleryPhoto
+from apps.language.serializers import LanguageSerializer
 
 
 class GalleryPhotoSerializer(serializers.ModelSerializer):
@@ -12,6 +15,8 @@ class GalleryPhotoSerializer(serializers.ModelSerializer):
 class GallerySerializer(serializers.ModelSerializer):
     photos = GalleryPhotoSerializer(many=True, read_only=True, source="gallery_photos")
     main_photo = serializers.SerializerMethodField()
+    language = LanguageSerializer(read_only=True)
+    photos_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Gallery
@@ -27,13 +32,16 @@ class GallerySerializer(serializers.ModelSerializer):
             "active",
         ]
 
-    def get_main_photo(self, obj):
+    @extend_schema_field(serializers.URLField())
+    def get_main_photo(self, obj) -> str:
         request = self.context.get("request")
         return obj.get_main_photo_url(request)
 
 
 class GalleryListSerializer(serializers.ModelSerializer):
     main_photo = serializers.SerializerMethodField()
+    language = LanguageSerializer(read_only=True)
+    photos_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Gallery
@@ -48,6 +56,7 @@ class GalleryListSerializer(serializers.ModelSerializer):
             "active",
         ]
 
-    def get_main_photo(self, obj):
+    @extend_schema_field(serializers.URLField())
+    def get_main_photo(self, obj) -> str:
         request = self.context.get("request")
         return obj.get_main_photo_url(request)
