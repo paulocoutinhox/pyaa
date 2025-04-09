@@ -6,7 +6,6 @@ from django.test import TestCase
 from django.utils import timezone
 from django.utils.text import slugify
 
-from apps.customer.helpers import CustomerHelper
 from apps.customer.models import Customer
 from apps.language.models import Language
 from apps.shop.enums import ObjectType, PlanFrequencyType, PlanType, SubscriptionStatus
