@@ -14,7 +14,7 @@ Using cron with Docker provides several benefits:
 
 The project includes a specialized Dockerfile (`Dockerfile.cron`) for creating a container that runs cron jobs. This container:
 
-1. Uses Python 3.12 as the base image
+1. Uses Python as the base image
 2. Installs necessary system dependencies
 3. Sets up a dedicated user for security
 4. Installs the application code
