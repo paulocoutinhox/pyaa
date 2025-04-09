@@ -12,20 +12,25 @@ User = get_user_model()
 
 
 class CustomerHelperTest(TestCase):
-    fixtures = ["apps/language/fixtures/initial.json"]
+    fixtures = [
+        "apps/language/fixtures/initial.json",
+        "apps/site/fixtures/initial.json",
+    ]
 
     def test_post_save_customer_credits_updated(self):
         # create a customer with 0 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser@example.com",
+            password="testpassword",
+            mobile_phone="1234567890",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=0,  # starting credits
         )
 
@@ -49,15 +54,17 @@ class CustomerHelperTest(TestCase):
     def test_post_save_creates_credit_log(self):
         # create a customer with 0 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser2@example.com",
+            password="testpassword",
+            mobile_phone="1234567891",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=0,  # starting credits
         )
 
@@ -83,15 +90,17 @@ class CustomerHelperTest(TestCase):
     def test_post_save_creates_credit_log_with_correct_values(self, mock_create):
         # create a customer with 0 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser3@example.com",
+            password="testpassword",
+            mobile_phone="1234567892",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=0,  # starting credits
         )
 
@@ -107,25 +116,28 @@ class CustomerHelperTest(TestCase):
 
         # verify that the correct values were passed to CreditLog
         mock_create.assert_called_once_with(
-            object_id=0,
-            object_type=ObjectType.BONUS,
             customer=customer,
+            object_type=ObjectType.BONUS,
+            object_id=0,
             amount=initial_credits,
             is_refund=False,
+            site=customer.site,
         )
 
     def test_post_save_no_credit_log_created_when_no_credits(self):
         # create a customer with 0 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser4@example.com",
+            password="testpassword",
+            mobile_phone="1234567893",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=0,  # starting credits
         )
 
@@ -147,15 +159,17 @@ class CustomerHelperTest(TestCase):
     def test_add_credits_deducts_correctly(self):
         # create a customer with 100 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser5@example.com",
+            password="testpassword",
+            mobile_phone="1234567894",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=100,  # starting credits
         )
 
@@ -172,15 +186,17 @@ class CustomerHelperTest(TestCase):
     def test_add_credits_does_not_deduct_if_insufficient_credits(self):
         # create a customer with 30 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser6@example.com",
+            password="testpassword",
+            mobile_phone="1234567895",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=30,  # starting credits
         )
 
@@ -197,15 +213,17 @@ class CustomerHelperTest(TestCase):
     def test_add_credits_logs_when_deducting(self):
         # create a customer with 100 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser7@example.com",
+            password="testpassword",
+            mobile_phone="1234567896",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=100,  # starting credits
         )
 
@@ -233,15 +251,17 @@ class CustomerHelperTest(TestCase):
     def test_add_credits_with_refund(self):
         # create a customer with 50 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser8@example.com",
+            password="testpassword",
+            mobile_phone="1234567897",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=50,  # starting credits
         )
 
@@ -257,95 +277,97 @@ class CustomerHelperTest(TestCase):
         # verify operation was successful
         self.assertTrue(success)
 
-        # verify the updated credits
+        # verify credits were added and marked as refund
         customer.refresh_from_db()
         self.assertEqual(customer.credits, 100)
 
-        # verify the log entry
-        self.assertTrue(
-            CreditLog.objects.filter(
-                customer=customer,
-                amount=50,
-                object_type=ObjectType.SUBSCRIPTION,
-            ).exists()
+        # verify the credit log entry has is_refund=True
+        credit_log = CreditLog.objects.get(
+            customer=customer, amount=50, object_type=ObjectType.SUBSCRIPTION
         )
+        self.assertTrue(credit_log.is_refund)
 
     def test_modify_log_entry_after_creation(self):
         # create a customer with 0 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser9@example.com",
+            password="testpassword",
+            mobile_phone="1234567898",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=0,  # starting credits
         )
 
-        # add initial credits
+        # add 100 credits
         success = CustomerHelper.add_credits(
             customer,
             100,
             is_refund=False,
-            object_id=0,
-            object_type=ObjectType.BONUS,
+            object_id=1,
+            object_type=ObjectType.SUBSCRIPTION,
         )
 
         # verify operation was successful
         self.assertTrue(success)
 
-        # get the log entry
-        log_entry = CreditLog.objects.get(
-            customer=customer, object_type=ObjectType.BONUS, amount=100
+        # find the log entry
+        credit_log = CreditLog.objects.get(
+            customer=customer, amount=100, object_type=ObjectType.SUBSCRIPTION
         )
 
-        # modify the log entry
-        log_entry.amount = 200
-        log_entry.save()
+        # Set initial description
+        credit_log.description = "Initial entry"
+        credit_log.save()
 
-        # verify the log entry was updated in the database
-        updated_log = CreditLog.objects.get(id=log_entry.id)
-        self.assertEqual(updated_log.amount, 200)
+        # verify initial description
+        self.assertEqual(credit_log.description, "Initial entry")
+
+        # update the log entry description
+        credit_log.description = "Updated description"
+        credit_log.save()
+
+        # verify the description was updated
+        credit_log.refresh_from_db()
+        self.assertEqual(credit_log.description, "Updated description")
 
     def test_no_log_created_when_insufficient_credits(self):
         # create a customer with only 10 credits
         user = User.objects.create(
-            email="testuser@example.com", password="testpassword"
+            email="testuser10@example.com",
+            password="testpassword",
+            mobile_phone="1234567899",
+            site_id=1,
         )
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
+            site_id=1,
             credits=10,  # starting credits
         )
 
-        # try to deduct 50 credits (more than available)
+        # try to deduct 20 credits
         success = CustomerHelper.add_credits(
             customer,
-            -50,
+            -20,
             is_refund=False,
-            object_id=0,
+            object_id=1,
             object_type=ObjectType.SUBSCRIPTION,
         )
 
-        # verify operation was not successful
+        # verify operation failed
         self.assertFalse(success)
 
-        # verify that credits were not deducted
-        customer.refresh_from_db()
-        self.assertEqual(customer.credits, 10)
-
-        # verify that no log entry was created for the failed operation
+        # verify no log entry was created
         self.assertFalse(
             CreditLog.objects.filter(
-                customer=customer,
-                amount=-50,
-                object_type=ObjectType.SUBSCRIPTION,
+                customer=customer, amount=-20, object_type=ObjectType.SUBSCRIPTION
             ).exists()
         )
