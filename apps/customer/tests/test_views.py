@@ -26,13 +26,14 @@ class CustomerAPITest(APITestCase):
             "last_name": "User",
             "language": 1,
             "mobile_phone": "1234567890",
-            "home_phone": "0987654321",
             "gender": "male",
             "timezone": "America/Sao_Paulo",
+            "site": 1,
         }
 
         create_url = reverse("customer")
         response = self.client.post(create_url, customer_data, format="json")
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIn("access", response.data["token"])
         self.assertIn("refresh", response.data["token"])
@@ -44,11 +45,10 @@ class CustomerAPITest(APITestCase):
         response = self.client.get(me_url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["first_name"], "Test")
-        self.assertEqual(response.data["last_name"], "User")
-        self.assertEqual(response.data["email"], "testuser3@example.com")
-        self.assertEqual(response.data["mobile_phone"], "1234567890")
-        self.assertEqual(response.data["home_phone"], "0987654321")
+        self.assertEqual(response.data["user"]["first_name"], "Test")
+        self.assertEqual(response.data["user"]["last_name"], "User")
+        self.assertEqual(response.data["user"]["email"], "testuser3@example.com")
+        self.assertEqual(response.data["user"]["mobile_phone"], "1234567890")
         self.assertEqual(response.data["gender"], "male")
 
     def test_get_customer_me(self):
@@ -57,6 +57,7 @@ class CustomerAPITest(APITestCase):
             password="testpassword",
             first_name="Test",
             last_name="User",
+            mobile_phone="1234567890",
         )
 
         refresh = RefreshToken.for_user(user)
@@ -65,8 +66,6 @@ class CustomerAPITest(APITestCase):
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
             timezone="America/Sao_Paulo",
         )
@@ -75,11 +74,10 @@ class CustomerAPITest(APITestCase):
         response = self.client.get(me_url)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["first_name"], "Test")
-        self.assertEqual(response.data["last_name"], "User")
-        self.assertEqual(response.data["email"], "testuser5@example.com")
-        self.assertEqual(response.data["mobile_phone"], "1234567890")
-        self.assertEqual(response.data["home_phone"], "0987654321")
+        self.assertEqual(response.data["user"]["first_name"], "Test")
+        self.assertEqual(response.data["user"]["last_name"], "User")
+        self.assertEqual(response.data["user"]["email"], "testuser5@example.com")
+        self.assertEqual(response.data["user"]["mobile_phone"], "1234567890")
         self.assertEqual(response.data["gender"], "male")
 
     def test_get_customer_me_invalid_token(self):
@@ -89,7 +87,9 @@ class CustomerAPITest(APITestCase):
 
     def test_patch_update_customer_with_patch(self):
         user = User.objects.create_user(
-            email="testuser6@example.com", password="testpassword"
+            email="testuser6@example.com",
+            password="testpassword",
+            mobile_phone="1234567890",
         )
 
         refresh = RefreshToken.for_user(user)
@@ -98,8 +98,6 @@ class CustomerAPITest(APITestCase):
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -113,11 +111,13 @@ class CustomerAPITest(APITestCase):
         response = self.client.patch(patch_url, patch_data, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["mobile_phone"], "11111111111")
+        self.assertEqual(response.data["user"]["mobile_phone"], "11111111111")
 
     def test_patch_update_customer_with_put(self):
         user = User.objects.create_user(
-            email="testuser6@example.com", password="testpassword"
+            email="testuser7@example.com",
+            password="testpassword",
+            mobile_phone="1234567890",
         )
 
         refresh = RefreshToken.for_user(user)
@@ -126,8 +126,6 @@ class CustomerAPITest(APITestCase):
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -141,12 +139,11 @@ class CustomerAPITest(APITestCase):
         response = self.client.put(patch_url, patch_data, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["mobile_phone"], "22222222222")
+        self.assertEqual(response.data["user"]["mobile_phone"], "22222222222")
 
     def test_update_customer_invalid_token(self):
         update_data = {
             "mobile_phone": "0987654321",
-            "home_phone": "1234567890",
             "gender": "female",
             "language": 1,
         }
@@ -159,7 +156,6 @@ class CustomerAPITest(APITestCase):
     def test_patch_update_customer_invalid_token(self):
         patch_data = {
             "mobile_phone": "0987654321",
-            "home_phone": "1234567890",
             "gender": "female",
             "language": 1,
         }
@@ -171,7 +167,7 @@ class CustomerAPITest(APITestCase):
 
     def test_update_customer_not_found(self):
         user = User.objects.create_user(
-            email="testuser7@example.com", password="testpassword"
+            email="testuser8@example.com", password="testpassword"
         )
 
         refresh = RefreshToken.for_user(user)
@@ -179,7 +175,6 @@ class CustomerAPITest(APITestCase):
 
         update_data = {
             "mobile_phone": "1234567890",
-            "home_phone": "0987654321",
             "gender": "male",
             "language": 1,
         }
@@ -192,7 +187,9 @@ class CustomerAPITest(APITestCase):
 
     def test_update_customer_invalid_data(self):
         user = User.objects.create_user(
-            email="testuser8@example.com", password="testpassword"
+            email="testuser9@example.com",
+            password="testpassword",
+            mobile_phone="1234567890",
         )
 
         refresh = RefreshToken.for_user(user)
@@ -201,13 +198,10 @@ class CustomerAPITest(APITestCase):
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
         update_data = {
-            "home_phone": "0987654321",
             "gender": "female",
             "language": 99,
         }
@@ -220,15 +214,15 @@ class CustomerAPITest(APITestCase):
 
     def test_create_user_validation_error(self):
         customer_data = {
-            "email": "invalid-email",  # invalid email format
+            "email": "invalid-email",
             "password": "testpassword",
             "first_name": "Test",
             "last_name": "User",
             "language": 1,
             "mobile_phone": "1234567890",
-            "home_phone": "0987654321",
             "gender": "male",
             "timezone": "America/Sao_Paulo",
+            "site": 1,
         }
 
         create_url = reverse("customer")
@@ -250,9 +244,9 @@ class CustomerAPITest(APITestCase):
             "last_name": "User",
             "language": 1,
             "mobile_phone": "1234567890",
-            "home_phone": "0987654321",
             "gender": "male",
             "timezone": "America/Sao_Paulo",
+            "site": 1,
         }
 
         create_url = reverse("customer")
@@ -272,9 +266,9 @@ class CustomerAPITest(APITestCase):
             "last_name": "User",
             "language": 1,
             "mobile_phone": "1234567890",
-            "home_phone": "0987654321",
             "gender": "male",
             "timezone": "America/Sao_Paulo",
+            "site": 1,
         }
 
         create_url = reverse("customer")
@@ -290,13 +284,12 @@ class CustomerAPITest(APITestCase):
             password="testpassword",
             first_name="Test",
             last_name="User",
+            mobile_phone="1234567890",
         )
 
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -320,13 +313,12 @@ class CustomerAPITest(APITestCase):
             password="testpassword",
             first_name="Test",
             last_name="User",
+            mobile_phone="1234567890",
         )
 
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -350,13 +342,12 @@ class CustomerAPITest(APITestCase):
             password="testpassword",
             first_name="Test",
             last_name="User",
+            mobile_phone="1234567890",
         )
 
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -379,17 +370,16 @@ class CustomerAPITest(APITestCase):
     @patch("apps.user.models.User.full_clean")
     def test_update_customer_validation_error(self, mock_full_clean):
         user = User.objects.create_user(
-            email="testuser13@example.com",
+            email="testuser14@example.com",
             password="testpassword",
             first_name="Test",
             last_name="User",
+            mobile_phone="1234567890",
         )
 
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -411,3 +401,31 @@ class CustomerAPITest(APITestCase):
         self.assertIn("user", response.data)
         self.assertIn("email", response.data["user"])
         self.assertEqual(response.data["user"]["email"][0], "Invalid email format")
+
+    def test_update_nickname(self):
+        user = User.objects.create_user(
+            email="testuser15@example.com",
+            password="testpassword",
+        )
+
+        customer = Customer.objects.create(
+            user=user,
+            language_id=1,
+            gender="male",
+        )
+
+        refresh = RefreshToken.for_user(user)
+        self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {refresh.access_token}")
+
+        update_data = {
+            "nickname": "TestNickname",
+        }
+
+        update_url = reverse("customer")
+        response = self.client.patch(update_url, update_data, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["nickname"], "TestNickname")
+
+        customer.refresh_from_db()
+        self.assertEqual(customer.nickname, "TestNickname")
