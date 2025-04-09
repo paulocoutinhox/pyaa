@@ -8,9 +8,9 @@ from apps.gallery.serializers import GalleryListSerializer, GallerySerializer
 
 
 class GalleryList(generics.ListCreateAPIView):
+    permission_classes = [AllowAny]
     queryset = Gallery.objects.filter(active=True).order_by("-published_at").all()
     serializer_class = GalleryListSerializer
-    permission_classes = [AllowAny]
 
 
 class GalleryByTag(generics.GenericAPIView):

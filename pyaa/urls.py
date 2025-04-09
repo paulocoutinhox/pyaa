@@ -51,12 +51,12 @@ urlpatterns = [
     path(
         "api/token/",
         TokenObtainPairView.as_view(),
-        name="token_obtain_pair",
+        name="token-obtain-pair",
     ),
     path(
         "api/token/refresh/",
         TokenRefreshView.as_view(),
-        name="token_refresh",
+        name="token-refresh",
     ),
     path(
         "api/schema/",
@@ -80,6 +80,7 @@ urlpatterns = [
     path(
         "upload-image/",
         views.upload_image,
+        name="upload-image",
     ),
     path(
         "tinymce/",

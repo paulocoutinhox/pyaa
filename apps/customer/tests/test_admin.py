@@ -27,13 +27,12 @@ class CustomerAdminTest(TestCase):
             password="testpassword",
             first_name="John",
             last_name="Doe",
+            mobile_phone="1234567890",
         )
 
         Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -48,13 +47,12 @@ class CustomerAdminTest(TestCase):
             password="testpassword",
             first_name="John",
             last_name="Doe",
+            mobile_phone="1234567890",
         )
 
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -64,13 +62,12 @@ class CustomerAdminTest(TestCase):
         user = User.objects.create_user(
             email="testuser@example.com",
             password="testpassword",
+            mobile_phone="1234567890",
         )
 
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
@@ -81,13 +78,12 @@ class CustomerAdminTest(TestCase):
             email="testuser@example.com",
             password="testpassword",
             is_active=True,
+            mobile_phone="1234567890",
         )
 
         customer = Customer.objects.create(
             user=user,
             language_id=1,
-            mobile_phone="1234567890",
-            home_phone="0987654321",
             gender="male",
         )
 
