@@ -1,0 +1,17 @@
+// bootstrap icons
+@import "../vendor/bootstrap-icons/bootstrap-icons.min";
+
+// bootstrap variables
+@import "../vendor/bootstrap/scss/functions";
+@import "../vendor/bootswatch/cosmo/_variables.scss";
+@import "../vendor/bootstrap/scss/variables";
+@import "../vendor/bootstrap/scss/mixins";
+
+// bootstrap components
+@import "../vendor/bootstrap/scss/bootstrap";
+
+// bootswatch customizations
+@import "../vendor/bootswatch/cosmo/_bootswatch.scss";
+
+// custom
+@import "custom";

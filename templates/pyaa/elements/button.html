@@ -1,0 +1,29 @@
+{% load pyaa %}
+{% comment %} djlint:off {% endcomment %}
+
+<{% if attrs.href %}a href="{{ attrs.href }}"{% else %}button{% endif %}
+{% if attrs.form %}form="{{ attrs.form }}"{% endif %}
+{% if attrs.id %}id="{{ attrs.id }}"{% endif %}
+{% if attrs.name %}name="{{ attrs.name }}"{% endif %}
+{% if attrs.value %}value="{{ attrs.value }}"{% endif %}
+{% if attrs.submit %}type="submit"{% elif attrs.type %}type="{{ attrs.type }}"{% endif %}
+
+{% if 'danger' in attrs.tags %}
+class="btn btn-danger{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'success' in attrs.tags %}
+class="btn btn-success{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'warning' in attrs.tags %}
+class="btn btn-warning{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'info' in attrs.tags %}
+class="btn btn-info{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'secondary' in attrs.tags %}
+class="btn btn-secondary{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'dark' in attrs.tags %}
+class="btn btn-dark{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% else %}
+class="btn btn-primary{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% endif %}
+>
+{% slot %}
+{% endslot %}
+</{% if attrs.href %}a{% else %}button{% endif %}>

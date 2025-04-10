@@ -1,0 +1,40 @@
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.html]
+indent_size = 4
+
+[*.json]
+indent_size = 2
+insert_final_newline = false
+
+[{*[Mm]akefile*,*.mak,*.mk,depend}]
+indent_style = tab
+
+[*.{bat, cmd, cmd.*}]
+end_of_line = crlf
+
+[*.{yml, yaml}]
+indent_size = 2
+
+[*.gemspec]
+indent_size = 2
+
+[*.rb,Fastfile,Gemfile,Brewfile,Podfile]
+indent_size = 2
+
+[*.{kt,kts}]
+ktlint_standard_argument-list-wrapping = disabled
+ktlint_standard_trailing-comma-on-call-site = disabled
+ktlint_standard_trailing-comma-on-declaration-site = disabled
+
+[*.dart]
+indent_size = 2
+indent_brace_style = K&R

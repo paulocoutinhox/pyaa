@@ -1,0 +1,35 @@
+{% extends 'emails/layouts/base.html' %}
+{% load i18n %}
+
+{% block email_subject %}
+    {% translate "email.product-purchase-paid.subject" %}
+{% endblock %}
+
+{% block email_content %}
+    <p style="margin-bottom: 15px;">{% translate "email.greeting" %} {{ customer.user.get_full_name }},</p>
+
+    <p style="margin-bottom: 15px;">{% translate "email.product-purchase-paid.confirmation-message" %}</p>
+
+    <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0;">
+        <h3 style="margin-top: 0; color: #333;">{{ purchase.product.name }}</h3>
+
+        {% if purchase.product.image %}
+        <div style="text-align: center; margin-bottom: 15px;">
+            <img src="{{ purchase.product.image.url }}" alt="{{ purchase.product.name }}" style="max-width: 200px; height: auto;">
+        </div>
+        {% endif %}
+
+        <p style="margin-bottom: 5px;"><strong>{% translate "email.product-purchase-paid.total-value" %}:</strong> {{ purchase.price|floatformat:2 }} {{ purchase.currency }}</p>
+        <p style="margin-bottom: 5px;"><strong>{% translate "email.product-purchase-paid.purchase-date" %}:</strong> {{ purchase.created_at }}</p>
+    </div>
+
+    <p style="text-align: center; margin-bottom: 15px;">{% translate "email.product-purchase-paid.download-message" %}</p>
+
+    <div style="text-align: center; margin: 25px 0;">
+        <a href="{{ profile_url }}" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+            {% translate "email.product-purchase-paid.view-button" %}
+        </a>
+    </div>
+
+    <p style="text-align: center; margin-top: 20px;">{% translate "email.product-purchase-paid.thank-you" %}</p>
+{% endblock %}

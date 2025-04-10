@@ -1,0 +1,54 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'gallery_index' as url_gallery_index %}
+
+<div class="container">
+    {% element page_title %}
+        {{ gallery.title }}
+    {% endelement %}
+
+    <div class="p-4 text-center w-100">
+        {% if page_obj %}
+            <div id="gallery" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center d-flex">
+                {% for photo in page_obj %}
+                <div class="col d-flex justify-content-center mb-3">
+                    <a href="{{ photo.image.url }}" class="gallery-item text-decoration-none" target="_blank">
+                        <img src="{{ photo.image.url }}" style="height: 100px;" alt="{{ photo.caption|default:'' }}" class="img-fluid mb-1" />
+                        <p class="small text-dark mb-0 text-truncate">{{ photo.caption|default:'' }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>{% trans "list-data.empty" %}</p>
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        {% include 'partials/paginator.html' %}
+    </div>
+
+    <div class="p-4 text-center w-100">
+        {% element button href=url_gallery_index %}
+            {% translate "button.back" %}
+        {% endelement %}
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_footer %}
+<script>
+    $(document).ready(function () {
+        $('#gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            gallery: { enabled: true }
+        });
+    });
+</script>
+{% endblock extra_footer %}

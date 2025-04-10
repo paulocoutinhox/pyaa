@@ -1,0 +1,139 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_update_profile' as url_account_update_profile %}
+{% url 'account_update_avatar' as url_account_update_avatar %}
+{% url 'account_delete' as url_account_delete %}
+{% url 'account_logout' as url_account_logout %}
+{% url 'account_subscriptions' as url_account_subscriptions %}
+{% url 'account_credits' as url_account_credits %}
+{% url 'account_credit_purchases' as url_account_credit_purchases %}
+{% url 'account_product_purchases' as url_account_product_purchases %}
+
+<div class="container">
+    <div class="py-4">
+        <!-- Profile Header -->
+        <div class="d-flex align-items-center mb-4 position-relative">
+            {% include 'partials/customer_avatar.html' %}
+            <div>
+                {% element page_title %}
+                    {% translate "title.account-profile" %}
+                {% endelement %}
+                <p class="mb-1 small">{% translate "subtitle.my-account" %}</p>
+
+                {% with user.customer.credits as credits %}
+                    <p class="small mb-0">
+                        {% if credits > 0 %}
+                            {% translate "customer.credits" %}: <span class="fw-bold">{{ credits }}</span>
+                        {% else %}
+                            {% translate "customer.no-credits" %}
+                        {% endif %}
+                    </p>
+                {% endwith %}
+            </div>
+            <a href="{{ url_account_update_profile }}" class="btn btn-sm position-absolute top-0 end-0 btn-secondary rounded">
+                <i class="bi bi-pencil"></i>
+            </a>
+        </div>
+
+        <!-- Product Purchases -->
+        <div class="row g-2 text-center mb-4">
+            <div class="col-12 d-flex">
+                <a href="{{ url_account_product_purchases }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
+                    <div class="mb-2 text-body">
+                        <i class="bi bi-cart fs-4"></i>
+                    </div>
+                    <span class="text-body">{% translate "button.account-product-purchases" %}</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Credits and Purchases -->
+        <div class="row g-2 text-center mb-4">
+            <div class="col-6 d-flex">
+                <a href="{{ url_account_credits }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
+                    <div class="mb-2 text-body">
+                        <i class="bi bi-currency-dollar fs-4"></i>
+                    </div>
+                    <span class="text-body">{% translate "button.account-credits" %}</span>
+                </a>
+            </div>
+            <div class="col-6 d-flex">
+                <a href="{{ url_account_credit_purchases }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
+                    <div class="mb-2 text-body">
+                        <i class="bi bi-cart fs-4"></i>
+                    </div>
+                    <span class="text-body">{% translate "button.account-credit-purchases" %}</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Subscriptions -->
+        <div class="row g-2 text-center mb-4">
+            <div class="col-12 d-flex">
+                <a href="{{ url_account_subscriptions }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
+                    <div class="mb-2 text-body">
+                        <i class="bi bi-calendar-check fs-4"></i>
+                    </div>
+                    <span class="text-body">{% translate "button.account-subscriptions" %}</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Account Settings -->
+        <h6 class="fw-bold mb-3">{% translate "subtitle.account-settings" %}</h6>
+        <ul class="list-group mb-4">
+            <li class="list-group-item px-0 py-3 border-0 border-bottom">
+                <a href="{{ url_account_update_profile }}" class="d-flex align-items-center text-decoration-none text-body">
+                    <div class="me-3 text-body">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    <div>
+                        <span>{% translate "button.update-profile" %}</span>
+                    </div>
+                </a>
+            </li>
+            <li class="list-group-item px-0 py-3 border-0 border-bottom">
+                <a href="{{ url_account_update_avatar }}" class="d-flex align-items-center text-decoration-none text-body">
+                    <div class="me-3 text-body">
+                        <i class="bi bi-image"></i>
+                    </div>
+                    <div>
+                        <span>{% translate "button.update-avatar" %}</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Danger Zone -->
+        <h6 class="fw-bold mb-3">{% translate "subtitle.danger-zone" %}</h6>
+        <ul class="list-group">
+            <li class="list-group-item px-0 py-3 border-0 border-bottom">
+                <a href="{{ url_account_delete }}" class="d-flex align-items-center text-decoration-none text-danger">
+                    <div class="me-3 text-danger">
+                        <i class="bi bi-trash"></i>
+                    </div>
+                    <div>
+                        <span>{% translate "button.account-delete" %}</span>
+                    </div>
+                </a>
+            </li>
+            <li class="list-group-item px-0 py-3 border-0">
+                <a href="{{ url_account_logout }}" class="d-flex align-items-center text-decoration-none text-danger">
+                    <div class="me-3 text-danger">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </div>
+                    <div>
+                        <span>{% translate "button.account-logout" %}</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}

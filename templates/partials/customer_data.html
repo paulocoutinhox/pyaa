@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<p class="text-center">
+    {% blocktranslate with name=user.customer %}Hi {{ name }}!{% endblocktranslate %}
+</p>
+
+<p class="text-center">
+    {% with user.customer.credits as credits %}
+        <p class="text-center">
+            {% if credits > 0 %}
+                {% translate "customer.credits" %}: <span class="customer-credits-data">{{ remaining_credits }}</span>
+            {% else %}
+                {% translate "customer.no-credits" %}
+            {% endif %}
+        </p>
+    {% endwith %}
+</p>
+
+<div class="text-center">
+    {% include "partials/customer_avatar.html" %}
+</div>

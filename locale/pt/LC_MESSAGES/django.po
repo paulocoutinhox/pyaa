@@ -1,0 +1,1760 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-10 04:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/content/apps.py:8
+msgid "apps.content.description"
+msgstr "Conteúdo"
+
+#: apps/content/filters.py:8 apps/gallery/filters.py:8
+msgid "filter.title"
+msgstr "Título"
+
+#: apps/content/filters.py:19 apps/customer/filters.py:9
+#: apps/language/filters.py:8
+msgid "filter.name"
+msgstr "Nome"
+
+#: apps/content/models.py:12
+msgid "model.content-category.name"
+msgstr "categoria de conteúdo"
+
+#: apps/content/models.py:13
+msgid "model.content-category.name.plural"
+msgstr "categorias de conteúdos"
+
+#: apps/content/models.py:27 apps/content/models.py:94
+#: apps/customer/models.py:46 apps/gallery/models.py:31
+#: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
+#: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:616
+#: apps/shop/models.py:739 apps/shop/models.py:849 apps/shop/models.py:1015
+#: apps/user/models.py:81
+msgid "model.field.id"
+msgstr "ID"
+
+#: apps/content/models.py:33 apps/customer/admin.py:127
+#: apps/language/models.py:33 apps/shop/models.py:53 apps/shop/models.py:169
+#: apps/shop/models.py:270 apps/web/forms/contact.py:11
+#: templates/emails/site/contact.html:11
+msgid "model.field.name"
+msgstr "Nome"
+
+#: apps/content/models.py:40 apps/content/models.py:125
+#: apps/gallery/models.py:53 apps/shop/models.py:277
+msgid "model.field.tag"
+msgstr "Tag"
+
+#: apps/content/models.py:45 apps/content/models.py:130
+#: apps/gallery/models.py:58 apps/shop/models.py:282
+msgid "model.field.tag.help"
+msgstr "Deixe vazio para geração automática."
+
+#: apps/content/models.py:49 apps/content/models.py:153
+#: apps/customer/models.py:138 apps/gallery/models.py:75
+#: apps/language/models.py:56 apps/shop/models.py:104 apps/shop/models.py:214
+#: apps/shop/models.py:386 apps/shop/models.py:522 apps/shop/models.py:676
+#: apps/shop/models.py:799 apps/shop/models.py:903 apps/shop/models.py:1080
+#: apps/site/models.py:37
+msgid "model.field.created-at"
+msgstr "Criado Em"
+
+#: apps/content/models.py:54 apps/content/models.py:158
+#: apps/customer/models.py:143 apps/gallery/models.py:80
+#: apps/language/models.py:61 apps/shop/models.py:109 apps/shop/models.py:219
+#: apps/shop/models.py:391 apps/shop/models.py:527 apps/shop/models.py:681
+#: apps/shop/models.py:804 apps/site/models.py:42
+msgid "model.field.updated-at"
+msgstr "Atualizado Em"
+
+#: apps/content/models.py:71
+msgid "model.content.name"
+msgstr "conteúdo"
+
+#: apps/content/models.py:72
+msgid "model.content.name.plural"
+msgstr "conteúdos"
+
+#: apps/content/models.py:100 apps/gallery/models.py:37 apps/site/models.py:23
+msgid "model.field.title"
+msgstr "Título"
+
+#: apps/content/models.py:112
+msgid "model.field.category"
+msgstr "Categoria"
+
+#: apps/content/models.py:121 apps/customer/models.py:73
+#: apps/gallery/models.py:49
+msgid "model.field.language"
+msgstr "Idioma"
+
+#: apps/content/models.py:134
+msgid "model.field.content"
+msgstr "Conteúdo"
+
+#: apps/content/models.py:140 apps/gallery/models.py:62
+msgid "model.field.published-at"
+msgstr "Publicado Em"
+
+#: apps/content/models.py:146 apps/gallery/models.py:68 apps/shop/models.py:97
+#: apps/shop/models.py:202 apps/shop/models.py:373
+msgid "model.field.active"
+msgstr "Ativo"
+
+#: apps/customer/admin.py:70
+msgid "admin.fieldsets.user"
+msgstr "INFORMAÇÕES DO USUÁRIO"
+
+#: apps/customer/admin.py:82
+msgid "admin.fieldsets.profile"
+msgstr "INFORMAÇÕES DO PERFIL"
+
+#: apps/customer/admin.py:88
+msgid "admin.fieldsets.additional-info"
+msgstr "INFORMAÇÕES ADICIONAIS"
+
+#: apps/customer/admin.py:94 apps/shop/admin.py:227 apps/shop/admin.py:297
+#: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
+#: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
+#: apps/user/admin.py:86
+msgid "admin.fieldsets.important-dates"
+msgstr "DATAS IMPORTANTES"
+
+#: apps/customer/admin.py:134 apps/customer/forms.py:81
+#: apps/customer/forms.py:191 apps/customer/serializers.py:38
+#: apps/customer/serializers.py:107 apps/user/models.py:104
+#: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
+msgid "model.field.email"
+msgstr "E-mail"
+
+#: apps/customer/admin.py:141 apps/customer/forms.py:198
+#: apps/customer/serializers.py:44 apps/customer/serializers.py:113
+#: apps/user/admin.py:16 apps/user/admin.py:34 apps/user/models.py:111
+msgid "model.field.cpf"
+msgstr "CPF"
+
+#: apps/customer/admin.py:148 apps/customer/forms.py:206
+#: apps/customer/serializers.py:50 apps/customer/serializers.py:119
+#: apps/user/admin.py:23 apps/user/admin.py:41 apps/user/models.py:119
+msgid "model.field.mobile-phone"
+msgstr "Celular"
+
+#: apps/customer/admin.py:156
+msgid "model.field.is_active"
+msgstr "Ativo"
+
+#: apps/customer/apps.py:8
+msgid "apps.customer.description"
+msgstr "Cliente"
+
+#: apps/customer/enums.py:6
+msgid "enum.customer-gender.male"
+msgstr "Masculino"
+
+#: apps/customer/enums.py:7
+msgid "enum.customer-gender.female"
+msgstr "Feminino"
+
+#: apps/customer/enums.py:8
+msgid "enum.customer-gender.none"
+msgstr "Nenhum"
+
+#: apps/customer/filters.py:25
+msgid "filter.email"
+msgstr "E-mail"
+
+#: apps/customer/filters.py:37
+msgid "filter.created-at"
+msgstr "Criado Em"
+
+#: apps/customer/forms.py:44
+msgid "model.field.login-username"
+msgstr "E-mail"
+
+#: apps/customer/forms.py:51
+msgid "model.field.login-password"
+msgstr "Senha"
+
+#: apps/customer/forms.py:60 apps/customer/forms.py:179
+#: apps/customer/serializers.py:28 apps/customer/serializers.py:97
+msgid "model.field.first-name"
+msgstr "Nome"
+
+#: apps/customer/forms.py:67 apps/customer/forms.py:185
+#: apps/customer/serializers.py:33 apps/customer/serializers.py:102
+msgid "model.field.last-name"
+msgstr "Sobrenome"
+
+#: apps/customer/forms.py:74 apps/customer/forms.py:216
+#: apps/customer/models.py:84
+#: templates/admin/report/customer-gender-summary/pdf.html:10
+#: templates/admin/report/customer-gender-summary/view.html:14
+msgid "model.field.gender"
+msgstr "Gênero"
+
+#: apps/customer/forms.py:88 apps/customer/serializers.py:56
+#: apps/customer/serializers.py:125
+msgid "model.field.password"
+msgstr "Senha"
+
+#: apps/customer/forms.py:94
+msgid "model.field.accept-terms"
+msgstr "Aceitar Termos"
+
+#: apps/customer/forms.py:100 apps/web/forms/contact.py:44
+msgid "model.field.captcha"
+msgstr "Captcha"
+
+#: apps/customer/forms.py:210 apps/customer/models.py:77
+msgid "model.field.nickname"
+msgstr "Apelido"
+
+#: apps/customer/forms.py:285 apps/user/helpers.py:18
+msgid "error.email-already-used-by-other"
+msgstr "Este e-mail já está sendo usado."
+
+#: apps/customer/forms.py:287 apps/user/helpers.py:31
+msgid "error.cpf-already-used-by-other"
+msgstr "Este CPF já está sendo usado."
+
+#: apps/customer/forms.py:290 apps/user/helpers.py:47
+msgid "error.mobile-phone-already-used-by-other"
+msgstr "Este celular já está sendo usado."
+
+#: apps/customer/forms.py:294
+msgid "error.database-constraint-error"
+msgstr ""
+
+#: apps/customer/forms.py:298
+msgid "error.protected-object-cannot-be-deleted"
+msgstr ""
+
+#: apps/customer/helpers.py:190
+msgid "error.nickname-already-used-by-other"
+msgstr "Este apelido já está sendo usado."
+
+#: apps/customer/helpers.py:213
+msgid "email.signup.subject"
+msgstr "Bem-vindo ao %(site_name)s"
+
+#: apps/customer/helpers.py:258
+msgid "email.bonus-credits-added.subject"
+msgstr "Créditos Adicionados à Sua Conta"
+
+#: apps/customer/helpers.py:260
+msgid "email.credits-added.subject"
+msgstr "Créditos Adicionados à Sua Conta"
+
+#: apps/customer/helpers.py:337
+#: templates/emails/credits/credit_purchase_paid.html:5
+msgid "email.credit-purchase-paid.subject"
+msgstr "Confirmação de Pagamento"
+
+#: apps/customer/helpers.py:400
+#: templates/emails/products/product_purchase_paid.html:5
+msgid "email.product-purchase-paid.subject"
+msgstr "Confirmação da Compra de Produto"
+
+#: apps/customer/models.py:19
+msgid "model.customer.name"
+msgstr "Cliente"
+
+#: apps/customer/models.py:20
+msgid "model.customer.name.plural"
+msgstr "Clientes"
+
+#: apps/customer/models.py:55
+msgid "model.field.user"
+msgstr "Usuário"
+
+#: apps/customer/models.py:62 apps/shop/models.py:47 apps/shop/models.py:264
+#: apps/shop/models.py:476 apps/shop/models.py:625 apps/shop/models.py:748
+#: apps/shop/models.py:858 apps/shop/models.py:1024 apps/site/models.py:19
+#: apps/user/models.py:90
+msgid "model.field.site"
+msgstr "Site"
+
+#: apps/customer/models.py:93
+msgid "model.field.avatar"
+msgstr "Avatar"
+
+#: apps/customer/models.py:103 apps/customer/serializers.py:68
+#: apps/customer/serializers.py:137
+msgid "model.field.timezone"
+msgstr "Fuso Horário"
+
+#: apps/customer/models.py:111
+msgid "model.field.activate-token"
+msgstr "Token de Ativação"
+
+#: apps/customer/models.py:118
+msgid "model.field.recovery-token"
+msgstr "Token de Recuperação"
+
+#: apps/customer/models.py:125 apps/shop/models.py:323
+msgid "model.field.credits"
+msgstr "Créditos"
+
+#: apps/customer/models.py:132 apps/customer/serializers.py:62
+#: apps/customer/serializers.py:131
+msgid "model.field.obs"
+msgstr "Obs"
+
+#: apps/customer/models.py:160
+#, python-brace-format
+msgid "model.str.customer #{id}"
+msgstr "Cliente #{id}"
+
+#: apps/customer/models.py:178
+msgid "error.site-id-required"
+msgstr "O código do site é obrigatório."
+
+#: apps/gallery/apps.py:8
+msgid "apps.gallery.description"
+msgstr "Galeria"
+
+#: apps/gallery/models.py:16
+msgid "model.gallery.name"
+msgstr "Galeria"
+
+#: apps/gallery/models.py:17
+msgid "model.gallery.name.plural"
+msgstr "Galerias"
+
+#: apps/gallery/models.py:100
+msgid "model.field.photos-count"
+msgstr "Fotos"
+
+#: apps/gallery/models.py:114
+msgid "model.gallery-photo.name"
+msgstr "Foto da Galeria"
+
+#: apps/gallery/models.py:115
+msgid "model.gallery-photo.name.plural"
+msgstr "Fotos da Galeria"
+
+#: apps/gallery/models.py:122 apps/shop/models.py:74 apps/shop/models.py:358
+msgid "model.field.image"
+msgstr "Imagem"
+
+#: apps/gallery/models.py:131
+msgid "model.field.caption"
+msgstr "Legenda"
+
+#: apps/gallery/models.py:138
+msgid "model.field.main"
+msgstr "Principal"
+
+#: apps/gallery/models.py:152
+msgid "model.field.preview"
+msgstr "Pré-visualização"
+
+#: apps/language/apps.py:8
+msgid "apps.language.description"
+msgstr "Idioma"
+
+#: apps/language/models.py:8
+msgid "model.language.name"
+msgstr "Idioma"
+
+#: apps/language/models.py:9
+msgid "model.language.name.plural"
+msgstr "Idiomas"
+
+#: apps/language/models.py:38
+msgid "model.field.native_name"
+msgstr "Nome Nativo"
+
+#: apps/language/models.py:40
+msgid "model.hint.native_name"
+msgstr "Nome nativo sem tradução."
+
+#: apps/language/models.py:44
+msgid "model.field.code_iso_639_1"
+msgstr "Código ISO 639-1"
+
+#: apps/language/models.py:46
+msgid "model.hint.code_iso_639_1"
+msgstr "Exemplos: en ou pt."
+
+#: apps/language/models.py:50
+msgid "model.field.code_iso_language"
+msgstr "Código ISO"
+
+#: apps/language/models.py:51
+msgid "model.hint.code_iso_language"
+msgstr "Exemplos: en-us ou pt-br."
+
+#: apps/report/admin/customer_gender.py:23
+msgid "title.report.customer-gender-summary"
+msgstr "Relatório de Gêneros dos Clientes"
+
+#: apps/report/apps.py:8
+msgid "apps.report.description"
+msgstr "Relatório"
+
+#: apps/report/models.py:9 apps/report/models.py:10
+msgid "model.customer-gender-summary.name"
+msgstr "Gêneros dos Clientes"
+
+#: apps/shop/admin.py:51
+msgid "button.copy"
+msgstr "Copiar"
+
+#: apps/shop/admin.py:52
+msgid "button.close"
+msgstr "Fechar"
+
+#: apps/shop/admin.py:53
+msgid "button.open"
+msgstr "Abrir"
+
+#: apps/shop/admin.py:54
+msgid "modal.title.message"
+msgstr "Mensagem"
+
+#: apps/shop/admin.py:92 apps/shop/models.py:68 apps/shop/models.py:176
+#: apps/shop/models.py:380 apps/shop/models.py:897 apps/shop/models.py:1074
+#: templates/pages/shop/product/detail.html:52
+msgid "model.field.description"
+msgstr "Descrição"
+
+#: apps/shop/admin.py:106 apps/shop/admin.py:325 apps/shop/admin.py:477
+#: apps/shop/admin.py:584 apps/shop/admin.py:803 apps/shop/models.py:507
+#: apps/shop/models.py:669 apps/shop/models.py:792 apps/shop/models.py:1067
+msgid "model.field.status"
+msgstr "Status"
+
+#: apps/shop/admin.py:171 apps/shop/admin.py:276 apps/shop/admin.py:359
+#: apps/shop/admin.py:432 apps/shop/admin.py:534 apps/shop/admin.py:655
+#: apps/shop/admin.py:753 apps/site/admin.py:32
+msgid "admin.fieldsets.general"
+msgstr "GERAL"
+
+#: apps/shop/admin.py:183 apps/shop/admin.py:546 apps/shop/admin.py:664
+#: apps/shop/admin.py:765
+msgid "admin.fieldsets.pricing"
+msgstr "PREÇOS"
+
+#: apps/shop/admin.py:194
+msgid "admin.fieldsets.frequency"
+msgstr "FREQUÊNCIA"
+
+#: apps/shop/admin.py:203
+msgid "admin.fieldsets.features"
+msgstr "RECURSOS"
+
+#: apps/shop/admin.py:212 apps/shop/admin.py:673
+msgid "admin.fieldsets.description"
+msgstr "DESCRIÇÃO"
+
+#: apps/shop/admin.py:221 apps/shop/admin.py:682
+msgid "admin.fieldsets.status"
+msgstr "STATUS"
+
+#: apps/shop/admin.py:288
+msgid "admin.fieldsets.subscription"
+msgstr "ASSINATURA"
+
+#: apps/shop/admin.py:370 apps/shop/admin.py:443
+msgid "admin.fieldsets.details"
+msgstr "DETALHES"
+
+#: apps/shop/apps.py:8
+msgid "apps.shop.description"
+msgstr "Loja"
+
+#: apps/shop/enums.py:6
+msgid "enum.shop-payment-gateway.stripe"
+msgstr "Stripe"
+
+#: apps/shop/enums.py:22
+msgid "enum.shop-plan-frequency-type.day"
+msgstr "Dia"
+
+#: apps/shop/enums.py:23
+msgid "enum.shop-plan-frequency-type.week"
+msgstr "Semana"
+
+#: apps/shop/enums.py:24
+msgid "enum.shop-plan-frequency-type.month"
+msgstr "Mês"
+
+#: apps/shop/enums.py:25
+msgid "enum.shop-plan-frequency-type.year"
+msgstr "Ano"
+
+#: apps/shop/enums.py:26
+msgid "enum.shop-plan-frequency-type.quarter"
+msgstr "Trimestre"
+
+#: apps/shop/enums.py:27
+msgid "enum.shop-plan-frequency-type.semi_annual"
+msgstr "Semestre"
+
+#: apps/shop/enums.py:31
+msgid "enum.shop-subscription-status.initial"
+msgstr "Inicial"
+
+#: apps/shop/enums.py:32
+msgid "enum.shop-subscription-status.analysis"
+msgstr "Análise"
+
+#: apps/shop/enums.py:33
+msgid "enum.shop-subscription-status.active"
+msgstr "Ativo"
+
+#: apps/shop/enums.py:34
+msgid "enum.shop-subscription-status.suspended"
+msgstr "Suspenso"
+
+#: apps/shop/enums.py:35
+msgid "enum.shop-subscription-status.canceled"
+msgstr "Cancelado"
+
+#: apps/shop/enums.py:36
+msgid "enum.shop-subscription-status.failed"
+msgstr "Falhou"
+
+#: apps/shop/enums.py:37
+msgid "enum.shop-subscription-status.charged-back"
+msgstr "Chargeback realizado"
+
+#: apps/shop/enums.py:38
+msgid "enum.shop-subscription-status.rejected"
+msgstr "Rejeitado"
+
+#: apps/shop/enums.py:39
+msgid "enum.shop-subscription-status.refunded"
+msgstr "Estornado"
+
+#: apps/shop/enums.py:47
+msgid "enum.shop-object-type.general"
+msgstr "Geral"
+
+#: apps/shop/enums.py:48
+msgid "enum.shop-object-type.unknown"
+msgstr "Desconhecido"
+
+#: apps/shop/enums.py:49 apps/shop/models.py:932
+msgid "enum.shop-object-type.bonus"
+msgstr "Bônus"
+
+#: apps/shop/enums.py:50
+msgid "enum.shop-object-type.credit-purchase"
+msgstr "Compra de Crédito"
+
+#: apps/shop/enums.py:51
+msgid "enum.shop-object-type.product-purchase"
+msgstr "Compra de Produto"
+
+#: apps/shop/enums.py:52
+msgid "enum.shop-object-type.subscription"
+msgstr "Assinatura"
+
+#: apps/shop/enums.py:53 apps/shop/models.py:940 apps/shop/models.py:942
+msgid "enum.shop-object-type.voucher"
+msgstr "Voucher"
+
+#: apps/shop/enums.py:61
+msgid "enum.shop-plan-type.credit-purchase"
+msgstr "Compra de Crédito"
+
+#: apps/shop/enums.py:62
+msgid "enum.shop-plan-type.subscription"
+msgstr "Assinatura"
+
+#: apps/shop/enums.py:63
+msgid "enum.shop-plan-type.voucher"
+msgstr "Voucher"
+
+#: apps/shop/enums.py:71
+msgid "enum.shop-credit-purchase-status.initial"
+msgstr "Inicial"
+
+#: apps/shop/enums.py:72
+msgid "enum.shop-credit-purchase-status.analysis"
+msgstr "Em Análise"
+
+#: apps/shop/enums.py:73
+msgid "enum.shop-credit-purchase-status.approved"
+msgstr "Aprovado"
+
+#: apps/shop/enums.py:74
+msgid "enum.shop-credit-purchase-status.canceled"
+msgstr "Cancelado"
+
+#: apps/shop/enums.py:75
+msgid "enum.shop-credit-purchase-status.failed"
+msgstr "Falhou"
+
+#: apps/shop/enums.py:76
+msgid "enum.shop-credit-purchase-status.charged-back"
+msgstr "Charged back"
+
+#: apps/shop/enums.py:77
+msgid "enum.shop-credit-purchase-status.rejected"
+msgstr "Rejeitado"
+
+#: apps/shop/enums.py:78
+msgid "enum.shop-credit-purchase-status.refunded"
+msgstr "Estornado"
+
+#: apps/shop/enums.py:86
+msgid "enum.shop-product-purchase-status.initial"
+msgstr "Inicial"
+
+#: apps/shop/enums.py:87
+msgid "enum.shop-product-purchase-status.analysis"
+msgstr "Em Análise"
+
+#: apps/shop/enums.py:88
+msgid "enum.shop-product-purchase-status.approved"
+msgstr "Aprovado"
+
+#: apps/shop/enums.py:89
+msgid "enum.shop-product-purchase-status.canceled"
+msgstr "Cancelado"
+
+#: apps/shop/enums.py:90
+msgid "enum.shop-product-purchase-status.failed"
+msgstr "Falhou"
+
+#: apps/shop/enums.py:91
+msgid "enum.shop-product-purchase-status.charged-back"
+msgstr "Charged back"
+
+#: apps/shop/enums.py:92
+msgid "enum.shop-product-purchase-status.rejected"
+msgstr "Rejeitado"
+
+#: apps/shop/enums.py:93
+msgid "enum.shop-product-purchase-status.refunded"
+msgstr "Estornado"
+
+#: apps/shop/filters.py:8
+msgid "filter.token"
+msgstr "Token"
+
+#: apps/shop/forms.py:56
+msgid "checkout.description.subscription"
+msgstr "Assinatura"
+
+#: apps/shop/forms.py:79
+msgid "checkout.description.credit-purchase"
+msgstr "Compra de Créditos"
+
+#: apps/shop/forms.py:102
+msgid "checkout.description.product-purchase"
+msgstr "Compra de Produto"
+
+#: apps/shop/gateways/stripe.py:191
+msgid "message.subscription-canceled"
+msgstr "Sua assinatura foi cancelada com sucesso."
+
+#: apps/shop/gateways/stripe.py:194
+#, python-format
+msgid "message.error-cancel-subscription: %(error)s"
+msgstr "Erro ao cancelar a assinatura: %(error)s"
+
+#: apps/shop/models.py:27
+msgid "model.shop-product.name"
+msgstr "Produto"
+
+#: apps/shop/models.py:28
+msgid "model.shop-product.name.plural"
+msgstr "Produtos"
+
+#: apps/shop/models.py:60
+msgid "model.field.slug"
+msgstr "Slug"
+
+#: apps/shop/models.py:84 apps/shop/models.py:310 apps/shop/models.py:651
+#: apps/shop/models.py:774 apps/shop/models.py:1053
+msgid "model.field.currency"
+msgstr "Moeda"
+
+#: apps/shop/models.py:91 apps/shop/models.py:317 apps/shop/models.py:658
+#: apps/shop/models.py:781 templates/pages/shop/product/detail.html:28
+msgid "model.field.price"
+msgstr "Preço"
+
+#: apps/shop/models.py:146
+msgid "model.shop-product-file.name"
+msgstr "Arquivo de Produto"
+
+#: apps/shop/models.py:147
+msgid "model.shop-product-file.name.plural"
+msgstr "Arquivos de Produto"
+
+#: apps/shop/models.py:165 apps/shop/models.py:762
+msgid "model.field.product"
+msgstr "Produto"
+
+#: apps/shop/models.py:182
+msgid "model.field.file"
+msgstr "Arquivo"
+
+#: apps/shop/models.py:188
+msgid "model.field.file-type"
+msgstr "Tipo de Arquivo"
+
+#: apps/shop/models.py:195
+msgid "model.field.file-size"
+msgstr "Tamanho do Arquivo"
+
+#: apps/shop/models.py:209 apps/shop/models.py:368
+msgid "model.field.sort-order"
+msgstr "Ordem"
+
+#: apps/shop/models.py:241
+msgid "model.shop-plan.name"
+msgstr "Plano"
+
+#: apps/shop/models.py:242
+msgid "model.shop-plan.name.plural"
+msgstr "Planos"
+
+#: apps/shop/models.py:286
+msgid "model.field.plan-type"
+msgstr "Tipo de Plano"
+
+#: apps/shop/models.py:295
+msgid "model.field.payment-gateway"
+msgstr "Gateway de Pagamento"
+
+#: apps/shop/models.py:303 apps/shop/models.py:500
+msgid "model.field.external-id"
+msgstr "ID Externo"
+
+#: apps/shop/models.py:329
+msgid "model.field.frequency-type"
+msgstr "Tipo de Frequência"
+
+#: apps/shop/models.py:337
+msgid "model.field.frequency-amount"
+msgstr "Frequência"
+
+#: apps/shop/models.py:344
+msgid "model.field.featured"
+msgstr "Destaque"
+
+#: apps/shop/models.py:351
+msgid "model.field.bonus"
+msgstr "Bônus"
+
+#: apps/shop/models.py:354
+msgid "model.hint.plan-bonus"
+msgstr "Quantidade de bônus associada ao plano."
+
+#: apps/shop/models.py:440
+#, python-format
+msgid "plan.bonus.description: %(name)s %(bonus)s"
+msgstr "%(name)s (bônus de %(bonus)s)"
+
+#: apps/shop/models.py:454
+msgid "model.shop-subscription.name"
+msgstr "Assinatura"
+
+#: apps/shop/models.py:455
+msgid "model.shop-subscription.name.plural"
+msgstr "Assinaturas"
+
+#: apps/shop/models.py:492 apps/shop/models.py:643 apps/shop/models.py:766
+msgid "model.field.token"
+msgstr "Token"
+
+#: apps/shop/models.py:516
+msgid "model.field.expire-at"
+msgstr "Expira Em"
+
+#: apps/shop/models.py:597
+msgid "model.credit-puchase.name"
+msgstr "Compra de Crédito"
+
+#: apps/shop/models.py:598
+msgid "model.credit-purchase.name.plural"
+msgstr "Compras de Créditos"
+
+#: apps/shop/models.py:633 apps/shop/models.py:756 apps/shop/models.py:866
+#: apps/shop/models.py:1032
+msgid "model.field.customer"
+msgstr "Cliente"
+
+#: apps/shop/models.py:639
+msgid "model.field.plan"
+msgstr "Plano"
+
+#: apps/shop/models.py:664 apps/shop/models.py:787
+msgid "model.field.invoice-generated"
+msgstr "Nota Fiscal Gerada"
+
+#: apps/shop/models.py:720
+msgid "model.product-purchase.name"
+msgstr "Compra de Produto"
+
+#: apps/shop/models.py:721
+msgid "model.product-purchase.name.plural"
+msgstr "Compras de Produtos"
+
+#: apps/shop/models.py:835
+msgid "model.shop-credit-log.name"
+msgstr "Log de Crédito"
+
+#: apps/shop/models.py:836
+msgid "model.shop-credit-log.name.plural"
+msgstr "Log de Créditos"
+
+#: apps/shop/models.py:871 apps/shop/models.py:1037
+msgid "model.field.object-type"
+msgstr "Tipo do Objeto"
+
+#: apps/shop/models.py:880 apps/shop/models.py:1046
+msgid "model.field.object-id"
+msgstr "ID do Objeto"
+
+#: apps/shop/models.py:887 apps/shop/models.py:1060
+#: templates/admin/report/customer-gender-summary/pdf.html:13
+#: templates/admin/report/customer-gender-summary/view.html:21
+msgid "model.field.amount"
+msgstr "Valor"
+
+#: apps/shop/models.py:892
+msgid "model.field.is-refund"
+msgstr "Estorno"
+
+#: apps/shop/models.py:952
+msgid "message.refund-in-list"
+msgstr "(estorno)"
+
+#: apps/shop/models.py:1001
+msgid "model.shop-event-log.name"
+msgstr "Log de Evento"
+
+#: apps/shop/models.py:1002
+msgid "model.shop-event-log.name.plural"
+msgstr "Log de Eventos"
+
+#: apps/site/apps.py:8
+msgid "apps.site.description"
+msgstr "Site"
+
+#: apps/site/models.py:9
+msgid "model.site-profile.name"
+msgstr "Perfil do Site"
+
+#: apps/site/models.py:10
+msgid "model.site-profile.name.plural"
+msgstr "Perfil dos Sites"
+
+#: apps/site/models.py:30
+msgid "model.field.template-folder"
+msgstr "Pasta de Template"
+
+#: apps/user/admin.py:68
+msgid "admin.fieldsets.personal-info"
+msgstr "DADOS PESSOAIS"
+
+#: apps/user/admin.py:74
+msgid "admin.fieldsets.permissions"
+msgstr "PERMISSÕES"
+
+#: apps/user/helpers.py:66
+msgid "error.invalid-cpf"
+msgstr "CPF inválido."
+
+#: apps/user/management/commands/createadmin.py:61 apps/user/models.py:23
+#: apps/user/models.py:59 apps/user/models.py:134
+msgid "error.at-least-one-login-provider-is-required"
+msgstr "Pelo menos uma forma de fazer login é obrigatória."
+
+#: apps/user/management/commands/createadmin.py:64
+msgid "error.password-required"
+msgstr "A senha é obrigatória."
+
+#: apps/user/management/commands/createadmin.py:83
+msgid "message.superuser-created-successfully"
+msgstr "O super user foi criado com sucesso."
+
+#: apps/user/management/commands/createadmin.py:87
+#, python-brace-format
+msgid "error.superuser-creation-failed: {error}"
+msgstr "A criação do super user falhou: {error}"
+
+#: apps/user/models.py:47
+msgid "Superuser must have is_staff=True."
+msgstr "O superusuário deve ter is_staff=True."
+
+#: apps/user/models.py:51
+msgid "Superuser must have is_superuser=True."
+msgstr "O superusuário deve ter is_superuser=True."
+
+#: apps/user/models.py:67
+msgid "model.user.name"
+msgstr "Usuário"
+
+#: apps/user/models.py:68
+msgid "model.user.name.plural"
+msgstr "Usuários"
+
+#: apps/user/models.py:96
+msgid "model.field.admin-username"
+msgstr "E-mail"
+
+#: apps/web/forms/contact.py:32 templates/emails/site/contact.html:13
+msgid "model.field.message"
+msgstr "Mensagem"
+
+#: apps/web/forms/contact.py:48 templates/emails/site/contact.html:5
+msgid "email.contact.subject"
+msgstr "Nova Mensagem de Contato"
+
+#: apps/web/views/account.py:44
+msgid "message.login-success"
+msgstr "Login realizado com sucesso."
+
+#: apps/web/views/account.py:51
+msgid "error.invalid-login-data"
+msgstr "Dados de login incorretos, verifique e tente novamente."
+
+#: apps/web/views/account.py:116 apps/web/views/account.py:136
+msgid "message.account-updated"
+msgstr "Sua conta foi atualizada."
+
+#: apps/web/views/account.py:165
+msgid "message.error.account-has-subscriptions"
+msgstr ""
+"Sua conta tem assinaturas ativas. Você precisa cancelá-las antes de encerrar "
+"sua conta."
+
+#: apps/web/views/account.py:176
+msgid "message.account-deleted"
+msgstr "Sua conta e dados foram excluídos."
+
+#: apps/web/views/account.py:234
+msgid "message.shop-invalid-cancel-action"
+msgstr "Ação de cancelamento inválida."
+
+#: apps/web/views/contact.py:15
+msgid "message.contact-message-sent"
+msgstr "Sua mensagem de contato foi enviada com sucesso."
+
+#: apps/web/views/shop/shop_web.py:74
+msgid "message.shop-invalid-plan-type"
+msgstr "Ação inválida."
+
+#: apps/web/views/shop/shop_web.py:83
+msgid "message.shop-already-subscriber"
+msgstr ""
+"Você já é assinante. Para realizar uma nova assinatura, é necessário "
+"cancelar a assinatura atual primeiro."
+
+#: apps/web/views/shop/shop_web.py:116 apps/web/views/shop/shop_web.py:146
+msgid "message.shop-plan-not-found"
+msgstr "Plano não encontrado."
+
+#: apps/web/views/shop/shop_web.py:139 apps/web/views/shop/shop_web.py:170
+#: apps/web/views/shop/shop_web.py:202
+msgid "message.shop-invalid-action"
+msgstr "Ação inválida."
+
+#: apps/web/views/shop/shop_web.py:177 apps/web/views/shop/shop_web.py:352
+msgid "message.shop-product-not-found"
+msgstr "Produto não encontrado."
+
+#: apps/web/views/shop/shop_web.py:206 apps/web/views/shop/shop_web.py:249
+msgid "message.shop-invalid-type"
+msgstr "Ação inválida."
+
+#: apps/web/views/shop/shop_web.py:213
+msgid "message.shop-invalid-external-reference"
+msgstr "Ação inválida."
+
+#: apps/web/views/shop/shop_web.py:270 apps/web/views/shop/shop_web.py:291
+#: apps/web/views/shop/shop_web.py:312
+msgid "message.shop-paid-item-not-found"
+msgstr "Item pago não encontrado."
+
+#: pyaa/admin.py:9
+msgid "admin.name"
+msgstr "PyAA"
+
+#: pyaa/admin.py:31
+msgid "admin.group.site-content"
+msgstr "Conteúdo do site"
+
+#: pyaa/settings/dev.py:181
+msgid "language.en"
+msgstr "Inglês"
+
+#: pyaa/settings/dev.py:182
+msgid "language.pt-br"
+msgstr "Português"
+
+#: pyaa/views.py:33
+msgid "error.upload-image.invalid-format"
+msgstr "Formato de arquivo inválido"
+
+#: pyaa/views.py:47
+msgid "error.upload-image.file-exists"
+msgstr "Arquivo já existe"
+
+#: pyaa/views.py:56
+msgid "error.upload-image.success"
+msgstr "Imagem enviada com sucesso"
+
+#: pyaa/views.py:60
+msgid "error.upload-image.invalid-request"
+msgstr "Requisição inválida"
+
+#: templates/admin/app_list.html:9
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr "Modelos na aplicação %(name)s"
+
+#: templates/admin/app_list.html:26
+msgid "Add"
+msgstr "Adicionar"
+
+#: templates/admin/app_list.html:33
+msgid "View"
+msgstr "Visualizar"
+
+#: templates/admin/app_list.html:35
+msgid "Change"
+msgstr "Alterar"
+
+#: templates/admin/app_list.html:47
+msgid "You don't have permission to view or edit anything."
+msgstr "Você não tem permissão para visualizar ou editar nada."
+
+#: templates/admin/login.html:4
+msgid "Error:"
+msgstr "Erro:"
+
+#: templates/admin/login.html:44
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Por favor, corrija o erro abaixo."
+msgstr[1] "Por favor, corrija os erros abaixo."
+
+#: templates/admin/login.html:60
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+"Você está autenticado como %(username)s, mas não tem autorização para "
+"acessar esta página. Gostaria de entrar com uma conta diferente?"
+
+#: templates/admin/login.html:85
+msgid "Forgotten your password or username?"
+msgstr "Esqueceu sua senha ou nome de usuário?"
+
+#: templates/admin/login.html:89
+msgid "Log in"
+msgstr "Entrar"
+
+#: templates/admin/report/base/base_report.html:12
+msgid "button.export-to-pdf"
+msgstr "Exportar para PDF"
+
+#: templates/admin/report/base/base_report_pdf.html:21
+#: templates/admin/report/base/base_report_pdf.html:25
+#: templates/admin/report/customer-gender-summary/view.html:45
+#: templates/admin/report/customer-gender-summary/view.html:49
+msgid "title.report.chart"
+msgstr "Gráfico do Relatório"
+
+#: templates/admin/report/base/base_report_pdf.html:29
+#: templates/admin/report/customer-gender-summary/view.html:54
+msgid "admin.report-list-data.empty"
+msgstr "Nenhum dado encontrado."
+
+#: templates/admin/report/customer-gender-summary/pdf.html:26
+#: templates/admin/report/customer-gender-summary/view.html:36
+msgid "model.field.footer-total"
+msgstr "Total"
+
+#: templates/emails/account/signup.html:9
+#: templates/emails/credits/credit_added.html:13
+#: templates/emails/credits/credit_purchase_paid.html:9
+#: templates/emails/products/product_purchase_paid.html:9
+msgid "email.greeting"
+msgstr "Olá"
+
+#: templates/emails/account/signup.html:11
+msgid "email.signup.welcome-message"
+msgstr "Bem-vindo à nossa plataforma! Estamos felizes em ter você conosco."
+
+#: templates/emails/account/signup.html:14
+msgid "email.signup.account-ready"
+msgstr "Sua conta está pronta para uso!"
+
+#: templates/emails/account/signup.html:17
+msgid "email.signup.recommendation"
+msgstr "Recomendamos que você explore todos os recursos que oferecemos."
+
+#: templates/emails/account/signup.html:21
+msgid "email.signup.access-button"
+msgstr "Acessar Minha Conta"
+
+#: templates/emails/account/signup.html:25
+msgid "email.signup.support-message"
+msgstr "Se precisar de ajuda, nossa equipe de suporte está à disposição."
+
+#: templates/emails/credits/credit_added.html:6
+msgid "email.bonus-credits.subject"
+msgstr "Créditos Adicionados à Sua Conta"
+
+#: templates/emails/credits/credit_added.html:8
+msgid "email.credits.subject"
+msgstr "Créditos Adicionados à Sua Conta"
+
+#: templates/emails/credits/credit_added.html:16
+msgid "email.bonus-credits.message"
+msgstr ""
+"Temos ótimas notícias! Créditos bônus foram adicionados à sua conta em nossa "
+"plataforma."
+
+#: templates/emails/credits/credit_added.html:18
+#: templates/emails/credits/credit_added.html:21
+msgid "email.bonus-credits.title"
+msgstr "Créditos Bônus"
+
+#: templates/emails/credits/credit_added.html:24
+msgid "email.bonus-credits.amount"
+msgstr "Créditos Bônus Adicionados"
+
+#: templates/emails/credits/credit_added.html:27
+msgid "email.credits.message"
+msgstr ""
+"Temos ótimas notícias! Créditos foram adicionados à sua conta em nossa "
+"plataforma."
+
+#: templates/emails/credits/credit_added.html:32
+#: templates/emails/credits/credit_added.html:37
+msgid "email.credits.title"
+msgstr "Créditos"
+
+#: templates/emails/credits/credit_added.html:42
+msgid "email.credits.main-credits"
+msgstr "Créditos Principais"
+
+#: templates/emails/credits/credit_added.html:43
+#: templates/emails/credits/credit_purchase_paid.html:27
+msgid "email.credits.bonus-credits"
+msgstr "Créditos Bônus"
+
+#: templates/emails/credits/credit_added.html:44
+#: templates/emails/credits/credit_purchase_paid.html:28
+msgid "email.credits.total-credits"
+msgstr "Total de Créditos"
+
+#: templates/emails/credits/credit_added.html:46
+msgid "email.credits.amount"
+msgstr "Créditos Adicionados"
+
+#: templates/emails/credits/credit_added.html:51
+msgid "email.credits.enjoy-message"
+msgstr ""
+"Aproveite seus créditos para usar os recursos disponíveis em nossa "
+"plataforma."
+
+#: templates/emails/credits/credit_added.html:55
+#: templates/emails/credits/credit_purchase_paid.html:36
+msgid "email.credits.view-button"
+msgstr "Ver Meus Créditos"
+
+#: templates/emails/credits/credit_added.html:59
+#: templates/emails/credits/credit_purchase_paid.html:40
+msgid "email.credits.thank-you"
+msgstr "Obrigado por nos escolher!"
+
+#: templates/emails/credits/credit_purchase_paid.html:11
+msgid "email.credit-purchase-paid.confirmation-message"
+msgstr "Confirmamos o recebimento do seu pagamento pela compra de créditos."
+
+#: templates/emails/credits/credit_purchase_paid.html:22
+msgid "email.credit-purchase-paid.total-value"
+msgstr "Valor total"
+
+#: templates/emails/credits/credit_purchase_paid.html:23
+msgid "email.credit-purchase-paid.purchase-date"
+msgstr "Data da Compra"
+
+#: templates/emails/credits/credit_purchase_paid.html:24
+msgid "email.credit-purchase-paid.acquired-credits"
+msgstr "Créditos adquiridos"
+
+#: templates/emails/credits/credit_purchase_paid.html:32
+msgid "email.credit-purchase-paid.enjoy-message"
+msgstr ""
+"Aproveite seus créditos adquiridos para usar os recursos da nossa plataforma."
+
+#: templates/emails/layouts/base.html:72
+msgid "email.base.content"
+msgstr ""
+"Obrigado por entrar em contato conosco. Entraremos em contato com você em "
+"breve."
+
+#: templates/emails/layouts/base.html:82
+msgid "email.base.footer"
+msgstr "Você está recebendo este e-mail porque interagiu com nosso site."
+
+#: templates/emails/products/product_purchase_paid.html:11
+msgid "email.product-purchase-paid.confirmation-message"
+msgstr ""
+"Sua compra de produto foi confirmada com sucesso. Obrigado pela sua compra!"
+
+#: templates/emails/products/product_purchase_paid.html:22
+msgid "email.product-purchase-paid.total-value"
+msgstr "Valor Total"
+
+#: templates/emails/products/product_purchase_paid.html:23
+msgid "email.product-purchase-paid.purchase-date"
+msgstr "Data da Compra"
+
+#: templates/emails/products/product_purchase_paid.html:26
+msgid "email.product-purchase-paid.download-message"
+msgstr "Você pode acessar seu produto adquirido em sua conta."
+
+#: templates/emails/products/product_purchase_paid.html:30
+msgid "email.product-purchase-paid.view-button"
+msgstr "Ver Minhas Compras"
+
+#: templates/emails/products/product_purchase_paid.html:34
+msgid "email.product-purchase-paid.thank-you"
+msgstr "Obrigado pela sua compra!"
+
+#: templates/emails/site/contact.html:9
+msgid "email.contact.title"
+msgstr ""
+"Você recebeu uma nova mensagem através do formulário de contato no site."
+
+#: templates/pages/account/credit_purchases.html:12
+msgid "title.account-credit-purchases"
+msgstr "Minhas Compras de Crédito"
+
+#: templates/pages/account/credit_purchases.html:20
+#: templates/pages/account/credits.html:19
+msgid "table.header.image"
+msgstr "Imagem"
+
+#: templates/pages/account/credit_purchases.html:21
+msgid "table.header.plan"
+msgstr "Plano"
+
+#: templates/pages/account/credit_purchases.html:22
+#: templates/pages/account/credits.html:22
+#: templates/pages/account/subscriptions.html:23
+msgid "table.header.created-at"
+msgstr "Criado Em"
+
+#: templates/pages/account/credit_purchases.html:23
+#: templates/pages/account/subscriptions.html:21
+msgid "table.header.status"
+msgstr "Status"
+
+#: templates/pages/account/credit_purchases.html:47
+#: templates/pages/account/credits.html:52
+#: templates/pages/account/product_purchases.html:81
+#: templates/pages/account/subscriptions.html:75
+#: templates/pages/content/index.html:31 templates/pages/gallery/index.html:25
+#: templates/pages/gallery/view.html:27
+#: templates/pages/shop/checkout/index.html:141
+#: templates/pages/shop/plans.html:60
+#: templates/pages/shop/product/index.html:25
+msgid "list-data.empty"
+msgstr "Nenhum dado encontrado."
+
+#: templates/pages/account/credit_purchases.html:61
+#: templates/pages/account/credits.html:66
+#: templates/pages/account/product_purchases.html:87
+#: templates/pages/account/subscriptions.html:89
+#: templates/pages/gallery/view.html:37
+msgid "button.back"
+msgstr "Voltar"
+
+#: templates/pages/account/credits.html:11
+msgid "title.account-credits"
+msgstr "Meus Créditos"
+
+#: templates/pages/account/credits.html:20
+msgid "table.header.description"
+msgstr "Descrição"
+
+#: templates/pages/account/credits.html:21
+msgid "table.header.amount"
+msgstr "Quantidade"
+
+#: templates/pages/account/delete.html:11
+msgid "title.account-delete"
+msgstr "Excluir Conta"
+
+#: templates/pages/account/delete.html:16
+msgid "subtitle.account-delete"
+msgstr ""
+"Tem certeza de que deseja excluir sua conta?<br>Isso excluirá "
+"permanentemente seu perfil e qualquer conteúdo que você tenha gerado."
+
+#: templates/pages/account/delete.html:26
+msgid "button.account-delete-confirm"
+msgstr "Sim, Excluir Minha Conta"
+
+#: templates/pages/account/delete.html:32
+#: templates/pages/account/update_avatar.html:43
+#: templates/pages/account/update_profile.html:30
+msgid "button.cancel"
+msgstr "Cancelar"
+
+#: templates/pages/account/login.html:16
+msgid "title.account-login"
+msgstr "Login"
+
+#: templates/pages/account/login.html:18
+msgid "message.account-login.welcome-back"
+msgstr "Bem-vindo de volta! Sentimos sua falta!"
+
+#: templates/pages/account/login.html:32 templates/pages/account/signup.html:32
+#: templates/pages/contact/index.html:25
+msgid "button.send"
+msgstr "Enviar"
+
+#: templates/pages/account/login.html:37
+msgid "message.account-login.no-account"
+msgstr "Não tem uma conta?"
+
+#: templates/pages/account/login.html:41
+msgid "message.account-login.signup"
+msgstr "Cadastre-se"
+
+#: templates/pages/account/logout_success.html:13
+msgid "title.account-logout-success"
+msgstr "Você Saiu da Sua Conta"
+
+#: templates/pages/account/logout_success.html:22
+msgid "subtitle.account-logout-success"
+msgstr ""
+"Você se desconectou com sucesso.<br><br>Sentiremos sua falta por aqui!"
+"<br><br>Quando estiver pronto(a) para retornar, estaremos de braços abertos "
+"esperando por você.<br><br>Até breve!"
+
+#: templates/pages/account/logout_success.html:26
+msgid "button.login-my-account"
+msgstr "Entrar em Minha Conta"
+
+#: templates/pages/account/product_purchases.html:13
+msgid "title.account-product-purchases"
+msgstr "Minhas Compras de Produto"
+
+#: templates/pages/account/product_purchases.html:44
+#: templates/pages/shop/product/detail.html:63
+msgid "title.shop-product-files"
+msgstr "Arquivos do Produto"
+
+#: templates/pages/account/product_purchases.html:62
+#: templates/pages/shop/product/detail.html:88
+msgid "button.download"
+msgstr "Baixar"
+
+#: templates/pages/account/profile.html:24
+msgid "title.account-profile"
+msgstr "Perfil"
+
+#: templates/pages/account/profile.html:26
+msgid "subtitle.my-account"
+msgstr "Minha Conta"
+
+#: templates/pages/account/profile.html:31
+#: templates/partials/customer_data.html:11
+msgid "customer.credits"
+msgstr "Créditos"
+
+#: templates/pages/account/profile.html:33
+#: templates/partials/customer_data.html:13
+msgid "customer.no-credits"
+msgstr "Sem créditos"
+
+#: templates/pages/account/profile.html:50
+#: templates/pages/shop/payment/error.html:66
+#: templates/pages/shop/payment/pending.html:66
+#: templates/pages/shop/payment/success.html:66
+msgid "button.account-product-purchases"
+msgstr "Minhas Compras de Produto"
+
+#: templates/pages/account/profile.html:62
+msgid "button.account-credits"
+msgstr "Meus Créditos"
+
+#: templates/pages/account/profile.html:70
+#: templates/pages/shop/payment/error.html:58
+#: templates/pages/shop/payment/pending.html:58
+#: templates/pages/shop/payment/success.html:58
+msgid "button.account-credit-purchases"
+msgstr "Minhas Compras de Crédito"
+
+#: templates/pages/account/profile.html:82
+#: templates/pages/shop/payment/error.html:50
+#: templates/pages/shop/payment/pending.html:50
+#: templates/pages/shop/payment/success.html:50
+msgid "button.account-subscriptions"
+msgstr "Minhas Assinaturas"
+
+#: templates/pages/account/profile.html:88
+msgid "subtitle.account-settings"
+msgstr "Minha Conta"
+
+#: templates/pages/account/profile.html:96
+msgid "button.update-profile"
+msgstr "Atualizar Perfil"
+
+#: templates/pages/account/profile.html:106
+msgid "button.update-avatar"
+msgstr "Atualizar Avatar"
+
+#: templates/pages/account/profile.html:113
+msgid "subtitle.danger-zone"
+msgstr "Danger Zone"
+
+#: templates/pages/account/profile.html:121
+msgid "button.account-delete"
+msgstr "Excluir Conta"
+
+#: templates/pages/account/profile.html:131
+msgid "button.account-logout"
+msgstr "Sair"
+
+#: templates/pages/account/signup.html:16
+msgid "title.account-signup"
+msgstr "Cadastro"
+
+#: templates/pages/account/signup.html:18
+msgid "message.account-signup.create-account"
+msgstr "Crie uma conta para continuar!"
+
+#: templates/pages/account/signup.html:37
+msgid "message.account-signup.has-account"
+msgstr "Já tem uma conta?"
+
+#: templates/pages/account/signup.html:39
+msgid "message.account-signup.login"
+msgstr "Faça login"
+
+#: templates/pages/account/signup_success.html:13
+msgid "title.account-signup-success"
+msgstr "Cadastro Realizado Com Sucesso"
+
+#: templates/pages/account/signup_success.html:22
+msgid "subtitle.account-signup-success"
+msgstr ""
+"Bem-vindo à nossa plataforma! Sua conta foi criada com sucesso e estamos "
+"felizes em tê-lo(a) conosco."
+
+#: templates/pages/account/signup_success.html:26
+msgid "button.profile"
+msgstr "Minha Conta"
+
+#: templates/pages/account/signup_success.html:33
+msgid "button.continue-next-url"
+msgstr "Continuar"
+
+#: templates/pages/account/subscriptions.html:12
+msgid "title.account-subscriptions"
+msgstr "Minhas Assinaturas"
+
+#: templates/pages/account/subscriptions.html:20
+msgid "table.header.plan-name"
+msgstr "Plano"
+
+#: templates/pages/account/subscriptions.html:22
+msgid "table.header.expire-at"
+msgstr "Expira Em"
+
+#: templates/pages/account/subscriptions.html:24
+msgid "table.header.actions"
+msgstr "Ações"
+
+#: templates/pages/account/subscriptions.html:44
+msgid "button.cancel-subscription"
+msgstr "Cancelar Assinatura"
+
+#: templates/pages/account/subscriptions.html:52
+msgid "model.title.cancel-subscription"
+msgstr "Cancelar Assinatura"
+
+#: templates/pages/account/subscriptions.html:56
+msgid "message.subscription.cancel-confirmation"
+msgstr "Tem certeza de que deseja cancelar sua assinatura?"
+
+#: templates/pages/account/subscriptions.html:59
+msgid "button.no"
+msgstr "Não"
+
+#: templates/pages/account/subscriptions.html:61
+msgid "button.yes-cancel"
+msgstr "Sim, Cancelar"
+
+#: templates/pages/account/update_avatar.html:12
+msgid "title.account-update-avatar"
+msgstr "Atualizar Avatar"
+
+#: templates/pages/account/update_avatar.html:37
+#: templates/pages/account/update_profile.html:24
+msgid "button.update"
+msgstr "Atualizar"
+
+#: templates/pages/account/update_profile.html:11
+msgid "title.account-update-profile"
+msgstr "Atualizar Perfil"
+
+#: templates/pages/contact/index.html:14
+msgid "title.contact"
+msgstr "Contate-nos"
+
+#: templates/pages/content/index.html:23
+msgid "button.continue-reading"
+msgstr "Continue Lendo"
+
+#: templates/pages/gallery/index.html:9
+msgid "title.gallery.index"
+msgstr "Lista de Galerias"
+
+#: templates/pages/home/index.html:9 templates/partials/footer.html:25
+#: templates/partials/head.html:15 templates/partials/head.html:18
+#: templates/partials/head.html:26 templates/partials/head.html:33
+#: templates/partials/head.html:34
+msgid "site.name"
+msgstr "Aplicação Python Avançada"
+
+#: templates/pages/home/index.html:17 templates/partials/customer_data.html:4
+#, python-format
+msgid "Hi %(name)s!"
+msgstr "Oi %(name)s!"
+
+#: templates/pages/home/index.html:23 templates/partials/header.html:71
+msgid "menu.logout"
+msgstr "Sair"
+
+#: templates/pages/home/index.html:29 templates/partials/header.html:77
+msgid "menu.login"
+msgstr "Entrar"
+
+#: templates/pages/shop/checkout/index.html:53
+msgid "subtitle.checkout-details"
+msgstr "Detalhes"
+
+#: templates/pages/shop/checkout/index.html:58
+msgid "checkout.price"
+msgstr "Preço de venda"
+
+#: templates/pages/shop/checkout/index.html:67
+msgid "checkout.discount"
+msgstr "Desconto"
+
+#: templates/pages/shop/checkout/index.html:76
+msgid "checkout.shipping"
+msgstr "Frete"
+
+#: templates/pages/shop/checkout/index.html:85
+msgid "checkout.delivery"
+msgstr "Prazo de entrega (estimado)"
+
+#: templates/pages/shop/checkout/index.html:93
+msgid "checkout.total-price"
+msgstr "Valor total"
+
+#: templates/pages/shop/checkout/index.html:105
+msgid "subtitle.shipping-address"
+msgstr "Endereço de Entrega"
+
+#: templates/pages/shop/checkout/index.html:116
+msgid "subtitle.options"
+msgstr "Opções"
+
+#: templates/pages/shop/checkout/index.html:129
+msgid "button.pay"
+msgstr "Efetuar Pagamento"
+
+#: templates/pages/shop/payment/error.html:18
+msgid "message.shop-payment-error.title"
+msgstr "Falha no Pagamento"
+
+#: templates/pages/shop/payment/error.html:22
+msgid "message.shop-payment-error.subtitle"
+msgstr "Seu pagamento não foi concluído ou ocorreu algum erro."
+
+#: templates/pages/shop/payment/error.html:28
+#: templates/pages/shop/payment/pending.html:28
+#: templates/pages/shop/payment/success.html:28
+msgid "message.shop-payment-date"
+msgstr "Data do pagamento:"
+
+#: templates/pages/shop/payment/error.html:36
+#: templates/pages/shop/payment/pending.html:36
+#: templates/pages/shop/payment/success.html:36
+msgid "message.shop-payment-status"
+msgstr "Status do pagamento:"
+
+#: templates/pages/shop/payment/pending.html:18
+msgid "message.shop-payment-pending.title"
+msgstr "Pagamento Pendente"
+
+#: templates/pages/shop/payment/pending.html:22
+msgid "message.shop-payment-pending.subtitle"
+msgstr "Seu pagamento está sendo processado."
+
+#: templates/pages/shop/payment/success.html:18
+msgid "message.shop-payment-success.title"
+msgstr "Pagamento Concluído"
+
+#: templates/pages/shop/payment/success.html:22
+msgid "message.shop-payment-success.subtitle"
+msgstr "Seu pagamento foi processado com sucesso."
+
+#: templates/pages/shop/plans.html:11
+msgid "title.shop.plans.credit-purchase"
+msgstr "Comprar Créditos"
+
+#: templates/pages/shop/plans.html:13
+msgid "title.shop.plans"
+msgstr "Preços"
+
+#: templates/pages/shop/plans.html:45
+msgid "button.shop-select-subscription-plan"
+msgstr "Escolher Plano"
+
+#: templates/pages/shop/plans.html:49
+msgid "button.shop-select-credit-plan"
+msgstr "Comprar Agora"
+
+#: templates/pages/shop/product/detail.html:37
+#: templates/pages/shop/product/detail.html:41
+msgid "button.buy-now"
+msgstr "Comprar Agora"
+
+#: templates/pages/shop/product/detail.html:92
+msgid "button.purchase-to-download"
+msgstr "Compre para Baixar"
+
+#: templates/pages/shop/product/index.html:9
+msgid "title.shop-products.index"
+msgstr "Produtos"
+
+#: templates/partials/footer.html:15
+msgid "site.privacy"
+msgstr "Política de Privacidade"
+
+#: templates/partials/footer.html:21
+msgid "site.terms"
+msgstr "Termos e Condições"
+
+#: templates/partials/head.html:10 templates/partials/head.html:19
+msgid "site.description"
+msgstr ""
+"PyAA é uma poderosa aplicação de template em Python + Django, open-source, "
+"projetada para construir aplicações web robustas"
+
+#: templates/partials/head.html:11
+msgid "site.keywords"
+msgstr ""
+"python, django, web applications, open-source, python framework, django "
+"template, python development, django development, web app builder, python "
+"web development, django web development, robust applications, django "
+"templates, open-source web apps, django framework, pyaa, python templates, "
+"open-source framework"
+
+#: templates/partials/head.html:12
+msgid "site.author"
+msgstr "Paulo Coutinho"
+
+#: templates/partials/header.html:7
+msgid "site.small-name"
+msgstr "PYAA"
+
+#: templates/partials/header.html:22 templates/partials/header.html:24
+msgid "menu.credits"
+msgstr "Créditos"
+
+#: templates/partials/header.html:32
+msgid "menu.home"
+msgstr "Início"
+
+#: templates/partials/header.html:37
+msgid "menu.gallery"
+msgstr "Galerias"
+
+#: templates/partials/header.html:42
+msgid "menu.shop"
+msgstr "Loja"
+
+#: templates/partials/header.html:47
+msgid "menu.shop.plans-subscription"
+msgstr "Assinaturas"
+
+#: templates/partials/header.html:52
+msgid "menu.shop.plans-credit-purchase"
+msgstr "Créditos"
+
+#: templates/partials/header.html:57
+msgid "menu.shop.products"
+msgstr "Produtos"
+
+#: templates/partials/header.html:66
+msgid "menu.profile"
+msgstr "Minha Conta"
+
+#: templates/partials/header.html:82
+msgid "menu.signup"
+msgstr "Cadastre-se"
+
+#: templates/partials/header.html:89
+msgid "menu.contact"
+msgstr "Contato"
+
+#: templates/partials/language-selector.html:8
+#: templates/partials/language-selector.html:40
+msgid "title.language-selector"
+msgstr "Seletor de Idioma"
+
+#: templates/partials/language-selector.html:16
+msgid "language.selector.label"
+msgstr "Selecione o Idioma"
+
+#: templates/partials/language-selector.html:32
+msgid "button.change"
+msgstr "Mudar"
+
+#: templates/partials/paginator.html:4
+msgid "pagination.navigation"
+msgstr "Navegação de Páginas"
+
+#: templates/partials/paginator.html:8 templates/partials/paginator.html:9
+msgid "pagination.first"
+msgstr "Primeira"
+
+#: templates/partials/paginator.html:14 templates/partials/paginator.html:15
+msgid "pagination.previous"
+msgstr "Anterior"
+
+#: templates/partials/paginator.html:22
+#, python-format
+msgid "Page %(number)s of %(num_pages)s"
+msgstr "Página %(number)s de %(num_pages)s"
+
+#: templates/partials/paginator.html:29 templates/partials/paginator.html:30
+msgid "pagination.next"
+msgstr "Próxima"
+
+#: templates/partials/paginator.html:35 templates/partials/paginator.html:36
+msgid "pagination.last"
+msgstr "Última"

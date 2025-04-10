@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {% trans "title.shop-products.index" %}
+    {% endelement %}
+
+    <div class="p-4 text-center w-100">
+        {% if page_obj %}
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 justify-content-center d-flex">
+                {% for item in page_obj %}
+                <div class="col mb-3">
+                    <a href="{% url 'shop_product_details' item.id item.slug %}" class="text-decoration-none">
+                        <img src="{{ item.get_image_url }}" style="height: 100px;" class="img-fluid mb-1" />
+                        <p class="small mb-0 text-truncate">{{ item.name }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>{% trans "list-data.empty" %}</p>
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        {% include 'partials/paginator.html' %}
+    </div>
+</div>
+
+{% endblock content %}

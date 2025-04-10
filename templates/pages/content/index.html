@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {{ category.name }}
+    {% endelement %}
+
+    <div class="p-4 text-center w-100">
+        {% if page_obj %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+            {% for content in page_obj %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title mb-2">{{ content.title }}</h5>
+                        <p class="card-text text-muted small">{{ content.published_at|date:"M d, Y" }}</p>
+                        <p class="card-text flex-grow-1">{{ content.content|striptags|truncatewords:30 }}</p>
+                        <a href="{% url 'content_by_id' content.id %}" class="btn btn-primary mt-3">
+                            {% trans "button.continue-reading" %} &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>{% trans "list-data.empty" %}</p>
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        {% include 'partials/paginator.html' %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,10 @@
+[run]
+source = .
+branch = True
+
+[report]
+omit =
+    */tests/*
+    */migrations/*
+    */static/*
+    manage.py

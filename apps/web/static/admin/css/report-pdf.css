@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('file://{{ font_path }}/roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin: 20px;
+}
+
+.report-results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.report-results th,
+.report-results td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.report-results tr:nth-child(odd) {
+    background: #fff;
+}
+
+.report-results tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+.report-results tr.footer {
+    font-weight: bold;
+    border-top: 2px solid #DDDDDD;
+}
+
+.report-results th {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.report-title {
+    text-align: center;
+}
+
+.report-chart-title {
+    margin: 0;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.report-chart-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.report-chart {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+}

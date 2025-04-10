@@ -1,0 +1,41 @@
+{% extends 'emails/layouts/base.html' %}
+{% load i18n %}
+
+{% block email_subject %}
+    {% translate "email.credit-purchase-paid.subject" %}
+{% endblock %}
+
+{% block email_content %}
+    <p style="margin-bottom: 15px;">{% translate "email.greeting" %} {{ customer.user.get_full_name }},</p>
+
+    <p style="margin-bottom: 15px;">{% translate "email.credit-purchase-paid.confirmation-message" %}</p>
+
+    <div style="background-color: #f8f9fa; padding: 15px; margin: 20px 0;">
+        <h3 style="margin-top: 0; color: #333;">{{ plan.name }}</h3>
+
+        {% if plan_image_url %}
+        <div style="text-align: center; margin-bottom: 15px;">
+            <img src="{{ plan_image_url }}" alt="{{ plan.name }}" style="max-width: 200px; height: auto;">
+        </div>
+        {% endif %}
+
+        <p style="margin-bottom: 5px;"><strong>{% translate "email.credit-purchase-paid.total-value" %}:</strong> {{ purchase.price|floatformat:2 }}</p>
+        <p style="margin-bottom: 5px;"><strong>{% translate "email.credit-purchase-paid.purchase-date" %}:</strong> {{ purchase.created_at }}</p>
+        <p style="margin-bottom: 5px;"><strong>{% translate "email.credit-purchase-paid.acquired-credits" %}:</strong> {{ plan.credits }}</p>
+
+        {% if plan.bonus_credits > 0 %}
+        <p style="margin-bottom: 5px;"><strong>{% translate "email.credits.bonus-credits" %}:</strong> {{ plan.bonus_credits }}</p>
+        <p style="margin-bottom: 0;"><strong>{% translate "email.credits.total-credits" %}:</strong> {{ plan.credits|add:plan.bonus_credits }}</p>
+        {% endif %}
+    </div>
+
+    <p style="text-align: center; margin-bottom: 15px;">{% translate "email.credit-purchase-paid.enjoy-message" %}</p>
+
+    <div style="text-align: center; margin: 25px 0;">
+        <a href="{{ profile_url }}" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">
+            {% translate "email.credits.view-button" %}
+        </a>
+    </div>
+
+    <p style="text-align: center; margin-top: 20px;">{% translate "email.credits.thank-you" %}</p>
+{% endblock %}

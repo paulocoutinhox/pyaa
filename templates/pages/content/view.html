@@ -1,0 +1,25 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {{ content.title }}
+    {% endelement %}
+
+    {% if content.published_at %}
+    <div class="text-center">
+        <small>
+            {{ content.published_at|date:"M d, Y" }}
+        </small>
+    </div>
+    {% endif %}
+
+    <div class="mt-5 content-body">
+        {{ content.content | safe }}
+    </div>
+</div>
+
+{% endblock content %}

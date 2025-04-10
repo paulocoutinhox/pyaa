@@ -1,0 +1,146 @@
+{% extends 'layouts/base.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load pyaa %}
+{% load pyaa_format %}
+{% load pyaa_system %}
+
+{% block content %}
+<div class="container">
+    {% if checkout.checkout_step == "checkout" %}
+
+        <div class="row justify-content-center py-5">
+            <div class="col-12 col-lg-8">
+                <div class="card border-0 bg-body-tertiary rounded-3">
+                    <div class="card-body p-4">
+                        <!-- Errors -->
+                        {% if checkout.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <ul class="mb-0">
+                                    {% for error in checkout.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% include "partials/message_close_button.html" %}
+                            </div>
+                        {% endif %}
+
+                        <!-- Page Title -->
+                        {% element page_title %}
+                            {{ checkout.title }}
+                        {% endelement %}
+
+                        <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
+                            {% csrf_token %}
+
+                            <!-- Name and Image -->
+                            <div class="text-center mb-4">
+                                <h4 class="h5 mb-3">
+                                    {{ checkout.description }}
+                                </h4>
+
+                                {% if checkout.photo_url %}
+                                    <img src="{{ checkout.photo_url }}"
+                                        class="img-fluid rounded"
+                                        style="max-height: 150px; object-fit: contain;">
+                                {% endif %}
+                            </div>
+
+                            <!-- Details -->
+                            <div class="mb-4">
+                                <h5 class="mb-3 fw-bold">
+                                    {% trans 'subtitle.checkout-details' %}
+                                </h5>
+                                <ul class="list-group list-group-flush bg-transparent">
+                                    {% if checkout.show_price_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.price' %}:</span>
+                                        <strong>
+                                            {% format_currency checkout.price checkout.currency false %}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if checkout.show_discount_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.discount' %}:</span>
+                                        <strong>
+                                            {% format_currency checkout.discount checkout.currency false %}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if checkout.show_shipping_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.shipping' %}:</span>
+                                        <strong>
+                                            {% format_currency checkout.shipping_price checkout.currency false %}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
+
+                                    {% if checkout.show_delivery_data %}
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent">
+                                        <span>{% trans 'checkout.delivery' %}:</span>
+                                        <strong>
+                                            {{ checkout.delivery_description }}
+                                        </strong>
+                                    </li>
+                                    {% endif %}
+
+                                    <li class="list-group-item d-flex justify-content-between bg-transparent border-bottom">
+                                        <span>{% trans 'checkout.total-price' %}:</span>
+                                        <strong class="text-primary-emphasis">
+                                            {% format_currency checkout.total_price checkout.currency false %}
+                                        </strong>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Shipping Address -->
+                            {% if checkout.show_address_data %}
+                                <div class="mb-4">
+                                    <h5 class="mb-3 fw-bold">
+                                        {% trans 'subtitle.shipping-address' %}
+                                    </h5>
+
+                                    <p class="mb-0">{{ checkout.shipping_address_description }}</p>
+                                </div>
+                            {% endif %}
+
+                            <!-- Options -->
+                            {% if checkout.options and checkout.options|length > 0 %}
+                            <div class="mb-4">
+                                <h5 class="mb-3 fw-bold">
+                                    {% trans 'subtitle.options' %}
+                                </h5>
+
+                                <div class="mb-3 {% if checkout.options|length <= 1 %} d-none {% endif %}">
+                                    {% element single_field field=checkout.options %}
+                                    {% endelement %}
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <!-- Pay Button -->
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    {% trans 'button.pay' %}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% elif checkout.checkout_step == "payment" %}
+
+        <p class="text-center">
+            {% trans "list-data.empty" %}
+        </p>
+
+    {% endif %}
+</div>
+{% endblock content %}

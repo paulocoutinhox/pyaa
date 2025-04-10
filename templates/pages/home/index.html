@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {% translate "site.name" %}
+    {% endelement %}
+
+    <br>
+
+    {% if user.is_authenticated %}
+    <div class="text-center">
+        <p>
+            {% blocktranslate with name=user.customer %}Hi {{ name }}!{% endblocktranslate %}
+        </p>
+
+        <br>
+
+        <a href="{% url 'account_logout' %}" class="btn btn-danger">
+            {% translate "menu.logout" %}
+        </a>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <a href="{% url 'account_login' %}" class="btn btn-primary">
+            {% translate "menu.login" %}
+        </a>
+    </div>
+    {% endif %}
+
+    {% include 'partials/language-selector.html' %}
+</div>
+
+{% endblock content %}

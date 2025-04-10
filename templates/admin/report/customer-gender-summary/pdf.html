@@ -1,0 +1,31 @@
+{% extends "admin/report/base/base_report_pdf.html" %}
+
+{% load i18n %}
+
+{% block report_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    {% trans 'model.field.gender' %}
+                </th>
+                <th>
+                    {% trans 'model.field.amount' %}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.gender_display }}</td>
+                <td>{{ row.total }}</td>
+            </tr>
+            {% endfor %}
+
+            <tr class="footer">
+                <td>{% trans 'model.field.footer-total' %}</td>
+                <td>{{ data_footer.total }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

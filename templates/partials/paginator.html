@@ -1,0 +1,42 @@
+{% load i18n %}
+
+{% if page_obj.paginator.num_pages > 1 %}
+    <nav class="navigation" aria-label="{% trans 'pagination.navigation' %}">
+        <ul class="pagination pagination-gutter pagination-primary no-bg justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1" aria-label="{% trans 'pagination.first' %}">
+                    <span aria-hidden="true">&laquo; {% trans "pagination.first" %}</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                    aria-label="{% trans 'pagination.previous' %}">
+                    <span aria-hidden="true">{% trans "pagination.previous" %}</span>
+                </a>
+            </li>
+            {% endif %}
+
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">
+                    {% blocktrans with number=page_obj.number num_pages=page_obj.paginator.num_pages %}Page {{ number }} of {{ num_pages }}{% endblocktrans %}
+                </span>
+            </li>
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+                    aria-label="{% trans 'pagination.next' %}">
+                    <span aria-hidden="true">{% trans "pagination.next" %}</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"
+                    aria-label="{% trans 'pagination.last' %}">
+                    <span aria-hidden="true">{% trans "pagination.last" %} &raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
