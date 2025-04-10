@@ -73,7 +73,43 @@ services:
       - DJANGO_SETTINGS_MODULE=pyaa.settings.prod
       - APP_ALLOWED_HOSTS=your-domain.com
       - APP_CSRF_TRUSTED_ORIGINS=https://your-domain.com
-      - APP_PAYMENT_HOST=your-domain.com
+    volumes:
+      - ./pyaa/logs:/app/logs
+      - ./pyaa/cache:/app/cache
+      - ./pyaa/db:/app/db
+      - ./pyaa/media:/app/media
+      - ./pyaa/static:/app/static
+
+  pyaa-worker:
+    build:
+      context: pyaa
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - pyaa
+    environment:
+      - DJANGO_SETTINGS_MODULE=pyaa.settings.prod
+      - APP_ALLOWED_HOSTS=your-domain.com
+      - APP_CSRF_TRUSTED_ORIGINS=https://your-domain.com
+    volumes:
+      - ./pyaa/logs:/app/logs
+      - ./pyaa/cache:/app/cache
+      - ./pyaa/db:/app/db
+      - ./pyaa/media:/app/media
+      - ./pyaa/static:/app/static
+    command: /app/worker-entrypoint.sh
+
+  pyaa-cron:
+    build:
+      context: pyaa
+      dockerfile: Dockerfile.cron
+    restart: always
+    depends_on:
+      - pyaa
+    environment:
+      - DJANGO_SETTINGS_MODULE=pyaa.settings.prod
+      - APP_ALLOWED_HOSTS=your-domain.com
+      - APP_CSRF_TRUSTED_ORIGINS=https://your-domain.com
     volumes:
       - ./pyaa/logs:/app/logs
       - ./pyaa/cache:/app/cache
