@@ -94,7 +94,7 @@ Sample of response structure:
 ```json
 {
     "email": [
-        "cliente com este email já existe."
+        "customer with this email already exists."
     ]
 }
 ```
