@@ -1,3 +1,5 @@
+import re
+
 from django.urls import reverse
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
@@ -68,3 +70,21 @@ class ReadonlyLinksMixin:
                     del form.base_fields[field_name]
 
         return form
+
+
+class SanitizeDigitFieldsMixin:
+    """
+    Mixin to automatically sanitize specified fields by removing all non-digit characters.
+    """
+
+    digit_only_fields = []
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        for field in getattr(self, "digit_only_fields", []):
+            value = cleaned_data.get(field)
+            if value:
+                cleaned_data[field] = re.sub(r"\D", "", str(value))
+
+        return cleaned_data

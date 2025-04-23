@@ -180,7 +180,7 @@ class UserHelperTest(TestCase):
                 UserHelper.validate_cpf(cpf_value)
 
             error = context.exception
-            self.assertEqual(error.message, "Invalid CPF.")
+            self.assertEqual(error.message, "Invalid CPF number.")
 
     def test_validate_cpf_empty(self):
         result = UserHelper.validate_cpf("")

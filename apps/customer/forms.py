@@ -7,6 +7,7 @@ from django.db import IntegrityError, transaction
 from django.db.models import ProtectedError
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
+from localflavor.br.forms import BRCPFField
 
 from apps.customer import enums, models
 from apps.customer.enums import CustomerGender
@@ -16,6 +17,7 @@ from apps.language.helpers import LanguageHelper
 from apps.user.helpers import UserHelper
 from apps.user.models import User
 from pyaa.fields import OnlyNumberCharField
+from pyaa.mixins import SanitizeDigitFieldsMixin
 
 User = get_user_model()
 
@@ -174,7 +176,9 @@ class CustomerSignupForm(forms.ModelForm):
         return customer
 
 
-class CustomerUpdateProfileForm(forms.Form):
+class CustomerUpdateProfileForm(SanitizeDigitFieldsMixin, forms.Form):
+    digit_only_fields = ["cpf"]
+
     first_name = forms.CharField(
         label=_("model.field.first-name"),
         max_length=150,
@@ -193,11 +197,10 @@ class CustomerUpdateProfileForm(forms.Form):
         required=False,
     )
 
-    cpf = OnlyNumberCharField(
+    cpf = BRCPFField(
         widget=forms.TextInput(attrs={"data-mask": "000.000.000-00"}),
         label=_("model.field.cpf"),
         required=False,
-        validators=[UserHelper.validate_cpf],
     )
 
     mobile_phone = OnlyNumberCharField(
