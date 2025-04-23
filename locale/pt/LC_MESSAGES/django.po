@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-10 04:45+0000\n"
+"POT-Creation-Date: 2025-04-23 08:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,26 +125,26 @@ msgstr "INFORMAÇÕES ADICIONAIS"
 #: apps/customer/admin.py:94 apps/shop/admin.py:227 apps/shop/admin.py:297
 #: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
 #: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
-#: apps/user/admin.py:86
+#: apps/user/admin.py:92
 msgid "admin.fieldsets.important-dates"
 msgstr "DATAS IMPORTANTES"
 
-#: apps/customer/admin.py:134 apps/customer/forms.py:81
-#: apps/customer/forms.py:191 apps/customer/serializers.py:38
+#: apps/customer/admin.py:134 apps/customer/forms.py:83
+#: apps/customer/forms.py:195 apps/customer/serializers.py:38
 #: apps/customer/serializers.py:107 apps/user/models.py:104
 #: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customer/admin.py:141 apps/customer/forms.py:198
+#: apps/customer/admin.py:141 apps/customer/forms.py:202
 #: apps/customer/serializers.py:44 apps/customer/serializers.py:113
-#: apps/user/admin.py:16 apps/user/admin.py:34 apps/user/models.py:111
+#: apps/user/admin.py:20 apps/user/admin.py:40 apps/user/models.py:111
 msgid "model.field.cpf"
 msgstr "CPF"
 
-#: apps/customer/admin.py:148 apps/customer/forms.py:206
+#: apps/customer/admin.py:148 apps/customer/forms.py:209
 #: apps/customer/serializers.py:50 apps/customer/serializers.py:119
-#: apps/user/admin.py:23 apps/user/admin.py:41 apps/user/models.py:119
+#: apps/user/admin.py:27 apps/user/admin.py:47 apps/user/models.py:119
 msgid "model.field.mobile-phone"
 msgstr "Celular"
 
@@ -176,65 +176,65 @@ msgstr "E-mail"
 msgid "filter.created-at"
 msgstr "Criado Em"
 
-#: apps/customer/forms.py:44
+#: apps/customer/forms.py:46
 msgid "model.field.login-username"
 msgstr "E-mail"
 
-#: apps/customer/forms.py:51
+#: apps/customer/forms.py:53
 msgid "model.field.login-password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:60 apps/customer/forms.py:179
+#: apps/customer/forms.py:62 apps/customer/forms.py:183
 #: apps/customer/serializers.py:28 apps/customer/serializers.py:97
 msgid "model.field.first-name"
 msgstr "Nome"
 
-#: apps/customer/forms.py:67 apps/customer/forms.py:185
+#: apps/customer/forms.py:69 apps/customer/forms.py:189
 #: apps/customer/serializers.py:33 apps/customer/serializers.py:102
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customer/forms.py:74 apps/customer/forms.py:216
+#: apps/customer/forms.py:76 apps/customer/forms.py:219
 #: apps/customer/models.py:84
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
 msgstr "Gênero"
 
-#: apps/customer/forms.py:88 apps/customer/serializers.py:56
+#: apps/customer/forms.py:90 apps/customer/serializers.py:56
 #: apps/customer/serializers.py:125
 msgid "model.field.password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:94
+#: apps/customer/forms.py:96
 msgid "model.field.accept-terms"
 msgstr "Aceitar Termos"
 
-#: apps/customer/forms.py:100 apps/web/forms/contact.py:44
+#: apps/customer/forms.py:102 apps/web/forms/contact.py:44
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/customer/forms.py:210 apps/customer/models.py:77
+#: apps/customer/forms.py:213 apps/customer/models.py:77
 msgid "model.field.nickname"
 msgstr "Apelido"
 
-#: apps/customer/forms.py:285 apps/user/helpers.py:18
+#: apps/customer/forms.py:288 apps/user/helpers.py:18
 msgid "error.email-already-used-by-other"
 msgstr "Este e-mail já está sendo usado."
 
-#: apps/customer/forms.py:287 apps/user/helpers.py:31
+#: apps/customer/forms.py:290 apps/user/helpers.py:31
 msgid "error.cpf-already-used-by-other"
 msgstr "Este CPF já está sendo usado."
 
-#: apps/customer/forms.py:290 apps/user/helpers.py:47
+#: apps/customer/forms.py:293 apps/user/helpers.py:47
 msgid "error.mobile-phone-already-used-by-other"
 msgstr "Este celular já está sendo usado."
 
-#: apps/customer/forms.py:294
+#: apps/customer/forms.py:297
 msgid "error.database-constraint-error"
 msgstr ""
 
-#: apps/customer/forms.py:298
+#: apps/customer/forms.py:301
 msgid "error.protected-object-cannot-be-deleted"
 msgstr ""
 
@@ -860,17 +860,13 @@ msgstr "Perfil dos Sites"
 msgid "model.field.template-folder"
 msgstr "Pasta de Template"
 
-#: apps/user/admin.py:68
+#: apps/user/admin.py:74
 msgid "admin.fieldsets.personal-info"
 msgstr "DADOS PESSOAIS"
 
-#: apps/user/admin.py:74
+#: apps/user/admin.py:80
 msgid "admin.fieldsets.permissions"
 msgstr "PERMISSÕES"
-
-#: apps/user/helpers.py:66
-msgid "error.invalid-cpf"
-msgstr "CPF inválido."
 
 #: apps/user/management/commands/createadmin.py:61 apps/user/models.py:23
 #: apps/user/models.py:59 apps/user/models.py:134
@@ -992,11 +988,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:181
+#: pyaa/settings/dev.py:182
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:182
+#: pyaa/settings/dev.py:183
 msgid "language.pt-br"
 msgstr "Português"
 

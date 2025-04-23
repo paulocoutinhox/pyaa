@@ -76,6 +76,7 @@ THIRD_PARTY_APPS = [
     "django_admin_listfilter_dropdown",
     "django_q",
     "django_translation_flags",
+    "localflavor",
 ]
 
 PROJECT_APPS = [

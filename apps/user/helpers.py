@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from pycpfcnpj import cpf
+from localflavor.br.validators import BRCPFValidator
 
 
 class UserHelper:
@@ -62,7 +62,8 @@ class UserHelper:
 
     @staticmethod
     def validate_cpf(value):
-        if value and not cpf.validate(value):
-            raise ValidationError(_("error.invalid-cpf"))
+        if value:
+            validator = BRCPFValidator()
+            validator(value)
 
         return value

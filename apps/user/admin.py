@@ -4,14 +4,18 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.forms import AdminUserCreationForm, UserChangeForm
 from django.utils.translation import gettext_lazy as _
+from localflavor.br.forms import BRCPFField
 
 from pyaa.fields import OnlyNumberCharField
+from pyaa.mixins import SanitizeDigitFieldsMixin
 
 User = get_user_model()
 
 
-class UserAdminForm(UserChangeForm):
-    cpf = OnlyNumberCharField(
+class UserAdminForm(SanitizeDigitFieldsMixin, UserChangeForm):
+    digit_only_fields = ["cpf"]
+
+    cpf = BRCPFField(
         widget=forms.TextInput(attrs={"data-mask": "000.000.000-00"}),
         label=_("model.field.cpf"),
         required=False,
@@ -28,8 +32,10 @@ class UserAdminForm(UserChangeForm):
         fields = "__all__"
 
 
-class UserAdminAddForm(AdminUserCreationForm):
-    cpf = OnlyNumberCharField(
+class UserAdminAddForm(SanitizeDigitFieldsMixin, AdminUserCreationForm):
+    digit_only_fields = ["cpf"]
+
+    cpf = BRCPFField(
         widget=forms.TextInput(attrs={"data-mask": "000.000.000-00"}),
         label=_("model.field.cpf"),
         required=False,
