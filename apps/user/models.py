@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -37,6 +38,13 @@ class UserManager(BaseUserManager):
     def create_user(self, username=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
+
+        # set user active status based on activation requirements
+        if "is_active" not in extra_fields:
+            extra_fields.setdefault(
+                "is_active", not settings.CUSTOMER_ACTIVATION_REQUIRED
+            )
+
         return self._create_user(username, password, **extra_fields)
 
     def create_superuser(self, username, password, **extra_fields):

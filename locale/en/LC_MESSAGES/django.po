@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-24 04:50+0000\n"
+"POT-Creation-Date: 2025-04-24 21:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "content categories"
 #: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
 #: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:616
 #: apps/shop/models.py:739 apps/shop/models.py:849 apps/shop/models.py:1015
-#: apps/user/models.py:81
+#: apps/user/models.py:89
 msgid "model.field.id"
 msgstr "ID"
 
@@ -60,7 +60,7 @@ msgid "model.field.tag.help"
 msgstr "Leave empty for auto generation."
 
 #: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:138 apps/gallery/models.py:75
+#: apps/customer/models.py:142 apps/gallery/models.py:75
 #: apps/language/models.py:56 apps/shop/models.py:104 apps/shop/models.py:214
 #: apps/shop/models.py:386 apps/shop/models.py:522 apps/shop/models.py:676
 #: apps/shop/models.py:799 apps/shop/models.py:903 apps/shop/models.py:1080
@@ -69,7 +69,7 @@ msgid "model.field.created-at"
 msgstr "Created At"
 
 #: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:143 apps/gallery/models.py:80
+#: apps/customer/models.py:147 apps/gallery/models.py:80
 #: apps/language/models.py:61 apps/shop/models.py:109 apps/shop/models.py:219
 #: apps/shop/models.py:391 apps/shop/models.py:527 apps/shop/models.py:681
 #: apps/shop/models.py:804 apps/site/models.py:42
@@ -131,20 +131,20 @@ msgstr "IMPORTANT DATES"
 
 #: apps/customer/admin.py:134 apps/customer/forms.py:83
 #: apps/customer/forms.py:195 apps/customer/serializers.py:38
-#: apps/customer/serializers.py:107 apps/user/models.py:104
+#: apps/customer/serializers.py:107 apps/user/models.py:112
 #: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
 #: apps/customer/admin.py:141 apps/customer/forms.py:202
 #: apps/customer/serializers.py:44 apps/customer/serializers.py:113
-#: apps/user/admin.py:20 apps/user/admin.py:40 apps/user/models.py:111
+#: apps/user/admin.py:20 apps/user/admin.py:40 apps/user/models.py:119
 msgid "model.field.cpf"
 msgstr "CPF"
 
 #: apps/customer/admin.py:148 apps/customer/forms.py:209
 #: apps/customer/serializers.py:50 apps/customer/serializers.py:119
-#: apps/user/admin.py:27 apps/user/admin.py:47 apps/user/models.py:119
+#: apps/user/admin.py:27 apps/user/admin.py:47 apps/user/models.py:127
 msgid "model.field.mobile-phone"
 msgstr "Mobile Phone"
 
@@ -259,35 +259,39 @@ msgstr "Confirm Password"
 msgid "error.passwords-do-not-match"
 msgstr "Passwords do not match"
 
-#: apps/customer/helpers.py:192
+#: apps/customer/helpers.py:197
 msgid "error.nickname-already-used-by-other"
 msgstr "This nickname is already in use."
 
-#: apps/customer/helpers.py:215
+#: apps/customer/helpers.py:220
 msgid "email.signup.subject"
 msgstr "Welcome To %(site_name)s"
 
-#: apps/customer/helpers.py:260
+#: apps/customer/helpers.py:265
 msgid "email.bonus-credits-added.subject"
 msgstr "Credits Added to Your Account"
 
-#: apps/customer/helpers.py:262
+#: apps/customer/helpers.py:267
 msgid "email.credits-added.subject"
 msgstr "Credits Added to Your Account"
 
-#: apps/customer/helpers.py:339
+#: apps/customer/helpers.py:344
 #: templates/emails/credits/credit_purchase_paid.html:5
 msgid "email.credit-purchase-paid.subject"
 msgstr "Payment Confirmation"
 
-#: apps/customer/helpers.py:402
+#: apps/customer/helpers.py:407
 #: templates/emails/products/product_purchase_paid.html:5
 msgid "email.product-purchase-paid.subject"
 msgstr "Product Purchase Confirmation"
 
-#: apps/customer/helpers.py:496
+#: apps/customer/helpers.py:501
 msgid "email.password-recovery.subject"
 msgstr "Password Recovery"
+
+#: apps/customer/helpers.py:547
+msgid "email.activation.subject"
+msgstr "Activate Your Account"
 
 #: apps/customer/models.py:19
 msgid "model.customer.name"
@@ -304,7 +308,7 @@ msgstr "User"
 #: apps/customer/models.py:62 apps/shop/models.py:47 apps/shop/models.py:264
 #: apps/shop/models.py:476 apps/shop/models.py:625 apps/shop/models.py:748
 #: apps/shop/models.py:858 apps/shop/models.py:1024 apps/site/models.py:19
-#: apps/user/models.py:90
+#: apps/user/models.py:98
 msgid "model.field.site"
 msgstr "Site"
 
@@ -321,25 +325,25 @@ msgstr "Timezone"
 msgid "model.field.activate-token"
 msgstr "Activation Token"
 
-#: apps/customer/models.py:118
+#: apps/customer/models.py:120
 msgid "model.field.recovery-token"
 msgstr "Recovery Token"
 
-#: apps/customer/models.py:125 apps/shop/models.py:323
+#: apps/customer/models.py:129 apps/shop/models.py:323
 msgid "model.field.credits"
 msgstr "Credits"
 
-#: apps/customer/models.py:132 apps/customer/serializers.py:62
+#: apps/customer/models.py:136 apps/customer/serializers.py:62
 #: apps/customer/serializers.py:131
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customer/models.py:160
+#: apps/customer/models.py:164
 #, python-brace-format
 msgid "model.str.customer #{id}"
 msgstr "Customer #{id}"
 
-#: apps/customer/models.py:178
+#: apps/customer/models.py:182
 msgid "error.site-id-required"
 msgstr "The site code is required."
 
@@ -893,8 +897,8 @@ msgstr "PERSONAL INFO"
 msgid "admin.fieldsets.permissions"
 msgstr "PERMISSIONS"
 
-#: apps/user/management/commands/createadmin.py:61 apps/user/models.py:23
-#: apps/user/models.py:59 apps/user/models.py:134
+#: apps/user/management/commands/createadmin.py:61 apps/user/models.py:24
+#: apps/user/models.py:67 apps/user/models.py:142
 msgid "error.at-least-one-login-provider-is-required"
 msgstr "At least one login method is required."
 
@@ -911,23 +915,23 @@ msgstr "The super user was created successfully."
 msgid "error.superuser-creation-failed: {error}"
 msgstr "Super user creation failed: {error}"
 
-#: apps/user/models.py:47
+#: apps/user/models.py:55
 msgid "Superuser must have is_staff=True."
 msgstr "Superuser must have is_staff=True."
 
-#: apps/user/models.py:51
+#: apps/user/models.py:59
 msgid "Superuser must have is_superuser=True."
 msgstr "Superuser must have is_superuser=True."
 
-#: apps/user/models.py:67
+#: apps/user/models.py:75
 msgid "model.user.name"
 msgstr "User"
 
-#: apps/user/models.py:68
+#: apps/user/models.py:76
 msgid "model.user.name.plural"
 msgstr "Users"
 
-#: apps/user/models.py:96
+#: apps/user/models.py:104
 msgid "model.field.admin-username"
 msgstr "E-mail"
 
@@ -939,31 +943,40 @@ msgstr "Message"
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
-#: apps/web/views/account.py:48
+#: apps/web/views/account.py:49
 msgid "message.login-success"
 msgstr "Login successful."
 
-#: apps/web/views/account.py:55
+#: apps/web/views/account.py:56
 msgid "error.invalid-login-data"
 msgstr "Incorrect login data, please check and try again."
 
-#: apps/web/views/account.py:120 apps/web/views/account.py:140
+#: apps/web/views/account.py:126 apps/web/views/account.py:146
 msgid "message.account-updated"
 msgstr "Your account was updated."
 
-#: apps/web/views/account.py:169
+#: apps/web/views/account.py:175
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Your account has active subscriptions. You need to cancel them before "
 "closing your account."
 
-#: apps/web/views/account.py:180
+#: apps/web/views/account.py:186
 msgid "message.account-deleted"
 msgstr "Your account and data were deleted."
 
-#: apps/web/views/account.py:238
+#: apps/web/views/account.py:244
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
+
+#: apps/web/views/account.py:433
+msgid "message.account-activation-success"
+msgstr "Your account has been activated successfully!"
+
+#: apps/web/views/account.py:436
+msgid "error.invalid-activation-token"
+msgstr ""
+"Invalid activation token. Please check your email for the correct link."
 
 #: apps/web/views/contact.py:15
 msgid "message.contact-message-sent"
@@ -1106,6 +1119,7 @@ msgstr "No data found."
 msgid "model.field.footer-total"
 msgstr "Total"
 
+#: templates/emails/account/activation.html:9
 #: templates/emails/account/password_recovery.html:9
 #: templates/emails/account/signup.html:9
 #: templates/emails/credits/credit_added.html:13
@@ -1113,6 +1127,28 @@ msgstr "Total"
 #: templates/emails/products/product_purchase_paid.html:9
 msgid "email.greeting"
 msgstr "Hello"
+
+#: templates/emails/account/activation.html:11
+msgid "email.activation.welcome-message"
+msgstr "Thank you for registering. We're excited to have you on board!"
+
+#: templates/emails/account/activation.html:14
+msgid "email.activation.instructions"
+msgstr ""
+"To complete your registration, please activate your account by clicking the "
+"button below."
+
+#: templates/emails/account/activation.html:17
+msgid "email.activation.click-button"
+msgstr "Click the button below to activate your account:"
+
+#: templates/emails/account/activation.html:21
+msgid "email.activation.activate-button"
+msgstr "Activate My Account"
+
+#: templates/emails/account/activation.html:25
+msgid "email.activation.if-not-requested"
+msgstr "If you did not register for this account, please ignore this email."
 
 #: templates/emails/account/password_recovery.html:11
 msgid "email.password-recovery.message"
@@ -1281,6 +1317,40 @@ msgstr "Thank you for your purchase!"
 #: templates/emails/site/contact.html:9
 msgid "email.contact.title"
 msgstr "You have received a new message through the contact form on website."
+
+#: templates/pages/account/activation_pending.html:11
+msgid "title.account-activation-pending"
+msgstr "Account Activation Pending"
+
+#: templates/pages/account/activation_pending.html:20
+msgid "subtitle.account-activation-pending"
+msgstr "Thank you for registering!"
+
+#: templates/pages/account/activation_pending.html:23
+msgid "message.account-activation-pending"
+msgstr ""
+"We've sent an activation link to your email address. Please check your inbox "
+"and click the link to activate your account."
+
+#: templates/pages/account/activation_pending.html:28
+msgid "message.account-activation-check-spam"
+msgstr ""
+"If you don't see the email in your inbox, please check your spam folder."
+
+#: templates/pages/account/activation_success.html:13
+msgid "title.account-activation-success"
+msgstr "Account Activated Successfully"
+
+#: templates/pages/account/activation_success.html:22
+msgid "subtitle.account-activation-success"
+msgstr ""
+"Your account has been activated successfully. You can now log in to access "
+"your account."
+
+#: templates/pages/account/activation_success.html:26
+#: templates/pages/account/reset_password_success.html:26
+msgid "button.go-to-login"
+msgstr "Go to Login"
 
 #: templates/pages/account/credit_purchases.html:12
 msgid "title.account-credit-purchases"
@@ -1534,10 +1604,6 @@ msgid "message.account-reset-password-success.instructions"
 msgstr ""
 "Your password has been successfully reset. You can now log in with your new "
 "password."
-
-#: templates/pages/account/reset_password_success.html:26
-msgid "button.go-to-login"
-msgstr "Go to Login"
 
 #: templates/pages/account/signup.html:16
 msgid "title.account-signup"

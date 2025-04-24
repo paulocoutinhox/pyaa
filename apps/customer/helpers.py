@@ -19,8 +19,13 @@ class CustomerHelper:
     @staticmethod
     @transaction.atomic
     def post_save(customer: Customer):
-        # send email
-        CustomerHelper.send_signup_mail(customer)
+        # check if account activation is required
+        if settings.CUSTOMER_ACTIVATION_REQUIRED:
+            # send activation email
+            CustomerHelper.send_activation_mail(customer)
+        else:
+            # send welcome email
+            CustomerHelper.send_signup_mail(customer)
 
         # add initial credits
         plan_id = settings.CUSTOMER_SIGNUP_PLAN
@@ -521,3 +526,78 @@ class CustomerHelper:
         )
 
         return True
+
+    @staticmethod
+    def send_activation_mail(customer):
+        """
+        Send account activation email to a customer
+
+        :param customer: the customer who just signed up
+        """
+        # get the customer's email
+        customer_email = customer.user.email
+
+        if not customer_email:
+            return
+
+        # get the current site
+        current_site = Site.objects.get_current()
+
+        # set the subject
+        subject = _("email.activation.subject")
+
+        # set recipient to customer's email
+        recipient_list = [customer_email]
+
+        # build the activation URL
+        activation_path = reverse(
+            "account_activate", kwargs={"token": customer.activate_token}
+        )
+        activation_url = f"https://{current_site.domain}{activation_path}"
+
+        context = {
+            "subject": subject,
+            "customer": customer,
+            "site": current_site,
+            "activation_url": activation_url,
+            "token": customer.activate_token,
+        }
+
+        MailHelper.send_mail_async(
+            subject=subject,
+            to=recipient_list,
+            template="emails/account/activation.html",
+            context=context,
+            reply_to=[settings.DEFAULT_TO_EMAIL],
+        )
+
+        return True
+
+    @staticmethod
+    @transaction.atomic
+    def activate_account(token):
+        """
+        Activate a customer account using an activation token
+
+        :param token: the activation token (UUID)
+        :return: the customer object if found and activated, None otherwise
+        """
+        try:
+            # find customer with matching activation token
+            customer = Customer.objects.select_for_update().get(activate_token=token)
+
+            # activate the user
+            user = customer.user
+            user.is_active = True
+            user.save(update_fields=["is_active"])
+
+            # clear the activation token
+            customer.activate_token = None
+            customer.save(update_fields=["activate_token"])
+
+            # send the welcome email
+            CustomerHelper.send_signup_mail(customer)
+
+            return customer
+        except (Customer.DoesNotExist, ValueError):
+            return None

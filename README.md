@@ -15,7 +15,7 @@ PyAA is a powerful, open-source Python + Django template application designed to
 
 ## 🚀 Features
 
-- **User Management** – Handle user registration, login, profile management, and more.
+- **User Management** – Handle user registration, login, profile management, account recovery, configurable account activation, and more.
 - **Subscription Management** – Manage user subscriptions by credits or expiration date.
 - **Credit System** – Support for selling and managing user credits.
 - **Checkout System** – Complete payment flow for products and services.
