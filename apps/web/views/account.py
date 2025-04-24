@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -74,13 +75,18 @@ def account_signup_view(request):
 
         if form.is_valid():
             customer = form.save()
-            login(request, customer.user)
 
-            query_params = {"next": next_url} if next_url else {}
+            # check if activation is required
+            if settings.CUSTOMER_ACTIVATION_REQUIRED:
+                return redirect("account_activation_pending")
+            else:
+                # log the user in directly if activation not required
+                login(request, customer.user)
+                query_params = {"next": next_url} if next_url else {}
 
-            return redirect(
-                f"{resolve_url('account_signup_success')}?{urlencode(query_params)}"
-            )
+                return redirect(
+                    f"{resolve_url('account_signup_success')}?{urlencode(query_params)}"
+                )
     else:
         form = CustomerSignupForm()
 
@@ -411,6 +417,36 @@ def account_reset_password_success_view(request):
     return render(request, "pages/account/reset_password_success.html")
 
 
+def account_activation_pending_view(request):
+    return render(
+        request,
+        "pages/account/activation_pending.html",
+    )
+
+
+def account_activate_view(request, token):
+    try:
+        # activate the account
+        customer = CustomerHelper.activate_account(token)
+
+        if customer:
+            messages.success(request, _("message.account-activation-success"))
+            return redirect("account_activation_success")
+        else:
+            messages.error(request, _("error.invalid-activation-token"))
+            return redirect("home")
+    except Exception as e:
+        messages.error(request, str(e))
+        return redirect("home")
+
+
+def account_activation_success_view(request):
+    return render(
+        request,
+        "pages/account/activation_success.html",
+    )
+
+
 urlpatterns = [
     path(
         "account/signup/",
@@ -501,5 +537,20 @@ urlpatterns = [
         "account/reset-password/success/",
         account_reset_password_success_view,
         name="account_reset_password_success",
+    ),
+    path(
+        "account/activation/pending/",
+        account_activation_pending_view,
+        name="account_activation_pending",
+    ),
+    path(
+        "account/activate/<uuid:token>/",
+        account_activate_view,
+        name="account_activate",
+    ),
+    path(
+        "account/activation/success/",
+        account_activation_success_view,
+        name="account_activation_success",
     ),
 ]

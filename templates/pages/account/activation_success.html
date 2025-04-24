@@ -1,0 +1,32 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load pyaa %}
+
+{% block content %}
+
+{% url 'account_login' as url_account_login %}
+
+<div class="container">
+    {% element page_title %}
+        {% translate "title.account-activation-success" %}
+    {% endelement %}
+
+    <div class="text-center">
+        <img src="{% static 'images/success.png' %}" class="img-fluid" style="width: 100px;">
+    </div>
+
+    <div class="mt-5 text-center">
+        <p class="mb-5">
+            {% translate "subtitle.account-activation-success" %}
+        </p>
+        <p>
+            {% element button href=url_account_login tags="primary" %}
+                {% translate "button.go-to-login" %}
+            {% endelement %}
+        </p>
+    </div>
+</div>
+
+{% endblock content %}

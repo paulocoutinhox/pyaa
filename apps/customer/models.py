@@ -109,16 +109,20 @@ class Customer(models.Model):
 
     activate_token = models.UUIDField(
         _("model.field.activate-token"),
-        default=uuid.uuid4,
+        default=None,
         editable=False,
         unique=True,
+        blank=True,
+        null=True,
     )
 
     recovery_token = models.UUIDField(
         _("model.field.recovery-token"),
+        default=None,
+        editable=False,
+        unique=True,
         blank=True,
         null=True,
-        unique=True,
     )
 
     credits = models.IntegerField(
@@ -182,6 +186,12 @@ class Customer(models.Model):
     def setup_initial_data(self):
         if not self.pk:
             self.site = Site.objects.filter(id=settings.SITE_ID).first()
+
+            # set the activation token only if account activation is required
+            if settings.CUSTOMER_ACTIVATION_REQUIRED:
+                self.activate_token = uuid.uuid4()
+            else:
+                self.activate_token = None
 
     def save(self, *args, **kwargs):
         self.setup_initial_data()

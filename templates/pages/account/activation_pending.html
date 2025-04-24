@@ -1,0 +1,33 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    {% element page_title %}
+        {% translate "title.account-activation-pending" %}
+    {% endelement %}
+
+    <div class="text-center">
+        <img src="{% static 'images/account-email-activation.png' %}" class="img-fluid" style="width: 180px;">
+    </div>
+
+    <div class="mt-5 text-center">
+        <p class="mb-3">
+            {% translate "subtitle.account-activation-pending" %}
+        </p>
+        <p class="mb-5">
+            {% translate "message.account-activation-pending" %}
+        </p>
+
+        <div class="alert alert-info" role="alert">
+            <i class="bi bi-info-circle me-2"></i>
+            {% translate "message.account-activation-check-spam" %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

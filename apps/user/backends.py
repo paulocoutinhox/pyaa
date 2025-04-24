@@ -20,8 +20,8 @@ class MultiFieldModelBackend(BaseBackend):
             .first()
         )
 
-        # check if the provided password is correct
-        if user and user.check_password(password):
+        # check if the provided password is correct and user is active
+        if user and user.check_password(password) and user.is_active:
             return user
 
         return None
