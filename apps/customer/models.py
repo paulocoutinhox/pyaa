@@ -187,7 +187,7 @@ class Customer(models.Model):
         if not self.pk:
             self.site = Site.objects.filter(id=settings.SITE_ID).first()
 
-            # Set the activation token only if account activation is required
+            # set the activation token only if account activation is required
             if settings.CUSTOMER_ACTIVATION_REQUIRED:
                 self.activate_token = uuid.uuid4()
             else:
