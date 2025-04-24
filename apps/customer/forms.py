@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
-from django.db.models import ProtectedError
+from django.db.models import ProtectedError, Q
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
 from localflavor.br.forms import BRCPFField
@@ -321,3 +321,63 @@ class CustomerUpdateAvatarForm(forms.Form):
         customer = user.customer
         customer.avatar = self.cleaned_data["avatar"]
         customer.save()
+
+
+class CustomerPasswordRecoveryForm(forms.Form):
+    identifier = forms.CharField(
+        label=_("model.field.recovery-identifier"),
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(),
+        help_text=_("model.field.recovery-identifier.help"),
+    )
+
+    captcha = ReCaptchaField(
+        widget=ReCaptchaV3,
+        label=_("model.field.captcha"),
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        identifier = cleaned_data.get("identifier")
+
+        if identifier:
+            # try to find user by
+            user = User.objects.filter(
+                Q(email=identifier) | Q(cpf=identifier) | Q(mobile_phone=identifier),
+                site=Site.objects.get_current(),
+            ).first()
+
+            if user:
+                cleaned_data["user"] = user
+
+        return cleaned_data
+
+
+class CustomerResetPasswordForm(forms.Form):
+    password = forms.CharField(
+        label=_("model.field.new-password"),
+        max_length=255,
+        required=True,
+        widget=forms.PasswordInput(),
+    )
+
+    password_confirmation = forms.CharField(
+        label=_("model.field.confirm-password"),
+        max_length=255,
+        required=True,
+        widget=forms.PasswordInput(),
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_confirmation = cleaned_data.get("password_confirmation")
+
+        if password and password_confirmation:
+            if password != password_confirmation:
+                raise ValidationError(
+                    {"password_confirmation": _("error.passwords-do-not-match")}
+                )
+
+        return cleaned_data

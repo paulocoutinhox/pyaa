@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-23 08:12+0000\n"
+"POT-Creation-Date: 2025-04-24 04:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,7 +210,8 @@ msgstr "Password"
 msgid "model.field.accept-terms"
 msgstr "Accept Terms"
 
-#: apps/customer/forms.py:102 apps/web/forms/contact.py:44
+#: apps/customer/forms.py:102 apps/customer/forms.py:337
+#: apps/web/forms/contact.py:44
 msgid "model.field.captcha"
 msgstr "Captcha"
 
@@ -238,31 +239,55 @@ msgstr ""
 msgid "error.protected-object-cannot-be-deleted"
 msgstr ""
 
-#: apps/customer/helpers.py:190
+#: apps/customer/forms.py:328
+msgid "model.field.recovery-identifier"
+msgstr "Email, CPF, or Mobile Phone"
+
+#: apps/customer/forms.py:332
+msgid "model.field.recovery-identifier.help"
+msgstr "Enter your email, CPF or mobile phone number to recover your password"
+
+#: apps/customer/forms.py:359
+msgid "model.field.new-password"
+msgstr "New Password"
+
+#: apps/customer/forms.py:366
+msgid "model.field.confirm-password"
+msgstr "Confirm Password"
+
+#: apps/customer/forms.py:380
+msgid "error.passwords-do-not-match"
+msgstr "Passwords do not match"
+
+#: apps/customer/helpers.py:192
 msgid "error.nickname-already-used-by-other"
 msgstr "This nickname is already in use."
 
-#: apps/customer/helpers.py:213
+#: apps/customer/helpers.py:215
 msgid "email.signup.subject"
 msgstr "Welcome To %(site_name)s"
 
-#: apps/customer/helpers.py:258
+#: apps/customer/helpers.py:260
 msgid "email.bonus-credits-added.subject"
 msgstr "Credits Added to Your Account"
 
-#: apps/customer/helpers.py:260
+#: apps/customer/helpers.py:262
 msgid "email.credits-added.subject"
 msgstr "Credits Added to Your Account"
 
-#: apps/customer/helpers.py:337
+#: apps/customer/helpers.py:339
 #: templates/emails/credits/credit_purchase_paid.html:5
 msgid "email.credit-purchase-paid.subject"
 msgstr "Payment Confirmation"
 
-#: apps/customer/helpers.py:400
+#: apps/customer/helpers.py:402
 #: templates/emails/products/product_purchase_paid.html:5
 msgid "email.product-purchase-paid.subject"
 msgstr "Product Purchase Confirmation"
+
+#: apps/customer/helpers.py:496
+msgid "email.password-recovery.subject"
+msgstr "Password Recovery"
 
 #: apps/customer/models.py:19
 msgid "model.customer.name"
@@ -914,29 +939,29 @@ msgstr "Message"
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
-#: apps/web/views/account.py:44
+#: apps/web/views/account.py:48
 msgid "message.login-success"
 msgstr "Login successful."
 
-#: apps/web/views/account.py:51
+#: apps/web/views/account.py:55
 msgid "error.invalid-login-data"
 msgstr "Incorrect login data, please check and try again."
 
-#: apps/web/views/account.py:116 apps/web/views/account.py:136
+#: apps/web/views/account.py:120 apps/web/views/account.py:140
 msgid "message.account-updated"
 msgstr "Your account was updated."
 
-#: apps/web/views/account.py:165
+#: apps/web/views/account.py:169
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Your account has active subscriptions. You need to cancel them before "
 "closing your account."
 
-#: apps/web/views/account.py:176
+#: apps/web/views/account.py:180
 msgid "message.account-deleted"
 msgstr "Your account and data were deleted."
 
-#: apps/web/views/account.py:234
+#: apps/web/views/account.py:238
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
 
@@ -1081,12 +1106,35 @@ msgstr "No data found."
 msgid "model.field.footer-total"
 msgstr "Total"
 
+#: templates/emails/account/password_recovery.html:9
 #: templates/emails/account/signup.html:9
 #: templates/emails/credits/credit_added.html:13
 #: templates/emails/credits/credit_purchase_paid.html:9
 #: templates/emails/products/product_purchase_paid.html:9
 msgid "email.greeting"
 msgstr "Hello"
+
+#: templates/emails/account/password_recovery.html:11
+msgid "email.password-recovery.message"
+msgstr ""
+"We received a request to reset your password. If you didn't make this "
+"request, you can safely ignore this email."
+
+#: templates/emails/account/password_recovery.html:14
+msgid "email.password-recovery.instructions"
+msgstr "Click the button below to create a new password."
+
+#: templates/emails/account/password_recovery.html:19
+msgid "email.password-recovery.reset-button"
+msgstr "Reset Password"
+
+#: templates/emails/account/password_recovery.html:23
+msgid "email.password-recovery.expiration-notice"
+msgstr "For security reasons, this link will expire in 24 hours."
+
+#: templates/emails/account/password_recovery.html:25
+msgid "email.password-recovery.ignore-message"
+msgstr "If you did not request a password reset, please ignore this email."
 
 #: templates/emails/account/signup.html:11
 msgid "email.signup.welcome-message"
@@ -1318,8 +1366,9 @@ msgstr "Login"
 msgid "message.account-login.welcome-back"
 msgstr "Welcome back! We missed you!"
 
-#: templates/pages/account/login.html:32 templates/pages/account/signup.html:32
-#: templates/pages/contact/index.html:25
+#: templates/pages/account/login.html:32
+#: templates/pages/account/password_recovery.html:28
+#: templates/pages/account/signup.html:32 templates/pages/contact/index.html:25
 msgid "button.send"
 msgstr "Send"
 
@@ -1330,6 +1379,14 @@ msgstr "Don't have an account?"
 #: templates/pages/account/login.html:41
 msgid "message.account-login.signup"
 msgstr "Sign Up"
+
+#: templates/pages/account/login.html:45
+msgid "message.account-login.forgot-password"
+msgstr "Forgot your password?"
+
+#: templates/pages/account/login.html:49
+msgid "button.recover-password"
+msgstr "Recover Password"
 
 #: templates/pages/account/logout_success.html:13
 msgid "title.account-logout-success"
@@ -1345,6 +1402,35 @@ msgstr ""
 #: templates/pages/account/logout_success.html:26
 msgid "button.login-my-account"
 msgstr "Login to My Account"
+
+#: templates/pages/account/password_recovery.html:16
+msgid "title.account-password-recovery"
+msgstr "Password Recovery"
+
+#: templates/pages/account/password_recovery.html:18
+msgid "message.account-password-recovery.instructions"
+msgstr ""
+"Enter your email, CPF, or mobile phone number to receive password reset "
+"instructions."
+
+#: templates/pages/account/password_recovery.html:33
+msgid "message.account-password-recovery.remember-password"
+msgstr "Remember your password?"
+
+#: templates/pages/account/password_recovery.html:37
+#: templates/pages/account/password_recovery_success.html:26
+msgid "button.back-to-login"
+msgstr "Back to Login"
+
+#: templates/pages/account/password_recovery_success.html:16
+msgid "title.account-password-recovery-success"
+msgstr "Check Your Email"
+
+#: templates/pages/account/password_recovery_success.html:22
+msgid "message.account-password-recovery-success.instructions"
+msgstr ""
+"If an account exists with the credentials you provided, we've sent password "
+"reset instructions to your email address."
 
 #: templates/pages/account/product_purchases.html:13
 msgid "title.account-product-purchases"
@@ -1426,6 +1512,32 @@ msgstr "Delete Account"
 #: templates/pages/account/profile.html:131
 msgid "button.account-logout"
 msgstr "Logout"
+
+#: templates/pages/account/reset_password.html:16
+msgid "title.account-reset-password"
+msgstr "Create New Password"
+
+#: templates/pages/account/reset_password.html:18
+msgid "message.account-reset-password.instructions"
+msgstr "Please enter your new password below."
+
+#: templates/pages/account/reset_password.html:28
+msgid "button.save"
+msgstr "Save New Password"
+
+#: templates/pages/account/reset_password_success.html:16
+msgid "title.account-reset-password-success"
+msgstr "Password Reset Successful"
+
+#: templates/pages/account/reset_password_success.html:22
+msgid "message.account-reset-password-success.instructions"
+msgstr ""
+"Your password has been successfully reset. You can now log in with your new "
+"password."
+
+#: templates/pages/account/reset_password_success.html:26
+msgid "button.go-to-login"
+msgstr "Go to Login"
 
 #: templates/pages/account/signup.html:16
 msgid "title.account-signup"

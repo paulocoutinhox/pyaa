@@ -3,6 +3,7 @@ from urllib.parse import urlencode
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import redirect, render, resolve_url
 from django.urls import path
 from django.utils.translation import gettext_lazy as _
@@ -10,10 +11,13 @@ from django.utils.translation import gettext_lazy as _
 from apps.customer.forms import (
     CustomerDeleteForm,
     CustomerLoginForm,
+    CustomerPasswordRecoveryForm,
+    CustomerResetPasswordForm,
     CustomerSignupForm,
     CustomerUpdateAvatarForm,
     CustomerUpdateProfileForm,
 )
+from apps.customer.helpers import CustomerHelper
 from apps.customer.models import Customer
 from apps.shop.enums import PaymentGatewayCancelAction, SubscriptionStatus
 from apps.shop.helpers import ShopHelper
@@ -341,6 +345,72 @@ def account_logout_success_view(request):
     return render(request, "pages/account/logout_success.html")
 
 
+def account_password_recovery_view(request):
+    if request.method == "POST":
+        form = CustomerPasswordRecoveryForm(request.POST)
+
+        if form.is_valid():
+            user = form.cleaned_data.get("user")
+
+            if user and hasattr(user, "customer"):
+                # send recovery email if user exists
+                CustomerHelper.send_password_recovery_email(user.customer)
+
+            # always redirect to success page regardless of whether user exists
+            return redirect("account_password_recovery_success")
+    else:
+        form = CustomerPasswordRecoveryForm()
+
+    return render(
+        request,
+        "pages/account/password_recovery.html",
+        {
+            "form": form,
+        },
+    )
+
+
+def account_password_recovery_success_view(request):
+    return render(request, "pages/account/password_recovery_success.html")
+
+
+def account_reset_password_view(request, token):
+    try:
+        # find customer with matching recovery token
+        customer = Customer.objects.get(recovery_token=token)
+    except (Customer.DoesNotExist, ValueError):
+        raise Http404("Invalid token")
+
+    if request.method == "POST":
+        form = CustomerResetPasswordForm(request.POST)
+
+        if form.is_valid():
+            # update the user's password
+            user = customer.user
+            user.set_password(form.cleaned_data["password"])
+            user.save()
+
+            # reset recovery token to null after successful password reset
+            CustomerHelper.reset_recovery_token(customer)
+
+            # redirect to success page
+            return redirect("account_reset_password_success")
+    else:
+        form = CustomerResetPasswordForm()
+
+    return render(
+        request,
+        "pages/account/reset_password.html",
+        {
+            "form": form,
+        },
+    )
+
+
+def account_reset_password_success_view(request):
+    return render(request, "pages/account/reset_password_success.html")
+
+
 urlpatterns = [
     path(
         "account/signup/",
@@ -411,5 +481,25 @@ urlpatterns = [
         "account/logout/success",
         account_logout_success_view,
         name="account_logout_success",
+    ),
+    path(
+        "account/password-recovery/",
+        account_password_recovery_view,
+        name="account_password_recovery",
+    ),
+    path(
+        "account/password-recovery/success/",
+        account_password_recovery_success_view,
+        name="account_password_recovery_success",
+    ),
+    path(
+        "account/reset-password/<uuid:token>/",
+        account_reset_password_view,
+        name="account_reset_password",
+    ),
+    path(
+        "account/reset-password/success/",
+        account_reset_password_success_view,
+        name="account_reset_password_success",
     ),
 ]

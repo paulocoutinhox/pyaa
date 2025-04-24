@@ -1,3 +1,5 @@
+import uuid
+
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
@@ -442,3 +444,80 @@ class CustomerHelper:
         Customer.objects.filter(id=customer_id).update(
             credits=current_credits + amount,
         )
+
+    @staticmethod
+    @transaction.atomic
+    def generate_recovery_token(customer):
+        """
+        Generate a new recovery token for a customer
+
+        :param customer: the customer object
+        :return: the new recovery token UUID
+        """
+        # create a new recovery token
+        new_token = uuid.uuid4()
+
+        # save it to the customer
+        customer.recovery_token = new_token
+        customer.save(update_fields=["recovery_token"])
+
+        return new_token
+
+    @staticmethod
+    def reset_recovery_token(customer):
+        """
+        Reset the recovery token to null after it's been used
+
+        :param customer: the customer object
+        """
+        customer.recovery_token = None
+        customer.save(update_fields=["recovery_token"])
+
+    @staticmethod
+    def send_password_recovery_email(customer):
+        """
+        Send password recovery email to a customer
+
+        :param customer: the customer who requested password recovery
+        """
+        # generate a new recovery token
+        recovery_token = CustomerHelper.generate_recovery_token(customer)
+
+        # get the customer's email
+        customer_email = customer.user.email
+
+        if not customer_email:
+            return False
+
+        # get the current site
+        current_site = customer.site
+
+        # set the subject
+        subject = _("email.password-recovery.subject")
+
+        # set recipient
+        recipient_list = [customer_email]
+
+        # build the recovery URL
+        recovery_path = reverse(
+            "account_reset_password", kwargs={"token": recovery_token}
+        )
+        recovery_url = f"https://{current_site.domain}{recovery_path}"
+
+        context = {
+            "subject": subject,
+            "customer": customer,
+            "site": current_site,
+            "recovery_url": recovery_url,
+            "token": recovery_token,
+        }
+
+        MailHelper.send_mail_async(
+            subject=subject,
+            to=recipient_list,
+            template="emails/account/password_recovery.html",
+            context=context,
+            reply_to=[settings.DEFAULT_TO_EMAIL],
+        )
+
+        return True

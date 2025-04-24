@@ -116,8 +116,8 @@ class Customer(models.Model):
 
     recovery_token = models.UUIDField(
         _("model.field.recovery-token"),
-        default=uuid.uuid4,
-        editable=False,
+        blank=True,
+        null=True,
         unique=True,
     )
 
