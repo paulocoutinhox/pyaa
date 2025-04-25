@@ -7,7 +7,7 @@ from django.db import IntegrityError, transaction
 from django.db.models import ProtectedError, Q
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
-from localflavor.br.forms import BRCPFField, BRStateChoiceField
+from localflavor.br.forms import BRCPFField, BRStateChoiceField, BRZipCodeField
 
 from apps.customer import enums, models
 from apps.customer.enums import CustomerAddressType, CustomerGender
@@ -52,6 +52,12 @@ class CustomerAddressAdminForm(forms.ModelForm):
 
     state = BRStateChoiceField(
         label=_("model.field.state"),
+        required=True,
+    )
+
+    postal_code = BRZipCodeField(
+        widget=forms.TextInput(attrs={"data-mask": "00000-000"}),
+        label=_("model.field.postal-code"),
         required=True,
     )
 
@@ -368,6 +374,12 @@ class CustomerUpdateAddressForm(SanitizeDigitFieldsMixin, forms.ModelForm):
 
     state = BRStateChoiceField(
         label=_("model.field.state"),
+        required=True,
+    )
+
+    postal_code = BRZipCodeField(
+        widget=forms.TextInput(attrs={"data-mask": "00000-000"}),
+        label=_("model.field.postal-code"),
         required=True,
     )
 
