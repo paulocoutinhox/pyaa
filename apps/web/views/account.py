@@ -4,17 +4,24 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ValidationError
+from django.db import transaction
 from django.http import Http404
 from django.shortcuts import redirect, render, resolve_url
-from django.urls import path
+from django.urls import path, reverse_lazy
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import FormView
 
+from apps.customer.enums import CustomerAddressType
 from apps.customer.forms import (
     CustomerDeleteForm,
     CustomerLoginForm,
     CustomerPasswordRecoveryForm,
     CustomerResetPasswordForm,
     CustomerSignupForm,
+    CustomerUpdateAddressForm,
     CustomerUpdateAvatarForm,
     CustomerUpdateProfileForm,
 )
@@ -447,6 +454,36 @@ def account_activation_success_view(request):
     )
 
 
+@login_required
+def account_update_address_view(request):
+    if request.method == "POST":
+        # try to get existing address
+        address = request.user.customer.get_address_by_type(CustomerAddressType.MAIN)
+
+        form = CustomerUpdateAddressForm(
+            request.POST, instance=address, customer=request.user.customer
+        )
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("message.account-updated"))
+            return redirect("account_profile")
+    else:
+        # try to get existing address
+        address = request.user.customer.get_address_by_type(CustomerAddressType.MAIN)
+        form = CustomerUpdateAddressForm(
+            instance=address, customer=request.user.customer
+        )
+
+    return render(
+        request,
+        "pages/account/update_address.html",
+        {
+            "form": form,
+        },
+    )
+
+
 urlpatterns = [
     path(
         "account/signup/",
@@ -552,5 +589,10 @@ urlpatterns = [
         "account/activation/success/",
         account_activation_success_view,
         name="account_activation_success",
+    ),
+    path(
+        "account/address/update/",
+        account_update_address_view,
+        name="account_update_address",
     ),
 ]

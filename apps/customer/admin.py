@@ -7,6 +7,41 @@ from apps.customer.helpers import CustomerHelper
 from pyaa.mixins import ReadonlyLinksMixin
 
 
+class CustomerAddressInline(admin.StackedInline):
+    model = models.CustomerAddress
+    form = forms.CustomerAddressAdminForm
+    extra = 0
+    classes = ["collapse"]
+
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": ("address_type",),
+            },
+        ),
+        (
+            _("admin.fieldsets.address"),
+            {
+                "fields": (
+                    ("address_line1", "street_number"),
+                    "address_line2",
+                    "complement",
+                ),
+            },
+        ),
+        (
+            _("admin.fieldsets.location"),
+            {
+                "fields": (
+                    ("city", "state"),
+                    ("postal_code", "country_code"),
+                ),
+            },
+        ),
+    )
+
+
 class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
     list_display = (
         "id",
@@ -64,6 +99,8 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
     ]
 
     form = forms.CustomerAdminForm
+
+    inlines = [CustomerAddressInline]
 
     fieldsets = (
         (

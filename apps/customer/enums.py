@@ -10,3 +10,11 @@ class CustomerGender(TextChoices):
     @classmethod
     def get_choices(cls):
         return tuple((i.name, i.value) for i in cls)
+
+
+class CustomerAddressType(TextChoices):
+    MAIN = "main", _("enum.customer-address-type.main")
+
+    @classmethod
+    def get_choices(cls):
+        return tuple((i.name, i.value) for i in cls)
