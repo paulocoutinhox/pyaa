@@ -1,0 +1,40 @@
+{% extends 'layouts/base_page.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load pyaa %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center py-5">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card border-0 bg-body-tertiary rounded-3">
+                <div class="card-body p-4 p-md-5">
+                    {% element page_title %}
+                        {% translate "title.account-update-address" %}
+                    {% endelement %}
+
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        {% element fields form=form %}
+                        {% endelement %}
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary py-2">
+                                {% translate "button.update" %}
+                            </button>
+
+                            <a href="{% url 'account_profile' %}" class="btn btn-outline-primary">
+                                {% translate "button.cancel" %}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

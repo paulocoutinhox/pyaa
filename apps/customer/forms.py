@@ -7,10 +7,10 @@ from django.db import IntegrityError, transaction
 from django.db.models import ProtectedError, Q
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
-from localflavor.br.forms import BRCPFField
+from localflavor.br.forms import BRCPFField, BRStateChoiceField
 
 from apps.customer import enums, models
-from apps.customer.enums import CustomerGender
+from apps.customer.enums import CustomerAddressType, CustomerGender
 from apps.customer.helpers import CustomerHelper
 from apps.customer.models import Customer
 from apps.language.helpers import LanguageHelper
@@ -33,6 +33,33 @@ class CustomerAdminForm(forms.ModelForm):
             "avatar",
             "obs",
         ]
+
+
+class CustomerAddressAdminForm(forms.ModelForm):
+    class Meta:
+        model = models.CustomerAddress
+        fields = [
+            "address_type",
+            "address_line1",
+            "address_line2",
+            "street_number",
+            "complement",
+            "city",
+            "state",
+            "postal_code",
+            "country_code",
+        ]
+
+    state = BRStateChoiceField(
+        label=_("model.field.state"),
+        required=True,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["country_code"].widget.attrs["placeholder"] = "BR"
+        self.fields["postal_code"].widget.attrs["placeholder"] = "00000-000"
+        self.fields["state"].widget.attrs["placeholder"] = "SP"
 
 
 class CustomerDeleteForm(forms.ModelForm):
@@ -321,6 +348,68 @@ class CustomerUpdateAvatarForm(forms.Form):
         customer = user.customer
         customer.avatar = self.cleaned_data["avatar"]
         customer.save()
+
+
+class CustomerUpdateAddressForm(SanitizeDigitFieldsMixin, forms.ModelForm):
+    class Meta:
+        model = models.CustomerAddress
+        fields = [
+            "address_line1",
+            "address_line2",
+            "street_number",
+            "complement",
+            "city",
+            "state",
+            "postal_code",
+            "country_code",
+        ]
+
+    digit_only_fields = ["postal_code"]
+
+    state = BRStateChoiceField(
+        label=_("model.field.state"),
+        required=True,
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.customer = kwargs.pop("customer", None)
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        address = super().save(commit=False)
+
+        if self.customer:
+            # try to find existing address for this customer and type
+            existing_address = models.CustomerAddress.objects.filter(
+                customer=self.customer, address_type=CustomerAddressType.MAIN
+            ).first()
+
+            if existing_address:
+                # update existing address
+                existing_address.address_line1 = self.cleaned_data["address_line1"]
+                existing_address.address_line2 = self.cleaned_data["address_line2"]
+                existing_address.street_number = self.cleaned_data["street_number"]
+                existing_address.complement = self.cleaned_data["complement"]
+                existing_address.city = self.cleaned_data["city"]
+                existing_address.state = self.cleaned_data["state"]
+                existing_address.postal_code = self.cleaned_data["postal_code"]
+                existing_address.country_code = self.cleaned_data["country_code"]
+
+                if commit:
+                    existing_address.save()
+
+                return existing_address
+            else:
+                # create new address
+                address.customer = self.customer
+                address.address_type = CustomerAddressType.MAIN
+
+                if commit:
+                    address.save()
+
+                return address
+
+        return address
 
 
 class CustomerPasswordRecoveryForm(forms.Form):

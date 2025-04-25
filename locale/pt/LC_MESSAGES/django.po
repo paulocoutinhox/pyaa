@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-24 21:09+0000\n"
+"POT-Creation-Date: 2025-04-25 07:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,15 @@ msgid "model.content-category.name.plural"
 msgstr "categorias de conteúdos"
 
 #: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:46 apps/gallery/models.py:31
-#: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
-#: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:616
-#: apps/shop/models.py:739 apps/shop/models.py:849 apps/shop/models.py:1015
-#: apps/user/models.py:89
+#: apps/customer/models.py:46 apps/customer/models.py:281
+#: apps/gallery/models.py:31 apps/language/models.py:27 apps/shop/models.py:38
+#: apps/shop/models.py:156 apps/shop/models.py:255 apps/shop/models.py:467
+#: apps/shop/models.py:616 apps/shop/models.py:739 apps/shop/models.py:849
+#: apps/shop/models.py:1015 apps/user/models.py:89
 msgid "model.field.id"
 msgstr "ID"
 
-#: apps/content/models.py:33 apps/customer/admin.py:127
+#: apps/content/models.py:33 apps/customer/admin.py:164
 #: apps/language/models.py:33 apps/shop/models.py:53 apps/shop/models.py:169
 #: apps/shop/models.py:270 apps/web/forms/contact.py:11
 #: templates/emails/site/contact.html:11
@@ -60,19 +60,19 @@ msgid "model.field.tag.help"
 msgstr "Deixe vazio para geração automática."
 
 #: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:142 apps/gallery/models.py:75
-#: apps/language/models.py:56 apps/shop/models.py:104 apps/shop/models.py:214
-#: apps/shop/models.py:386 apps/shop/models.py:522 apps/shop/models.py:676
-#: apps/shop/models.py:799 apps/shop/models.py:903 apps/shop/models.py:1080
-#: apps/site/models.py:37
+#: apps/customer/models.py:142 apps/customer/models.py:348
+#: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:104
+#: apps/shop/models.py:214 apps/shop/models.py:386 apps/shop/models.py:522
+#: apps/shop/models.py:676 apps/shop/models.py:799 apps/shop/models.py:903
+#: apps/shop/models.py:1080 apps/site/models.py:37
 msgid "model.field.created-at"
 msgstr "Criado Em"
 
 #: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:147 apps/gallery/models.py:80
-#: apps/language/models.py:61 apps/shop/models.py:109 apps/shop/models.py:219
-#: apps/shop/models.py:391 apps/shop/models.py:527 apps/shop/models.py:681
-#: apps/shop/models.py:804 apps/site/models.py:42
+#: apps/customer/models.py:147 apps/customer/models.py:353
+#: apps/gallery/models.py:80 apps/language/models.py:61 apps/shop/models.py:109
+#: apps/shop/models.py:219 apps/shop/models.py:391 apps/shop/models.py:527
+#: apps/shop/models.py:681 apps/shop/models.py:804 apps/site/models.py:42
 msgid "model.field.updated-at"
 msgstr "Atualizado Em"
 
@@ -110,45 +110,53 @@ msgstr "Publicado Em"
 msgid "model.field.active"
 msgstr "Ativo"
 
-#: apps/customer/admin.py:70
+#: apps/customer/admin.py:24
+msgid "admin.fieldsets.address"
+msgstr "ENDEREÇO"
+
+#: apps/customer/admin.py:34
+msgid "admin.fieldsets.location"
+msgstr "LOCALIZAÇÃO"
+
+#: apps/customer/admin.py:107
 msgid "admin.fieldsets.user"
 msgstr "INFORMAÇÕES DO USUÁRIO"
 
-#: apps/customer/admin.py:82
+#: apps/customer/admin.py:119
 msgid "admin.fieldsets.profile"
 msgstr "INFORMAÇÕES DO PERFIL"
 
-#: apps/customer/admin.py:88
+#: apps/customer/admin.py:125
 msgid "admin.fieldsets.additional-info"
 msgstr "INFORMAÇÕES ADICIONAIS"
 
-#: apps/customer/admin.py:94 apps/shop/admin.py:227 apps/shop/admin.py:297
+#: apps/customer/admin.py:131 apps/shop/admin.py:227 apps/shop/admin.py:297
 #: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
 #: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
 #: apps/user/admin.py:92
 msgid "admin.fieldsets.important-dates"
 msgstr "DATAS IMPORTANTES"
 
-#: apps/customer/admin.py:134 apps/customer/forms.py:83
-#: apps/customer/forms.py:195 apps/customer/serializers.py:38
+#: apps/customer/admin.py:171 apps/customer/forms.py:110
+#: apps/customer/forms.py:222 apps/customer/serializers.py:38
 #: apps/customer/serializers.py:107 apps/user/models.py:112
 #: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customer/admin.py:141 apps/customer/forms.py:202
+#: apps/customer/admin.py:178 apps/customer/forms.py:229
 #: apps/customer/serializers.py:44 apps/customer/serializers.py:113
 #: apps/user/admin.py:20 apps/user/admin.py:40 apps/user/models.py:119
 msgid "model.field.cpf"
 msgstr "CPF"
 
-#: apps/customer/admin.py:148 apps/customer/forms.py:209
+#: apps/customer/admin.py:185 apps/customer/forms.py:236
 #: apps/customer/serializers.py:50 apps/customer/serializers.py:119
 #: apps/user/admin.py:27 apps/user/admin.py:47 apps/user/models.py:127
 msgid "model.field.mobile-phone"
 msgstr "Celular"
 
-#: apps/customer/admin.py:156
+#: apps/customer/admin.py:193
 msgid "model.field.is_active"
 msgstr "Ativo"
 
@@ -168,6 +176,10 @@ msgstr "Feminino"
 msgid "enum.customer-gender.none"
 msgstr "Nenhum"
 
+#: apps/customer/enums.py:16
+msgid "enum.customer-address-type.main"
+msgstr "Principal"
+
 #: apps/customer/filters.py:25
 msgid "filter.email"
 msgstr "E-mail"
@@ -176,86 +188,91 @@ msgstr "E-mail"
 msgid "filter.created-at"
 msgstr "Criado Em"
 
-#: apps/customer/forms.py:46
+#: apps/customer/forms.py:54 apps/customer/forms.py:370
+#: apps/customer/models.py:332
+msgid "model.field.state"
+msgstr "Estado / Província"
+
+#: apps/customer/forms.py:73
 msgid "model.field.login-username"
 msgstr "E-mail"
 
-#: apps/customer/forms.py:53
+#: apps/customer/forms.py:80
 msgid "model.field.login-password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:62 apps/customer/forms.py:183
+#: apps/customer/forms.py:89 apps/customer/forms.py:210
 #: apps/customer/serializers.py:28 apps/customer/serializers.py:97
 msgid "model.field.first-name"
 msgstr "Nome"
 
-#: apps/customer/forms.py:69 apps/customer/forms.py:189
+#: apps/customer/forms.py:96 apps/customer/forms.py:216
 #: apps/customer/serializers.py:33 apps/customer/serializers.py:102
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customer/forms.py:76 apps/customer/forms.py:219
+#: apps/customer/forms.py:103 apps/customer/forms.py:246
 #: apps/customer/models.py:84
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
 msgstr "Gênero"
 
-#: apps/customer/forms.py:90 apps/customer/serializers.py:56
+#: apps/customer/forms.py:117 apps/customer/serializers.py:56
 #: apps/customer/serializers.py:125
 msgid "model.field.password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:96
+#: apps/customer/forms.py:123
 msgid "model.field.accept-terms"
 msgstr "Aceitar Termos"
 
-#: apps/customer/forms.py:102 apps/customer/forms.py:337
+#: apps/customer/forms.py:129 apps/customer/forms.py:426
 #: apps/web/forms/contact.py:44
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/customer/forms.py:213 apps/customer/models.py:77
+#: apps/customer/forms.py:240 apps/customer/models.py:77
 msgid "model.field.nickname"
 msgstr "Apelido"
 
-#: apps/customer/forms.py:288 apps/user/helpers.py:18
+#: apps/customer/forms.py:315 apps/user/helpers.py:18
 msgid "error.email-already-used-by-other"
 msgstr "Este e-mail já está sendo usado."
 
-#: apps/customer/forms.py:290 apps/user/helpers.py:31
+#: apps/customer/forms.py:317 apps/user/helpers.py:31
 msgid "error.cpf-already-used-by-other"
 msgstr "Este CPF já está sendo usado."
 
-#: apps/customer/forms.py:293 apps/user/helpers.py:47
+#: apps/customer/forms.py:320 apps/user/helpers.py:47
 msgid "error.mobile-phone-already-used-by-other"
 msgstr "Este celular já está sendo usado."
 
-#: apps/customer/forms.py:297
+#: apps/customer/forms.py:324
 msgid "error.database-constraint-error"
 msgstr ""
 
-#: apps/customer/forms.py:301
+#: apps/customer/forms.py:328
 msgid "error.protected-object-cannot-be-deleted"
 msgstr ""
 
-#: apps/customer/forms.py:328
+#: apps/customer/forms.py:417
 msgid "model.field.recovery-identifier"
 msgstr "Email, CPF ou Celular"
 
-#: apps/customer/forms.py:332
+#: apps/customer/forms.py:421
 msgid "model.field.recovery-identifier.help"
 msgstr "Digite seu email, CPF ou número de celular para recuperar sua senha"
 
-#: apps/customer/forms.py:359
+#: apps/customer/forms.py:448
 msgid "model.field.new-password"
 msgstr "Nova Senha"
 
-#: apps/customer/forms.py:366
+#: apps/customer/forms.py:455
 msgid "model.field.confirm-password"
 msgstr "Confirmar Senha"
 
-#: apps/customer/forms.py:380
+#: apps/customer/forms.py:469
 msgid "error.passwords-do-not-match"
 msgstr "As senhas não coincidem"
 
@@ -346,6 +363,55 @@ msgstr "Cliente #{id}"
 #: apps/customer/models.py:182
 msgid "error.site-id-required"
 msgstr "O código do site é obrigatório."
+
+#: apps/customer/models.py:254
+msgid "model.customer-address.name"
+msgstr "Endereço do Cliente"
+
+#: apps/customer/models.py:255
+msgid "model.customer-address.name.plural"
+msgstr "Endereços dos Clientes"
+
+#: apps/customer/models.py:290 apps/shop/models.py:633 apps/shop/models.py:756
+#: apps/shop/models.py:866 apps/shop/models.py:1032
+msgid "model.field.customer"
+msgstr "Cliente"
+
+#: apps/customer/models.py:294
+msgid "model.field.address-type"
+msgstr "Tipo de Endereço"
+
+#: apps/customer/models.py:301
+msgid "model.field.address-line1"
+msgstr "Rua / Avenida"
+
+#: apps/customer/models.py:306
+msgid "model.field.address-line2"
+msgstr "Bairro / Área"
+
+#: apps/customer/models.py:313
+msgid "model.field.street-number"
+msgstr "Número"
+
+#: apps/customer/models.py:320
+msgid "model.field.complement"
+msgstr "Complemento"
+
+#: apps/customer/models.py:327
+msgid "model.field.city"
+msgstr "Cidade"
+
+#: apps/customer/models.py:337
+msgid "model.field.postal-code"
+msgstr "CEP"
+
+#: apps/customer/models.py:342
+msgid "model.field.country-code"
+msgstr "Código do País"
+
+#: apps/customer/models.py:344
+msgid "model.field.country-code.help"
+msgstr "Código do país com duas letras (ex: BR, US, FR)"
 
 #: apps/gallery/apps.py:8
 msgid "apps.gallery.description"
@@ -814,11 +880,6 @@ msgstr "Compra de Crédito"
 msgid "model.credit-purchase.name.plural"
 msgstr "Compras de Créditos"
 
-#: apps/shop/models.py:633 apps/shop/models.py:756 apps/shop/models.py:866
-#: apps/shop/models.py:1032
-msgid "model.field.customer"
-msgstr "Cliente"
-
 #: apps/shop/models.py:639
 msgid "model.field.plan"
 msgstr "Plano"
@@ -943,37 +1004,38 @@ msgstr "Mensagem"
 msgid "email.contact.subject"
 msgstr "Nova Mensagem de Contato"
 
-#: apps/web/views/account.py:49
+#: apps/web/views/account.py:56
 msgid "message.login-success"
 msgstr "Login realizado com sucesso."
 
-#: apps/web/views/account.py:56
+#: apps/web/views/account.py:63
 msgid "error.invalid-login-data"
 msgstr "Dados de login incorretos, verifique e tente novamente."
 
-#: apps/web/views/account.py:126 apps/web/views/account.py:146
+#: apps/web/views/account.py:133 apps/web/views/account.py:153
+#: apps/web/views/account.py:469
 msgid "message.account-updated"
 msgstr "Sua conta foi atualizada."
 
-#: apps/web/views/account.py:175
+#: apps/web/views/account.py:182
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Sua conta tem assinaturas ativas. Você precisa cancelá-las antes de encerrar "
 "sua conta."
 
-#: apps/web/views/account.py:186
+#: apps/web/views/account.py:193
 msgid "message.account-deleted"
 msgstr "Sua conta e dados foram excluídos."
 
-#: apps/web/views/account.py:244
+#: apps/web/views/account.py:251
 msgid "message.shop-invalid-cancel-action"
 msgstr "Ação de cancelamento inválida."
 
-#: apps/web/views/account.py:433
+#: apps/web/views/account.py:440
 msgid "message.account-activation-success"
 msgstr "Sua conta foi ativada com sucesso!"
 
-#: apps/web/views/account.py:436
+#: apps/web/views/account.py:443
 msgid "error.invalid-activation-token"
 msgstr ""
 "Token de ativação inválido. Por favor, verifique seu e-mail para o link "
@@ -1431,6 +1493,7 @@ msgid "button.account-delete-confirm"
 msgstr "Sim, Excluir Minha Conta"
 
 #: templates/pages/account/delete.html:32
+#: templates/pages/account/update_address.html:30
 #: templates/pages/account/update_avatar.html:43
 #: templates/pages/account/update_profile.html:30
 msgid "button.cancel"
@@ -1579,15 +1642,19 @@ msgstr "Atualizar Perfil"
 msgid "button.update-avatar"
 msgstr "Atualizar Avatar"
 
-#: templates/pages/account/profile.html:113
+#: templates/pages/account/profile.html:116
+msgid "button.update-address"
+msgstr "Atualizar Endereço"
+
+#: templates/pages/account/profile.html:123
 msgid "subtitle.danger-zone"
 msgstr "Danger Zone"
 
-#: templates/pages/account/profile.html:121
+#: templates/pages/account/profile.html:131
 msgid "button.account-delete"
 msgstr "Excluir Conta"
 
-#: templates/pages/account/profile.html:131
+#: templates/pages/account/profile.html:141
 msgid "button.account-logout"
 msgstr "Sair"
 
@@ -1683,14 +1750,19 @@ msgstr "Não"
 msgid "button.yes-cancel"
 msgstr "Sim, Cancelar"
 
-#: templates/pages/account/update_avatar.html:12
-msgid "title.account-update-avatar"
-msgstr "Atualizar Avatar"
+#: templates/pages/account/update_address.html:15
+msgid "title.account-update-address"
+msgstr "Atualizar Endereço"
 
+#: templates/pages/account/update_address.html:26
 #: templates/pages/account/update_avatar.html:37
 #: templates/pages/account/update_profile.html:24
 msgid "button.update"
 msgstr "Atualizar"
+
+#: templates/pages/account/update_avatar.html:12
+msgid "title.account-update-avatar"
+msgstr "Atualizar Avatar"
 
 #: templates/pages/account/update_profile.html:11
 msgid "title.account-update-profile"

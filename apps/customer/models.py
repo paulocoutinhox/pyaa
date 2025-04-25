@@ -195,6 +195,7 @@ class Customer(models.Model):
 
     def save(self, *args, **kwargs):
         self.setup_initial_data()
+        self.full_clean()
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
@@ -236,3 +237,131 @@ class Customer(models.Model):
         return ProductPurchase.objects.filter(
             customer=self, product_id=product_id, status=ProductPurchaseStatus.APPROVED
         ).exists()
+
+    def get_address_by_type(self, address_type):
+        """
+        Get a customer's address by type
+
+        :param address_type: the type of address to get
+        :return: the first address found with the specified type, or None if not found
+        """
+        return self.addresses.filter(address_type=address_type).first()
+
+
+class CustomerAddress(models.Model):
+    class Meta:
+        db_table = "customer_address"
+        verbose_name = _("model.customer-address.name")
+        verbose_name_plural = _("model.customer-address.name.plural")
+
+        indexes = [
+            models.Index(
+                fields=["address_type"],
+                name="{0}_address_type".format(db_table),
+            ),
+            models.Index(
+                fields=["city"],
+                name="{0}_city".format(db_table),
+            ),
+            models.Index(
+                fields=["state"],
+                name="{0}_state".format(db_table),
+            ),
+            models.Index(
+                fields=["postal_code"],
+                name="{0}_postal_code".format(db_table),
+            ),
+            models.Index(
+                fields=["country_code"],
+                name="{0}_country_code".format(db_table),
+            ),
+        ]
+
+    id = models.BigAutoField(
+        _("model.field.id"),
+        unique=True,
+        primary_key=True,
+    )
+
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        related_name="addresses",
+        verbose_name=_("model.field.customer"),
+    )
+
+    address_type = models.CharField(
+        _("model.field.address-type"),
+        max_length=255,
+        choices=enums.CustomerAddressType.choices,
+        default=enums.CustomerAddressType.MAIN,
+    )
+
+    address_line1 = models.CharField(
+        _("model.field.address-line1"),
+        max_length=255,
+    )
+
+    address_line2 = models.CharField(
+        _("model.field.address-line2"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    street_number = models.CharField(
+        _("model.field.street-number"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    complement = models.CharField(
+        _("model.field.complement"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    city = models.CharField(
+        _("model.field.city"),
+        max_length=255,
+    )
+
+    state = models.CharField(
+        _("model.field.state"),
+        max_length=255,
+    )
+
+    postal_code = models.CharField(
+        _("model.field.postal-code"),
+        max_length=255,
+    )
+
+    country_code = models.CharField(
+        _("model.field.country-code"),
+        max_length=2,
+        help_text=_("model.field.country-code.help"),
+    )
+
+    created_at = models.DateTimeField(
+        _("model.field.created-at"),
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        _("model.field.updated-at"),
+        auto_now=True,
+    )
+
+    def __str__(self):
+        return f"{self.address_line1}, {self.street_number} - {self.city}/{self.state}"
+
+    def clean(self):
+        super().clean()
+        if self.country_code:
+            self.country_code = self.country_code.upper()
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
