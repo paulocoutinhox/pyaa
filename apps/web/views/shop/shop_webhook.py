@@ -12,7 +12,7 @@ from apps.system_log.helpers import SystemLogHelper
 
 @csrf_exempt
 def webhook_stripe_view(request):
-    if settings.WEBHOOK_LOG_REQUESTS:
+    if settings.SYSTEM_LOG_WEBHOOK_ENABLED:
         # capturing request data
         request_headers = dict(request.headers)
         request_body = request.body.decode("utf-8") if request.body else None
