@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-26 01:34+0000\n"
+"POT-Creation-Date: 2025-04-26 02:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,10 +35,14 @@ msgid "admin.fieldsets.important-dates"
 msgstr "DATAS IMPORTANTES"
 
 #: apps/banner/admin.py:108
+#: templates/admin/report/banner-access-summary/pdf.html:12
+#: templates/admin/report/banner-access-summary/view.html:28
 msgid "model.field.total-views"
 msgstr "Visualizações"
 
 #: apps/banner/admin.py:109
+#: templates/admin/report/banner-access-summary/pdf.html:13
+#: templates/admin/report/banner-access-summary/view.html:33
 msgid "model.field.total-clicks"
 msgstr "Cliques"
 
@@ -92,11 +96,15 @@ msgstr "ID"
 #: apps/shop/models.py:264 apps/shop/models.py:476 apps/shop/models.py:625
 #: apps/shop/models.py:748 apps/shop/models.py:858 apps/shop/models.py:1024
 #: apps/site/models.py:19 apps/user/models.py:98
+#: templates/admin/report/banner-access-summary/pdf.html:10
+#: templates/admin/report/banner-access-summary/view.html:18
 msgid "model.field.site"
 msgstr "Site"
 
 #: apps/banner/models.py:50 apps/content/models.py:121
 #: apps/customer/models.py:73 apps/gallery/models.py:49
+#: templates/admin/report/banner-access-summary/pdf.html:11
+#: templates/admin/report/banner-access-summary/view.html:23
 msgid "model.field.language"
 msgstr "Idioma"
 
@@ -107,6 +115,8 @@ msgstr "Token"
 
 #: apps/banner/models.py:61 apps/content/models.py:100
 #: apps/gallery/models.py:37 apps/site/models.py:23
+#: templates/admin/report/banner-access-summary/pdf.html:9
+#: templates/admin/report/banner-access-summary/view.html:13
 msgid "model.field.title"
 msgstr "Título"
 
@@ -597,6 +607,10 @@ msgstr "Código ISO"
 msgid "model.hint.code_iso_language"
 msgstr "Exemplos: en-us ou pt-br."
 
+#: apps/report/admin/banner_access.py:21
+msgid "title.report.banner-access-summary"
+msgstr "Relatório de Acessos aos Banners"
+
 #: apps/report/admin/customer_gender.py:23
 msgid "title.report.customer-gender-summary"
 msgstr "Relatório de Gêneros dos Clientes"
@@ -605,9 +619,13 @@ msgstr "Relatório de Gêneros dos Clientes"
 msgid "apps.report.description"
 msgstr "Relatório"
 
-#: apps/report/models.py:9 apps/report/models.py:10
+#: apps/report/models.py:10 apps/report/models.py:11
 msgid "model.customer-gender-summary.name"
 msgstr "Gêneros dos Clientes"
+
+#: apps/report/models.py:17 apps/report/models.py:18
+msgid "model.banner-access-summary.name"
+msgstr "Acessos aos Banners"
 
 #: apps/shop/admin.py:51
 msgid "button.copy"
@@ -1255,6 +1273,19 @@ msgstr "Esqueceu sua senha ou nome de usuário?"
 msgid "Log in"
 msgstr "Entrar"
 
+#: templates/admin/report/banner-access-summary/pdf.html:28
+#: templates/admin/report/banner-access-summary/view.html:50
+#: templates/admin/report/customer-gender-summary/pdf.html:26
+#: templates/admin/report/customer-gender-summary/view.html:36
+msgid "model.field.footer-total"
+msgstr "Total"
+
+#: templates/admin/report/banner-access-summary/view.html:59
+#: templates/admin/report/base/base_report_pdf.html:29
+#: templates/admin/report/customer-gender-summary/view.html:54
+msgid "admin.report-list-data.empty"
+msgstr "Nenhum dado encontrado."
+
 #: templates/admin/report/base/base_report.html:12
 msgid "button.export-to-pdf"
 msgstr "Exportar para PDF"
@@ -1265,16 +1296,6 @@ msgstr "Exportar para PDF"
 #: templates/admin/report/customer-gender-summary/view.html:49
 msgid "title.report.chart"
 msgstr "Gráfico do Relatório"
-
-#: templates/admin/report/base/base_report_pdf.html:29
-#: templates/admin/report/customer-gender-summary/view.html:54
-msgid "admin.report-list-data.empty"
-msgstr "Nenhum dado encontrado."
-
-#: templates/admin/report/customer-gender-summary/pdf.html:26
-#: templates/admin/report/customer-gender-summary/view.html:36
-msgid "model.field.footer-total"
-msgstr "Total"
 
 #: templates/emails/account/activation.html:9
 #: templates/emails/account/password_recovery.html:9

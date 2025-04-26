@@ -1,0 +1,62 @@
+{% extends "admin/report/base/base_report.html" %}
+
+{% load i18n %}
+
+{% block result_list %}
+    {% if has_data %}
+        <div class="results report-results">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="text">
+                                <a href="#">{% trans "model.field.title" %}</a>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="text">
+                                <a href="#">{% trans "model.field.site" %}</a>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="text">
+                                <a href="#">{% trans "model.field.language" %}</a>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="text">
+                                <a href="#">{% trans "model.field.total-views" %}</a>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="text">
+                                <a href="#">{% trans "model.field.total-clicks" %}</a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.title }}</td>
+                            <td>{{ row.site }}</td>
+                            <td>{{ row.language }}</td>
+                            <td>{{ row.total_views }}</td>
+                            <td>{{ row.total_clicks }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr class="footer">
+                        <td colspan="3">{% trans "model.field.footer-total" %}</td>
+                        <td>{{ data_footer.total_views }}</td>
+                        <td>{{ data_footer.total_clicks }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="report-data-empty">
+            {% trans "admin.report-list-data.empty" %}
+        </p>
+    {% endif %}
+{% endblock %}
