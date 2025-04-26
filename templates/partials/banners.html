@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load pyaa %}
+
+{% if banners %}
+    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for banner in banners %}
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+
+        <div class="carousel-inner">
+            {% for banner in banners %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}" id="banner-{{ banner.token }}">
+                <a href="javascript:void(0);" class="banner-link" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link }}', {{ banner.target_blank|lower }});">
+                    <img src="{{ banner.image.url }}" class="d-block w-100" alt="{{ banner.title }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if banners|length > 1 %}
+        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        {% endif %}
+    </div>
+
+    <script>
+        $(function () {
+            {% for banner in banners %}
+            BannerManager.trackViewAccess('{{ banner.token }}');
+            {% endfor %}
+        });
+    </script>
+{% endif %}

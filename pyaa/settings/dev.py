@@ -90,6 +90,7 @@ PROJECT_APPS = [
     "apps.content.apps.ContentAppConfig",
     "apps.gallery.apps.GalleryAppConfig",
     "apps.shop.apps.ShopAppConfig",
+    "apps.banner.apps.BannerAppConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -403,3 +404,6 @@ Q_CLUSTER = {
 # Gateway
 
 GATEWAY_FOR_PRODUCT_PURCHASE = PaymentGateway.STRIPE
+
+# Banner
+BANNER_ACCESS_INTERVAL = 86400  # 1 day in seconds

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 08:12+0000\n"
+"POT-Creation-Date: 2025-04-26 01:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,6 +11,188 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/shop/admin.py:171
+#: apps/shop/admin.py:276 apps/shop/admin.py:359 apps/shop/admin.py:432
+#: apps/shop/admin.py:534 apps/shop/admin.py:655 apps/shop/admin.py:753
+#: apps/site/admin.py:32
+msgid "admin.fieldsets.general"
+msgstr "GERAL"
+
+#: apps/banner/admin.py:65
+msgid "admin.fieldsets.site-language"
+msgstr "SITE E IDIOMA"
+
+#: apps/banner/admin.py:71 apps/customer/admin.py:125
+msgid "admin.fieldsets.additional-info"
+msgstr "INFORMAÇÕES ADICIONAIS"
+
+#: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/customer/admin.py:131
+#: apps/shop/admin.py:227 apps/shop/admin.py:297 apps/shop/admin.py:379
+#: apps/shop/admin.py:454 apps/shop/admin.py:556 apps/shop/admin.py:688
+#: apps/shop/admin.py:775 apps/site/admin.py:38 apps/user/admin.py:92
+msgid "admin.fieldsets.important-dates"
+msgstr "DATAS IMPORTANTES"
+
+#: apps/banner/admin.py:108
+msgid "model.field.total-views"
+msgstr "Visualizações"
+
+#: apps/banner/admin.py:109
+msgid "model.field.total-clicks"
+msgstr "Cliques"
+
+#: apps/banner/admin.py:164 apps/banner/models.py:178
+msgid "model.field.ip"
+msgstr "IP"
+
+#: apps/banner/apps.py:8
+msgid "apps.banner.description"
+msgstr "Banner"
+
+#: apps/banner/enums.py:6
+msgid "enum.banner-zone.home"
+msgstr "Início"
+
+#: apps/banner/enums.py:7
+msgid "enum.banner-zone.signin"
+msgstr "Login"
+
+#: apps/banner/enums.py:8
+msgid "enum.banner-zone.signup"
+msgstr "Cadastro"
+
+#: apps/banner/enums.py:16
+msgid "enum.banner-access-type.view"
+msgstr "Visualização"
+
+#: apps/banner/enums.py:17
+msgid "enum.banner-access-type.click"
+msgstr "Clique"
+
+#: apps/banner/models.py:15
+msgid "model.banner.name"
+msgstr "Banner"
+
+#: apps/banner/models.py:16
+msgid "model.banner.name.plural"
+msgstr "Banners"
+
+#: apps/banner/models.py:30 apps/banner/models.py:150 apps/content/models.py:27
+#: apps/content/models.py:94 apps/customer/models.py:46
+#: apps/customer/models.py:281 apps/gallery/models.py:31
+#: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
+#: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:616
+#: apps/shop/models.py:739 apps/shop/models.py:849 apps/shop/models.py:1015
+#: apps/user/models.py:89
+msgid "model.field.id"
+msgstr "ID"
+
+#: apps/banner/models.py:39 apps/customer/models.py:62 apps/shop/models.py:47
+#: apps/shop/models.py:264 apps/shop/models.py:476 apps/shop/models.py:625
+#: apps/shop/models.py:748 apps/shop/models.py:858 apps/shop/models.py:1024
+#: apps/site/models.py:19 apps/user/models.py:98
+msgid "model.field.site"
+msgstr "Site"
+
+#: apps/banner/models.py:50 apps/content/models.py:121
+#: apps/customer/models.py:73 apps/gallery/models.py:49
+msgid "model.field.language"
+msgstr "Idioma"
+
+#: apps/banner/models.py:54 apps/shop/models.py:492 apps/shop/models.py:643
+#: apps/shop/models.py:766
+msgid "model.field.token"
+msgstr "Token"
+
+#: apps/banner/models.py:61 apps/content/models.py:100
+#: apps/gallery/models.py:37 apps/site/models.py:23
+msgid "model.field.title"
+msgstr "Título"
+
+#: apps/banner/models.py:66 apps/gallery/models.py:122 apps/shop/models.py:74
+#: apps/shop/models.py:358
+msgid "model.field.image"
+msgstr "Imagem"
+
+#: apps/banner/models.py:71
+msgid "model.field.link"
+msgstr "Link"
+
+#: apps/banner/models.py:78
+msgid "model.field.target-blank"
+msgstr "Abrir em Nova Janela"
+
+#: apps/banner/models.py:83
+msgid "model.field.zone"
+msgstr "Zona"
+
+#: apps/banner/models.py:89 apps/shop/models.py:209 apps/shop/models.py:368
+msgid "model.field.sort-order"
+msgstr "Ordem"
+
+#: apps/banner/models.py:94
+msgid "model.field.start-at"
+msgstr "Início Em"
+
+#: apps/banner/models.py:100
+msgid "model.field.end-at"
+msgstr "Fim Em"
+
+#: apps/banner/models.py:106 apps/content/models.py:146
+#: apps/gallery/models.py:68 apps/shop/models.py:97 apps/shop/models.py:202
+#: apps/shop/models.py:373
+msgid "model.field.active"
+msgstr "Ativo"
+
+#: apps/banner/models.py:111 apps/banner/models.py:190
+#: apps/content/models.py:49 apps/content/models.py:153
+#: apps/customer/models.py:142 apps/customer/models.py:348
+#: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:104
+#: apps/shop/models.py:214 apps/shop/models.py:386 apps/shop/models.py:522
+#: apps/shop/models.py:676 apps/shop/models.py:799 apps/shop/models.py:903
+#: apps/shop/models.py:1080 apps/site/models.py:37
+msgid "model.field.created-at"
+msgstr "Criado Em"
+
+#: apps/banner/models.py:116 apps/content/models.py:54
+#: apps/content/models.py:158 apps/customer/models.py:147
+#: apps/customer/models.py:353 apps/gallery/models.py:80
+#: apps/language/models.py:61 apps/shop/models.py:109 apps/shop/models.py:219
+#: apps/shop/models.py:391 apps/shop/models.py:527 apps/shop/models.py:681
+#: apps/shop/models.py:804 apps/site/models.py:42
+msgid "model.field.updated-at"
+msgstr "Atualizado Em"
+
+#: apps/banner/models.py:127
+msgid "model.banner-access.name"
+msgstr "Acesso ao Banner"
+
+#: apps/banner/models.py:128
+msgid "model.banner-access.name.plural"
+msgstr "Acessos aos Banners"
+
+#: apps/banner/models.py:159
+msgid "model.field.banner"
+msgstr "Banner"
+
+#: apps/banner/models.py:166 apps/customer/models.py:290
+#: apps/shop/models.py:633 apps/shop/models.py:756 apps/shop/models.py:866
+#: apps/shop/models.py:1032
+msgid "model.field.customer"
+msgstr "Cliente"
+
+#: apps/banner/models.py:172
+msgid "model.field.access-type"
+msgstr "Tipo de Acesso"
+
+#: apps/banner/models.py:182 apps/customer/models.py:342
+msgid "model.field.country-code"
+msgstr "Código do País"
+
+#: apps/banner/models.py:184 apps/customer/models.py:344
+msgid "model.field.country-code.help"
+msgstr "Código do país com duas letras (ex: BR, US, FR)"
 
 #: apps/content/apps.py:8
 msgid "apps.content.description"
@@ -33,15 +215,6 @@ msgstr "categoria de conteúdo"
 msgid "model.content-category.name.plural"
 msgstr "categorias de conteúdos"
 
-#: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:46 apps/customer/models.py:281
-#: apps/gallery/models.py:31 apps/language/models.py:27 apps/shop/models.py:38
-#: apps/shop/models.py:156 apps/shop/models.py:255 apps/shop/models.py:467
-#: apps/shop/models.py:616 apps/shop/models.py:739 apps/shop/models.py:849
-#: apps/shop/models.py:1015 apps/user/models.py:89
-msgid "model.field.id"
-msgstr "ID"
-
 #: apps/content/models.py:33 apps/customer/admin.py:164
 #: apps/language/models.py:33 apps/shop/models.py:53 apps/shop/models.py:169
 #: apps/shop/models.py:270 apps/web/forms/contact.py:11
@@ -59,23 +232,6 @@ msgstr "Tag"
 msgid "model.field.tag.help"
 msgstr "Deixe vazio para geração automática."
 
-#: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:142 apps/customer/models.py:348
-#: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:104
-#: apps/shop/models.py:214 apps/shop/models.py:386 apps/shop/models.py:522
-#: apps/shop/models.py:676 apps/shop/models.py:799 apps/shop/models.py:903
-#: apps/shop/models.py:1080 apps/site/models.py:37
-msgid "model.field.created-at"
-msgstr "Criado Em"
-
-#: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:147 apps/customer/models.py:353
-#: apps/gallery/models.py:80 apps/language/models.py:61 apps/shop/models.py:109
-#: apps/shop/models.py:219 apps/shop/models.py:391 apps/shop/models.py:527
-#: apps/shop/models.py:681 apps/shop/models.py:804 apps/site/models.py:42
-msgid "model.field.updated-at"
-msgstr "Atualizado Em"
-
 #: apps/content/models.py:71
 msgid "model.content.name"
 msgstr "conteúdo"
@@ -84,18 +240,9 @@ msgstr "conteúdo"
 msgid "model.content.name.plural"
 msgstr "conteúdos"
 
-#: apps/content/models.py:100 apps/gallery/models.py:37 apps/site/models.py:23
-msgid "model.field.title"
-msgstr "Título"
-
 #: apps/content/models.py:112
 msgid "model.field.category"
 msgstr "Categoria"
-
-#: apps/content/models.py:121 apps/customer/models.py:73
-#: apps/gallery/models.py:49
-msgid "model.field.language"
-msgstr "Idioma"
 
 #: apps/content/models.py:134
 msgid "model.field.content"
@@ -104,11 +251,6 @@ msgstr "Conteúdo"
 #: apps/content/models.py:140 apps/gallery/models.py:62
 msgid "model.field.published-at"
 msgstr "Publicado Em"
-
-#: apps/content/models.py:146 apps/gallery/models.py:68 apps/shop/models.py:97
-#: apps/shop/models.py:202 apps/shop/models.py:373
-msgid "model.field.active"
-msgstr "Ativo"
 
 #: apps/customer/admin.py:24
 msgid "admin.fieldsets.address"
@@ -125,17 +267,6 @@ msgstr "INFORMAÇÕES DO USUÁRIO"
 #: apps/customer/admin.py:119
 msgid "admin.fieldsets.profile"
 msgstr "INFORMAÇÕES DO PERFIL"
-
-#: apps/customer/admin.py:125
-msgid "admin.fieldsets.additional-info"
-msgstr "INFORMAÇÕES ADICIONAIS"
-
-#: apps/customer/admin.py:131 apps/shop/admin.py:227 apps/shop/admin.py:297
-#: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
-#: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
-#: apps/user/admin.py:92
-msgid "admin.fieldsets.important-dates"
-msgstr "DATAS IMPORTANTES"
 
 #: apps/customer/admin.py:171 apps/customer/forms.py:116
 #: apps/customer/forms.py:228 apps/customer/serializers.py:38
@@ -327,13 +458,6 @@ msgstr "Clientes"
 msgid "model.field.user"
 msgstr "Usuário"
 
-#: apps/customer/models.py:62 apps/shop/models.py:47 apps/shop/models.py:264
-#: apps/shop/models.py:476 apps/shop/models.py:625 apps/shop/models.py:748
-#: apps/shop/models.py:858 apps/shop/models.py:1024 apps/site/models.py:19
-#: apps/user/models.py:98
-msgid "model.field.site"
-msgstr "Site"
-
 #: apps/customer/models.py:93
 msgid "model.field.avatar"
 msgstr "Avatar"
@@ -377,11 +501,6 @@ msgstr "Endereço do Cliente"
 msgid "model.customer-address.name.plural"
 msgstr "Endereços dos Clientes"
 
-#: apps/customer/models.py:290 apps/shop/models.py:633 apps/shop/models.py:756
-#: apps/shop/models.py:866 apps/shop/models.py:1032
-msgid "model.field.customer"
-msgstr "Cliente"
-
 #: apps/customer/models.py:294
 msgid "model.field.address-type"
 msgstr "Tipo de Endereço"
@@ -406,14 +525,6 @@ msgstr "Complemento"
 msgid "model.field.city"
 msgstr "Cidade"
 
-#: apps/customer/models.py:342
-msgid "model.field.country-code"
-msgstr "Código do País"
-
-#: apps/customer/models.py:344
-msgid "model.field.country-code.help"
-msgstr "Código do país com duas letras (ex: BR, US, FR)"
-
 #: apps/gallery/apps.py:8
 msgid "apps.gallery.description"
 msgstr "Galeria"
@@ -437,10 +548,6 @@ msgstr "Foto da Galeria"
 #: apps/gallery/models.py:115
 msgid "model.gallery-photo.name.plural"
 msgstr "Fotos da Galeria"
-
-#: apps/gallery/models.py:122 apps/shop/models.py:74 apps/shop/models.py:358
-msgid "model.field.image"
-msgstr "Imagem"
 
 #: apps/gallery/models.py:131
 msgid "model.field.caption"
@@ -529,12 +636,6 @@ msgstr "Descrição"
 #: apps/shop/models.py:669 apps/shop/models.py:792 apps/shop/models.py:1067
 msgid "model.field.status"
 msgstr "Status"
-
-#: apps/shop/admin.py:171 apps/shop/admin.py:276 apps/shop/admin.py:359
-#: apps/shop/admin.py:432 apps/shop/admin.py:534 apps/shop/admin.py:655
-#: apps/shop/admin.py:753 apps/site/admin.py:32
-msgid "admin.fieldsets.general"
-msgstr "GERAL"
 
 #: apps/shop/admin.py:183 apps/shop/admin.py:546 apps/shop/admin.py:664
 #: apps/shop/admin.py:765
@@ -808,10 +909,6 @@ msgstr "Tipo de Arquivo"
 msgid "model.field.file-size"
 msgstr "Tamanho do Arquivo"
 
-#: apps/shop/models.py:209 apps/shop/models.py:368
-msgid "model.field.sort-order"
-msgstr "Ordem"
-
 #: apps/shop/models.py:241
 msgid "model.shop-plan.name"
 msgstr "Plano"
@@ -864,10 +961,6 @@ msgstr "Assinatura"
 #: apps/shop/models.py:455
 msgid "model.shop-subscription.name.plural"
 msgstr "Assinaturas"
-
-#: apps/shop/models.py:492 apps/shop/models.py:643 apps/shop/models.py:766
-msgid "model.field.token"
-msgstr "Token"
 
 #: apps/shop/models.py:516
 msgid "model.field.expire-at"
@@ -1090,11 +1183,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:182
+#: pyaa/settings/dev.py:183
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:183
+#: pyaa/settings/dev.py:184
 msgid "language.pt-br"
 msgstr "Português"
 

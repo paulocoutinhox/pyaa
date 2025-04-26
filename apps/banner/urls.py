@@ -14,16 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from .views import account, banner, contact, content, gallery, home
-from .views.shop import shop_web, shop_webhook
+from django.urls import path
 
-urlpatterns = []
+from apps.banner import views
 
-urlpatterns += home.urlpatterns
-urlpatterns += account.urlpatterns
-urlpatterns += content.urlpatterns
-urlpatterns += gallery.urlpatterns
-urlpatterns += contact.urlpatterns
-urlpatterns += shop_web.urlpatterns
-urlpatterns += shop_webhook.urlpatterns
-urlpatterns += banner.urlpatterns
+urlpatterns = [
+    path(
+        "api/banners/",
+        views.BannerListAPIView.as_view(),
+        name="banner",
+    ),
+    path(
+        "api/banners/<uuid:token>/access/",
+        views.BannerAccessAPIView.as_view(),
+        name="banner-access",
+    ),
+]
