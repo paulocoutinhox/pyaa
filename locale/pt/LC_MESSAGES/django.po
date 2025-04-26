@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-26 02:47+0000\n"
+"POT-Creation-Date: 2025-04-26 06:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 #: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/shop/admin.py:171
 #: apps/shop/admin.py:276 apps/shop/admin.py:359 apps/shop/admin.py:432
 #: apps/shop/admin.py:534 apps/shop/admin.py:655 apps/shop/admin.py:753
-#: apps/site/admin.py:32
+#: apps/site/admin.py:32 apps/system_log/admin.py:53
 msgid "admin.fieldsets.general"
 msgstr "GERAL"
 
@@ -30,7 +30,8 @@ msgstr "INFORMAÇÕES ADICIONAIS"
 #: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/customer/admin.py:131
 #: apps/shop/admin.py:227 apps/shop/admin.py:297 apps/shop/admin.py:379
 #: apps/shop/admin.py:454 apps/shop/admin.py:556 apps/shop/admin.py:688
-#: apps/shop/admin.py:775 apps/site/admin.py:38 apps/user/admin.py:92
+#: apps/shop/admin.py:775 apps/site/admin.py:38 apps/system_log/admin.py:65
+#: apps/user/admin.py:92
 msgid "admin.fieldsets.important-dates"
 msgstr "DATAS IMPORTANTES"
 
@@ -88,14 +89,14 @@ msgstr "Banners"
 #: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
 #: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:616
 #: apps/shop/models.py:739 apps/shop/models.py:849 apps/shop/models.py:1015
-#: apps/user/models.py:89
+#: apps/system_log/models.py:22 apps/user/models.py:89
 msgid "model.field.id"
 msgstr "ID"
 
 #: apps/banner/models.py:39 apps/customer/models.py:62 apps/shop/models.py:47
 #: apps/shop/models.py:264 apps/shop/models.py:476 apps/shop/models.py:625
 #: apps/shop/models.py:748 apps/shop/models.py:858 apps/shop/models.py:1024
-#: apps/site/models.py:19 apps/user/models.py:98
+#: apps/site/models.py:19 apps/system_log/models.py:31 apps/user/models.py:98
 #: templates/admin/report/banner-access-summary/pdf.html:10
 #: templates/admin/report/banner-access-summary/view.html:18
 msgid "model.field.site"
@@ -161,7 +162,7 @@ msgstr "Ativo"
 #: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:104
 #: apps/shop/models.py:214 apps/shop/models.py:386 apps/shop/models.py:522
 #: apps/shop/models.py:676 apps/shop/models.py:799 apps/shop/models.py:903
-#: apps/shop/models.py:1080 apps/site/models.py:37
+#: apps/shop/models.py:1080 apps/site/models.py:37 apps/system_log/models.py:68
 msgid "model.field.created-at"
 msgstr "Criado Em"
 
@@ -188,7 +189,7 @@ msgstr "Banner"
 
 #: apps/banner/models.py:166 apps/customer/models.py:290
 #: apps/shop/models.py:633 apps/shop/models.py:756 apps/shop/models.py:866
-#: apps/shop/models.py:1032
+#: apps/shop/models.py:1032 apps/system_log/models.py:40
 msgid "model.field.customer"
 msgstr "Cliente"
 
@@ -250,7 +251,7 @@ msgstr "conteúdo"
 msgid "model.content.name.plural"
 msgstr "conteúdos"
 
-#: apps/content/models.py:112
+#: apps/content/models.py:112 apps/system_log/models.py:55
 msgid "model.field.category"
 msgstr "Categoria"
 
@@ -645,7 +646,7 @@ msgstr "Mensagem"
 
 #: apps/shop/admin.py:92 apps/shop/models.py:68 apps/shop/models.py:176
 #: apps/shop/models.py:380 apps/shop/models.py:897 apps/shop/models.py:1074
-#: templates/pages/shop/product/detail.html:52
+#: apps/system_log/models.py:62 templates/pages/shop/product/detail.html:52
 msgid "model.field.description"
 msgstr "Descrição"
 
@@ -1062,6 +1063,42 @@ msgstr "Perfil dos Sites"
 msgid "model.field.template-folder"
 msgstr "Pasta de Template"
 
+#: apps/system_log/admin.py:90 apps/system_log/models.py:46
+msgid "model.field.level"
+msgstr "Nível"
+
+#: apps/system_log/apps.py:8
+msgid "apps.system-log.description"
+msgstr "Log de Sistema"
+
+#: apps/system_log/enums.py:6
+msgid "enum.log-level.debug"
+msgstr "Debug"
+
+#: apps/system_log/enums.py:7
+msgid "enum.log-level.info"
+msgstr "Informação"
+
+#: apps/system_log/enums.py:8
+msgid "enum.log-level.success"
+msgstr "Sucesso"
+
+#: apps/system_log/enums.py:9
+msgid "enum.log-level.warning"
+msgstr "Aviso"
+
+#: apps/system_log/enums.py:10
+msgid "enum.log-level.error"
+msgstr "Erro"
+
+#: apps/system_log/models.py:12
+msgid "model.system-log.name"
+msgstr "Log de Sistema"
+
+#: apps/system_log/models.py:13
+msgid "model.system-log.name.plural"
+msgstr "Logs de Sistema"
+
 #: apps/user/admin.py:74
 msgid "admin.fieldsets.personal-info"
 msgstr "DADOS PESSOAIS"
@@ -1201,11 +1238,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:183
+#: pyaa/settings/dev.py:184
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:184
+#: pyaa/settings/dev.py:185
 msgid "language.pt-br"
 msgstr "Português"
 

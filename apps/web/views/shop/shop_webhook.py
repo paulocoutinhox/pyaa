@@ -1,18 +1,18 @@
 import json
 
 from django.conf import settings
-from django.contrib.sites.models import Site
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.shop.enums import PaymentGateway
 from apps.shop.helpers import ShopHelper
-from apps.shop.models import EventLog
+from apps.system_log.enums import LogLevel
+from apps.system_log.helpers import SystemLogHelper
 
 
 @csrf_exempt
 def webhook_stripe_view(request):
-    if settings.WEBHOOK_LOG_REQUESTS:
+    if settings.SYSTEM_LOG_WEBHOOK_ENABLED:
         # capturing request data
         request_headers = dict(request.headers)
         request_body = request.body.decode("utf-8") if request.body else None
@@ -20,8 +20,9 @@ def webhook_stripe_view(request):
         request_post_data = dict(request.POST)
 
         # creating a log entry with request details
-        EventLog.objects.create(
-            site=Site.objects.get_current(),
+        SystemLogHelper.create(
+            level=LogLevel.DEBUG,
+            category="stripe-webhook",
             description=f"Stripe webhook received with the following details:\n"
             f"Headers: {json.dumps(request_headers, indent=2)}\n"
             f"Body: {request_body}\n"

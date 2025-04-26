@@ -86,6 +86,7 @@ PROJECT_APPS = [
     "apps.web.apps.WebAppConfig",
     "apps.report.apps.ReportAppConfig",
     "apps.customer.apps.CustomerAppConfig",
+    "apps.system_log.apps.SystemLogAppConfig",
     "apps.language.apps.LanguageAppConfig",
     "apps.content.apps.ContentAppConfig",
     "apps.gallery.apps.GalleryAppConfig",
@@ -379,10 +380,6 @@ CUSTOMER_ACTIVATION_REQUIRED = False
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "")
 STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET", "")
 
-# Webhook
-
-WEBHOOK_LOG_REQUESTS = False
-
 # Recaptcha
 
 RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY", "")
@@ -407,3 +404,8 @@ GATEWAY_FOR_PRODUCT_PURCHASE = PaymentGateway.STRIPE
 
 # Banner
 BANNER_ACCESS_INTERVAL = 86400  # 1 day in seconds
+
+# System Log
+
+SYSTEM_LOG_API_ENABLED = True
+SYSTEM_LOG_WEBHOOK_ENABLED = False

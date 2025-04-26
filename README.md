@@ -27,6 +27,7 @@ PyAA is a powerful, open-source Python + Django template application designed to
 - **Recaptcha Support** – Enhance security with Recaptcha integration.
 - **Image Gallery** – Manage a gallery of images efficiently.
 - **Static Content Management** – Organize and manage static content across your site.
+- **System Logs** – Comprehensive logging system with multiple levels (debug, info, success, warning, error) and categorization.
 - **Multi-language Support** – Easily handle multiple languages.
 - **Multiple Currency Support** – Process payments in different currencies.
 - **Stripe Integration** – Seamlessly manage subscription payments and one-time purchases through Stripe.

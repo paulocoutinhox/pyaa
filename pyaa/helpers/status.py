@@ -1,5 +1,30 @@
 class StatusHelper:
     STATUS_COLORS = {
+        "debug": {
+            "hex": "#6c757d",
+            "bs": "secondary",
+            "text": "#ffffff",
+        },  # gray with white text
+        "info": {
+            "hex": "#007bff",
+            "bs": "primary",
+            "text": "#ffffff",
+        },  # blue with white text
+        "success": {
+            "hex": "#28a745",
+            "bs": "success",
+            "text": "#ffffff",
+        },  # green with white text
+        "warning": {
+            "hex": "#ffc107",
+            "bs": "warning",
+            "text": "#000000",
+        },  # yellow with black text
+        "error": {
+            "hex": "#dc3545",
+            "bs": "danger",
+            "text": "#ffffff",
+        },  # red with white text
         "initial": {
             "hex": "#007bff",
             "bs": "primary",
