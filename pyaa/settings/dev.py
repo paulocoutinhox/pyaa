@@ -86,6 +86,7 @@ PROJECT_APPS = [
     "apps.web.apps.WebAppConfig",
     "apps.report.apps.ReportAppConfig",
     "apps.customer.apps.CustomerAppConfig",
+    "apps.system_log.apps.SystemLogAppConfig",
     "apps.language.apps.LanguageAppConfig",
     "apps.content.apps.ContentAppConfig",
     "apps.gallery.apps.GalleryAppConfig",
