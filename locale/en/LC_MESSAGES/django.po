@@ -1068,7 +1068,7 @@ msgid "model.field.level"
 msgstr "Level"
 
 #: apps/system_log/apps.py:8
-msgid "apps.system_log.description"
+msgid "apps.system-log.description"
 msgstr "System Log"
 
 #: apps/system_log/enums.py:6
