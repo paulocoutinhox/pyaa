@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-26 02:34+0000\n"
+"POT-Creation-Date: 2025-04-26 02:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1116,38 +1116,38 @@ msgstr "Mensagem"
 msgid "email.contact.subject"
 msgstr "Nova Mensagem de Contato"
 
-#: apps/web/views/account.py:56
+#: apps/web/views/account.py:54
 msgid "message.login-success"
 msgstr "Login realizado com sucesso."
 
-#: apps/web/views/account.py:63
+#: apps/web/views/account.py:61
 msgid "error.invalid-login-data"
 msgstr "Dados de login incorretos, verifique e tente novamente."
 
-#: apps/web/views/account.py:133 apps/web/views/account.py:153
-#: apps/web/views/account.py:469
+#: apps/web/views/account.py:134 apps/web/views/account.py:154
+#: apps/web/views/account.py:470
 msgid "message.account-updated"
 msgstr "Sua conta foi atualizada."
 
-#: apps/web/views/account.py:182
+#: apps/web/views/account.py:183
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Sua conta tem assinaturas ativas. Você precisa cancelá-las antes de encerrar "
 "sua conta."
 
-#: apps/web/views/account.py:193
+#: apps/web/views/account.py:194
 msgid "message.account-deleted"
 msgstr "Sua conta e dados foram excluídos."
 
-#: apps/web/views/account.py:251
+#: apps/web/views/account.py:252
 msgid "message.shop-invalid-cancel-action"
 msgstr "Ação de cancelamento inválida."
 
-#: apps/web/views/account.py:440
+#: apps/web/views/account.py:441
 msgid "message.account-activation-success"
 msgstr "Sua conta foi ativada com sucesso!"
 
-#: apps/web/views/account.py:443
+#: apps/web/views/account.py:444
 msgid "error.invalid-activation-token"
 msgstr ""
 "Token de ativação inválido. Por favor, verifique seu e-mail para o link "
