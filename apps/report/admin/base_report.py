@@ -6,9 +6,10 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 from apps.report.filters import ExportDataFilter
+from apps.report.mixins import DateParserMixin
 
 
-class BaseReportAdmin(admin.ModelAdmin):
+class BaseReportAdmin(admin.ModelAdmin, DateParserMixin):
     change_list_template = "admin/report/base-report/view.html"
     show_full_result_count = False
 
@@ -47,7 +48,6 @@ class BaseReportAdmin(admin.ModelAdmin):
 
     def add_general_context(self, request):
         """method to add general context data"""
-
         return {
             "font_path": settings.BASE_DIR / "apps/web/static/vendor/fonts",
             "report_title": self.get_report_title(),
@@ -79,6 +79,29 @@ class BaseReportAdmin(admin.ModelAdmin):
         )
 
         return response
+
+    def get_date_range(self, date_field, request):
+        """
+        method to get the date range from the request
+        """
+        date_gte = self.parse_date(request.GET.get(f"{date_field}__range__gte"))
+        date_lte = self.parse_date(request.GET.get(f"{date_field}__range__lte"))
+
+        if not date_gte or not date_lte:
+            return self.get_month_range()
+
+        return date_gte, date_lte
+
+    def apply_date_filter(self, queryset, date_field, date_gte, date_lte):
+        """
+        method to apply the date range filter to the queryset
+        """
+        return queryset.filter(
+            **{
+                f"{date_field}__gte": date_gte,
+                f"{date_field}__lte": date_lte,
+            }
+        )
 
     def changelist_view(self, request, extra_context=None):
         self.init_chart_lib()
