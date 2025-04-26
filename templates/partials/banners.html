@@ -12,7 +12,7 @@
         <div class="carousel-inner">
             {% for banner in banners %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}" id="banner-{{ banner.token }}">
-                <a href="javascript:void(0);" class="banner-link" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link }}', {{ banner.target_blank|lower }});">
+                <a href="javascript:void(0);" class="banner-link" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link|default:'' }}', {{ banner.target_blank|lower }});">
                     <img src="{{ banner.image.url }}" class="d-block w-100" alt="{{ banner.title }}">
                 </a>
             </div>
