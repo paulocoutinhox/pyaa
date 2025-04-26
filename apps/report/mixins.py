@@ -17,7 +17,7 @@ class DateParserMixin:
         if not date_str:
             return None
 
-        # try to parse using Django's date formats
+        # try to parse using django's date formats
         for format in get_format("DATE_INPUT_FORMATS"):
             try:
                 date = datetime.datetime.strptime(date_str, format)
@@ -25,7 +25,7 @@ class DateParserMixin:
             except (ValueError, TypeError):
                 continue
 
-        # if no format worked, try parse_datetime
+        # if no format worked, try parse datetime
         try:
             return parse_datetime(date_str)
         except (ValueError, TypeError):
