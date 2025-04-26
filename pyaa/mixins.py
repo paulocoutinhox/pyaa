@@ -3,6 +3,19 @@ import re
 from django.urls import reverse
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+
+class OptionalJWTAuthenticationMixin:
+    """Mixin that provides optional JWT authentication."""
+
+    authentication_classes = [JWTAuthentication]
+
+    def perform_authentication(self, request):
+        try:
+            super().perform_authentication(request)
+        except Exception:
+            pass
 
 
 class ReadonlyLinksMixin:

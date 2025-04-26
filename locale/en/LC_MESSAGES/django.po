@@ -219,11 +219,11 @@ msgstr "Name"
 
 #: apps/content/models.py:12
 msgid "model.content-category.name"
-msgstr "content category"
+msgstr "Content Category"
 
 #: apps/content/models.py:13
 msgid "model.content-category.name.plural"
-msgstr "content categories"
+msgstr "Content Categories"
 
 #: apps/content/models.py:33 apps/customer/admin.py:164
 #: apps/language/models.py:33 apps/shop/models.py:53 apps/shop/models.py:169

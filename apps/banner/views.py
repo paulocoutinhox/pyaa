@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from apps.banner.enums import BannerAccessType
 from apps.banner.helpers import BannerHelper
 from apps.banner.serializers import BannerSerializer
+from pyaa.mixins import OptionalJWTAuthenticationMixin
 
 
 class BannerListAPIView(APIView):
@@ -33,7 +34,7 @@ class BannerListAPIView(APIView):
         return Response(serializer.data)
 
 
-class BannerAccessAPIView(APIView):
+class BannerAccessAPIView(OptionalJWTAuthenticationMixin, APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, token):
