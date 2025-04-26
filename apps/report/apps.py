@@ -9,3 +9,4 @@ class ReportAppConfig(AppConfig):
 
     def ready(self):
         import apps.report.admin.customer_gender  # noqa F401
+        import apps.report.admin.banner_access  # noqa F401

@@ -19,6 +19,7 @@ django-recaptcha==4.1.0
 django-q2==1.7.6
 django-translation-flags==1.0.6
 django-localflavor==4.0
+django-ipware==7.0.1
 
 # general
 requests==2.32.3

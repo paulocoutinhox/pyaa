@@ -4,16 +4,13 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.messages.views import SuccessMessageMixin
-from django.core.exceptions import ValidationError
-from django.db import transaction
 from django.http import Http404
 from django.shortcuts import redirect, render, resolve_url
-from django.urls import path, reverse_lazy
-from django.utils.decorators import method_decorator
+from django.urls import path
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import FormView
 
+from apps.banner.enums import BannerZone
+from apps.banner.helpers import BannerHelper
 from apps.customer.enums import CustomerAddressType
 from apps.customer.forms import (
     CustomerDeleteForm,
@@ -37,6 +34,7 @@ from pyaa.utils.cached_paginator import Paginator
 
 def account_login_view(request):
     next_url = RequestHelper.get_next_url(request)
+    banners = BannerHelper.get_banners(BannerZone.SIGNIN)
 
     if request.method == "POST":
         form = CustomerLoginForm(request.POST)
@@ -70,12 +68,14 @@ def account_login_view(request):
         {
             "form": form,
             "next_url": next_url,
+            "banners": banners,
         },
     )
 
 
 def account_signup_view(request):
     next_url = RequestHelper.get_next_url(request)
+    banners = BannerHelper.get_banners(BannerZone.SIGNUP)
 
     if request.method == "POST":
         form = CustomerSignupForm(request.POST)
@@ -103,6 +103,7 @@ def account_signup_view(request):
         {
             "form": form,
             "next": next_url,
+            "banners": banners,
         },
     )
 

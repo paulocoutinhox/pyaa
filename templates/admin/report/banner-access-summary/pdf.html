@@ -1,0 +1,34 @@
+{% extends "admin/report/base/base_report_pdf.html" %}
+
+{% load i18n %}
+
+{% block report_table %}
+    <table>
+        <thead>
+            <tr>
+                <th>{% trans "model.field.title" %}</th>
+                <th>{% trans "model.field.site" %}</th>
+                <th>{% trans "model.field.language" %}</th>
+                <th>{% trans "model.field.total-views" %}</th>
+                <th>{% trans "model.field.total-clicks" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row.title }}</td>
+                    <td>{{ row.site }}</td>
+                    <td>{{ row.language }}</td>
+                    <td>{{ row.total_views }}</td>
+                    <td>{{ row.total_clicks }}</td>
+                </tr>
+            {% endfor %}
+
+            <tr class="footer">
+                <td colspan="3">{% trans "model.field.footer-total" %}</td>
+                <td>{{ data_footer.total_views }}</td>
+                <td>{{ data_footer.total_clicks }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

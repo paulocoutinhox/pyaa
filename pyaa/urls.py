@@ -49,6 +49,10 @@ urlpatterns = [
         include("apps.gallery.urls"),
     ),
     path(
+        "api/",
+        include("apps.banner.urls"),
+    ),
+    path(
         "api/token/",
         TokenObtainPairView.as_view(),
         name="token-obtain-pair",

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 08:12+0000\n"
+"POT-Creation-Date: 2025-04-26 02:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,6 +11,198 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/shop/admin.py:171
+#: apps/shop/admin.py:276 apps/shop/admin.py:359 apps/shop/admin.py:432
+#: apps/shop/admin.py:534 apps/shop/admin.py:655 apps/shop/admin.py:753
+#: apps/site/admin.py:32
+msgid "admin.fieldsets.general"
+msgstr "GENERAL"
+
+#: apps/banner/admin.py:65
+msgid "admin.fieldsets.site-language"
+msgstr "SITE AND LANGUAGE"
+
+#: apps/banner/admin.py:71 apps/customer/admin.py:125
+msgid "admin.fieldsets.additional-info"
+msgstr "ADDITIONAL INFORMATION"
+
+#: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/customer/admin.py:131
+#: apps/shop/admin.py:227 apps/shop/admin.py:297 apps/shop/admin.py:379
+#: apps/shop/admin.py:454 apps/shop/admin.py:556 apps/shop/admin.py:688
+#: apps/shop/admin.py:775 apps/site/admin.py:38 apps/user/admin.py:92
+msgid "admin.fieldsets.important-dates"
+msgstr "IMPORTANT DATES"
+
+#: apps/banner/admin.py:108
+#: templates/admin/report/banner-access-summary/pdf.html:12
+#: templates/admin/report/banner-access-summary/view.html:28
+msgid "model.field.total-views"
+msgstr "Views"
+
+#: apps/banner/admin.py:109
+#: templates/admin/report/banner-access-summary/pdf.html:13
+#: templates/admin/report/banner-access-summary/view.html:33
+msgid "model.field.total-clicks"
+msgstr "Clicks"
+
+#: apps/banner/admin.py:164 apps/banner/models.py:178
+msgid "model.field.ip"
+msgstr "IP"
+
+#: apps/banner/apps.py:8
+msgid "apps.banner.description"
+msgstr "Banner"
+
+#: apps/banner/enums.py:6
+msgid "enum.banner-zone.home"
+msgstr "Home"
+
+#: apps/banner/enums.py:7
+msgid "enum.banner-zone.signin"
+msgstr "Sign In"
+
+#: apps/banner/enums.py:8
+msgid "enum.banner-zone.signup"
+msgstr "Sign Up"
+
+#: apps/banner/enums.py:16
+msgid "enum.banner-access-type.view"
+msgstr "View"
+
+#: apps/banner/enums.py:17
+msgid "enum.banner-access-type.click"
+msgstr "Click"
+
+#: apps/banner/models.py:15
+msgid "model.banner.name"
+msgstr "Banner"
+
+#: apps/banner/models.py:16
+msgid "model.banner.name.plural"
+msgstr "Banners"
+
+#: apps/banner/models.py:30 apps/banner/models.py:150 apps/content/models.py:27
+#: apps/content/models.py:94 apps/customer/models.py:46
+#: apps/customer/models.py:281 apps/gallery/models.py:31
+#: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
+#: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:616
+#: apps/shop/models.py:739 apps/shop/models.py:849 apps/shop/models.py:1015
+#: apps/user/models.py:89
+msgid "model.field.id"
+msgstr "ID"
+
+#: apps/banner/models.py:39 apps/customer/models.py:62 apps/shop/models.py:47
+#: apps/shop/models.py:264 apps/shop/models.py:476 apps/shop/models.py:625
+#: apps/shop/models.py:748 apps/shop/models.py:858 apps/shop/models.py:1024
+#: apps/site/models.py:19 apps/user/models.py:98
+#: templates/admin/report/banner-access-summary/pdf.html:10
+#: templates/admin/report/banner-access-summary/view.html:18
+msgid "model.field.site"
+msgstr "Site"
+
+#: apps/banner/models.py:50 apps/content/models.py:121
+#: apps/customer/models.py:73 apps/gallery/models.py:49
+#: templates/admin/report/banner-access-summary/pdf.html:11
+#: templates/admin/report/banner-access-summary/view.html:23
+msgid "model.field.language"
+msgstr "Language"
+
+#: apps/banner/models.py:54 apps/shop/models.py:492 apps/shop/models.py:643
+#: apps/shop/models.py:766
+msgid "model.field.token"
+msgstr "Token"
+
+#: apps/banner/models.py:61 apps/content/models.py:100
+#: apps/gallery/models.py:37 apps/site/models.py:23
+#: templates/admin/report/banner-access-summary/pdf.html:9
+#: templates/admin/report/banner-access-summary/view.html:13
+msgid "model.field.title"
+msgstr "Title"
+
+#: apps/banner/models.py:66 apps/gallery/models.py:122 apps/shop/models.py:74
+#: apps/shop/models.py:358
+msgid "model.field.image"
+msgstr "Image"
+
+#: apps/banner/models.py:71
+msgid "model.field.link"
+msgstr "Link"
+
+#: apps/banner/models.py:78
+msgid "model.field.target-blank"
+msgstr "Open in New Window"
+
+#: apps/banner/models.py:83
+msgid "model.field.zone"
+msgstr "Zone"
+
+#: apps/banner/models.py:89 apps/shop/models.py:209 apps/shop/models.py:368
+msgid "model.field.sort-order"
+msgstr "Order"
+
+#: apps/banner/models.py:94
+msgid "model.field.start-at"
+msgstr "Start At"
+
+#: apps/banner/models.py:100
+msgid "model.field.end-at"
+msgstr "End At"
+
+#: apps/banner/models.py:106 apps/content/models.py:146
+#: apps/gallery/models.py:68 apps/shop/models.py:97 apps/shop/models.py:202
+#: apps/shop/models.py:373
+msgid "model.field.active"
+msgstr "Active"
+
+#: apps/banner/models.py:111 apps/banner/models.py:190
+#: apps/content/models.py:49 apps/content/models.py:153
+#: apps/customer/models.py:142 apps/customer/models.py:348
+#: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:104
+#: apps/shop/models.py:214 apps/shop/models.py:386 apps/shop/models.py:522
+#: apps/shop/models.py:676 apps/shop/models.py:799 apps/shop/models.py:903
+#: apps/shop/models.py:1080 apps/site/models.py:37
+msgid "model.field.created-at"
+msgstr "Created At"
+
+#: apps/banner/models.py:116 apps/content/models.py:54
+#: apps/content/models.py:158 apps/customer/models.py:147
+#: apps/customer/models.py:353 apps/gallery/models.py:80
+#: apps/language/models.py:61 apps/shop/models.py:109 apps/shop/models.py:219
+#: apps/shop/models.py:391 apps/shop/models.py:527 apps/shop/models.py:681
+#: apps/shop/models.py:804 apps/site/models.py:42
+msgid "model.field.updated-at"
+msgstr "Updated At"
+
+#: apps/banner/models.py:127
+msgid "model.banner-access.name"
+msgstr "Banner Access"
+
+#: apps/banner/models.py:128
+msgid "model.banner-access.name.plural"
+msgstr "Banner Accesses"
+
+#: apps/banner/models.py:159
+msgid "model.field.banner"
+msgstr "Banner"
+
+#: apps/banner/models.py:166 apps/customer/models.py:290
+#: apps/shop/models.py:633 apps/shop/models.py:756 apps/shop/models.py:866
+#: apps/shop/models.py:1032
+msgid "model.field.customer"
+msgstr "Customer"
+
+#: apps/banner/models.py:172
+msgid "model.field.access-type"
+msgstr "Access Type"
+
+#: apps/banner/models.py:182 apps/customer/models.py:342
+msgid "model.field.country-code"
+msgstr "Country Code"
+
+#: apps/banner/models.py:184 apps/customer/models.py:344
+msgid "model.field.country-code.help"
+msgstr "Two-letter country code (e.g. BR, US, FR)"
 
 #: apps/content/apps.py:8
 msgid "apps.content.description"
@@ -27,20 +219,11 @@ msgstr "Name"
 
 #: apps/content/models.py:12
 msgid "model.content-category.name"
-msgstr "content category"
+msgstr "Content Category"
 
 #: apps/content/models.py:13
 msgid "model.content-category.name.plural"
-msgstr "content categories"
-
-#: apps/content/models.py:27 apps/content/models.py:94
-#: apps/customer/models.py:46 apps/customer/models.py:281
-#: apps/gallery/models.py:31 apps/language/models.py:27 apps/shop/models.py:38
-#: apps/shop/models.py:156 apps/shop/models.py:255 apps/shop/models.py:467
-#: apps/shop/models.py:616 apps/shop/models.py:739 apps/shop/models.py:849
-#: apps/shop/models.py:1015 apps/user/models.py:89
-msgid "model.field.id"
-msgstr "ID"
+msgstr "Content Categories"
 
 #: apps/content/models.py:33 apps/customer/admin.py:164
 #: apps/language/models.py:33 apps/shop/models.py:53 apps/shop/models.py:169
@@ -59,23 +242,6 @@ msgstr "Tag"
 msgid "model.field.tag.help"
 msgstr "Leave empty for auto generation."
 
-#: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:142 apps/customer/models.py:348
-#: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:104
-#: apps/shop/models.py:214 apps/shop/models.py:386 apps/shop/models.py:522
-#: apps/shop/models.py:676 apps/shop/models.py:799 apps/shop/models.py:903
-#: apps/shop/models.py:1080 apps/site/models.py:37
-msgid "model.field.created-at"
-msgstr "Created At"
-
-#: apps/content/models.py:54 apps/content/models.py:158
-#: apps/customer/models.py:147 apps/customer/models.py:353
-#: apps/gallery/models.py:80 apps/language/models.py:61 apps/shop/models.py:109
-#: apps/shop/models.py:219 apps/shop/models.py:391 apps/shop/models.py:527
-#: apps/shop/models.py:681 apps/shop/models.py:804 apps/site/models.py:42
-msgid "model.field.updated-at"
-msgstr "Updated At"
-
 #: apps/content/models.py:71
 msgid "model.content.name"
 msgstr "Content"
@@ -84,18 +250,9 @@ msgstr "Content"
 msgid "model.content.name.plural"
 msgstr "Contents"
 
-#: apps/content/models.py:100 apps/gallery/models.py:37 apps/site/models.py:23
-msgid "model.field.title"
-msgstr "Title"
-
 #: apps/content/models.py:112
 msgid "model.field.category"
 msgstr "Category"
-
-#: apps/content/models.py:121 apps/customer/models.py:73
-#: apps/gallery/models.py:49
-msgid "model.field.language"
-msgstr "Language"
 
 #: apps/content/models.py:134
 msgid "model.field.content"
@@ -104,11 +261,6 @@ msgstr "Content"
 #: apps/content/models.py:140 apps/gallery/models.py:62
 msgid "model.field.published-at"
 msgstr "Published At"
-
-#: apps/content/models.py:146 apps/gallery/models.py:68 apps/shop/models.py:97
-#: apps/shop/models.py:202 apps/shop/models.py:373
-msgid "model.field.active"
-msgstr "Active"
 
 #: apps/customer/admin.py:24
 msgid "admin.fieldsets.address"
@@ -125,17 +277,6 @@ msgstr "USER INFORMATION"
 #: apps/customer/admin.py:119
 msgid "admin.fieldsets.profile"
 msgstr "PROFILE INFORMATION"
-
-#: apps/customer/admin.py:125
-msgid "admin.fieldsets.additional-info"
-msgstr "ADDITIONAL INFORMATION"
-
-#: apps/customer/admin.py:131 apps/shop/admin.py:227 apps/shop/admin.py:297
-#: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
-#: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
-#: apps/user/admin.py:92
-msgid "admin.fieldsets.important-dates"
-msgstr "IMPORTANT DATES"
 
 #: apps/customer/admin.py:171 apps/customer/forms.py:116
 #: apps/customer/forms.py:228 apps/customer/serializers.py:38
@@ -327,13 +468,6 @@ msgstr "Customers"
 msgid "model.field.user"
 msgstr "User"
 
-#: apps/customer/models.py:62 apps/shop/models.py:47 apps/shop/models.py:264
-#: apps/shop/models.py:476 apps/shop/models.py:625 apps/shop/models.py:748
-#: apps/shop/models.py:858 apps/shop/models.py:1024 apps/site/models.py:19
-#: apps/user/models.py:98
-msgid "model.field.site"
-msgstr "Site"
-
 #: apps/customer/models.py:93
 msgid "model.field.avatar"
 msgstr "Avatar"
@@ -377,11 +511,6 @@ msgstr "Customer Address"
 msgid "model.customer-address.name.plural"
 msgstr "Customer Addresses"
 
-#: apps/customer/models.py:290 apps/shop/models.py:633 apps/shop/models.py:756
-#: apps/shop/models.py:866 apps/shop/models.py:1032
-msgid "model.field.customer"
-msgstr "Customer"
-
 #: apps/customer/models.py:294
 msgid "model.field.address-type"
 msgstr "Address Type"
@@ -406,14 +535,6 @@ msgstr "Complement"
 msgid "model.field.city"
 msgstr "City"
 
-#: apps/customer/models.py:342
-msgid "model.field.country-code"
-msgstr "Country Code"
-
-#: apps/customer/models.py:344
-msgid "model.field.country-code.help"
-msgstr "Two-letter country code (e.g. BR, US, FR)"
-
 #: apps/gallery/apps.py:8
 msgid "apps.gallery.description"
 msgstr "Gallery"
@@ -437,10 +558,6 @@ msgstr "Gallery Photo"
 #: apps/gallery/models.py:115
 msgid "model.gallery-photo.name.plural"
 msgstr "Gallery Photos"
-
-#: apps/gallery/models.py:122 apps/shop/models.py:74 apps/shop/models.py:358
-msgid "model.field.image"
-msgstr "Image"
 
 #: apps/gallery/models.py:131
 msgid "model.field.caption"
@@ -490,6 +607,10 @@ msgstr "Code ISO"
 msgid "model.hint.code_iso_language"
 msgstr "Examples: en-us or pt-br."
 
+#: apps/report/admin/banner_access.py:21
+msgid "title.report.banner-access-summary"
+msgstr "Banner Access Report"
+
 #: apps/report/admin/customer_gender.py:23
 msgid "title.report.customer-gender-summary"
 msgstr "Customers Genders Report"
@@ -498,9 +619,13 @@ msgstr "Customers Genders Report"
 msgid "apps.report.description"
 msgstr "Report"
 
-#: apps/report/models.py:9 apps/report/models.py:10
+#: apps/report/models.py:10 apps/report/models.py:11
 msgid "model.customer-gender-summary.name"
 msgstr "Customers Genders"
+
+#: apps/report/models.py:17 apps/report/models.py:18
+msgid "model.banner-access-summary.name"
+msgstr "Banner Accesses"
 
 #: apps/shop/admin.py:51
 msgid "button.copy"
@@ -529,12 +654,6 @@ msgstr "Description"
 #: apps/shop/models.py:669 apps/shop/models.py:792 apps/shop/models.py:1067
 msgid "model.field.status"
 msgstr "Status"
-
-#: apps/shop/admin.py:171 apps/shop/admin.py:276 apps/shop/admin.py:359
-#: apps/shop/admin.py:432 apps/shop/admin.py:534 apps/shop/admin.py:655
-#: apps/shop/admin.py:753 apps/site/admin.py:32
-msgid "admin.fieldsets.general"
-msgstr "GENERAL"
 
 #: apps/shop/admin.py:183 apps/shop/admin.py:546 apps/shop/admin.py:664
 #: apps/shop/admin.py:765
@@ -808,10 +927,6 @@ msgstr "File Type"
 msgid "model.field.file-size"
 msgstr "File Size"
 
-#: apps/shop/models.py:209 apps/shop/models.py:368
-msgid "model.field.sort-order"
-msgstr "Order"
-
 #: apps/shop/models.py:241
 msgid "model.shop-plan.name"
 msgstr "Plan"
@@ -864,10 +979,6 @@ msgstr "Subscription"
 #: apps/shop/models.py:455
 msgid "model.shop-subscription.name.plural"
 msgstr "Subscriptions"
-
-#: apps/shop/models.py:492 apps/shop/models.py:643 apps/shop/models.py:766
-msgid "model.field.token"
-msgstr "Token"
 
 #: apps/shop/models.py:516
 msgid "model.field.expire-at"
@@ -1005,38 +1116,38 @@ msgstr "Message"
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
-#: apps/web/views/account.py:56
+#: apps/web/views/account.py:54
 msgid "message.login-success"
 msgstr "Login successful."
 
-#: apps/web/views/account.py:63
+#: apps/web/views/account.py:61
 msgid "error.invalid-login-data"
 msgstr "Incorrect login data, please check and try again."
 
-#: apps/web/views/account.py:133 apps/web/views/account.py:153
-#: apps/web/views/account.py:469
+#: apps/web/views/account.py:134 apps/web/views/account.py:154
+#: apps/web/views/account.py:470
 msgid "message.account-updated"
 msgstr "Your account was updated."
 
-#: apps/web/views/account.py:182
+#: apps/web/views/account.py:183
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Your account has active subscriptions. You need to cancel them before "
 "closing your account."
 
-#: apps/web/views/account.py:193
+#: apps/web/views/account.py:194
 msgid "message.account-deleted"
 msgstr "Your account and data were deleted."
 
-#: apps/web/views/account.py:251
+#: apps/web/views/account.py:252
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
 
-#: apps/web/views/account.py:440
+#: apps/web/views/account.py:441
 msgid "message.account-activation-success"
 msgstr "Your account has been activated successfully!"
 
-#: apps/web/views/account.py:443
+#: apps/web/views/account.py:444
 msgid "error.invalid-activation-token"
 msgstr ""
 "Invalid activation token. Please check your email for the correct link."
@@ -1089,11 +1200,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site content"
 
-#: pyaa/settings/dev.py:182
+#: pyaa/settings/dev.py:183
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings/dev.py:183
+#: pyaa/settings/dev.py:184
 msgid "language.pt-br"
 msgstr "Portuguese"
 
@@ -1161,6 +1272,19 @@ msgstr "Forgotten your password or username?"
 msgid "Log in"
 msgstr "Log in"
 
+#: templates/admin/report/banner-access-summary/pdf.html:28
+#: templates/admin/report/banner-access-summary/view.html:50
+#: templates/admin/report/customer-gender-summary/pdf.html:26
+#: templates/admin/report/customer-gender-summary/view.html:36
+msgid "model.field.footer-total"
+msgstr "Total"
+
+#: templates/admin/report/banner-access-summary/view.html:59
+#: templates/admin/report/base/base_report_pdf.html:29
+#: templates/admin/report/customer-gender-summary/view.html:54
+msgid "admin.report-list-data.empty"
+msgstr "No data found."
+
 #: templates/admin/report/base/base_report.html:12
 msgid "button.export-to-pdf"
 msgstr "Export to PDF"
@@ -1171,16 +1295,6 @@ msgstr "Export to PDF"
 #: templates/admin/report/customer-gender-summary/view.html:49
 msgid "title.report.chart"
 msgstr "Report Chart"
-
-#: templates/admin/report/base/base_report_pdf.html:29
-#: templates/admin/report/customer-gender-summary/view.html:54
-msgid "admin.report-list-data.empty"
-msgstr "No data found."
-
-#: templates/admin/report/customer-gender-summary/pdf.html:26
-#: templates/admin/report/customer-gender-summary/view.html:36
-msgid "model.field.footer-total"
-msgstr "Total"
 
 #: templates/emails/account/activation.html:9
 #: templates/emails/account/password_recovery.html:9
