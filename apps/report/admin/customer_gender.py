@@ -1,11 +1,9 @@
 import base64
-import calendar
 import io
 
 import matplotlib.pyplot as plt
 from django.contrib import admin
-from django.db.models import Count, Q
-from django.utils import timezone
+from django.db.models import Count
 from django.utils.translation import gettext as _
 
 from apps.customer import filters
@@ -33,39 +31,9 @@ class CustomerGendeSummaryAdmin(BaseReportAdmin):
     def generate_report_data(self, request):
         qs = self.get_queryset(request)
 
-        # apply date filter if no filters are set (default to current month)
-        if request.GET:
-            # apply date range filter if set
-            date_gte = request.GET.get("created_at__range__gte")
-            date_lte = request.GET.get("created_at__range__lte")
-
-            if date_gte or date_lte:
-                date_filter = Q()
-                if date_gte:
-                    date_filter &= Q(created_at__gte=date_gte)
-                if date_lte:
-                    date_filter &= Q(created_at__lte=date_lte)
-                qs = qs.filter(date_filter).distinct()
-        else:
-            # default to current month if no filters are set
-            now = timezone.now()
-            start_of_month = now.replace(
-                day=1,
-                hour=0,
-                minute=0,
-                second=0,
-                microsecond=0,
-            )
-            last_day = calendar.monthrange(now.year, now.month)[1]
-            end_of_month = now.replace(
-                day=last_day,
-                hour=23,
-                minute=59,
-                second=59,
-                microsecond=999999,
-            )
-
-            qs = qs.filter(created_at__gte=start_of_month, created_at__lte=end_of_month)
+        # get date range and apply filter
+        date_gte, date_lte = self.get_date_range("created_at", request)
+        qs = self.apply_date_filter(qs, "created_at", date_gte, date_lte)
 
         metrics = {"total": Count("id")}
         data = list(qs.values("gender").annotate(**metrics).order_by("-total"))
