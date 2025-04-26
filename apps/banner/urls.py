@@ -20,12 +20,12 @@ from apps.banner import views
 
 urlpatterns = [
     path(
-        "api/banners/",
+        "banner/",
         views.BannerListAPIView.as_view(),
         name="banner",
     ),
     path(
-        "api/banners/<uuid:token>/access/",
+        "banner/access/<uuid:token>/",
         views.BannerAccessAPIView.as_view(),
         name="banner-access",
     ),

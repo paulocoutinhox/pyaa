@@ -15,3 +15,7 @@ class BannerZone(TextChoices):
 class BannerAccessType(TextChoices):
     VIEW = "view", _("enum.banner-access-type.view")
     CLICK = "click", _("enum.banner-access-type.click")
+
+    @classmethod
+    def get_choices(cls):
+        return tuple((i.name, i.value) for i in cls)

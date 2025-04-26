@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.banner.enums import BannerAccessType
 from apps.banner.helpers import BannerHelper
 from apps.banner.serializers import BannerSerializer
 
@@ -20,7 +21,7 @@ class BannerListAPIView(APIView):
             )
 
         language = request.GET.get("language")
-        site_id = request.GET.get("site_id")
+        site_id = request.GET.get("site")
 
         banners = BannerHelper.get_banners(
             zone=zone,
@@ -35,7 +36,7 @@ class BannerListAPIView(APIView):
 class BannerAccessAPIView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request, token):
+    def get(self, request, token):
         banner = BannerHelper.get_banner_by_token(token)
 
         if not banner:
@@ -44,6 +45,20 @@ class BannerAccessAPIView(APIView):
                 status=status.HTTP_404_NOT_FOUND,
             )
 
-        tracked = BannerHelper.track_banner_access(request, banner)
+        access_type = request.GET.get("type")
+
+        if access_type == BannerAccessType.VIEW.value:
+            tracked = BannerHelper.track_banner_access(
+                request, banner, BannerAccessType.VIEW
+            )
+        elif access_type == BannerAccessType.CLICK.value:
+            tracked = BannerHelper.track_banner_access(
+                request, banner, BannerAccessType.CLICK
+            )
+        else:
+            return Response(
+                {"error": "Invalid access type"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         return Response({"success": tracked})
