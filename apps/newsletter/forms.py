@@ -8,7 +8,7 @@ class NewsletterForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 "class": "form-control",
-                "placeholder": _("form.newsletter.email.placeholder"),
+                "placeholder": _("form.placeholder.newsletter-email"),
             }
         ),
     )

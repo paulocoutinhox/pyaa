@@ -615,7 +615,7 @@ msgid "apps.newsletter.description"
 msgstr "Newsletter"
 
 #: apps/newsletter/forms.py:11 templates/partials/newsletter-subscribe.html:21
-msgid "form.newsletter.email.placeholder"
+msgid "form.placeholder.newsletter-email"
 msgstr "Enter your email"
 
 #: apps/newsletter/models.py:8
