@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-26 06:21+0000\n"
+"POT-Creation-Date: 2025-04-29 15:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,10 +12,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/shop/admin.py:171
-#: apps/shop/admin.py:276 apps/shop/admin.py:359 apps/shop/admin.py:432
-#: apps/shop/admin.py:534 apps/shop/admin.py:655 apps/shop/admin.py:753
-#: apps/site/admin.py:32 apps/system_log/admin.py:53
+#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/newsletter/admin.py:36
+#: apps/shop/admin.py:171 apps/shop/admin.py:276 apps/shop/admin.py:359
+#: apps/shop/admin.py:432 apps/shop/admin.py:534 apps/shop/admin.py:655
+#: apps/shop/admin.py:753 apps/site/admin.py:32 apps/system_log/admin.py:53
 msgid "admin.fieldsets.general"
 msgstr "GENERAL"
 
@@ -28,10 +28,10 @@ msgid "admin.fieldsets.additional-info"
 msgstr "ADDITIONAL INFORMATION"
 
 #: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/customer/admin.py:131
-#: apps/shop/admin.py:227 apps/shop/admin.py:297 apps/shop/admin.py:379
-#: apps/shop/admin.py:454 apps/shop/admin.py:556 apps/shop/admin.py:688
-#: apps/shop/admin.py:775 apps/site/admin.py:38 apps/system_log/admin.py:65
-#: apps/user/admin.py:92
+#: apps/newsletter/admin.py:42 apps/shop/admin.py:227 apps/shop/admin.py:297
+#: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
+#: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
+#: apps/system_log/admin.py:65 apps/user/admin.py:92
 msgid "admin.fieldsets.important-dates"
 msgstr "IMPORTANT DATES"
 
@@ -159,10 +159,11 @@ msgstr "Active"
 #: apps/banner/models.py:111 apps/banner/models.py:190
 #: apps/content/models.py:49 apps/content/models.py:153
 #: apps/customer/models.py:142 apps/customer/models.py:348
-#: apps/gallery/models.py:75 apps/language/models.py:56 apps/shop/models.py:104
-#: apps/shop/models.py:214 apps/shop/models.py:386 apps/shop/models.py:522
-#: apps/shop/models.py:676 apps/shop/models.py:799 apps/shop/models.py:903
-#: apps/shop/models.py:1080 apps/site/models.py:37 apps/system_log/models.py:68
+#: apps/gallery/models.py:75 apps/language/models.py:56
+#: apps/newsletter/models.py:29 apps/shop/models.py:104 apps/shop/models.py:214
+#: apps/shop/models.py:386 apps/shop/models.py:522 apps/shop/models.py:676
+#: apps/shop/models.py:799 apps/shop/models.py:903 apps/shop/models.py:1080
+#: apps/site/models.py:37 apps/system_log/models.py:68
 msgid "model.field.created-at"
 msgstr "Created At"
 
@@ -281,7 +282,8 @@ msgstr "PROFILE INFORMATION"
 
 #: apps/customer/admin.py:171 apps/customer/forms.py:116
 #: apps/customer/forms.py:228 apps/customer/serializers.py:38
-#: apps/customer/serializers.py:107 apps/user/models.py:112
+#: apps/customer/serializers.py:107 apps/newsletter/forms.py:7
+#: apps/newsletter/models.py:22 apps/user/models.py:112
 #: apps/web/forms/contact.py:22 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
@@ -608,11 +610,27 @@ msgstr "Code ISO"
 msgid "model.hint.code_iso_language"
 msgstr "Examples: en-us or pt-br."
 
-#: apps/report/admin/banner_access.py:21
+#: apps/newsletter/apps.py:8
+msgid "apps.newsletter.description"
+msgstr "Newsletter"
+
+#: apps/newsletter/forms.py:11 templates/partials/newsletter-subscribe.html:21
+msgid "form.newsletter.email.placeholder"
+msgstr "Enter your email"
+
+#: apps/newsletter/models.py:8
+msgid "model.newsletter-entry.name"
+msgstr "Newsletter Entry"
+
+#: apps/newsletter/models.py:9
+msgid "model.newsletter-entry.name.plural"
+msgstr "Newsletter Entries"
+
+#: apps/report/admin/banner_access.py:18
 msgid "title.report.banner-access-summary"
 msgstr "Banner Access Report"
 
-#: apps/report/admin/customer_gender.py:23
+#: apps/report/admin/customer_gender.py:21
 msgid "title.report.customer-gender-summary"
 msgstr "Customers Genders Report"
 
@@ -1237,11 +1255,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Site content"
 
-#: pyaa/settings/dev.py:184
+#: pyaa/settings/dev.py:185
 msgid "language.en"
 msgstr "English"
 
-#: pyaa/settings/dev.py:185
+#: pyaa/settings/dev.py:186
 msgid "language.pt-br"
 msgstr "Portuguese"
 
@@ -1944,6 +1962,24 @@ msgstr "Logout"
 msgid "menu.login"
 msgstr "Login"
 
+#: templates/pages/newsletter/subscribe.html:6
+#: templates/partials/newsletter-subscribe.html:6
+msgid "title.newsletter.subscribe"
+msgstr "Subscribe to Our Newsletter"
+
+#: templates/pages/newsletter/success.html:5
+#: templates/pages/newsletter/success.html:18
+msgid "page.newsletter.success.title"
+msgstr "Subscription Successful"
+
+#: templates/pages/newsletter/success.html:22
+msgid "page.newsletter.success.message"
+msgstr "Thank you for subscribing to our newsletter!"
+
+#: templates/pages/newsletter/success.html:28
+msgid "page.newsletter.success.back"
+msgstr "Back to Home"
+
 #: templates/pages/shop/checkout/index.html:53
 msgid "subtitle.checkout-details"
 msgstr "Details"
@@ -2128,6 +2164,16 @@ msgstr "Select Language"
 #: templates/partials/language-selector.html:32
 msgid "button.change"
 msgstr "Change"
+
+#: templates/partials/newsletter-subscribe.html:10
+msgid "subtitle.newsletter.subscribe"
+msgstr ""
+"Subscribe to our newsletter to receive the latest news, updates, and "
+"exclusive content directly in your inbox."
+
+#: templates/partials/newsletter-subscribe.html:26
+msgid "button.newsletter.subscribe"
+msgstr "Subscribe"
 
 #: templates/partials/paginator.html:4
 msgid "pagination.navigation"

@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block title %}
+    {% translate "title.newsletter.subscribe" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="py-5 text-center">
+        {% include 'partials/newsletter-subscribe.html' %}
+    </div>
+</div>
+
+{% endblock %}
