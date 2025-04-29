@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 15:05+0000\n"
+"POT-Creation-Date: 2025-04-29 16:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/newsletter/admin.py:36
+#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/newsletter/admin.py:41
 #: apps/shop/admin.py:171 apps/shop/admin.py:276 apps/shop/admin.py:359
 #: apps/shop/admin.py:432 apps/shop/admin.py:534 apps/shop/admin.py:655
 #: apps/shop/admin.py:753 apps/site/admin.py:32 apps/system_log/admin.py:53
@@ -28,7 +28,7 @@ msgid "admin.fieldsets.additional-info"
 msgstr "ADDITIONAL INFORMATION"
 
 #: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/customer/admin.py:131
-#: apps/newsletter/admin.py:42 apps/shop/admin.py:227 apps/shop/admin.py:297
+#: apps/newsletter/admin.py:47 apps/shop/admin.py:227 apps/shop/admin.py:297
 #: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
 #: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
 #: apps/system_log/admin.py:65 apps/user/admin.py:92
@@ -609,6 +609,10 @@ msgstr "Code ISO"
 #: apps/language/models.py:51
 msgid "model.hint.code_iso_language"
 msgstr "Examples: en-us or pt-br."
+
+#: apps/newsletter/admin.py:80
+msgid "admin.action.export-as-csv"
+msgstr "Export as CSV"
 
 #: apps/newsletter/apps.py:8
 msgid "apps.newsletter.description"
@@ -1963,9 +1967,22 @@ msgid "menu.login"
 msgstr "Login"
 
 #: templates/pages/newsletter/subscribe.html:6
+#: templates/pages/newsletter/subscribe.html:14
 #: templates/partials/newsletter-subscribe.html:6
 msgid "title.newsletter.subscribe"
 msgstr "Subscribe to Our Newsletter"
+
+#: templates/pages/newsletter/subscribe.html:18
+#: templates/partials/newsletter-subscribe.html:10
+msgid "subtitle.newsletter.subscribe"
+msgstr ""
+"Subscribe to our newsletter to receive the latest news, updates, and "
+"exclusive content directly in your inbox."
+
+#: templates/pages/newsletter/subscribe.html:31
+#: templates/partials/newsletter-subscribe.html:26
+msgid "button.newsletter.subscribe"
+msgstr "Subscribe"
 
 #: templates/pages/newsletter/success.html:5
 #: templates/pages/newsletter/success.html:18
@@ -2164,16 +2181,6 @@ msgstr "Select Language"
 #: templates/partials/language-selector.html:32
 msgid "button.change"
 msgstr "Change"
-
-#: templates/partials/newsletter-subscribe.html:10
-msgid "subtitle.newsletter.subscribe"
-msgstr ""
-"Subscribe to our newsletter to receive the latest news, updates, and "
-"exclusive content directly in your inbox."
-
-#: templates/partials/newsletter-subscribe.html:26
-msgid "button.newsletter.subscribe"
-msgstr "Subscribe"
 
 #: templates/partials/paginator.html:4
 msgid "pagination.navigation"

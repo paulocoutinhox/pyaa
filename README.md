@@ -23,6 +23,7 @@ PyAA is a powerful, open-source Python + Django template application designed to
 - **Banner System** – Manage banners with view and click tracking, plus detailed reporting in the admin panel.
 - **Admin Panel** – A fully functional admin dashboard for managing the application.
 - **Admin Reports** – Comprehensive reporting system with interactive tables and graphs for data visualization and analysis.
+- **Newsletter System** – Manage newsletter subscriptions with CSV export functionality from the admin panel.
 - **Theme Selector** – Support for light, dark, and auto theme modes.
 - **Email Integration** – Send transactional emails with ease.
 - **Recaptcha Support** – Enhance security with Recaptcha integration.
