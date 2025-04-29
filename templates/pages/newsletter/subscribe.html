@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+{% load i18n %}
+{% load pyaa %}
+
+{% block title %}
+    {% translate "title.newsletter.subscribe" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="py-5">
+        {% element page_title %}
+            {% trans "title.newsletter.subscribe" %}
+        {% endelement %}
+
+        <p class="lead mb-4 text-center">
+            {% trans "subtitle.newsletter.subscribe" %}
+        </p>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" class="needs-validation" novalidate>
+                    {% csrf_token %}
+
+                    {% element fields form=form %}
+                    {% endelement %}
+
+                    <div class="d-grid">
+                        {% element button type="submit" tags="primary" %}
+                            {% translate "button.newsletter.subscribe" %}
+                        {% endelement %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

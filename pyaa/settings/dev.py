@@ -92,6 +92,7 @@ PROJECT_APPS = [
     "apps.gallery.apps.GalleryAppConfig",
     "apps.shop.apps.ShopAppConfig",
     "apps.banner.apps.BannerAppConfig",
+    "apps.newsletter.apps.NewsletterAppConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
