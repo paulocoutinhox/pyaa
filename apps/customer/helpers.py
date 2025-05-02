@@ -71,7 +71,7 @@ class CustomerHelper:
         # if a plan is provided, use its credits value
         if plan:
             # determine credit amount based on the plan
-            credit_amount = plan.credits
+            credit_amount = plan.credits or 0
 
             if credit_amount <= 0:
                 return False

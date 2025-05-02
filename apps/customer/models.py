@@ -50,9 +50,11 @@ class Customer(models.Model):
 
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="customer",
         verbose_name=_("model.field.user"),
+        null=True,
+        blank=True,
     )
 
     site = models.ForeignKey(
@@ -152,14 +154,14 @@ class Customer(models.Model):
         if self.nickname:
             return self.nickname
 
-        user_name = self.user.get_full_name()
+        if self.user:
+            user_name = self.user.get_full_name()
+            if user_name:
+                return user_name
 
-        if user_name:
-            return user_name
-
-        if self.user.email:
-            if "@" in self.user.email:
-                return self.user.email.split("@")[0]
+            if self.user.email:
+                if "@" in self.user.email:
+                    return self.user.email.split("@")[0]
 
         return _("model.str.customer #{id}").format(id=self.id)
 
