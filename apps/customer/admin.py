@@ -164,6 +164,8 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         description=_("model.field.name"),
     )
     def user_name(self, obj):
+        if not obj.user:
+            return "-"
         return f"{obj.user.first_name} {obj.user.last_name}"
 
     @admin.display(
@@ -171,6 +173,8 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         description=_("model.field.email"),
     )
     def user_email(self, obj):
+        if not obj.user:
+            return "-"
         return obj.user.email
 
     @admin.display(
@@ -178,6 +182,8 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         description=_("model.field.cpf"),
     )
     def user_cpf(self, obj):
+        if not obj.user:
+            return "-"
         return obj.user.cpf
 
     @admin.display(
@@ -185,6 +191,8 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         description=_("model.field.mobile-phone"),
     )
     def user_mobile_phone(self, obj):
+        if not obj.user:
+            return "-"
         return obj.user.mobile_phone
 
     @admin.display(
@@ -193,6 +201,8 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
         description=_("model.field.is_active"),
     )
     def user_is_active(self, obj):
+        if not obj.user:
+            return False
         return obj.user.is_active
 
     def save_model(self, request, obj, form, change):
