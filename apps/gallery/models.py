@@ -1,6 +1,7 @@
 from urllib.parse import urljoin
 
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.html import format_html
 from django.utils.text import slugify
@@ -31,6 +32,15 @@ class Gallery(models.Model):
         _("model.field.id"),
         unique=True,
         primary_key=True,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="galleries",
+        verbose_name=_("model.field.site"),
+        blank=True,
+        null=True,
     )
 
     title = models.CharField(

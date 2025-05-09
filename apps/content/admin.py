@@ -12,6 +12,7 @@ class ContentAdmin(admin.ModelAdmin):
         "title",
         "category",
         "tag",
+        "site_name",
         "language",
         "published_at",
         "active",
@@ -23,6 +24,7 @@ class ContentAdmin(admin.ModelAdmin):
         "title",
         "category",
         "tag",
+        "site_name",
         "language",
         "published_at",
         "active",
@@ -40,9 +42,37 @@ class ContentAdmin(admin.ModelAdmin):
 
     search_fields = ["title"]
 
-    autocomplete_fields = ["language", "category"]
+    autocomplete_fields = ["language", "category", "site"]
 
     readonly_fields = ("created_at", "updated_at")
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "title",
+                    "content",
+                    "category",
+                    "tag",
+                    "published_at",
+                    "active",
+                ),
+            },
+        ),
+        (
+            _("admin.fieldsets.site-language"),
+            {
+                "fields": ("site", "language"),
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": ("created_at", "updated_at"),
+            },
+        ),
+    )
 
     def get_search_results(self, request, queryset, search_term):
         queryset, use_distinct = super().get_search_results(
@@ -57,6 +87,16 @@ class ContentAdmin(admin.ModelAdmin):
             return language_queryset, use_distinct
 
         return queryset, use_distinct
+
+    @admin.display(
+        ordering="site__name",
+        description=_("model.field.site"),
+    )
+    def site_name(self, obj):
+        if obj.site:
+            return obj.site.name
+
+        return None
 
 
 class ContentCategoryAdmin(admin.ModelAdmin):
@@ -85,6 +125,24 @@ class ContentCategoryAdmin(admin.ModelAdmin):
     ordering = ("-id",)
 
     readonly_fields = ("created_at", "updated_at")
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "name",
+                    "tag",
+                ),
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": ("created_at", "updated_at"),
+            },
+        ),
+    )
 
 
 admin.site.register(models.Content, ContentAdmin)

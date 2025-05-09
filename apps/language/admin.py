@@ -35,6 +35,33 @@ class LanguageAdmin(admin.ModelAdmin):
 
     readonly_fields = ("created_at", "updated_at")
 
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "name",
+                    "native_name",
+                ),
+            },
+        ),
+        (
+            _("admin.fieldsets.language-codes"),
+            {
+                "fields": (
+                    "code_iso_639_1",
+                    "code_iso_language",
+                ),
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": ("created_at", "updated_at"),
+            },
+        ),
+    )
+
     def get_queryset(self, request):
         qs = super(LanguageAdmin, self).get_queryset(request)
         return qs

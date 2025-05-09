@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-29 16:21+0000\n"
+"POT-Creation-Date: 2025-05-09 22:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,22 +12,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/newsletter/admin.py:41
-#: apps/shop/admin.py:171 apps/shop/admin.py:276 apps/shop/admin.py:359
-#: apps/shop/admin.py:432 apps/shop/admin.py:534 apps/shop/admin.py:655
-#: apps/shop/admin.py:753 apps/site/admin.py:32 apps/system_log/admin.py:53
+#: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/content/admin.py:51
+#: apps/content/admin.py:131 apps/gallery/admin.py:58 apps/language/admin.py:40
+#: apps/newsletter/admin.py:41 apps/shop/admin.py:171 apps/shop/admin.py:276
+#: apps/shop/admin.py:359 apps/shop/admin.py:432 apps/shop/admin.py:534
+#: apps/shop/admin.py:655 apps/shop/admin.py:753 apps/site/admin.py:32
+#: apps/system_log/admin.py:53
 msgid "admin.fieldsets.general"
 msgstr "GERAL"
 
-#: apps/banner/admin.py:65
+#: apps/banner/admin.py:65 apps/content/admin.py:64 apps/gallery/admin.py:69
 msgid "admin.fieldsets.site-language"
 msgstr "SITE E IDIOMA"
 
-#: apps/banner/admin.py:71 apps/customer/admin.py:125
+#: apps/banner/admin.py:71 apps/customer/admin.py:128
 msgid "admin.fieldsets.additional-info"
 msgstr "INFORMAÇÕES ADICIONAIS"
 
-#: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/customer/admin.py:131
+#: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/content/admin.py:70
+#: apps/content/admin.py:140 apps/customer/admin.py:134
+#: apps/gallery/admin.py:75 apps/language/admin.py:58
 #: apps/newsletter/admin.py:47 apps/shop/admin.py:227 apps/shop/admin.py:297
 #: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
 #: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
@@ -83,9 +87,9 @@ msgstr "Banner"
 msgid "model.banner.name.plural"
 msgstr "Banners"
 
-#: apps/banner/models.py:30 apps/banner/models.py:150 apps/content/models.py:27
-#: apps/content/models.py:94 apps/customer/models.py:46
-#: apps/customer/models.py:281 apps/gallery/models.py:31
+#: apps/banner/models.py:30 apps/banner/models.py:150 apps/content/models.py:28
+#: apps/content/models.py:95 apps/customer/models.py:46
+#: apps/customer/models.py:283 apps/gallery/models.py:32
 #: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
 #: apps/shop/models.py:255 apps/shop/models.py:467 apps/shop/models.py:616
 #: apps/shop/models.py:739 apps/shop/models.py:849 apps/shop/models.py:1015
@@ -93,17 +97,19 @@ msgstr "Banners"
 msgid "model.field.id"
 msgstr "ID"
 
-#: apps/banner/models.py:39 apps/customer/models.py:62 apps/shop/models.py:47
-#: apps/shop/models.py:264 apps/shop/models.py:476 apps/shop/models.py:625
-#: apps/shop/models.py:748 apps/shop/models.py:858 apps/shop/models.py:1024
-#: apps/site/models.py:19 apps/system_log/models.py:31 apps/user/models.py:98
+#: apps/banner/models.py:39 apps/content/admin.py:93 apps/content/models.py:104
+#: apps/customer/models.py:64 apps/gallery/admin.py:102
+#: apps/gallery/models.py:41 apps/shop/models.py:47 apps/shop/models.py:264
+#: apps/shop/models.py:476 apps/shop/models.py:625 apps/shop/models.py:748
+#: apps/shop/models.py:858 apps/shop/models.py:1024 apps/site/models.py:19
+#: apps/system_log/models.py:31 apps/user/models.py:98
 #: templates/admin/report/banner-access-summary/pdf.html:10
 #: templates/admin/report/banner-access-summary/view.html:18
 msgid "model.field.site"
 msgstr "Site"
 
-#: apps/banner/models.py:50 apps/content/models.py:121
-#: apps/customer/models.py:73 apps/gallery/models.py:49
+#: apps/banner/models.py:50 apps/content/models.py:131
+#: apps/customer/models.py:75 apps/gallery/models.py:59
 #: templates/admin/report/banner-access-summary/pdf.html:11
 #: templates/admin/report/banner-access-summary/view.html:23
 msgid "model.field.language"
@@ -114,14 +120,14 @@ msgstr "Idioma"
 msgid "model.field.token"
 msgstr "Token"
 
-#: apps/banner/models.py:61 apps/content/models.py:100
-#: apps/gallery/models.py:37 apps/site/models.py:23
+#: apps/banner/models.py:61 apps/content/models.py:110
+#: apps/gallery/models.py:47 apps/site/models.py:23
 #: templates/admin/report/banner-access-summary/pdf.html:9
 #: templates/admin/report/banner-access-summary/view.html:13
 msgid "model.field.title"
 msgstr "Título"
 
-#: apps/banner/models.py:66 apps/gallery/models.py:122 apps/shop/models.py:74
+#: apps/banner/models.py:66 apps/gallery/models.py:132 apps/shop/models.py:74
 #: apps/shop/models.py:358
 msgid "model.field.image"
 msgstr "Imagem"
@@ -150,16 +156,16 @@ msgstr "Início Em"
 msgid "model.field.end-at"
 msgstr "Fim Em"
 
-#: apps/banner/models.py:106 apps/content/models.py:146
-#: apps/gallery/models.py:68 apps/shop/models.py:97 apps/shop/models.py:202
+#: apps/banner/models.py:106 apps/content/models.py:156
+#: apps/gallery/models.py:78 apps/shop/models.py:97 apps/shop/models.py:202
 #: apps/shop/models.py:373
 msgid "model.field.active"
 msgstr "Ativo"
 
 #: apps/banner/models.py:111 apps/banner/models.py:190
-#: apps/content/models.py:49 apps/content/models.py:153
-#: apps/customer/models.py:142 apps/customer/models.py:348
-#: apps/gallery/models.py:75 apps/language/models.py:56
+#: apps/content/models.py:50 apps/content/models.py:163
+#: apps/customer/models.py:144 apps/customer/models.py:350
+#: apps/gallery/models.py:85 apps/language/models.py:56
 #: apps/newsletter/models.py:29 apps/shop/models.py:104 apps/shop/models.py:214
 #: apps/shop/models.py:386 apps/shop/models.py:522 apps/shop/models.py:676
 #: apps/shop/models.py:799 apps/shop/models.py:903 apps/shop/models.py:1080
@@ -167,9 +173,9 @@ msgstr "Ativo"
 msgid "model.field.created-at"
 msgstr "Criado Em"
 
-#: apps/banner/models.py:116 apps/content/models.py:54
-#: apps/content/models.py:158 apps/customer/models.py:147
-#: apps/customer/models.py:353 apps/gallery/models.py:80
+#: apps/banner/models.py:116 apps/content/models.py:55
+#: apps/content/models.py:168 apps/customer/models.py:149
+#: apps/customer/models.py:355 apps/gallery/models.py:90
 #: apps/language/models.py:61 apps/shop/models.py:109 apps/shop/models.py:219
 #: apps/shop/models.py:391 apps/shop/models.py:527 apps/shop/models.py:681
 #: apps/shop/models.py:804 apps/site/models.py:42
@@ -188,7 +194,7 @@ msgstr "Acessos aos Banners"
 msgid "model.field.banner"
 msgstr "Banner"
 
-#: apps/banner/models.py:166 apps/customer/models.py:290
+#: apps/banner/models.py:166 apps/customer/models.py:292
 #: apps/shop/models.py:633 apps/shop/models.py:756 apps/shop/models.py:866
 #: apps/shop/models.py:1032 apps/system_log/models.py:40
 msgid "model.field.customer"
@@ -198,11 +204,11 @@ msgstr "Cliente"
 msgid "model.field.access-type"
 msgstr "Tipo de Acesso"
 
-#: apps/banner/models.py:182 apps/customer/models.py:342
+#: apps/banner/models.py:182 apps/customer/models.py:344
 msgid "model.field.country-code"
 msgstr "Código do País"
 
-#: apps/banner/models.py:184 apps/customer/models.py:344
+#: apps/banner/models.py:184 apps/customer/models.py:346
 msgid "model.field.country-code.help"
 msgstr "Código do país com duas letras (ex: BR, US, FR)"
 
@@ -214,53 +220,53 @@ msgstr "Conteúdo"
 msgid "filter.title"
 msgstr "Título"
 
-#: apps/content/filters.py:19 apps/customer/filters.py:9
+#: apps/content/filters.py:19 apps/customer/filters.py:13
 #: apps/language/filters.py:8
 msgid "filter.name"
 msgstr "Nome"
 
-#: apps/content/models.py:12
+#: apps/content/models.py:13
 msgid "model.content-category.name"
 msgstr "Categoria de Conteúdo"
 
-#: apps/content/models.py:13
+#: apps/content/models.py:14
 msgid "model.content-category.name.plural"
 msgstr "Categorias de Conteúdos"
 
-#: apps/content/models.py:33 apps/customer/admin.py:164
+#: apps/content/models.py:34 apps/customer/admin.py:167
 #: apps/language/models.py:33 apps/shop/models.py:53 apps/shop/models.py:169
 #: apps/shop/models.py:270 apps/web/forms/contact.py:11
 #: templates/emails/site/contact.html:11
 msgid "model.field.name"
 msgstr "Nome"
 
-#: apps/content/models.py:40 apps/content/models.py:125
-#: apps/gallery/models.py:53 apps/shop/models.py:277
+#: apps/content/models.py:41 apps/content/models.py:135
+#: apps/gallery/models.py:63 apps/shop/models.py:277
 msgid "model.field.tag"
 msgstr "Tag"
 
-#: apps/content/models.py:45 apps/content/models.py:130
-#: apps/gallery/models.py:58 apps/shop/models.py:282
+#: apps/content/models.py:46 apps/content/models.py:140
+#: apps/gallery/models.py:68 apps/shop/models.py:282
 msgid "model.field.tag.help"
 msgstr "Deixe vazio para geração automática."
 
-#: apps/content/models.py:71
+#: apps/content/models.py:72
 msgid "model.content.name"
 msgstr "conteúdo"
 
-#: apps/content/models.py:72
+#: apps/content/models.py:73
 msgid "model.content.name.plural"
 msgstr "conteúdos"
 
-#: apps/content/models.py:112 apps/system_log/models.py:55
+#: apps/content/models.py:122 apps/system_log/models.py:55
 msgid "model.field.category"
 msgstr "Categoria"
 
-#: apps/content/models.py:134
+#: apps/content/models.py:144
 msgid "model.field.content"
 msgstr "Conteúdo"
 
-#: apps/content/models.py:140 apps/gallery/models.py:62
+#: apps/content/models.py:150 apps/gallery/models.py:72
 msgid "model.field.published-at"
 msgstr "Publicado Em"
 
@@ -272,15 +278,15 @@ msgstr "ENDEREÇO"
 msgid "admin.fieldsets.location"
 msgstr "LOCALIZAÇÃO"
 
-#: apps/customer/admin.py:107
+#: apps/customer/admin.py:110
 msgid "admin.fieldsets.user"
 msgstr "INFORMAÇÕES DO USUÁRIO"
 
-#: apps/customer/admin.py:119
+#: apps/customer/admin.py:122
 msgid "admin.fieldsets.profile"
 msgstr "INFORMAÇÕES DO PERFIL"
 
-#: apps/customer/admin.py:171 apps/customer/forms.py:116
+#: apps/customer/admin.py:176 apps/customer/forms.py:116
 #: apps/customer/forms.py:228 apps/customer/serializers.py:38
 #: apps/customer/serializers.py:107 apps/newsletter/forms.py:7
 #: apps/newsletter/models.py:22 apps/user/models.py:112
@@ -288,19 +294,19 @@ msgstr "INFORMAÇÕES DO PERFIL"
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customer/admin.py:178 apps/customer/forms.py:235
+#: apps/customer/admin.py:185 apps/customer/forms.py:235
 #: apps/customer/serializers.py:44 apps/customer/serializers.py:113
 #: apps/user/admin.py:20 apps/user/admin.py:40 apps/user/models.py:119
 msgid "model.field.cpf"
 msgstr "CPF"
 
-#: apps/customer/admin.py:185 apps/customer/forms.py:242
+#: apps/customer/admin.py:194 apps/customer/forms.py:242
 #: apps/customer/serializers.py:50 apps/customer/serializers.py:119
 #: apps/user/admin.py:27 apps/user/admin.py:47 apps/user/models.py:127
 msgid "model.field.mobile-phone"
 msgstr "Celular"
 
-#: apps/customer/admin.py:193
+#: apps/customer/admin.py:204
 msgid "model.field.is_active"
 msgstr "Ativo"
 
@@ -324,21 +330,33 @@ msgstr "Nenhum"
 msgid "enum.customer-address-type.main"
 msgstr "Principal"
 
-#: apps/customer/filters.py:25
+#: apps/customer/filters.py:29
 msgid "filter.email"
 msgstr "E-mail"
 
-#: apps/customer/filters.py:37
+#: apps/customer/filters.py:42
+msgid "filter.cpf"
+msgstr "CPF"
+
+#: apps/customer/filters.py:51
+msgid "filter.mobile-phone"
+msgstr "Celular"
+
+#: apps/customer/filters.py:59
+msgid "filter.site"
+msgstr "Site"
+
+#: apps/customer/filters.py:74
 msgid "filter.created-at"
 msgstr "Criado Em"
 
 #: apps/customer/forms.py:54 apps/customer/forms.py:376
-#: apps/customer/models.py:332
+#: apps/customer/models.py:334
 msgid "model.field.state"
 msgstr "Estado / Província"
 
 #: apps/customer/forms.py:60 apps/customer/forms.py:382
-#: apps/customer/models.py:337
+#: apps/customer/models.py:339
 msgid "model.field.postal-code"
 msgstr "CEP"
 
@@ -361,7 +379,7 @@ msgid "model.field.last-name"
 msgstr "Sobrenome"
 
 #: apps/customer/forms.py:109 apps/customer/forms.py:252
-#: apps/customer/models.py:84
+#: apps/customer/models.py:86
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
@@ -381,7 +399,7 @@ msgstr "Aceitar Termos"
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/customer/forms.py:246 apps/customer/models.py:77
+#: apps/customer/forms.py:246 apps/customer/models.py:79
 msgid "model.field.nickname"
 msgstr "Apelido"
 
@@ -471,70 +489,70 @@ msgstr "Clientes"
 msgid "model.field.user"
 msgstr "Usuário"
 
-#: apps/customer/models.py:93
+#: apps/customer/models.py:95
 msgid "model.field.avatar"
 msgstr "Avatar"
 
-#: apps/customer/models.py:103 apps/customer/serializers.py:68
+#: apps/customer/models.py:105 apps/customer/serializers.py:68
 #: apps/customer/serializers.py:137
 msgid "model.field.timezone"
 msgstr "Fuso Horário"
 
-#: apps/customer/models.py:111
+#: apps/customer/models.py:113
 msgid "model.field.activate-token"
 msgstr "Token de Ativação"
 
-#: apps/customer/models.py:120
+#: apps/customer/models.py:122
 msgid "model.field.recovery-token"
 msgstr "Token de Recuperação"
 
-#: apps/customer/models.py:129 apps/shop/models.py:323
+#: apps/customer/models.py:131 apps/shop/models.py:323
 msgid "model.field.credits"
 msgstr "Créditos"
 
-#: apps/customer/models.py:136 apps/customer/serializers.py:62
+#: apps/customer/models.py:138 apps/customer/serializers.py:62
 #: apps/customer/serializers.py:131
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customer/models.py:164
+#: apps/customer/models.py:166
 #, python-brace-format
 msgid "model.str.customer #{id}"
 msgstr "Cliente #{id}"
 
-#: apps/customer/models.py:182
+#: apps/customer/models.py:184
 msgid "error.site-id-required"
 msgstr "O código do site é obrigatório."
 
-#: apps/customer/models.py:254
+#: apps/customer/models.py:256
 msgid "model.customer-address.name"
 msgstr "Endereço do Cliente"
 
-#: apps/customer/models.py:255
+#: apps/customer/models.py:257
 msgid "model.customer-address.name.plural"
 msgstr "Endereços dos Clientes"
 
-#: apps/customer/models.py:294
+#: apps/customer/models.py:296
 msgid "model.field.address-type"
 msgstr "Tipo de Endereço"
 
-#: apps/customer/models.py:301
+#: apps/customer/models.py:303
 msgid "model.field.address-line1"
 msgstr "Rua / Avenida"
 
-#: apps/customer/models.py:306
+#: apps/customer/models.py:308
 msgid "model.field.address-line2"
 msgstr "Bairro / Área"
 
-#: apps/customer/models.py:313
+#: apps/customer/models.py:315
 msgid "model.field.street-number"
 msgstr "Número"
 
-#: apps/customer/models.py:320
+#: apps/customer/models.py:322
 msgid "model.field.complement"
 msgstr "Complemento"
 
-#: apps/customer/models.py:327
+#: apps/customer/models.py:329
 msgid "model.field.city"
 msgstr "Cidade"
 
@@ -542,37 +560,41 @@ msgstr "Cidade"
 msgid "apps.gallery.description"
 msgstr "Galeria"
 
-#: apps/gallery/models.py:16
+#: apps/gallery/models.py:17
 msgid "model.gallery.name"
 msgstr "Galeria"
 
-#: apps/gallery/models.py:17
+#: apps/gallery/models.py:18
 msgid "model.gallery.name.plural"
 msgstr "Galerias"
 
-#: apps/gallery/models.py:100
+#: apps/gallery/models.py:110
 msgid "model.field.photos-count"
 msgstr "Fotos"
 
-#: apps/gallery/models.py:114
+#: apps/gallery/models.py:124
 msgid "model.gallery-photo.name"
 msgstr "Foto da Galeria"
 
-#: apps/gallery/models.py:115
+#: apps/gallery/models.py:125
 msgid "model.gallery-photo.name.plural"
 msgstr "Fotos da Galeria"
 
-#: apps/gallery/models.py:131
+#: apps/gallery/models.py:141
 msgid "model.field.caption"
 msgstr "Legenda"
 
-#: apps/gallery/models.py:138
+#: apps/gallery/models.py:148
 msgid "model.field.main"
 msgstr "Principal"
 
-#: apps/gallery/models.py:152
+#: apps/gallery/models.py:162
 msgid "model.field.preview"
 msgstr "Pré-visualização"
+
+#: apps/language/admin.py:49
+msgid "admin.fieldsets.language-codes"
+msgstr "CÓDIGOS DE IDIOMA"
 
 #: apps/language/apps.py:8
 msgid "apps.language.description"
@@ -1304,6 +1326,15 @@ msgstr "Alterar"
 #: templates/admin/app_list.html:47
 msgid "You don't have permission to view or edit anything."
 msgstr "Você não tem permissão para visualizar ou editar nada."
+
+#: templates/admin/filter/masked_input_filter.html:3
+#, python-format
+msgid " By %(filter_title)s "
+msgstr " Por %(filter_title)s "
+
+#: templates/admin/filter/masked_input_filter.html:20
+msgid "Remove"
+msgstr "Remover"
 
 #: templates/admin/login.html:4
 msgid "Error:"
