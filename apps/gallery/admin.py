@@ -19,6 +19,7 @@ class GalleryAdmin(admin.ModelAdmin):
         "id",
         "title",
         "tag",
+        "site_name",
         "language",
         "published_at",
         "photos_count",
@@ -30,6 +31,7 @@ class GalleryAdmin(admin.ModelAdmin):
         "id",
         "title",
         "tag",
+        "site_name",
         "language",
         "published_at",
         "photos_count",
@@ -47,9 +49,35 @@ class GalleryAdmin(admin.ModelAdmin):
 
     search_fields = ["title"]
 
-    autocomplete_fields = ["language"]
+    autocomplete_fields = ["language", "site"]
 
     readonly_fields = ("created_at", "updated_at")
+
+    fieldsets = (
+        (
+            _("admin.fieldsets.general"),
+            {
+                "fields": (
+                    "title",
+                    "tag",
+                    "published_at",
+                    "active",
+                ),
+            },
+        ),
+        (
+            _("admin.fieldsets.site-language"),
+            {
+                "fields": ("site", "language"),
+            },
+        ),
+        (
+            _("admin.fieldsets.important-dates"),
+            {
+                "fields": ("created_at", "updated_at"),
+            },
+        ),
+    )
 
     def get_queryset(self, request):
         qs = super(GalleryAdmin, self).get_queryset(request)
@@ -68,6 +96,16 @@ class GalleryAdmin(admin.ModelAdmin):
             return language_queryset, use_distinct
 
         return queryset, use_distinct
+
+    @admin.display(
+        ordering="site__name",
+        description=_("model.field.site"),
+    )
+    def site_name(self, obj):
+        if obj.site:
+            return obj.site.name
+
+        return None
 
 
 admin.site.register(models.Gallery, GalleryAdmin)

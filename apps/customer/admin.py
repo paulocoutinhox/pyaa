@@ -68,6 +68,9 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
     list_filter = [
         filters.NameFilter,
         filters.EmailFilter,
+        filters.CpfFilter,
+        filters.MobilePhoneFilter,
+        filters.SiteFilter,
         "gender",
     ]
 

@@ -1,3 +1,4 @@
+from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
@@ -94,6 +95,15 @@ class Content(models.Model):
         _("model.field.id"),
         unique=True,
         primary_key=True,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        related_name="contents",
+        verbose_name=_("model.field.site"),
+        blank=True,
+        null=True,
     )
 
     title = models.CharField(
