@@ -296,22 +296,19 @@ class CustomerUpdateProfileForm(SanitizeDigitFieldsMixin, forms.Form):
         return cleaned_data
 
     def save(self):
-        with transaction.atomic():
-            # update User fields
-            self.user.first_name = self.cleaned_data["first_name"]
-            self.user.last_name = self.cleaned_data["last_name"]
-            self.user.email = self.cleaned_data["email"]
-            self.user.cpf = self.cleaned_data["cpf"]
-            self.user.mobile_phone = self.cleaned_data["mobile_phone"]
-            self.user.save()
+        # update user fields
+        self.user.first_name = self.cleaned_data["first_name"]
+        self.user.last_name = self.cleaned_data["last_name"]
+        self.user.email = self.cleaned_data["email"]
+        self.user.cpf = self.cleaned_data["cpf"]
+        self.user.mobile_phone = self.cleaned_data["mobile_phone"]
+        self.user.save()
 
-            # update Customer fields
-            customer = self.user.customer
-            customer.nickname = self.cleaned_data["nickname"]
-            customer.gender = self.cleaned_data["gender"]
-            customer.save()
-
-        return True
+        # update customer fields
+        customer = self.user.customer
+        customer.nickname = self.cleaned_data["nickname"]
+        customer.gender = self.cleaned_data["gender"]
+        customer.save()
 
 
 class CustomerUpdateAvatarForm(forms.Form):
