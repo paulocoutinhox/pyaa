@@ -11,7 +11,7 @@ def contact_index_view(request):
         form = ContactForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.send_mail()
+            form.send_email()
             messages.success(request, _("message.contact-message-sent"))
             return redirect("contact_index")
     else:

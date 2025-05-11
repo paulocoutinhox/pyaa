@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from apps.customer.models import Customer
 from apps.shop.enums import ObjectType
 from apps.shop.models import CreditLog, Plan
-from pyaa.helpers.mail import MailHelper
+from pyaa.helpers.email import MailHelper
 
 
 class CustomerHelper:
@@ -22,10 +22,10 @@ class CustomerHelper:
         # check if account activation is required
         if settings.CUSTOMER_ACTIVATION_REQUIRED:
             # send activation email
-            CustomerHelper.send_activation_mail(customer)
+            CustomerHelper.send_activation_email(customer)
         else:
             # send welcome email
-            CustomerHelper.send_signup_mail(customer)
+            CustomerHelper.send_signup_email(customer)
 
         # add initial credits
         plan_id = settings.CUSTOMER_SIGNUP_PLAN
@@ -58,7 +58,7 @@ class CustomerHelper:
         object_type=None,
     ):
         """
-        add credits to a customer based on either a plan or a direct amount value
+        Add credits to a customer based on either a plan or a direct amount value
 
         :param customer: the customer to add credits to
         :param amount: the direct amount of credits to add (used if plan is None)
@@ -206,7 +206,7 @@ class CustomerHelper:
         return 0
 
     @staticmethod
-    def send_signup_mail(customer):
+    def send_signup_email(customer):
         # get the customer's email
         customer_email = customer.user.email
 
@@ -233,7 +233,7 @@ class CustomerHelper:
             "profile_url": profile_url,
         }
 
-        MailHelper.send_mail_async(
+        MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/signup.html",
@@ -244,7 +244,7 @@ class CustomerHelper:
     @staticmethod
     def send_credits_email(customer, amount, object_type=None, plan=None):
         """
-        send email notification for credits added to a customer
+        Send email notification for credits added to a customer
 
         :param customer: the customer who received the credits
         :param amount: the number of credits added
@@ -315,7 +315,7 @@ class CustomerHelper:
                 }
             )
 
-        MailHelper.send_mail_async(
+        MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template=template,
@@ -378,7 +378,7 @@ class CustomerHelper:
             "purchase": purchase,
         }
 
-        MailHelper.send_mail_async(
+        MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/credits/credit_purchase_paid.html",
@@ -421,7 +421,7 @@ class CustomerHelper:
             "purchase": purchase,
         }
 
-        MailHelper.send_mail_async(
+        MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/products/product_purchase_paid.html",
@@ -433,7 +433,7 @@ class CustomerHelper:
     @transaction.atomic
     def update_customer_credits(customer_id, amount):
         """
-        update customer credits without creating any log entries
+        Update customer credits without creating any log entries
         used specifically by admin interfaces to avoid duplicate logs
 
         :param customer: the customer whose credits to update
@@ -517,7 +517,7 @@ class CustomerHelper:
             "token": recovery_token,
         }
 
-        MailHelper.send_mail_async(
+        MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/password_recovery.html",
@@ -528,7 +528,7 @@ class CustomerHelper:
         return True
 
     @staticmethod
-    def send_activation_mail(customer):
+    def send_activation_email(customer):
         """
         Send account activation email to a customer
 
@@ -563,7 +563,7 @@ class CustomerHelper:
             "token": customer.activate_token,
         }
 
-        MailHelper.send_mail_async(
+        MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/activation.html",
@@ -596,7 +596,7 @@ class CustomerHelper:
             customer.save(update_fields=["activate_token"])
 
             # send the welcome email
-            CustomerHelper.send_signup_mail(customer)
+            CustomerHelper.send_signup_email(customer)
 
             return customer
         except (Customer.DoesNotExist, ValueError):

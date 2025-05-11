@@ -3,7 +3,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
 
-from pyaa.helpers.mail import MailHelper
+from pyaa.helpers.email import MailHelper
 
 
 class ContactForm(forms.Form):
@@ -44,7 +44,7 @@ class ContactForm(forms.Form):
         label=_("model.field.captcha"),
     )
 
-    def send_mail(self):
+    def send_email(self):
         subject = _("email.contact.subject")
         from_email = self.cleaned_data["email"]
         recipient_list = [settings.DEFAULT_TO_EMAIL]
@@ -53,7 +53,7 @@ class ContactForm(forms.Form):
             "form": self.cleaned_data,
         }
 
-        MailHelper.send_mail_async(
+        MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/site/contact.html",
