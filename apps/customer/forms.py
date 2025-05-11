@@ -310,6 +310,8 @@ class CustomerUpdateProfileForm(SanitizeDigitFieldsMixin, forms.Form):
         customer.gender = self.cleaned_data["gender"]
         customer.save()
 
+        return True
+
 
 class CustomerUpdateAvatarForm(forms.Form):
     avatar = forms.ImageField(required=True)
