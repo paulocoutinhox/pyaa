@@ -296,46 +296,22 @@ class CustomerUpdateProfileForm(SanitizeDigitFieldsMixin, forms.Form):
         return cleaned_data
 
     def save(self):
-        try:
-            with transaction.atomic():
-                # update User fields
-                self.user.first_name = self.cleaned_data["first_name"]
-                self.user.last_name = self.cleaned_data["last_name"]
-                self.user.email = self.cleaned_data["email"]
-                self.user.cpf = self.cleaned_data["cpf"]
-                self.user.mobile_phone = self.cleaned_data["mobile_phone"]
-                self.user.save()
+        with transaction.atomic():
+            # update User fields
+            self.user.first_name = self.cleaned_data["first_name"]
+            self.user.last_name = self.cleaned_data["last_name"]
+            self.user.email = self.cleaned_data["email"]
+            self.user.cpf = self.cleaned_data["cpf"]
+            self.user.mobile_phone = self.cleaned_data["mobile_phone"]
+            self.user.save()
 
-                # update Customer fields
-                customer = self.user.customer
-                customer.nickname = self.cleaned_data["nickname"]
-                customer.gender = self.cleaned_data["gender"]
-                customer.save()
+            # update Customer fields
+            customer = self.user.customer
+            customer.nickname = self.cleaned_data["nickname"]
+            customer.gender = self.cleaned_data["gender"]
+            customer.save()
 
-            return True
-        except IntegrityError as e:
-            error_message = str(e)
-
-            # Mapear erros de constraint para campos específicos
-            if "user_unique_email" in error_message:
-                self.add_error("email", _("error.email-already-used-by-other"))
-            elif "user_unique_cpf" in error_message:
-                self.add_error("cpf", _("error.cpf-already-used-by-other"))
-            elif "user_unique_mobile_phone" in error_message:
-                self.add_error(
-                    "mobile_phone", _("error.mobile-phone-already-used-by-other")
-                )
-            else:
-                # Erro genérico
-                self.add_error(None, _("error.database-constraint-error"))
-
-            return False
-        except ProtectedError:
-            self.add_error(None, _("error.protected-object-cannot-be-deleted"))
-            return False
-        except Exception as e:
-            self.add_error(None, str(e))
-            return False
+        return True
 
 
 class CustomerUpdateAvatarForm(forms.Form):
