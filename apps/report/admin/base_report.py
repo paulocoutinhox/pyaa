@@ -27,27 +27,27 @@ class BaseReportAdmin(admin.ModelAdmin, DateParserMixin):
         return True
 
     def has_chart(self):
-        """method to indicate if the report should include a chart"""
+        """Indicate if the report should include a chart"""
         return False
 
     def has_pdf_export(self):
-        """method to indicate if the report supports PDF export"""
+        """Indicate if the report supports PDF export"""
         return True
 
     def init_chart_lib(self):
-        """method to initialize the chart library"""
+        """Initialize the chart library"""
         matplotlib.use("Agg")
 
     def get_list_filter(self, request):
-        """method to get the list of filters for the report"""
+        """Get the list of filters for the report"""
         return [ExportDataFilter]
 
     def get_report_title(self):
-        """method to return the translated report title"""
+        """Return the translated report title"""
         return ""
 
     def add_general_context(self, request):
-        """method to add general context data"""
+        """Add general context data"""
         return {
             "font_path": settings.BASE_DIR / "apps/web/static/vendor/fonts",
             "report_title": self.get_report_title(),
@@ -55,7 +55,7 @@ class BaseReportAdmin(admin.ModelAdmin, DateParserMixin):
         }
 
     def export_to_pdf(self, context, template_name):
-        """method to export report to PDF"""
+        """Export report to PDF"""
         css_path = settings.BASE_DIR / "apps/web/static/admin/css/report-pdf.css"
 
         html_content = render_to_string(
@@ -82,7 +82,7 @@ class BaseReportAdmin(admin.ModelAdmin, DateParserMixin):
 
     def get_date_range(self, date_field, request):
         """
-        method to get the date range from the request
+        Get the date range from the request
         """
         date_gte = self.parse_date(request.GET.get(f"{date_field}__range__gte"))
         date_lte = self.parse_date(request.GET.get(f"{date_field}__range__lte"))
@@ -94,7 +94,7 @@ class BaseReportAdmin(admin.ModelAdmin, DateParserMixin):
 
     def apply_date_filter(self, queryset, date_field, date_gte, date_lte):
         """
-        method to apply the date range filter to the queryset
+        Apply the date range filter to the queryset
         """
         return queryset.filter(
             **{
@@ -125,9 +125,9 @@ class BaseReportAdmin(admin.ModelAdmin, DateParserMixin):
         return response
 
     def generate_report_data(self, request):
-        """method to be overridden in subclasses to provide report data"""
+        """Provide report data"""
         return {}
 
     def generate_chart_data(self, report_data):
-        """method to be overridden in subclasses to generate chart from report data"""
+        """Generate chart from report data"""
         return None

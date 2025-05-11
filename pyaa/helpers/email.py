@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 class MailHelper:
     @staticmethod
-    def send_mail(
+    def send_email(
         subject,
         to,
         template,
@@ -76,7 +76,7 @@ class MailHelper:
         return re.sub(r"\n\s*\n+", "\n\n", text_message.strip())
 
     @staticmethod
-    def send_mail_async(
+    def send_email_async(
         subject,
         to,
         template,
@@ -87,11 +87,11 @@ class MailHelper:
     ):
         """
         Sends an email asynchronously using Django Q.
-        Uses the same format and parameters as the send_mail method.
+        Uses the same format and parameters as the send email method.
         """
         # schedule the email sending task for asynchronous execution
         task_id = async_task(
-            MailHelper.send_mail,
+            MailHelper.send_email,
             subject,
             to,
             template,
