@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-09 22:29+0000\n"
+"POT-Creation-Date: 2025-05-11 21:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -350,12 +350,12 @@ msgstr "Site"
 msgid "filter.created-at"
 msgstr "Criado Em"
 
-#: apps/customer/forms.py:54 apps/customer/forms.py:376
+#: apps/customer/forms.py:54 apps/customer/forms.py:351
 #: apps/customer/models.py:334
 msgid "model.field.state"
 msgstr "Estado / Província"
 
-#: apps/customer/forms.py:60 apps/customer/forms.py:382
+#: apps/customer/forms.py:60 apps/customer/forms.py:357
 #: apps/customer/models.py:339
 msgid "model.field.postal-code"
 msgstr "CEP"
@@ -394,7 +394,7 @@ msgstr "Senha"
 msgid "model.field.accept-terms"
 msgstr "Aceitar Termos"
 
-#: apps/customer/forms.py:135 apps/customer/forms.py:438
+#: apps/customer/forms.py:135 apps/customer/forms.py:413
 #: apps/web/forms/contact.py:44
 msgid "model.field.captcha"
 msgstr "Captcha"
@@ -403,43 +403,23 @@ msgstr "Captcha"
 msgid "model.field.nickname"
 msgstr "Apelido"
 
-#: apps/customer/forms.py:321 apps/user/helpers.py:18
-msgid "error.email-already-used-by-other"
-msgstr "Este e-mail já está sendo usado."
-
-#: apps/customer/forms.py:323 apps/user/helpers.py:31
-msgid "error.cpf-already-used-by-other"
-msgstr "Este CPF já está sendo usado."
-
-#: apps/customer/forms.py:326 apps/user/helpers.py:47
-msgid "error.mobile-phone-already-used-by-other"
-msgstr "Este celular já está sendo usado."
-
-#: apps/customer/forms.py:330
-msgid "error.database-constraint-error"
-msgstr ""
-
-#: apps/customer/forms.py:334
-msgid "error.protected-object-cannot-be-deleted"
-msgstr ""
-
-#: apps/customer/forms.py:429
+#: apps/customer/forms.py:404
 msgid "model.field.recovery-identifier"
 msgstr "Email, CPF ou Celular"
 
-#: apps/customer/forms.py:433
+#: apps/customer/forms.py:408
 msgid "model.field.recovery-identifier.help"
 msgstr "Digite seu email, CPF ou número de celular para recuperar sua senha"
 
-#: apps/customer/forms.py:460
+#: apps/customer/forms.py:435
 msgid "model.field.new-password"
 msgstr "Nova Senha"
 
-#: apps/customer/forms.py:467
+#: apps/customer/forms.py:442
 msgid "model.field.confirm-password"
 msgstr "Confirmar Senha"
 
-#: apps/customer/forms.py:481
+#: apps/customer/forms.py:456
 msgid "error.passwords-do-not-match"
 msgstr "As senhas não coincidem"
 
@@ -460,12 +440,12 @@ msgid "email.credits-added.subject"
 msgstr "Créditos Adicionados à Sua Conta"
 
 #: apps/customer/helpers.py:344
-#: templates/emails/credits/credit_purchase_paid.html:5
+#: templates/emails/credit/credit_purchase_paid.html:5
 msgid "email.credit-purchase-paid.subject"
 msgstr "Confirmação de Pagamento"
 
 #: apps/customer/helpers.py:407
-#: templates/emails/products/product_purchase_paid.html:5
+#: templates/emails/product/product_purchase_paid.html:5
 msgid "email.product-purchase-paid.subject"
 msgstr "Confirmação da Compra de Produto"
 
@@ -1151,6 +1131,18 @@ msgstr "DADOS PESSOAIS"
 msgid "admin.fieldsets.permissions"
 msgstr "PERMISSÕES"
 
+#: apps/user/helpers.py:18
+msgid "error.email-already-used-by-other"
+msgstr "Este e-mail já está sendo usado."
+
+#: apps/user/helpers.py:31
+msgid "error.cpf-already-used-by-other"
+msgstr "Este CPF já está sendo usado."
+
+#: apps/user/helpers.py:47
+msgid "error.mobile-phone-already-used-by-other"
+msgstr "Este celular já está sendo usado."
+
 #: apps/user/management/commands/createadmin.py:61 apps/user/models.py:24
 #: apps/user/models.py:67 apps/user/models.py:142
 msgid "error.at-least-one-login-provider-is-required"
@@ -1390,9 +1382,9 @@ msgstr "Gráfico do Relatório"
 #: templates/emails/account/activation.html:9
 #: templates/emails/account/password_recovery.html:9
 #: templates/emails/account/signup.html:9
-#: templates/emails/credits/credit_added.html:13
-#: templates/emails/credits/credit_purchase_paid.html:9
-#: templates/emails/products/product_purchase_paid.html:9
+#: templates/emails/credit/credit_added.html:13
+#: templates/emails/credit/credit_purchase_paid.html:9
+#: templates/emails/product/product_purchase_paid.html:9
 msgid "email.greeting"
 msgstr "Olá"
 
@@ -1462,91 +1454,91 @@ msgstr "Acessar Minha Conta"
 msgid "email.signup.support-message"
 msgstr "Se precisar de ajuda, nossa equipe de suporte está à disposição."
 
-#: templates/emails/credits/credit_added.html:6
+#: templates/emails/credit/credit_added.html:6
 msgid "email.bonus-credits.subject"
 msgstr "Créditos Adicionados à Sua Conta"
 
-#: templates/emails/credits/credit_added.html:8
+#: templates/emails/credit/credit_added.html:8
 msgid "email.credits.subject"
 msgstr "Créditos Adicionados à Sua Conta"
 
-#: templates/emails/credits/credit_added.html:16
+#: templates/emails/credit/credit_added.html:16
 msgid "email.bonus-credits.message"
 msgstr ""
 "Temos ótimas notícias! Créditos bônus foram adicionados à sua conta em nossa "
 "plataforma."
 
-#: templates/emails/credits/credit_added.html:18
-#: templates/emails/credits/credit_added.html:21
+#: templates/emails/credit/credit_added.html:18
+#: templates/emails/credit/credit_added.html:21
 msgid "email.bonus-credits.title"
 msgstr "Créditos Bônus"
 
-#: templates/emails/credits/credit_added.html:24
+#: templates/emails/credit/credit_added.html:24
 msgid "email.bonus-credits.amount"
 msgstr "Créditos Bônus Adicionados"
 
-#: templates/emails/credits/credit_added.html:27
+#: templates/emails/credit/credit_added.html:27
 msgid "email.credits.message"
 msgstr ""
 "Temos ótimas notícias! Créditos foram adicionados à sua conta em nossa "
 "plataforma."
 
-#: templates/emails/credits/credit_added.html:32
-#: templates/emails/credits/credit_added.html:37
+#: templates/emails/credit/credit_added.html:32
+#: templates/emails/credit/credit_added.html:37
 msgid "email.credits.title"
 msgstr "Créditos"
 
-#: templates/emails/credits/credit_added.html:42
+#: templates/emails/credit/credit_added.html:42
 msgid "email.credits.main-credits"
 msgstr "Créditos Principais"
 
-#: templates/emails/credits/credit_added.html:43
-#: templates/emails/credits/credit_purchase_paid.html:27
+#: templates/emails/credit/credit_added.html:43
+#: templates/emails/credit/credit_purchase_paid.html:27
 msgid "email.credits.bonus-credits"
 msgstr "Créditos Bônus"
 
-#: templates/emails/credits/credit_added.html:44
-#: templates/emails/credits/credit_purchase_paid.html:28
+#: templates/emails/credit/credit_added.html:44
+#: templates/emails/credit/credit_purchase_paid.html:28
 msgid "email.credits.total-credits"
 msgstr "Total de Créditos"
 
-#: templates/emails/credits/credit_added.html:46
+#: templates/emails/credit/credit_added.html:46
 msgid "email.credits.amount"
 msgstr "Créditos Adicionados"
 
-#: templates/emails/credits/credit_added.html:51
+#: templates/emails/credit/credit_added.html:51
 msgid "email.credits.enjoy-message"
 msgstr ""
 "Aproveite seus créditos para usar os recursos disponíveis em nossa "
 "plataforma."
 
-#: templates/emails/credits/credit_added.html:55
-#: templates/emails/credits/credit_purchase_paid.html:36
+#: templates/emails/credit/credit_added.html:55
+#: templates/emails/credit/credit_purchase_paid.html:36
 msgid "email.credits.view-button"
 msgstr "Ver Meus Créditos"
 
-#: templates/emails/credits/credit_added.html:59
-#: templates/emails/credits/credit_purchase_paid.html:40
+#: templates/emails/credit/credit_added.html:59
+#: templates/emails/credit/credit_purchase_paid.html:40
 msgid "email.credits.thank-you"
 msgstr "Obrigado por nos escolher!"
 
-#: templates/emails/credits/credit_purchase_paid.html:11
+#: templates/emails/credit/credit_purchase_paid.html:11
 msgid "email.credit-purchase-paid.confirmation-message"
 msgstr "Confirmamos o recebimento do seu pagamento pela compra de créditos."
 
-#: templates/emails/credits/credit_purchase_paid.html:22
+#: templates/emails/credit/credit_purchase_paid.html:22
 msgid "email.credit-purchase-paid.total-value"
 msgstr "Valor total"
 
-#: templates/emails/credits/credit_purchase_paid.html:23
+#: templates/emails/credit/credit_purchase_paid.html:23
 msgid "email.credit-purchase-paid.purchase-date"
 msgstr "Data da Compra"
 
-#: templates/emails/credits/credit_purchase_paid.html:24
+#: templates/emails/credit/credit_purchase_paid.html:24
 msgid "email.credit-purchase-paid.acquired-credits"
 msgstr "Créditos adquiridos"
 
-#: templates/emails/credits/credit_purchase_paid.html:32
+#: templates/emails/credit/credit_purchase_paid.html:32
 msgid "email.credit-purchase-paid.enjoy-message"
 msgstr ""
 "Aproveite seus créditos adquiridos para usar os recursos da nossa plataforma."
@@ -1561,28 +1553,28 @@ msgstr ""
 msgid "email.base.footer"
 msgstr "Você está recebendo este e-mail porque interagiu com nosso site."
 
-#: templates/emails/products/product_purchase_paid.html:11
+#: templates/emails/product/product_purchase_paid.html:11
 msgid "email.product-purchase-paid.confirmation-message"
 msgstr ""
 "Sua compra de produto foi confirmada com sucesso. Obrigado pela sua compra!"
 
-#: templates/emails/products/product_purchase_paid.html:22
+#: templates/emails/product/product_purchase_paid.html:22
 msgid "email.product-purchase-paid.total-value"
 msgstr "Valor Total"
 
-#: templates/emails/products/product_purchase_paid.html:23
+#: templates/emails/product/product_purchase_paid.html:23
 msgid "email.product-purchase-paid.purchase-date"
 msgstr "Data da Compra"
 
-#: templates/emails/products/product_purchase_paid.html:26
+#: templates/emails/product/product_purchase_paid.html:26
 msgid "email.product-purchase-paid.download-message"
 msgstr "Você pode acessar seu produto adquirido em sua conta."
 
-#: templates/emails/products/product_purchase_paid.html:30
+#: templates/emails/product/product_purchase_paid.html:30
 msgid "email.product-purchase-paid.view-button"
 msgstr "Ver Minhas Compras"
 
-#: templates/emails/products/product_purchase_paid.html:34
+#: templates/emails/product/product_purchase_paid.html:34
 msgid "email.product-purchase-paid.thank-you"
 msgstr "Obrigado pela sua compra!"
 

@@ -266,7 +266,7 @@ class CustomerHelper:
         else:
             subject = _("email.credits-added.subject")
 
-        template = "emails/credits/credit_added.html"
+        template = "emails/credit/credit_added.html"
 
         # set recipient
         recipient_list = [customer_email]
@@ -381,7 +381,7 @@ class CustomerHelper:
         MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
-            template="emails/credits/credit_purchase_paid.html",
+            template="emails/credit/credit_purchase_paid.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
         )
@@ -424,7 +424,7 @@ class CustomerHelper:
         MailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
-            template="emails/products/product_purchase_paid.html",
+            template="emails/product/product_purchase_paid.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
         )
