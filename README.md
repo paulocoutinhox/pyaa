@@ -67,6 +67,7 @@ make run
 - [WebApp](docs/webapp.md)
 - [Cron](docs/cron.md)
 - [Queue](docs/queue.md)
+- [VSCode](docs/vscode.md)
 
 ## 🛡️ License
 

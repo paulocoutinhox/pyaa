@@ -2,6 +2,7 @@ from datetime import timedelta
 from uuid import uuid4
 
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.test import TestCase
 from django.utils import timezone
 from django.utils.text import slugify
@@ -10,7 +11,6 @@ from apps.customer.models import Customer
 from apps.language.models import Language
 from apps.shop.enums import ObjectType, PlanFrequencyType, PlanType, SubscriptionStatus
 from apps.shop.models import CreditLog, EventLog, Plan, Subscription
-from apps.site.models import Site
 
 User = get_user_model()
 

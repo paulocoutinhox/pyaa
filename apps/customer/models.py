@@ -1,6 +1,7 @@
 import uuid
 
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
 from django.utils import timezone
@@ -10,7 +11,6 @@ from tinymce.models import HTMLField
 
 from apps.customer import enums, fields
 from apps.language import models as language_models
-from apps.site.models import Site
 
 
 class Customer(models.Model):

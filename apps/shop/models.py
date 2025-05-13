@@ -17,7 +17,6 @@ from apps.shop.enums import (
     PlanFrequencyType,
     SubscriptionStatus,
 )
-from apps.site.models import Site
 from pyaa.helpers.string import StringHelper
 
 

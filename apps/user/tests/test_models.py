@@ -1,10 +1,9 @@
 from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.test import TestCase
-
-from apps.site.models import Site
 
 User = get_user_model()
 

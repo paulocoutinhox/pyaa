@@ -3,8 +3,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
-from django.db import IntegrityError, transaction
-from django.db.models import ProtectedError, Q
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
 from localflavor.br.forms import BRCPFField, BRStateChoiceField, BRZipCodeField
@@ -266,7 +265,7 @@ class CustomerUpdateProfileForm(SanitizeDigitFieldsMixin, forms.Form):
             self.fields["cpf"].initial = self.user.cpf
             self.fields["mobile_phone"].initial = self.user.mobile_phone
 
-            if hasattr(self.user, "customer"):
+            if self.user.has_customer():
                 customer = self.user.customer
                 self.fields["nickname"].initial = customer.nickname
                 self.fields["gender"].initial = customer.gender
@@ -320,10 +319,9 @@ class CustomerUpdateAvatarForm(forms.Form):
         user = kwargs.pop("user", None)
         super(CustomerUpdateAvatarForm, self).__init__(*args, **kwargs)
 
-        if user:
-            if hasattr(user, "customer"):
-                customer = user.customer
-                self.fields["avatar"].initial = customer.avatar
+        if user and user.has_customer():
+            customer = user.customer
+            self.fields["avatar"].initial = customer.avatar
 
     def save(self, user):
         customer = user.customer

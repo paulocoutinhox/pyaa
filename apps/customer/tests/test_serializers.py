@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.test import TestCase
 from rest_framework.test import APITestCase
 
@@ -9,7 +10,6 @@ from apps.customer.serializers import (
     CustomerUserUpdateSerializer,
 )
 from apps.language.models import Language
-from apps.site.models import Site
 
 
 class CustomerUserCreateSerializerTest(APITestCase):

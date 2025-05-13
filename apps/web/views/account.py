@@ -366,7 +366,7 @@ def account_password_recovery_view(request):
         if form.is_valid():
             user = form.cleaned_data.get("user")
 
-            if user and hasattr(user, "customer"):
+            if user and user.has_customer():
                 # send recovery email if user exists
                 CustomerHelper.send_password_recovery_email(user.customer)
 

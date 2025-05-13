@@ -2,11 +2,11 @@ import uuid
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from apps.site.models import Site
 from apps.user.helpers import UserHelper
 
 

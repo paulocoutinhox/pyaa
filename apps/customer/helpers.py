@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 from apps.customer.models import Customer
 from apps.shop.enums import ObjectType
 from apps.shop.models import CreditLog, Plan
-from pyaa.helpers.email import MailHelper
+from pyaa.helpers.email import EmailHelper
 
 
 class CustomerHelper:
@@ -200,8 +200,8 @@ class CustomerHelper:
     def get_customer_id_from_request(request):
         user = getattr(request, "user", None)
 
-        if user and hasattr(user, "customer"):
-            return getattr(user.customer, "id", 0)
+        if user and user.has_customer():
+            return user.customer.id
 
         return 0
 
@@ -233,7 +233,7 @@ class CustomerHelper:
             "profile_url": profile_url,
         }
 
-        MailHelper.send_email_async(
+        EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/signup.html",
@@ -315,7 +315,7 @@ class CustomerHelper:
                 }
             )
 
-        MailHelper.send_email_async(
+        EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template=template,
@@ -378,7 +378,7 @@ class CustomerHelper:
             "purchase": purchase,
         }
 
-        MailHelper.send_email_async(
+        EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/credit/credit_purchase_paid.html",
@@ -421,7 +421,7 @@ class CustomerHelper:
             "purchase": purchase,
         }
 
-        MailHelper.send_email_async(
+        EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/product/product_purchase_paid.html",
@@ -517,7 +517,7 @@ class CustomerHelper:
             "token": recovery_token,
         }
 
-        MailHelper.send_email_async(
+        EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/password_recovery.html",
@@ -563,7 +563,7 @@ class CustomerHelper:
             "token": customer.activate_token,
         }
 
-        MailHelper.send_email_async(
+        EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/activation.html",

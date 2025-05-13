@@ -2,6 +2,7 @@ from datetime import timedelta
 from uuid import uuid4
 
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from django.utils import timezone
@@ -10,7 +11,6 @@ from apps.customer.enums import CustomerGender
 from apps.customer.models import Customer
 from apps.shop.enums import PlanType, ProductPurchaseStatus, SubscriptionStatus
 from apps.shop.models import Plan, Product, ProductPurchase, Subscription
-from apps.site.models import Site
 
 User = get_user_model()
 
