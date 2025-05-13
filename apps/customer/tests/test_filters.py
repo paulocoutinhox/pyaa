@@ -2,13 +2,13 @@ from datetime import timedelta
 
 from django.contrib.admin import ModelAdmin
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.test import RequestFactory, TestCase
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer.filters import CreatedAtFilter, EmailFilter, NameFilter
 from apps.customer.models import Customer
-from apps.site.models import Site
 
 User = get_user_model()
 

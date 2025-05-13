@@ -1,8 +1,8 @@
 from django.contrib.admin.sites import AdminSite
 from django.contrib.auth import get_user_model
+from django.contrib.sites.models import Site
 from django.test import RequestFactory, TestCase
 
-from apps.site.models import Site
 from apps.user.admin import UserAdmin
 
 User = get_user_model()

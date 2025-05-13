@@ -35,7 +35,7 @@ class SystemLogAPIView(OptionalJWTAuthenticationMixin, APIView):
 
         # get customer if logged in
         customer = None
-        if request.user.is_authenticated and hasattr(request.user, "customer"):
+        if request.user.is_authenticated and request.user.has_customer():
             customer = request.user.customer
 
         # create log entry

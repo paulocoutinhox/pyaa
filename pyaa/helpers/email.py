@@ -10,7 +10,7 @@ from django_q.tasks import async_task
 logger = logging.getLogger(__name__)
 
 
-class MailHelper:
+class EmailHelper:
     @staticmethod
     def send_email(
         subject,
@@ -28,7 +28,7 @@ class MailHelper:
         html_message = render_to_string(template, context or {})
 
         # convert html to plain text
-        text_message = MailHelper.html_to_text(html_message)
+        text_message = EmailHelper.html_to_text(html_message)
 
         # use default from_email if not provided
         from_email = from_email or settings.DEFAULT_FROM_EMAIL
@@ -91,7 +91,7 @@ class MailHelper:
         """
         # schedule the email sending task for asynchronous execution
         task_id = async_task(
-            MailHelper.send_email,
+            EmailHelper.send_email,
             subject,
             to,
             template,

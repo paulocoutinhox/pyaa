@@ -119,7 +119,7 @@ class BannerHelper:
 
         # get customer if logged in
         customer = None
-        if request.user.is_authenticated and hasattr(request.user, "customer"):
+        if request.user.is_authenticated and request.user.has_customer():
             customer = request.user.customer
 
         # calculate interval window
