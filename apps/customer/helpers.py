@@ -200,7 +200,7 @@ class CustomerHelper:
     def get_customer_id_from_request(request):
         user = getattr(request, "user", None)
 
-        if user and user.has_customer():
+        if user and user.is_authenticated and user.has_customer():
             return user.customer.id
 
         return 0
