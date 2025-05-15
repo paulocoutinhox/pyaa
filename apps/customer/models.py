@@ -4,13 +4,14 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
-from django.utils import timezone
+from django.db.models.functions import Now
 from django.utils.translation import gettext_lazy as _
 from timezone_field import TimeZoneField
 from tinymce.models import HTMLField
 
 from apps.customer import enums, fields
 from apps.language import models as language_models
+from apps.shop.enums import SubscriptionStatus
 
 
 class Customer(models.Model):
@@ -211,18 +212,11 @@ class Customer(models.Model):
         return result
 
     def has_active_subscription(self):
-        from apps.shop.enums import SubscriptionStatus
-
-        with transaction.atomic():
-            return (
-                self.subscription_set.filter(
-                    status=SubscriptionStatus.ACTIVE,
-                    expire_at__isnull=False,
-                    expire_at__gt=timezone.now(),
-                )
-                .select_for_update()
-                .exists()
-            )
+        return self.subscription_set.filter(
+            status=SubscriptionStatus.ACTIVE,
+            expire_at__isnull=False,
+            expire_at__gt=Now(),
+        ).exists()
 
     def has_credits(self, amount=0):
         with transaction.atomic():
