@@ -13,6 +13,7 @@ from apps.banner.enums import BannerZone
 from apps.banner.helpers import BannerHelper
 from apps.customer.enums import CustomerAddressType
 from apps.customer.forms import (
+    CustomerChangePasswordForm,
     CustomerDeleteForm,
     CustomerLoginForm,
     CustomerPasswordRecoveryForm,
@@ -165,6 +166,26 @@ def account_update_avatar_view(request):
         {
             "form": form,
             "customer": customer,
+        },
+    )
+
+
+@login_required
+def account_change_password_view(request):
+    if request.method == "POST":
+        form = CustomerChangePasswordForm(request.POST, user=request.user)
+        if form.is_valid():
+            if form.save():
+                messages.success(request, _("message.password-changed"))
+                return redirect("account_profile")
+    else:
+        form = CustomerChangePasswordForm(user=request.user)
+
+    return render(
+        request,
+        "pages/account/change_password.html",
+        {
+            "form": form,
         },
     )
 
@@ -520,6 +541,11 @@ urlpatterns = [
         "account/avatar/update/",
         account_update_avatar_view,
         name="account_update_avatar",
+    ),
+    path(
+        "account/change-password/",
+        account_change_password_view,
+        name="account_change_password",
     ),
     path(
         "account/subscriptions/",

@@ -7,6 +7,7 @@
 
 {% url 'account_update_profile' as url_account_update_profile %}
 {% url 'account_update_avatar' as url_account_update_avatar %}
+{% url 'account_change_password' as url_account_change_password %}
 {% url 'account_delete' as url_account_delete %}
 {% url 'account_logout' as url_account_logout %}
 {% url 'account_subscriptions' as url_account_subscriptions %}
@@ -94,6 +95,16 @@
                     </div>
                     <div>
                         <span>{% translate "button.update-profile" %}</span>
+                    </div>
+                </a>
+            </li>
+            <li class="list-group-item px-0 py-3 border-0 border-bottom">
+                <a href="{{ url_account_change_password }}" class="d-flex align-items-center text-decoration-none text-body">
+                    <div class="me-3 text-body">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+                    <div>
+                        <span>{% translate "button.change-password" %}</span>
                     </div>
                 </a>
             </li>

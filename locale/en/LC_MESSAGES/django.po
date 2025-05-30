@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-13 08:41+0000\n"
+"POT-Creation-Date: 2025-05-30 22:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,8 +88,8 @@ msgid "model.banner.name.plural"
 msgstr "Banners"
 
 #: apps/banner/models.py:30 apps/banner/models.py:150 apps/content/models.py:28
-#: apps/content/models.py:95 apps/customer/models.py:46
-#: apps/customer/models.py:283 apps/gallery/models.py:32
+#: apps/content/models.py:95 apps/customer/models.py:47
+#: apps/customer/models.py:277 apps/gallery/models.py:32
 #: apps/language/models.py:27 apps/shop/models.py:37 apps/shop/models.py:155
 #: apps/shop/models.py:254 apps/shop/models.py:466 apps/shop/models.py:615
 #: apps/shop/models.py:738 apps/shop/models.py:848 apps/shop/models.py:1014
@@ -98,7 +98,7 @@ msgid "model.field.id"
 msgstr "ID"
 
 #: apps/banner/models.py:39 apps/content/admin.py:93 apps/content/models.py:104
-#: apps/customer/models.py:64 apps/gallery/admin.py:102
+#: apps/customer/models.py:65 apps/gallery/admin.py:102
 #: apps/gallery/models.py:41 apps/shop/models.py:46 apps/shop/models.py:263
 #: apps/shop/models.py:475 apps/shop/models.py:624 apps/shop/models.py:747
 #: apps/shop/models.py:857 apps/shop/models.py:1023 apps/site/models.py:19
@@ -109,7 +109,7 @@ msgid "model.field.site"
 msgstr "Site"
 
 #: apps/banner/models.py:50 apps/content/models.py:131
-#: apps/customer/models.py:75 apps/gallery/models.py:59
+#: apps/customer/models.py:76 apps/gallery/models.py:59
 #: templates/admin/report/banner-access-summary/pdf.html:11
 #: templates/admin/report/banner-access-summary/view.html:23
 msgid "model.field.language"
@@ -164,7 +164,7 @@ msgstr "Active"
 
 #: apps/banner/models.py:111 apps/banner/models.py:190
 #: apps/content/models.py:50 apps/content/models.py:163
-#: apps/customer/models.py:144 apps/customer/models.py:350
+#: apps/customer/models.py:145 apps/customer/models.py:344
 #: apps/gallery/models.py:85 apps/language/models.py:56
 #: apps/newsletter/models.py:29 apps/shop/models.py:103 apps/shop/models.py:213
 #: apps/shop/models.py:385 apps/shop/models.py:521 apps/shop/models.py:675
@@ -174,8 +174,8 @@ msgid "model.field.created-at"
 msgstr "Created At"
 
 #: apps/banner/models.py:116 apps/content/models.py:55
-#: apps/content/models.py:168 apps/customer/models.py:149
-#: apps/customer/models.py:355 apps/gallery/models.py:90
+#: apps/content/models.py:168 apps/customer/models.py:150
+#: apps/customer/models.py:349 apps/gallery/models.py:90
 #: apps/language/models.py:61 apps/shop/models.py:108 apps/shop/models.py:218
 #: apps/shop/models.py:390 apps/shop/models.py:526 apps/shop/models.py:680
 #: apps/shop/models.py:803 apps/site/models.py:42
@@ -194,7 +194,7 @@ msgstr "Banner Accesses"
 msgid "model.field.banner"
 msgstr "Banner"
 
-#: apps/banner/models.py:166 apps/customer/models.py:292
+#: apps/banner/models.py:166 apps/customer/models.py:286
 #: apps/shop/models.py:632 apps/shop/models.py:755 apps/shop/models.py:865
 #: apps/shop/models.py:1031 apps/system_log/models.py:40
 msgid "model.field.customer"
@@ -204,11 +204,11 @@ msgstr "Customer"
 msgid "model.field.access-type"
 msgstr "Access Type"
 
-#: apps/banner/models.py:182 apps/customer/models.py:344
+#: apps/banner/models.py:182 apps/customer/models.py:338
 msgid "model.field.country-code"
 msgstr "Country Code"
 
-#: apps/banner/models.py:184 apps/customer/models.py:346
+#: apps/banner/models.py:184 apps/customer/models.py:340
 msgid "model.field.country-code.help"
 msgstr "Two-letter country code (e.g. BR, US, FR)"
 
@@ -351,12 +351,12 @@ msgid "filter.created-at"
 msgstr "Created At"
 
 #: apps/customer/forms.py:53 apps/customer/forms.py:349
-#: apps/customer/models.py:334
+#: apps/customer/models.py:328
 msgid "model.field.state"
 msgstr "State / Province"
 
 #: apps/customer/forms.py:59 apps/customer/forms.py:355
-#: apps/customer/models.py:339
+#: apps/customer/models.py:333
 msgid "model.field.postal-code"
 msgstr "Postal Code"
 
@@ -379,7 +379,7 @@ msgid "model.field.last-name"
 msgstr "Last Name"
 
 #: apps/customer/forms.py:108 apps/customer/forms.py:251
-#: apps/customer/models.py:86
+#: apps/customer/models.py:87
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
@@ -399,7 +399,7 @@ msgstr "Accept Terms"
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/customer/forms.py:245 apps/customer/models.py:79
+#: apps/customer/forms.py:245 apps/customer/models.py:80
 msgid "model.field.nickname"
 msgstr "Nickname"
 
@@ -411,17 +411,25 @@ msgstr "Email, CPF, or Mobile Phone"
 msgid "model.field.recovery-identifier.help"
 msgstr "Enter your email, CPF or mobile phone number to recover your password"
 
-#: apps/customer/forms.py:433
+#: apps/customer/forms.py:433 apps/customer/forms.py:469
 msgid "model.field.new-password"
 msgstr "New Password"
 
-#: apps/customer/forms.py:440
+#: apps/customer/forms.py:440 apps/customer/forms.py:476
 msgid "model.field.confirm-password"
 msgstr "Confirm Password"
 
-#: apps/customer/forms.py:454
+#: apps/customer/forms.py:454 apps/customer/forms.py:503
 msgid "error.passwords-do-not-match"
 msgstr "Passwords do not match"
+
+#: apps/customer/forms.py:462
+msgid "model.field.current-password"
+msgstr "Current Password"
+
+#: apps/customer/forms.py:491
+msgid "error.current-password-incorrect"
+msgstr "Current password is incorrect"
 
 #: apps/customer/helpers.py:197
 msgid "error.nickname-already-used-by-other"
@@ -457,82 +465,82 @@ msgstr "Password Recovery"
 msgid "email.activation.subject"
 msgstr "Activate Your Account"
 
-#: apps/customer/models.py:19
+#: apps/customer/models.py:20
 msgid "model.customer.name"
 msgstr "Customer"
 
-#: apps/customer/models.py:20
+#: apps/customer/models.py:21
 msgid "model.customer.name.plural"
 msgstr "Customers"
 
-#: apps/customer/models.py:55
+#: apps/customer/models.py:56
 msgid "model.field.user"
 msgstr "User"
 
-#: apps/customer/models.py:95
+#: apps/customer/models.py:96
 msgid "model.field.avatar"
 msgstr "Avatar"
 
-#: apps/customer/models.py:105 apps/customer/serializers.py:68
+#: apps/customer/models.py:106 apps/customer/serializers.py:68
 #: apps/customer/serializers.py:137
 msgid "model.field.timezone"
 msgstr "Timezone"
 
-#: apps/customer/models.py:113
+#: apps/customer/models.py:114
 msgid "model.field.activate-token"
 msgstr "Activation Token"
 
-#: apps/customer/models.py:122
+#: apps/customer/models.py:123
 msgid "model.field.recovery-token"
 msgstr "Recovery Token"
 
-#: apps/customer/models.py:131 apps/shop/models.py:322
+#: apps/customer/models.py:132 apps/shop/models.py:322
 msgid "model.field.credits"
 msgstr "Credits"
 
-#: apps/customer/models.py:138 apps/customer/serializers.py:62
+#: apps/customer/models.py:139 apps/customer/serializers.py:62
 #: apps/customer/serializers.py:131
 msgid "model.field.obs"
 msgstr "Obs"
 
-#: apps/customer/models.py:166
+#: apps/customer/models.py:167
 #, python-brace-format
 msgid "model.str.customer #{id}"
 msgstr "Customer #{id}"
 
-#: apps/customer/models.py:184
+#: apps/customer/models.py:185
 msgid "error.site-id-required"
 msgstr "The site code is required."
 
-#: apps/customer/models.py:256
+#: apps/customer/models.py:250
 msgid "model.customer-address.name"
 msgstr "Customer Address"
 
-#: apps/customer/models.py:257
+#: apps/customer/models.py:251
 msgid "model.customer-address.name.plural"
 msgstr "Customer Addresses"
 
-#: apps/customer/models.py:296
+#: apps/customer/models.py:290
 msgid "model.field.address-type"
 msgstr "Address Type"
 
-#: apps/customer/models.py:303
+#: apps/customer/models.py:297
 msgid "model.field.address-line1"
 msgstr "Street / Avenue"
 
-#: apps/customer/models.py:308
+#: apps/customer/models.py:302
 msgid "model.field.address-line2"
 msgstr "District / Area"
 
-#: apps/customer/models.py:315
+#: apps/customer/models.py:309
 msgid "model.field.street-number"
 msgstr "Number"
 
-#: apps/customer/models.py:322
+#: apps/customer/models.py:316
 msgid "model.field.complement"
 msgstr "Complement"
 
-#: apps/customer/models.py:329
+#: apps/customer/models.py:323
 msgid "model.field.city"
 msgstr "City"
 
@@ -1189,38 +1197,42 @@ msgstr "Message"
 msgid "email.contact.subject"
 msgstr "New Contact Message"
 
-#: apps/web/views/account.py:54
+#: apps/web/views/account.py:55
 msgid "message.login-success"
 msgstr "Login successful."
 
-#: apps/web/views/account.py:61
+#: apps/web/views/account.py:62
 msgid "error.invalid-login-data"
 msgstr "Incorrect login data, please check and try again."
 
-#: apps/web/views/account.py:134 apps/web/views/account.py:154
-#: apps/web/views/account.py:470
+#: apps/web/views/account.py:135 apps/web/views/account.py:155
+#: apps/web/views/account.py:491
 msgid "message.account-updated"
 msgstr "Your account was updated."
 
-#: apps/web/views/account.py:183
+#: apps/web/views/account.py:179
+msgid "message.password-changed"
+msgstr "Your password has been changed successfully"
+
+#: apps/web/views/account.py:204
 msgid "message.error.account-has-subscriptions"
 msgstr ""
 "Your account has active subscriptions. You need to cancel them before "
 "closing your account."
 
-#: apps/web/views/account.py:194
+#: apps/web/views/account.py:215
 msgid "message.account-deleted"
 msgstr "Your account and data were deleted."
 
-#: apps/web/views/account.py:252
+#: apps/web/views/account.py:273
 msgid "message.shop-invalid-cancel-action"
 msgstr "Invalid cancel action."
 
-#: apps/web/views/account.py:441
+#: apps/web/views/account.py:462
 msgid "message.account-activation-success"
 msgstr "Your account has been activated successfully!"
 
-#: apps/web/views/account.py:444
+#: apps/web/views/account.py:465
 msgid "error.invalid-activation-token"
 msgstr ""
 "Invalid activation token. Please check your email for the correct link."
@@ -1611,6 +1623,23 @@ msgstr ""
 msgid "button.go-to-login"
 msgstr "Go to Login"
 
+#: templates/pages/account/change_password.html:11
+msgid "title.account-change-password"
+msgstr "Change Password"
+
+#: templates/pages/account/change_password.html:24
+#: templates/pages/account/profile.html:107
+msgid "button.change-password"
+msgstr "Change Password"
+
+#: templates/pages/account/change_password.html:30
+#: templates/pages/account/delete.html:32
+#: templates/pages/account/update_address.html:30
+#: templates/pages/account/update_avatar.html:43
+#: templates/pages/account/update_profile.html:30
+msgid "button.cancel"
+msgstr "Cancel"
+
 #: templates/pages/account/credit_purchases.html:12
 msgid "title.account-credit-purchases"
 msgstr "My Credit Purchases"
@@ -1680,13 +1709,6 @@ msgstr ""
 #: templates/pages/account/delete.html:26
 msgid "button.account-delete-confirm"
 msgstr "Yes, Delete My Account"
-
-#: templates/pages/account/delete.html:32
-#: templates/pages/account/update_address.html:30
-#: templates/pages/account/update_avatar.html:43
-#: templates/pages/account/update_profile.html:30
-msgid "button.cancel"
-msgstr "Cancel"
 
 #: templates/pages/account/login.html:16
 msgid "title.account-login"
@@ -1776,74 +1798,74 @@ msgstr "Product Files"
 msgid "button.download"
 msgstr "Download"
 
-#: templates/pages/account/profile.html:24
+#: templates/pages/account/profile.html:25
 msgid "title.account-profile"
 msgstr "Profile"
 
-#: templates/pages/account/profile.html:26
+#: templates/pages/account/profile.html:27
 msgid "subtitle.my-account"
 msgstr "My Account"
 
-#: templates/pages/account/profile.html:31
+#: templates/pages/account/profile.html:32
 #: templates/partials/customer_data.html:11
 msgid "customer.credits"
 msgstr "Credits"
 
-#: templates/pages/account/profile.html:33
+#: templates/pages/account/profile.html:34
 #: templates/partials/customer_data.html:13
 msgid "customer.no-credits"
 msgstr "No credits"
 
-#: templates/pages/account/profile.html:50
+#: templates/pages/account/profile.html:51
 #: templates/pages/shop/payment/error.html:66
 #: templates/pages/shop/payment/pending.html:66
 #: templates/pages/shop/payment/success.html:66
 msgid "button.account-product-purchases"
 msgstr "My Product Purchases"
 
-#: templates/pages/account/profile.html:62
+#: templates/pages/account/profile.html:63
 msgid "button.account-credits"
 msgstr "My Credits"
 
-#: templates/pages/account/profile.html:70
+#: templates/pages/account/profile.html:71
 #: templates/pages/shop/payment/error.html:58
 #: templates/pages/shop/payment/pending.html:58
 #: templates/pages/shop/payment/success.html:58
 msgid "button.account-credit-purchases"
 msgstr "My Credit Purchases"
 
-#: templates/pages/account/profile.html:82
+#: templates/pages/account/profile.html:83
 #: templates/pages/shop/payment/error.html:50
 #: templates/pages/shop/payment/pending.html:50
 #: templates/pages/shop/payment/success.html:50
 msgid "button.account-subscriptions"
 msgstr "My Subscriptions"
 
-#: templates/pages/account/profile.html:88
+#: templates/pages/account/profile.html:89
 msgid "subtitle.account-settings"
 msgstr "My Account"
 
-#: templates/pages/account/profile.html:96
+#: templates/pages/account/profile.html:97
 msgid "button.update-profile"
 msgstr "Update Profile"
 
-#: templates/pages/account/profile.html:106
+#: templates/pages/account/profile.html:117
 msgid "button.update-avatar"
 msgstr "Update Avatar"
 
-#: templates/pages/account/profile.html:116
+#: templates/pages/account/profile.html:127
 msgid "button.update-address"
 msgstr "Update Address"
 
-#: templates/pages/account/profile.html:123
+#: templates/pages/account/profile.html:134
 msgid "subtitle.danger-zone"
 msgstr "Danger Zone"
 
-#: templates/pages/account/profile.html:131
+#: templates/pages/account/profile.html:142
 msgid "button.account-delete"
 msgstr "Delete Account"
 
-#: templates/pages/account/profile.html:141
+#: templates/pages/account/profile.html:152
 msgid "button.account-logout"
 msgstr "Logout"
 

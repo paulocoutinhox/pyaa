@@ -455,3 +455,59 @@ class CustomerResetPasswordForm(forms.Form):
                 )
 
         return cleaned_data
+
+
+class CustomerChangePasswordForm(forms.Form):
+    current_password = forms.CharField(
+        label=_("model.field.current-password"),
+        max_length=255,
+        required=True,
+        widget=forms.PasswordInput(),
+    )
+
+    new_password = forms.CharField(
+        label=_("model.field.new-password"),
+        max_length=255,
+        required=True,
+        widget=forms.PasswordInput(),
+    )
+
+    confirm_password = forms.CharField(
+        label=_("model.field.confirm-password"),
+        max_length=255,
+        required=True,
+        widget=forms.PasswordInput(),
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+
+    def clean_current_password(self):
+        current_password = self.cleaned_data.get("current_password")
+
+        if current_password and self.user:
+            if not self.user.check_password(current_password):
+                raise ValidationError(_("error.current-password-incorrect"))
+
+        return current_password
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get("new_password")
+        confirm_password = cleaned_data.get("confirm_password")
+
+        if new_password and confirm_password:
+            if new_password != confirm_password:
+                raise ValidationError(
+                    {"confirm_password": _("error.passwords-do-not-match")}
+                )
+
+        return cleaned_data
+
+    def save(self):
+        if self.user:
+            self.user.set_password(self.cleaned_data["new_password"])
+            self.user.save()
+            return True
+        return False
