@@ -1,5 +1,5 @@
 # django
-django==5.2.1
+django==5.2.2
 django-admin-extras==1.0.2
 django-cleanup==9.0.0
 django-timezone-field==7.1
@@ -24,7 +24,7 @@ django-ipware==7.0.1
 # general
 requests==2.32.3
 libsass==0.23.0
-boto3==1.38.27
+boto3==1.38.32
 beautifulsoup4==4.13.4
 
 # local
@@ -37,7 +37,7 @@ pillow==11.2.1
 djangorestframework==3.16.0
 djangorestframework-simplejwt==5.5.0
 drf-spectacular==0.28.0
-drf-spectacular-sidecar==2025.5.1
+drf-spectacular-sidecar==2025.6.1
 djangorestframework-camel-case==1.4.2
 
 # payment
