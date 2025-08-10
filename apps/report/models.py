@@ -13,6 +13,6 @@ class CustomerGenderSummary(Customer):
 
 class BannerAccessSummary(Banner):
     class Meta:
-        managed = False
+        proxy = True
         verbose_name = _("model.banner-access-summary.name")
         verbose_name_plural = _("model.banner-access-summary.name")
