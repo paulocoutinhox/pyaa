@@ -162,7 +162,7 @@ class BannerAccessAdmin(admin.ModelAdmin):
         return obj.get_ip_address()
 
     ip_address.short_description = _("model.field.ip")
-    ip_address.admin_order_field = "ip_number"
+    ip_address.admin_order_field = "ip_address"
 
     def has_add_permission(self, request):
         return False

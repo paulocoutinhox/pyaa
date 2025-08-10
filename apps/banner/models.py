@@ -129,8 +129,8 @@ class BannerAccess(models.Model):
 
         indexes = [
             models.Index(
-                fields=["ip_number"],
-                name="{0}_ip_number".format(db_table),
+                fields=["ip_address"],
+                name="{0}_ip_address".format(db_table),
             ),
             models.Index(
                 fields=["country_code"],
@@ -174,8 +174,9 @@ class BannerAccess(models.Model):
         choices=BannerAccessType.choices,
     )
 
-    ip_number = models.BigIntegerField(
+    ip_address = models.GenericIPAddressField(
         _("model.field.ip"),
+        protocol="both",
     )
 
     country_code = models.CharField(
@@ -192,9 +193,7 @@ class BannerAccess(models.Model):
     )
 
     def get_ip_address(self):
-        """Convert numeric IP back to string format"""
-        ip_number = self.ip_number
-        return f"{(ip_number >> 24) & 255}.{(ip_number >> 16) & 255}.{(ip_number >> 8) & 255}.{ip_number & 255}"
+        return str(self.ip_address)
 
     def clean(self):
         super().clean()

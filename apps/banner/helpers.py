@@ -113,10 +113,9 @@ class BannerHelper:
         if not client_ip:
             return False
 
-        # convert ip to integer for storage
+        # validate ip address format
         try:
-            ip_obj = ipaddress.ip_address(client_ip)
-            ip_number = int(ip_obj)
+            ipaddress.ip_address(client_ip)
         except ValueError:
             # invalid ip address, skip tracking
             return False
@@ -135,7 +134,7 @@ class BannerHelper:
         # check if there's any access within the interval for this type
         has_recent_access = BannerAccess.objects.filter(
             banner=banner,
-            ip_number=ip_number,
+            ip_address=client_ip,
             access_type=access_type,
             created_at__gte=interval_start,
         ).exists()
@@ -152,7 +151,7 @@ class BannerHelper:
         # create access record
         BannerAccess.objects.create(
             banner=banner,
-            ip_number=ip_number,
+            ip_address=client_ip,
             customer=customer,
             access_type=access_type,
             country_code=country_code,
