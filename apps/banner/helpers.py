@@ -1,3 +1,5 @@
+import ipaddress
+
 from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
@@ -112,10 +114,12 @@ class BannerHelper:
             return False
 
         # convert ip to integer for storage
-        ip_parts = client_ip.split(".")
-        ip_number = sum(
-            int(part) << (8 * i) for i, part in enumerate(reversed(ip_parts))
-        )
+        try:
+            ip_obj = ipaddress.ip_address(client_ip)
+            ip_number = int(ip_obj)
+        except ValueError:
+            # invalid ip address, skip tracking
+            return False
 
         # get customer if logged in
         customer = None
