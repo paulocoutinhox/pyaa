@@ -9,8 +9,8 @@ RUN apt-get update \
     nano \
     libcairo2 \
     libcairo2-dev \
-    libpango1.0-0 \
-    libgdk-pixbuf2.0-0 \
+    libpango-1.0-0 \
+    libgdk-pixbuf-2.0-0 \
     libffi-dev \
     shared-mime-info \
     fonts-roboto \
