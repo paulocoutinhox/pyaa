@@ -49,5 +49,12 @@
     <script src="{% static 'js/main.js' %}"></script>
 {% endcompress %}
 
-<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<!-- Web Manifest -->
+<link rel="manifest" href="{% static 'site.webmanifest' %}">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
 <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="theme-color" content="#000000">
