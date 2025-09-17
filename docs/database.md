@@ -23,6 +23,18 @@ To use MySQL, you need to install the `mysqlclient` dependency. You can do this 
 python3 -m pip install mysqlclient
 ```
 
+Alternatively, you can add `mysqlclient` to your `requirements.txt` file and install all dependencies at once:
+
+```bash
+pip install -r requirements.txt
+```
+
+> **Note**: If you're using MySQL with Docker, you may also need to install the MySQL client dependency:
+>
+> ```bash
+> apt install default-mysql-client
+> ```
+
 Once installed, configure your database settings for MySQL like this:
 
 ```python
