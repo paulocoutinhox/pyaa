@@ -30,6 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 DEBUG = True
 SECRET_KEY = "myapp-secret-key"
+IS_INSIDE_CI = os.getenv("CI") == "true"
 
 # Hosts
 
