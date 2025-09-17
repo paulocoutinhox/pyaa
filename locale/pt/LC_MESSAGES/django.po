@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-30 22:40+0000\n"
+"POT-Creation-Date: 2025-09-17 12:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,7 +162,7 @@ msgstr "Fim Em"
 msgid "model.field.active"
 msgstr "Ativo"
 
-#: apps/banner/models.py:111 apps/banner/models.py:190
+#: apps/banner/models.py:111 apps/banner/models.py:191
 #: apps/content/models.py:50 apps/content/models.py:163
 #: apps/customer/models.py:145 apps/customer/models.py:344
 #: apps/gallery/models.py:85 apps/language/models.py:56
@@ -204,11 +204,11 @@ msgstr "Cliente"
 msgid "model.field.access-type"
 msgstr "Tipo de Acesso"
 
-#: apps/banner/models.py:182 apps/customer/models.py:338
+#: apps/banner/models.py:183 apps/customer/models.py:338
 msgid "model.field.country-code"
 msgstr "Código do País"
 
-#: apps/banner/models.py:184 apps/customer/models.py:340
+#: apps/banner/models.py:185 apps/customer/models.py:340
 msgid "model.field.country-code.help"
 msgstr "Código do país com duas letras (ex: BR, US, FR)"
 
@@ -628,7 +628,7 @@ msgstr "Exportar como CSV"
 msgid "apps.newsletter.description"
 msgstr "Newsletter"
 
-#: apps/newsletter/forms.py:11 templates/partials/newsletter-subscribe.html:21
+#: apps/newsletter/forms.py:11 templates/partials/newsletter_subscribe.html:21
 msgid "form.placeholder.newsletter-email"
 msgstr "Digite seu e-mail aqui"
 
@@ -1286,11 +1286,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:186
+#: pyaa/settings/dev.py:187
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:187
+#: pyaa/settings/dev.py:188
 msgid "language.pt-br"
 msgstr "Português"
 
@@ -1636,7 +1636,7 @@ msgid "title.account-change-password"
 msgstr "Alterar Senha"
 
 #: templates/pages/account/change_password.html:24
-#: templates/pages/account/profile.html:107
+#: templates/pages/account/profile.html:108
 msgid "button.change-password"
 msgstr "Alterar Senha"
 
@@ -1806,74 +1806,74 @@ msgstr "Arquivos do Produto"
 msgid "button.download"
 msgstr "Baixar"
 
-#: templates/pages/account/profile.html:25
+#: templates/pages/account/profile.html:26
 msgid "title.account-profile"
 msgstr "Perfil"
 
-#: templates/pages/account/profile.html:27
+#: templates/pages/account/profile.html:28
 msgid "subtitle.my-account"
 msgstr "Minha Conta"
 
-#: templates/pages/account/profile.html:32
+#: templates/pages/account/profile.html:33
 #: templates/partials/customer_data.html:11
 msgid "customer.credits"
 msgstr "Créditos"
 
-#: templates/pages/account/profile.html:34
+#: templates/pages/account/profile.html:35
 #: templates/partials/customer_data.html:13
 msgid "customer.no-credits"
 msgstr "Sem créditos"
 
-#: templates/pages/account/profile.html:51
+#: templates/pages/account/profile.html:52
 #: templates/pages/shop/payment/error.html:66
 #: templates/pages/shop/payment/pending.html:66
 #: templates/pages/shop/payment/success.html:66
 msgid "button.account-product-purchases"
 msgstr "Minhas Compras de Produto"
 
-#: templates/pages/account/profile.html:63
+#: templates/pages/account/profile.html:64
 msgid "button.account-credits"
 msgstr "Meus Créditos"
 
-#: templates/pages/account/profile.html:71
+#: templates/pages/account/profile.html:72
 #: templates/pages/shop/payment/error.html:58
 #: templates/pages/shop/payment/pending.html:58
 #: templates/pages/shop/payment/success.html:58
 msgid "button.account-credit-purchases"
 msgstr "Minhas Compras de Crédito"
 
-#: templates/pages/account/profile.html:83
+#: templates/pages/account/profile.html:84
 #: templates/pages/shop/payment/error.html:50
 #: templates/pages/shop/payment/pending.html:50
 #: templates/pages/shop/payment/success.html:50
 msgid "button.account-subscriptions"
 msgstr "Minhas Assinaturas"
 
-#: templates/pages/account/profile.html:89
+#: templates/pages/account/profile.html:90
 msgid "subtitle.account-settings"
 msgstr "Minha Conta"
 
-#: templates/pages/account/profile.html:97
+#: templates/pages/account/profile.html:98
 msgid "button.update-profile"
 msgstr "Atualizar Perfil"
 
-#: templates/pages/account/profile.html:117
+#: templates/pages/account/profile.html:118
 msgid "button.update-avatar"
 msgstr "Atualizar Avatar"
 
-#: templates/pages/account/profile.html:127
+#: templates/pages/account/profile.html:128
 msgid "button.update-address"
 msgstr "Atualizar Endereço"
 
-#: templates/pages/account/profile.html:134
+#: templates/pages/account/profile.html:135
 msgid "subtitle.danger-zone"
 msgstr "Danger Zone"
 
-#: templates/pages/account/profile.html:142
+#: templates/pages/account/profile.html:143
 msgid "button.account-delete"
 msgstr "Excluir Conta"
 
-#: templates/pages/account/profile.html:152
+#: templates/pages/account/profile.html:153
 msgid "button.account-logout"
 msgstr "Sair"
 
@@ -2021,19 +2021,19 @@ msgstr "Entrar"
 
 #: templates/pages/newsletter/subscribe.html:6
 #: templates/pages/newsletter/subscribe.html:14
-#: templates/partials/newsletter-subscribe.html:6
+#: templates/partials/newsletter_subscribe.html:6
 msgid "title.newsletter.subscribe"
 msgstr "Assine Nossa Newsletter"
 
 #: templates/pages/newsletter/subscribe.html:18
-#: templates/partials/newsletter-subscribe.html:10
+#: templates/partials/newsletter_subscribe.html:10
 msgid "subtitle.newsletter.subscribe"
 msgstr ""
 "Inscreva-se em nossa newsletter para receber as últimas novidades, "
 "atualizações e conteúdo exclusivo diretamente em sua caixa de entrada."
 
 #: templates/pages/newsletter/subscribe.html:31
-#: templates/partials/newsletter-subscribe.html:26
+#: templates/partials/newsletter_subscribe.html:26
 msgid "button.newsletter.subscribe"
 msgstr "Assinar"
 
@@ -2222,16 +2222,16 @@ msgstr "Cadastre-se"
 msgid "menu.contact"
 msgstr "Contato"
 
-#: templates/partials/language-selector.html:8
-#: templates/partials/language-selector.html:40
+#: templates/partials/language_selector.html:8
+#: templates/partials/language_selector.html:40
 msgid "title.language-selector"
 msgstr "Seletor de Idioma"
 
-#: templates/partials/language-selector.html:16
+#: templates/partials/language_selector.html:16
 msgid "language.selector.label"
 msgstr "Selecione o Idioma"
 
-#: templates/partials/language-selector.html:32
+#: templates/partials/language_selector.html:32
 msgid "button.change"
 msgstr "Mudar"
 
