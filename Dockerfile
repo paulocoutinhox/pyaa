@@ -58,4 +58,4 @@ RUN make deps
 EXPOSE 8000
 
 # entrypoint
-ENTRYPOINT ["/app/app-entrypoint.sh"]
+CMD ["/app/app-entrypoint.sh"]
