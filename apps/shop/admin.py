@@ -175,6 +175,7 @@ class PlanAdmin(admin.ModelAdmin):
                     "name",
                     "tag",
                     "gateway",
+                    "external_id",
                     "plan_type",
                 )
             },
