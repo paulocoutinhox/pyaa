@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-17 12:18+0000\n"
+"POT-Creation-Date: 2025-09-20 08:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,9 +14,9 @@ msgstr ""
 
 #: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/content/admin.py:51
 #: apps/content/admin.py:131 apps/gallery/admin.py:58 apps/language/admin.py:40
-#: apps/newsletter/admin.py:41 apps/shop/admin.py:171 apps/shop/admin.py:276
-#: apps/shop/admin.py:359 apps/shop/admin.py:432 apps/shop/admin.py:534
-#: apps/shop/admin.py:655 apps/shop/admin.py:753 apps/site/admin.py:32
+#: apps/newsletter/admin.py:41 apps/shop/admin.py:171 apps/shop/admin.py:277
+#: apps/shop/admin.py:360 apps/shop/admin.py:433 apps/shop/admin.py:535
+#: apps/shop/admin.py:656 apps/shop/admin.py:754 apps/site/admin.py:32
 #: apps/system_log/admin.py:53
 msgid "admin.fieldsets.general"
 msgstr "GERAL"
@@ -32,9 +32,9 @@ msgstr "INFORMAÇÕES ADICIONAIS"
 #: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/content/admin.py:70
 #: apps/content/admin.py:140 apps/customer/admin.py:134
 #: apps/gallery/admin.py:75 apps/language/admin.py:58
-#: apps/newsletter/admin.py:47 apps/shop/admin.py:227 apps/shop/admin.py:297
-#: apps/shop/admin.py:379 apps/shop/admin.py:454 apps/shop/admin.py:556
-#: apps/shop/admin.py:688 apps/shop/admin.py:775 apps/site/admin.py:38
+#: apps/newsletter/admin.py:47 apps/shop/admin.py:228 apps/shop/admin.py:298
+#: apps/shop/admin.py:380 apps/shop/admin.py:455 apps/shop/admin.py:557
+#: apps/shop/admin.py:689 apps/shop/admin.py:776 apps/site/admin.py:38
 #: apps/system_log/admin.py:65 apps/user/admin.py:92
 msgid "admin.fieldsets.important-dates"
 msgstr "DATAS IMPORTANTES"
@@ -628,7 +628,7 @@ msgstr "Exportar como CSV"
 msgid "apps.newsletter.description"
 msgstr "Newsletter"
 
-#: apps/newsletter/forms.py:11 templates/partials/newsletter_subscribe.html:21
+#: apps/newsletter/forms.py:11 templates/partials/newsletter_subscribe.html:22
 msgid "form.placeholder.newsletter-email"
 msgstr "Digite seu e-mail aqui"
 
@@ -678,42 +678,42 @@ msgstr "Mensagem"
 
 #: apps/shop/admin.py:92 apps/shop/models.py:67 apps/shop/models.py:175
 #: apps/shop/models.py:379 apps/shop/models.py:896 apps/shop/models.py:1073
-#: apps/system_log/models.py:62 templates/pages/shop/product/detail.html:52
+#: apps/system_log/models.py:62 templates/pages/shop/product/detail.html:55
 msgid "model.field.description"
 msgstr "Descrição"
 
-#: apps/shop/admin.py:106 apps/shop/admin.py:325 apps/shop/admin.py:477
-#: apps/shop/admin.py:584 apps/shop/admin.py:803 apps/shop/models.py:506
+#: apps/shop/admin.py:106 apps/shop/admin.py:326 apps/shop/admin.py:478
+#: apps/shop/admin.py:585 apps/shop/admin.py:804 apps/shop/models.py:506
 #: apps/shop/models.py:668 apps/shop/models.py:791 apps/shop/models.py:1066
 msgid "model.field.status"
 msgstr "Status"
 
-#: apps/shop/admin.py:183 apps/shop/admin.py:546 apps/shop/admin.py:664
-#: apps/shop/admin.py:765
+#: apps/shop/admin.py:184 apps/shop/admin.py:547 apps/shop/admin.py:665
+#: apps/shop/admin.py:766
 msgid "admin.fieldsets.pricing"
 msgstr "PREÇOS"
 
-#: apps/shop/admin.py:194
+#: apps/shop/admin.py:195
 msgid "admin.fieldsets.frequency"
 msgstr "FREQUÊNCIA"
 
-#: apps/shop/admin.py:203
+#: apps/shop/admin.py:204
 msgid "admin.fieldsets.features"
 msgstr "RECURSOS"
 
-#: apps/shop/admin.py:212 apps/shop/admin.py:673
+#: apps/shop/admin.py:213 apps/shop/admin.py:674
 msgid "admin.fieldsets.description"
 msgstr "DESCRIÇÃO"
 
-#: apps/shop/admin.py:221 apps/shop/admin.py:682
+#: apps/shop/admin.py:222 apps/shop/admin.py:683
 msgid "admin.fieldsets.status"
 msgstr "STATUS"
 
-#: apps/shop/admin.py:288
+#: apps/shop/admin.py:289
 msgid "admin.fieldsets.subscription"
 msgstr "ASSINATURA"
 
-#: apps/shop/admin.py:370 apps/shop/admin.py:443
+#: apps/shop/admin.py:371 apps/shop/admin.py:444
 msgid "admin.fieldsets.details"
 msgstr "DETALHES"
 
@@ -932,7 +932,7 @@ msgid "model.field.currency"
 msgstr "Moeda"
 
 #: apps/shop/models.py:90 apps/shop/models.py:316 apps/shop/models.py:657
-#: apps/shop/models.py:780 templates/pages/shop/product/detail.html:28
+#: apps/shop/models.py:780 templates/pages/shop/product/detail.html:30
 msgid "model.field.price"
 msgstr "Preço"
 
@@ -1620,298 +1620,284 @@ msgstr ""
 msgid "title.account-activation-success"
 msgstr "Conta Ativada com Sucesso"
 
-#: templates/pages/account/activation_success.html:22
+#: templates/pages/account/activation_success.html:25
 msgid "subtitle.account-activation-success"
 msgstr ""
 "Sua conta foi ativada com sucesso. Agora você pode fazer login para acessar "
 "sua conta."
 
-#: templates/pages/account/activation_success.html:26
-#: templates/pages/account/reset_password_success.html:26
+#: templates/pages/account/activation_success.html:30
+#: templates/pages/account/reset_password_success.html:32
 msgid "button.go-to-login"
 msgstr "Ir para Login"
 
-#: templates/pages/account/change_password.html:11
+#: templates/pages/account/change_password.html:12
 msgid "title.account-change-password"
 msgstr "Alterar Senha"
 
-#: templates/pages/account/change_password.html:24
-#: templates/pages/account/profile.html:108
+#: templates/pages/account/change_password.html:26
+#: templates/pages/account/profile.html:100
 msgid "button.change-password"
 msgstr "Alterar Senha"
 
 #: templates/pages/account/change_password.html:30
-#: templates/pages/account/delete.html:32
-#: templates/pages/account/update_address.html:30
+#: templates/pages/account/delete.html:40
+#: templates/pages/account/update_address.html:32
 #: templates/pages/account/update_avatar.html:43
 #: templates/pages/account/update_profile.html:30
 msgid "button.cancel"
 msgstr "Cancelar"
 
-#: templates/pages/account/credit_purchases.html:12
+#: templates/pages/account/credit_purchases.html:13
 msgid "title.account-credit-purchases"
 msgstr "Minhas Compras de Crédito"
 
-#: templates/pages/account/credit_purchases.html:20
-#: templates/pages/account/credits.html:19
+#: templates/pages/account/credit_purchases.html:22
+#: templates/pages/account/credits.html:21
 msgid "table.header.image"
 msgstr "Imagem"
 
-#: templates/pages/account/credit_purchases.html:21
+#: templates/pages/account/credit_purchases.html:23
 msgid "table.header.plan"
 msgstr "Plano"
 
-#: templates/pages/account/credit_purchases.html:22
-#: templates/pages/account/credits.html:22
-#: templates/pages/account/subscriptions.html:23
+#: templates/pages/account/credit_purchases.html:24
+#: templates/pages/account/credits.html:24
+#: templates/pages/account/subscriptions.html:25
 msgid "table.header.created-at"
 msgstr "Criado Em"
 
-#: templates/pages/account/credit_purchases.html:23
-#: templates/pages/account/subscriptions.html:21
+#: templates/pages/account/credit_purchases.html:25
+#: templates/pages/account/subscriptions.html:23
 msgid "table.header.status"
 msgstr "Status"
 
-#: templates/pages/account/credit_purchases.html:47
-#: templates/pages/account/credits.html:52
-#: templates/pages/account/product_purchases.html:81
-#: templates/pages/account/subscriptions.html:75
-#: templates/pages/content/index.html:31 templates/pages/gallery/index.html:25
-#: templates/pages/gallery/view.html:27
-#: templates/pages/shop/checkout/index.html:141
-#: templates/pages/shop/plans.html:60
-#: templates/pages/shop/product/index.html:25
-msgid "list-data.empty"
-msgstr "Nenhum dado encontrado."
-
-#: templates/pages/account/credit_purchases.html:61
-#: templates/pages/account/credits.html:66
-#: templates/pages/account/product_purchases.html:87
-#: templates/pages/account/subscriptions.html:89
-#: templates/pages/gallery/view.html:37
+#: templates/pages/account/credit_purchases.html:59
+#: templates/pages/account/credits.html:64
+#: templates/pages/account/product_purchases.html:84
+#: templates/pages/account/subscriptions.html:88
+#: templates/pages/gallery/view.html:44
 msgid "button.back"
 msgstr "Voltar"
 
-#: templates/pages/account/credits.html:11
+#: templates/pages/account/credits.html:12
 msgid "title.account-credits"
 msgstr "Meus Créditos"
 
-#: templates/pages/account/credits.html:20
+#: templates/pages/account/credits.html:22
 msgid "table.header.description"
 msgstr "Descrição"
 
-#: templates/pages/account/credits.html:21
+#: templates/pages/account/credits.html:23
 msgid "table.header.amount"
 msgstr "Quantidade"
 
-#: templates/pages/account/delete.html:11
+#: templates/pages/account/delete.html:12
 msgid "title.account-delete"
 msgstr "Excluir Conta"
 
-#: templates/pages/account/delete.html:16
+#: templates/pages/account/delete.html:26
 msgid "subtitle.account-delete"
 msgstr ""
 "Tem certeza de que deseja excluir sua conta?<br>Isso excluirá "
 "permanentemente seu perfil e qualquer conteúdo que você tenha gerado."
 
-#: templates/pages/account/delete.html:26
+#: templates/pages/account/delete.html:36
 msgid "button.account-delete-confirm"
 msgstr "Sim, Excluir Minha Conta"
 
-#: templates/pages/account/login.html:16
+#: templates/pages/account/login.html:11
 msgid "title.account-login"
 msgstr "Login"
 
-#: templates/pages/account/login.html:18
-msgid "message.account-login.welcome-back"
-msgstr "Bem-vindo de volta! Sentimos sua falta!"
-
-#: templates/pages/account/login.html:32
+#: templates/pages/account/login.html:31
 #: templates/pages/account/password_recovery.html:28
-#: templates/pages/account/signup.html:32 templates/pages/contact/index.html:25
+#: templates/pages/account/signup.html:32 templates/pages/contact/index.html:23
 msgid "button.send"
 msgstr "Enviar"
 
-#: templates/pages/account/login.html:37
-msgid "message.account-login.no-account"
-msgstr "Não tem uma conta?"
-
-#: templates/pages/account/login.html:41
+#: templates/pages/account/login.html:46
 msgid "message.account-login.signup"
 msgstr "Cadastre-se"
 
-#: templates/pages/account/login.html:45
+#: templates/pages/account/login.html:52
 msgid "message.account-login.forgot-password"
 msgstr "Esqueceu sua senha?"
 
-#: templates/pages/account/login.html:49
+#: templates/pages/account/login.html:54
 msgid "button.recover-password"
 msgstr "Recuperar Senha"
 
 #: templates/pages/account/logout_success.html:13
 msgid "title.account-logout-success"
-msgstr "Você Saiu da Sua Conta"
+msgstr "Desconectado"
 
-#: templates/pages/account/logout_success.html:22
+#: templates/pages/account/logout_success.html:25
 msgid "subtitle.account-logout-success"
 msgstr ""
 "Você se desconectou com sucesso.<br><br>Sentiremos sua falta por aqui!"
 "<br><br>Quando estiver pronto(a) para retornar, estaremos de braços abertos "
 "esperando por você.<br><br>Até breve!"
 
-#: templates/pages/account/logout_success.html:26
+#: templates/pages/account/logout_success.html:30
 msgid "button.login-my-account"
 msgstr "Entrar em Minha Conta"
 
-#: templates/pages/account/password_recovery.html:16
+#: templates/pages/account/password_recovery.html:11
 msgid "title.account-password-recovery"
 msgstr "Recuperação de Senha"
 
-#: templates/pages/account/password_recovery.html:18
+#: templates/pages/account/password_recovery.html:13
 msgid "message.account-password-recovery.instructions"
 msgstr ""
 "Digite seu email, CPF ou número de celular para receber instruções de "
 "redefinição de senha."
 
-#: templates/pages/account/password_recovery.html:33
+#: templates/pages/account/password_recovery.html:34
 msgid "message.account-password-recovery.remember-password"
 msgstr "Lembrou sua senha?"
 
-#: templates/pages/account/password_recovery.html:37
-#: templates/pages/account/password_recovery_success.html:26
+#: templates/pages/account/password_recovery.html:36
+#: templates/pages/account/password_recovery_success.html:32
 msgid "button.back-to-login"
 msgstr "Voltar para Login"
 
-#: templates/pages/account/password_recovery_success.html:16
+#: templates/pages/account/password_recovery_success.html:13
 msgid "title.account-password-recovery-success"
 msgstr "Verifique Seu Email"
 
-#: templates/pages/account/password_recovery_success.html:22
+#: templates/pages/account/password_recovery_success.html:27
 msgid "message.account-password-recovery-success.instructions"
 msgstr ""
 "Se existir uma conta com as credenciais fornecidas, enviamos instruções de "
 "redefinição de senha para o seu endereço de email."
 
-#: templates/pages/account/product_purchases.html:13
+#: templates/pages/account/product_purchases.html:14
 msgid "title.account-product-purchases"
 msgstr "Minhas Compras de Produto"
 
-#: templates/pages/account/product_purchases.html:44
-#: templates/pages/shop/product/detail.html:63
+#: templates/pages/account/product_purchases.html:43
+#: templates/pages/shop/product/detail.html:71
 msgid "title.shop-product-files"
 msgstr "Arquivos do Produto"
 
-#: templates/pages/account/product_purchases.html:62
-#: templates/pages/shop/product/detail.html:88
+#: templates/pages/account/product_purchases.html:61
+#: templates/pages/shop/product/detail.html:102
+#: templates/pages/shop/product/detail.html:143
 msgid "button.download"
 msgstr "Baixar"
 
-#: templates/pages/account/profile.html:26
+#: templates/pages/account/profile.html:21
 msgid "title.account-profile"
 msgstr "Perfil"
 
-#: templates/pages/account/profile.html:28
+#: templates/pages/account/profile.html:23
 msgid "subtitle.my-account"
 msgstr "Minha Conta"
 
-#: templates/pages/account/profile.html:33
+#: templates/pages/account/profile.html:38
 #: templates/partials/customer_data.html:11
 msgid "customer.credits"
 msgstr "Créditos"
 
-#: templates/pages/account/profile.html:35
+#: templates/pages/account/profile.html:40
 #: templates/partials/customer_data.html:13
 msgid "customer.no-credits"
 msgstr "Sem créditos"
 
-#: templates/pages/account/profile.html:52
-#: templates/pages/shop/payment/error.html:66
-#: templates/pages/shop/payment/pending.html:66
-#: templates/pages/shop/payment/success.html:66
-msgid "button.account-product-purchases"
-msgstr "Minhas Compras de Produto"
-
-#: templates/pages/account/profile.html:64
-msgid "button.account-credits"
-msgstr "Meus Créditos"
-
-#: templates/pages/account/profile.html:72
-#: templates/pages/shop/payment/error.html:58
-#: templates/pages/shop/payment/pending.html:58
-#: templates/pages/shop/payment/success.html:58
-msgid "button.account-credit-purchases"
-msgstr "Minhas Compras de Crédito"
-
-#: templates/pages/account/profile.html:84
-#: templates/pages/shop/payment/error.html:50
-#: templates/pages/shop/payment/pending.html:50
-#: templates/pages/shop/payment/success.html:50
-msgid "button.account-subscriptions"
-msgstr "Minhas Assinaturas"
-
-#: templates/pages/account/profile.html:90
-msgid "subtitle.account-settings"
-msgstr "Minha Conta"
-
-#: templates/pages/account/profile.html:98
+#: templates/pages/account/profile.html:46
+#: templates/pages/account/profile.html:95
 msgid "button.update-profile"
 msgstr "Atualizar Perfil"
 
-#: templates/pages/account/profile.html:118
+#: templates/pages/account/profile.html:55
+msgid "subtitle.my-purchases"
+msgstr "Minhas Compras"
+
+#: templates/pages/account/profile.html:62
+#: templates/pages/shop/payment/error.html:69
+#: templates/pages/shop/payment/pending.html:69
+#: templates/pages/shop/payment/success.html:69
+msgid "button.account-product-purchases"
+msgstr "Minhas Compras de Produto"
+
+#: templates/pages/account/profile.html:68
+msgid "button.account-credits"
+msgstr "Meus Créditos"
+
+#: templates/pages/account/profile.html:74
+#: templates/pages/shop/payment/error.html:61
+#: templates/pages/shop/payment/pending.html:61
+#: templates/pages/shop/payment/success.html:61
+msgid "button.account-credit-purchases"
+msgstr "Minhas Compras de Crédito"
+
+#: templates/pages/account/profile.html:80
+#: templates/pages/shop/payment/error.html:53
+#: templates/pages/shop/payment/pending.html:53
+#: templates/pages/shop/payment/success.html:53
+msgid "button.account-subscriptions"
+msgstr "Minhas Assinaturas"
+
+#: templates/pages/account/profile.html:89
+msgid "subtitle.account-settings"
+msgstr "Minha Conta"
+
+#: templates/pages/account/profile.html:105
 msgid "button.update-avatar"
 msgstr "Atualizar Avatar"
 
-#: templates/pages/account/profile.html:128
+#: templates/pages/account/profile.html:110
 msgid "button.update-address"
 msgstr "Atualizar Endereço"
 
-#: templates/pages/account/profile.html:135
+#: templates/pages/account/profile.html:119
 msgid "subtitle.danger-zone"
 msgstr "Danger Zone"
 
-#: templates/pages/account/profile.html:143
+#: templates/pages/account/profile.html:125
 msgid "button.account-delete"
 msgstr "Excluir Conta"
 
-#: templates/pages/account/profile.html:153
+#: templates/pages/account/profile.html:130
 msgid "button.account-logout"
 msgstr "Sair"
 
-#: templates/pages/account/reset_password.html:16
+#: templates/pages/account/reset_password.html:11
 msgid "title.account-reset-password"
 msgstr "Criar Nova Senha"
 
-#: templates/pages/account/reset_password.html:18
+#: templates/pages/account/reset_password.html:13
 msgid "message.account-reset-password.instructions"
 msgstr "Por favor, digite sua nova senha abaixo."
 
-#: templates/pages/account/reset_password.html:28
+#: templates/pages/account/reset_password.html:29
 msgid "button.save"
 msgstr "Salvar Nova Senha"
 
-#: templates/pages/account/reset_password_success.html:16
+#: templates/pages/account/reset_password_success.html:13
 msgid "title.account-reset-password-success"
 msgstr "Senha Redefinida com Sucesso"
 
-#: templates/pages/account/reset_password_success.html:22
+#: templates/pages/account/reset_password_success.html:27
 msgid "message.account-reset-password-success.instructions"
 msgstr ""
 "Sua senha foi redefinida com sucesso. Agora você pode fazer login com sua "
 "nova senha."
 
-#: templates/pages/account/signup.html:16
+#: templates/pages/account/signup.html:11
 msgid "title.account-signup"
 msgstr "Cadastro"
 
-#: templates/pages/account/signup.html:18
+#: templates/pages/account/signup.html:13
 msgid "message.account-signup.create-account"
 msgstr "Crie uma conta para continuar!"
 
-#: templates/pages/account/signup.html:37
+#: templates/pages/account/signup.html:38
 msgid "message.account-signup.has-account"
 msgstr "Já tem uma conta?"
 
-#: templates/pages/account/signup.html:39
+#: templates/pages/account/signup.html:40
 msgid "message.account-signup.login"
 msgstr "Faça login"
 
@@ -1919,75 +1905,75 @@ msgstr "Faça login"
 msgid "title.account-signup-success"
 msgstr "Cadastro Realizado Com Sucesso"
 
-#: templates/pages/account/signup_success.html:22
+#: templates/pages/account/signup_success.html:25
 msgid "subtitle.account-signup-success"
 msgstr ""
 "Bem-vindo à nossa plataforma! Sua conta foi criada com sucesso e estamos "
 "felizes em tê-lo(a) conosco."
 
-#: templates/pages/account/signup_success.html:26
+#: templates/pages/account/signup_success.html:30
 msgid "button.profile"
 msgstr "Minha Conta"
 
-#: templates/pages/account/signup_success.html:33
+#: templates/pages/account/signup_success.html:37
 msgid "button.continue-next-url"
 msgstr "Continuar"
 
-#: templates/pages/account/subscriptions.html:12
+#: templates/pages/account/subscriptions.html:13
 msgid "title.account-subscriptions"
 msgstr "Minhas Assinaturas"
 
-#: templates/pages/account/subscriptions.html:20
+#: templates/pages/account/subscriptions.html:22
 msgid "table.header.plan-name"
 msgstr "Plano"
 
-#: templates/pages/account/subscriptions.html:22
+#: templates/pages/account/subscriptions.html:24
 msgid "table.header.expire-at"
 msgstr "Expira Em"
 
-#: templates/pages/account/subscriptions.html:24
+#: templates/pages/account/subscriptions.html:26
 msgid "table.header.actions"
 msgstr "Ações"
 
-#: templates/pages/account/subscriptions.html:44
+#: templates/pages/account/subscriptions.html:45
 msgid "button.cancel-subscription"
 msgstr "Cancelar Assinatura"
 
-#: templates/pages/account/subscriptions.html:52
+#: templates/pages/account/subscriptions.html:53
 msgid "model.title.cancel-subscription"
 msgstr "Cancelar Assinatura"
 
-#: templates/pages/account/subscriptions.html:56
+#: templates/pages/account/subscriptions.html:57
 msgid "message.subscription.cancel-confirmation"
 msgstr "Tem certeza de que deseja cancelar sua assinatura?"
 
-#: templates/pages/account/subscriptions.html:59
+#: templates/pages/account/subscriptions.html:60
 msgid "button.no"
 msgstr "Não"
 
-#: templates/pages/account/subscriptions.html:61
+#: templates/pages/account/subscriptions.html:62
 msgid "button.yes-cancel"
 msgstr "Sim, Cancelar"
 
-#: templates/pages/account/update_address.html:15
+#: templates/pages/account/update_address.html:13
 msgid "title.account-update-address"
 msgstr "Atualizar Endereço"
 
-#: templates/pages/account/update_address.html:26
-#: templates/pages/account/update_avatar.html:37
-#: templates/pages/account/update_profile.html:24
+#: templates/pages/account/update_address.html:28
+#: templates/pages/account/update_avatar.html:39
+#: templates/pages/account/update_profile.html:26
 msgid "button.update"
 msgstr "Atualizar"
 
-#: templates/pages/account/update_avatar.html:12
+#: templates/pages/account/update_avatar.html:13
 msgid "title.account-update-avatar"
 msgstr "Atualizar Avatar"
 
-#: templates/pages/account/update_profile.html:11
+#: templates/pages/account/update_profile.html:12
 msgid "title.account-update-profile"
 msgstr "Atualizar Perfil"
 
-#: templates/pages/contact/index.html:14
+#: templates/pages/contact/index.html:10
 msgid "title.contact"
 msgstr "Contate-nos"
 
@@ -1999,126 +1985,136 @@ msgstr "Continue Lendo"
 msgid "title.gallery.index"
 msgstr "Lista de Galerias"
 
-#: templates/pages/home/index.html:9 templates/partials/footer.html:25
-#: templates/partials/head.html:15 templates/partials/head.html:18
-#: templates/partials/head.html:26 templates/partials/head.html:33
-#: templates/partials/head.html:34
+#: templates/pages/home/index.html:14 templates/pages/home/index.html:29
+#: templates/partials/footer.html:16 templates/partials/footer.html:17
+#: templates/partials/header.html:9 templates/partials/header.html:11
+#: templates/partials/header.html:113
+#: templates/pyaa/elements/page_header.html:14
+msgid "site.small-name"
+msgstr "PYAA"
+
+#: templates/pages/home/index.html:18
+#, python-format
+msgid "Olá, %(name)s!"
+msgstr "Oi %(name)s!"
+
+#: templates/pages/home/index.html:21 templates/pages/home/index.html:32
+#: templates/partials/footer.html:20 templates/partials/head.html:15
+#: templates/partials/head.html:18 templates/partials/head.html:26
+#: templates/partials/head.html:33 templates/partials/head.html:34
 msgid "site.name"
 msgstr "Aplicação Python Avançada"
 
-#: templates/pages/home/index.html:17 templates/partials/customer_data.html:4
-#, python-format
-msgid "Hi %(name)s!"
-msgstr "Oi %(name)s!"
-
-#: templates/pages/home/index.html:23 templates/partials/header.html:71
-msgid "menu.logout"
-msgstr "Sair"
-
-#: templates/pages/home/index.html:29 templates/partials/header.html:77
+#: templates/pages/home/index.html:37 templates/partials/header.html:76
+#: templates/partials/header.html:154
 msgid "menu.login"
 msgstr "Entrar"
 
+#: templates/pages/home/index.html:41 templates/partials/header.html:73
+#: templates/partials/header.html:151
+msgid "menu.signup"
+msgstr "Cadastre-se"
+
 #: templates/pages/newsletter/subscribe.html:6
-#: templates/pages/newsletter/subscribe.html:14
-#: templates/partials/newsletter_subscribe.html:6
+#: templates/pages/newsletter/subscribe.html:13
+#: templates/partials/newsletter_subscribe.html:7
 msgid "title.newsletter.subscribe"
 msgstr "Assine Nossa Newsletter"
 
-#: templates/pages/newsletter/subscribe.html:18
-#: templates/partials/newsletter_subscribe.html:10
+#: templates/pages/newsletter/subscribe.html:17
+#: templates/partials/newsletter_subscribe.html:11
 msgid "subtitle.newsletter.subscribe"
 msgstr ""
 "Inscreva-se em nossa newsletter para receber as últimas novidades, "
 "atualizações e conteúdo exclusivo diretamente em sua caixa de entrada."
 
-#: templates/pages/newsletter/subscribe.html:31
-#: templates/partials/newsletter_subscribe.html:26
+#: templates/pages/newsletter/subscribe.html:30
+#: templates/partials/newsletter_subscribe.html:27
 msgid "button.newsletter.subscribe"
 msgstr "Assinar"
 
 #: templates/pages/newsletter/success.html:5
-#: templates/pages/newsletter/success.html:18
+#: templates/pages/newsletter/success.html:11
 msgid "page.newsletter.success.title"
 msgstr "Assinatura Realizada com Sucesso"
 
-#: templates/pages/newsletter/success.html:22
+#: templates/pages/newsletter/success.html:25
 msgid "page.newsletter.success.message"
 msgstr "Obrigado por assinar nossa newsletter!"
 
-#: templates/pages/newsletter/success.html:28
+#: templates/pages/newsletter/success.html:31
 msgid "page.newsletter.success.back"
 msgstr "Voltar para Home"
 
-#: templates/pages/shop/checkout/index.html:53
+#: templates/pages/shop/checkout/index.html:52
 msgid "subtitle.checkout-details"
 msgstr "Detalhes"
 
-#: templates/pages/shop/checkout/index.html:58
+#: templates/pages/shop/checkout/index.html:57
 msgid "checkout.price"
 msgstr "Preço de venda"
 
-#: templates/pages/shop/checkout/index.html:67
+#: templates/pages/shop/checkout/index.html:66
 msgid "checkout.discount"
 msgstr "Desconto"
 
-#: templates/pages/shop/checkout/index.html:76
+#: templates/pages/shop/checkout/index.html:75
 msgid "checkout.shipping"
 msgstr "Frete"
 
-#: templates/pages/shop/checkout/index.html:85
+#: templates/pages/shop/checkout/index.html:84
 msgid "checkout.delivery"
 msgstr "Prazo de entrega (estimado)"
 
-#: templates/pages/shop/checkout/index.html:93
+#: templates/pages/shop/checkout/index.html:92
 msgid "checkout.total-price"
 msgstr "Valor total"
 
-#: templates/pages/shop/checkout/index.html:105
+#: templates/pages/shop/checkout/index.html:104
 msgid "subtitle.shipping-address"
 msgstr "Endereço de Entrega"
 
-#: templates/pages/shop/checkout/index.html:116
+#: templates/pages/shop/checkout/index.html:115
 msgid "subtitle.options"
 msgstr "Opções"
 
-#: templates/pages/shop/checkout/index.html:129
+#: templates/pages/shop/checkout/index.html:128
 msgid "button.pay"
 msgstr "Efetuar Pagamento"
 
-#: templates/pages/shop/payment/error.html:18
+#: templates/pages/shop/payment/error.html:11
 msgid "message.shop-payment-error.title"
 msgstr "Falha no Pagamento"
 
-#: templates/pages/shop/payment/error.html:22
+#: templates/pages/shop/payment/error.html:25
 msgid "message.shop-payment-error.subtitle"
 msgstr "Seu pagamento não foi concluído ou ocorreu algum erro."
 
-#: templates/pages/shop/payment/error.html:28
-#: templates/pages/shop/payment/pending.html:28
-#: templates/pages/shop/payment/success.html:28
+#: templates/pages/shop/payment/error.html:31
+#: templates/pages/shop/payment/pending.html:31
+#: templates/pages/shop/payment/success.html:31
 msgid "message.shop-payment-date"
 msgstr "Data do pagamento:"
 
-#: templates/pages/shop/payment/error.html:36
-#: templates/pages/shop/payment/pending.html:36
-#: templates/pages/shop/payment/success.html:36
+#: templates/pages/shop/payment/error.html:39
+#: templates/pages/shop/payment/pending.html:39
+#: templates/pages/shop/payment/success.html:39
 msgid "message.shop-payment-status"
 msgstr "Status do pagamento:"
 
-#: templates/pages/shop/payment/pending.html:18
+#: templates/pages/shop/payment/pending.html:11
 msgid "message.shop-payment-pending.title"
 msgstr "Pagamento Pendente"
 
-#: templates/pages/shop/payment/pending.html:22
+#: templates/pages/shop/payment/pending.html:25
 msgid "message.shop-payment-pending.subtitle"
 msgstr "Seu pagamento está sendo processado."
 
-#: templates/pages/shop/payment/success.html:18
+#: templates/pages/shop/payment/success.html:11
 msgid "message.shop-payment-success.title"
 msgstr "Pagamento Concluído"
 
-#: templates/pages/shop/payment/success.html:22
+#: templates/pages/shop/payment/success.html:25
 msgid "message.shop-payment-success.subtitle"
 msgstr "Seu pagamento foi processado com sucesso."
 
@@ -2138,26 +2134,59 @@ msgstr "Escolher Plano"
 msgid "button.shop-select-credit-plan"
 msgstr "Comprar Agora"
 
-#: templates/pages/shop/product/detail.html:37
-#: templates/pages/shop/product/detail.html:41
+#: templates/pages/shop/product/detail.html:38
+#: templates/pages/shop/product/detail.html:42
+#: templates/pages/shop/product/detail.html:111
+#: templates/pages/shop/product/detail.html:152
 msgid "button.buy-now"
 msgstr "Comprar Agora"
 
-#: templates/pages/shop/product/detail.html:92
+#: templates/pages/shop/product/detail.html:106
+#: templates/pages/shop/product/detail.html:147
 msgid "button.purchase-to-download"
 msgstr "Compre para Baixar"
 
-#: templates/pages/shop/product/index.html:9
+#: templates/pages/shop/product/index.html:10
 msgid "title.shop-products.index"
 msgstr "Produtos"
 
-#: templates/partials/footer.html:15
+#: templates/partials/customer_data.html:4
+#, python-format
+msgid "Hi %(name)s!"
+msgstr "Oi %(name)s!"
+
+#: templates/partials/empty_data.html:11
+msgid "list-data.empty"
+msgstr "Nenhum dado encontrado"
+
+#: templates/partials/footer.html:22
+msgid "footer.copyright"
+msgstr "Todos os direitos reservados."
+
+#: templates/partials/footer.html:28
+msgid "footer.company"
+msgstr "Empresa"
+
+#: templates/partials/footer.html:32 templates/partials/header.html:45
+#: templates/partials/header.html:134
+msgid "menu.contact"
+msgstr "Contato"
+
+#: templates/partials/footer.html:40
+msgid "footer.resources"
+msgstr "Recursos"
+
+#: templates/partials/footer.html:44
+msgid "site.terms"
+msgstr "Termos e Condições"
+
+#: templates/partials/footer.html:49
 msgid "site.privacy"
 msgstr "Política de Privacidade"
 
-#: templates/partials/footer.html:21
-msgid "site.terms"
-msgstr "Termos e Condições"
+#: templates/partials/footer.html:57
+msgid "footer.follow-us"
+msgstr "Siga-nos"
 
 #: templates/partials/head.html:10 templates/partials/head.html:19
 msgid "site.description"
@@ -2178,60 +2207,52 @@ msgstr ""
 msgid "site.author"
 msgstr "Paulo Coutinho"
 
-#: templates/partials/header.html:7
-msgid "site.small-name"
-msgstr "PYAA"
-
-#: templates/partials/header.html:22 templates/partials/header.html:24
-msgid "menu.credits"
-msgstr "Créditos"
-
-#: templates/partials/header.html:32
+#: templates/partials/header.html:17 templates/partials/header.html:119
 msgid "menu.home"
 msgstr "Início"
 
-#: templates/partials/header.html:37
+#: templates/partials/header.html:20 templates/partials/header.html:122
 msgid "menu.gallery"
 msgstr "Galerias"
 
-#: templates/partials/header.html:42
+#: templates/partials/header.html:24
 msgid "menu.shop"
 msgstr "Loja"
 
-#: templates/partials/header.html:47
+#: templates/partials/header.html:29 templates/partials/header.html:125
 msgid "menu.shop.plans-subscription"
 msgstr "Assinaturas"
 
-#: templates/partials/header.html:52
+#: templates/partials/header.html:34 templates/partials/header.html:128
 msgid "menu.shop.plans-credit-purchase"
 msgstr "Créditos"
 
-#: templates/partials/header.html:57
+#: templates/partials/header.html:39 templates/partials/header.html:131
 msgid "menu.shop.products"
 msgstr "Produtos"
 
-#: templates/partials/header.html:66
+#: templates/partials/header.html:62 templates/partials/header.html:140
+msgid "menu.credits"
+msgstr "Créditos"
+
+#: templates/partials/header.html:66 templates/partials/header.html:143
 msgid "menu.profile"
 msgstr "Minha Conta"
 
-#: templates/partials/header.html:82
-msgid "menu.signup"
-msgstr "Cadastre-se"
+#: templates/partials/header.html:69 templates/partials/header.html:146
+msgid "menu.logout"
+msgstr "Sair"
 
-#: templates/partials/header.html:89
-msgid "menu.contact"
-msgstr "Contato"
-
-#: templates/partials/language_selector.html:8
-#: templates/partials/language_selector.html:40
+#: templates/partials/language_selector.html:10
+#: templates/partials/language_selector.html:42
 msgid "title.language-selector"
 msgstr "Seletor de Idioma"
 
-#: templates/partials/language_selector.html:16
+#: templates/partials/language_selector.html:18
 msgid "language.selector.label"
 msgstr "Selecione o Idioma"
 
-#: templates/partials/language_selector.html:32
+#: templates/partials/language_selector.html:34
 msgid "button.change"
 msgstr "Mudar"
 

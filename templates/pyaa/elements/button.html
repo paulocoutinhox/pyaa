@@ -7,8 +7,23 @@
 {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
 {% if attrs.value %}value="{{ attrs.value }}"{% endif %}
 {% if attrs.submit %}type="submit"{% elif attrs.type %}type="{{ attrs.type }}"{% endif %}
+{% if attrs.disabled %}disabled{% endif %}
 
-{% if 'danger' in attrs.tags %}
+{% if 'outline-danger' in attrs.tags %}
+class="btn btn-outline-danger{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'outline-success' in attrs.tags %}
+class="btn btn-outline-success{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'outline-warning' in attrs.tags %}
+class="btn btn-outline-warning{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'outline-info' in attrs.tags %}
+class="btn btn-outline-info{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'outline-secondary' in attrs.tags %}
+class="btn btn-outline-secondary{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'outline-dark' in attrs.tags %}
+class="btn btn-outline-dark{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'outline-primary' in attrs.tags %}
+class="btn btn-outline-primary{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'danger' in attrs.tags %}
 class="btn btn-danger{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'success' in attrs.tags %}
 class="btn btn-success{% if attrs.class %} {{ attrs.class }}{% endif %}"

@@ -1,4 +1,4 @@
-{% extends 'layouts/base_page.html' %}
+{% extends 'layouts/base.html' %}
 
 {% load i18n %}
 {% load pyaa %}
@@ -16,19 +16,24 @@
 {% url 'account_credit_purchases' as url_account_credit_purchases %}
 {% url 'account_product_purchases' as url_account_product_purchases %}
 
-<div class="container">
-    <div class="py-4">
-        <!-- Profile Header -->
-        <div class="d-flex align-items-center mb-4 position-relative">
-            {% include 'partials/customer_avatar.html' %}
-            <div>
-                {% element page_title %}
-                    {% translate "title.account-profile" %}
-                {% endelement %}
-                <p class="mb-1 small">{% translate "subtitle.my-account" %}</p>
+<div class="main-container">
+    {% element page_header centered=True subtitle=True %}
+        {% translate "title.account-profile" %}
+        {% slot subtitle %}
+            {% translate "subtitle.my-account" %}
+        {% endslot %}
+    {% endelement %}
 
+    <!-- Profile Info Card -->
+    {% element card %}
+        <div class="d-flex align-items-start">
+            <div class="flex-shrink-0">
+                {% include 'partials/customer_avatar.html' %}
+            </div>
+            <div class="ms-3 flex-grow-1">
+                <h5 class="mb-1">{{ user.get_full_name|default:user.username }}</h5>
                 {% with user.customer.credits as credits %}
-                    <p class="small mb-0">
+                    <p class="text-muted mb-2">
                         {% if credits > 0 %}
                             {% translate "customer.credits" %}: <span class="fw-bold">{{ credits }}</span>
                         {% else %}
@@ -36,126 +41,97 @@
                         {% endif %}
                     </p>
                 {% endwith %}
+                <a href="{{ url_account_update_profile }}" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-pencil me-1"></i>
+                    {% translate "button.update-profile" %}
+                </a>
             </div>
-            <a href="{{ url_account_update_profile }}" class="btn btn-sm position-absolute top-0 end-0 btn-secondary rounded">
-                <i class="bi bi-pencil"></i>
+        </div>
+    {% endelement %}
+
+    <!-- Quick Actions -->
+    {% element card %}
+        {% slot header %}
+            <h6 class="mb-0">{% translate "subtitle.my-purchases" %}</h6>
+        {% endslot %}
+
+        <div class="row g-3">
+            <div class="col-12">
+                <a href="{{ url_account_product_purchases }}" class="d-flex flex-column align-items-center justify-content-center text-decoration-none p-3 border rounded bg-body-tertiary">
+                    <i class="bi bi-bag-check fs-4 mb-2 text-body"></i>
+                    <span class="text-body text-center">{% translate "button.account-product-purchases" %}</span>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{{ url_account_credits }}" class="d-flex flex-column align-items-center justify-content-center text-decoration-none p-3 border rounded bg-body-tertiary h-100">
+                    <i class="bi bi-currency-dollar fs-4 mb-2 text-body"></i>
+                    <span class="text-body text-center small">{% translate "button.account-credits" %}</span>
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="{{ url_account_credit_purchases }}" class="d-flex flex-column align-items-center justify-content-center text-decoration-none p-3 border rounded bg-body-tertiary h-100">
+                    <i class="bi bi-cart fs-4 mb-2 text-body"></i>
+                    <span class="text-body text-center small">{% translate "button.account-credit-purchases" %}</span>
+                </a>
+            </div>
+            <div class="col-12">
+                <a href="{{ url_account_subscriptions }}" class="d-flex flex-column align-items-center justify-content-center text-decoration-none p-3 border rounded bg-body-tertiary">
+                    <i class="bi bi-calendar-check fs-4 mb-2 text-body"></i>
+                    <span class="text-body text-center">{% translate "button.account-subscriptions" %}</span>
+                </a>
+            </div>
+        </div>
+    {% endelement %}
+
+    <!-- Account Settings -->
+    {% element card %}
+        {% slot header %}
+            <h6 class="mb-0">{% translate "subtitle.account-settings" %}</h6>
+        {% endslot %}
+
+        <div class="list-group list-group-flush mt-3">
+            <a href="{{ url_account_update_profile }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 px-3 py-3">
+                <i class="bi bi-person me-3 text-primary"></i>
+                <span>{% translate "button.update-profile" %}</span>
+                <i class="bi bi-chevron-right ms-auto text-muted"></i>
+            </a>
+            <a href="{{ url_account_change_password }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 px-3 py-3">
+                <i class="bi bi-shield-lock me-3 text-primary"></i>
+                <span>{% translate "button.change-password" %}</span>
+                <i class="bi bi-chevron-right ms-auto text-muted"></i>
+            </a>
+            <a href="{{ url_account_update_avatar }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 px-3 py-3">
+                <i class="bi bi-image me-3 text-primary"></i>
+                <span>{% translate "button.update-avatar" %}</span>
+                <i class="bi bi-chevron-right ms-auto text-muted"></i>
+            </a>
+            <a href="{{ url_account_update_address }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 px-3 py-3">
+                <i class="bi bi-geo-alt me-3 text-primary"></i>
+                <span>{% translate "button.update-address" %}</span>
+                <i class="bi bi-chevron-right ms-auto text-muted"></i>
             </a>
         </div>
+    {% endelement %}
 
-        <!-- Product Purchases -->
-        <div class="row g-2 text-center mb-4">
-            <div class="col-12 d-flex">
-                <a href="{{ url_account_product_purchases }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
-                    <div class="mb-2 text-body">
-                        <i class="bi bi-cart fs-4"></i>
-                    </div>
-                    <span class="text-body">{% translate "button.account-product-purchases" %}</span>
-                </a>
-            </div>
+    <!-- Danger Zone -->
+    {% element card %}
+        {% slot header %}
+            <h6 class="mb-0 text-danger">{% translate "subtitle.danger-zone" %}</h6>
+        {% endslot %}
+
+        <div class="list-group list-group-flush mt-3">
+            <a href="{{ url_account_delete }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 px-3 py-3 text-danger">
+                <i class="bi bi-trash me-3"></i>
+                <span>{% translate "button.account-delete" %}</span>
+                <i class="bi bi-chevron-right ms-auto"></i>
+            </a>
+            <a href="{{ url_account_logout }}" class="list-group-item list-group-item-action d-flex align-items-center border-0 px-3 py-3 text-danger">
+                <i class="bi bi-box-arrow-right me-3"></i>
+                <span>{% translate "button.account-logout" %}</span>
+                <i class="bi bi-chevron-right ms-auto"></i>
+            </a>
         </div>
-
-        <!-- Credits and Purchases -->
-        <div class="row g-2 text-center mb-4">
-            <div class="col-6 d-flex">
-                <a href="{{ url_account_credits }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
-                    <div class="mb-2 text-body">
-                        <i class="bi bi-currency-dollar fs-4"></i>
-                    </div>
-                    <span class="text-body">{% translate "button.account-credits" %}</span>
-                </a>
-            </div>
-            <div class="col-6 d-flex">
-                <a href="{{ url_account_credit_purchases }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
-                    <div class="mb-2 text-body">
-                        <i class="bi bi-cart fs-4"></i>
-                    </div>
-                    <span class="text-body">{% translate "button.account-credit-purchases" %}</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Subscriptions -->
-        <div class="row g-2 text-center mb-4">
-            <div class="col-12 d-flex">
-                <a href="{{ url_account_subscriptions }}" class="d-flex flex-column align-items-center justify-content-center w-100 text-decoration-none py-3 border rounded bg-body-tertiary">
-                    <div class="mb-2 text-body">
-                        <i class="bi bi-calendar-check fs-4"></i>
-                    </div>
-                    <span class="text-body">{% translate "button.account-subscriptions" %}</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Account Settings -->
-        <h6 class="fw-bold mb-3">{% translate "subtitle.account-settings" %}</h6>
-        <ul class="list-group mb-4">
-            <li class="list-group-item px-0 py-3 border-0 border-bottom">
-                <a href="{{ url_account_update_profile }}" class="d-flex align-items-center text-decoration-none text-body">
-                    <div class="me-3 text-body">
-                        <i class="bi bi-person"></i>
-                    </div>
-                    <div>
-                        <span>{% translate "button.update-profile" %}</span>
-                    </div>
-                </a>
-            </li>
-            <li class="list-group-item px-0 py-3 border-0 border-bottom">
-                <a href="{{ url_account_change_password }}" class="d-flex align-items-center text-decoration-none text-body">
-                    <div class="me-3 text-body">
-                        <i class="bi bi-shield-lock"></i>
-                    </div>
-                    <div>
-                        <span>{% translate "button.change-password" %}</span>
-                    </div>
-                </a>
-            </li>
-            <li class="list-group-item px-0 py-3 border-0 border-bottom">
-                <a href="{{ url_account_update_avatar }}" class="d-flex align-items-center text-decoration-none text-body">
-                    <div class="me-3 text-body">
-                        <i class="bi bi-image"></i>
-                    </div>
-                    <div>
-                        <span>{% translate "button.update-avatar" %}</span>
-                    </div>
-                </a>
-            </li>
-            <li class="list-group-item px-0 py-3 border-0 border-bottom">
-                <a href="{{ url_account_update_address }}" class="d-flex align-items-center text-decoration-none text-body">
-                    <div class="me-3 text-body">
-                        <i class="bi bi-geo-alt"></i>
-                    </div>
-                    <div>
-                        <span>{% translate "button.update-address" %}</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-
-        <!-- Danger Zone -->
-        <h6 class="fw-bold mb-3">{% translate "subtitle.danger-zone" %}</h6>
-        <ul class="list-group">
-            <li class="list-group-item px-0 py-3 border-0 border-bottom">
-                <a href="{{ url_account_delete }}" class="d-flex align-items-center text-decoration-none text-danger">
-                    <div class="me-3 text-danger">
-                        <i class="bi bi-trash"></i>
-                    </div>
-                    <div>
-                        <span>{% translate "button.account-delete" %}</span>
-                    </div>
-                </a>
-            </li>
-            <li class="list-group-item px-0 py-3 border-0">
-                <a href="{{ url_account_logout }}" class="d-flex align-items-center text-decoration-none text-danger">
-                    <div class="me-3 text-danger">
-                        <i class="bi bi-box-arrow-right"></i>
-                    </div>
-                    <div>
-                        <span>{% translate "button.account-logout" %}</span>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
+    {% endelement %}
 </div>
 
 {% endblock content %}

@@ -97,7 +97,7 @@ class Gallery(models.Model):
         if main_photo and main_photo.image:
             photo_url = main_photo.image.url
         else:
-            photo_url = settings.STATIC_URL + "images/no-image.png"
+            photo_url = settings.STATIC_URL + "images/no-image-h.png"
 
         if request:
             return urljoin(request.build_absolute_uri("/"), photo_url)
@@ -130,7 +130,7 @@ class GalleryPhoto(models.Model):
 
     image = fields.GalleryPhotoImageField(
         _("model.field.image"),
-        size=[1024, 1024],
+        size=[1024, 576],
         quality=100,
         upload_to="images/gallery/%Y/%m/%d",
         blank=False,

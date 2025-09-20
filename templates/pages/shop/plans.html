@@ -5,17 +5,17 @@
 
 {% block content %}
 
-<div class="container">
-    {% element page_title %}
+<div class="container main-container">
+    {% element page_header centered=True %}
         {% if plan_type == 'credit-purchase' %}
-            {% trans "title.shop.plans.credit-purchase" %}
+            {% translate "title.shop.plans.credit-purchase" %}
         {% else %}
-            {% trans "title.shop.plans" %}
+            {% translate "title.shop.plans" %}
         {% endif %}
     {% endelement %}
 
     {% if plans %}
-        <div class="row justify-content-center my-5">
+        <div class="row justify-content-center">
             {% for plan in plans %}
             <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
                 <div class="card w-100 {% if plan.featured %} border-primary-subtle pt-md-4 pb-md-4 {% endif %} rounded-3 bg-body-tertiary">
@@ -56,9 +56,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <div class="text-center my-5">
-            <p>{% trans "list-data.empty" %}</p>
-        </div>
+        {% include 'partials/empty_data.html' %}
     {% endif %}
 </div>
 

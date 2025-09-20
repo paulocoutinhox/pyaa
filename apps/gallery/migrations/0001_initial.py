@@ -115,7 +115,7 @@ class Migration(migrations.Migration):
                         keep_meta=True,
                         quality=100,
                         scale=None,
-                        size=[1024, 1024],
+                        size=[1024, 576],
                         upload_to="images/gallery/%Y/%m/%d",
                         verbose_name="model.field.image",
                     ),

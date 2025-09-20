@@ -1,41 +1,55 @@
 {% extends 'layouts/base.html' %}
 {% load i18n %}
+{% load static %}
 {% load pyaa %}
 
 {% block content %}
 
-<div class="container">
-    {% element page_title %}
-        {% translate "site.name" %}
-    {% endelement %}
+<div class="container main-container">
+        {% if user.is_authenticated %}
+            <!-- Welcome -->
+            {% element card %}
+                <div class="text-center py-3">
+                    <div class="mb-4">
+                        <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 80px; width: 80px;">
+                    </div>
 
-    <br>
+                    <h2 class="page-title mb-2">
+                        {% blocktranslate with name=user.customer %}Olá, {{ name }}!{% endblocktranslate %}
+                    </h2>
 
-    {% if user.is_authenticated %}
-    <div class="text-center">
-        <p>
-            {% blocktranslate with name=user.customer %}Hi {{ name }}!{% endblocktranslate %}
-        </p>
+                    <p class="text-gray-custom">{% translate "site.name" %}</p>
+                </div>
+            {% endelement %}
+        {% else %}
+            <!-- Welcome -->
+            {% element card %}
+                <div class="text-center py-3">
+                    <div class="mb-4">
+                        <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 80px; width: 80px;">
+                    </div>
 
-        <br>
+                    <h1 class="page-title mb-3">{% translate "site.name" %}</h1>
 
-        <a href="{% url 'account_logout' %}" class="btn btn-danger">
-            {% translate "menu.logout" %}
-        </a>
-    </div>
-    {% else %}
-    <div class="text-center">
-        <a href="{% url 'account_login' %}" class="btn btn-primary">
-            {% translate "menu.login" %}
-        </a>
-    </div>
-    {% endif %}
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            {% translate "menu.login" %}
+                        </a>
+                        <a href="{% url 'account_signup' %}" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-person-plus me-2"></i>
+                            {% translate "menu.signup" %}
+                        </a>
+                    </div>
+                </div>
+            {% endelement %}
+        {% endif %}
 
-    <br>
+        <!-- Newsletter -->
+        {% include 'partials/newsletter_subscribe.html' %}
 
-    {% include 'partials/newsletter_subscribe.html' %}
-
-    {% include 'partials/language_selector.html' %}
+        <!-- Language Selector -->
+        {% include 'partials/language_selector.html' %}
 </div>
 
 {% endblock content %}

@@ -7,13 +7,17 @@
 {% load pyaa_system %}
 
 {% block content %}
-<div class="container">
+<div class="container main-container">
     {% if checkout.checkout_step == "checkout" %}
 
-        <div class="row justify-content-center py-5">
+        {% element page_header centered=True %}
+            {{ checkout.title }}
+        {% endelement %}
+
+        <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                <div class="card border-0 bg-body-tertiary rounded-3">
-                    <div class="card-body p-4">
+                {% element card %}
+                    <div class="card-body">
                         <!-- Errors -->
                         {% if checkout.non_field_errors %}
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -25,11 +29,6 @@
                                 {% include "partials/message_close_button.html" %}
                             </div>
                         {% endif %}
-
-                        <!-- Page Title -->
-                        {% element page_title %}
-                            {{ checkout.title }}
-                        {% endelement %}
 
                         <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
                             {% csrf_token %}
@@ -131,15 +130,13 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                {% endelement %}
             </div>
         </div>
 
     {% elif checkout.checkout_step == "payment" %}
 
-        <p class="text-center">
-            {% trans "list-data.empty" %}
-        </p>
+        {% include 'partials/empty_data.html' %}
 
     {% endif %}
 </div>

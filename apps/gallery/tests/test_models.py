@@ -95,7 +95,7 @@ class GalleryModelTest(TestCase):
             active=True,
         )
 
-        self.assertEqual(gallery.get_main_photo_url(), "/static/images/no-image.png")
+        self.assertEqual(gallery.get_main_photo_url(), "/static/images/no-image-h.png")
 
     def test_gallery_tag_creation(self):
         language = Language.objects.get(code_iso_language="en-us")

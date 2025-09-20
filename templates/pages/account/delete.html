@@ -1,4 +1,4 @@
-{% extends 'layouts/base_page.html' %}
+{% extends 'layouts/base.html' %}
 
 {% load i18n %}
 {% load pyaa %}
@@ -7,32 +7,44 @@
 
 {% url 'account_profile' as url_account_profile %}
 
-{% element page_title %}
-    {% translate "title.account-delete" %}
-{% endelement %}
+<div class="container main-container">
+    {% element page_header centered=True %}
+        {% translate "title.account-delete" %}
+    {% endelement %}
 
-<div class="container">
-    <p class="text-center">
-        {% translate "subtitle.account-delete" %}
-    </p>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% element card %}
+                <div class="text-center">
+                    <div class="mb-4">
+                        <span class="fs-1 text-danger">
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                        </span>
+                    </div>
 
-    <form action="{% url 'account_delete' %}" method="post" class="text-center" novalidate>
-        {% csrf_token %}
+                    <p class="mb-4">
+                        {% translate "subtitle.account-delete" %}
+                    </p>
 
-        {{ form }}
+                    <form action="{% url 'account_delete' %}" method="post" novalidate>
+                        {% csrf_token %}
 
-        <p>
-            {% element button type="submit" tags="danger" %}
-                {% translate "button.account-delete-confirm" %}
+                        {{ form }}
+
+                        <div class="form-actions">
+                            {% element button type="submit" tags="danger" %}
+                                {% translate "button.account-delete-confirm" %}
+                            {% endelement %}
+
+                            {% element button href=url_account_profile tags="outline-secondary" %}
+                                {% translate "button.cancel" %}
+                            {% endelement %}
+                        </div>
+                    </form>
+                </div>
             {% endelement %}
-        </p>
-
-        <p>
-            {% element button href=url_account_profile %}
-                {% translate "button.cancel" %}
-            {% endelement %}
-        </p>
-    </form>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

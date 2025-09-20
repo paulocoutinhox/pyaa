@@ -6,26 +6,32 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="py-5 text-center">
-        <div class="mb-4">
-            <span class="fs-1 text-success">
-                <i class="bi bi-check-circle-fill"></i>
-            </span>
-        </div>
+<div class="container main-container">
+    {% element page_header centered=True %}
+        {% translate "page.newsletter.success.title" %}
+    {% endelement %}
 
-        {% element page_title %}
-            {% trans "page.newsletter.success.title" %}
-        {% endelement %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% element card %}
+                <div class="text-center">
+                    <div class="mb-4">
+                        <span class="fs-1 text-success">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </span>
+                    </div>
 
-        <p class="lead mb-4">
-            {% trans "page.newsletter.success.message" %}
-        </p>
+                    <p class="mb-4">
+                        {% trans "page.newsletter.success.message" %}
+                    </p>
 
-        <div class="mt-4">
-            {% url 'home' as url_home %}
-            {% element button href=url_home tags="primary" %}
-                {% translate "page.newsletter.success.back" %}
+                    <div class="mt-4">
+                        {% url 'home' as url_home %}
+                        {% element button href=url_home tags="primary" %}
+                            {% translate "page.newsletter.success.back" %}
+                        {% endelement %}
+                    </div>
+                </div>
             {% endelement %}
         </div>
     </div>

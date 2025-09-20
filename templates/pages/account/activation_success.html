@@ -1,4 +1,4 @@
-{% extends 'layouts/base_page.html' %}
+{% extends 'layouts/base.html' %}
 
 {% load i18n %}
 {% load static %}
@@ -8,24 +8,31 @@
 
 {% url 'account_login' as url_account_login %}
 
-<div class="container">
-    {% element page_title %}
+<div class="container main-container">
+    {% element page_header centered=True %}
         {% translate "title.account-activation-success" %}
     {% endelement %}
 
-    <div class="text-center">
-        <img src="{% static 'images/success.png' %}" class="img-fluid" style="width: 100px;">
-    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% element card %}
+                <div class="text-center">
+                    <div class="mb-4">
+                        <img src="{% static 'images/success.png' %}" class="img-fluid" style="width: 100px;">
+                    </div>
 
-    <div class="mt-5 text-center">
-        <p class="mb-5">
-            {% translate "subtitle.account-activation-success" %}
-        </p>
-        <p>
-            {% element button href=url_account_login tags="primary" %}
-                {% translate "button.go-to-login" %}
+                    <p class="mb-4">
+                        {% translate "subtitle.account-activation-success" %}
+                    </p>
+
+                    <div class="mt-4">
+                        {% element button href=url_account_login tags="primary" %}
+                            {% translate "button.go-to-login" %}
+                        {% endelement %}
+                    </div>
+                </div>
             {% endelement %}
-        </p>
+        </div>
     </div>
 </div>
 
