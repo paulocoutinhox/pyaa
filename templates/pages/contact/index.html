@@ -1,32 +1,29 @@
 {% extends 'layouts/base.html' %}
+
 {% load i18n %}
 {% load pyaa %}
 
 {% block content %}
 
-<div class="container">
-    <div class="row justify-content-center py-5">
-        <div class="col-12 col-md-10 col-lg-8">
-            <div class="card border-0 bg-body-tertiary rounded-3">
-                <div class="card-body p-4 p-md-5">
-                    <div class="text-center mb-4">
-                        {% element page_title %}
-                            {% translate "title.contact" %}
-                        {% endelement %}
+<div class="container main-container">
+    {% element page_header centered=True %}
+        {% translate "title.contact" %}
+    {% endelement %}
+
+    <div class="row justify-content-center">
+        <div class="card shadow-modern form-container col-sm-10 col-md-6 col-lg-5">
+            <div class="card-body">
+                <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
+                    {% csrf_token %}
+                    {% element fields form=form %}
+                    {% endelement %}
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            {% translate "button.send" %}
+                        </button>
                     </div>
-
-                    <form method="POST" class="needs-validation" novalidate onsubmit="preventDoubleFormSubmit(this)">
-                        {% csrf_token %}
-                        {% element fields form=form %}
-                        {% endelement %}
-
-                        <div class="mt-5 text-center">
-                            <button type="submit" class="btn btn-primary px-4 py-2">
-                                {% translate "button.send" %}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>

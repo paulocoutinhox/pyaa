@@ -8,13 +8,12 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="py-5">
-        {% element page_title %}
-            {% trans "title.newsletter.subscribe" %}
-        {% endelement %}
+<div class="container main-container">
+    {% element page_header centered=True %}
+        {% translate "title.newsletter.subscribe" %}
+    {% endelement %}
 
-        <p class="lead mb-4 text-center">
+        <p class="mb-4 text-center">
             {% trans "subtitle.newsletter.subscribe" %}
         </p>
 

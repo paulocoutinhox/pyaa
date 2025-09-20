@@ -1,32 +1,34 @@
 {% load i18n %}
 {% load pyaa %}
 
-<div class="py-5 text-center">
-    {% element page_title %}
-        {% translate "title.newsletter.subscribe" %}
-    {% endelement %}
+<div class="py-5 text-center col-md-6 centralized">
+    {% element card %}
+        {% element page_header centered=True %}
+            {% translate "title.newsletter.subscribe" %}
+        {% endelement %}
 
-    <p class="lead mb-4">
-        {% translate "subtitle.newsletter.subscribe" %}
-    </p>
+        <p class="mb-4">
+            {% translate "subtitle.newsletter.subscribe" %}
+        </p>
 
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form method="post" action="{% url 'newsletter_subscribe' %}" class="needs-validation" novalidate>
-                {% csrf_token %}
-                <div class="mb-3">
-                    <input type="email"
-                           name="email"
-                           class="form-control"
-                           placeholder="{% translate 'form.placeholder.newsletter-email' %}"
-                           required>
-                </div>
-                <div class="d-grid">
-                    {% element button type="submit" tags="primary" %}
-                        {% translate "button.newsletter.subscribe" %}
-                    {% endelement %}
-                </div>
-            </form>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" action="{% url 'newsletter_subscribe' %}" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="{% translate 'form.placeholder.newsletter-email' %}"
+                            required>
+                    </div>
+                    <div class="d-grid">
+                        {% element button type="submit" tags="primary" %}
+                            {% translate "button.newsletter.subscribe" %}
+                        {% endelement %}
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    {% endelement %}
 </div>

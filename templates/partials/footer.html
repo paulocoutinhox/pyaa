@@ -7,21 +7,69 @@
 <script src="{% static 'vendor/jquery-mask/1.14.16/js/jquery.mask.min.js' %}"></script>
 {% endcompress %}
 
-<footer class="footer mt-auto py-3 bg-body-tertiary border-top">
-    <div class="container">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item">
-                <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="nav-link px-2 text-body-secondary">
-                    {% translate "site.privacy" %}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}"
-                    class="nav-link px-2 text-body-secondary">
-                    {% translate "site.terms" %}
-                </a>
-            </li>
-        </ul>
-        <p class="text-center text-body-secondary">© 2025 {% translate "site.name" %}</p>
+<footer class="bg-dark text-white">
+    <div class="container py-5">
+        <div class="row g-4">
+            <!-- Logo and Copyright -->
+            <div class="col-12 col-md-3">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 48px; width: 48px;">
+                    <h2 class="footer-logo-text">{% translate "site.small-name" %}</h2>
+                </div>
+                <p class="footer-copyright">
+                    © 2025 {% translate "site.name" %}.
+                    <br />
+                    {% translate "footer.copyright" %}
+                </p>
+            </div>
+
+            <!-- Company Links -->
+            <div class="col-6 col-md-3">
+                <h3 class="footer-section-title">{% translate "footer.company" %}</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{% url 'contact_index' %}" class="footer-link">
+                            {% translate "menu.contact" %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resources Links -->
+            <div class="col-6 col-md-3">
+                <h3 class="footer-section-title">{% translate "footer.resources" %}</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}" class="footer-link">
+                            {% translate "site.terms" %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="footer-link">
+                            {% translate "site.privacy" %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="col-12 col-md-3">
+                <h3 class="footer-section-title">{% translate "footer.follow-us" %}</h3>
+                <div class="d-flex gap-4">
+                    <a href="https://x.com/paulocoutinhox" class="footer-social-link">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="https://www.instagram.com/paulocoutinho.x/" class="footer-social-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61558143327222" class="footer-social-link">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/paulocoutinhox/" class="footer-social-link">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>

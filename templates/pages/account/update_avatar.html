@@ -1,4 +1,4 @@
-{% extends 'layouts/base_page.html' %}
+{% extends 'layouts/base.html' %}
 
 {% load i18n %}
 {% load static %}
@@ -8,43 +8,45 @@
 
 {% url 'account_profile' as url_account_profile %}
 
-{% element page_title %}
-    {% translate "title.account-update-avatar" %}
-{% endelement %}
+<div class="container main-container">
+    {% element page_header centered=True %}
+        {% translate "title.account-update-avatar" %}
+    {% endelement %}
 
-<div class="container">
-    <div class="text-center my-5">
-        {% if customer.avatar %}
-        <div class="rounded-circle" style="width: 120px; height: 120px; overflow: hidden; margin: 0 auto;">
-            <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% element card %}
+                <div class="text-center mb-4">
+                    {% if customer.avatar %}
+                    <div class="rounded-circle" style="width: 120px; height: 120px; overflow: hidden; margin: 0 auto;">
+                        <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+                    </div>
+                    {% else %}
+                    <div class="rounded-circle" style="width: 120px; height: 120px; overflow: hidden; margin: 0 auto;">
+                        <img src="{% static 'images/no-image-s.png' %}" alt="profile-image" class="img-fluid">
+                    </div>
+                    {% endif %}
+                </div>
+
+                <form method="post" enctype="multipart/form-data" class="text-break" novalidate>
+                    {% csrf_token %}
+
+                    {% element fields form=form %}
+                    {% endelement %}
+
+                    <div class="d-grid gap-2">
+                        {% element button type="submit" tags="primary" %}
+                            {% translate "button.update" %}
+                        {% endelement %}
+
+                        {% element button href=url_account_profile tags="outline-secondary" %}
+                            {% translate "button.cancel" %}
+                        {% endelement %}
+                    </div>
+                </form>
+            {% endelement %}
         </div>
-        {% else %}
-        <div class="rounded-circle" style="width: 120px; height: 120px; overflow: hidden; margin: 0 auto;">
-            <img src="{% static 'images/no-image.png' %}" alt="profile-image" class="img-fluid">
-        </div>
-        {% endif %}
     </div>
-
-    <form method="post" enctype="multipart/form-data" class="text-break" novalidate>
-        {% csrf_token %}
-
-        {% element fields form=form %}
-        {% endelement %}
-
-        <div class="my-5 text-center">
-            <p>
-                {% element button type="submit" %}
-                    {% translate "button.update" %}
-                {% endelement %}
-            </p>
-
-            <p>
-                {% element button href=url_account_profile %}
-                    {% translate "button.cancel" %}
-                {% endelement %}
-            </p>
-        </div>
-    </form>
 </div>
 
 {% endblock content %}

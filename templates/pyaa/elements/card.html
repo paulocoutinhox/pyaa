@@ -1,0 +1,32 @@
+{% load pyaa %}
+
+<div class="card shadow-modern{% if attrs.class %} {{ attrs.class }}{% endif %}"
+     {% if attrs.id %}id="{{ attrs.id }}"{% endif %}>
+
+    {% setvar header_content %}
+        {% slot header %}
+        {% endslot %}
+    {% endsetvar %}
+
+    {% if header_content %}
+    <div class="card-header">
+        {{ header_content }}
+    </div>
+    {% endif %}
+
+    <div class="card-body{% if attrs.body_class %} {{ attrs.body_class }}{% endif %}">
+        {% slot %}
+        {% endslot %}
+    </div>
+
+    {% setvar footer_content %}
+        {% slot footer %}
+        {% endslot %}
+    {% endsetvar %}
+
+    {% if footer_content %}
+    <div class="card-footer bg-transparent border-gray-light">
+        {{ footer_content }}
+    </div>
+    {% endif %}
+</div>

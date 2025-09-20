@@ -290,9 +290,7 @@ class CustomerHelper:
             plan_image_url = f"https://{current_site.domain}{settings.STATIC_URL}images/credit-bonus.png"
         else:
             # use standard credit image
-            plan_image_url = (
-                f"https://{current_site.domain}{settings.STATIC_URL}images/no-image.png"
-            )
+            plan_image_url = f"https://{current_site.domain}{settings.STATIC_URL}images/no-image-s.png"
 
         # build context with all possible parameters
         context = {

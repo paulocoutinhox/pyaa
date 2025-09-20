@@ -1,4 +1,4 @@
-{% extends 'layouts/base_page.html' %}
+{% extends 'layouts/base.html' %}
 
 {% load i18n %}
 {% load static %}
@@ -6,8 +6,8 @@
 
 {% block content %}
 
-<div class="container">
-    {% element page_title %}
+<div class="container main-container">
+    {% element page_header centered=True %}
         {% translate "title.account-activation-pending" %}
     {% endelement %}
 

@@ -1,46 +1,50 @@
 {% load i18n %}
 {% load flags %}
+{% load pyaa %}
 
-<!-- language selector -->
- {% if false %}
-<div class="my-4">
-    <h2 class="section-title">
-        {% translate "title.language-selector" %}
-    </h2>
+<div class="py-1 text-center col-md-6 centralized">
+    {% element card %}
+        {% if false %}
+        <div class="my-4">
+            <h2 class="section-title">
+                {% translate "title.language-selector" %}
+            </h2>
 
-    <form action="{% url 'set_language' %}" method="post" class="row g-3 align-items-center">
-        {% csrf_token %}
-        <input name="next" type="hidden" value="{{ request.path }}">
+            <form action="{% url 'set_language' %}" method="post" class="row g-3 align-items-center">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.path }}">
 
-        <div class="col-auto">
-            <label for="language" class="form-label mb-0">{% translate "language.selector.label" %}</label>
+                <div class="col-auto">
+                    <label for="language" class="form-label mb-0">{% translate "language.selector.label" %}</label>
+                </div>
+
+                <div class="col-auto">
+                    <select name="language" id="language" class="form-select">
+                        {% get_current_language as LANGUAGE_CODE %}
+
+                        {% for lang_code, lang_name in LANGUAGES %}
+                        <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %} selected{% endif %}>
+                            {{ lang_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">{% translate "button.change" %}</button>
+                </div>
+            </form>
         </div>
+        {% endif %}
 
-        <div class="col-auto">
-            <select name="language" id="language" class="form-select">
-                {% get_current_language as LANGUAGE_CODE %}
+        <div class="my-4 text-center">
+            <h2 class="section-title">
+                {% translate "title.language-selector" %}
+            </h2>
 
-                {% for lang_code, lang_name in LANGUAGES %}
-                <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %} selected{% endif %}>
-                    {{ lang_name }}
-                </option>
-                {% endfor %}
-            </select>
+            <ul class="list-inline">
+                {% languages 'square' li_class='list-inline-item mx-2' a_class='text-decoration-none' %}
+            </ul>
         </div>
-
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">{% translate "button.change" %}</button>
-        </div>
-    </form>
-</div>
-{% endif %}
-
-<div class="my-4 text-center">
-    <h2 class="section-title">
-        {% translate "title.language-selector" %}
-    </h2>
-
-    <ul class="list-inline">
-        {% languages 'square' li_class='list-inline-item mx-2' a_class='text-decoration-none' %}
-    </ul>
+    {% endelement %}
 </div>

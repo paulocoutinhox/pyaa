@@ -71,7 +71,7 @@ class Product(models.Model):
 
     image = fields.ProductImageField(
         _("model.field.image"),
-        size=[1024, 1024],
+        size=[1024, 576],
         crop=["middle", "center"],
         quality=100,
         upload_to="images/product/%Y/%m/%d",
@@ -355,7 +355,7 @@ class Plan(models.Model):
 
     image = fields.PlanImageField(
         _("model.field.image"),
-        size=[1024, 1024],
+        size=[1024, 576],
         crop=["middle", "center"],
         quality=100,
         upload_to="images/plan/%Y/%m/%d",
@@ -973,7 +973,7 @@ class CreditLog(models.Model):
             return static("images/credit-bonus.png")
 
         # default case for other object types
-        return static("images/no-image.png")
+        return static("images/no-image-h.png")
 
     def get_status(self):
         from apps.shop.models import CreditPurchase, Subscription

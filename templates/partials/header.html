@@ -1,123 +1,174 @@
 {% load i18n %}
+{% load static %}
 {% load pyaa %}
 <header id="header">
-    <nav class="navbar navbar-expand-lg p-3 border-bottom bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                {% translate "site.small-name" %}
-            </a>
+    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+        <!-- Logo -->
+        <div class="d-flex align-items-center gap-4">
+            <div class="d-flex align-items-center gap-3">
+                <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 32px; width: 32px;">
+                <a href="{% url 'home' %}" class="text-decoration-none">
+                    <h2 class="mb-0 fw-bold" style="font-size: 20px;">{% translate "site.small-name" %}</h2>
+                </a>
+            </div>
+            <!-- Desktop Navigation -->
+            <nav class="d-none d-lg-flex align-items-center gap-4">
+                <a class="text-decoration-none {% nav_active 'home' %}" href="{% url 'home' %}" style="font-size: 15px;">
+                    {% translate "menu.home" %}
+                </a>
+                <a class="text-decoration-none {% nav_active 'gallery_index' %}" href="{% url 'gallery_index' %}" style="font-size: 15px;">
+                    {% translate "menu.gallery" %}
+                </a>
+                <div class="dropdown">
+                    <a class="text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 15px;">
+                        {% translate "menu.shop" %}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item {% nav_active 'shop_plans' 'subscription' %}" href="{% url 'shop_plans' 'subscription' %}">
+                                {% translate "menu.shop.plans-subscription" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {% nav_active 'shop_plans' 'credit-purchase' %}" href="{% url 'shop_plans' 'credit-purchase' %}">
+                                {% translate "menu.shop.plans-credit-purchase" %}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {% nav_active 'shop_products' %}" href="{% url 'shop_products' %}">
+                                {% translate "menu.shop.products" %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="text-decoration-none {% nav_active 'contact_index' %}" href="{% url 'contact_index' %}" style="font-size: 15px;">
+                    {% translate "menu.contact" %}
+                </a>
+            </nav>
+        </div>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                aria-label="Toggle Navigation">
-                <span class="navbar-toggler-icon"></span>
+        <!-- Right Side Actions -->
+        <div class="d-flex align-items-center gap-2">
+            <!-- Mobile Menu Button -->
+            <button class="btn btn-link d-lg-none p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                <i class="bi bi-list fs-5"></i>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto ">
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <span class="nav-link mx-2 text-body-secondary">
-                                {% if user.customer.credits %}
-                                    {% translate "menu.credits" %}: {{ user.customer.credits }}
-                                {% else %}
-                                    {% translate "menu.credits" %}: 0
-                                {% endif %}
-                            </span>
+            <!-- Desktop Auth Buttons and Theme -->
+            <div class="d-none d-lg-flex align-items-center gap-2">
+                {% if user.is_authenticated %}
+                    <!-- Credits display -->
+                    <span class="text-muted me-2 d-flex align-items-center" style="font-size: 14px;">
+                        {% translate "menu.credits" %}: {% if user.customer.credits %}{{ user.customer.credits }}{% else %}0{% endif %}
+                    </span>
+                    <!-- User menu -->
+                    <a href="{% url 'account_profile' %}" class="btn btn-primary fw-bold" style="font-size: 14px;">
+                        {% translate "menu.profile" %}
+                    </a>
+                    <a href="{% url 'account_logout' %}" class="btn btn-outline-secondary fw-bold" style="font-size: 14px;">
+                        {% translate "menu.logout" %}
+                    </a>
+                {% else %}
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary fw-bold" style="font-size: 14px;">
+                        {% translate "menu.signup" %}
+                    </a>
+                    <a href="{% url 'account_login' %}" class="btn btn-outline-primary fw-bold" style="font-size: 14px;">
+                        {% translate "menu.login" %}
+                    </a>
+                {% endif %}
+
+                <!-- Theme Selector -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-link p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-circle-half"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="light">
+                                <i class="bi bi-sun-fill me-2"></i>
+                                Light
+                            </button>
                         </li>
-                    {% endif %}
-
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 {% nav_active 'home' %}" aria-current="page" href="{% url 'home' %}">
-                            {% translate "menu.home" %}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 {% nav_active 'gallery_index' %}" aria-current="page" href="{% url 'gallery_index' %}">
-                            {% translate "menu.gallery" %}
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {% translate "menu.shop" %}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item {% nav_active 'shop_plans' 'subscription' %}" href="{% url 'shop_plans' 'subscription' %}">
-                                    {% translate "menu.shop.plans-subscription" %}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item {% nav_active 'shop_plans' 'credit-purchase' %}" href="{% url 'shop_plans' 'credit-purchase' %}">
-                                    {% translate "menu.shop.plans-credit-purchase" %}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item {% nav_active 'shop_products' %}" href="{% url 'shop_products' %}">
-                                    {% translate "menu.shop.products" %}
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a href="{% url 'account_profile' %}" class="nav-link mx-2 {% nav_active 'account_profile' %}">
-                            {% translate "menu.profile" %}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'account_logout' %}" class="nav-link mx-2 {% nav_active 'account_logout' %}">
-                            {% translate "menu.logout" %}
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a href="{% url 'account_login' %}" class="nav-link mx-2 {% nav_active 'account_login' %}">
-                            {% translate "menu.login" %}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'account_signup' %}" class="nav-link mx-2 {% nav_active 'account_signup' %}">
-                            {% translate "menu.signup" %}
-                        </a>
-                    </li>
-                    {% endif %}
-
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 {% nav_active 'contact_index' %}" aria-current="page" href="{% url 'contact_index' %}">
-                            {% translate "menu.contact" %}
-                        </a>
-                    </li>
-
-                    <!-- Theme Selector -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-circle-half"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="light">
-                                    <i class="bi bi-sun-fill me-2"></i>
-                                    Light
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="dark">
-                                    <i class="bi bi-moon-stars-fill me-2"></i>
-                                    Dark
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="auto">
-                                    <i class="bi bi-circle-half me-2"></i>
-                                    Auto
-                                </button>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                        <li>
+                            <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="dark">
+                                <i class="bi bi-moon-stars-fill me-2"></i>
+                                Dark
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="auto">
+                                <i class="bi bi-circle-half me-2"></i>
+                                Auto
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <!-- Mobile Menu Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileMenuLabel">{% translate "site.small-name" %}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav class="d-flex flex-column gap-3 text-center">
+                <a class="text-decoration-none {% nav_active 'home' %}" href="{% url 'home' %}">
+                    {% translate "menu.home" %}
+                </a>
+                <a class="text-decoration-none {% nav_active 'gallery_index' %}" href="{% url 'gallery_index' %}">
+                    {% translate "menu.gallery" %}
+                </a>
+                <a class="text-decoration-none {% nav_active 'shop_plans' 'subscription' %}" href="{% url 'shop_plans' 'subscription' %}">
+                    {% translate "menu.shop.plans-subscription" %}
+                </a>
+                <a class="text-decoration-none {% nav_active 'shop_plans' 'credit-purchase' %}" href="{% url 'shop_plans' 'credit-purchase' %}">
+                    {% translate "menu.shop.plans-credit-purchase" %}
+                </a>
+                <a class="text-decoration-none {% nav_active 'shop_products' %}" href="{% url 'shop_products' %}">
+                    {% translate "menu.shop.products" %}
+                </a>
+                <a class="text-decoration-none {% nav_active 'contact_index' %}" href="{% url 'contact_index' %}">
+                    {% translate "menu.contact" %}
+                </a>
+
+                {% if user.is_authenticated %}
+                    <hr class="my-3">
+                    <span class="text-muted mb-2">
+                        {% translate "menu.credits" %}: {% if user.customer.credits %}{{ user.customer.credits }}{% else %}0{% endif %}
+                    </span>
+                    <a href="{% url 'account_profile' %}" class="btn btn-primary fw-bold {% nav_active 'account_profile' %}">
+                        {% translate "menu.profile" %}
+                    </a>
+                    <a href="{% url 'account_logout' %}" class="btn btn-outline-secondary fw-bold">
+                        {% translate "menu.logout" %}
+                    </a>
+                {% else %}
+                    <hr class="my-3">
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary fw-bold">
+                        {% translate "menu.signup" %}
+                    </a>
+                    <a href="{% url 'account_login' %}" class="btn btn-outline-primary fw-bold">
+                        {% translate "menu.login" %}
+                    </a>
+                {% endif %}
+
+                <!-- Theme Selector Mobile -->
+                <hr class="my-3">
+                <div class="d-flex justify-content-center gap-2">
+                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-theme-value="light">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-theme-value="dark">
+                        <i class="bi bi-moon-stars-fill"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-theme-value="auto">
+                        <i class="bi bi-circle-half"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </div>
 </header>

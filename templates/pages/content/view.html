@@ -4,22 +4,24 @@
 
 {% block content %}
 
-<div class="container">
-    {% element page_title %}
+<div class="main-container">
+    {% element page_header centered=True %}
         {{ content.title }}
     {% endelement %}
 
     {% if content.published_at %}
-    <div class="text-center">
-        <small>
-            {{ content.published_at|date:"M d, Y" }}
-        </small>
-    </div>
+        <div class="text-center mb-4">
+            <small class="text-muted">
+                {{ content.published_at|date:"M d, Y" }}
+            </small>
+        </div>
     {% endif %}
 
-    <div class="mt-5 content-body">
-        {{ content.content | safe }}
-    </div>
+    {% element card %}
+        <div class="content-body">
+            {{ content.content | safe }}
+        </div>
+    {% endelement %}
 </div>
 
 {% endblock content %}
