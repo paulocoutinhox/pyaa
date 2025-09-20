@@ -69,6 +69,10 @@ make run
 - [Queue](docs/queue.md)
 - [VSCode](docs/vscode.md)
 
+## Screenshot
+
+<img width="300" src="extras/images/screenshot.png" alt="PyAA Screenshot">
+
 ## 🛡️ License
 
 [MIT](http://opensource.org/licenses/MIT)
