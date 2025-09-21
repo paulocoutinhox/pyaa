@@ -17,7 +17,9 @@
                 {% element card class="h-100 product-card" %}
                     <a href="{% url 'shop_product_details' product.id product.slug %}" class="text-decoration-none">
                         <div class="text-center mb-3">
-                            <img src="{{ product.get_image_url }}" alt="{{ product.name }}" class="img-fluid rounded" style="height: 150px; width: 100%; object-fit: cover;">
+                            <div class="position-relative overflow-hidden rounded" style="width: 100%; aspect-ratio: 16/9;">
+                                <img src="{{ product.get_image_url }}" alt="{{ product.name }}" class="img-fluid position-absolute top-0 start-0" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
                         </div>
 
                         <div class="text-center">

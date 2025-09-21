@@ -13,9 +13,9 @@
     {% endelement %}
 
     {% if page_obj %}
-        {% element card %}
+        {% element card padding=False %}
             <div class="table-responsive credits-list">
-                <table class="table table-striped mb-0">
+                <table class="table table-striped table-borderless mb-0">
                     <thead>
                         <tr>
                             <th>{% translate "table.header.image" %}</th>
@@ -29,7 +29,9 @@
                             <tr class="align-middle">
                                 <td>
                                     {% if credit.get_image_url %}
-                                        <img src="{{ credit.get_image_url }}" alt="" class="img-fluid" style="max-width: 50px;">
+                                        <div class="d-inline-block overflow-hidden rounded" style="width: 50px; height: 28px;">
+                                            <img src="{{ credit.get_image_url }}" alt="" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+                                        </div>
                                     {% endif %}
                                 </td>
                                 <td>{{ credit.get_description }}</td>

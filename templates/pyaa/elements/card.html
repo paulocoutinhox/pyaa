@@ -14,10 +14,17 @@
     </div>
     {% endif %}
 
+    {% if attrs.padding == False %}
+    <div class="card-body p-0{% if attrs.body_class %} {{ attrs.body_class }}{% endif %}">
+        {% slot %}
+        {% endslot %}
+    </div>
+    {% else %}
     <div class="card-body{% if attrs.body_class %} {{ attrs.body_class }}{% endif %}">
         {% slot %}
         {% endslot %}
     </div>
+    {% endif %}
 
     {% setvar footer_content %}
         {% slot footer %}
