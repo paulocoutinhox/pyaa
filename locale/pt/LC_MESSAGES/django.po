@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-20 08:08+0000\n"
+"POT-Creation-Date: 2025-09-21 07:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -447,21 +447,21 @@ msgstr "Créditos Adicionados à Sua Conta"
 msgid "email.credits-added.subject"
 msgstr "Créditos Adicionados à Sua Conta"
 
-#: apps/customer/helpers.py:344
+#: apps/customer/helpers.py:342
 #: templates/emails/credit/credit_purchase_paid.html:5
 msgid "email.credit-purchase-paid.subject"
 msgstr "Confirmação de Pagamento"
 
-#: apps/customer/helpers.py:407
+#: apps/customer/helpers.py:405
 #: templates/emails/product/product_purchase_paid.html:5
 msgid "email.product-purchase-paid.subject"
 msgstr "Confirmação da Compra de Produto"
 
-#: apps/customer/helpers.py:501
+#: apps/customer/helpers.py:499
 msgid "email.password-recovery.subject"
 msgstr "Recuperação de Senha"
 
-#: apps/customer/helpers.py:547
+#: apps/customer/helpers.py:545
 msgid "email.activation.subject"
 msgstr "Ative Sua Conta"
 
@@ -678,7 +678,7 @@ msgstr "Mensagem"
 
 #: apps/shop/admin.py:92 apps/shop/models.py:67 apps/shop/models.py:175
 #: apps/shop/models.py:379 apps/shop/models.py:896 apps/shop/models.py:1073
-#: apps/system_log/models.py:62 templates/pages/shop/product/detail.html:55
+#: apps/system_log/models.py:62 templates/pages/shop/product/detail.html:59
 msgid "model.field.description"
 msgstr "Descrição"
 
@@ -932,7 +932,7 @@ msgid "model.field.currency"
 msgstr "Moeda"
 
 #: apps/shop/models.py:90 apps/shop/models.py:316 apps/shop/models.py:657
-#: apps/shop/models.py:780 templates/pages/shop/product/detail.html:30
+#: apps/shop/models.py:780 templates/pages/shop/product/detail.html:34
 msgid "model.field.price"
 msgstr "Preço"
 
@@ -1672,10 +1672,10 @@ msgstr "Criado Em"
 msgid "table.header.status"
 msgstr "Status"
 
-#: templates/pages/account/credit_purchases.html:59
-#: templates/pages/account/credits.html:64
-#: templates/pages/account/product_purchases.html:84
-#: templates/pages/account/subscriptions.html:88
+#: templates/pages/account/credit_purchases.html:61
+#: templates/pages/account/credits.html:66
+#: templates/pages/account/product_purchases.html:86
+#: templates/pages/account/subscriptions.html:87
 #: templates/pages/gallery/view.html:44
 msgid "button.back"
 msgstr "Voltar"
@@ -1715,6 +1715,10 @@ msgstr "Login"
 #: templates/pages/account/signup.html:32 templates/pages/contact/index.html:23
 msgid "button.send"
 msgstr "Enviar"
+
+#: templates/pages/account/login.html:39
+msgid "text.or"
+msgstr "ou"
 
 #: templates/pages/account/login.html:46
 msgid "message.account-login.signup"
@@ -1776,14 +1780,14 @@ msgstr ""
 msgid "title.account-product-purchases"
 msgstr "Minhas Compras de Produto"
 
-#: templates/pages/account/product_purchases.html:43
-#: templates/pages/shop/product/detail.html:71
+#: templates/pages/account/product_purchases.html:45
+#: templates/pages/shop/product/detail.html:75
 msgid "title.shop-product-files"
 msgstr "Arquivos do Produto"
 
-#: templates/pages/account/product_purchases.html:61
-#: templates/pages/shop/product/detail.html:102
-#: templates/pages/shop/product/detail.html:143
+#: templates/pages/account/product_purchases.html:63
+#: templates/pages/shop/product/detail.html:106
+#: templates/pages/shop/product/detail.html:149
 msgid "button.download"
 msgstr "Baixar"
 
@@ -2126,23 +2130,23 @@ msgstr "Comprar Créditos"
 msgid "title.shop.plans"
 msgstr "Preços"
 
-#: templates/pages/shop/plans.html:45
+#: templates/pages/shop/plans.html:47
 msgid "button.shop-select-subscription-plan"
 msgstr "Escolher Plano"
 
-#: templates/pages/shop/plans.html:49
+#: templates/pages/shop/plans.html:51
 msgid "button.shop-select-credit-plan"
 msgstr "Comprar Agora"
 
-#: templates/pages/shop/product/detail.html:38
 #: templates/pages/shop/product/detail.html:42
-#: templates/pages/shop/product/detail.html:111
-#: templates/pages/shop/product/detail.html:152
+#: templates/pages/shop/product/detail.html:46
+#: templates/pages/shop/product/detail.html:116
+#: templates/pages/shop/product/detail.html:158
 msgid "button.buy-now"
 msgstr "Comprar Agora"
 
-#: templates/pages/shop/product/detail.html:106
-#: templates/pages/shop/product/detail.html:147
+#: templates/pages/shop/product/detail.html:110
+#: templates/pages/shop/product/detail.html:153
 msgid "button.purchase-to-download"
 msgstr "Compre para Baixar"
 
