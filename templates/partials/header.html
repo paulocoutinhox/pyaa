@@ -61,6 +61,7 @@
                     <span class="text-muted me-2 d-flex align-items-center" style="font-size: 14px;">
                         {% translate "menu.credits" %}: {% if user.customer.credits %}{{ user.customer.credits }}{% else %}0{% endif %}
                     </span>
+
                     <!-- User menu -->
                     <a href="{% url 'account_profile' %}" class="btn btn-primary fw-bold" style="font-size: 14px;">
                         {% translate "menu.profile" %}
