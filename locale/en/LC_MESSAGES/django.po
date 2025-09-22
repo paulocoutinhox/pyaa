@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-21 07:44+0000\n"
+"POT-Creation-Date: 2025-09-22 10:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1984,7 +1984,7 @@ msgstr "Gallery List"
 #: templates/pages/home/index.html:14 templates/pages/home/index.html:29
 #: templates/partials/footer.html:16 templates/partials/footer.html:17
 #: templates/partials/header.html:9 templates/partials/header.html:11
-#: templates/partials/header.html:113
+#: templates/partials/header.html:114
 #: templates/pyaa/elements/page_header.html:14
 msgid "site.small-name"
 msgstr "PYAA"
@@ -2001,13 +2001,13 @@ msgstr "Hi %(name)s!"
 msgid "site.name"
 msgstr "Python Advanced Application"
 
-#: templates/pages/home/index.html:37 templates/partials/header.html:76
-#: templates/partials/header.html:154
+#: templates/pages/home/index.html:37 templates/partials/header.html:77
+#: templates/partials/header.html:155
 msgid "menu.login"
 msgstr "Login"
 
-#: templates/pages/home/index.html:41 templates/partials/header.html:73
-#: templates/partials/header.html:151
+#: templates/pages/home/index.html:41 templates/partials/header.html:74
+#: templates/partials/header.html:152
 msgid "menu.signup"
 msgstr "Sign Up"
 
@@ -2164,7 +2164,7 @@ msgid "footer.company"
 msgstr "Company"
 
 #: templates/partials/footer.html:32 templates/partials/header.html:45
-#: templates/partials/header.html:134
+#: templates/partials/header.html:135
 msgid "menu.contact"
 msgstr "Contact"
 
@@ -2203,11 +2203,11 @@ msgstr ""
 msgid "site.author"
 msgstr "Paulo Coutinho"
 
-#: templates/partials/header.html:17 templates/partials/header.html:119
+#: templates/partials/header.html:17 templates/partials/header.html:120
 msgid "menu.home"
 msgstr "Home"
 
-#: templates/partials/header.html:20 templates/partials/header.html:122
+#: templates/partials/header.html:20 templates/partials/header.html:123
 msgid "menu.gallery"
 msgstr "Gallery"
 
@@ -2215,27 +2215,27 @@ msgstr "Gallery"
 msgid "menu.shop"
 msgstr "Shop"
 
-#: templates/partials/header.html:29 templates/partials/header.html:125
+#: templates/partials/header.html:29 templates/partials/header.html:126
 msgid "menu.shop.plans-subscription"
 msgstr "Subscriptions"
 
-#: templates/partials/header.html:34 templates/partials/header.html:128
+#: templates/partials/header.html:34 templates/partials/header.html:129
 msgid "menu.shop.plans-credit-purchase"
 msgstr "Credits"
 
-#: templates/partials/header.html:39 templates/partials/header.html:131
+#: templates/partials/header.html:39 templates/partials/header.html:132
 msgid "menu.shop.products"
 msgstr "Products"
 
-#: templates/partials/header.html:62 templates/partials/header.html:140
+#: templates/partials/header.html:62 templates/partials/header.html:141
 msgid "menu.credits"
 msgstr "Credits"
 
-#: templates/partials/header.html:66 templates/partials/header.html:143
+#: templates/partials/header.html:67 templates/partials/header.html:144
 msgid "menu.profile"
 msgstr "My Account"
 
-#: templates/partials/header.html:69 templates/partials/header.html:146
+#: templates/partials/header.html:70 templates/partials/header.html:147
 msgid "menu.logout"
 msgstr "Logout"
 
