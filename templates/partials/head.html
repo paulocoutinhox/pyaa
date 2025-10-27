@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load sass_tags %}
+{% load pyaa_http %}
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +19,8 @@
 <meta property="og:title" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
 <meta property="og:description" content="{% if page_description %}{{ page_description }}{% else %}{% translate 'site.description' %}{% endif %}">
 <meta property="og:type" content="{% if page_og_type %}{{ page_og_type }}{% else %}website{% endif %}">
-<meta property="og:url" content="{% if page_url %}{{ page_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
-<meta property="og:image" content="{% if page_og_image %}{{ page_og_image }}{% else %}{{ request.scheme }}://{{ request.get_host }}/static/images/logo-og.png{% endif %}">
+<meta property="og:url" content="{% if page_url %}{{ page_url|force_https }}{% else %}{{ request.build_absolute_uri|force_https }}{% endif %}">
+<meta property="og:image" content="{% if page_og_image %}{{ page_og_image|force_https }}{% else %}https://{{ request.get_host }}/static/images/logo-og.png{% endif %}">
 <meta property="og:image:width" content="{% if page_og_image_width %}{{ page_og_image_width }}{% else %}512{% endif %}">
 <meta property="og:image:height" content="{% if page_og_image_height %}{{ page_og_image_height }}{% else %}512{% endif %}">
 <meta property="og:locale" content="{% if page_og_locale %}{{ page_og_locale }}{% else %}en{% endif %}">
@@ -27,14 +28,14 @@
 
 <!-- Twitter Meta Tags -->
 <meta property="twitter:card" content="{% if page_twitter_card %}{{ page_twitter_card }}{% else %}summary{% endif %}">
-<meta property="twitter:site" content="{% if page_twitter_site %}{{ page_twitter_site }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
+<meta property="twitter:site" content="{% if page_twitter_site %}{{ page_twitter_site|force_https }}{% else %}{{ request.build_absolute_uri|force_https }}{% endif %}">
 
 <!-- Apple Meta Tags -->
 <meta name="apple-mobile-web-app-title" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
 <meta name="application-name" content="{% if page_title %}{{ page_title }}{% else %}{% translate 'site.name' %}{% endif %}">
 
 <!-- Canonical URL -->
-<link rel="canonical" href="{% if page_url %}{{ page_url }}{% else %}{{ request.build_absolute_uri }}{% endif %}">
+<link rel="canonical" href="{% if page_url %}{{ page_url|force_https }}{% else %}{{ request.build_absolute_uri|force_https }}{% endif %}">
 
 {% compress css %}
     <link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
