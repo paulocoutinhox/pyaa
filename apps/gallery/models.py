@@ -152,10 +152,9 @@ class GalleryPhoto(models.Model):
     def preview(self):
         if self.image:
             return format_html(
-                '<a href="{}" target="_blank"><img src="{}" style="width: 45px;" /></a>'.format(
-                    self.image.url,
-                    self.image.url,
-                )
+                '<a href="{}" target="_blank"><img src="{}" style="width: 45px;" /></a>',
+                self.image.url,
+                self.image.url,
             )
         return ""
 
