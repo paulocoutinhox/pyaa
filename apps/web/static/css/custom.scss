@@ -218,14 +218,18 @@ body {
     }
 }
 
-// buttons
-.btn-primary {
-    background-color: var(--primary);
-    border-color: var(--primary);
+// buttons - base styles for all buttons
+.btn {
     border-radius: var(--border-radius);
     font-weight: 600;
     font-size: 14px;
     padding: 8px 16px;
+}
+
+// primary button
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
 
     &:hover {
         background-color: var(--primary-hover);
@@ -237,14 +241,11 @@ body {
     }
 }
 
+// outline primary button
 .btn-outline-primary {
     color: var(--primary);
     border-color: var(--gray-300);
     background-color: var(--white);
-    border-radius: var(--border-radius);
-    font-weight: 600;
-    font-size: 14px;
-    padding: 8px 16px;
 
     &:hover {
         background-color: var(--gray-100);
