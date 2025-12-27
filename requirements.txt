@@ -21,10 +21,17 @@ django-translation-flags==1.0.6
 django-localflavor==5.0
 django-ipware==7.0.1
 
+# django ninja
+django-ninja==1.5.1
+django-ninja-extra==0.30.8
+django-ninja-jwt==5.4.2
+humps==0.2.2
+email-validator==2.2.0
+
 # general
 requests==2.32.5
 libsass==0.23.0
-boto3==1.42.14
+boto3==1.42.17
 beautifulsoup4==4.14.3
 
 # local
@@ -32,13 +39,6 @@ tzdata==2025.3
 
 # image
 pillow==12.0.0
-
-# rest framework
-djangorestframework==3.16.1
-djangorestframework-simplejwt==5.5.1
-drf-spectacular==0.29.0
-drf-spectacular-sidecar==2025.12.1
-djangorestframework-camel-case==1.4.2
 
 # payment
 stripe==14.1.0
