@@ -26,7 +26,7 @@ django-ninja==1.5.1
 django-ninja-extra==0.30.8
 django-ninja-jwt==5.4.2
 humps==0.2.2
-email-validator==2.2.0
+email-validator==2.3.0
 
 # general
 requests==2.32.5

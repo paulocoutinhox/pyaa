@@ -8,7 +8,7 @@ from apps.system_log.schemas import SystemLogCreateSchema, SystemLogResponseSche
 router = Router()
 
 
-@router.post("/create/", response=SystemLogResponseSchema, auth=None)
+@router.post("/create/", response=SystemLogResponseSchema, auth=None, by_alias=True)
 def create_system_log(request, data: SystemLogCreateSchema):
     if not settings.SYSTEM_LOG_API_ENABLED:
         raise HttpError(403, "System log API is disabled")

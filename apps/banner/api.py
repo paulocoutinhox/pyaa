@@ -8,13 +8,15 @@ from apps.banner.schemas import BannerAccessResponseSchema, BannerSchema
 router = Router()
 
 
-@router.get("/", response=list[BannerSchema], auth=None)
+@router.get("/", response=list[BannerSchema], auth=None, by_alias=True)
 def list_banners(request, zone: str, language: str = None, site: int = None):
     banners = BannerHelper.get_banners(zone=zone, language=language, site_id=site)
     return list(banners)
 
 
-@router.get("/access/{token}/", response=BannerAccessResponseSchema, auth=None)
+@router.get(
+    "/access/{token}/", response=BannerAccessResponseSchema, auth=None, by_alias=True
+)
 def track_banner_access(request, token: str, type: str):
     banner = BannerHelper.get_banner_by_token(token)
     if not banner:

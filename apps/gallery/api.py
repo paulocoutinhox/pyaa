@@ -9,13 +9,13 @@ from apps.gallery.schemas import GalleryListSchema, GallerySchema
 router = Router()
 
 
-@router.get("/", response=list[GalleryListSchema], auth=None)
+@router.get("/", response=list[GalleryListSchema], auth=None, by_alias=True)
 @paginate(LimitOffsetPagination)
 def list_galleries(request):
     return Gallery.objects.filter(active=True).order_by("-published_at")
 
 
-@router.get("/{tag}/", response=GallerySchema, auth=None)
+@router.get("/{tag}/", response=GallerySchema, auth=None, by_alias=True)
 def get_gallery_by_tag(request, tag: str):
     gallery = GalleryHelper.get_gallery(gallery_tag=tag)
     if not gallery:

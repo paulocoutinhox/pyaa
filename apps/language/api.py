@@ -7,12 +7,12 @@ from apps.language.schemas import LanguageCreateSchema, LanguageSchema
 router = Router()
 
 
-@router.get("/", response=list[LanguageSchema], auth=None)
+@router.get("/", response=list[LanguageSchema], auth=None, by_alias=True)
 @paginate(LimitOffsetPagination)
 def list_languages(request):
     return Language.objects.order_by("-id")
 
 
-@router.post("/", response=LanguageSchema, auth=None)
+@router.post("/", response=LanguageSchema, auth=None, by_alias=True)
 def create_language(request, data: LanguageCreateSchema):
     return Language.objects.create(**data.dict())

@@ -7,7 +7,7 @@ from apps.content.schemas import ContentSchema
 router = Router()
 
 
-@router.get("/{tag}/", response=ContentSchema, auth=None)
+@router.get("/{tag}/", response=ContentSchema, auth=None, by_alias=True)
 def get_content_by_tag(request, tag: str):
     content = ContentHelper.get_content(content_tag=tag)
     if not content:
