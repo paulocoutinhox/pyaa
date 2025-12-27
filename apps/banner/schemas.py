@@ -1,10 +1,10 @@
-from rest_framework import serializers
+from ninja import ModelSchema
 
 from apps.banner.models import Banner
+from pyaa.api.base import BaseSchema
 
 
-class BannerSerializer(serializers.ModelSerializer):
-
+class BannerSchema(ModelSchema, BaseSchema):
     class Meta:
         model = Banner
         fields = [
@@ -18,3 +18,7 @@ class BannerSerializer(serializers.ModelSerializer):
             "start_at",
             "end_at",
         ]
+
+
+class BannerAccessResponseSchema(BaseSchema):
+    success: bool

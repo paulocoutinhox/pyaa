@@ -1,6 +1,6 @@
 # API
 
-The PyAA project is configured to use Django Rest Framework.
+The PyAA project is configured to use Django Ninja.
 
 All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
 
@@ -8,14 +8,13 @@ All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
 http://localhost:8000/api/customer
 ```
 
-Most resources are protected by authentication header `Authorization: Bearer XYZ` with view property in Python `permission_classes = [AppModelPermissions]`. But if you need allow public access to some resource view use `permission_classes = [AllowAny]`.
+Most resources are protected by authentication header `Authorization: Bearer XYZ` using `auth=JWTAuth()` parameter in the endpoint decorator. For public access endpoints, use `auth=None`.
 
-The token APIs to create and refresh are `http://localhost:8000/api/token/` and `http://localhost:8000/api/token/refresh/`.
+The token APIs to create and refresh are `http://localhost:8000/api/token/pair` and `http://localhost:8000/api/token/refresh`.
 
 The schema can be acessed by:
-- http://localhost:8000/api/schema
-- http://localhost:8000/api/schema/redoc
-- http://localhost:8000/api/schema/swagger-ui
+- http://localhost:8000/api/docs
+- http://localhost:8000/api/openapi.json
 
 ## Single Get Object Response
 

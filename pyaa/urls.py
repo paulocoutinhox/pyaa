@@ -20,66 +20,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, re_path
 from django.utils.translation import gettext_lazy as _
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularRedocView,
-    SpectacularSwaggerView,
-)
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from apps.web.urls import urlpatterns as web_urlpatterns
 
 from . import views
+from .apis import api
 
 urlpatterns = [
     path(
         "api/",
-        include("apps.customer.urls"),
-    ),
-    path(
-        "api/",
-        include("apps.language.urls"),
-    ),
-    path(
-        "api/",
-        include("apps.content.urls"),
-    ),
-    path(
-        "api/",
-        include("apps.gallery.urls"),
-    ),
-    path(
-        "api/",
-        include("apps.banner.urls"),
-    ),
-    path(
-        "api/",
-        include("apps.system_log.urls"),
-    ),
-    path(
-        "api/token/",
-        TokenObtainPairView.as_view(),
-        name="token-obtain-pair",
-    ),
-    path(
-        "api/token/refresh/",
-        TokenRefreshView.as_view(),
-        name="token-refresh",
-    ),
-    path(
-        "api/schema/",
-        SpectacularAPIView.as_view(),
-        name="schema",
-    ),
-    path(
-        "api/schema/swagger-ui/",
-        SpectacularSwaggerView.as_view(url_name="schema"),
-        name="swagger-ui",
-    ),
-    path(
-        "api/schema/redoc/",
-        SpectacularRedocView.as_view(url_name="schema"),
-        name="redoc",
+        api.urls,
     ),
     path(
         "admin/",
