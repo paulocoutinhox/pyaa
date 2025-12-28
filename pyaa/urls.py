@@ -1,7 +1,7 @@
 """URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
+    https://docs.djangoproject.com/en/6.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -24,13 +24,8 @@ from django.utils.translation import gettext_lazy as _
 from apps.web.urls import urlpatterns as web_urlpatterns
 
 from . import views
-from .apis import api
 
 urlpatterns = [
-    path(
-        "api/",
-        api.urls,
-    ),
     path(
         "admin/",
         admin.site.urls,
@@ -58,3 +53,4 @@ urlpatterns += web_urlpatterns
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

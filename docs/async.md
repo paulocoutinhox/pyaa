@@ -1,12 +1,12 @@
 # Async Support
 
-This project supports asynchronous execution for high-performance API endpoints using Django Ninja with async/await patterns.
+This project supports asynchronous execution for high-performance API endpoints using FastAPI with async/await patterns.
 
 ## Overview
 
 PyAA provides both synchronous and asynchronous route support, allowing you to choose the right approach based on your specific needs:
 
-- **Synchronous routes** - Traditional Django approach, suitable for most use cases
+- **Synchronous routes** - Traditional blocking I/O, suitable for most use cases
 - **Asynchronous routes** - For high-volume endpoints with heavy I/O operations
 
 ## When to Use Async
@@ -49,14 +49,14 @@ async def example_async(request):
 ### Example
 
 ```python
-from ninja import Router
-from apps.banner.schemas import BannerSchema
+from fastapi import APIRouter
+from apps.api.banner.schemas import BannerSchema
 from apps.banner.helpers import BannerHelper
 
-router = Router()
+router = APIRouter()
 
-@router.get("/", response=list[BannerSchema], auth=None)
-async def list_banners(request, zone: str, language: str = None, site: int = None):
+@router.get("/", response_model=list[BannerSchema])
+async def list_banners(zone: str, language: str = None, site: int = None):
     banners = await BannerHelper.get_banners_async(
         zone=zone,
         language=language,
@@ -141,7 +141,7 @@ def get_banner_with_relations(token):
 
 # use in async route
 @router.get("/banner/{token}")
-async def get_banner(request, token: str):
+async def get_banner(token: str):
     banner = await get_banner_with_relations(token)
     return banner
 ```
@@ -207,7 +207,7 @@ def get_banner_statistics(zone):
     )
 
 @router.get("/stats/{zone}")
-async def banner_stats(request, zone: str):
+async def banner_stats(zone: str):
     stats = await get_banner_statistics(zone)
     return stats
 ```
@@ -225,7 +225,7 @@ def get_banners_with_relations(zone):
     )
 
 @router.get("/banners/{zone}")
-async def list_banners_with_relations(request, zone: str):
+async def list_banners_with_relations(zone: str):
     banners = await get_banners_with_relations(zone)
     return banners
 ```
@@ -253,7 +253,7 @@ def create_banner_with_relations(data):
     return banner
 
 @router.post("/banners")
-async def create_banner(request, data: BannerCreateSchema):
+async def create_banner(data: BannerCreateSchema):
     banner = await create_banner_with_relations(data.dict())
     return banner
 ```
@@ -472,12 +472,12 @@ Avoid heavy logic inside route functions:
 ```python
 # ✔ correct - logic in helper
 @router.get("/banners")
-async def list_banners(request, zone: str):
+async def list_banners(zone: str):
     return await BannerHelper.get_banners_async(zone=zone)
 
 # ❌ incorrect - logic in route
 @router.get("/banners")
-async def list_banners(request, zone: str):
+async def list_banners(zone: str):
     qs = Banner.objects.filter(zone=zone, active=True)
     banners = [b async for b in qs]
     # ... more processing
@@ -487,13 +487,18 @@ async def list_banners(request, zone: str):
 ### Error Handling
 
 ```python
+from fastapi import HTTPException, status
+
 @router.get("/banner/{token}")
-async def get_banner(request, token: str):
+async def get_banner(token: str):
     try:
         banner = await BannerHelper.get_banner_by_token_async(token)
         return banner
     except Banner.DoesNotExist:
-        raise Http404("Banner not found")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Banner not found"
+        )
 ```
 
 ### Async with External APIs
@@ -582,14 +587,16 @@ class BannerAsyncTestCase(TransactionTestCase):
 ### Pagination with Async
 
 ```python
-@router.get("/banners", response=PaginatedResponse)
-async def list_banners_paginated(request, limit: int = 10, offset: int = 0):
+from apps.api.banner.schemas import PaginatedResponse
+
+@router.get("/banners", response_model=PaginatedResponse)
+async def list_banners_paginated(limit: int = 10, offset: int = 0):
     total = await Banner.objects.filter(active=True).acount()
     banners = await Banner.objects.filter(active=True)[offset:offset + limit].aall()
 
     return {
         "count": total,
-        "results": banners,
+        "items": banners,
     }
 ```
 
@@ -627,7 +634,7 @@ def create_banner_with_related_data(data):
     return banner
 
 @router.post("/banners")
-async def create_banner(request, data: BannerCreateSchema):
+async def create_banner(data: BannerCreateSchema):
     banner = await create_banner_with_related_data(data.dict())
     return banner
 ```
@@ -654,7 +661,7 @@ Before creating an async route, verify:
 ```python
 # ✔ all checks pass
 @router.get("/banners")
-async def list_banners(request, zone: str):
+async def list_banners(zone: str):
     # uses async orm - no sync_to_async needed
     return await BannerHelper.get_banners_async(zone=zone)
 ```
@@ -673,7 +680,7 @@ def get_banners_with_relations(zone):
     )
 
 @router.get("/banners/{zone}")
-async def list_banners(request, zone: str):
+async def list_banners(zone: str):
     return await get_banners_with_relations(zone)
 ```
 
@@ -684,7 +691,7 @@ async def list_banners(request, zone: str):
 from asgiref.sync import sync_to_async
 
 @router.get("/banners/{zone}")
-async def list_banners(request, zone: str):
+async def list_banners(zone: str):
     # inline usage - wraps the sync function call
     banners = await sync_to_async(
         lambda: list(
@@ -712,7 +719,7 @@ def get_banner_stats(zone):
     )
 
 @router.get("/stats/{zone}")
-async def banner_stats(request, zone: str):
+async def banner_stats(zone: str):
     return await get_banner_stats(zone)
 ```
 
@@ -785,12 +792,12 @@ These features don't have async support yet and need `sync_to_async`:
 Use this template as a starting point for async routes:
 
 ```python
-from ninja import Router
+from fastapi import APIRouter
 from asgiref.sync import sync_to_async
 from apps.myapp.models import MyModel
-from apps.myapp.schemas import MySchema
+from apps.api.myapp.schemas import MySchema
 
-router = Router()
+router = APIRouter()
 
 # helper functions
 class MyHelper:
@@ -812,8 +819,8 @@ class MyHelper:
         )
 
 # routes
-@router.get("/items", response=list[MySchema])
-async def list_items(request, status: str = None):
+@router.get("/items", response_model=list[MySchema])
+async def list_items(status: str = None):
     # list items with optional status filter
     filters = {}
     if status:
@@ -823,8 +830,8 @@ async def list_items(request, status: str = None):
     items = await MyHelper.get_items_async(filters)
     return items
 
-@router.get("/items-detailed", response=list[MySchema])
-async def list_items_detailed(request):
+@router.get("/items-detailed", response_model=list[MySchema])
+async def list_items_detailed():
     # list items with related data
     # use sync_to_async for complex query
     items = await MyHelper.get_items_with_relations({})
@@ -834,6 +841,7 @@ async def list_items_detailed(request):
 ## Resources
 
 - [Django Async Documentation](https://docs.djangoproject.com/en/stable/topics/async/)
-- [Django Ninja Documentation](https://django-ninja.dev/)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [FastAPI Async](https://fastapi.tiangolo.com/async/)
 - [ASGI Specification](https://asgi.readthedocs.io/)
 - [asgiref Documentation](https://github.com/django/asgiref)

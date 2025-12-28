@@ -43,7 +43,10 @@ class ContentHelper:
         if content_id:
             filter_kwargs["id"] = content_id
             content = (
-                Content.objects.filter(**filter_kwargs).filter(site_filter).first()
+                Content.objects.filter(**filter_kwargs)
+                .filter(site_filter)
+                .select_related("category", "language")
+                .first()
             )
 
             if content:
@@ -66,6 +69,7 @@ class ContentHelper:
             content = (
                 Content.objects.filter(**filter_kwargs)
                 .filter(site_filter)
+                .select_related("category", "language")
                 .order_by(
                     models.Case(
                         # check both code_iso_639_1 and code_iso_language for the user's language
