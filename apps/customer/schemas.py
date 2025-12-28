@@ -50,8 +50,6 @@ class CustomerResponseSchema(ModelSchema, BaseSchema):
         model = Customer
         fields = [
             "id",
-            "user",
-            "language",
             "nickname",
             "gender",
             "avatar",
@@ -60,6 +58,14 @@ class CustomerResponseSchema(ModelSchema, BaseSchema):
             "created_at",
             "updated_at",
         ]
+
+    @staticmethod
+    def resolve_user(obj):
+        return UserSchema.from_orm(obj.user)
+
+    @staticmethod
+    def resolve_language(obj):
+        return LanguageSchema.from_orm(obj.language) if obj.language else None
 
     @staticmethod
     def resolve_timezone(obj):
