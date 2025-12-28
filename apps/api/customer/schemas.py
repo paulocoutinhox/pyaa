@@ -16,7 +16,7 @@ class CustomerCreateSchema(BaseSchema):
     cpf: str | None = None
     mobile_phone: str | None = None
     password: str
-    language: int | None = None
+    language: int
     gender: str | None = None
     obs: str | None = None
     timezone: str = settings.DEFAULT_TIME_ZONE
