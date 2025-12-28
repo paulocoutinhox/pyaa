@@ -1,4 +1,4 @@
-from pyaa.api.base import BaseSchema
+from pyaa.fastapi.schemas import BaseSchema
 
 
 class SystemLogCreateSchema(BaseSchema):

@@ -1,6 +1,6 @@
 # API
 
-The PyAA project is configured to use Django Ninja.
+The PyAA project is configured to use FastAPI.
 
 All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
 
@@ -8,13 +8,14 @@ All URLs to the APIs are inside path `DOMAIN + API + RESOURCE`, example:
 http://localhost:8000/api/customer
 ```
 
-Most resources are protected by authentication header `Authorization: Bearer XYZ` using `auth=JWTAuth()` parameter in the endpoint decorator. For public access endpoints, use `auth=None`.
+Most resources are protected by authentication header `Authorization: Bearer XYZ` using JWT authentication with FastAPI dependencies. For public access endpoints, authentication is optional or not required.
 
 The token APIs to create and refresh are `http://localhost:8000/api/token/pair` and `http://localhost:8000/api/token/refresh`.
 
 The schema can be acessed by:
-- http://localhost:8000/api/docs
-- http://localhost:8000/api/openapi.json
+- http://localhost:8000/api/docs (Swagger UI)
+- http://localhost:8000/api/redoc (ReDoc)
+- http://localhost:8000/api/openapi.json (OpenAPI schema)
 
 ## Single Get Object Response
 
@@ -67,14 +68,12 @@ Method Http: `DELETE`
 Code Http: `200`
 Method Http: `GET`
 
-Sample of response structure:
+Sample of response structure with pagination:
 
 ```json
 {
     "count": 3,
-    "next": "http://localhost:8000/api/resource-name/?limit=1&offset=1",
-    "previous": null,
-    "results": [
+    "items": [
         {
             "id": 1,
             "name": "Test"
@@ -82,6 +81,10 @@ Sample of response structure:
     ]
 }
 ```
+
+Query parameters for pagination:
+- `limit`: Number of items per page (default: 100)
+- `offset`: Starting position (default: 0)
 
 ## Object Validation Response
 

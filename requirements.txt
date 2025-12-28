@@ -21,13 +21,6 @@ django-translation-flags==1.0.6
 django-localflavor==5.0
 django-ipware==7.0.1
 
-# django ninja
-django-ninja==1.5.1
-django-ninja-extra==0.30.8
-django-ninja-jwt==5.4.2
-humps==0.2.2
-email-validator==2.3.0
-
 # general
 requests==2.32.5
 libsass==0.23.0
@@ -58,6 +51,13 @@ matplotlib==3.10.8
 
 # pdf
 weasyprint==67.0
+
+# fastapi
+fastapi==0.128.0
+pydantic==2.12.5
+python-multipart==0.0.21
+throttled==0.2.1
+pyjwt==2.10.1
 
 # server
 uvicorn==0.40.0
