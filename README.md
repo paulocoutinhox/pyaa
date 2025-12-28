@@ -58,6 +58,7 @@ make run
 ## 📚 Documentation
 
 - [API](docs/api.md)
+- [Async](docs/async.md)
 - [Database](docs/database.md)
 - [Docker](docs/docker.md)
 - [Ngrok](docs/ngrok.md)
