@@ -404,3 +404,85 @@ class CustomerModelTest(TestCase):
 
         # test with a purchase
         self.assertTrue(customer.has_purchased_product(product.id))
+
+    def test_get_address_by_type(self):
+        from apps.customer.enums import CustomerAddressType
+        from apps.customer.models import CustomerAddress
+
+        user = User.objects.create_user(
+            email="testuser@example.com", password="testpassword", site=self.site
+        )
+
+        customer = Customer.objects.create(
+            user=user,
+            site=self.site,
+            language_id=1,
+            gender=CustomerGender.MALE,
+        )
+
+        address = CustomerAddress.objects.create(
+            customer=customer,
+            address_type=CustomerAddressType.MAIN,
+            address_line1="123 Main St",
+            street_number="123",
+            city="Test City",
+            state="TS",
+            postal_code="12345",
+            country_code="us",
+        )
+
+        result = customer.get_address_by_type(CustomerAddressType.MAIN)
+        self.assertEqual(result, address)
+
+        result_none = customer.get_address_by_type("other")
+        self.assertIsNone(result_none)
+
+
+class CustomerAddressModelTest(TestCase):
+    fixtures = ["apps/language/fixtures/initial.json"]
+
+    def setUp(self):
+        self.site = Site.objects.get_current()
+        self.user = User.objects.create_user(
+            email="testuser@example.com", password="testpassword", site=self.site
+        )
+        self.customer = Customer.objects.create(
+            user=self.user,
+            site=self.site,
+            language_id=1,
+            gender=CustomerGender.MALE,
+        )
+
+    def test_customer_address_str(self):
+        from apps.customer.enums import CustomerAddressType
+        from apps.customer.models import CustomerAddress
+
+        address = CustomerAddress.objects.create(
+            customer=self.customer,
+            address_type=CustomerAddressType.MAIN,
+            address_line1="123 Main St",
+            street_number="456",
+            city="Test City",
+            state="TS",
+            postal_code="12345",
+            country_code="us",
+        )
+
+        self.assertEqual(str(address), "123 Main St, 456 - Test City/TS")
+
+    def test_customer_address_clean_country_code_uppercase(self):
+        from apps.customer.enums import CustomerAddressType
+        from apps.customer.models import CustomerAddress
+
+        address = CustomerAddress.objects.create(
+            customer=self.customer,
+            address_type=CustomerAddressType.MAIN,
+            address_line1="123 Main St",
+            street_number="456",
+            city="Test City",
+            state="TS",
+            postal_code="12345",
+            country_code="us",
+        )
+
+        self.assertEqual(address.country_code, "US")

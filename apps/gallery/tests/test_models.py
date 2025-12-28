@@ -108,6 +108,46 @@ class GalleryModelTest(TestCase):
 
         self.assertEqual(gallery.tag, "test-gallery")
 
+    def test_gallery_get_main_photo_url_with_request(self):
+        from django.test import RequestFactory
+
+        language = Language.objects.get(code_iso_language="en-us")
+
+        gallery = Gallery.objects.create(
+            title="Test Gallery",
+            language=language,
+            tag="test-gallery",
+            active=True,
+        )
+
+        request = RequestFactory().get("/")
+        photo_url = gallery.get_main_photo_url(request=request)
+        self.assertTrue(photo_url.startswith("http"))
+
+    def test_gallery_photos_count_method(self):
+        language = Language.objects.get(code_iso_language="en-us")
+
+        gallery = Gallery.objects.create(
+            title="Test Gallery",
+            language=language,
+            tag="test-gallery",
+            active=True,
+        )
+
+        GalleryPhoto.objects.create(
+            gallery=gallery,
+            caption="Photo 1",
+            main=True,
+        )
+
+        GalleryPhoto.objects.create(
+            gallery=gallery,
+            caption="Photo 2",
+            main=False,
+        )
+
+        self.assertEqual(gallery.photos_count(), 2)
+
 
 class GalleryPhotoModelTest(TestCase):
     fixtures = ["apps/language/fixtures/initial.json"]

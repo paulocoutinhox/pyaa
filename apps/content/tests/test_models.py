@@ -1,13 +1,17 @@
+from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 
 from apps.content.models import Content, ContentCategory
+from apps.language.models import Language
 
 
 class ContentModelTest(TestCase):
     fixtures = ["apps/content/fixtures/initial.json"]
 
     def setUp(self):
+        self.site = Site.objects.get_current()
+        self.language = Language.objects.first()
         self.category = ContentCategory.objects.create(
             name="Test Category", tag="test-category"
         )
@@ -82,6 +86,17 @@ class ContentModelTest(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             Content.objects.get(tag="nonexistent-tag")
 
+    def test_content_auto_tag_generation(self):
+        content = Content.objects.create(
+            title="My Test Content",
+            content="<p>Test</p>",
+            category=self.category,
+            site=self.site,
+            language=self.language,
+            active=True,
+        )
+        self.assertEqual(content.tag, "my-test-content")
+
 
 class ContentCategoryModelTest(TestCase):
     def test_content_category_creation(self):
@@ -110,3 +125,7 @@ class ContentCategoryModelTest(TestCase):
     def test_get_nonexistent_category(self):
         with self.assertRaises(ObjectDoesNotExist):
             ContentCategory.objects.get(name="Nonexistent Category")
+
+    def test_content_category_auto_tag_generation(self):
+        category = ContentCategory.objects.create(name="My Test Category")
+        self.assertEqual(category.tag, "my-test-category")

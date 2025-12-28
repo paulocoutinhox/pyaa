@@ -1,4 +1,4 @@
-# Django #
+# Django
 *.log
 *.pot
 *.pyc
@@ -12,10 +12,10 @@ __pycache__
 # Static files
 /apps/web/static/css/*.css
 
-# Backup files #
+# Backup files
 *.bak
 
-# If you are using PyCharm #
+# If you are using PyCharm
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
@@ -30,11 +30,11 @@ __pycache__
 .idea/**/libraries
 *.iws /out/
 
-# Python #
+# Python
 *.py[cod]
 *$py.class
 
-# Distribution / packaging
+# Distribution packaging
 .Python build/
 develop-eggs/
 dist/
@@ -53,11 +53,11 @@ wheels/
 *.manifest
 *.spec
 
-# Installer logs
+# Installer logs files
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Unit test coverage reports
 htmlcov/
 .tox/
 .coverage
@@ -69,13 +69,13 @@ coverage.xml
 *.cover
 .hypothesis/
 
-# Jupyter Notebook
+# Jupyter notebooks
 .ipynb_checkpoints
 
-# pyenv
+# Pyenv
 .python-version
 
-# celery
+# Celery
 celerybeat-schedule.*
 
 # SageMath parsed files
@@ -90,30 +90,30 @@ ENV/
 env.bak/
 venv.bak/
 
-# mkdocs documentation
+# Mkdocs documentation
 /site
 
-# mypy
+# Mypy
 .mypy_cache/
 
-# Sublime Text #
+# Sublime Text
 *.tmlanguage.cache
 *.tmPreferences.cache
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
 
-# sftp configuration file
+# SFTP configuration file
 sftp-config.json
 
-# Package control specific files Package
+# Package control specific files package
 Control.last-run
 Control.ca-list
 Control.ca-bundle
 Control.system-ca-bundle
 GitHub.sublime-settings
 
-# Visual Studio Code #
+# Visual Studio Code
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -124,3 +124,6 @@ GitHub.sublime-settings
 # Node
 package-lock.json
 node_modules
+
+# Claude
+.claude

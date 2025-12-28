@@ -270,3 +270,11 @@ class BannerHelperTest(TestCase):
         # no access record should be created
         access_count = BannerAccess.objects.filter(banner=self.banner_home).count()
         self.assertEqual(access_count, 0)
+
+    def test_get_banner_by_token_from_cache(self):
+        cache.clear()
+        first_banner = BannerHelper.get_banner_by_token(self.banner_home.token)
+        self.assertEqual(first_banner, self.banner_home)
+
+        cached_banner = BannerHelper.get_banner_by_token(self.banner_home.token)
+        self.assertEqual(cached_banner, self.banner_home)
