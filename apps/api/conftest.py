@@ -1,11 +1,5 @@
-import os
-
 import pytest
 from django.conf import settings
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pyaa.settings.dev")
-
-from django.core.wsgi import get_wsgi_application
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.testclient import TestClient
@@ -16,16 +10,18 @@ from pyaa.fastapi.routes import router
 
 @pytest.fixture(scope="session")
 def app():
+    from django.core.wsgi import get_wsgi_application
+
     app = FastAPI(
         title=settings.PROJECT_NAME,
         debug=settings.DEBUG,
     )
 
     app.include_router(router, prefix="/api")
-
     cors.setup(app)
 
-    app.mount("/", WSGIMiddleware(get_wsgi_application()))
+    django_app = get_wsgi_application()
+    app.mount("/", WSGIMiddleware(django_app))
 
     return app
 

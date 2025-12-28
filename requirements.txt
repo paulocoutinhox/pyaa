@@ -59,6 +59,7 @@ python-multipart==0.0.21
 throttled==0.2.1
 pyjwt==2.10.1
 pytest==9.0.2
+email-validator==2.3.0
 
 # server
 uvicorn==0.40.0
