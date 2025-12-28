@@ -175,3 +175,59 @@ class UserManagerTest(TestCase):
         )
 
         self.assertEqual(str(user), "Test User - testuser@example.com - Test Site")
+
+    def test_str_representation_email_only(self):
+        user = User.objects.create_user(
+            email="testuser@example.com",
+            password="testpassword",
+            site=self.site,
+        )
+        self.assertEqual(str(user), "testuser@example.com - Test Site")
+
+    def test_str_representation_no_email_or_name_with_site(self):
+        user = User.objects.create_user(
+            cpf="52998224725",
+            password="testpassword",
+            site=self.site,
+        )
+        self.assertEqual(str(user), "Test Site")
+
+    def test_has_customer_with_customer(self):
+        from apps.customer.models import Customer
+        from apps.language.models import Language
+
+        user = User.objects.create_user(
+            email="testuser@example.com", password="testpassword", site=self.site
+        )
+        language = Language.objects.get(id=1)
+        Customer.objects.create(user=user, language=language, gender="male")
+
+        self.assertTrue(user.has_customer())
+
+    def test_has_customer_not_authenticated(self):
+        user = User.objects.create_user(
+            email="testuser@example.com", password="testpassword", site=self.site
+        )
+        with patch.object(User, "is_authenticated", False):
+            self.assertFalse(user.has_customer())
+
+    def test_clean_validation_no_login_provider(self):
+        user = User(site=self.site)
+        user.set_password("testpassword")
+
+        with self.assertRaises(ValidationError) as context:
+            user.clean()
+
+        error = context.exception
+        self.assertEqual(error.message, "At least one login method is required.")
+
+    def test_create_superuser_no_login_provider(self):
+        with self.assertRaises(ValidationError) as context:
+            User.objects.create_superuser(
+                username="superuser",
+                password="password123",
+                site=self.site,
+            )
+
+        error = context.exception
+        self.assertEqual(error.message, "At least one login method is required.")
