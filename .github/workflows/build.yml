@@ -47,7 +47,7 @@ jobs:
         run: make test
 
       - name: Test Coverage
-        run: make test-coverage-ci
+        run: make test-all-coverage-ci
 
       - name: Upload coverage data
         uses: codecov/codecov-action@v4
