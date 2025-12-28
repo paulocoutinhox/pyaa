@@ -24,6 +24,10 @@ help:
 	@echo "- test-coverage"
 	@echo "- test-coverage-ci"
 	@echo ""
+	@echo "- test-api"
+	@echo "- test-api-coverage"
+	@echo "- test-api-coverage-ci"
+	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-rebuild"
 	@echo "- docker-run"
@@ -97,6 +101,19 @@ test-coverage:
 
 test-coverage-ci:
 	coverage run --source='.' manage.py test
+	coverage report
+	coverage xml
+
+test-api:
+	pytest apps/api
+
+test-api-coverage:
+	coverage run -m pytest apps/api
+	coverage report
+	coverage html
+
+test-api-coverage-ci:
+	coverage run -m pytest apps/api
 	coverage report
 	coverage xml
 
