@@ -42,7 +42,7 @@ Async is **optional and strategic**, not mandatory. Use it where it provides cle
 ```python
 @router.get("/example")
 async def example_async(request):
-    # Async implementation
+    # async implementation
     ...
 ```
 
@@ -75,35 +75,35 @@ async def list_banners(request, zone: str, language: str = None, site: int = Non
 ### Correct Usage
 
 ```python
-# Single object
+# single object
 banner = await Banner.objects.aget(token=token)
 
-# Filter and get all
+# filter and get all
 banners = await Banner.objects.filter(active=True).aall()
 
-# Check existence
+# check existence
 exists = await Banner.objects.filter(token=token).aexists()
 
-# Count
+# count
 count = await Banner.objects.filter(active=True).acount()
 
-# Update
+# update
 await Banner.objects.filter(id=banner_id).aupdate(views=F('views') + 1)
 
-# Delete
+# delete
 await Banner.objects.filter(id=banner_id).adelete()
 
-# Async comprehension
+# async comprehension
 banners = [b async for b in Banner.objects.filter(zone=zone)]
 ```
 
 ### Incorrect Usage
 
 ```python
-# ❌ This blocks the event loop
+# ❌ this blocks the event loop
 banner = Banner.objects.get(token=token)
 
-# ❌ Synchronous iteration
+# ❌ synchronous iteration
 for banner in Banner.objects.all():
     ...
 ```
@@ -134,12 +134,12 @@ Use `sync_to_async` to call synchronous functions from async code.
 ```python
 from asgiref.sync import sync_to_async
 
-# Convert a synchronous function
+# convert a synchronous function
 @sync_to_async
 def get_banner_with_relations(token):
     return Banner.objects.select_related('site', 'language').get(token=token)
 
-# Use in async route
+# use in async route
 @router.get("/banner/{token}")
 async def get_banner(request, token: str):
     banner = await get_banner_with_relations(token)
@@ -149,7 +149,7 @@ async def get_banner(request, token: str):
 #### Inline Usage
 
 ```python
-# Convert on-the-fly
+# convert on-the-fly
 async def process_banner(token):
     banner = await sync_to_async(Banner.objects.get)(token=token)
     return banner
@@ -162,7 +162,7 @@ By default, `sync_to_async` runs in a thread pool. Use `thread_sensitive=True` f
 ```python
 @sync_to_async(thread_sensitive=True)
 def complex_database_operation():
-    # Multiple related queries
+    # multiple related queries
     banner = Banner.objects.select_related('site').prefetch_related('tags').get(id=1)
     # ... more operations
     return banner
@@ -176,7 +176,7 @@ class BannerHelper:
     @staticmethod
     @sync_to_async
     def get_banner_with_complex_query(filters):
-        """Complex query not available in async ORM."""
+        # complex query not available in async ORM
         return Banner.objects.filter(
             **filters
         ).select_related(
@@ -198,7 +198,7 @@ from asgiref.sync import sync_to_async
 
 @sync_to_async
 def get_banner_statistics(zone):
-    """Get banner statistics with aggregation (not yet async)."""
+    # get banner statistics with aggregation (not yet async)
     return Banner.objects.filter(zone=zone).aggregate(
         total_views=Sum('views'),
         total_clicks=Sum('clicks'),
@@ -217,7 +217,7 @@ async def banner_stats(request, zone: str):
 ```python
 @sync_to_async
 def get_banners_with_relations(zone):
-    """Get banners with optimized queries."""
+    # get banners with optimized queries
     return list(
         Banner.objects.filter(zone=zone)
         .select_related('site', 'language')
@@ -238,14 +238,14 @@ from django.db import transaction
 @sync_to_async
 @transaction.atomic
 def create_banner_with_relations(data):
-    """Create banner with related objects in transaction."""
+    # create banner with related objects in transaction
     banner = Banner.objects.create(
         zone=data['zone'],
         title=data['title'],
         active=True
     )
 
-    # Create related objects
+    # create related objects
     for tag_name in data.get('tags', []):
         tag, _ = Tag.objects.get_or_create(name=tag_name)
         banner.tags.add(tag)
@@ -275,7 +275,7 @@ Use `async_to_sync` to call asynchronous functions from synchronous code.
 ```python
 from asgiref.sync import async_to_sync
 
-# Call async function from sync context
+# call async function from sync context
 def sync_view(request):
     banners = async_to_sync(BannerHelper.get_banners_async)("home")
     return render(request, 'banners.html', {'banners': banners})
@@ -291,7 +291,7 @@ class Command(BaseCommand):
     help = 'Process banners asynchronously'
 
     def handle(self, *args, **options):
-        # Call async function from sync management command
+        # call async function from sync management command
         result = async_to_sync(self.process_banners_async)()
         self.stdout.write(f"Processed {result} banners")
 
@@ -299,7 +299,7 @@ class Command(BaseCommand):
         banners = await Banner.objects.filter(active=True).aall()
         count = 0
         async for banner in Banner.objects.filter(active=True):
-            # Process each banner
+            # process each banner
             await self.update_banner_stats(banner)
             count += 1
         return count
@@ -320,11 +320,11 @@ from asgiref.sync import async_to_sync
 @receiver(post_save, sender=Banner)
 def banner_saved(sender, instance, created, **kwargs):
     if created:
-        # Call async function from signal
+        # call async function from signal
         async_to_sync(notify_new_banner)(instance)
 
 async def notify_new_banner(banner):
-    # Send async notification
+    # send async notification
     async with httpx.AsyncClient() as client:
         await client.post(
             'https://api.example.com/notify',
@@ -341,13 +341,13 @@ from asgiref.sync import async_to_sync
 class BannerTestCase(TestCase):
 
     def test_async_helper_from_sync_test(self):
-        # Setup
+        # setup
         Banner.objects.create(zone="home", active=True)
 
-        # Call async function in sync test
+        # call async function in sync test
         banners = async_to_sync(BannerHelper.get_banners_async)("home")
 
-        # Assert
+        # assert
         self.assertEqual(len(banners), 1)
 ```
 
@@ -362,16 +362,16 @@ class BannerTestCase(TestCase):
 #### Thread Safety
 
 ```python
-# For database operations, use thread_sensitive=True
+# for database operations, use thread_sensitive=True
 @sync_to_async(thread_sensitive=True)
 def database_operation():
-    # Database queries here
+    # database queries here
     pass
 
-# For CPU-bound tasks, use thread_sensitive=False (default)
+# for cpu-bound tasks, use thread_sensitive=False (default)
 @sync_to_async(thread_sensitive=False)
 def cpu_intensive_task():
-    # Computation here
+    # computation here
     pass
 ```
 
@@ -380,13 +380,13 @@ def cpu_intensive_task():
 Avoid deeply nested async/sync conversions:
 
 ```python
-# ❌ Bad - Nested conversions
+# ❌ bad - nested conversions
 async def bad_example():
     result = await sync_to_async(
         lambda: async_to_sync(another_async_function)()
     )()
 
-# ✔ Good - Direct async chain
+# ✔ good - direct async chain
 async def good_example():
     result = await another_async_function()
 ```
@@ -418,12 +418,12 @@ Use this matrix to decide which approach to use:
 
 class BannerHelper:
 
-    # Synchronous (existing/legacy)
+    # synchronous (existing/legacy)
     @staticmethod
     def get_banner_by_token(token):
         return Banner.objects.get(token=token)
 
-    # Asynchronous (new)
+    # asynchronous (new)
     @staticmethod
     async def get_banner_by_token_async(token):
         return await Banner.objects.aget(token=token)
@@ -436,17 +436,7 @@ class BannerHelper:
 
     @staticmethod
     async def get_banners_async(zone, language=None, site_id=None):
-        """
-        Retrieve banners asynchronously based on zone, language, and site.
-
-        Args:
-            zone: Banner zone identifier
-            language: Optional language filter
-            site_id: Optional site identifier
-
-        Returns:
-            List of Banner objects
-        """
+        # retrieve banners asynchronously based on zone, language, and site
         qs = Banner.objects.filter(zone=zone, active=True)
 
         if language:
@@ -459,27 +449,14 @@ class BannerHelper:
 
     @staticmethod
     async def increment_banner_views_async(token):
-        """
-        Increment banner view count asynchronously.
-
-        Args:
-            token: Banner token identifier
-        """
+        # increment banner view count asynchronously
         await Banner.objects.filter(token=token).aupdate(
             views=F('views') + 1
         )
 
     @staticmethod
     async def get_active_banners_count_async(zone):
-        """
-        Count active banners in a zone asynchronously.
-
-        Args:
-            zone: Banner zone identifier
-
-        Returns:
-            Integer count of active banners
-        """
+        # count active banners in a zone asynchronously
         return await Banner.objects.filter(
             zone=zone,
             active=True
@@ -493,12 +470,12 @@ class BannerHelper:
 Avoid heavy logic inside route functions:
 
 ```python
-# ✔ Correct - Logic in helper
+# ✔ correct - logic in helper
 @router.get("/banners")
 async def list_banners(request, zone: str):
     return await BannerHelper.get_banners_async(zone=zone)
 
-# ❌ Incorrect - Logic in route
+# ❌ incorrect - logic in route
 @router.get("/banners")
 async def list_banners(request, zone: str):
     qs = Banner.objects.filter(zone=zone, active=True)
@@ -528,7 +505,7 @@ class ExternalAPIHelper:
 
     @staticmethod
     async def fetch_data_async(url):
-        """Fetch data from external API asynchronously."""
+        # fetch data from external API asynchronously
         async with httpx.AsyncClient() as client:
             response = await client.get(url)
             return response.json()
@@ -572,13 +549,13 @@ from asgiref.sync import async_to_sync
 class BannerAsyncTestCase(TransactionTestCase):
 
     def test_get_banners_async(self):
-        # Setup
+        # setup
         Banner.objects.create(zone="home", active=True)
 
-        # Execute async function in sync test
+        # execute async function in sync test
         banners = async_to_sync(BannerHelper.get_banners_async)("home")
 
-        # Assert
+        # assert
         self.assertEqual(len(banners), 1)
 ```
 
@@ -590,13 +567,13 @@ from django.test import TransactionTestCase
 class BannerAsyncTestCase(TransactionTestCase):
 
     async def test_get_banners_async(self):
-        # Setup
+        # setup
         await Banner.objects.acreate(zone="home", active=True)
 
-        # Execute
+        # execute
         banners = await BannerHelper.get_banners_async("home")
 
-        # Assert
+        # assert
         self.assertEqual(len(banners), 1)
 ```
 
@@ -622,7 +599,7 @@ async def list_banners_paginated(request, limit: int = 10, offset: int = 0):
 import asyncio
 
 async def get_dashboard_data(user_id):
-    # Run multiple queries concurrently
+    # run multiple queries concurrently
     banners, logs, stats = await asyncio.gather(
         BannerHelper.get_user_banners_async(user_id),
         SystemLogHelper.get_recent_logs_async(user_id),
@@ -646,7 +623,7 @@ from asgiref.sync import sync_to_async
 @transaction.atomic
 def create_banner_with_related_data(data):
     banner = Banner.objects.create(**data)
-    # Create related objects
+    # create related objects
     return banner
 
 @router.post("/banners")
@@ -675,17 +652,17 @@ Before creating an async route, verify:
 **Scenario 1: Simple async route with native async ORM**
 
 ```python
-# ✔ All checks pass
+# ✔ all checks pass
 @router.get("/banners")
 async def list_banners(request, zone: str):
-    # Uses async ORM - no sync_to_async needed
+    # uses async orm - no sync_to_async needed
     return await BannerHelper.get_banners_async(zone=zone)
 ```
 
 **Scenario 2: Async route needing select_related**
 
 ```python
-# ✔ Correct - Uses sync_to_async decorator
+# ✔ correct - uses sync_to_async decorator
 from asgiref.sync import sync_to_async
 
 @sync_to_async
@@ -703,12 +680,12 @@ async def list_banners(request, zone: str):
 **Scenario 2.1: Async route with inline sync_to_async**
 
 ```python
-# ✔ Correct - Uses sync_to_async inline
+# ✔ correct - uses sync_to_async inline
 from asgiref.sync import sync_to_async
 
 @router.get("/banners/{zone}")
 async def list_banners(request, zone: str):
-    # Inline usage - wraps the sync function call
+    # inline usage - wraps the sync function call
     banners = await sync_to_async(
         lambda: list(
             Banner.objects.filter(zone=zone)
@@ -722,7 +699,7 @@ async def list_banners(request, zone: str):
 **Scenario 3: Async route with aggregations**
 
 ```python
-# ✔ Correct - Wraps aggregation with sync_to_async
+# ✔ correct - wraps aggregation with sync_to_async
 from django.db.models import Count, Sum
 from asgiref.sync import sync_to_async
 
@@ -746,9 +723,9 @@ async def banner_stats(request, zone: str):
 Always measure performance improvements:
 
 ```python
-# Before (sync): 500ms average response time
-# After (async): 150ms average response time
-# Improvement: 70% reduction
+# before (sync): 500ms average response time
+# after (async): 150ms average response time
+# improvement: 70% reduction
 ```
 
 ### Monitor Event Loop
@@ -815,41 +792,41 @@ from apps.myapp.schemas import MySchema
 
 router = Router()
 
-# Helper functions
+# helper functions
 class MyHelper:
 
     @staticmethod
     async def get_items_async(filters):
-        """Simple async query."""
+        # simple async query
         qs = MyModel.objects.filter(**filters)
         return [item async for item in qs]
 
     @staticmethod
     @sync_to_async
     def get_items_with_relations(filters):
-        """Complex query requiring sync_to_async."""
+        # complex query requiring sync_to_async
         return list(
             MyModel.objects.filter(**filters)
             .select_related('related_model')
             .prefetch_related('many_to_many')
         )
 
-# Routes
+# routes
 @router.get("/items", response=list[MySchema])
 async def list_items(request, status: str = None):
-    """List items with optional status filter."""
+    # list items with optional status filter
     filters = {}
     if status:
         filters['status'] = status
 
-    # Use simple async query
+    # use simple async query
     items = await MyHelper.get_items_async(filters)
     return items
 
 @router.get("/items-detailed", response=list[MySchema])
 async def list_items_detailed(request):
-    """List items with related data."""
-    # Use sync_to_async for complex query
+    # list items with related data
+    # use sync_to_async for complex query
     items = await MyHelper.get_items_with_relations({})
     return items
 ```
