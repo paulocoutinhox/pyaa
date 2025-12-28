@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo 'Running migrations...'
 python3 manage.py migrate
