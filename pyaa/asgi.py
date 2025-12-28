@@ -18,6 +18,7 @@ apps.populate(settings.INSTALLED_APPS)
 
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from pyaa.fastapi import cors, rate_limiter
 from pyaa.fastapi.routes import router
@@ -32,14 +33,32 @@ def get_application() -> FastAPI:
     # fastapi api
     app.include_router(router, prefix="/api")
 
-    # rate limiter
     rate_limiter.setup(app)
-
-    # cors
     cors.setup(app)
 
-    # django handles root
-    app.mount("/", WSGIMiddleware(get_wsgi_application()))
+    # serve static/media
+    if not settings.DEBUG:
+        # static files
+        if settings.STATIC_URL.startswith("/"):
+            app.mount(
+                settings.STATIC_URL,
+                StaticFiles(directory=settings.STATIC_ROOT),
+                name="static",
+            )
+
+        # media files
+        if settings.MEDIA_URL.startswith("/"):
+            app.mount(
+                settings.MEDIA_URL,
+                StaticFiles(directory=settings.MEDIA_ROOT),
+                name="media",
+            )
+
+    # django handles everything else
+    app.mount(
+        "/",
+        WSGIMiddleware(get_wsgi_application()),
+    )
 
     return app
 

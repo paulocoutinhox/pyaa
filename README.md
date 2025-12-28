@@ -7,7 +7,7 @@
     <br>
 </p>
 
-PyAA is a powerful, open-source Python + Django template application designed to build robust web applications with all the essential features pre-built. Whether you need a site, an e-commerce platform, or a SaaS application, PyAA has you covered – for free!
+PyAA is a powerful, open-source Python + Django + FastAPI template application designed to build robust web applications with all the essential features pre-built. Whether you need a site, an e-commerce platform, or a SaaS application, PyAA has you covered – for free!
 
 [![Build](https://github.com/paulocoutinhox/pyaa/actions/workflows/build.yml/badge.svg)](https://github.com/paulocoutinhox/pyaa/actions/workflows/build.yml)
 
@@ -15,6 +15,7 @@ PyAA is a powerful, open-source Python + Django template application designed to
 
 ## 🚀 Features
 
+- **Web Framework:** - Built with Django for the web application and FastAPI for high-performance REST APIs, WebSocket support, and modern async capabilities.
 - **User Management** – Handle user registration, login, profile management, account recovery, configurable account activation, and more.
 - **Subscription Management** – Manage user subscriptions by credits or expiration date.
 - **Credit System** – Support for selling and managing user credits.

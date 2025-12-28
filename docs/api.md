@@ -51,6 +51,25 @@ router.include_router(language_router, prefix="/language", tags=["Language"])
 
 The main FastAPI app is mounted in `/pyaa/asgi.py` and integrated with Django via `WSGIMiddleware`.
 
+### Static and Media Files in Production
+
+In production (when `DEBUG=False`), FastAPI automatically serves static and media files if their URLs start with `/`:
+
+**Configuration:**
+- Static files are served from `STATIC_ROOT` at `STATIC_URL` path
+- Media files are served from `MEDIA_ROOT` at `MEDIA_URL` path
+- Only activated in production mode (`not DEBUG`)
+- Only when URLs start with `/` (configurable behavior)
+- FastAPI mounts these paths before Django's WSGIMiddleware catchall
+
+**Example settings:**
+```python
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+```
+
 ## Creating New API Endpoints
 
 ### 1. Define Pydantic Schemas
