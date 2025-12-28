@@ -37,7 +37,8 @@ PyAA is a powerful, open-source Python + Django template application designed to
 - **Background Queue** – Powered by DjangoQ with worker support for handling asynchronous tasks.
 - **Status Color System** – Visual indicators for various statuses throughout the application.
 - **Cached Paginator** – Optimized pagination for better performance.
-- **Docker Support** – Docker configurations for web application and cron jobs.
+- **Docker Support** – Docker configurations for web application (sync/async), workers, and cron jobs.
+- **ASGI Support** – Async server deployment with Gunicorn + Uvicorn for better performance.
 - **Test Coverage** – Over 50% test coverage, ensuring reliability and robustness.
 - **Versatile Use** – Perfect for building websites, e-commerce platforms, or SaaS products.
 
@@ -57,6 +58,7 @@ make run
 ## 📚 Documentation
 
 - [API](docs/api.md)
+- [Async](docs/async.md)
 - [Database](docs/database.md)
 - [Docker](docs/docker.md)
 - [Ngrok](docs/ngrok.md)
@@ -77,4 +79,4 @@ make run
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2024-2025, Paulo Coutinho
+Copyright (c) 2024-2026, Paulo Coutinho

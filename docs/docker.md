@@ -1,6 +1,11 @@
 # Docker
 
-This project includes a production-ready Dockerfile.
+This project includes production-ready Dockerfiles for both synchronous (uWSGI) and asynchronous (Gunicorn + Uvicorn) deployments.
+
+## Available Dockerfiles
+
+- **Dockerfile.web** - Synchronous server using uWSGI (WSGI)
+- **Dockerfile.async.web** - Asynchronous server using Gunicorn + Uvicorn workers (ASGI) - **Recommended for production**
 
 You need to set up the project files before using Docker with the following command:
 
@@ -8,7 +13,9 @@ You need to set up the project files before using Docker with the following comm
 make setup
 ```
 
-Next, configure Docker by executing the following commands:
+## Synchronous Deployment (uWSGI)
+
+Configure Docker with the following commands:
 
 ```
 make docker-build
@@ -22,11 +29,34 @@ make docker-build
 make docker-run-prod
 ```
 
-Finally, set up the fixtures and create the Super User with the following commands:
+Finally, set up the fixtures and create the Super User:
 
 ```
 docker exec -it pyaa make fixtures
 docker exec -it pyaa make create-su
+```
+
+## Asynchronous Deployment (Gunicorn + Uvicorn) - **Recommended**
+
+The async version provides better performance and is recommended for production use:
+
+```
+make docker-build-async
+make docker-run-async-prod
+```
+
+Finally, set up the fixtures and create the Super User:
+
+```
+docker exec -it pyaa-async make fixtures
+docker exec -it pyaa-async make create-su
+```
+
+For development:
+
+```
+make docker-build-async
+make docker-run-async
 ```
 
 ## Docker Volumes
@@ -51,7 +81,7 @@ docker run --rm \
 
 ## Docker Compose
 
-You can use this configuration when use Docker Compose:
+You can use this configuration with Docker Compose (using async version - recommended):
 
 ```yml
 services:
@@ -65,7 +95,7 @@ services:
   pyaa:
     build:
       context: pyaa
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.async.web
     restart: always
     depends_on:
       - mysql
@@ -83,7 +113,7 @@ services:
   pyaa-worker:
     build:
       context: pyaa
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.async.web
     restart: always
     depends_on:
       - pyaa
@@ -127,3 +157,5 @@ services:
     volumes:
       - ./mysql-data:/var/lib/mysql
 ```
+
+**Note:** For synchronous deployment, replace `Dockerfile.async.web` with `Dockerfile.web` in the configuration above.

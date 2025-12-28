@@ -29,6 +29,11 @@ help:
 	@echo "- docker-run"
 	@echo "- docker-run-prod"
 	@echo ""
+	@echo "- docker-build-async"
+	@echo "- docker-rebuild-async"
+	@echo "- docker-run-async"
+	@echo "- docker-run-async-prod"
+	@echo ""
 	@echo "- docker-cron-build"
 	@echo "- docker-cron-run"
 	@echo "- docker-cron-run-prod"
@@ -73,6 +78,9 @@ create-su:
 run:
 	python3 manage.py runserver "0.0.0.0:8000"
 
+run-async:
+	uvicorn pyaa.asgi:application --reload --host 0.0.0.0 --port 8000
+
 run-worker:
 	python3 manage.py qcluster
 
@@ -93,10 +101,10 @@ test-coverage-ci:
 	coverage xml
 
 docker-build:
-	docker build -t pyaa .
+	docker build -t pyaa -f Dockerfile.web .
 
 docker-rebuild:
-	docker build --no-cache -t pyaa .
+	docker build --no-cache -t pyaa -f Dockerfile.web .
 
 docker-run:
 	@echo "Running..."
@@ -118,6 +126,33 @@ docker-run-prod:
 		-v ${PWD}/static:/app/static \
 		-e DJANGO_SETTINGS_MODULE="pyaa.settings.prod" \
 		-p 8000:8000 pyaa
+
+docker-build-async:
+	docker build -t pyaa-async -f Dockerfile.async.web .
+
+docker-rebuild-async:
+	docker build --no-cache -t pyaa-async -f Dockerfile.async.web .
+
+docker-run-async:
+	@echo "Running async server..."
+	@docker run --rm \
+		-v ${PWD}/logs:/app/logs \
+		-v ${PWD}/cache:/app/cache \
+		-v ${PWD}/db:/app/db \
+		-v ${PWD}/media:/app/media \
+		-v ${PWD}/static:/app/static \
+		-p 8000:8000 pyaa-async
+
+docker-run-async-prod:
+	@echo "Running async server in production..."
+	@docker run --rm \
+		-v ${PWD}/logs:/app/logs \
+		-v ${PWD}/cache:/app/cache \
+		-v ${PWD}/db:/app/db \
+		-v ${PWD}/media:/app/media \
+		-v ${PWD}/static:/app/static \
+		-e DJANGO_SETTINGS_MODULE="pyaa.settings.prod" \
+		-p 8000:8000 pyaa-async
 
 docker-cron-build:
 	docker build -t pyaa-cron -f Dockerfile.cron .

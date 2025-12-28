@@ -58,3 +58,6 @@ matplotlib==3.10.8
 
 # pdf
 weasyprint==67.0
+
+# server
+uvicorn==0.40.0
