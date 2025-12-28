@@ -28,6 +28,8 @@ help:
 	@echo "- test-api-coverage"
 	@echo "- test-api-coverage-ci"
 	@echo ""
+	@echo "- test-all-coverage-ci"
+	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-rebuild"
 	@echo "- docker-run"
@@ -114,6 +116,13 @@ test-api-coverage:
 
 test-api-coverage-ci:
 	coverage run -m pytest apps/api
+	coverage report
+	coverage xml
+
+test-all-coverage-ci:
+	coverage erase
+	coverage run --source='.' manage.py test
+	coverage run --append -m pytest apps/api
 	coverage report
 	coverage xml
 
