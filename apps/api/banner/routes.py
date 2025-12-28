@@ -1,3 +1,4 @@
+from asgiref.sync import sync_to_async
 from fastapi import APIRouter, HTTPException, status
 
 from apps.api.banner.schemas import BannerAccessResponseSchema, BannerSchema
@@ -8,8 +9,12 @@ router = APIRouter()
 
 
 @router.get("/", response_model=list[BannerSchema])
-def list_banners(zone: str, language: str = None, site: int = None):
-    banners = BannerHelper.get_banners(zone=zone, language=language, site_id=site)
+async def list_banners(zone: str, language: str = None, site: int = None):
+    banners = await sync_to_async(
+        lambda: list(
+            BannerHelper.get_banners(zone=zone, language=language, site_id=site)
+        )
+    )()
     return [
         BannerSchema(
             title=banner.title,
@@ -27,10 +32,10 @@ def list_banners(zone: str, language: str = None, site: int = None):
 
 
 @router.get("/access/{token}/", response_model=BannerAccessResponseSchema)
-def track_banner_access(token: str, type: str):
+async def track_banner_access(token: str, type: str):
     from apps.banner.models import BannerAccess
 
-    banner = BannerHelper.get_banner_by_token(token)
+    banner = await sync_to_async(BannerHelper.get_banner_by_token)(token)
     if not banner:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Banner not found"
@@ -45,7 +50,7 @@ def track_banner_access(token: str, type: str):
             status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid access type"
         )
 
-    BannerAccess.objects.create(
+    await BannerAccess.objects.acreate(
         banner=banner, access_type=access_type, ip_address="127.0.0.1", country_code=""
     )
 

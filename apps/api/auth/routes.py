@@ -1,3 +1,4 @@
+from asgiref.sync import sync_to_async
 from django.contrib.auth import authenticate, get_user_model
 from fastapi import APIRouter, HTTPException, status
 
@@ -21,8 +22,10 @@ router = APIRouter()
 @router.post(
     "/pair", response_model=TokenObtainPairResponse, status_code=status.HTTP_200_OK
 )
-def token_obtain_pair(data: TokenObtainPairRequest):
-    user = authenticate(username=data.login, password=data.password)
+async def token_obtain_pair(data: TokenObtainPairRequest):
+    user = await sync_to_async(authenticate)(
+        username=data.login, password=data.password
+    )
 
     if user is None:
         raise HTTPException(
@@ -39,11 +42,11 @@ def token_obtain_pair(data: TokenObtainPairRequest):
 @router.post(
     "/refresh", response_model=TokenRefreshResponse, status_code=status.HTTP_200_OK
 )
-def token_refresh(data: TokenRefreshRequest):
+async def token_refresh(data: TokenRefreshRequest):
     try:
         payload = verify_refresh_token(data.refresh)
         user_id = payload.get("user_id")
-        user = User.objects.get(id=user_id)
+        user = await User.objects.aget(id=user_id)
         access_token = create_access_token(user)
         return TokenRefreshResponse(access=access_token)
     except (ValueError, User.DoesNotExist):

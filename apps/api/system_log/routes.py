@@ -1,5 +1,6 @@
 from typing import Annotated
 
+from asgiref.sync import sync_to_async
 from django.conf import settings
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -13,7 +14,7 @@ security = HTTPBearer(auto_error=False)
 
 
 @router.post("/create/", response_model=SystemLogResponseSchema)
-def create_system_log(
+async def create_system_log(
     data: SystemLogCreateSchema,
     credentials: Annotated[
         HTTPAuthorizationCredentials | None, Depends(security)
@@ -29,14 +30,18 @@ def create_system_log(
         # try to get the customer if authenticated
         try:
             from apps.api.auth.dependencies import get_current_user
+            from apps.customer.models import Customer
 
-            user = get_current_user(credentials)
-            if hasattr(user, "customer"):
-                customer = user.customer
+            user = await sync_to_async(get_current_user)(credentials)
+            # try to get customer with select_related
+            try:
+                customer = await Customer.objects.select_related("user").aget(user=user)
+            except Customer.DoesNotExist:
+                pass
         except:
             pass
 
-    SystemLogHelper.create(
+    await sync_to_async(SystemLogHelper.create)(
         level=data.level,
         description=data.description,
         category=data.category,

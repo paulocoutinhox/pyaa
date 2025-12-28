@@ -45,6 +45,7 @@ class GalleryHelper:
             gallery = (
                 Gallery.objects.filter(**filter_kwargs)
                 .filter(site_filter)
+                .select_related("language")
                 .prefetch_related("gallery_photos")
                 .first()
             )
@@ -68,6 +69,7 @@ class GalleryHelper:
             gallery = (
                 Gallery.objects.filter(**filter_kwargs)
                 .filter(site_filter)
+                .select_related("language")
                 .prefetch_related("gallery_photos")
                 .order_by(
                     models.Case(
@@ -125,6 +127,7 @@ class GalleryHelper:
                 active=True,
             )
             .filter(site_filter)
+            .select_related("language")
             .prefetch_related("gallery_photos")
             .order_by("-id")
         )

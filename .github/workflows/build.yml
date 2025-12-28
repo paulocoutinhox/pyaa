@@ -43,8 +43,11 @@ jobs:
           make create-su
           make fixtures
 
-      - name: Test
+      - name: Test Django
         run: make test
+
+      - name: Test API
+        run: make test-api
 
       - name: Test Coverage
         run: make test-all-coverage-ci
