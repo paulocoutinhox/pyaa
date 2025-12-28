@@ -25,20 +25,44 @@ from pyaa.fastapi.routes import router
 
 
 def get_application() -> FastAPI:
+    # -------------------------------------------------
+    # fastapi docs urls
+    # -------------------------------------------------
+    docs_url = None
+    redoc_url = None
+    openapi_url = None
+
+    if settings.PYAA_ENABLE_FASTAPI:
+        api_prefix = settings.PYAA_API_PREFIX
+
+        docs_url = f"{api_prefix}/docs"
+        redoc_url = f"{api_prefix}/redoc"
+        openapi_url = f"{api_prefix}/openapi.json"
+
     app = FastAPI(
         title=settings.PROJECT_NAME,
         debug=settings.DEBUG,
+        docs_url=docs_url,
+        redoc_url=redoc_url,
+        openapi_url=openapi_url,
     )
 
+    # -------------------------------------------------
     # fastapi api
-    app.include_router(router, prefix="/api")
+    # -------------------------------------------------
+    if settings.PYAA_ENABLE_FASTAPI:
+        app.include_router(
+            router,
+            prefix=settings.PYAA_API_PREFIX,
+        )
 
-    rate_limiter.setup(app)
-    cors.setup(app)
+        rate_limiter.setup(app)
+        cors.setup(app)
 
-    # serve static/media
-    if not settings.DEBUG:
-        # static files
+    # -------------------------------------------------
+    # static / media
+    # -------------------------------------------------
+    if settings.PYAA_ENABLE_DJANGO and not settings.DEBUG:
         if settings.STATIC_URL.startswith("/"):
             app.mount(
                 settings.STATIC_URL,
@@ -46,7 +70,6 @@ def get_application() -> FastAPI:
                 name="static",
             )
 
-        # media files
         if settings.MEDIA_URL.startswith("/"):
             app.mount(
                 settings.MEDIA_URL,
@@ -54,11 +77,14 @@ def get_application() -> FastAPI:
                 name="media",
             )
 
-    # django handles everything else
-    app.mount(
-        "/",
-        WSGIMiddleware(get_wsgi_application()),
-    )
+    # -------------------------------------------------
+    # django
+    # -------------------------------------------------
+    if settings.PYAA_ENABLE_DJANGO:
+        app.mount(
+            "/",
+            WSGIMiddleware(get_wsgi_application()),
+        )
 
     return app
 

@@ -375,3 +375,9 @@ BANNER_ACCESS_INTERVAL = 86400  # 1 day in seconds
 
 SYSTEM_LOG_API_ENABLED = True
 SYSTEM_LOG_WEBHOOK_ENABLED = False
+
+# PyAA
+
+PYAA_API_PREFIX = os.getenv("PYAA_API_PREFIX", "/api")
+PYAA_ENABLE_FASTAPI = os.getenv("PYAA_ENABLE_FASTAPI", "true").lower() == "true"
+PYAA_ENABLE_DJANGO = os.getenv("PYAA_ENABLE_DJANGO", "true").lower() == "true"
