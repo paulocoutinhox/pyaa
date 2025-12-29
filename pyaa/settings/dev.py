@@ -29,7 +29,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # General
 
 DEBUG = True
-PROJECT_NAME = "PYAA"
 SECRET_KEY = "myapp-secret-key"
 IS_INSIDE_CI = os.getenv("CI") == "true"
 
@@ -378,6 +377,6 @@ SYSTEM_LOG_WEBHOOK_ENABLED = False
 
 # PyAA
 
-PYAA_API_PREFIX = os.getenv("PYAA_API_PREFIX", "/api")
-PYAA_ENABLE_FASTAPI = os.getenv("PYAA_ENABLE_FASTAPI", "true").lower() == "true"
-PYAA_ENABLE_DJANGO = os.getenv("PYAA_ENABLE_DJANGO", "true").lower() == "true"
+PYAA_API_PREFIX = os.getenv("APP_API_PREFIX", "/api")
+PYAA_ENABLE_FASTAPI = os.getenv("APP_ENABLE_FASTAPI", "true").lower() == "true"
+PYAA_ENABLE_DJANGO = os.getenv("APP_ENABLE_DJANGO", "true").lower() == "true"

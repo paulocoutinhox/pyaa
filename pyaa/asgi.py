@@ -16,6 +16,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pyaa.settings.dev")
 apps.populate(settings.INSTALLED_APPS)
 
+from django.utils.translation import gettext_lazy as _
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -40,7 +41,7 @@ def get_application() -> FastAPI:
         openapi_url = f"{api_prefix}/openapi.json"
 
     app = FastAPI(
-        title=settings.PROJECT_NAME,
+        title=_("site.small-name"),
         debug=settings.DEBUG,
         docs_url=docs_url,
         redoc_url=redoc_url,

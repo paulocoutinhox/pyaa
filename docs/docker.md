@@ -5,7 +5,7 @@ This project includes production-ready Dockerfiles for both synchronous (uWSGI) 
 ## Available Dockerfiles
 
 - **Dockerfile.web** - Synchronous server using uWSGI (WSGI)
-- **Dockerfile.async.web** - Asynchronous server using Gunicorn + Uvicorn workers (ASGI) - **Recommended for production**
+- **Dockerfile.async.web** - Asynchronous server using Gunicorn + Uvicorn workers (ASGI)
 
 You need to set up the project files before using Docker with the following command:
 
@@ -36,9 +36,9 @@ docker exec -it pyaa make fixtures
 docker exec -it pyaa make create-su
 ```
 
-## Asynchronous Deployment (Gunicorn + Uvicorn) - **Recommended**
+## Asynchronous Deployment (Gunicorn + Uvicorn)
 
-The async version provides better performance and is recommended for production use:
+The async version provides better performance:
 
 ```
 make docker-build-async
@@ -81,7 +81,7 @@ docker run --rm \
 
 ## Docker Compose
 
-You can use this configuration with Docker Compose (using async version - recommended):
+You can use this configuration with Docker Compose:
 
 ```yml
 services:
@@ -95,7 +95,7 @@ services:
   pyaa:
     build:
       context: pyaa
-      dockerfile: Dockerfile.async.web
+      dockerfile: Dockerfile.web
     restart: always
     depends_on:
       - mysql
@@ -113,7 +113,7 @@ services:
   pyaa-worker:
     build:
       context: pyaa
-      dockerfile: Dockerfile.async.web
+      dockerfile: Dockerfile.web
     restart: always
     depends_on:
       - pyaa
@@ -158,4 +158,4 @@ services:
       - ./mysql-data:/var/lib/mysql
 ```
 
-**Note:** For synchronous deployment, replace `Dockerfile.async.web` with `Dockerfile.web` in the configuration above.
+**Note:** For asynchronous deployment, replace `Dockerfile.web` with `Dockerfile.async.web` in the configuration above.

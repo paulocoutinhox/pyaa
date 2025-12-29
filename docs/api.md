@@ -57,16 +57,16 @@ The following environment variables control the API and application behavior:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PYAA_API_PREFIX` | `/api` | URL prefix for all FastAPI routes (e.g., `/api/customer`, `/api/token/pair`) |
-| `PYAA_ENABLE_FASTAPI` | `true` | Enable or disable FastAPI routes and documentation endpoints |
-| `PYAA_ENABLE_DJANGO` | `true` | Enable or disable Django WSGI application (admin, traditional views) |
+| `APP_API_PREFIX` | `/api` | URL prefix for all FastAPI routes (e.g., `/api/customer`, `/api/token/pair`) |
+| `APP_ENABLE_FASTAPI` | `true` | Enable or disable FastAPI routes and documentation endpoints |
+| `APP_ENABLE_DJANGO` | `true` | Enable or disable Django WSGI application (admin, traditional views) |
 
 **Example usage in `.env`:**
 
 ```bash
-PYAA_API_PREFIX=/api/v1
-PYAA_ENABLE_FASTAPI=true
-PYAA_ENABLE_DJANGO=true
+APP_API_PREFIX=/api
+APP_ENABLE_FASTAPI=true
+APP_ENABLE_DJANGO=true
 ```
 
 These variables are used in `/pyaa/asgi.py` to configure which parts of the application are active and how routes are mounted.
