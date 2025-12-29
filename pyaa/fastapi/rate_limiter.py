@@ -4,15 +4,11 @@ from throttled.fastapi import IPLimiter, TotalLimiter
 from throttled.models import Rate
 from throttled.storage.memory import MemoryStorage
 
-IGNORED_PATHS = (
-    "/static/",
-    "/media/",
-)
+PATHS = ("/api/",)
 
 
-def should_skip_limiter(request: Request) -> bool:
-    path = request.url.path
-    return path.startswith(IGNORED_PATHS)
+def should_apply_limiter(request: Request) -> bool:
+    return request.url.path.startswith(PATHS)
 
 
 class ConditionalLimiterMiddleware(BaseHTTPMiddleware):
@@ -21,7 +17,7 @@ class ConditionalLimiterMiddleware(BaseHTTPMiddleware):
         self.limiter = limiter
 
     async def dispatch(self, request: Request, call_next):
-        if should_skip_limiter(request):
+        if not should_apply_limiter(request):
             return await call_next(request)
 
         return await self.limiter.dispatch(request, call_next)

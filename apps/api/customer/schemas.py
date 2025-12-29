@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Any
 
 from django.conf import settings
 from pydantic import EmailStr, field_serializer
@@ -45,16 +46,20 @@ class CustomerResponseSchema(BaseSchema):
     user: UserSchema
     nickname: str | None = None
     gender: str | None = None
-    avatar: str | None = None
+    avatar: Any = None
     credits: int | None = None
     obs: str | None = None
     language: LanguageSchema | None
-    timezone: str | None = None
+    timezone: Any = None
     created_at: datetime | None = None
     updated_at: datetime | None = None
 
+    @field_serializer("avatar")
+    def serialize_avatar(self, avatar) -> str | None:
+        return avatar.url if avatar else None
+
     @field_serializer("timezone")
-    def serialize_timezone(self, timezone, _info):
+    def serialize_timezone(self, timezone) -> str | None:
         return str(timezone) if timezone else None
 
 

@@ -62,9 +62,8 @@ def _create_customer_transaction(data: CustomerCreateSchema):
 
     customer = Customer.objects.create(**customer_data)
 
-    # refresh to get language if it was set
-    if customer.language_id:
-        customer = Customer.objects.select_related("language").get(id=customer.id)
+    # refresh to get language and user
+    customer = Customer.objects.select_related("language", "user").get(id=customer.id)
 
     CustomerHelper.post_save(customer)
     return customer, user
@@ -81,40 +80,9 @@ async def create_customer(data: CustomerCreateSchema):
     access_token = create_access_token(user)
     refresh_token = create_refresh_token(user)
 
-    # prepare data for schema
-    customer_dict = {
-        "user": {
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "email": user.email,
-            "cpf": user.cpf,
-            "mobile_phone": user.mobile_phone,
-        },
-        "nickname": customer.nickname,
-        "gender": customer.gender,
-        "avatar": customer.avatar.url if customer.avatar else None,
-        "credits": customer.credits,
-        "obs": customer.obs,
-        "language": (
-            {
-                "name": customer.language.name,
-                "native_name": customer.language.native_name,
-                "code_iso_639_1": customer.language.code_iso_639_1,
-                "code_iso_language": customer.language.code_iso_language,
-            }
-            if customer.language
-            else None
-        ),
-        "timezone": str(customer.timezone),
-        "created_at": customer.created_at,
-        "updated_at": customer.updated_at,
-        "token": {
-            "refresh": refresh_token,
-            "access": access_token,
-        },
-    }
-
-    return CustomerCreateResponseSchema(**customer_dict)
+    customer_data = CustomerResponseSchema.model_validate(customer).model_dump()
+    customer_data["token"] = {"refresh": refresh_token, "access": access_token}
+    return CustomerCreateResponseSchema(**customer_data)
 
 
 @sync_to_async
@@ -168,46 +136,15 @@ def _update_customer_transaction(user: User, data: CustomerUpdateSchema):
 
     customer.save()
 
-    # refresh to get language if it was updated
-    if customer.language_id:
-        customer = Customer.objects.select_related("language").get(id=customer.id)
+    # refresh to get language and user
+    customer = Customer.objects.select_related("language", "user").get(id=customer.id)
 
     return customer, user
 
 
 async def _update_customer(user: User, data: CustomerUpdateSchema):
     customer, user = await _update_customer_transaction(user, data)
-
-    # prepare data for schema
-    customer_dict = {
-        "user": {
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "email": user.email,
-            "cpf": user.cpf,
-            "mobile_phone": user.mobile_phone,
-        },
-        "nickname": customer.nickname,
-        "gender": customer.gender,
-        "avatar": customer.avatar.url if customer.avatar else None,
-        "credits": customer.credits,
-        "obs": customer.obs,
-        "language": (
-            {
-                "name": customer.language.name,
-                "native_name": customer.language.native_name,
-                "code_iso_639_1": customer.language.code_iso_639_1,
-                "code_iso_language": customer.language.code_iso_language,
-            }
-            if customer.language
-            else None
-        ),
-        "timezone": str(customer.timezone),
-        "created_at": customer.created_at,
-        "updated_at": customer.updated_at,
-    }
-
-    return CustomerResponseSchema(**customer_dict)
+    return CustomerResponseSchema.model_validate(customer)
 
 
 @router.put("/", response_model=CustomerResponseSchema)
@@ -223,39 +160,12 @@ async def update_customer_patch(data: CustomerUpdateSchema, user: CurrentUser):
 @router.get("/me/", response_model=CustomerResponseSchema)
 async def get_customer_me(user: CurrentUser):
     try:
-        customer = await Customer.objects.select_related("language").aget(user=user)
+        customer = await Customer.objects.select_related("language", "user").aget(
+            user=user
+        )
     except Customer.DoesNotExist:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Customer not found."
         )
 
-    # prepare data for schema
-    customer_dict = {
-        "user": {
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "email": user.email,
-            "cpf": user.cpf,
-            "mobile_phone": user.mobile_phone,
-        },
-        "nickname": customer.nickname,
-        "gender": customer.gender,
-        "avatar": customer.avatar.url if customer.avatar else None,
-        "credits": customer.credits,
-        "obs": customer.obs,
-        "language": (
-            {
-                "name": customer.language.name,
-                "native_name": customer.language.native_name,
-                "code_iso_639_1": customer.language.code_iso_639_1,
-                "code_iso_language": customer.language.code_iso_language,
-            }
-            if customer.language
-            else None
-        ),
-        "timezone": str(customer.timezone),
-        "created_at": customer.created_at,
-        "updated_at": customer.updated_at,
-    }
-
-    return CustomerResponseSchema(**customer_dict)
+    return CustomerResponseSchema.model_validate(customer)
