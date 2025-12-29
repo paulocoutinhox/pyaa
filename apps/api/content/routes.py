@@ -12,4 +12,4 @@ async def get_content_by_tag(tag: str):
     content = await sync_to_async(ContentHelper.get_content)(content_tag=tag)
     if not content:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Not found")
-    return content
+    return ContentSchema.model_validate(content)

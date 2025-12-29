@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from starlette.middleware.base import BaseHTTPMiddleware
-from throttled.fastapi import IPLimiter
+from throttled.fastapi import IPLimiter, TotalLimiter
 from throttled.models import Rate
 from throttled.storage.memory import MemoryStorage
 
@@ -26,9 +26,19 @@ class ConditionalLimiterMiddleware(BaseHTTPMiddleware):
 def setup(app: FastAPI):
     memory = MemoryStorage(cache={})
 
-    ip_limiter = IPLimiter(
-        limit=Rate(100, 60),
+    total_limiter = TotalLimiter(
+        limit=Rate(3, 1),
         storage=memory,
+    )
+
+    ip_limiter = IPLimiter(
+        limit=Rate(5, 1),
+        storage=memory,
+    )
+
+    app.add_middleware(
+        ConditionalLimiterMiddleware,
+        limiter=total_limiter,
     )
 
     app.add_middleware(

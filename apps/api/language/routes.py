@@ -17,17 +17,7 @@ async def list_languages(limit: int = Query(100, ge=1), offset: int = Query(0, g
     total_count = await queryset.acount()
     languages = await sync_to_async(list)(queryset[offset : offset + limit])
 
-    # prepare data for schemas
-    items = []
-    for language in languages:
-        language_dict = {
-            "name": language.name,
-            "native_name": language.native_name,
-            "code_iso_639_1": language.code_iso_639_1,
-            "code_iso_language": language.code_iso_language,
-        }
-        items.append(LanguageSchema(**language_dict))
-
+    items = [LanguageSchema.model_validate(lang) for lang in languages]
     return PaginatedLanguageListResponse(count=total_count, items=items)
 
 
@@ -40,11 +30,4 @@ async def create_language(data: LanguageCreateSchema):
         code_iso_language=data.code_iso_language,
     )
 
-    language_dict = {
-        "name": language.name,
-        "native_name": language.native_name,
-        "code_iso_639_1": language.code_iso_639_1,
-        "code_iso_language": language.code_iso_language,
-    }
-
-    return LanguageSchema(**language_dict)
+    return LanguageSchema.model_validate(language)
