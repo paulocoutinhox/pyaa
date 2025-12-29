@@ -34,7 +34,7 @@ def content(site, language, category):
 
 
 def test_get_content_by_tag(client, content):
-    response = client.get("/api/content/test-content/")
+    response = client.get("/api/content/test-content")
     assert response.status_code == 200
     data = response.json()
     assert data["title"] == "Test Content"
@@ -43,7 +43,7 @@ def test_get_content_by_tag(client, content):
 
 
 def test_get_content_by_tag_not_found(client):
-    response = client.get("/api/content/non-existent/")
+    response = client.get("/api/content/non-existent")
     assert response.status_code == 404
 
 
@@ -51,5 +51,5 @@ def test_get_inactive_content(client, content):
     content.active = False
     content.save()
 
-    response = client.get("/api/content/test-content/")
+    response = client.get("/api/content/test-content")
     assert response.status_code == 404

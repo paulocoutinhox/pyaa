@@ -2,7 +2,7 @@ from apps.language.models import Language
 
 
 def test_list_languages(client):
-    response = client.get("/api/language/")
+    response = client.get("/api/language")
     assert response.status_code == 200
     data = response.json()
     assert "items" in data
@@ -11,7 +11,7 @@ def test_list_languages(client):
 
 
 def test_list_languages_with_pagination(client):
-    response = client.get("/api/language/?limit=2&offset=0")
+    response = client.get("/api/language?limit=2&offset=0")
     assert response.status_code == 200
     data = response.json()
     assert "items" in data
@@ -26,7 +26,7 @@ def test_create_language(client):
         "codeIsoLanguage": "test",
     }
 
-    response = client.post("/api/language/", json=language_data)
+    response = client.post("/api/language", json=language_data)
 
     assert response.status_code == 200
     data = response.json()

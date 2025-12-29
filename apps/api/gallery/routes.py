@@ -13,7 +13,7 @@ from apps.gallery.models import Gallery
 router = APIRouter()
 
 
-@router.get("/", response_model=PaginatedGalleryListResponse)
+@router.get("", response_model=PaginatedGalleryListResponse)
 async def list_galleries(limit: int = Query(100, ge=1), offset: int = Query(0, ge=0)):
     queryset = (
         Gallery.objects.filter(active=True)
@@ -45,7 +45,7 @@ async def list_galleries(limit: int = Query(100, ge=1), offset: int = Query(0, g
     return PaginatedGalleryListResponse(count=total_count, items=items)
 
 
-@router.get("/{tag}/", response_model=GallerySchema)
+@router.get("/{tag}", response_model=GallerySchema)
 async def get_gallery_by_tag(tag: str):
     gallery = await sync_to_async(GalleryHelper.get_gallery)(gallery_tag=tag)
     if not gallery:

@@ -13,7 +13,7 @@ router = APIRouter()
 security = HTTPBearer(auto_error=False)
 
 
-@router.post("/create/", response_model=SystemLogResponseSchema)
+@router.post("/create", response_model=SystemLogResponseSchema)
 async def create_system_log(
     data: SystemLogCreateSchema,
     credentials: Annotated[

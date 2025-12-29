@@ -111,7 +111,7 @@ def test_token_refresh_nonexistent_user(client, test_user):
 
 def test_get_current_user_with_invalid_token(client):
     response = client.get(
-        "/api/customer/me/", headers={"Authorization": "Bearer invalid.token.here"}
+        "/api/customer/me", headers={"Authorization": "Bearer invalid.token.here"}
     )
 
     assert response.status_code == 401
@@ -127,7 +127,7 @@ def test_get_current_user_with_deleted_user(client, test_user, db):
     test_user.delete()
 
     response = client.get(
-        "/api/customer/me/", headers={"Authorization": f"Bearer {access_token}"}
+        "/api/customer/me", headers={"Authorization": f"Bearer {access_token}"}
     )
 
     assert response.status_code == 401

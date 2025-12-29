@@ -53,7 +53,7 @@ def inactive_gallery(site, language):
 
 
 def test_list_galleries(client, gallery1, gallery2, inactive_gallery):
-    response = client.get("/api/gallery/")
+    response = client.get("/api/gallery")
     assert response.status_code == 200
     data = response.json()
     assert "items" in data
@@ -62,14 +62,14 @@ def test_list_galleries(client, gallery1, gallery2, inactive_gallery):
 
 
 def test_list_galleries_pagination(client, gallery1, gallery2):
-    response = client.get("/api/gallery/?limit=1&offset=0")
+    response = client.get("/api/gallery?limit=1&offset=0")
     assert response.status_code == 200
     data = response.json()
     assert len(data["items"]) == 1
 
 
 def test_list_galleries_excludes_inactive(client, gallery1, gallery2, inactive_gallery):
-    response = client.get("/api/gallery/")
+    response = client.get("/api/gallery")
     assert response.status_code == 200
     data = response.json()
     tags = [item["tag"] for item in data["items"]]
@@ -77,7 +77,7 @@ def test_list_galleries_excludes_inactive(client, gallery1, gallery2, inactive_g
 
 
 def test_get_gallery_by_tag(client, gallery1):
-    response = client.get("/api/gallery/gallery-1/")
+    response = client.get("/api/gallery/gallery-1")
     assert response.status_code == 200
     data = response.json()
     assert data["title"] == "Gallery 1"
@@ -85,12 +85,12 @@ def test_get_gallery_by_tag(client, gallery1):
 
 
 def test_get_gallery_by_tag_not_found(client):
-    response = client.get("/api/gallery/non-existent/")
+    response = client.get("/api/gallery/non-existent")
     assert response.status_code == 404
 
 
 def test_get_inactive_gallery(client, inactive_gallery):
-    response = client.get("/api/gallery/inactive-gallery/")
+    response = client.get("/api/gallery/inactive-gallery")
     assert response.status_code == 404
 
 
@@ -120,7 +120,7 @@ def test_get_gallery_with_photos(client, site, language):
         gallery=gallery, image=image, caption="Test Photo", main=True
     )
 
-    response = client.get("/api/gallery/gallery-with-photos/")
+    response = client.get("/api/gallery/gallery-with-photos")
     assert response.status_code == 200
     data = response.json()
     assert data["title"] == "Gallery with Photos"

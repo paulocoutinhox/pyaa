@@ -57,7 +57,7 @@ The following environment variables control the API and application behavior:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PYAA_API_PREFIX` | `/api` | URL prefix for all FastAPI routes (e.g., `/api/customer/`, `/api/token/pair`) |
+| `PYAA_API_PREFIX` | `/api` | URL prefix for all FastAPI routes (e.g., `/api/customer`, `/api/token/pair`) |
 | `PYAA_ENABLE_FASTAPI` | `true` | Enable or disable FastAPI routes and documentation endpoints |
 | `PYAA_ENABLE_DJANGO` | `true` | Enable or disable Django WSGI application (admin, traditional views) |
 
@@ -233,7 +233,7 @@ def test_create_customer(client):
         "timezone": "America/Sao_Paulo",
     }
 
-    response = client.post("/api/customer/", json=customer_data)
+    response = client.post("/api/customer", json=customer_data)
 
     assert response.status_code == 201
     data = response.json()
@@ -241,7 +241,7 @@ def test_create_customer(client):
 
 def test_get_customer_me(client, customer, access_token):
     response = client.get(
-        "/api/customer/me/",
+        "/api/customer/me",
         headers={"Authorization": f"Bearer {access_token}"}
     )
 
@@ -354,7 +354,7 @@ The documentation is generated from:
 - `limit`: Number of items per page (default: 100, max: 1000)
 - `offset`: Starting position (default: 0)
 
-Example: `GET /api/language/?limit=10&offset=20`
+Example: `GET /api/language?limit=10&offset=20`
 
 ## Error Responses
 
@@ -559,7 +559,7 @@ def get_data(user: CurrentUser):  # Automatically handles JWT authentication
 
 ```python
 def test_create_customer_validation_error(client):
-    response = client.post("/api/customer/", json={"email": "invalid"})
+    response = client.post("/api/customer", json={"email": "invalid"})
     assert response.status_code == 422
 ```
 
