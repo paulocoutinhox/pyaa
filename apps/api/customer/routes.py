@@ -70,7 +70,7 @@ def _create_customer_transaction(data: CustomerCreateSchema):
 
 
 @router.post(
-    "/",
+    "",
     response_model=CustomerCreateResponseSchema,
     status_code=status.HTTP_201_CREATED,
 )
@@ -147,17 +147,17 @@ async def _update_customer(user: User, data: CustomerUpdateSchema):
     return CustomerResponseSchema.model_validate(customer)
 
 
-@router.put("/", response_model=CustomerResponseSchema)
+@router.put("", response_model=CustomerResponseSchema)
 async def update_customer_put(data: CustomerUpdateSchema, user: CurrentUser):
     return await _update_customer(user, data)
 
 
-@router.patch("/", response_model=CustomerResponseSchema)
+@router.patch("", response_model=CustomerResponseSchema)
 async def update_customer_patch(data: CustomerUpdateSchema, user: CurrentUser):
     return await _update_customer(user, data)
 
 
-@router.get("/me/", response_model=CustomerResponseSchema)
+@router.get("/me", response_model=CustomerResponseSchema)
 async def get_customer_me(user: CurrentUser):
     try:
         customer = await Customer.objects.select_related("language", "user").aget(

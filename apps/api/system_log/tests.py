@@ -17,7 +17,7 @@ def test_create_system_log(client):
         "category": "test",
     }
 
-    response = client.post("/api/system-log/create/", json=log_data)
+    response = client.post("/api/system-log/create", json=log_data)
 
     assert response.status_code == 200
     data = response.json()
@@ -34,7 +34,7 @@ def test_create_system_log_api_disabled(client):
         "category": "test",
     }
 
-    response = client.post("/api/system-log/create/", json=log_data)
+    response = client.post("/api/system-log/create", json=log_data)
 
     assert response.status_code == 403
     data = response.json()
@@ -52,7 +52,7 @@ def test_create_system_log_with_different_levels(client, db):
             "category": "test",
         }
 
-        response = client.post("/api/system-log/create/", json=log_data)
+        response = client.post("/api/system-log/create", json=log_data)
         assert response.status_code == 200
 
     assert SystemLog.objects.count() == 2
@@ -82,7 +82,7 @@ def test_create_system_log_with_authenticated_user(client, db):
     }
 
     response = client.post(
-        "/api/system-log/create/",
+        "/api/system-log/create",
         json=log_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -113,7 +113,7 @@ def test_create_system_log_with_user_without_customer(client):
     }
 
     response = client.post(
-        "/api/system-log/create/",
+        "/api/system-log/create",
         json=log_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -135,7 +135,7 @@ def test_create_system_log_with_invalid_token(client):
     }
 
     response = client.post(
-        "/api/system-log/create/",
+        "/api/system-log/create",
         json=log_data,
         headers={"Authorization": "Bearer invalid.token"},
     )

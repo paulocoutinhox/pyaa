@@ -8,7 +8,7 @@ from apps.banner.helpers import BannerHelper
 router = APIRouter()
 
 
-@router.get("/", response_model=list[BannerSchema])
+@router.get("", response_model=list[BannerSchema])
 async def list_banners(zone: str, language: str = None, site: int = None):
     banners = await sync_to_async(
         lambda: list(
@@ -18,7 +18,7 @@ async def list_banners(zone: str, language: str = None, site: int = None):
     return [BannerSchema.model_validate(b) for b in banners]
 
 
-@router.get("/access/{token}/", response_model=BannerAccessResponseSchema)
+@router.get("/access/{token}", response_model=BannerAccessResponseSchema)
 async def track_banner_access(token: str, type: str):
     from apps.banner.models import BannerAccess
 

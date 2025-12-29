@@ -50,7 +50,7 @@ def test_create_and_get_customer(client):
         "timezone": "America/Sao_Paulo",
     }
 
-    response = client.post("/api/customer/", json=customer_data)
+    response = client.post("/api/customer", json=customer_data)
 
     assert response.status_code == 201
     data = response.json()
@@ -60,7 +60,7 @@ def test_create_and_get_customer(client):
     access_token = data["token"]["access"]
 
     response = client.get(
-        "/api/customer/me/", headers={"Authorization": f"Bearer {access_token}"}
+        "/api/customer/me", headers={"Authorization": f"Bearer {access_token}"}
     )
 
     assert response.status_code == 200
@@ -74,7 +74,7 @@ def test_create_and_get_customer(client):
 
 def test_get_customer_me(client, customer, access_token):
     response = client.get(
-        "/api/customer/me/", headers={"Authorization": f"Bearer {access_token}"}
+        "/api/customer/me", headers={"Authorization": f"Bearer {access_token}"}
     )
 
     assert response.status_code == 200
@@ -87,7 +87,7 @@ def test_get_customer_me(client, customer, access_token):
 
 
 def test_get_customer_me_invalid_token(client):
-    response = client.get("/api/customer/me/")
+    response = client.get("/api/customer/me")
     assert response.status_code == 401
 
 
@@ -99,7 +99,7 @@ def test_patch_update_customer_with_patch(client, customer, access_token):
     }
 
     response = client.patch(
-        "/api/customer/",
+        "/api/customer",
         json=patch_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -117,7 +117,7 @@ def test_patch_update_customer_with_put(client, customer, access_token):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=patch_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -134,7 +134,7 @@ def test_update_customer_invalid_token(client):
         "language": 1,
     }
 
-    response = client.put("/api/customer/", json=update_data)
+    response = client.put("/api/customer", json=update_data)
     assert response.status_code == 401
 
 
@@ -145,7 +145,7 @@ def test_patch_update_customer_invalid_token(client):
         "language": 1,
     }
 
-    response = client.patch("/api/customer/", json=patch_data)
+    response = client.patch("/api/customer", json=patch_data)
     assert response.status_code == 401
 
 
@@ -165,7 +165,7 @@ def test_update_customer_not_found(client, db):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -187,7 +187,7 @@ def test_create_user_validation_error(client):
         "timezone": "America/Sao_Paulo",
     }
 
-    response = client.post("/api/customer/", json=customer_data)
+    response = client.post("/api/customer", json=customer_data)
     assert response.status_code == 422
 
 
@@ -206,7 +206,7 @@ def test_create_user_full_clean_validation_error(mock_full_clean, client):
         "timezone": "America/Sao_Paulo",
     }
 
-    response = client.post("/api/customer/", json=customer_data)
+    response = client.post("/api/customer", json=customer_data)
     assert response.status_code == 422
 
 
@@ -216,7 +216,7 @@ def test_update_customer_with_valid_password(client, customer, access_token, tes
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -232,7 +232,7 @@ def test_update_nickname(client, customer, access_token):
     }
 
     response = client.patch(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -253,7 +253,7 @@ def test_create_customer_without_optional_fields(client):
         "timezone": "America/Sao_Paulo",
     }
 
-    response = client.post("/api/customer/", json=customer_data)
+    response = client.post("/api/customer", json=customer_data)
 
     assert response.status_code == 201
     data = response.json()
@@ -267,7 +267,7 @@ def test_update_customer_individual_fields(client, customer, access_token, test_
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -283,7 +283,7 @@ def test_update_customer_last_name(client, customer, access_token, test_user):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -299,7 +299,7 @@ def test_update_customer_email(client, customer, access_token, test_user):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -315,7 +315,7 @@ def test_update_customer_mobile_phone(client, customer, access_token, test_user)
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -331,7 +331,7 @@ def test_update_customer_obs(client, customer, access_token):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -347,7 +347,7 @@ def test_update_customer_timezone(client, customer, access_token):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -363,7 +363,7 @@ def test_update_customer_with_invalid_language(client, customer, access_token):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -379,7 +379,7 @@ def test_update_customer_gender(client, customer, access_token):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -395,7 +395,7 @@ def test_update_customer_cpf(client, customer, access_token, test_user):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -418,7 +418,7 @@ def test_update_customer_validation_error(client, customer, access_token, db):
     }
 
     response = client.put(
-        "/api/customer/",
+        "/api/customer",
         json=update_data,
         headers={"Authorization": f"Bearer {access_token}"},
     )
@@ -436,7 +436,7 @@ def test_get_customer_me_not_found(client, db):
     access_token = create_access_token(user)
 
     response = client.get(
-        "/api/customer/me/", headers={"Authorization": f"Bearer {access_token}"}
+        "/api/customer/me", headers={"Authorization": f"Bearer {access_token}"}
     )
 
     assert response.status_code == 404
