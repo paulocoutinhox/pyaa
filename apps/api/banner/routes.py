@@ -15,20 +15,7 @@ async def list_banners(zone: str, language: str = None, site: int = None):
             BannerHelper.get_banners(zone=zone, language=language, site_id=site)
         )
     )()
-    return [
-        BannerSchema(
-            title=banner.title,
-            image=banner.image.url if banner.image else "",
-            link=banner.link,
-            target_blank=banner.target_blank,
-            zone=banner.zone,
-            token=banner.token,
-            sort_order=banner.sort_order,
-            start_at=banner.start_at,
-            end_at=banner.end_at,
-        )
-        for banner in banners
-    ]
+    return [BannerSchema.model_validate(b) for b in banners]
 
 
 @router.get("/access/{token}/", response_model=BannerAccessResponseSchema)

@@ -32,7 +32,6 @@ async def list_galleries(limit: int = Query(100, ge=1), offset: int = Query(0, g
             "tag": gallery.tag,
             "language": (
                 {
-                    "id": gallery.language.id,
                     "name": gallery.language.name,
                     "native_name": gallery.language.native_name,
                     "code_iso_639_1": gallery.language.code_iso_639_1,

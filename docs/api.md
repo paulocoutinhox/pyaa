@@ -28,7 +28,7 @@ apps/api/
 pyaa/fastapi/
 ├── __init__.py
 ├── routes.py                      # Main router that includes all app routers
-├── jwt.py                         # Native JWT implementation (PyJWT)
+├── jwt.py                         # Native JWT implementation
 ├── schemas.py                     # Base Pydantic schemas
 ├── cors.py                        # CORS configuration
 └── rate_limiter.py                # Rate limiting configuration
