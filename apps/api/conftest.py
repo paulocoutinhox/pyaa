@@ -1,5 +1,6 @@
 import pytest
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.testclient import TestClient
@@ -13,7 +14,7 @@ def app():
     from django.core.wsgi import get_wsgi_application
 
     app = FastAPI(
-        title=settings.PROJECT_NAME,
+        title=_("site.small-name"),
         debug=settings.DEBUG,
     )
 
