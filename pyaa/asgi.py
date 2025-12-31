@@ -16,6 +16,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pyaa.settings.dev")
 apps.populate(settings.INSTALLED_APPS)
 
+
 from django.utils.translation import gettext_lazy as _
 from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
@@ -82,9 +83,16 @@ def get_application() -> FastAPI:
     # django
     # -------------------------------------------------
     if settings.PYAA_ENABLE_DJANGO:
+        django_app = get_wsgi_application()
+
+        if settings.DEBUG:
+            from django.contrib.staticfiles.handlers import StaticFilesHandler
+
+            django_app = StaticFilesHandler(django_app)
+
         app.mount(
             "/",
-            WSGIMiddleware(get_wsgi_application()),
+            WSGIMiddleware(django_app),
         )
 
     return app
