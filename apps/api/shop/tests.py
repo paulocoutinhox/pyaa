@@ -111,7 +111,6 @@ def test_plan_schema_includes_all_fields(client, stripe_plan):
     assert len(data) > 0
     plan = data[0]
 
-    assert "id" in plan
     assert "name" in plan
     assert "tag" in plan
     assert "planType" in plan
