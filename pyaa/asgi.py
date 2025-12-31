@@ -83,12 +83,12 @@ def get_application() -> FastAPI:
     # django
     # -------------------------------------------------
     if settings.PYAA_ENABLE_DJANGO:
+        django_app = get_wsgi_application()
+
         if settings.DEBUG:
             from django.contrib.staticfiles.handlers import StaticFilesHandler
 
             django_app = StaticFilesHandler(django_app)
-        else:
-            django_app = get_wsgi_application()
 
         app.mount(
             "/",
