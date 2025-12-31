@@ -9,12 +9,12 @@ https://docs.djangoproject.com/en/6.0/howto/deployment/asgi/
 
 import os
 
-from django.apps import apps
+import django
 from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pyaa.settings.dev")
-apps.populate(settings.INSTALLED_APPS)
+django.setup()
 
 
 from django.utils.translation import gettext_lazy as _
