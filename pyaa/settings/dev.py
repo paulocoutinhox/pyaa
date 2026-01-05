@@ -108,14 +108,40 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "pyaa.urls"
 
+# WSGI
+# https://fastapi.tiangolo.com/advanced/wsgi/
+WSGI_APPLICATION = "pyaa.wsgi.application"
+
+# Template
+# https://docs.djangoproject.com/en/6.0/topics/templates/
+DJANGO_TEMPLATE_DIRS = [
+    BASE_DIR / "templates",
+]
+
+DJANGO_TEMPLATE_LOADERS_DEV = [
+    "django.template.loaders.filesystem.Loader",
+    "django.template.loaders.app_directories.Loader",
+]
+
+DJANGO_TEMPLATE_LOADERS_PROD = [
+    (
+        "django.template.loaders.cached.Loader",
+        DJANGO_TEMPLATE_LOADERS_DEV,
+    )
+]
+
+DJANGO_TEMPLATE_LOADERS = (
+    DJANGO_TEMPLATE_LOADERS_DEV if DEBUG else DJANGO_TEMPLATE_LOADERS_PROD
+)
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR / "templates",
-        ],
-        "APP_DIRS": True,
+        "DIRS": DJANGO_TEMPLATE_DIRS,
+        "APP_DIRS": False,
         "OPTIONS": {
+            "debug": DEBUG,
+            "loaders": DJANGO_TEMPLATE_LOADERS,
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
@@ -126,8 +152,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = "pyaa.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
