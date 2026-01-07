@@ -22,7 +22,7 @@ from fastapi import FastAPI
 from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.staticfiles import StaticFiles
 
-from pyaa.fastapi import cors, rate_limiter
+from pyaa.fastapi import cors, language, rate_limiter
 from pyaa.fastapi.routes import router
 
 
@@ -53,13 +53,14 @@ def get_application() -> FastAPI:
     # fastapi api
     # -------------------------------------------------
     if settings.PYAA_ENABLE_FASTAPI:
+        language.setup(app)
+        rate_limiter.setup(app)
+        cors.setup(app)
+
         app.include_router(
             router,
             prefix=settings.PYAA_API_PREFIX,
         )
-
-        rate_limiter.setup(app)
-        cors.setup(app)
 
     # -------------------------------------------------
     # static / media

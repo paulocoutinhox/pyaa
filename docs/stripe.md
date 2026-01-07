@@ -6,20 +6,30 @@ This guide explains how to integrate Stripe as a payment gateway for your applic
 
 To set up Stripe, you need to configure two essential keys:
 
-1. `STRIPE_SECRET_KEY`: Your Stripe account's secret key
-2. `STRIPE_WEBHOOK_SECRET`: The secret for verifying webhook events
+1. `STRIPE_SECRET_KEY`: Your Stripe account's secret key (prefix: sk_xyz)
+2. `STRIPE_WEBHOOK_SECRET`: The secret for verifying webhook events (prefix: whsec_xyz)
 
 You can set these keys in one of two ways:
 
 - In the `dev.py` file
 - As environment variables
 
-In the Stripe Webhook configuration, select all events from the following categories to receive notifications:
+In the **Stripe Webhook** configuration, select all events from the following categories to receive notifications:
 
 - Charge
 - Checkout
 - Invoice
 - Payment Intent
+
+## Production Webhook
+
+In the production environment, Stripe webhooks must point to your public application URL.
+
+Use the following endpoint in the Stripe Dashboard (example URL):
+
+```
+https://domain.com/shop/webhook/stripe/
+```
 
 ## Local Testing
 
