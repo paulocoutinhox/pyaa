@@ -32,6 +32,7 @@ pyaa/fastapi/
 ├── schemas.py                     # Base Pydantic schemas
 ├── cors.py                        # CORS configuration
 └── rate_limiter.py                # Rate limiting configuration
+└── language.py                    # Language configuration
 ```
 
 ### Configuration
@@ -123,12 +124,12 @@ from apps.api.auth.dependencies import CurrentUser
 
 router = APIRouter()
 
-@router.post("/", response_model=CustomerCreateResponseSchema, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=CustomerCreateResponseSchema, status_code=status.HTTP_201_CREATED)
 def create_customer(data: CustomerCreateSchema):
     # implementation
     return response
 
-@router.get("/me/", response_model=CustomerResponseSchema)
+@router.get("/me", response_model=CustomerResponseSchema)
 async def get_customer_me(user: CurrentUser):
     # use async when making async django orm calls
     customer = await Customer.objects.select_related("language").aget(user=user)
@@ -169,7 +170,7 @@ Use the `CurrentUser` dependency for protected routes:
 ```python
 from apps.api.auth.dependencies import CurrentUser
 
-@router.get("/me/")
+@router.get("/me")
 def get_current_user_data(user: CurrentUser):
     # user is automatically injected from JWT token
     return {"email": user.email}
@@ -199,7 +200,7 @@ def create_customer(data: CustomerCreateSchema):
 ### Asynchronous Endpoints (Non-blocking I/O)
 
 ```python
-@router.get("/me/")
+@router.get("/me")
 async def get_customer_me(user: CurrentUser):
     # async django orm calls (use aget, afilter, etc.)
     customer = await Customer.objects.select_related("language").aget(user=user)
@@ -529,7 +530,7 @@ except Customer.DoesNotExist:
 
 ```python
 # Async for database queries
-@router.get("/me/")
+@router.get("/me")
 async def get_customer(user: CurrentUser):
     customer = await Customer.objects.aget(user=user)
     return customer

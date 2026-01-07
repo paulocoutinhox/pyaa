@@ -1,4 +1,15 @@
 const BannerManager = {
+    getHeaders() {
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+
+        if (typeof window.PYAA_LANGUAGE !== 'undefined') {
+            headers['Accept-Language'] = window.PYAA_LANGUAGE;
+        }
+
+        return headers;
+    },
     trackViewAccess(token) {
         $.ajax({
             url: '/banner/track-view-access/',
@@ -6,7 +17,7 @@ const BannerManager = {
             data: JSON.stringify({
                 token: token,
             }),
-            contentType: 'application/json',
+            headers: this.getHeaders(),
             dataType: 'json'
         });
     },
@@ -17,7 +28,7 @@ const BannerManager = {
             data: JSON.stringify({
                 token: token,
             }),
-            contentType: 'application/json',
+            headers: this.getHeaders(),
             dataType: 'json',
             success: () => {
                 if (url) {

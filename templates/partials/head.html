@@ -37,6 +37,12 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="{% if page_url %}{{ page_url|force_https }}{% else %}{{ request.build_absolute_uri|force_https }}{% endif %}">
 
+<!-- Internal Variables -->
+<script>
+    {% get_current_language as LANGUAGE_CODE %}
+    window.PYAA_LANGUAGE = '{{ LANGUAGE_CODE }}';
+</script>
+
 {% compress css %}
     <link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
     <link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
