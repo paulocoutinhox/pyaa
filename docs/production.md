@@ -10,6 +10,13 @@ APP_CSRF_TRUSTED_ORIGINS="https://*.mydomain.com"
 APP_MEDIA_URL=/media/
 ```
 
+Alternatively, you can define `MEDIA_URL` directly in `pyaa/settings/prod.py`, similar to the S3 storage example:
+
+```python
+# in pyaa/settings/prod.py
+MEDIA_URL = f"https://{STORAGES['default']['OPTIONS']['bucket_name']}.s3.amazonaws.com/"
+```
+
 Obs: Obviously you must change this data for your real data, referring to your server.
 
 ## Super Admin User
