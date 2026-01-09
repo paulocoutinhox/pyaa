@@ -986,12 +986,12 @@ input[type="range"].form-range,
 
     // list group items adjustments
     .list-group-item {
-        background-color: var(--bs-body-bg);
+        background-color: var(--surface);
         border-color: var(--gray-200);
-        color: var(--bs-body-color);
+        color: var(--text-main);
 
         &:hover {
-            background-color: var(--bs-secondary-bg);
+            background-color: var(--surface-muted);
         }
 
         &.active {
