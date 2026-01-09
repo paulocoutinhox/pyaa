@@ -142,3 +142,21 @@ The `restore_db` command allows you to restore your database from a backup file,
    ```
 
 In all cases, if the backup file is compressed (`.gz`), it will be decompressed automatically before restoration. Ensure your storage credentials and paths are correctly configured in your Django settings.
+
+## Running Migrations in Production from Local
+
+You can run migrations in production from your development machine by specifying the Django settings module for production. This is useful when you need to apply database changes without directly accessing the production server.
+
+### Basic Usage
+
+To run migrations in production, use the `DJANGO_SETTINGS_MODULE` environment variable to point to your production settings file:
+
+```bash
+DJANGO_SETTINGS_MODULE=pyaa.settings.prod make migrate
+```
+
+Or if you prefer using `python manage.py` directly:
+
+```bash
+DJANGO_SETTINGS_MODULE=pyaa.settings.prod python manage.py migrate
+```
