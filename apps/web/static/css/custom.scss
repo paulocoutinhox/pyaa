@@ -87,7 +87,7 @@ body {
 .card {
     background-color: var(--bs-body-bg);
     border: none;
-    border-radius: var(--bs-border-radius);
+    border-radius: 8px;
     box-shadow: var(--card-shadow);
     margin-bottom: 12px;
     overflow: hidden;
