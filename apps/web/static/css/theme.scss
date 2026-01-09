@@ -1,0 +1,222 @@
+//
+// Color system
+//
+
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #f0f1f2 !default;
+$gray-300: #e0e1e2 !default;
+$gray-400: #cdcecf !default;
+$gray-500: #adb5bd !default;
+$gray-600: #919aa1 !default;
+$gray-700: #55595c !default;
+$gray-800: #343a40 !default;
+$gray-900: #1a1a1a !default;
+$black: #000 !default;
+
+$blue: #007bff !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #d9534f !default;
+$orange: #fd7e14 !default;
+$yellow: #f0ad4e !default;
+$green: #4bbf73 !default;
+$teal: #20c997 !default;
+$cyan: #1f9bcf !default;
+
+$primary: $gray-900 !default;
+$secondary: $gray-300 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-200 !default;
+$dark: $gray-800 !default;
+
+$min-contrast-ratio: 1.9 !default;
+
+// Options
+
+$enable-rounded: true !default;
+$border-radius: .5rem !default;
+$border-radius-sm: .375rem !default;
+$border-radius-lg: .75rem !default;
+
+// Body
+
+$body-color: $gray-700 !default;
+
+// Fonts
+
+// stylelint-disable-next-line value-keyword-case
+$font-family-sans-serif: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+$font-weight-lighter: lighter !default;
+$font-weight-light: 200 !default;
+$font-weight-normal: 300 !default;
+$font-weight-medium: 400 !default;
+$font-weight-semibold: 500 !default;
+$font-weight-bold: 600 !default;
+$font-weight-bolder: bolder !default;
+
+$h1-font-size: 2rem !default;
+$h2-font-size: 1.75rem !default;
+$h3-font-size: 1.5rem !default;
+$h4-font-size: 1.25rem !default;
+$h5-font-size: 1rem !default;
+$h6-font-size: .75rem !default;
+$headings-font-weight: 600 !default;
+$headings-color: $gray-900 !default;
+
+// Tables
+
+$table-color: initial !default;
+
+$table-border-color: rgba(0, 0, 0, .05) !default;
+
+// Buttons
+
+$btn-line-height: 1.5rem !default;
+$input-btn-padding-y: .75rem !default;
+$input-btn-padding-x: 1.5rem !default;
+$input-btn-padding-y-sm: .5rem !default;
+$input-btn-padding-x-sm: 1rem !default;
+$input-btn-padding-y-lg: 2rem !default;
+$input-btn-padding-x-lg: 2rem !default;
+$btn-font-weight: 600 !default;
+
+// Forms
+
+$input-line-height: 1.5 !default;
+$input-bg: $gray-200 !default;
+$input-disabled-bg: $gray-300 !default;
+$input-group-addon-bg: $gray-300 !default;
+
+$form-select-disabled-color: $gray-600 !default;
+$form-select-disabled-bg: $input-disabled-bg !default;
+
+// Navbar
+
+$navbar-padding-y: 1.5rem !default;
+$navbar-dark-hover-color: $white !default;
+$navbar-light-color: rgba($black, .3) !default;
+$navbar-light-hover-color: $gray-900 !default;
+$navbar-light-active-color: $gray-900 !default;
+
+// Pagination
+
+$pagination-border-color: transparent !default;
+$pagination-hover-border-color: $pagination-border-color !default;
+$pagination-disabled-border-color: $pagination-border-color !default;
+
+// Popovers
+
+$popover-header-bg: transparent !default;
+$popover-header-color: var(--bs-popover-header-color) !default;
+
+// Toasts
+
+$toast-header-background-color: transparent !default;
+
+// Button Groups
+
+$btn-group-border-color: $gray-300 !default;
+
+// Cards
+
+$card-border-width: 1px !default;
+$card-border-color: $gray-300 !default;
+$card-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05) !default;
+$card-spacer-y: 1rem !default;
+$card-spacer-x: 1rem !default;
+$card-cap-padding-y: .75rem !default;
+$card-cap-padding-x: 1rem !default;
+
+// Text Primary Dark Mode
+$text-primary-dark: $gray-600 !default;
+
+// Custom color variables for Dark Mode
+$primary-dark: #35353a !default;
+$primary-hover-dark: #3f3f46 !default;
+$surface-dark: #27272a !default;
+$surface-muted-dark: #18181b !default;
+$text-main-dark: #fafafa !default;
+$text-muted-dark: #d4d4d8 !default;
+
+// Custom gray variables for Dark Mode
+$gray-100-dark: #18181b !default;
+$gray-200-dark: #27272a !default;
+$gray-300-dark: #3f3f46 !default;
+$gray-400-dark: #52525b !default;
+$gray-500-dark: #71717a !default;
+$gray-600-dark: #a1a1aa !default;
+$gray-700-dark: #d4d4d8 !default;
+$gray-800-dark: #e4e4e7 !default;
+$gray-900-dark: #fafafa !default;
+
+// Card shadow
+$card-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06) !default;
+$card-shadow-dark: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2) !default;
+
+// Primary hover (light mode)
+$primary-hover: darken($primary, 10%) !default;
+
+//
+// CSS Custom Properties
+//
+
+:root {
+    /* primary */
+    --primary: var(--bs-primary);
+    --primary-hover: #{$primary-hover};
+
+    /* grays */
+    --gray-100: #{$gray-100};
+    --gray-200: #{$gray-200};
+    --gray-300: #{$gray-300};
+    --gray-400: #{$gray-400};
+    --gray-500: #{$gray-500};
+    --gray-600: #{$gray-600};
+    --gray-700: #{$gray-700};
+    --gray-800: #{$gray-800};
+    --gray-900: #{$gray-900};
+
+    /* surfaces and text */
+    --surface: var(--bs-body-bg);
+    --surface-muted: var(--bs-secondary-bg);
+    --text-main: var(--bs-body-color);
+    --text-muted: var(--bs-secondary-color);
+
+    --card-shadow: #{$card-shadow-light};
+    --border-radius: var(--bs-border-radius);
+}
+
+[data-bs-theme="dark"] {
+    /* primary */
+    --bs-primary: #{$primary-dark};
+    --primary: #{$primary-dark};
+    --primary-hover: #{$primary-hover-dark};
+    --text-primary-dark: #{$text-primary-dark};
+
+    /* surfaces */
+    --surface: #{$surface-dark};
+    --surface-muted: #{$surface-muted-dark};
+
+    /* text */
+    --text-main: #{$text-main-dark};
+    --text-muted: #{$text-muted-dark};
+
+    /* grays */
+    --gray-100: #{$gray-100-dark};
+    --gray-200: #{$gray-200-dark};
+    --gray-300: #{$gray-300-dark};
+    --gray-400: #{$gray-400-dark};
+    --gray-500: #{$gray-500-dark};
+    --gray-600: #{$gray-600-dark};
+    --gray-700: #{$gray-700-dark};
+    --gray-800: #{$gray-800-dark};
+    --gray-900: #{$gray-900-dark};
+
+    --card-shadow: #{$card-shadow-dark};
+}
