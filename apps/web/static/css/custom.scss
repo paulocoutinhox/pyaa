@@ -240,6 +240,9 @@ body {
     --bs-btn-active-bg: var(--primary-hover);
     --bs-btn-active-border-color: var(--primary-hover);
     --bs-btn-active-color: #ffffff;
+    --bs-btn-disabled-color: #ffffff;
+    --bs-btn-disabled-bg: var(--gray-400);
+    --bs-btn-disabled-border-color: var(--gray-400);
     --bs-btn-focus-shadow-rgb: 34, 34, 34;
 }
 
@@ -253,6 +256,9 @@ body {
     --bs-btn-active-bg: var(--primary);
     --bs-btn-active-border-color: var(--primary);
     --bs-btn-active-color: #ffffff;
+    --bs-btn-disabled-color: var(--gray-500);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--gray-400);
     --bs-btn-focus-shadow-rgb: 34, 34, 34;
 }
 
@@ -523,10 +529,16 @@ footer {
     // button adjustments for dark mode
     .btn-primary {
         --bs-btn-focus-shadow-rgb: 53, 53, 58;
+        --bs-btn-disabled-bg: var(--gray-400);
+        --bs-btn-disabled-border-color: var(--gray-400);
     }
 
     .btn-outline-primary {
+        --bs-btn-color: var(--text-muted);
+        --bs-btn-border-color: var(--gray-400);
         --bs-btn-focus-shadow-rgb: 53, 53, 58;
+        --bs-btn-disabled-color: var(--gray-500);
+        --bs-btn-disabled-border-color: var(--gray-400);
     }
 
     // dropdown menu adjustments for dark mode
