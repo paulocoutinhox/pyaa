@@ -58,7 +58,7 @@
             <div class="d-none d-lg-flex align-items-center gap-2">
                 {% if user.is_authenticated %}
                     <!-- Credits display -->
-                    <span class="text-muted me-2 d-flex align-items-center" style="font-size: 14px;">
+                    <span class="me-2 d-flex align-items-center" style="font-size: 14px;">
                         {% translate "menu.credits" %}: {% if user.customer.credits %}{{ user.customer.credits }}{% else %}0{% endif %}
                     </span>
 

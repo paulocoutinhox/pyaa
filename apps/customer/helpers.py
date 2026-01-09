@@ -56,6 +56,7 @@ class CustomerHelper:
         is_refund=False,
         object_id=0,
         object_type=None,
+        send_email=True,
     ):
         """
         Add credits to a customer based on either a plan or a direct amount value
@@ -95,12 +96,13 @@ class CustomerHelper:
             )
 
             # send email for plan credits
-            CustomerHelper.send_credits_email(
-                customer,
-                credit_amount,
-                object_type=object_type,
-                plan=plan,
-            )
+            if send_email:
+                CustomerHelper.send_credits_email(
+                    customer,
+                    credit_amount,
+                    object_type=object_type,
+                    plan=plan,
+                )
 
             # if the plan includes bonus, add extra bonus credits
             if plan.bonus and plan.bonus > 0:
@@ -125,11 +127,12 @@ class CustomerHelper:
                 )
 
                 # send email notification for bonus
-                CustomerHelper.send_credits_email(
-                    customer,
-                    bonus_amount,
-                    object_type=ObjectType.BONUS,
-                )
+                if send_email:
+                    CustomerHelper.send_credits_email(
+                        customer,
+                        bonus_amount,
+                        object_type=ObjectType.BONUS,
+                    )
 
             return True
 
@@ -174,11 +177,12 @@ class CustomerHelper:
             )
 
             # send email for direct credit additions
-            CustomerHelper.send_credits_email(
-                customer,
-                amount,
-                object_type=object_type,
-            )
+            if send_email:
+                CustomerHelper.send_credits_email(
+                    customer,
+                    amount,
+                    object_type=object_type,
+                )
 
             return True
 

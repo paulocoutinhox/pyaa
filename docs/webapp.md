@@ -27,3 +27,23 @@ If you have a Vite application, follow these steps:
 
 3. Access your application at `http://your-host/app/`.
 
+## Component Cheatsheet / Test Page
+
+The project includes a comprehensive Bootstrap component cheatsheet page for testing and development purposes. This page displays all Bootstrap components with the custom design system applied, allowing you to visualize how components appear in both light and dark modes.
+
+### Accessing the Cheatsheet
+
+The cheatsheet is available at:
+
+```
+http://your-host/test/cheatsheet/
+```
+
+### Features
+
+- **Complete Component Library**: Displays all Bootstrap components including:
+  - Typography (headings, displays, text formatting)
+  - Images and figures
+  - Tables (striped, bordered, hover, colored rows)
+  - Forms (inputs, selects, checkboxes, radios, validation states)
+  - Components (accordion, alerts, badges, breadcrumbs, buttons, cards, carousel, dropdowns, list groups, modals, navs, navbar, pagination, popovers, progress, scrollspy, spinners, toasts, tooltips)
