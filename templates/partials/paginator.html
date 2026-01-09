@@ -2,7 +2,7 @@
 
 {% if page_obj.paginator.num_pages > 1 %}
     <nav class="navigation" aria-label="{% trans 'pagination.navigation' %}">
-        <ul class="pagination pagination-gutter pagination-primary no-bg justify-content-center">
+        <ul class="pagination pagination-gutter no-bg justify-content-center">
             {% if page_obj.has_previous %}
             <li class="page-item">
                 <a class="page-link" href="?page=1" aria-label="{% trans 'pagination.first' %}">
