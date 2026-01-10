@@ -1,6 +1,7 @@
 # Git
 .git
 .gitignore
+.github/
 
 # CI
 .codeclimate.yml
@@ -58,6 +59,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+.pytest_cache/
 
 # Django stuff
 *.log
