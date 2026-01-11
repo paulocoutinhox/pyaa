@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
-from django.core.cache import cache
 from django.db.models import Q
 from django.middleware.csrf import get_token
 from django.shortcuts import redirect, render
@@ -83,12 +82,7 @@ def shop_plans_view(request, plan_type):
             messages.info(request, _("message.shop-already-subscriber"))
             return redirect("account_profile")
 
-    cache_key = f"shop_plans_{plan_type}"
-    plans = cache.get(cache_key)
-
-    if plans is None:
-        plans = list(ShopHelper.get_plans_by_type(plan_type))
-        cache.set(cache_key, plans, 3600)
+    plans = ShopHelper.get_plans_by_type(plan_type)
 
     context = {
         "plans": plans,
