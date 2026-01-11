@@ -73,15 +73,6 @@ class ShopHelper:
         if user_language:
             user_language = user_language.lower()
 
-        # generate a unique cache key
-        cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_{user_language}"
-
-        # attempt to retrieve the plans from cache
-        cached_plans = cache.get(cache_key)
-
-        if cached_plans is not None:
-            return cached_plans
-
         # build the base query to filter plans
         base_filters = Q(active=True)
         base_filters &= Q(site_id=site_id) | Q(site_id__isnull=True)
@@ -91,6 +82,15 @@ class ShopHelper:
 
         # first, try to fetch plans for the user's language
         if user_language:
+            # generate cache key for language-specific plans
+            cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_{user_language}"
+
+            # attempt to retrieve the plans from cache
+            cached_plans = cache.get(cache_key)
+
+            if cached_plans is not None:
+                return cached_plans
+
             language_filters = base_filters & (
                 Q(language__code_iso_language=user_language)
                 | Q(language__code_iso_639_1=user_language)
@@ -105,8 +105,20 @@ class ShopHelper:
             # check if any plans exist before evaluating the queryset
             if plans_queryset.exists():
                 plans = plans_queryset.all()
+                # store the result in cache with language-specific key
+                cache.set(cache_key, plans, cache_time)
+                return plans
             else:
                 # if no plans found for the language, fall back to general plans
+                # use a different cache key for general plans (not language-specific)
+                general_cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_general"
+
+                # attempt to retrieve general plans from cache
+                cached_general_plans = cache.get(general_cache_key)
+
+                if cached_general_plans is not None:
+                    return cached_general_plans
+
                 general_filters = base_filters & Q(language__isnull=True)
 
                 plans = (
@@ -115,8 +127,21 @@ class ShopHelper:
                     .order_by("sort_order")
                     .all()
                 )
+
+                # store the result in cache with general key
+                cache.set(general_cache_key, plans, cache_time)
+                return plans
         else:
             # if no language is set, fetch general plans
+            # use cache key for general plans
+            general_cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_general"
+
+            # attempt to retrieve general plans from cache
+            cached_general_plans = cache.get(general_cache_key)
+
+            if cached_general_plans is not None:
+                return cached_general_plans
+
             general_filters = base_filters & Q(language__isnull=True)
 
             plans = (
@@ -126,10 +151,9 @@ class ShopHelper:
                 .all()
             )
 
-        # store the result in cache
-        cache.set(cache_key, plans, cache_time)
-
-        return plans
+            # store the result in cache
+            cache.set(general_cache_key, plans, cache_time)
+            return plans
 
     @staticmethod
     def get_item_by_token(token, customer):

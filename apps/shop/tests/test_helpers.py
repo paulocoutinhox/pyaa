@@ -217,12 +217,12 @@ class ShopHelperTest(TestCase):
     def test_get_plans_by_type_fallback_to_general_plans(
         self, mock_cache_set, mock_cache_get, mock_get_language
     ):
-        """Test that when no plans are found for a language, it falls back to general plans (language=None)"""
-        mock_cache_get.return_value = None
+        # first call returns none (no cache for language-specific), second call returns none (no cache for general)
+        mock_cache_get.side_effect = [None, None]
         mock_get_language.return_value = "pt-br"
 
         with patch("apps.shop.models.Plan.objects.filter") as mock_filter:
-            # Create mock querysets for language and general queries
+            # create mock querysets for language and general queries
             mock_queryset_language = MagicMock()
             mock_queryset_language.select_related.return_value = mock_queryset_language
             mock_queryset_language.order_by.return_value = mock_queryset_language
@@ -233,15 +233,16 @@ class ShopHelperTest(TestCase):
             mock_queryset_general.order_by.return_value = mock_queryset_general
             mock_queryset_general.all.return_value = ["general_plan1", "general_plan2"]
 
-            # Configure mock_filter to return different querysets on calls
+            # configure mock_filter to return different querysets on calls
             mock_filter.side_effect = [mock_queryset_language, mock_queryset_general]
 
             result = ShopHelper.get_plans_by_type(plan_type="credit-purchase")
 
             self.assertEqual(result, ["general_plan1", "general_plan2"])
-            mock_cache_get.assert_called_once()
+            # should have called cache.get twice: once for language-specific, once for general
+            self.assertEqual(mock_cache_get.call_count, 2)
             mock_cache_set.assert_called_once()
-            # Should have called filter twice: once for language, once for general
+            # should have called filter twice: once for language, once for general
             self.assertEqual(mock_filter.call_count, 2)
 
     @patch("django.utils.translation.get_language")
@@ -250,12 +251,12 @@ class ShopHelperTest(TestCase):
     def test_get_plans_by_type_no_plans_found(
         self, mock_cache_set, mock_cache_get, mock_get_language
     ):
-        """Test that when no plans are found for language and no general plans exist, returns empty list"""
-        mock_cache_get.return_value = None
+        # first call returns none (no cache for language-specific), second call returns none (no cache for general)
+        mock_cache_get.side_effect = [None, None]
         mock_get_language.return_value = "pt-br"
 
         with patch("apps.shop.models.Plan.objects.filter") as mock_filter:
-            # Both queries return empty
+            # both queries return empty
             mock_queryset_language = MagicMock()
             mock_queryset_language.select_related.return_value = mock_queryset_language
             mock_queryset_language.order_by.return_value = mock_queryset_language
@@ -271,9 +272,10 @@ class ShopHelperTest(TestCase):
             result = ShopHelper.get_plans_by_type(plan_type="credit-purchase")
 
             self.assertEqual(result, [])
-            mock_cache_get.assert_called_once()
+            # should have called cache.get twice: once for language-specific, once for general
+            self.assertEqual(mock_cache_get.call_count, 2)
             mock_cache_set.assert_called_once()
-            # Should have called filter twice: once for language, once for general
+            # should have called filter twice: once for language, once for general
             self.assertEqual(mock_filter.call_count, 2)
 
     @patch("django.utils.translation.get_language")
@@ -282,7 +284,6 @@ class ShopHelperTest(TestCase):
     def test_get_plans_by_type_no_language_returns_general_plans(
         self, mock_cache_set, mock_cache_get, mock_get_language
     ):
-        """Test that when no language is set, it returns only general plans (language=None)"""
         mock_cache_get.return_value = None
         mock_get_language.return_value = None
 
@@ -297,6 +298,37 @@ class ShopHelperTest(TestCase):
             self.assertEqual(result, ["general_plan1", "general_plan2"])
             mock_cache_get.assert_called_once()
             mock_cache_set.assert_called_once()
-            # Should have called filter only once (for general plans)
+            # should have called filter only once (for general plans)
             mock_filter.assert_called_once()
             mock_queryset.select_related.assert_called_once_with("language")
+
+    @patch("django.utils.translation.get_language")
+    @patch("django.core.cache.cache.get")
+    @patch("django.core.cache.cache.set")
+    def test_get_plans_by_type_fallback_uses_general_cache(
+        self, mock_cache_set, mock_cache_get, mock_get_language
+    ):
+        # first call returns none (no cache for language-specific), second call returns cached general plans
+        mock_cache_get.side_effect = [
+            None,
+            ["cached_general_plan1", "cached_general_plan2"],
+        ]
+        mock_get_language.return_value = "pt-br"
+
+        with patch("apps.shop.models.Plan.objects.filter") as mock_filter:
+            mock_queryset_language = MagicMock()
+            mock_queryset_language.select_related.return_value = mock_queryset_language
+            mock_queryset_language.order_by.return_value = mock_queryset_language
+            mock_queryset_language.exists.return_value = False
+
+            mock_filter.return_value = mock_queryset_language
+
+            result = ShopHelper.get_plans_by_type(plan_type="credit-purchase")
+
+            self.assertEqual(result, ["cached_general_plan1", "cached_general_plan2"])
+            # should have called cache.get twice: once for language-specific, once for general
+            self.assertEqual(mock_cache_get.call_count, 2)
+            # should not set cache since we got it from cache
+            mock_cache_set.assert_not_called()
+            # should have called filter only once (for language check, then used cached general)
+            self.assertEqual(mock_filter.call_count, 1)
