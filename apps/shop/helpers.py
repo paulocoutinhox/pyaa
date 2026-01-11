@@ -58,13 +58,13 @@ class ShopHelper:
     def get_plans_by_type(plan_type=None, cache_time=60):
         """
         Fetches plans filtered by plan type, site, and language. If plan_type is None, fetches all active plans.
-        The results are cached to improve performance.
+        First tries to fetch plans for the user's language. If no plans are found, falls back to general plans.
 
         :param plan_type: the type of the plan to filter (optional).
         :param cache_time: cache expiration time in seconds (default is 60 seconds).
         :return: a queryset of filtered and ordered plans.
         """
-        # get the current site ID from settings
+        # get the current site from settings
         site_id = settings.SITE_ID
 
         # get user language
@@ -73,7 +73,7 @@ class ShopHelper:
         if user_language:
             user_language = user_language.lower()
 
-        # generate a unique cache key based on plan_type, site_id, and language
+        # generate a unique cache key
         cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_{user_language}"
 
         # attempt to retrieve the plans from cache
@@ -82,40 +82,49 @@ class ShopHelper:
         if cached_plans is not None:
             return cached_plans
 
-        # build the query to filter plans
-        filters = Q(active=True)
-        filters &= Q(site_id=site_id) | Q(site_id__isnull=True)
+        # build the base query to filter plans
+        base_filters = Q(active=True)
+        base_filters &= Q(site_id=site_id) | Q(site_id__isnull=True)
 
         if plan_type is not None:
-            filters &= Q(plan_type=plan_type)
+            base_filters &= Q(plan_type=plan_type)
 
-        # fetch plans from the database with language priority
-        plans = (
-            Plan.objects.filter(filters)
-            .select_related("language")
-            .order_by(
-                models.Case(
-                    # priority to plans in user's language
-                    models.When(
-                        models.Q(language__code_iso_language=user_language)
-                        | models.Q(language__code_iso_639_1=user_language),
-                        then=0,
-                    ),
-                    # fallback to en-us
-                    models.When(
-                        models.Q(language__code_iso_language="en-us")
-                        | models.Q(language__code_iso_639_1="en"),
-                        then=1,
-                    ),
-                    # global plans (language=None)
-                    models.When(language__isnull=True, then=2),
-                    default=models.Value(3),
-                    output_field=models.IntegerField(),
-                ),
-                "sort_order",
+        # first, try to fetch plans for the user's language
+        if user_language:
+            language_filters = base_filters & (
+                Q(language__code_iso_language=user_language)
+                | Q(language__code_iso_639_1=user_language)
             )
-            .all()
-        )
+
+            plans_queryset = (
+                Plan.objects.filter(language_filters)
+                .select_related("language")
+                .order_by("sort_order")
+            )
+
+            # check if any plans exist before evaluating the queryset
+            if plans_queryset.exists():
+                plans = plans_queryset.all()
+            else:
+                # if no plans found for the language, fall back to general plans
+                general_filters = base_filters & Q(language__isnull=True)
+
+                plans = (
+                    Plan.objects.filter(general_filters)
+                    .select_related("language")
+                    .order_by("sort_order")
+                    .all()
+                )
+        else:
+            # if no language is set, fetch general plans
+            general_filters = base_filters & Q(language__isnull=True)
+
+            plans = (
+                Plan.objects.filter(general_filters)
+                .select_related("language")
+                .order_by("sort_order")
+                .all()
+            )
 
         # store the result in cache
         cache.set(cache_key, plans, cache_time)
