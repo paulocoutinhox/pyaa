@@ -1,10 +1,17 @@
 from django.db.models import Q
+from django.utils import translation
 from django.utils.translation import get_language
 
 from apps.language.models import Language
 
 
 class LanguageHelper:
+    @staticmethod
+    def get_language_code(customer=None):
+        if customer and getattr(customer, "language", None):
+            return customer.language.code_iso_language
+        return translation.get_language()
+
     @staticmethod
     def get_current():
         # get the browser's language

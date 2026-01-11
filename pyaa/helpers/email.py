@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.utils import translation
 from django_q.tasks import async_task
 
 logger = logging.getLogger(__name__)
@@ -20,12 +21,17 @@ class EmailHelper:
         attachments=None,
         from_email=None,
         reply_to=None,
+        language=None,
     ):
         """
         Sends an email with both HTML and plain text versions.
         """
         # render html message from the template
-        html_message = render_to_string(template, context or {})
+        if language:
+            with translation.override(language):
+                html_message = render_to_string(template, context or {})
+        else:
+            html_message = render_to_string(template, context or {})
 
         # convert html to plain text
         text_message = EmailHelper.html_to_text(html_message)
@@ -84,6 +90,7 @@ class EmailHelper:
         attachments=None,
         from_email=None,
         reply_to=None,
+        language=None,
     ):
         """
         Sends an email asynchronously using Django Q.
@@ -99,6 +106,7 @@ class EmailHelper:
             attachments,
             from_email,
             reply_to,
+            language,
         )
 
         logger.info(f"Async email scheduled for {to} with task_id: {task_id}")

@@ -142,6 +142,7 @@ class PlanAdmin(admin.ModelAdmin):
         "name",
         "gateway",
         "plan_type",
+        "language",
         "credits",
         "active",
         "created_at",
@@ -152,6 +153,7 @@ class PlanAdmin(admin.ModelAdmin):
         "name",
         "gateway",
         "plan_type",
+        "language",
         "credits",
         "active",
         "created_at",
@@ -160,6 +162,7 @@ class PlanAdmin(admin.ModelAdmin):
     list_filter = (
         "active",
         "gateway",
+        "language",
     )
 
     search_fields = ("name",)
@@ -172,6 +175,7 @@ class PlanAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "site",
+                    "language",
                     "name",
                     "tag",
                     "gateway",

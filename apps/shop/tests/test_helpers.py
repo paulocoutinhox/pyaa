@@ -117,10 +117,10 @@ class ShopHelperTest(TestCase):
         mock_cache_get.return_value = None
 
         with patch("apps.shop.models.Plan.objects.filter") as mock_filter:
-            mock_filter.return_value.order_by.return_value.all.return_value = [
-                "plan1",
-                "plan2",
-            ]
+            mock_queryset = mock_filter.return_value
+            mock_queryset.select_related.return_value = mock_queryset
+            mock_queryset.order_by.return_value = mock_queryset
+            mock_queryset.all.return_value = ["plan1", "plan2"]
 
             # test getting plans by type
             result = ShopHelper.get_plans_by_type(plan_type="credit-purchase")
@@ -184,3 +184,25 @@ class ShopHelperTest(TestCase):
         # test valid token
         result = ShopHelper.get_item_type_by_token(f"{ObjectType.CREDIT_PURCHASE}.123")
         self.assertEqual(result, ObjectType.CREDIT_PURCHASE)
+
+    @patch("django.utils.translation.get_language")
+    @patch("django.core.cache.cache.get")
+    @patch("django.core.cache.cache.set")
+    def test_get_plans_by_type_with_language_filter(
+        self, mock_cache_set, mock_cache_get, mock_get_language
+    ):
+        mock_cache_get.return_value = None
+        mock_get_language.return_value = "pt-br"
+
+        with patch("apps.shop.models.Plan.objects.filter") as mock_filter:
+            mock_queryset = mock_filter.return_value
+            mock_queryset.select_related.return_value = mock_queryset
+            mock_queryset.order_by.return_value = mock_queryset
+            mock_queryset.all.return_value = ["plan1", "plan2"]
+
+            result = ShopHelper.get_plans_by_type(plan_type="credit-purchase")
+
+            self.assertEqual(result, ["plan1", "plan2"])
+            mock_cache_get.assert_called_once()
+            mock_cache_set.assert_called_once()
+            mock_queryset.select_related.assert_called_once_with("language")

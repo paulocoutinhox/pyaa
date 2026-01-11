@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.core.cache import cache
+from django.db import models
 from django.db.models import Q
+from django.utils.translation import get_language
 
 from apps.shop.enums import ObjectType, PaymentGateway
 from apps.shop.gateways import stripe
@@ -55,7 +57,7 @@ class ShopHelper:
     @staticmethod
     def get_plans_by_type(plan_type=None, cache_time=60):
         """
-        Fetches plans filtered by plan type and site. If plan_type is None, fetches all active plans.
+        Fetches plans filtered by plan type, site, and language. If plan_type is None, fetches all active plans.
         The results are cached to improve performance.
 
         :param plan_type: the type of the plan to filter (optional).
@@ -65,8 +67,14 @@ class ShopHelper:
         # get the current site ID from settings
         site_id = settings.SITE_ID
 
-        # generate a unique cache key based on plan_type and site_id
-        cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}"
+        # get user language
+        user_language = get_language()
+
+        if user_language:
+            user_language = user_language.lower()
+
+        # generate a unique cache key based on plan_type, site_id, and language
+        cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_{user_language}"
 
         # attempt to retrieve the plans from cache
         cached_plans = cache.get(cache_key)
@@ -81,8 +89,33 @@ class ShopHelper:
         if plan_type is not None:
             filters &= Q(plan_type=plan_type)
 
-        # fetch plans from the database
-        plans = Plan.objects.filter(filters).order_by("sort_order").all()
+        # fetch plans from the database with language priority
+        plans = (
+            Plan.objects.filter(filters)
+            .select_related("language")
+            .order_by(
+                models.Case(
+                    # priority to plans in user's language
+                    models.When(
+                        models.Q(language__code_iso_language=user_language)
+                        | models.Q(language__code_iso_639_1=user_language),
+                        then=0,
+                    ),
+                    # fallback to en-us
+                    models.When(
+                        models.Q(language__code_iso_language="en-us")
+                        | models.Q(language__code_iso_639_1="en"),
+                        then=1,
+                    ),
+                    # global plans (language=None)
+                    models.When(language__isnull=True, then=2),
+                    default=models.Value(3),
+                    output_field=models.IntegerField(),
+                ),
+                "sort_order",
+            )
+            .all()
+        )
 
         # store the result in cache
         cache.set(cache_key, plans, cache_time)
