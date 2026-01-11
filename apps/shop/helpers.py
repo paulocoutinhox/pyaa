@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.core.cache import cache
-from django.db import models
 from django.db.models import Q
 from django.utils.translation import get_language
 
@@ -171,7 +170,6 @@ class ShopHelper:
             return None
 
         object_type = token_parts[0]
-        object_id = token_parts[1]
 
         # find object
         if object_type == ObjectType.CREDIT_PURCHASE:
@@ -200,5 +198,8 @@ class ShopHelper:
 
         # token parts
         token_parts = token.split(".")
+
+        if len(token_parts) < 2:
+            return None
 
         return token_parts[0]
