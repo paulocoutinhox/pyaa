@@ -83,6 +83,7 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
     readonly_fields = (
         "created_at",
         "updated_at",
+        "language",
         "user_email",
         "user_cpf",
         "user_mobile_phone",
@@ -111,6 +112,7 @@ class CustomerAdmin(ReadonlyLinksMixin, admin.ModelAdmin):
             {
                 "fields": (
                     "user",
+                    "language",
                     "site",
                     "user_email",
                     "user_cpf",

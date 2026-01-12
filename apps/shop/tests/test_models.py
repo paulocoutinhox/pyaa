@@ -309,6 +309,51 @@ class PlanModelTest(TestCase):
         plan.save()
         self.assertEqual(plan.get_frequency_in_days(), 1095)
 
+    def test_plan_with_language(self):
+        language = Language.objects.create(
+            name="Portuguese",
+            native_name="Português",
+            code_iso_639_1="pt",
+            code_iso_language="pt-br",
+        )
+
+        plan = Plan.objects.create(
+            name="Plan with Language",
+            tag="plan-with-language",
+            gateway="stripe",
+            currency="USD",
+            price=9.99,
+            credits=10,
+            plan_type=PlanType.CREDIT_PURCHASE,
+            description="Test plan with language",
+            sort_order=1,
+            featured=True,
+            active=True,
+            site=self.site,
+            language=language,
+        )
+
+        self.assertEqual(plan.language, language)
+        self.assertEqual(plan.language.code_iso_language, "pt-br")
+
+    def test_plan_without_language(self):
+        plan = Plan.objects.create(
+            name="Plan without Language",
+            tag="plan-without-language",
+            gateway="stripe",
+            currency="USD",
+            price=9.99,
+            credits=10,
+            plan_type=PlanType.CREDIT_PURCHASE,
+            description="Test plan without language",
+            sort_order=1,
+            featured=True,
+            active=True,
+            site=self.site,
+        )
+
+        self.assertIsNone(plan.language)
+
 
 class SubscriptionModelTest(TestCase):
     def setUp(self):

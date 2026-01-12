@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer.models import Customer
+from apps.language.helpers import LanguageHelper
 from apps.shop.enums import ObjectType
 from apps.shop.models import CreditLog, Plan
 from pyaa.helpers.email import EmailHelper
@@ -237,12 +238,15 @@ class CustomerHelper:
             "profile_url": profile_url,
         }
 
+        language = LanguageHelper.get_language_code(customer)
+
         EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/signup.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
+            language=language,
         )
 
     @staticmethod
@@ -317,12 +321,15 @@ class CustomerHelper:
                 }
             )
 
+        language = LanguageHelper.get_language_code(customer)
+
         EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template=template,
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
+            language=language,
         )
 
     @staticmethod
@@ -380,12 +387,15 @@ class CustomerHelper:
             "purchase": purchase,
         }
 
+        language = LanguageHelper.get_language_code(customer)
+
         EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/credit/credit_purchase_paid.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
+            language=language,
         )
 
     @staticmethod
@@ -423,12 +433,15 @@ class CustomerHelper:
             "purchase": purchase,
         }
 
+        language = LanguageHelper.get_language_code(customer)
+
         EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/product/product_purchase_paid.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
+            language=language,
         )
 
     @staticmethod
@@ -519,12 +532,15 @@ class CustomerHelper:
             "token": recovery_token,
         }
 
+        language = LanguageHelper.get_language_code(customer)
+
         EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/password_recovery.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
+            language=language,
         )
 
         return True
@@ -565,12 +581,15 @@ class CustomerHelper:
             "token": customer.activate_token,
         }
 
+        language = LanguageHelper.get_language_code(customer)
+
         EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/account/activation.html",
             context=context,
             reply_to=[settings.DEFAULT_TO_EMAIL],
+            language=language,
         )
 
         return True

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
+from django.utils.translation import get_language
 
 from apps.shop.enums import ObjectType, PaymentGateway
 from apps.shop.gateways import stripe
@@ -55,39 +56,103 @@ class ShopHelper:
     @staticmethod
     def get_plans_by_type(plan_type=None, cache_time=60):
         """
-        Fetches plans filtered by plan type and site. If plan_type is None, fetches all active plans.
-        The results are cached to improve performance.
+        Fetches plans filtered by plan type, site, and language. If plan_type is None, fetches all active plans.
+        First tries to fetch plans for the user's language. If no plans are found, falls back to general plans.
 
         :param plan_type: the type of the plan to filter (optional).
         :param cache_time: cache expiration time in seconds (default is 60 seconds).
         :return: a queryset of filtered and ordered plans.
         """
-        # get the current site ID from settings
+        # get the current site from settings
         site_id = settings.SITE_ID
 
-        # generate a unique cache key based on plan_type and site_id
-        cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}"
+        # get user language
+        user_language = get_language()
 
-        # attempt to retrieve the plans from cache
-        cached_plans = cache.get(cache_key)
+        if user_language:
+            user_language = user_language.lower()
 
-        if cached_plans is not None:
-            return cached_plans
-
-        # build the query to filter plans
-        filters = Q(active=True)
-        filters &= Q(site_id=site_id) | Q(site_id__isnull=True)
+        # build the base query to filter plans
+        base_filters = Q(active=True)
+        base_filters &= Q(site_id=site_id) | Q(site_id__isnull=True)
 
         if plan_type is not None:
-            filters &= Q(plan_type=plan_type)
+            base_filters &= Q(plan_type=plan_type)
 
-        # fetch plans from the database
-        plans = Plan.objects.filter(filters).order_by("sort_order").all()
+        # first, try to fetch plans for the user's language
+        if user_language:
+            # generate cache key for language-specific plans
+            cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_{user_language}"
 
-        # store the result in cache
-        cache.set(cache_key, plans, cache_time)
+            # attempt to retrieve the plans from cache
+            cached_plans = cache.get(cache_key)
 
-        return plans
+            if cached_plans is not None:
+                return cached_plans
+
+            language_filters = base_filters & (
+                Q(language__code_iso_language=user_language)
+                | Q(language__code_iso_639_1=user_language)
+            )
+
+            plans_queryset = (
+                Plan.objects.filter(language_filters)
+                .select_related("language")
+                .order_by("sort_order")
+            )
+
+            # check if any plans exist before evaluating the queryset
+            if plans_queryset.exists():
+                plans = plans_queryset.all()
+                # store the result in cache with language-specific key
+                cache.set(cache_key, plans, cache_time)
+                return plans
+            else:
+                # if no plans found for the language, fall back to general plans
+                # use a different cache key for general plans (not language-specific)
+                general_cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_general"
+
+                # attempt to retrieve general plans from cache
+                cached_general_plans = cache.get(general_cache_key)
+
+                if cached_general_plans is not None:
+                    return cached_general_plans
+
+                general_filters = base_filters & Q(language__isnull=True)
+
+                plans = (
+                    Plan.objects.filter(general_filters)
+                    .select_related("language")
+                    .order_by("sort_order")
+                    .all()
+                )
+
+                # store the result in cache with general key
+                cache.set(general_cache_key, plans, cache_time)
+                return plans
+        else:
+            # if no language is set, fetch general plans
+            # use cache key for general plans
+            general_cache_key = f"plans_site_{site_id}_type_{plan_type if plan_type else 'all'}_lang_general"
+
+            # attempt to retrieve general plans from cache
+            cached_general_plans = cache.get(general_cache_key)
+
+            if cached_general_plans is not None:
+                return cached_general_plans
+
+            general_filters = base_filters & Q(language__isnull=True)
+
+            plans = (
+                Plan.objects.filter(general_filters)
+                .select_related("language")
+                .order_by("sort_order")
+                .all()
+            )
+
+            # store the result in cache
+            cache.set(general_cache_key, plans, cache_time)
+            return plans
 
     @staticmethod
     def get_item_by_token(token, customer):
@@ -105,7 +170,6 @@ class ShopHelper:
             return None
 
         object_type = token_parts[0]
-        object_id = token_parts[1]
 
         # find object
         if object_type == ObjectType.CREDIT_PURCHASE:
@@ -134,5 +198,8 @@ class ShopHelper:
 
         # token parts
         token_parts = token.split(".")
+
+        if len(token_parts) < 2:
+            return None
 
         return token_parts[0]

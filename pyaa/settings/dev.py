@@ -78,9 +78,10 @@ THIRD_PARTY_APPS = [
 
 PROJECT_APPS = [
     "apps.backup",
+    "apps.web.apps.WebAppConfig",
+    "apps.api.apps.ApiAppConfig",
     "apps.site.apps.SiteAppConfig",
     "apps.user.apps.UserAppConfig",
-    "apps.web.apps.WebAppConfig",
     "apps.report.apps.ReportAppConfig",
     "apps.customer.apps.CustomerAppConfig",
     "apps.system_log.apps.SystemLogAppConfig",

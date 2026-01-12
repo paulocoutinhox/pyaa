@@ -10,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from tinymce.models import HTMLField
 
 from apps.customer.models import Customer
+from apps.language import models as language_models
 from apps.shop import enums, fields
 from apps.shop.enums import (
     CreditPurchaseStatus,
@@ -263,6 +264,15 @@ class Plan(models.Model):
         verbose_name=_("model.field.site"),
         blank=True,
         null=True,
+    )
+
+    language = models.ForeignKey(
+        language_models.Language,
+        on_delete=models.RESTRICT,
+        blank=True,
+        null=True,
+        default=None,
+        verbose_name=_("model.field.language"),
     )
 
     name = models.CharField(

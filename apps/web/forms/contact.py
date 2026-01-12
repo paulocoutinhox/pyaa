@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
 
+from apps.language.helpers import LanguageHelper
 from pyaa.helpers.email import EmailHelper
 
 
@@ -53,10 +54,13 @@ class ContactForm(forms.Form):
             "form": self.cleaned_data,
         }
 
+        language = LanguageHelper.get_language_code()
+
         EmailHelper.send_email_async(
             subject=subject,
             to=recipient_list,
             template="emails/site/contact.html",
             context=context,
             reply_to=[from_email],
+            language=language,
         )
