@@ -11,16 +11,9 @@ apps/web/static/css/
 ├── tailwind/
 │   ├── tailwind.css    # Tailwind directives (input file)
 │   └── bundle.css      # Final compiled CSS (output file, DO NOT edit manually)
-├── main.scss           # SCSS entry point for custom styles
+├── main.scss           # SCSS entry point for non-Tailwind custom overrides
 └── custom.scss         # Project-specific custom styles
 ```
-
-### Key Files
-
-- **tailwind/tailwind.css**: Input file with Tailwind directives (`@tailwind base`, `@tailwind components`, `@tailwind utilities`)
-- **tailwind/bundle.css**: Final compiled Tailwind CSS (auto-generated, committed to repository)
-- **main.scss**: SCSS entry point that imports custom styles
-- **custom.scss**: Project-specific custom styles and overrides
 
 ## Configuration Files
 
@@ -57,7 +50,7 @@ or:
 npm run css:dev
 ```
 
-Watches for changes in HTML templates and CSS files, automatically recompiling Tailwind.
+Watches for changes in HTML templates (content) and the Tailwind input file.
 
 ### Production Build (Minified)
 
@@ -193,33 +186,56 @@ Tailwind provides comprehensive color palettes:
 <div class="bg-yellow-500">Yellow</div>
 ```
 
-## Custom Styles
+## Customizing Tailwind
 
-The `custom.scss` file is for project-specific customizations. While Tailwind utilities should be preferred, `custom.scss` is useful for:
+### In tailwind.css
+
+Add Tailwind customizations in `tailwind/tailwind.css`:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Tailwind components */
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700;
+  }
+}
+
+/* Custom Tailwind utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+## Non-Tailwind Styles (custom.scss)
+
+The `custom.scss` file is for styles **completely outside of Tailwind**. This file should NOT use `@apply` or any Tailwind features.
 
 ### When to Use custom.scss
 
-- Complex component styles that can't be expressed with utilities alone
-- Reusable component patterns
-- Custom animations and transitions
+- Styles that cannot be converted to Tailwind
 - Third-party library overrides
+- Complex SCSS features (mixins, functions, variables)
+- Styles that need to exist independently of Tailwind
 
 ### Example
 
 ```scss
-// custom.scss
-.custom-card {
-  @apply p-6 bg-white rounded-lg shadow-md;
-
-  // custom property not available in Tailwind
+// custom.scss - NO Tailwind here!
+.component {
+  padding: 16px;
+  background-color: #ffffff;
   border-left: 4px solid #3b82f6;
-}
-
-.custom-animation {
-  @apply transition-all duration-300;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 
   &:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   }
 }
 ```
@@ -301,8 +317,9 @@ npm install
 ### DO NOT Edit bundle.css
 
 The `tailwind/bundle.css` file is auto-generated. Edit these instead:
-- `tailwind/tailwind.css` - Tailwind directives
-- `custom.scss` - Custom styles
+- `tailwind/tailwind.css` - Tailwind directives and Tailwind customizations (@layer)
+- `custom.scss` - Non-Tailwind styles
+- `tailwind.config.js` - Tailwind theme configuration
 - HTML templates - Tailwind utility classes
 
 ### Always Commit bundle.css
@@ -337,7 +354,7 @@ Use Tailwind utility classes instead of writing custom CSS:
 ### CSS changes not appearing
 
 1. Ensure watcher is running: `make tailwind-dev`
-2. Check for SCSS syntax errors
+2. Check for syntax errors
 3. Clear browser cache (Ctrl+Shift+R / Cmd+Shift+R)
 
 ### Bundle.css not updating
