@@ -11,6 +11,12 @@ __pycache__
 
 # Static files
 /apps/web/static/css/*.css
+/apps/web/static/css/*.map
+
+# Tailwind files
+!/apps/web/static/css/tailwind/tailwind.css
+!/apps/web/static/css/tailwind/bundle.css
+!/apps/web/static/css/tailwind/bundle.css.map
 
 # Backup files
 *.bak

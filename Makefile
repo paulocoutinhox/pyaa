@@ -30,6 +30,9 @@ help:
 	@echo ""
 	@echo "- test-all-coverage-ci"
 	@echo ""
+	@echo "- tailwind-dev"
+	@echo "- tailwind-prod"
+	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-rebuild"
 	@echo "- docker-run"
@@ -92,6 +95,12 @@ run-worker:
 
 fixtures:
 	python3 manage.py loaddata initial
+
+tailwind-dev:
+	npm run css:dev
+
+tailwind-prod:
+	npm run css:prod
 
 test:
 	python3 manage.py test

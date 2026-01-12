@@ -1,0 +1,13 @@
+{
+  "name": "pyaa",
+  "version": "1.0.0",
+  "description": "PYAA",
+  "scripts": {
+    "css:dev": "npx @tailwindcss/cli -i ./apps/web/static/css/tailwind/tailwind.css -o ./apps/web/static/css/tailwind/bundle.css --watch",
+    "css:prod": "npx @tailwindcss/cli -i ./apps/web/static/css/tailwind/tailwind.css -o ./apps/web/static/css/tailwind/bundle.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "latest",
+    "@tailwindcss/cli": "latest"
+  }
+}
