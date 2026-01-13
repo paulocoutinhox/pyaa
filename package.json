@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "PYAA",
   "scripts": {
-    "css:dev": "npx @tailwindcss/cli -i ./apps/web/static/css/tailwind/tailwind.css -o ./apps/web/static/css/tailwind/bundle.css --watch",
-    "css:prod": "npx @tailwindcss/cli -i ./apps/web/static/css/tailwind/tailwind.css -o ./apps/web/static/css/tailwind/bundle.css --minify"
+    "frontend:dev": "npm-run-all --parallel css:dev js:dev",
+    "frontend:prod": "npm run css:prod && npm run js:prod",
+    "css:dev": "npx @tailwindcss/cli -i ./apps/web/static/vendor/frontend/css/frontend.css -o ./apps/web/static/vendor/frontend/output/bundle.css --watch",
+    "css:prod": "npx @tailwindcss/cli -i ./apps/web/static/vendor/frontend/css/frontend.css -o ./apps/web/static/vendor/frontend/output/bundle.css --minify",
+    "js:dev": "esbuild ./apps/web/static/vendor/frontend/js/frontend.js --bundle --outfile=./apps/web/static/vendor/frontend/output/bundle.js --sourcemap --watch",
+    "js:prod": "esbuild ./apps/web/static/vendor/frontend/js/frontend.js --bundle --outfile=./apps/web/static/vendor/frontend/output/bundle.js --minify"
   },
   "devDependencies": {
-    "tailwindcss": "latest",
-    "@tailwindcss/cli": "latest"
+    "@tailwindcss/cli": "latest",
+    "esbuild": "latest",
+    "npm-run-all": "latest"
   }
 }
