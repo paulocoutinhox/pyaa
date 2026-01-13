@@ -45,13 +45,13 @@
 
 {% compress css %}
     <link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'vendor/frontend/output/bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/frontend/output/assets/main.css' %}">
     <link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
 {% endcompress %}
 
 {% compress js %}
     <script src="{% static 'vendor/jquery/js/jquery-3.7.1.min.js'%}"></script>
-    <script src="{% static 'js/bs-theme-switch.js' %}"></script>
+    <script src="{% static 'js/theme-manager.js' %}"></script>
     <script src="{% static 'js/banner-manager.js' %}"></script>
     <script src="{% static 'vendor/frontend/output/bundle.js' %}" defer></script>
     <script src="{% static 'js/main.js' %}"></script>

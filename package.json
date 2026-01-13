@@ -2,17 +2,22 @@
   "name": "pyaa",
   "version": "1.0.0",
   "description": "PYAA",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "frontend:dev": "npm-run-all --parallel css:dev js:dev",
-    "frontend:prod": "npm run css:prod && npm run js:prod",
-    "css:dev": "npx @tailwindcss/cli -i ./apps/web/static/vendor/frontend/css/frontend.css -o ./apps/web/static/vendor/frontend/output/bundle.css --watch",
-    "css:prod": "npx @tailwindcss/cli -i ./apps/web/static/vendor/frontend/css/frontend.css -o ./apps/web/static/vendor/frontend/output/bundle.css --minify",
-    "js:dev": "esbuild ./apps/web/static/vendor/frontend/js/frontend.js --bundle --outfile=./apps/web/static/vendor/frontend/output/bundle.js --sourcemap --watch",
-    "js:prod": "esbuild ./apps/web/static/vendor/frontend/js/frontend.js --bundle --outfile=./apps/web/static/vendor/frontend/output/bundle.js --minify"
+    "frontend:dev": "vite build --watch",
+    "frontend:prod": "vite build"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "latest",
-    "esbuild": "latest",
-    "npm-run-all": "latest"
+    "@tailwindcss/postcss": "latest",
+    "autoprefixer": "latest",
+    "daisyui": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "vite": "^7.3.1",
+    "vite-plugin-static-copy": "^3.1.4"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0"
   }
 }

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../js/frontend.js"],
-  "sourcesContent": ["// vendor imports (optional)\n// import 'preline';\n// import 'jquery';\n\n// app code\ndocument.addEventListener('DOMContentLoaded', () => {\n  console.log('frontend loaded');\n});\n"],
-  "mappings": ";;AAKA,WAAS,iBAAiB,oBAAoB,MAAM;AAClD,YAAQ,IAAI,iBAAiB;AAAA,EAC/B,CAAC;",
-  "names": []
-}

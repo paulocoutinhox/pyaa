@@ -1,1 +1,1 @@
-(()=>{document.addEventListener("DOMContentLoaded",()=>{console.log("frontend loaded")});})();
+document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".theme-controller");if(e){const t=localStorage.getItem("theme")||"light";document.documentElement.setAttribute("data-theme",t),t==="dark"&&(e.checked=!0),e.addEventListener("change",n=>{const d=n.target.checked?"dark":"light";document.documentElement.setAttribute("data-theme",d),localStorage.setItem("theme",d)})}});

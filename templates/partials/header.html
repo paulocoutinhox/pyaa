@@ -1,175 +1,139 @@
 {% load i18n %}
 {% load static %}
-{% load pyaa %}
-<header id="header">
-    <div class="d-flex align-items-center justify-content-between px-3 py-2">
-        <!-- Logo -->
-        <div class="d-flex align-items-center gap-4">
-            <div class="d-flex align-items-center gap-3">
-                <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 32px; width: 32px;">
-                <a href="{% url 'home' %}" class="text-decoration-none">
-                    <h2 class="mb-0 fw-bold" style="font-size: 20px;">{% translate "site.small-name" %}</h2>
+
+<header class="sticky top-0 z-50 bg-base-100 border-b border-base-200">
+    <div class="container mx-auto px-4">
+        <div class="navbar min-h-14 p-0">
+            <!-- LEFT: LOGO -->
+            <div class="navbar-start">
+                <a href="{% url 'home' %}" class="flex items-center gap-2">
+                    <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" class="h-8 w-8" />
+                    <span class="text-lg font-semibold tracking-tight">
+                        {% translate "site.small-name" %}
+                    </span>
                 </a>
             </div>
-            <!-- Desktop Navigation -->
-            <nav class="d-none d-lg-flex align-items-center gap-4">
-                <a class="text-decoration-none {% nav_active 'home' %}" href="{% url 'home' %}" style="font-size: 15px;">
-                    {% translate "menu.home" %}
-                </a>
-                <a class="text-decoration-none {% nav_active 'gallery_index' %}" href="{% url 'gallery_index' %}" style="font-size: 15px;">
-                    {% translate "menu.gallery" %}
-                </a>
-                <div class="dropdown">
-                    <a class="text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 15px;">
-                        {% translate "menu.shop" %}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item {% nav_active 'shop_plans' 'subscription' %}" href="{% url 'shop_plans' 'subscription' %}">
-                                {% translate "menu.shop.plans-subscription" %}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item {% nav_active 'shop_plans' 'credit-purchase' %}" href="{% url 'shop_plans' 'credit-purchase' %}">
-                                {% translate "menu.shop.plans-credit-purchase" %}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item {% nav_active 'shop_products' %}" href="{% url 'shop_products' %}">
-                                {% translate "menu.shop.products" %}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <a class="text-decoration-none {% nav_active 'contact_index' %}" href="{% url 'contact_index' %}" style="font-size: 15px;">
-                    {% translate "menu.contact" %}
-                </a>
-            </nav>
-        </div>
 
-        <!-- Right Side Actions -->
-        <div class="d-flex align-items-center gap-2">
-            <!-- Mobile Menu Button -->
-            <button class="btn btn-link d-lg-none p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
-                <i class="bi bi-list fs-5"></i>
-            </button>
+            <!-- CENTER: DESKTOP MENU -->
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 gap-1">
+                    <li><a href="{% url 'home' %}">{% translate "menu.home" %}</a></li>
+                    <li><a href="{% url 'gallery_index' %}">{% translate "menu.gallery" %}</a></li>
+                    <li>
+                        <details>
+                            <summary>{% translate "menu.shop" %}</summary>
+                            <ul class="p-2 bg-base-100">
+                                <li>
+                                    <a href="{% url 'shop_plans' 'subscription' %}">
+                                        {% translate "menu.shop.plans-subscription" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'shop_plans' 'credit-purchase' %}">
+                                        {% translate "menu.shop.plans-credit-purchase" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'shop_products' %}">
+                                        {% translate "menu.shop.products" %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><a href="{% url 'contact_index' %}">{% translate "menu.contact" %}</a></li>
+                </ul>
+            </div>
 
-            <!-- Desktop Auth Buttons and Theme -->
-            <div class="d-none d-lg-flex align-items-center gap-2">
+            <!-- RIGHT: ACTIONS + MOBILE MENU -->
+            <div class="navbar-end gap-2">
+
+                <!-- THEME TOGGLE -->
+                <label class="swap swap-rotate btn btn-ghost btn-circle">
+                    <input type="checkbox" class="theme-controller" value="dark" />
+                    <svg class="swap-off w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 5a7 7 0 100 14 7 7 0 000-14z" />
+                    </svg>
+                    <svg class="swap-on w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                </label>
+
+                <!-- AUTH (DESKTOP) -->
                 {% if user.is_authenticated %}
-                    <!-- Credits display -->
-                    <span class="me-2 d-flex align-items-center" style="font-size: 14px;">
-                        {% translate "menu.credits" %}: {% if user.customer.credits %}{{ user.customer.credits }}{% else %}0{% endif %}
-                    </span>
-
-                    <!-- User menu -->
-                    <a href="{% url 'account_profile' %}" class="btn btn-primary fw-bold" style="font-size: 14px;">
-                        {% translate "menu.profile" %}
-                    </a>
-                    <a href="{% url 'account_logout' %}" class="btn btn-outline-secondary fw-bold" style="font-size: 14px;">
-                        {% translate "menu.logout" %}
-                    </a>
+                <span class="badge badge-primary hidden sm:inline">
+                    {% translate "menu.credits" %}: {{ user.customer.credits|default:0 }}
+                </span>
+                <a href="{% url 'account_profile' %}" class="btn btn-ghost btn-sm hidden sm:inline-flex">
+                    {% translate "menu.profile" %}
+                </a>
+                <a href="{% url 'account_logout' %}" class="btn btn-primary btn-sm hidden sm:inline-flex">
+                    {% translate "menu.logout" %}
+                </a>
                 {% else %}
-                    <a href="{% url 'account_signup' %}" class="btn btn-primary fw-bold" style="font-size: 14px;">
-                        {% translate "menu.signup" %}
-                    </a>
-                    <a href="{% url 'account_login' %}" class="btn btn-outline-primary fw-bold" style="font-size: 14px;">
-                        {% translate "menu.login" %}
-                    </a>
+                <a href="{% url 'account_login' %}" class="btn btn-ghost btn-sm hidden sm:inline-flex">
+                    {% translate "menu.login" %}
+                </a>
+                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-sm hidden sm:inline-flex">
+                    {% translate "menu.signup" %}
+                </a>
                 {% endif %}
 
-                <!-- Theme Selector -->
-                <div class="dropdown ms-2">
-                    <button class="btn btn-link p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-circle-half"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                <!-- MOBILE MENU (RIGHT SIDE) -->
+                <div class="dropdown dropdown-end lg:hidden">
+                    <label tabindex="0" class="btn btn-ghost btn-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </label>
+
+                    <ul tabindex="0"
+                        class="menu menu-sm dropdown-content mt-3 z-[1] w-56 rounded-box bg-base-100 p-2 shadow">
+                        <li><a href="{% url 'home' %}">{% translate "menu.home" %}</a></li>
+                        <li><a href="{% url 'gallery_index' %}">{% translate "menu.gallery" %}</a></li>
                         <li>
-                            <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="light">
-                                <i class="bi bi-sun-fill me-2"></i>
-                                Light
-                            </button>
+                            <details>
+                                <summary>{% translate "menu.shop" %}</summary>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'shop_plans' 'subscription' %}">
+                                            {% translate "menu.shop.plans-subscription" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'shop_plans' 'credit-purchase' %}">
+                                            {% translate "menu.shop.plans-credit-purchase" %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'shop_products' %}">
+                                            {% translate "menu.shop.products" %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </details>
                         </li>
-                        <li>
-                            <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="dark">
-                                <i class="bi bi-moon-stars-fill me-2"></i>
-                                Dark
-                            </button>
+                        <li><a href="{% url 'contact_index' %}">{% translate "menu.contact" %}</a></li>
+
+                        <li class="menu-title mt-2">
+                            <span>{% translate "menu.account" %}</span>
                         </li>
-                        <li>
-                            <button class="dropdown-item d-flex align-items-center" type="button" data-bs-theme-value="auto">
-                                <i class="bi bi-circle-half me-2"></i>
-                                Auto
-                            </button>
+
+                        {% if user.is_authenticated %}
+                        <li class="disabled">
+                            <span>{% translate "menu.credits" %}: {{ user.customer.credits|default:0 }}</span>
                         </li>
+                        <li><a href="{% url 'account_profile' %}">{% translate "menu.profile" %}</a></li>
+                        <li><a href="{% url 'account_logout' %}">{% translate "menu.logout" %}</a></li>
+                        {% else %}
+                        <li><a href="{% url 'account_login' %}">{% translate "menu.login" %}</a></li>
+                        <li><a href="{% url 'account_signup' %}">{% translate "menu.signup" %}</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Mobile Menu Offcanvas -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="mobileMenuLabel">{% translate "site.small-name" %}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <nav class="d-flex flex-column gap-3 text-center">
-                <a class="text-decoration-none {% nav_active 'home' %}" href="{% url 'home' %}">
-                    {% translate "menu.home" %}
-                </a>
-                <a class="text-decoration-none {% nav_active 'gallery_index' %}" href="{% url 'gallery_index' %}">
-                    {% translate "menu.gallery" %}
-                </a>
-                <a class="text-decoration-none {% nav_active 'shop_plans' 'subscription' %}" href="{% url 'shop_plans' 'subscription' %}">
-                    {% translate "menu.shop.plans-subscription" %}
-                </a>
-                <a class="text-decoration-none {% nav_active 'shop_plans' 'credit-purchase' %}" href="{% url 'shop_plans' 'credit-purchase' %}">
-                    {% translate "menu.shop.plans-credit-purchase" %}
-                </a>
-                <a class="text-decoration-none {% nav_active 'shop_products' %}" href="{% url 'shop_products' %}">
-                    {% translate "menu.shop.products" %}
-                </a>
-                <a class="text-decoration-none {% nav_active 'contact_index' %}" href="{% url 'contact_index' %}">
-                    {% translate "menu.contact" %}
-                </a>
-
-                {% if user.is_authenticated %}
-                    <hr class="my-3">
-                    <span class="text-muted mb-2">
-                        {% translate "menu.credits" %}: {% if user.customer.credits %}{{ user.customer.credits }}{% else %}0{% endif %}
-                    </span>
-                    <a href="{% url 'account_profile' %}" class="btn btn-primary fw-bold {% nav_active 'account_profile' %}">
-                        {% translate "menu.profile" %}
-                    </a>
-                    <a href="{% url 'account_logout' %}" class="btn btn-outline-secondary fw-bold">
-                        {% translate "menu.logout" %}
-                    </a>
-                {% else %}
-                    <hr class="my-3">
-                    <a href="{% url 'account_signup' %}" class="btn btn-primary fw-bold">
-                        {% translate "menu.signup" %}
-                    </a>
-                    <a href="{% url 'account_login' %}" class="btn btn-outline-primary fw-bold">
-                        {% translate "menu.login" %}
-                    </a>
-                {% endif %}
-
-                <!-- Theme Selector Mobile -->
-                <hr class="my-3">
-                <div class="d-flex justify-content-center gap-2">
-                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-theme-value="light">
-                        <i class="bi bi-sun-fill"></i>
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-theme-value="dark">
-                        <i class="bi bi-moon-stars-fill"></i>
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-theme-value="auto">
-                        <i class="bi bi-circle-half"></i>
-                    </button>
-                </div>
-            </nav>
         </div>
     </div>
 </header>

@@ -1,75 +1,88 @@
-{% load compress %}
 {% load static %}
 {% load i18n %}
 
-{% compress js %}
-<script src="{% static 'vendor/magnific-popup/js/jquery.magnific-popup.min.js'%}"></script>
-<script src="{% static 'vendor/jquery-mask/1.14.16/js/jquery.mask.min.js' %}"></script>
-{% endcompress %}
+<footer class="bg-base-300 text-base-content">
+    <div class="container mx-auto px-6 py-16">
 
-<footer class="bg-dark text-white">
-    <div class="container py-5">
-        <div class="row g-4">
-            <!-- Logo and Copyright -->
-            <div class="col-12 col-md-3">
-                <div class="d-flex align-items-center gap-3 mb-4">
-                    <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 48px; width: 48px;">
-                    <h2 class="footer-logo-text">{% translate "site.small-name" %}</h2>
+        <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+
+            <!-- LOGO + COPYRIGHT -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}"
+                        class="h-12 w-12" />
+                    <span class="text-xl font-bold tracking-tight">
+                        {% translate "site.small-name" %}
+                    </span>
                 </div>
-                <p class="footer-copyright">
-                    © 2026 {% translate "site.name" %}.
-                    <br />
+
+                <p class="text-sm opacity-70 leading-relaxed">
+                    © 2026 {% translate "site.name" %}.<br />
                     {% translate "footer.copyright" %}
                 </p>
             </div>
 
-            <!-- Company Links -->
-            <div class="col-6 col-md-3">
-                <h3 class="footer-section-title">{% translate "footer.company" %}</h3>
-                <ul class="list-unstyled">
+            <!-- EMPRESA -->
+            <div>
+                <h4 class="mb-4 text-sm font-semibold tracking-widest uppercase opacity-80">
+                    {% translate "footer.company" %}
+                </h4>
+                <ul class="space-y-3 text-sm">
                     <li>
-                        <a href="{% url 'contact_index' %}" class="footer-link">
+                        <a href="{% url 'contact_index' %}" class="link link-hover">
                             {% translate "menu.contact" %}
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <!-- Resources Links -->
-            <div class="col-6 col-md-3">
-                <h3 class="footer-section-title">{% translate "footer.resources" %}</h3>
-                <ul class="list-unstyled">
+            <!-- RECURSOS -->
+            <div>
+                <h4 class="mb-4 text-sm font-semibold tracking-widest uppercase opacity-80">
+                    {% translate "footer.resources" %}
+                </h4>
+                <ul class="space-y-3 text-sm">
                     <li>
-                        <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}" class="footer-link">
+                        <a href="{% url 'content_by_tag' content_tag='terms-and-conditions' %}" class="link link-hover">
                             {% translate "site.terms" %}
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="footer-link">
+                        <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="link link-hover">
                             {% translate "site.privacy" %}
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <!-- Social Media -->
-            <div class="col-12 col-md-3">
-                <h3 class="footer-section-title">{% translate "footer.follow-us" %}</h3>
-                <div class="d-flex gap-4">
-                    <a href="https://x.com/paulocoutinhox" class="footer-social-link">
-                        <i class="bi bi-twitter-x"></i>
+            <!-- SIGA-NOS -->
+            <div>
+                <h4 class="mb-4 text-sm font-semibold tracking-widest uppercase opacity-80">
+                    {% translate "footer.follow-us" %}
+                </h4>
+
+                <div class="flex items-center gap-5 text-xl">
+                    <a href="https://x.com/paulocoutinhox" aria-label="X" class="hover:opacity-80 transition">
+                        <i class="fa-brands fa-x-twitter"></i>
                     </a>
-                    <a href="https://www.instagram.com/paulocoutinho.x/" class="footer-social-link">
-                        <i class="bi bi-instagram"></i>
+
+                    <a href="https://www.instagram.com/paulocoutinhox/" aria-label="Instagram"
+                        class="hover:opacity-80 transition">
+                        <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=61558143327222" class="footer-social-link">
-                        <i class="bi bi-facebook"></i>
+
+                    <a href="https://www.facebook.com/profile.php?id=61558143327222" aria-label="Facebook"
+                        class="hover:opacity-80 transition">
+                        <i class="fa-brands fa-facebook"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/paulocoutinhox/" class="footer-social-link">
-                        <i class="bi bi-linkedin"></i>
+
+                    <a href="https://www.linkedin.com/in/paulocoutinhox/" aria-label="LinkedIn"
+                        class="hover:opacity-80 transition">
+                        <i class="fa-brands fa-linkedin"></i>
                     </a>
                 </div>
             </div>
+
         </div>
     </div>
 </footer>
