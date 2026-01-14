@@ -6,5 +6,5 @@
 
 /* daisyui */
 @plugin "daisyui" {
-    themes: light --default, black --prefersdark;
+    themes: lofi --default, black --prefersdark;
 }

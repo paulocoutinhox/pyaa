@@ -1,7 +1,7 @@
 (() => {
     'use strict'
 
-    const LIGHT_THEME = 'light'
+    const LIGHT_THEME = 'lofi'
     const DARK_THEME = 'black'
 
     const getStoredTheme = () => localStorage.getItem('theme')
