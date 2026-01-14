@@ -38,6 +38,18 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="{% if page_url %}{{ page_url|force_https }}{% else %}{{ request.build_absolute_uri|force_https }}{% endif %}">
 
+<!-- Theme -->
+<script>
+    (function() {
+        var theme = localStorage.getItem('theme');
+        if (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    })();
+</script>
+
 <!-- Internal Variables -->
 <script>
     {% get_current_language as LANGUAGE_CODE %}
