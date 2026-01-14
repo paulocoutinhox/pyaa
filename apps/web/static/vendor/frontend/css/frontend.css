@@ -5,4 +5,6 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 /* daisyui */
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: light --default, black --prefersdark;
+}

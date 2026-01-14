@@ -2,32 +2,22 @@
 {% load i18n %}
 {% load pyaa %}
 
-<div class="page-header mb-4{% if attrs.class %} {{ attrs.class }}{% endif %}"
+<div class="mb-6{% if attrs.centered %} text-center{% endif %}{% if attrs.class %} {{ attrs.class }}{% endif %}"
      {% if attrs.id %}id="{{ attrs.id }}"{% endif %}>
 
-    {% if attrs.centered %}
-    <div class="text-center">
+    {% if attrs.logo %}
+    <div class="mb-4">
+        <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" class="w-16 h-16{% if attrs.centered %} mx-auto{% endif %}">
+    </div>
     {% endif %}
 
-        {% if attrs.logo %}
-        <div class="mb-3">
-            <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 64px; width: 64px;">
-        </div>
-        {% endif %}
+    <h1 class="text-2xl font-bold{% if attrs.title_class %} {{ attrs.title_class }}{% endif %}">
+        {% slot %}{% endslot %}
+    </h1>
 
-        <h1 class="page-title{% if attrs.title_class %} {{ attrs.title_class }}{% endif %}">
-            {% slot %}
-            {% endslot %}
-        </h1>
-
-        {% if attrs.subtitle %}
-        <p class="page-subtitle">
-            {% slot subtitle %}
-            {% endslot %}
-        </p>
-        {% endif %}
-
-    {% if attrs.centered %}
-    </div>
+    {% if attrs.subtitle %}
+    <p class="text-base-content/70 mt-2">
+        {% slot subtitle %}{% endslot %}
+    </p>
     {% endif %}
 </div>

@@ -9,22 +9,20 @@
 {% if attrs.submit %}type="submit"{% elif attrs.type %}type="{{ attrs.type }}"{% endif %}
 {% if attrs.disabled %}disabled{% endif %}
 
-{% if 'outline-danger' in attrs.tags %}
-class="btn btn-outline-danger{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% if 'outline-error' in attrs.tags or 'outline-danger' in attrs.tags %}
+class="btn btn-outline btn-error{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'outline-success' in attrs.tags %}
-class="btn btn-outline-success{% if attrs.class %} {{ attrs.class }}{% endif %}"
+class="btn btn-outline btn-success{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'outline-warning' in attrs.tags %}
-class="btn btn-outline-warning{% if attrs.class %} {{ attrs.class }}{% endif %}"
+class="btn btn-outline btn-warning{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'outline-info' in attrs.tags %}
-class="btn btn-outline-info{% if attrs.class %} {{ attrs.class }}{% endif %}"
+class="btn btn-outline btn-info{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'outline-secondary' in attrs.tags %}
-class="btn btn-outline-secondary{% if attrs.class %} {{ attrs.class }}{% endif %}"
-{% elif 'outline-dark' in attrs.tags %}
-class="btn btn-outline-dark{% if attrs.class %} {{ attrs.class }}{% endif %}"
+class="btn btn-outline btn-secondary{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'outline-primary' in attrs.tags %}
-class="btn btn-outline-primary{% if attrs.class %} {{ attrs.class }}{% endif %}"
-{% elif 'danger' in attrs.tags %}
-class="btn btn-danger{% if attrs.class %} {{ attrs.class }}{% endif %}"
+class="btn btn-outline btn-primary{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'error' in attrs.tags or 'danger' in attrs.tags %}
+class="btn btn-error{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'success' in attrs.tags %}
 class="btn btn-success{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'warning' in attrs.tags %}
@@ -33,12 +31,13 @@ class="btn btn-warning{% if attrs.class %} {{ attrs.class }}{% endif %}"
 class="btn btn-info{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% elif 'secondary' in attrs.tags %}
 class="btn btn-secondary{% if attrs.class %} {{ attrs.class }}{% endif %}"
-{% elif 'dark' in attrs.tags %}
-class="btn btn-dark{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'ghost' in attrs.tags %}
+class="btn btn-ghost{% if attrs.class %} {{ attrs.class }}{% endif %}"
+{% elif 'link' in attrs.tags %}
+class="btn btn-link{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% else %}
 class="btn btn-primary{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% endif %}
 >
-{% slot %}
-{% endslot %}
+{% slot %}{% endslot %}
 </{% if attrs.href %}a{% else %}button{% endif %}>

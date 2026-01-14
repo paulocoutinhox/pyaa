@@ -5,51 +5,35 @@
 
 {% block content %}
 
-<div class="container main-container">
-        {% if user.is_authenticated %}
-            <!-- Welcome -->
-            {% element card %}
-                <div class="text-center py-3">
-                    <div class="mb-4">
-                        <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 80px; width: 80px;">
-                    </div>
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+    {% if user.is_authenticated %}
+        {% element card %}
+            <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="width: 64px; height: 64px;" class="mb-4">
+            <h2 class="text-2xl font-bold mb-2">
+                {% blocktranslate with name=user.customer %}Olá, {{ name }}!{% endblocktranslate %}
+            </h2>
+            <p class="text-base-content/70">{% translate "site.name" %}</p>
+        {% endelement %}
+    {% else %}
+        {% element card %}
+            <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="width: 64px; height: 64px;" class="mb-4">
+            <h1 class="text-2xl font-bold mb-6">{% translate "site.name" %}</h1>
+            <div class="flex gap-3 flex-wrap justify-center">
+                <a href="{% url 'account_login' %}" class="btn btn-primary">
+                    <i class="fa-solid fa-right-to-bracket mr-2"></i>
+                    {% translate "menu.login" %}
+                </a>
+                <a href="{% url 'account_signup' %}" class="btn btn-outline btn-primary">
+                    <i class="fa-solid fa-user-plus mr-2"></i>
+                    {% translate "menu.signup" %}
+                </a>
+            </div>
+        {% endelement %}
+    {% endif %}
 
-                    <h2 class="page-title mb-2">
-                        {% blocktranslate with name=user.customer %}Olá, {{ name }}!{% endblocktranslate %}
-                    </h2>
+    {% include 'partials/newsletter_subscribe.html' %}
 
-                    <p class="text-gray-custom">{% translate "site.name" %}</p>
-                </div>
-            {% endelement %}
-        {% else %}
-            <!-- Welcome -->
-            {% element card %}
-                <div class="text-center py-3">
-                    <div class="mb-4">
-                        <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 80px; width: 80px;">
-                    </div>
-
-                    <h1 class="page-title mb-3">{% translate "site.name" %}</h1>
-
-                    <div class="d-flex gap-3 justify-content-center flex-wrap">
-                        <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">
-                            <i class="bi bi-box-arrow-in-right me-2"></i>
-                            {% translate "menu.login" %}
-                        </a>
-                        <a href="{% url 'account_signup' %}" class="btn btn-outline-primary btn-lg">
-                            <i class="bi bi-person-plus me-2"></i>
-                            {% translate "menu.signup" %}
-                        </a>
-                    </div>
-                </div>
-            {% endelement %}
-        {% endif %}
-
-        <!-- Newsletter -->
-        {% include 'partials/newsletter_subscribe.html' %}
-
-        <!-- Language Selector -->
-        {% include 'partials/language_selector.html' %}
+    {% include 'partials/language_selector.html' %}
 </div>
 
 {% endblock content %}
