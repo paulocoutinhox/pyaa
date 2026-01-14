@@ -6,57 +6,44 @@
 
 {% block content %}
 
-<div class="container main-container">
+<div class="container mx-auto px-4 py-8 max-w-md">
     {% element page_header centered=True %}
         {% translate "title.account-login" %}
     {% endelement %}
 
-    <div class="row justify-content-center">
-        <div class="card shadow-modern form-container col-sm-10 col-md-6 col-lg-5">
-            <div class="card-body">
-                <!-- Login Form -->
-                <form method="post" novalidate>
-                    {% csrf_token %}
+    {% element card %}
+        <form method="post" novalidate class="w-full">
+            {% csrf_token %}
 
-                    {% if next_url %}
-                    <input type="hidden" name="next" value="{{ next }}">
-                    {% endif %}
+            {% if next_url %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
 
-                    {% element fields form=form %}
-                    {% endelement %}
+            {% element fields form=form %}
+            {% endelement %}
 
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-box-arrow-in-right me-2"></i>
-                            {% translate "button.send" %}
-                        </button>
-                    </div>
-                </form>
-
-                <!-- Divider -->
-                <div class="form-divider">
-                    <hr>
-                    <div class="divider-text">{% translate "text.or" %}</div>
-                </div>
-
-                <!-- Sign up section -->
-                <div class="form-actions">
-                    <a href="{% url 'account_signup' %}" class="btn btn-outline-primary">
-                        <i class="bi bi-person-plus me-2"></i>
-                        {% translate "message.account-login.signup" %}
-                    </a>
-                </div>
-
-                <!-- Password recovery -->
-                <div class="form-links">
-                    <p>{% translate "message.account-login.forgot-password" %}</p>
-                    <a href="{% url 'account_password_recovery' %}">
-                        {% translate "button.recover-password" %}
-                    </a>
-                </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary w-full">
+                    <i class="fa-solid fa-right-to-bracket mr-2"></i>
+                    {% translate "button.send" %}
+                </button>
             </div>
+        </form>
+
+        <div class="divider">{% translate "text.or" %}</div>
+
+        <a href="{% url 'account_signup' %}" class="btn btn-outline btn-primary w-full">
+            <i class="fa-solid fa-user-plus mr-2"></i>
+            {% translate "message.account-login.signup" %}
+        </a>
+
+        <div class="text-center mt-4">
+            <p class="text-sm text-base-content/70">{% translate "message.account-login.forgot-password" %}</p>
+            <a href="{% url 'account_password_recovery' %}" class="link link-primary">
+                {% translate "button.recover-password" %}
+            </a>
         </div>
-    </div>
+    {% endelement %}
 </div>
 
 {% endblock content %}

@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="container main-container">
+<div class="container mx-auto px-4 py-8 max-w-md">
     {% element page_header centered=True subtitle=True %}
         {% translate "title.account-signup" %}
         {% slot subtitle %}
@@ -14,35 +14,31 @@
         {% endslot %}
     {% endelement %}
 
-    <div class="row justify-content-center">
-        <div class="card shadow-modern form-container col-sm-10 col-md-6 col-lg-5">
-            <div class="card-body">
-                <form method="post" novalidate>
-                    {% csrf_token %}
+    {% element card %}
+        <form method="post" novalidate class="w-full">
+            {% csrf_token %}
 
-                    {% if next_url %}
-                    <input type="hidden" name="next" value="{{ next }}">
-                    {% endif %}
+            {% if next_url %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
 
-                    {% element fields form=form %}
-                    {% endelement %}
+            {% element fields form=form %}
+            {% endelement %}
 
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">
-                            {% translate "button.send" %}
-                        </button>
-                    </div>
-                </form>
-
-                <div class="form-links">
-                    <p>{% translate "message.account-signup.has-account" %}</p>
-                    <a href="{% url 'account_login' %}">
-                        {% translate "message.account-signup.login" %}
-                    </a>
-                </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary w-full">
+                    {% translate "button.send" %}
+                </button>
             </div>
+        </form>
+
+        <div class="text-center mt-4">
+            <p class="text-sm text-base-content/70">{% translate "message.account-signup.has-account" %}</p>
+            <a href="{% url 'account_login' %}" class="link link-primary">
+                {% translate "message.account-signup.login" %}
+            </a>
         </div>
-    </div>
+    {% endelement %}
 </div>
 
 {% endblock content %}

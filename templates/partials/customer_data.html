@@ -6,16 +6,14 @@
 
 <p class="text-center">
     {% with user.customer.credits as credits %}
-        <p class="text-center">
-            {% if credits > 0 %}
-                {% translate "customer.credits" %}: <span class="customer-credits-data">{{ remaining_credits }}</span>
-            {% else %}
-                {% translate "customer.no-credits" %}
-            {% endif %}
-        </p>
+    {% if credits > 0 %}
+        {% translate "customer.credits" %}: <span class="badge badge-primary">{{ remaining_credits }}</span>
+    {% else %}
+        {% translate "customer.no-credits" %}
+    {% endif %}
     {% endwith %}
 </p>
 
-<div class="text-center">
+<div class="flex justify-center">
     {% include "partials/customer_avatar.html" %}
 </div>

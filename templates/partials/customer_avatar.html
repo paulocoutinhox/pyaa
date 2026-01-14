@@ -1,11 +1,15 @@
 {% load static %}
 
 {% if customer.avatar %}
-<div class="rounded-circle me-3" style="width: 80px; height: 80px; overflow: hidden;">
-    <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
+<div class="avatar">
+    <div class="w-20 rounded-full">
+        <img src="{{ customer.avatar.url }}" alt="profile-image">
+    </div>
 </div>
 {% else %}
-<div class="rounded-circle me-3" style="width: 80px; height: 80px; overflow: hidden;">
-    <img src="{% static 'images/profile-no-image.png' %}" alt="profile-image" class="img-fluid">
+<div class="avatar">
+    <div class="w-20 rounded-full">
+        <img src="{% static 'images/profile-no-image.png' %}" alt="profile-image">
+    </div>
 </div>
 {% endif %}
