@@ -9,9 +9,9 @@
 <div class="container mx-auto px-4 py-8 max-w-xl text-center">
     <img src="{% static 'images/success.png' %}" class="w-24 mx-auto mb-6" alt="Success">
 
-    <h1 class="text-2xl font-bold mb-4">
+    {% element page_header centered=True %}
         {% translate "title.account-signup-success" %}
-    </h1>
+    {% endelement %}
 
     <p class="text-base-content/70 mb-6">
         {% translate "subtitle.account-signup-success" %}
