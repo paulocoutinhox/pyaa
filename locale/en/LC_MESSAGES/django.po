@@ -1763,9 +1763,7 @@ msgstr "Check Your Email"
 
 #: templates/pages/account/password_recovery_success.html:18
 msgid "message.account-password-recovery-success.instructions"
-msgstr ""
-"If an account exists with the credentials you provided, we've sent password "
-"reset instructions to your email address."
+msgstr "If an account associated with the provided credentials is found, password reset instructions will be sent to the registered email address."
 
 #: templates/pages/account/product_purchases.html:14
 msgid "title.account-product-purchases"

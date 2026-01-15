@@ -1771,9 +1771,7 @@ msgstr "Verifique Seu Email"
 
 #: templates/pages/account/password_recovery_success.html:18
 msgid "message.account-password-recovery-success.instructions"
-msgstr ""
-"Se existir uma conta com as credenciais fornecidas, enviamos instruções de "
-"redefinição de senha para o seu endereço de email."
+msgstr "Se for encontrada uma conta vinculada às credenciais fornecidas, as instruções para redefinição de senha serão enviadas para o endereço de e-mail cadastrado."
 
 #: templates/pages/account/product_purchases.html:14
 msgid "title.account-product-purchases"
