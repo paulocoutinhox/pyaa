@@ -4,6 +4,7 @@ from pathlib import Path
 from django import template
 from django.conf import settings
 from django.templatetags.static import static
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -64,3 +65,53 @@ def vite_css(entry):
     if not css_files:
         return ""
     return static(f"frontend/{css_files[0]}")
+
+
+@register.simple_tag
+def vite_all_css():
+    """
+    Get all CSS assets from all entries in Vite manifest.
+
+    Usage:
+        {% load pyaa_vite %}
+        {% vite_all_css %}
+
+    Returns:
+        HTML link tags for all CSS files.
+    """
+    manifest = get_manifest()
+    css_tags = []
+
+    for entry_data in manifest.values():
+        if entry_data.get("isEntry"):
+            css_files = entry_data.get("css", [])
+            for css_file in css_files:
+                url = static(f"frontend/{css_file}")
+                css_tags.append(f'<link rel="stylesheet" href="{url}">')
+
+    return mark_safe("\n    ".join(css_tags))
+
+
+@register.simple_tag
+def vite_all_js():
+    """
+    Get all JS assets from all entries in Vite manifest.
+
+    Usage:
+        {% load pyaa_vite %}
+        {% vite_all_js %}
+
+    Returns:
+        HTML script tags for all JS files.
+    """
+    manifest = get_manifest()
+    js_tags = []
+
+    for entry_data in manifest.values():
+        if entry_data.get("isEntry"):
+            js_file = entry_data.get("file")
+            if js_file:
+                url = static(f"frontend/{js_file}")
+                js_tags.append(f'<script src="{url}" defer></script>')
+
+    return mark_safe("\n    ".join(js_tags))

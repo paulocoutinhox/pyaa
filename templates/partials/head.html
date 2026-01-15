@@ -58,7 +58,7 @@
 
 {% compress css %}
     <link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% vite_css 'frontend' %}">
+    {% vite_all_css %}
     <link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
 {% endcompress %}
 
@@ -67,7 +67,7 @@
     <script src="{% static 'vendor/magnific-popup/js/jquery.magnific-popup.min.js'%}"></script>
     <script src="{% static 'js/theme-manager.js' %}"></script>
     <script src="{% static 'js/banner-manager.js' %}"></script>
-    <script src="{% vite_js 'frontend' %}" defer></script>
+    {% vite_all_js %}
     <script src="{% static 'js/main.js' %}"></script>
 {% endcompress %}
 
