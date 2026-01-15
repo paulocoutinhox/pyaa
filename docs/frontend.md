@@ -50,12 +50,16 @@ Vite generates `manifest.json` with hashed filenames. Django template tags resol
 
 ### Template Tags
 
+Use `vite_all_css` and `vite_all_js` to automatically load all CSS and JS assets from the manifest:
+
 ```django
 {% load pyaa_vite %}
 
-<link rel="stylesheet" href="{% vite_css 'frontend' %}">
-<script src="{% vite_js 'frontend' %}" defer></script>
+{% vite_all_css %}
+{% vite_all_js %}
 ```
+
+These tags automatically discover all entry points in the manifest and generate the appropriate HTML tags, eliminating the need to manually specify entry names.
 
 ## Workflow
 
