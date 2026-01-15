@@ -39,5 +39,6 @@ class="btn btn-link{% if attrs.class %} {{ attrs.class }}{% endif %}"
 class="btn btn-primary{% if attrs.class %} {{ attrs.class }}{% endif %}"
 {% endif %}
 >
-{% slot %}{% endslot %}
+{% slot %}
+{% endslot %}
 </{% if attrs.href %}a{% else %}button{% endif %}>

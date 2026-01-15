@@ -1,40 +1,26 @@
 {% extends 'layouts/base.html' %}
 {% load i18n %}
 {% load pyaa %}
+{% load static %}
 
 {% block title %}{% trans "page.newsletter.success.title" %}{% endblock %}
 
 {% block content %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8 max-w-xl text-center">
+    <img src="{% static 'images/success.png' %}" class="w-24 mx-auto mb-6" alt="Success">
+
+    <h1 class="text-2xl font-bold mb-4">
         {% translate "page.newsletter.success.title" %}
-    {% endelement %}
+    </h1>
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-10">
-            {% element card %}
-                <div class="text-center">
-                    <div class="mb-4">
-                        <span class="fs-1 text-success">
-                            <i class="bi bi-check-circle-fill"></i>
-                        </span>
-                    </div>
+    <p class="text-base-content/70 mb-6">
+        {% trans "page.newsletter.success.message" %}
+    </p>
 
-                    <p class="mb-4">
-                        {% trans "page.newsletter.success.message" %}
-                    </p>
-
-                    <div class="mt-4">
-                        {% url 'home' as url_home %}
-                        {% element button href=url_home tags="primary" %}
-                            {% translate "page.newsletter.success.back" %}
-                        {% endelement %}
-                    </div>
-                </div>
-            {% endelement %}
-        </div>
-    </div>
+    <a href="{% url 'home' %}" class="btn btn-primary">
+        {% translate "page.newsletter.success.back" %}
+    </a>
 </div>
 
 {% endblock %}

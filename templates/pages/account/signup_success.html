@@ -6,42 +6,26 @@
 
 {% block content %}
 
-{% url 'account_profile' as url_account_profile %}
+<div class="container mx-auto px-4 py-8 max-w-xl text-center">
+    <img src="{% static 'images/success.png' %}" class="w-24 mx-auto mb-6" alt="Success">
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+    <h1 class="text-2xl font-bold mb-4">
         {% translate "title.account-signup-success" %}
-    {% endelement %}
+    </h1>
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-10">
-            {% element card %}
-                <div class="text-center">
-                    <div class="mb-4">
-                        <img src="{% static 'images/success.png' %}" class="img-fluid" style="width: 100px;">
-                    </div>
+    <p class="text-base-content/70 mb-6">
+        {% translate "subtitle.account-signup-success" %}
+    </p>
 
-                    <p class="mb-4">
-                        {% translate "subtitle.account-signup-success" %}
-                    </p>
+    <a href="{% url 'account_profile' %}" class="btn btn-primary w-full">
+        {% translate "button.profile" %}
+    </a>
 
-                    <div class="mt-4">
-                        {% element button href=url_account_profile tags="success" %}
-                            {% translate "button.profile" %}
-                        {% endelement %}
-                    </div>
-
-                    {% if next_url %}
-                    <div class="mt-3">
-                        {% element button href=next_url tags="primary" %}
-                            {% translate "button.continue-next-url" %}
-                        {% endelement %}
-                    </div>
-                    {% endif %}
-                </div>
-            {% endelement %}
-        </div>
-    </div>
+    {% if next_url %}
+    <a href="{{ next_url }}" class="btn btn-primary w-full mt-2">
+        {% translate "button.continue-next-url" %}
+    </a>
+    {% endif %}
 </div>
 
 {% endblock content %}

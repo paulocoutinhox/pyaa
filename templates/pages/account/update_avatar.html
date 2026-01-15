@@ -8,45 +8,38 @@
 
 {% url 'account_profile' as url_account_profile %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8 max-w-xl">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {% translate "title.account-update-avatar" %}
-    {% endelement %}
+    </h1>
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-10">
-            {% element card %}
-                <div class="text-center mb-4">
-                    {% if customer.avatar %}
-                    <div class="rounded-circle" style="width: 120px; height: 120px; overflow: hidden; margin: 0 auto;">
-                        <img src="{{ customer.avatar.url }}" alt="profile-image" class="img-fluid">
-                    </div>
-                    {% else %}
-                    <div class="rounded-circle" style="width: 120px; height: 120px; overflow: hidden; margin: 0 auto;">
-                        <img src="{% static 'images/profile-no-image.png' %}" alt="profile-image" class="img-fluid">
-                    </div>
-                    {% endif %}
-                </div>
-
-                <form method="post" enctype="multipart/form-data" class="text-break" novalidate>
-                    {% csrf_token %}
-
-                    {% element fields form=form %}
-                    {% endelement %}
-
-                    <div class="d-grid gap-2">
-                        {% element button type="submit" tags="primary" %}
-                            {% translate "button.update" %}
-                        {% endelement %}
-
-                        {% element button href=url_account_profile tags="outline-secondary" %}
-                            {% translate "button.cancel" %}
-                        {% endelement %}
-                    </div>
-                </form>
-            {% endelement %}
+    <div class="flex justify-center mb-6">
+        <div class="avatar">
+            <div class="w-24 rounded-full">
+                {% if customer.avatar %}
+                <img src="{{ customer.avatar.url }}" alt="profile-image">
+                {% else %}
+                <img src="{% static 'images/profile-no-image.png' %}" alt="profile-image">
+                {% endif %}
+            </div>
         </div>
     </div>
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+
+        {% element fields form=form %}
+        {% endelement %}
+
+        <div class="flex flex-col gap-2 mt-4">
+            <button type="submit" class="btn btn-primary">
+                {% translate "button.update" %}
+            </button>
+            <a href="{{ url_account_profile }}" class="btn btn-ghost">
+                {% translate "button.cancel" %}
+            </a>
+        </div>
+    </form>
 </div>
 
 {% endblock content %}

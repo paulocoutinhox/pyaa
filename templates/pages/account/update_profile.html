@@ -7,33 +7,26 @@
 
 {% url 'account_profile' as url_account_profile %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8 max-w-xl">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {% translate "title.account-update-profile" %}
-    {% endelement %}
+    </h1>
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-10">
-            {% element card %}
-                <form method="post" novalidate>
-                    {% csrf_token %}
+    <form method="post" novalidate>
+        {% csrf_token %}
 
-                    {% element fields form=form %}
-                    {% endelement %}
+        {% element fields form=form %}
+        {% endelement %}
 
-                    <div class="d-grid gap-2">
-                        {% element button type="submit" tags="primary" %}
-                            {% translate "button.update" %}
-                        {% endelement %}
-
-                        {% element button href=url_account_profile tags="outline-secondary" %}
-                            {% translate "button.cancel" %}
-                        {% endelement %}
-                    </div>
-                </form>
-            {% endelement %}
+        <div class="flex flex-col gap-2 mt-4">
+            <button type="submit" class="btn btn-primary">
+                {% translate "button.update" %}
+            </button>
+            <a href="{{ url_account_profile }}" class="btn btn-ghost">
+                {% translate "button.cancel" %}
+            </a>
         </div>
-    </div>
+    </form>
 </div>
 
 {% endblock content %}

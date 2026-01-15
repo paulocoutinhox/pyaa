@@ -9,162 +9,96 @@
 
 {% url 'shop_checkout' 'product-purchase' product.id as url_shop_checkout %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {{ product.name }}
-    {% endelement %}
+    </h1>
 
-    <div class="row g-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <!-- Product Image -->
-        <div class="col-lg-6">
-            {% element card %}
-                <div class="text-center">
-                    <div class="position-relative overflow-hidden rounded" style="width: 100%; aspect-ratio: 16/9; max-height: 400px;">
-                        <img src="{{ product.get_image_url }}" alt="{{ product.name }}" class="img-fluid position-absolute top-0 start-0" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                </div>
-            {% endelement %}
+        <div>
+            <img src="{{ product.get_image_url }}" alt="{{ product.name }}" class="w-full h-64 lg:h-80 object-cover rounded-lg">
         </div>
 
         <!-- Product Details -->
-        <div class="col-lg-6">
-            {% element card %}
-                <!-- Price Section -->
-                <div class="mb-4 pb-3 border-bottom border-secondary-subtle">
-                    <h6 class="text-muted mb-2">{% trans "model.field.price" %}</h6>
-                    <h2 class="fw-bold text-primary mb-0">{{ product.price|format_currency:product.currency }}</h2>
-                </div>
+        <div>
+            <div class="mb-4 pb-4 border-b border-base-300">
+                <p class="text-sm text-base-content/60 mb-1">{% trans "model.field.price" %}</p>
+                <p class="text-3xl font-bold text-primary">{{ product.price|format_currency:product.currency }}</p>
+            </div>
 
-                <!-- Purchase Buttons -->
-                <div class="d-grid gap-2">
-                    {% if user.is_authenticated %}
-                        {% element button href=url_shop_checkout tags="primary" %}
-                            <i class="bi bi-cart me-2"></i>{% trans "button.buy-now" %}
-                        {% endelement %}
-                    {% else %}
-                        <a href="{% url 'account_login' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-primary">
-                            <i class="bi bi-person me-2"></i>{% trans "button.buy-now" %}
-                        </a>
-                    {% endif %}
-                </div>
-            {% endelement %}
+            {% if user.is_authenticated %}
+            <a href="{{ url_shop_checkout }}" class="btn btn-primary w-full">
+                <i class="fa-solid fa-cart-shopping mr-2"></i>{% trans "button.buy-now" %}
+            </a>
+            {% else %}
+            <a href="{% url 'account_login' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-primary w-full">
+                <i class="fa-solid fa-user mr-2"></i>{% trans "button.buy-now" %}
+            </a>
+            {% endif %}
         </div>
     </div>
 
     <!-- Product Description -->
-    <div class="row mt-4">
-        <div class="col-12">
-            {% element card %}
-                {% slot header %}
-                    <i class="bi bi-file-text me-2"></i>{% trans "model.field.description" %}
-                {% endslot %}
-
-                <div class="product-description">
-                    {{ product.description|safe }}
-                </div>
-            {% endelement %}
+    {% if product.description %}
+    <div class="mb-6">
+        <h2 class="font-semibold mb-3">
+            <i class="fa-solid fa-file-lines mr-2"></i>{% trans "model.field.description" %}
+        </h2>
+        <div class="prose max-w-none">
+            {{ product.description|safe }}
         </div>
     </div>
+    {% endif %}
 
     <!-- Product Files Section -->
     {% if product_files %}
-    <div class="row mt-4">
-        <div class="col-12">
-            {% element card %}
-                {% slot header %}
-                    <i class="bi bi-files me-2"></i>{% trans "title.shop-product-files" %}
-                {% endslot %}
+    <div>
+        <h2 class="font-semibold mb-3">
+            <i class="fa-solid fa-folder-open mr-2"></i>{% trans "title.shop-product-files" %}
+        </h2>
 
-                <div class="row g-3">
-                    {% for file in product_files %}
-                    <div class="col-12">
-                        <div class="border border-secondary-subtle rounded bg-body-tertiary p-3">
-                            <!-- Mobile Layout -->
-                            <div class="d-block d-md-none">
-                                <div class="d-flex align-items-start mb-3">
-                                    <img src="{% static 'images/file.png' %}" alt="File" class="me-3" style="max-width: 40px;">
-                                    <div class="flex-grow-1">
-                                        <h6 class="mb-1 fw-semibold">{{ file.name }}</h6>
-                                        {% if file.description %}
-                                            <p class="mb-2 text-muted small">{{ file.description }}</p>
-                                        {% endif %}
-                                        <div class="d-flex flex-wrap gap-2 mb-2">
-                                            {% if file.file_type %}
-                                                <span class="badge bg-secondary">{{ file.file_type }}</span>
-                                            {% endif %}
-                                            {% if file.file_size %}
-                                                <small class="text-muted">{{ file.file_size|filesizeformat }}</small>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-grid">
-                                    {% if user.is_authenticated %}
-                                        {% has_purchased_product user.customer product.id as has_purchased %}
-                                        {% if has_purchased %}
-                                            {% element button href=file.get_file_url tags="outline-primary" %}
-                                                <i class="bi bi-download me-2"></i>{% trans "button.download" %}
-                                            {% endelement %}
-                                        {% else %}
-                                            {% element button tags="outline-secondary" disabled=True %}
-                                                <i class="bi bi-lock me-2"></i>{% trans "button.purchase-to-download" %}
-                                            {% endelement %}
-                                        {% endif %}
-                                    {% else %}
-                                        <div class="d-grid">
-                                            <a href="{% url 'account_login' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-outline-primary">
-                                                <i class="bi bi-person me-2"></i>{% trans "button.buy-now" %}
-                                            </a>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-
-                            <!-- Desktop Layout -->
-                            <div class="d-none d-md-flex align-items-center">
-                                <div class="me-3">
-                                    <img src="{% static 'images/file.png' %}" alt="File" style="max-width: 50px;">
-                                </div>
-
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1 fw-semibold">{{ file.name }}</h6>
-                                    {% if file.description %}
-                                        <p class="mb-1 text-muted small">{{ file.description }}</p>
-                                    {% endif %}
-                                    <div class="d-flex align-items-center gap-2">
-                                        {% if file.file_type %}
-                                            <span class="badge bg-secondary">{{ file.file_type }}</span>
-                                        {% endif %}
-                                        {% if file.file_size %}
-                                            <small class="text-muted">{{ file.file_size|filesizeformat }}</small>
-                                        {% endif %}
-                                    </div>
-                                </div>
-
-                                <div class="ms-3">
-                                    {% if user.is_authenticated %}
-                                        {% has_purchased_product user.customer product.id as has_purchased %}
-                                        {% if has_purchased %}
-                                            {% element button href=file.get_file_url tags="outline-primary" %}
-                                                <i class="bi bi-download me-1"></i>{% trans "button.download" %}
-                                            {% endelement %}
-                                        {% else %}
-                                            {% element button tags="outline-secondary" disabled=True %}
-                                                <i class="bi bi-lock me-1"></i>{% trans "button.purchase-to-download" %}
-                                            {% endelement %}
-                                        {% endif %}
-                                    {% else %}
-                                        <a href="{% url 'account_login' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-outline-primary">
-                                            <i class="bi bi-person me-1"></i>{% trans "button.buy-now" %}
-                                        </a>
-                                    {% endif %}
-                                </div>
-                            </div>
+        <div class="space-y-3">
+            {% for file in product_files %}
+            <div class="flex items-center justify-between bg-base-200 rounded-lg p-3">
+                <div class="flex items-center gap-3">
+                    <img src="{% static 'images/file.png' %}" alt="File" class="w-10">
+                    <div>
+                        <p class="font-semibold">{{ file.name }}</p>
+                        {% if file.description %}
+                        <p class="text-sm text-base-content/60">{{ file.description }}</p>
+                        {% endif %}
+                        <div class="flex items-center gap-2 mt-1">
+                            {% if file.file_type %}
+                            <span class="badge badge-sm">{{ file.file_type }}</span>
+                            {% endif %}
+                            {% if file.file_size %}
+                            <span class="text-xs text-base-content/50">{{ file.file_size|filesizeformat }}</span>
+                            {% endif %}
                         </div>
                     </div>
-                    {% endfor %}
                 </div>
-            {% endelement %}
+
+                <div>
+                    {% if user.is_authenticated %}
+                        {% has_purchased_product user.customer product.id as has_purchased %}
+                        {% if has_purchased %}
+                        <a href="{{ file.get_file_url }}" class="btn btn-outline btn-primary btn-sm">
+                            <i class="fa-solid fa-download mr-1"></i>{% trans "button.download" %}
+                        </a>
+                        {% else %}
+                        <button class="btn btn-outline btn-sm" disabled>
+                            <i class="fa-solid fa-lock mr-1"></i>{% trans "button.purchase-to-download" %}
+                        </button>
+                        {% endif %}
+                    {% else %}
+                    <a href="{% url 'account_login' %}?next={{ request.get_full_path|urlencode }}" class="btn btn-outline btn-primary btn-sm">
+                        <i class="fa-solid fa-user mr-1"></i>{% trans "button.buy-now" %}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
     {% endif %}

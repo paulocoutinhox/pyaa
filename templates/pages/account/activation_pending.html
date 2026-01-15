@@ -6,27 +6,23 @@
 
 {% block content %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8 max-w-xl text-center">
+    <h1 class="text-2xl font-bold mb-6">
         {% translate "title.account-activation-pending" %}
-    {% endelement %}
+    </h1>
 
-    <div class="text-center">
-        <img src="{% static 'images/account-email-activation.png' %}" class="img-fluid" style="width: 180px;">
-    </div>
+    <img src="{% static 'images/account-email-activation.png' %}" class="w-40 mx-auto mb-6" alt="Email activation">
 
-    <div class="mt-5 text-center">
-        <p class="mb-3">
-            {% translate "subtitle.account-activation-pending" %}
-        </p>
-        <p class="mb-5">
-            {% translate "message.account-activation-pending" %}
-        </p>
+    <p class="mb-2">
+        {% translate "subtitle.account-activation-pending" %}
+    </p>
+    <p class="text-base-content/70 mb-6">
+        {% translate "message.account-activation-pending" %}
+    </p>
 
-        <div class="alert alert-info" role="alert">
-            <i class="bi bi-info-circle me-2"></i>
-            {% translate "message.account-activation-check-spam" %}
-        </div>
+    <div class="alert alert-info">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>{% translate "message.account-activation-check-spam" %}</span>
     </div>
 </div>
 

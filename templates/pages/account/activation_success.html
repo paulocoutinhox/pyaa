@@ -6,34 +6,20 @@
 
 {% block content %}
 
-{% url 'account_login' as url_account_login %}
+<div class="container mx-auto px-4 py-8 max-w-xl text-center">
+    <img src="{% static 'images/success.png' %}" class="w-24 mx-auto mb-6" alt="Success">
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+    <h1 class="text-2xl font-bold mb-4">
         {% translate "title.account-activation-success" %}
-    {% endelement %}
+    </h1>
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-10">
-            {% element card %}
-                <div class="text-center">
-                    <div class="mb-4">
-                        <img src="{% static 'images/success.png' %}" class="img-fluid" style="width: 100px;">
-                    </div>
+    <p class="text-base-content/70 mb-6">
+        {% translate "subtitle.account-activation-success" %}
+    </p>
 
-                    <p class="mb-4">
-                        {% translate "subtitle.account-activation-success" %}
-                    </p>
-
-                    <div class="mt-4">
-                        {% element button href=url_account_login tags="primary" %}
-                            {% translate "button.go-to-login" %}
-                        {% endelement %}
-                    </div>
-                </div>
-            {% endelement %}
-        </div>
-    </div>
+    <a href="{% url 'account_login' %}" class="btn btn-primary">
+        {% translate "button.go-to-login" %}
+    </a>
 </div>
 
 {% endblock content %}

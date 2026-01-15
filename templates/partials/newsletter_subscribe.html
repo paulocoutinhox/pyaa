@@ -1,26 +1,26 @@
 {% load i18n %}
 {% load pyaa %}
 
-{% element card class="mt-6" %}
-    {% element page_header centered=True %}
+<div class="mt-8 pt-6 border-t border-base-300">
+    <h2 class="text-lg font-semibold text-center mb-2">
         {% translate "title.newsletter.subscribe" %}
-    {% endelement %}
+    </h2>
 
-    <p class="text-base-content/70 mb-4">
+    <p class="text-base-content/70 text-center mb-4">
         {% translate "subtitle.newsletter.subscribe" %}
     </p>
 
-    <form method="post" action="{% url 'newsletter_subscribe' %}" class="w-full max-w-sm">
+    <form method="post" action="{% url 'newsletter_subscribe' %}" class="max-w-sm mx-auto">
         {% csrf_token %}
-        <div class="form-control mb-3">
+        <div class="join w-full">
             <input type="email"
                 name="email"
-                class="input input-bordered w-full"
+                class="input input-bordered join-item flex-1"
                 placeholder="{% translate 'form.placeholder.newsletter-email' %}"
                 required>
+            <button type="submit" class="btn btn-primary join-item">
+                <i class="fa-solid fa-envelope"></i>
+            </button>
         </div>
-        {% element button type="submit" tags="primary" class="w-full" %}
-            {% translate "button.newsletter.subscribe" %}
-        {% endelement %}
     </form>
-{% endelement %}
+</div>

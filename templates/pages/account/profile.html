@@ -16,126 +16,85 @@
 {% url 'account_credit_purchases' as url_account_credit_purchases %}
 {% url 'account_product_purchases' as url_account_product_purchases %}
 
-<div class="container mx-auto px-4 py-8 max-w-2xl">
-    {% element page_header centered=True subtitle=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-2">
         {% translate "title.account-profile" %}
-        {% slot subtitle %}
-            {% translate "subtitle.my-account" %}
-        {% endslot %}
-    {% endelement %}
+    </h1>
+    <p class="text-center text-base-content/70 mb-8">
+        {% translate "subtitle.my-account" %}
+    </p>
 
-    <!-- Profile Info Card -->
-    {% element card %}
-        <div class="flex items-center gap-4">
-            <div class="flex-shrink-0">
-                {% include 'partials/customer_avatar.html' %}
-            </div>
-            <div class="flex-grow">
-                <h5 class="font-semibold text-lg">{{ user.get_full_name|default:user.username }}</h5>
-                {% with user.customer.credits as credits %}
-                <p class="text-base-content/70 mb-2">
-                    {% if credits > 0 %}
-                        {% translate "customer.credits" %}: <span class="badge badge-primary">{{ credits }}</span>
-                    {% else %}
-                        {% translate "customer.no-credits" %}
-                    {% endif %}
-                </p>
-                {% endwith %}
-                <a href="{{ url_account_update_profile }}" class="btn btn-outline btn-primary btn-sm">
-                    <i class="fa-solid fa-pen mr-1"></i>
-                    {% translate "button.update-profile" %}
-                </a>
-            </div>
+    <!-- Profile Info -->
+    <div class="flex items-center gap-4 mb-8">
+        {% include 'partials/customer_avatar.html' %}
+        <div>
+            <h2 class="font-semibold text-lg">{{ user.get_full_name|default:user.username }}</h2>
+            {% with user.customer.credits as credits %}
+            <p class="text-base-content/70">
+                {% if credits > 0 %}
+                    {% translate "customer.credits" %}: <span class="badge badge-primary">{{ credits }}</span>
+                {% else %}
+                    {% translate "customer.no-credits" %}
+                {% endif %}
+            </p>
+            {% endwith %}
         </div>
-    {% endelement %}
+    </div>
 
-    <!-- Quick Actions -->
-    {% element card class="mt-4" %}
-        {% slot header %}
-            <h6 class="font-semibold">{% translate "subtitle.my-purchases" %}</h6>
-        {% endslot %}
-
-        <div class="grid grid-cols-2 gap-3 w-full">
-            <a href="{{ url_account_product_purchases }}" class="col-span-2 flex flex-col items-center justify-center p-4 rounded-lg bg-base-200 hover:bg-base-300 transition-colors">
-                <i class="fa-solid fa-bag-shopping text-2xl mb-2"></i>
-                <span class="text-center">{% translate "button.account-product-purchases" %}</span>
-            </a>
-            <a href="{{ url_account_credits }}" class="flex flex-col items-center justify-center p-4 rounded-lg bg-base-200 hover:bg-base-300 transition-colors">
-                <i class="fa-solid fa-coins text-2xl mb-2"></i>
-                <span class="text-center text-sm">{% translate "button.account-credits" %}</span>
-            </a>
-            <a href="{{ url_account_credit_purchases }}" class="flex flex-col items-center justify-center p-4 rounded-lg bg-base-200 hover:bg-base-300 transition-colors">
-                <i class="fa-solid fa-cart-shopping text-2xl mb-2"></i>
-                <span class="text-center text-sm">{% translate "button.account-credit-purchases" %}</span>
-            </a>
-            <a href="{{ url_account_subscriptions }}" class="col-span-2 flex flex-col items-center justify-center p-4 rounded-lg bg-base-200 hover:bg-base-300 transition-colors">
-                <i class="fa-solid fa-calendar-check text-2xl mb-2"></i>
-                <span class="text-center">{% translate "button.account-subscriptions" %}</span>
-            </a>
-        </div>
-    {% endelement %}
+    <!-- My Purchases -->
+    <h3 class="font-semibold mb-3">{% translate "subtitle.my-purchases" %}</h3>
+    <div class="flex flex-col gap-3 mb-8">
+        <a href="{{ url_account_product_purchases }}" class="btn btn-outline w-full justify-start">
+            <i class="fa-solid fa-bag-shopping"></i>
+            {% translate "button.account-product-purchases" %}
+        </a>
+        <a href="{{ url_account_credits }}" class="btn btn-outline w-full justify-start">
+            <i class="fa-solid fa-coins"></i>
+            {% translate "button.account-credits" %}
+        </a>
+        <a href="{{ url_account_credit_purchases }}" class="btn btn-outline w-full justify-start">
+            <i class="fa-solid fa-cart-shopping"></i>
+            {% translate "button.account-credit-purchases" %}
+        </a>
+        <a href="{{ url_account_subscriptions }}" class="btn btn-outline w-full justify-start">
+            <i class="fa-solid fa-calendar-check"></i>
+            {% translate "button.account-subscriptions" %}
+        </a>
+    </div>
 
     <!-- Account Settings -->
-    {% element card class="mt-4" %}
-        {% slot header %}
-            <h6 class="font-semibold">{% translate "subtitle.account-settings" %}</h6>
-        {% endslot %}
-
-        <ul class="list bg-base-100 w-full p-0">
-            <li class="list-row">
-                <a href="{{ url_account_update_profile }}" class="flex justify-between">
-                    <div><i class="fa-solid fa-user text-primary mr-3"></i></div>
-                    <div>{% translate "button.update-profile" %}</div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-            </li>
-            <li class="list-row">
-                <a href="{{ url_account_change_password }}" class="flex justify-between">
-                    <div><i class="fa-solid fa-shield-halved text-primary mr-3"></i></div>
-                    <div>{% translate "button.change-password" %}</div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-            </li>
-            <li class="list-row">
-                <a href="{{ url_account_update_avatar }}" class="flex justify-between">
-                    <div><i class="fa-solid fa-image text-primary mr-3"></i></div>
-                    <div>{% translate "button.update-avatar" %}</div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-            </li>
-            <li class="list-row">
-                <a href="{{ url_account_update_address }}" class="flex justify-between">
-                    <div><i class="fa-solid fa-location-dot text-primary mr-3"></i></div>
-                    <div>{% translate "button.update-address" %}</div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-            </li>
-        </ul>
-    {% endelement %}
+    <h3 class="font-semibold mb-3">{% translate "subtitle.account-settings" %}</h3>
+    <div class="flex flex-col gap-3 mb-8">
+        <a href="{{ url_account_update_profile }}" class="btn btn-ghost bg-base-200 justify-start">
+            <i class="fa-solid fa-user text-primary"></i>
+            {% translate "button.update-profile" %}
+        </a>
+        <a href="{{ url_account_change_password }}" class="btn btn-ghost bg-base-200 justify-start">
+            <i class="fa-solid fa-shield-halved text-primary"></i>
+            {% translate "button.change-password" %}
+        </a>
+        <a href="{{ url_account_update_avatar }}" class="btn btn-ghost bg-base-200 justify-start">
+            <i class="fa-solid fa-image text-primary"></i>
+            {% translate "button.update-avatar" %}
+        </a>
+        <a href="{{ url_account_update_address }}" class="btn btn-ghost bg-base-200 justify-start">
+            <i class="fa-solid fa-location-dot text-primary"></i>
+            {% translate "button.update-address" %}
+        </a>
+    </div>
 
     <!-- Danger Zone -->
-    {% element card class="mt-4" %}
-        {% slot header %}
-            <h6 class="font-semibold text-error">{% translate "subtitle.danger-zone" %}</h6>
-        {% endslot %}
-
-        <ul class="list bg-base-100 w-full p-0">
-            <li class="list-row">
-                <a href="{{ url_account_delete }}" class="flex justify-between text-error hover:bg-error/10">
-                    <div><i class="fa-solid fa-trash mr-3"></i></div>
-                    <div>{% translate "button.account-delete" %}</div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-            </li>
-            <li class="list-row">
-                <a href="{{ url_account_logout }}" class="flex justify-between text-error hover:bg-error/10">
-                    <div><i class="fa-solid fa-right-from-bracket mr-3"></i></div>
-                    <div>{% translate "button.account-logout" %}</div>
-                    <div><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-            </li>
-        </ul>
-    {% endelement %}
+    <h3 class="font-semibold text-error mb-3">{% translate "subtitle.danger-zone" %}</h3>
+    <div class="flex flex-col gap-3">
+        <a href="{{ url_account_delete }}" class="btn btn-ghost bg-base-200 justify-start text-error">
+            <i class="fa-solid fa-trash"></i>
+            {% translate "button.account-delete" %}
+        </a>
+        <a href="{{ url_account_logout }}" class="btn btn-ghost bg-base-200 justify-start text-error">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            {% translate "button.account-logout" %}
+        </a>
+    </div>
 </div>
 
 {% endblock content %}

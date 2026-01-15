@@ -4,37 +4,29 @@
 
 {% block content %}
 
-<div class="main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {{ category.name }}
-    {% endelement %}
+    </h1>
 
     {% if page_obj %}
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
-            {% for content in page_obj %}
-            <div class="col">
-                {% element card class="h-100" %}
-                    <div class="d-flex flex-column h-100">
-                        <h5 class="card-title mb-2 text-body">{{ content.title }}</h5>
-                        <p class="text-muted small mb-3">{{ content.published_at|date:"M d, Y" }}</p>
-                        <p class="text-body flex-grow-1 mb-3">{{ content.content|striptags|truncatewords:30 }}</p>
-                        <div class="mt-auto">
-                            <a href="{% url 'content_by_id' content.id %}" class="btn btn-primary w-100">
-                                {% trans "button.continue-reading" %} &rarr;
-                            </a>
-                        </div>
-                    </div>
-                {% endelement %}
-            </div>
-            {% endfor %}
+    <div class="flex flex-wrap justify-center gap-6">
+        {% for content in page_obj %}
+        <div class="w-full max-w-sm bg-base-200 rounded-lg p-5">
+            <h2 class="font-semibold text-lg mb-2">{{ content.title }}</h2>
+            <p class="text-sm text-base-content/60 mb-3">{{ content.published_at|date:"M d, Y" }}</p>
+            <p class="text-base-content/80 mb-4">{{ content.content|striptags|truncatewords:30 }}</p>
+            <a href="{% url 'content_by_id' content.id %}" class="btn btn-primary btn-sm">
+                {% trans "button.continue-reading" %} &rarr;
+            </a>
         </div>
-    {% else %}
-        {% include 'partials/empty_data.html' %}
-    {% endif %}
-
-    <div class="mt-4">
-        {% include 'partials/paginator.html' %}
+        {% endfor %}
     </div>
+
+    {% include 'partials/paginator.html' %}
+    {% else %}
+    {% include 'partials/empty_data.html' %}
+    {% endif %}
 </div>
 
 {% endblock content %}

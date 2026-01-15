@@ -4,36 +4,27 @@
 
 {% block content %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {% translate "title.gallery.index" %}
-    {% endelement %}
+    </h1>
 
     {% if page_obj %}
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-            {% for gallery in page_obj %}
-            <div class="col">
-                {% element card class="h-100 gallery-card" %}
-                    <a href="{% url 'gallery_by_id' gallery.id %}" class="text-decoration-none">
-                        <div class="text-center mb-3">
-                            <img src="{{ gallery.get_main_photo_url }}" alt="{{ gallery.title }}" class="img-fluid rounded" style="height: 150px; width: 100%; object-fit: cover;">
-                        </div>
-
-                        <div class="text-center">
-                            <h6 class="card-title mb-2 text-body">{{ gallery.title }}</h6>
-                        </div>
-                    </a>
-                {% endelement %}
+    <div class="flex flex-wrap justify-center gap-4">
+        {% for gallery in page_obj %}
+        <a href="{% url 'gallery_by_id' gallery.id %}" class="block w-full max-w-xs bg-base-200 rounded-lg overflow-hidden hover:opacity-80 transition-opacity">
+            <img src="{{ gallery.get_main_photo_url }}" alt="{{ gallery.title }}" class="w-full aspect-[16/9] object-cover">
+            <div class="p-3 text-center">
+                <h2 class="font-semibold">{{ gallery.title }}</h2>
             </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        {% include 'partials/empty_data.html' %}
-    {% endif %}
-
-    <div class="mt-4">
-        {% include 'partials/paginator.html' %}
+        </a>
+        {% endfor %}
     </div>
+
+    {% include 'partials/paginator.html' %}
+    {% else %}
+    {% include 'partials/empty_data.html' %}
+    {% endif %}
 </div>
 
 {% endblock content %}

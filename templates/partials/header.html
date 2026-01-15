@@ -48,16 +48,9 @@
             <!-- RIGHT: ACTIONS + MOBILE MENU -->
             <div class="navbar-end gap-2">
 
-                <!-- THEME TOGGLE -->
-                <label class="swap swap-rotate btn btn-ghost btn-circle">
-                    <input type="checkbox" class="theme-controller" value="black" />
-                    <i class="fa-solid fa-sun swap-off text-lg"></i>
-                    <i class="fa-solid fa-moon swap-on text-lg"></i>
-                </label>
-
                 <!-- AUTH (DESKTOP) -->
                 {% if user.is_authenticated %}
-                <span class="badge badge-primary hidden sm:inline">
+                <span class="badge badge-primary hidden sm:inline-flex whitespace-nowrap">
                     {% translate "menu.credits" %}: {{ user.customer.credits|default:0 }}
                 </span>
                 <a href="{% url 'account_profile' %}" class="btn btn-ghost btn-sm hidden sm:inline-flex">
@@ -74,6 +67,13 @@
                     {% translate "menu.signup" %}
                 </a>
                 {% endif %}
+
+                <!-- THEME TOGGLE -->
+                <label class="swap swap-rotate btn btn-ghost btn-circle">
+                    <input type="checkbox" class="theme-controller" value="black" />
+                    <i class="fa-solid fa-sun swap-off text-lg"></i>
+                    <i class="fa-solid fa-moon swap-on text-lg"></i>
+                </label>
 
                 <!-- MOBILE MENU (RIGHT SIDE) -->
                 <div class="dropdown dropdown-end lg:hidden">
@@ -109,7 +109,7 @@
                         </li>
                         <li><a href="{% url 'contact_index' %}">{% translate "menu.contact" %}</a></li>
 
-                        <li class="menu-title mt-2">
+                        <li class="menu-title mt-2 ps-1 pe-1">
                             <span>{% translate "menu.account" %}</span>
                         </li>
 

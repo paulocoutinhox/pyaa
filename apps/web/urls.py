@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from .views import account, banner, contact, content, gallery, home, newsletter, test
+from .views import account, banner, contact, content, gallery, home, newsletter
 from .views.shop import shop_web, shop_webhook
 
 urlpatterns = []
@@ -28,4 +28,3 @@ urlpatterns += shop_web.urlpatterns
 urlpatterns += shop_webhook.urlpatterns
 urlpatterns += banner.urlpatterns
 urlpatterns += newsletter.urlpatterns
-urlpatterns += test.urlpatterns

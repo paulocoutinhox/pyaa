@@ -12,12 +12,14 @@
     {% endif %}
 
     <h1 class="text-2xl font-bold mt-4{% if attrs.title_class %} {{ attrs.title_class }}{% endif %}">
-        {% slot %}{% endslot %}
+        {% slot %}
+        {% endslot %}
     </h1>
 
     {% if attrs.subtitle %}
     <p class="text-base-content/70 mt-2">
-        {% slot subtitle %}{% endslot %}
+        {% slot subtitle %}
+        {% endslot %}
     </p>
     {% endif %}
 </div>

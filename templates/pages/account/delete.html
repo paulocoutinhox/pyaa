@@ -7,44 +7,32 @@
 
 {% url 'account_profile' as url_account_profile %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
-        {% translate "title.account-delete" %}
-    {% endelement %}
-
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-10">
-            {% element card %}
-                <div class="text-center">
-                    <div class="mb-4">
-                        <span class="fs-1 text-danger">
-                            <i class="bi bi-exclamation-triangle-fill"></i>
-                        </span>
-                    </div>
-
-                    <p class="mb-4">
-                        {% translate "subtitle.account-delete" %}
-                    </p>
-
-                    <form action="{% url 'account_delete' %}" method="post" novalidate>
-                        {% csrf_token %}
-
-                        {{ form }}
-
-                        <div class="form-actions">
-                            {% element button type="submit" tags="danger" %}
-                                {% translate "button.account-delete-confirm" %}
-                            {% endelement %}
-
-                            {% element button href=url_account_profile tags="outline-secondary" %}
-                                {% translate "button.cancel" %}
-                            {% endelement %}
-                        </div>
-                    </form>
-                </div>
-            {% endelement %}
-        </div>
+<div class="container mx-auto px-4 py-8 max-w-xl text-center">
+    <div class="text-error text-5xl mb-4">
+        <i class="fa-solid fa-triangle-exclamation"></i>
     </div>
+
+    <h1 class="text-2xl font-bold mb-4">
+        {% translate "title.account-delete" %}
+    </h1>
+
+    <p class="text-base-content/70 mb-6">
+        {% translate "subtitle.account-delete" %}
+    </p>
+
+    <form action="{% url 'account_delete' %}" method="post" novalidate>
+        {% csrf_token %}
+        {{ form }}
+
+        <div class="flex flex-col gap-2 mt-4">
+            <button type="submit" class="btn btn-error">
+                {% translate "button.account-delete-confirm" %}
+            </button>
+            <a href="{{ url_account_profile }}" class="btn btn-ghost">
+                {% translate "button.cancel" %}
+            </a>
+        </div>
+    </form>
 </div>
 
 {% endblock content %}

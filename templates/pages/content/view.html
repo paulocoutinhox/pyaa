@@ -4,24 +4,20 @@
 
 {% block content %}
 
-<div class="main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8 max-w-3xl">
+    <h1 class="text-2xl font-bold text-center mb-2">
         {{ content.title }}
-    {% endelement %}
+    </h1>
 
     {% if content.published_at %}
-        <div class="text-center mb-4">
-            <small class="text-muted">
-                {{ content.published_at|date:"M d, Y" }}
-            </small>
-        </div>
+    <p class="text-center text-base-content/60 mb-6">
+        {{ content.published_at|date:"M d, Y" }}
+    </p>
     {% endif %}
 
-    {% element card %}
-        <div class="content-body">
-            {{ content.content | safe }}
-        </div>
-    {% endelement %}
+    <div class="prose max-w-none">
+        {{ content.content | safe }}
+    </div>
 </div>
 
 {% endblock content %}
