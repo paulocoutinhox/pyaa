@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if page_obj.paginator.num_pages > 1 %}
-<nav class="flex justify-center my-4" aria-label="{% trans 'pagination.navigation' %}">
+<nav class="flex justify-center my-10" aria-label="{% trans 'pagination.navigation' %}">
     <div class="join">
         {% if page_obj.has_previous %}
         <a class="join-item btn" href="?page=1" aria-label="{% trans 'pagination.first' %}">
