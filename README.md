@@ -44,6 +44,57 @@ PyAA is a powerful, open-source Python + Django + FastAPI template application d
 - **Test Coverage** – Over 50% test coverage, ensuring reliability and robustness.
 - **Versatile Use** – Perfect for building websites, e-commerce platforms, or SaaS products.
 
+## 📦 Frontend Setup
+
+Before running the application, you need to install Node.js and npm, then install the frontend dependencies.
+
+### Installing Node.js and npm
+
+#### macOS
+
+Using Homebrew:
+```bash
+brew install node
+```
+
+Or download the installer from [nodejs.org](https://nodejs.org/).
+
+#### Windows
+
+Download and run the installer from [nodejs.org](https://nodejs.org/).
+
+Or using Chocolatey:
+```bash
+choco install nodejs
+```
+
+#### Linux
+
+**Ubuntu/Debian:**
+```bash
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+**Fedora/RHEL:**
+```bash
+curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
+sudo dnf install -y nodejs
+```
+
+**Arch Linux:**
+```bash
+sudo pacman -S nodejs npm
+```
+
+### Installing Frontend Dependencies
+
+After installing Node.js and npm, install the project dependencies:
+
+```bash
+npm install
+```
+
 ## 💻 How To Use
 
 Execute the following commands:
