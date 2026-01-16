@@ -7,7 +7,6 @@ django-tinymce==5.0.0
 django-cors-headers==4.9.0
 django-widget-tweaks==1.5.1
 django-compressor==4.6.0
-django-bootstrap5==26.1
 django-resized==1.0.3
 django-sass-processor==1.4.2
 django-cache-cleaner==0.2.0

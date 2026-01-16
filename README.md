@@ -16,6 +16,7 @@ PyAA is a powerful, open-source Python + Django + FastAPI template application d
 ## 🚀 Features
 
 - **Web Framework:** - Built with Django for the web application and FastAPI for high-performance REST APIs, WebSocket support, and modern async capabilities.
+- **Frontend Stack:** - Powered by Tailwind CSS v4 for styling, DaisyUI as the component library, and Vite for fast asset bundling and development experience.
 - **User Management** – Handle user registration, login, profile management, account recovery, configurable account activation, and more.
 - **Subscription Management** – Manage user subscriptions by credits or expiration date.
 - **Credit System** – Support for selling and managing user credits.
