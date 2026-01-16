@@ -5,11 +5,10 @@
 <div class="carousel w-full" id="bannerCarousel">
     {% for banner in banners %}
     <div id="banner-{{ banner.token }}" class="carousel-item relative w-full {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
-        <a href="javascript:void(0);" class="w-full" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link|default:'' }}', {{ banner.target_blank|lower }});">
-            <img src="{{ banner.image.url }}" class="w-full" alt="{{ banner.title }}">
-        </a>
+        <img src="{{ banner.image.url }}" class="w-full" alt="{{ banner.title }}">
+        <a href="javascript:void(0);" class="absolute inset-0 z-0" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link|default:'' }}', {{ banner.target_blank|lower }});"></a>
         {% if banners|length > 1 %}
-        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-10">
             <button class="btn btn-circle btn-sm" onclick="showBanner({{ forloop.counter0|add:'-1' }})">❮</button>
             <button class="btn btn-circle btn-sm" onclick="showBanner({{ forloop.counter0|add:'1' }})">❯</button>
         </div>
