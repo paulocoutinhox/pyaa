@@ -16,10 +16,10 @@ def status_text_color_hex(value):
 
 
 @register.filter
-def status_bg_color_bs(value):
-    return StatusHelper.get_status_color(value, "bs")["bg"]
+def status_bg_color_frontend(value):
+    return StatusHelper.get_status_color(value, "frontend")["bg"]
 
 
 @register.filter
-def status_text_color_bs(value):
-    return StatusHelper.get_status_color(value, "bs")["text"]
+def status_text_color_frontend(value):
+    return StatusHelper.get_status_color(value, "frontend")["text"]
