@@ -30,6 +30,7 @@ help:
 	@echo ""
 	@echo "- test-all-coverage-ci"
 	@echo ""
+	@echo "- frontend-setup"
 	@echo "- frontend-dev"
 	@echo "- frontend-prod"
 	@echo ""
@@ -95,6 +96,9 @@ run-worker:
 
 fixtures:
 	python3 manage.py loaddata initial
+
+frontend-setup:
+	npm install
 
 frontend-dev:
 	npm run frontend:dev

@@ -92,6 +92,12 @@ sudo pacman -S nodejs npm
 After installing Node.js and npm, install the project dependencies:
 
 ```bash
+make frontend-setup
+```
+
+or
+
+```bash
 npm install
 ```
 

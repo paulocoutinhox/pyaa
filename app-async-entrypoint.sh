@@ -4,6 +4,9 @@ set -e
 echo "Running migrations..."
 python3 manage.py migrate
 
+echo "Building frontend assets..."
+make frontend-prod
+
 echo "Compiling SCSS files..."
 python3 manage.py compilescss
 
