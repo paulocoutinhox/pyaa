@@ -1,10 +1,10 @@
 {% if messages %}
 <div class="px-4 py-2">
     {% for message in messages %}
-    <div class="alert {% if message.tags == 'alert-success' %}alert-success{% elif message.tags == 'alert-danger' %}alert-error{% elif message.tags == 'alert-warning' %}alert-warning{% elif message.tags == 'alert-info' %}alert-info{% else %}alert-info{% endif %} mb-2">
+    <div class="alert {% if message.tags == 'alert-success' %}alert-success{% elif message.tags == 'alert-error' %}alert-error{% elif message.tags == 'alert-warning' %}alert-warning{% elif message.tags == 'alert-info' %}alert-info{% else %}alert-info{% endif %} mb-2">
         {% if message.tags == 'alert-success' %}
         <i class="fa-solid fa-circle-check"></i>
-        {% elif message.tags == 'alert-danger' %}
+        {% elif message.tags == 'alert-error' %}
         <i class="fa-solid fa-circle-xmark"></i>
         {% elif message.tags == 'alert-warning' %}
         <i class="fa-solid fa-triangle-exclamation"></i>
