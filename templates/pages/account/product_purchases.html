@@ -9,82 +9,78 @@
 
 {% url 'account_profile' as url_account_profile %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {% translate "title.account-product-purchases" %}
-    {% endelement %}
+    </h1>
 
     {% if page_obj %}
-        <div class="row row-cols-1">
-            {% for purchase in page_obj %}
-                <div class="col">
-                    {% element card %}
-                        <div class="{% with files=purchase.product.get_active_files %}{% if purchase.status == 'approved' and files %}border-bottom{% endif %}{% endwith %}">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    {% if purchase.product.get_image_url %}
-                                        <div class="me-3" style="width: 80px; height: 45px; overflow: hidden; border-radius: 8px;">
-                                            <img src="{{ purchase.product.get_image_url }}" alt="{{ purchase.product.name }}" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
-                                        </div>
-                                    {% endif %}
-                                    <div>
-                                        <h5 class="mb-0">{{ purchase.product.name }}</h5>
-                                        <small class="text-muted">{{ purchase.created_at }}</small>
-                                    </div>
-                                </div>
-                                <span class="badge rounded-pill text-lowercase" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
-                                    {{ purchase.get_status_display }}
-                                </span>
-                            </div>
+    <div class="space-y-4">
+        {% for purchase in page_obj %}
+        <div class="bg-base-200 rounded-lg p-4">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    {% if purchase.product.get_image_url %}
+                    <div class="avatar">
+                        <div class="w-20 h-12 rounded">
+                            <img src="{{ purchase.product.get_image_url }}" alt="{{ purchase.product.name }}">
                         </div>
-
-                        {% if purchase.status == 'approved' %}
-                            {% with files=purchase.product.get_active_files %}
-                                {% if files %}
-                                    <div class="pt-3">
-                                        <h6 class="mb-3 border-bottom pb-2">{% translate "title.shop-product-files" %}</h6>
-                                        <div class="list-group list-group-flush">
-                                            {% for file in files %}
-                                                <div class="list-group-item d-flex justify-content-between align-items-center py-3 px-0 border-start-0 border-end-0">
-                                                    <div class="d-flex align-items-center">
-                                                        <img src="{% static 'images/file.png' %}" alt="File" class="me-3" style="width: 40px;">
-                                                        <div>
-                                                            <h6 class="mb-1">{{ file.name }}</h6>
-                                                            {% if file.description %}
-                                                                <p class="mb-1 text-muted small">{{ file.description }}</p>
-                                                            {% endif %}
-                                                            <small class="text-muted">
-                                                                {% if file.file_type %}{{ file.file_type }} · {% endif %}
-                                                                {% if file.file_size %}{{ file.file_size|filesizeformat }}{% endif %}
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <a href="{{ file.get_file_url }}" class="btn btn-sm btn-outline-primary" target="_blank">
-                                                        <i class="bi bi-download me-1"></i> {% translate "button.download" %}
-                                                    </a>
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endwith %}
-                        {% endif %}
-                    {% endelement %}
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h3 class="font-semibold">{{ purchase.product.name }}</h3>
+                        <p class="text-sm text-base-content/70">{{ purchase.created_at }}</p>
+                    </div>
                 </div>
-            {% endfor %}
-        </div>
+                <span class="badge" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
+                    {{ purchase.get_status_display }}
+                </span>
+            </div>
 
-        <div class="mt-4">
-            {% include 'partials/paginator.html' %}
+            {% if purchase.status == 'approved' %}
+            {% with files=purchase.product.get_active_files %}
+            {% if files %}
+            <div class="divider my-2"></div>
+            <h4 class="font-semibold mb-2">{% translate "title.shop-product-files" %}</h4>
+            <div class="space-y-2">
+                {% for file in files %}
+                <div class="flex items-center justify-between bg-base-100 rounded p-3">
+                    <div class="flex items-center gap-3">
+                        <img src="{% static 'images/file.png' %}" alt="File" class="w-8">
+                        <div>
+                            <p class="font-medium">{{ file.name }}</p>
+                            {% if file.description %}
+                            <p class="text-sm text-base-content/70">{{ file.description }}</p>
+                            {% endif %}
+                            <p class="text-xs text-base-content/50">
+                                {% if file.file_type %}{{ file.file_type }} · {% endif %}
+                                {% if file.file_size %}{{ file.file_size|filesizeformat }}{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <a href="{{ file.get_file_url }}" class="btn btn-outline btn-sm" target="_blank">
+                        <i class="fa-solid fa-download mr-1"></i>
+                        {% translate "button.download" %}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+            {% endif %}
         </div>
+        {% endfor %}
+    </div>
+
+    {% include 'partials/paginator.html' %}
     {% else %}
-        {% include 'partials/empty_data.html' %}
+    {% include 'partials/empty_data.html' %}
     {% endif %}
 
-    <div class="mt-4 text-center">
-        {% element button href=url_account_profile tags="outline-primary" %}
+    <div class="text-center mt-6">
+        <a href="{{ url_account_profile }}" class="btn btn-ghost">
             {% translate "button.back" %}
-        {% endelement %}
+        </a>
     </div>
 </div>
 

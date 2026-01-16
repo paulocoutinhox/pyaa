@@ -55,3 +55,12 @@ def raw_value(value):
     if isinstance(value, (int, float, Decimal)):
         return str(value)
     return value
+
+
+@register.filter
+def widget_type(field):
+    """
+    Return the widget class name for a form field (lowercase).
+    Usage: {% if field|widget_type == "textarea" %}
+    """
+    return field.field.widget.__class__.__name__.lower()

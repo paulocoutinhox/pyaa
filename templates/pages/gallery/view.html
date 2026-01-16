@@ -6,43 +6,34 @@
 
 {% url 'gallery_index' as url_gallery_index %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {{ gallery.title }}
-    {% endelement %}
+    </h1>
 
     {% if page_obj %}
-        <div id="gallery" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-            {% for photo in page_obj %}
-            <div class="col">
-                {% element card class="h-100 photo-card" %}
-                    <a href="{{ photo.image.url }}" class="gallery-item text-decoration-none" target="_blank">
-                        <div class="text-center m-0 p-0">
-                            <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'' }}" class="img-fluid rounded" style="height: 150px; width: 100%; object-fit: cover;">
-                        </div>
-
-                        {% if photo.caption %}
-                        <div class="text-center">
-                            <p class="card-text text-muted small mb-0">{{ photo.caption }}</p>
-                        </div>
-                        {% endif %}
-                    </a>
-                {% endelement %}
+    <div id="gallery" class="flex flex-wrap justify-center gap-4">
+        {% for photo in page_obj %}
+        <a href="{{ photo.image.url }}" class="gallery-item block w-full max-w-xs bg-base-200 rounded-lg overflow-hidden">
+            <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'' }}" class="w-full aspect-[16/9] object-cover">
+            {% if photo.caption %}
+            <div class="p-2 text-center">
+                <p class="text-sm text-base-content/70">{{ photo.caption }}</p>
             </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        {% include 'partials/empty_data.html' %}
-    {% endif %}
-
-    <div class="mt-4">
-        {% include 'partials/paginator.html' %}
+            {% endif %}
+        </a>
+        {% endfor %}
     </div>
 
-    <div class="mt-4 text-center">
-        {% element button href=url_gallery_index tags="outline-primary" %}
+    {% include 'partials/paginator.html' %}
+    {% else %}
+    {% include 'partials/empty_data.html' %}
+    {% endif %}
+
+    <div class="text-center mt-6">
+        <a href="{{ url_gallery_index }}" class="btn btn-ghost">
             {% translate "button.back" %}
-        {% endelement %}
+        </a>
     </div>
 </div>
 

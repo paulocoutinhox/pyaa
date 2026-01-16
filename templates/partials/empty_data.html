@@ -1,15 +1,13 @@
 {% load i18n %}
 {% load pyaa %}
 
-<div class="text-center col-sm-10 col-md-6 centralized">
-    {% element card %}
+<div class="flex justify-center max-w-md mx-auto my-10">
     <div class="text-center">
         <div class="mb-3">
-            <i class="bi bi-inbox fs-1 text-muted"></i>
+            <i class="fa-solid fa-inbox text-4xl"></i>
         </div>
-        <p class="text-muted mb-0">
+        <p class="text-base-content/70">
             {% translate "list-data.empty" %}
         </p>
     </div>
-    {% endelement %}
 </div>

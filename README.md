@@ -66,6 +66,7 @@ make run
 - [Production](docs/production.md)
 - [Security](docs/security.md)
 - [Stripe](docs/stripe.md)
+- [Frontend](docs/frontend.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [WebApp](docs/webapp.md)
 - [Cron](docs/cron.md)

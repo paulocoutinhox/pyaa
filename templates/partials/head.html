@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load sass_tags %}
 {% load pyaa_http %}
+{% load pyaa_vite %}
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +38,18 @@
 <!-- Canonical URL -->
 <link rel="canonical" href="{% if page_url %}{{ page_url|force_https }}{% else %}{{ request.build_absolute_uri|force_https }}{% endif %}">
 
+<!-- Theme -->
+<script>
+    (function() {
+        var theme = localStorage.getItem('theme');
+        if (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'black');
+        }
+    })();
+</script>
+
 <!-- Internal Variables -->
 <script>
     {% get_current_language as LANGUAGE_CODE %}
@@ -45,14 +58,16 @@
 
 {% compress css %}
     <link rel="stylesheet" href="{% static 'vendor/magnific-popup/css/magnific-popup.css' %}">
+    {% vite_all_css %}
     <link href="{% sass_src 'css/main.scss' %}" rel="stylesheet" type="text/css">
 {% endcompress %}
 
 {% compress js %}
     <script src="{% static 'vendor/jquery/js/jquery-3.7.1.min.js'%}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-    <script src="{% static 'js/bs-theme-switch.js' %}"></script>
+    <script src="{% static 'vendor/magnific-popup/js/jquery.magnific-popup.min.js'%}"></script>
+    <script src="{% static 'js/theme-manager.js' %}"></script>
     <script src="{% static 'js/banner-manager.js' %}"></script>
+    {% vite_all_js %}
     <script src="{% static 'js/main.js' %}"></script>
 {% endcompress %}
 

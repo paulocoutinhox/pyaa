@@ -30,6 +30,9 @@ help:
 	@echo ""
 	@echo "- test-all-coverage-ci"
 	@echo ""
+	@echo "- frontend-dev"
+	@echo "- frontend-prod"
+	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-rebuild"
 	@echo "- docker-run"
@@ -92,6 +95,12 @@ run-worker:
 
 fixtures:
 	python3 manage.py loaddata initial
+
+frontend-dev:
+	npm run frontend:dev
+
+frontend-prod:
+	npm run frontend:prod
 
 test:
 	python3 manage.py test

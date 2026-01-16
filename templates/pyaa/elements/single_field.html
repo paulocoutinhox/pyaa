@@ -1,39 +1,45 @@
 {% load widget_tweaks %}
 
 {% if attrs.field %}
+<div class="form-control">
     {% if attrs.field.label %}
-        {{ attrs.field.label_tag }}
+    <label class="label">
+        <span class="label-text">{{ attrs.field.label }}</span>
+    </label>
     {% endif %}
 
     {% if attrs.field.errors %}
         {% if attrs.field.field.widget.input_type == "checkbox" %}
-            {% render_field attrs.field class="form-check-input is-invalid" %}
+            {% render_field attrs.field class="checkbox checkbox-error" %}
         {% elif attrs.field.field.widget.input_type == "radio" %}
-            {% render_field attrs.field class="form-check-input is-invalid" %}
+            {% render_field attrs.field class="radio radio-error" %}
         {% elif attrs.field.field.widget.input_type == "select" %}
-            {% render_field attrs.field class="form-select is-invalid" %}
+            {% render_field attrs.field class="select select-bordered select-error w-full" %}
         {% else %}
-            {% render_field attrs.field class="form-control is-invalid" %}
+            {% render_field attrs.field class="input input-bordered input-error w-full" %}
         {% endif %}
     {% else %}
         {% if attrs.field.field.widget.input_type == "checkbox" %}
-            {% render_field attrs.field class="form-check-input" %}
+            {% render_field attrs.field class="checkbox" %}
         {% elif attrs.field.field.widget.input_type == "radio" %}
-            {% render_field attrs.field class="form-check-input" %}
+            {% render_field attrs.field class="radio" %}
         {% elif attrs.field.field.widget.input_type == "select" %}
-            {% render_field attrs.field class="form-select" %}
+            {% render_field attrs.field class="select select-bordered w-full" %}
         {% else %}
-            {% render_field attrs.field class="form-control" %}
+            {% render_field attrs.field class="input input-bordered w-full" %}
         {% endif %}
     {% endif %}
 
     {% if attrs.field.help_text %}
-    <small class="form-text text-muted">{{ attrs.field.help_text }}</small>
+    <label class="label">
+        <span class="label-text-alt text-base-content/60">{{ attrs.field.help_text }}</span>
+    </label>
     {% endif %}
 
     {% for error in attrs.field.errors %}
-    <div class="invalid-feedback">
-        {{ error }}
-    </div>
+    <label class="label">
+        <span class="label-text-alt text-error">{{ error }}</span>
+    </label>
     {% endfor %}
+</div>
 {% endif %}

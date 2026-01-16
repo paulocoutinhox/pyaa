@@ -1,54 +1,68 @@
 {% load widget_tweaks %}
+{% load pyaa_format %}
 
 {% for hidden_field in attrs.form.hidden_fields %}
     {{ hidden_field }}
 {% endfor %}
 
 {% if attrs.form.non_field_errors %}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <ul>
+<div class="alert alert-error mb-4">
+    <ul class="list-disc list-inside">
         {% for error in attrs.form.non_field_errors %}
             <li>{{ error }}</li>
         {% endfor %}
     </ul>
-    {% include "partials/message_close_button.html" %}
 </div>
 {% endif %}
 
 {% for field in attrs.form.visible_fields %}
-<div class="mb-3">
-    {{ field|add_label_class:"form-label" }}
+<div class="form-control mb-4">
+    <label class="label">
+        <span class="label-text">{{ field.label }}</span>
+    </label>
 
+    {% with widget_name=field|widget_type %}
     {% if field.errors %}
         {% if field.field.widget.input_type == "checkbox" %}
-            {% render_field field class="form-check-input is-invalid" %}
+            {% render_field field class="checkbox checkbox-error" %}
         {% elif field.field.widget.input_type == "radio" %}
-            {% render_field field class="form-check-input is-invalid" %}
-        {% elif field.field.widget.input_type == "select" %}
-            {% render_field field class="form-select is-invalid" %}
+            {% render_field field class="radio radio-error" %}
+        {% elif field.field.widget.input_type == "select" or widget_name == "select" %}
+            {% render_field field class="select select-bordered select-error w-full" %}
+        {% elif widget_name == "textarea" %}
+            {% render_field field class="textarea textarea-bordered textarea-error w-full" rows="6" %}
+        {% elif field.field.widget.input_type == "file" or widget_name == "clearablefileinput" or widget_name == "fileinput" %}
+            {% render_field field class="file-input file-input-bordered file-input-error w-full" %}
         {% else %}
-            {% render_field field class="form-control is-invalid" %}
+            {% render_field field class="input input-bordered input-error w-full" %}
         {% endif %}
     {% else %}
         {% if field.field.widget.input_type == "checkbox" %}
-            {% render_field field class="form-check-input" %}
+            {% render_field field class="checkbox" %}
         {% elif field.field.widget.input_type == "radio" %}
-            {% render_field field class="form-check-input" %}
-        {% elif field.field.widget.input_type == "select" %}
-            {% render_field field class="form-select" %}
+            {% render_field field class="radio" %}
+        {% elif field.field.widget.input_type == "select" or widget_name == "select" %}
+            {% render_field field class="select select-bordered w-full" %}
+        {% elif widget_name == "textarea" %}
+            {% render_field field class="textarea textarea-bordered w-full" rows="6" %}
+        {% elif field.field.widget.input_type == "file" or widget_name == "clearablefileinput" or widget_name == "fileinput" %}
+            {% render_field field class="file-input file-input-bordered w-full" %}
         {% else %}
-            {% render_field field class="form-control" %}
+            {% render_field field class="input input-bordered w-full" %}
         {% endif %}
     {% endif %}
+    {% endwith %}
 
     {% if field.help_text %}
-    <small class="form-text text-muted">{{ field.help_text }}</small>
+    <label class="label">
+        <span class="label-text-alt text-base-content/60">{{ field.help_text }}</span>
+    </label>
     {% endif %}
 
     {% for error in field.errors %}
-    <div class="invalid-feedback">
-        {{ error }}
-    </div>
+    <label class="label">
+        <span class="label-text-alt text-error">{{ error }}</span>
+    </label>
     {% endfor %}
 </div>
 {% endfor %}

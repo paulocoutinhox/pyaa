@@ -2,40 +2,59 @@
 {% load pyaa %}
 
 {% if banners %}
-    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            {% for banner in banners %}
-            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
-            {% endfor %}
-        </div>
-
-        <div class="carousel-inner">
-            {% for banner in banners %}
-            <div class="carousel-item {% if forloop.first %}active{% endif %}" id="banner-{{ banner.token }}">
-                <a href="javascript:void(0);" class="banner-link" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link|default:'' }}', {{ banner.target_blank|lower }});">
-                    <img src="{{ banner.image.url }}" class="d-block w-100" alt="{{ banner.title }}">
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-
+<div class="carousel w-full" id="bannerCarousel">
+    {% for banner in banners %}
+    <div id="banner-{{ banner.token }}" class="carousel-item relative w-full {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
+        <img src="{{ banner.image.url }}" class="w-full" alt="{{ banner.title }}">
+        <a href="javascript:void(0);" class="absolute inset-0 z-0" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link|default:'' }}', {{ banner.target_blank|lower }});"></a>
         {% if banners|length > 1 %}
-        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-10">
+            <button class="btn btn-circle btn-sm" onclick="showBanner({{ forloop.counter0|add:'-1' }})">❮</button>
+            <button class="btn btn-circle btn-sm" onclick="showBanner({{ forloop.counter0|add:'1' }})">❯</button>
+        </div>
         {% endif %}
     </div>
+    {% endfor %}
+</div>
 
-    <script>
-        $(function () {
-            {% for banner in banners %}
-            BannerManager.trackViewAccess('{{ banner.token }}');
-            {% endfor %}
+{% if banners|length > 1 %}
+<div class="flex w-full justify-center gap-2 py-2">
+    {% for banner in banners %}
+    <button class="btn btn-xs {% if forloop.first %}btn-active{% endif %}" onclick="showBanner({{ forloop.counter0 }})" data-indicator="{{ forloop.counter0 }}">
+        {{ forloop.counter }}
+    </button>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+    var bannerCount = {{ banners|length }};
+    var currentBanner = 0;
+
+    function showBanner(index) {
+        if (index < 0) index = bannerCount - 1;
+        if (index >= bannerCount) index = 0;
+        currentBanner = index;
+
+        document.querySelectorAll('#bannerCarousel .carousel-item').forEach(function(item, i) {
+            item.classList.toggle('hidden', i !== index);
         });
-    </script>
+
+        document.querySelectorAll('[data-indicator]').forEach(function(btn, i) {
+            btn.classList.toggle('btn-active', i === index);
+        });
+    }
+
+    $(function () {
+        {% for banner in banners %}
+        BannerManager.trackViewAccess('{{ banner.token }}');
+        {% endfor %}
+
+        {% if banners|length > 1 %}
+        setInterval(function() {
+            showBanner(currentBanner + 1);
+        }, 5000);
+        {% endif %}
+    });
+</script>
 {% endif %}

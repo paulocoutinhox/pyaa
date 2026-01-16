@@ -6,74 +6,43 @@
 
 {% block content %}
 
-<div class="container main-container">
+<div class="container mx-auto px-4 py-8 max-w-xl text-center">
+    <div class="text-6xl text-success mb-4">
+        <i class="fa-solid fa-circle-check"></i>
+    </div>
+
     {% element page_header centered=True %}
         {% translate "message.shop-payment-success.title" %}
     {% endelement %}
 
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-10">
-            {% element card %}
-                <div class="text-center">
-                    <div class="mb-4">
-                        <span class="fs-1 text-success">
-                            <i class="bi bi-check-circle-fill"></i>
-                        </span>
-                    </div>
+    <p class="text-base-content/70 mb-6">
+        {% trans "message.shop-payment-success.subtitle" %}
+    </p>
 
-                    <p class="mb-4">
-                        {% trans "message.shop-payment-success.subtitle" %}
-                    </p>
-
-                    <div class="bg-body-secondary p-3 rounded mb-4">
-                        <p class="mb-2">
-                            <strong>
-                                {% trans "message.shop-payment-date" %}
-                            </strong>
-                            <br />
-                            {{ paid_item.created_at }}
-                        </p>
-
-                        <p class="mb-0">
-                            <strong>
-                                {% trans "message.shop-payment-status" %}
-                            </strong>
-                            <br />
-                            <span class="badge text-bg-success rounded-pill">
-                                {{ paid_item.get_status_display }}
-                            </span>
-                        </p>
-                    </div>
-
-                    {% if paid_item_type == "subscription" %}
-                        <div class="mt-4">
-                            {% url 'account_subscriptions' as url_area %}
-
-                            {% element button href=url_area tags="success" %}
-                                {% translate "button.account-subscriptions" %}
-                            {% endelement %}
-                        </div>
-                    {% elif paid_item_type == "credit-purchase" %}
-                        <div class="mt-4">
-                            {% url 'account_credit_purchases' as url_area %}
-
-                            {% element button href=url_area tags="success" %}
-                                {% translate "button.account-credit-purchases" %}
-                            {% endelement %}
-                        </div>
-                    {% elif paid_item_type == "product-purchase" %}
-                        <div class="mt-4">
-                            {% url 'account_product_purchases' as url_area %}
-
-                            {% element button href=url_area tags="success" %}
-                                {% translate "button.account-product-purchases" %}
-                            {% endelement %}
-                        </div>
-                    {% endif %}
-                </div>
-            {% endelement %}
-        </div>
+    <div class="bg-base-200 rounded-lg p-4 mb-6">
+        <p class="mb-2">
+            <strong>{% trans "message.shop-payment-date" %}</strong><br>
+            {{ paid_item.created_at }}
+        </p>
+        <p class="mb-0">
+            <strong>{% trans "message.shop-payment-status" %}</strong><br>
+            <span class="badge badge-success">{{ paid_item.get_status_display }}</span>
+        </p>
     </div>
+
+    {% if paid_item_type == "subscription" %}
+    <a href="{% url 'account_subscriptions' %}" class="btn btn-success">
+        {% translate "button.account-subscriptions" %}
+    </a>
+    {% elif paid_item_type == "credit-purchase" %}
+    <a href="{% url 'account_credit_purchases' %}" class="btn btn-success">
+        {% translate "button.account-credit-purchases" %}
+    </a>
+    {% elif paid_item_type == "product-purchase" %}
+    <a href="{% url 'account_product_purchases' %}" class="btn btn-success">
+        {% translate "button.account-product-purchases" %}
+    </a>
+    {% endif %}
 </div>
 
 {% endblock content %}

@@ -1,0 +1,10 @@
+/* tailwind */
+@import "tailwindcss";
+
+/* font awesome */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+/* daisyui */
+@plugin "daisyui" {
+    themes: lofi --default, black --prefersdark;
+}

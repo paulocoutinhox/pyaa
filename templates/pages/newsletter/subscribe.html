@@ -8,32 +8,26 @@
 
 {% block content %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8 max-w-xl">
+    <h1 class="text-2xl font-bold text-center mb-2">
         {% translate "title.newsletter.subscribe" %}
-    {% endelement %}
+    </h1>
 
-        <p class="mb-4 text-center">
-            {% trans "subtitle.newsletter.subscribe" %}
-        </p>
+    <p class="text-center text-base-content/70 mb-6">
+        {% trans "subtitle.newsletter.subscribe" %}
+    </p>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form method="post" class="needs-validation" novalidate>
-                    {% csrf_token %}
+    <form method="post" novalidate>
+        {% csrf_token %}
 
-                    {% element fields form=form %}
-                    {% endelement %}
+        {% element fields form=form %}
+        {% endelement %}
 
-                    <div class="d-grid">
-                        {% element button type="submit" tags="primary" %}
-                            {% translate "button.newsletter.subscribe" %}
-                        {% endelement %}
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+        <button type="submit" class="btn btn-primary w-full mt-4">
+            <i class="fa-solid fa-envelope mr-2"></i>
+            {% translate "button.newsletter.subscribe" %}
+        </button>
+    </form>
 </div>
 
 {% endblock %}

@@ -1,34 +1,26 @@
 {% load i18n %}
 {% load pyaa %}
 
-<div class="py-5 text-center col-md-6 centralized">
-    {% element card %}
-        {% element page_header centered=True %}
-            {% translate "title.newsletter.subscribe" %}
-        {% endelement %}
+<div class="mt-8 pt-6 border-t border-base-300">
+    <h2 class="text-lg font-semibold text-center mb-2">
+        {% translate "title.newsletter.subscribe" %}
+    </h2>
 
-        <p class="mb-4">
-            {% translate "subtitle.newsletter.subscribe" %}
-        </p>
+    <p class="text-base-content/70 text-center mb-4">
+        {% translate "subtitle.newsletter.subscribe" %}
+    </p>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form method="post" action="{% url 'newsletter_subscribe' %}" class="needs-validation" novalidate>
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <input type="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="{% translate 'form.placeholder.newsletter-email' %}"
-                            required>
-                    </div>
-                    <div class="d-grid">
-                        {% element button type="submit" tags="primary" %}
-                            {% translate "button.newsletter.subscribe" %}
-                        {% endelement %}
-                    </div>
-                </form>
-            </div>
+    <form method="post" action="{% url 'newsletter_subscribe' %}" class="max-w-sm mx-auto">
+        {% csrf_token %}
+        <div class="join w-full">
+            <input type="email"
+                name="email"
+                class="input input-bordered join-item flex-1"
+                placeholder="{% translate 'form.placeholder.newsletter-email' %}"
+                required>
+            <button type="submit" class="btn btn-primary join-item">
+                <i class="fa-solid fa-envelope"></i>
+            </button>
         </div>
-    {% endelement %}
+    </form>
 </div>

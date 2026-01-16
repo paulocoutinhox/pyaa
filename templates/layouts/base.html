@@ -1,24 +1,27 @@
 {% load i18n %}
 {% load pyaa %}
 <!DOCTYPE html>
-<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}" class="h-100">
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}" class="h-full">
+
 <head>
     {% include "partials/head.html" %}
     {% block extra_head %}{% endblock %}
 </head>
-<body class="d-flex flex-column h-100">
+
+<body class="min-h-screen flex flex-col bg-base-100 text-base-content">
     {% include "partials/header.html" %}
 
-    <main id="main">
+    <main id="main" class="flex-1">
         {% include "partials/banners.html" %}
         {% include "partials/messages.html" %}
 
         {% block before_content %}{% endblock %}
-        {% block content %} {% endblock %}
+        {% block content %}{% endblock %}
         {% block after_content %}{% endblock %}
     </main>
 
     {% include "partials/footer.html" %}
     {% block extra_footer %}{% endblock %}
 </body>
+
 </html>

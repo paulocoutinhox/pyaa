@@ -11,6 +11,7 @@ __pycache__
 
 # Static files
 /apps/web/static/css/*.css
+/apps/web/static/css/*.map
 
 # Backup files
 *.bak

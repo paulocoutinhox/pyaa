@@ -8,84 +8,74 @@
 
 {% url 'account_profile' as url_account_profile %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {% translate "title.account-subscriptions" %}
-    {% endelement %}
+    </h1>
 
     {% if page_obj %}
-        {% element card padding=False %}
-            <div class="table-responsive subscriptions-list">
-                <table class="table table-striped table-borderless mb-0">
-                    <thead>
-                        <tr>
-                            <th>{% translate "table.header.plan-name" %}</th>
-                            <th>{% translate "table.header.status" %}</th>
-                            <th>{% translate "table.header.expire-at" %}</th>
-                            <th>{% translate "table.header.created-at" %}</th>
-                            <th>{% translate "table.header.actions" %}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for subscription in page_obj %}
-                            <tr class="align-middle">
-                                <td>{{ subscription.plan.get_name }}</td>
-                                <td>
-                                    <span class="badge rounded-pill text-lowercase" style="background-color: {{ subscription.status|status_bg_color_hex }}; color: {{ subscription.status|status_text_color_hex }};">
-                                        {{ subscription.get_status_display }}
-                                    </span>
-                                </td>
-                                <td>{{ subscription.expire_at }}</td>
-                                <td>{{ subscription.created_at }}</td>
-                                <td>
-                                    <div class="d-flex gap-2">
-                                        {% if subscription.can_be_canceled %}
-                                            <!-- cancel button -->
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal-{{ subscription.token }}">
-                                                {% translate "button.cancel-subscription" %}
-                                            </button>
+    <div class="overflow-x-auto">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% translate "table.header.plan-name" %}</th>
+                    <th>{% translate "table.header.status" %}</th>
+                    <th>{% translate "table.header.expire-at" %}</th>
+                    <th>{% translate "table.header.created-at" %}</th>
+                    <th>{% translate "table.header.actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subscription in page_obj %}
+                <tr>
+                    <td>{{ subscription.plan.get_name }}</td>
+                    <td>
+                        <span class="badge" style="background-color: {{ subscription.status|status_bg_color_hex }}; color: {{ subscription.status|status_text_color_hex }};">
+                            {{ subscription.get_status_display }}
+                        </span>
+                    </td>
+                    <td>{{ subscription.expire_at }}</td>
+                    <td>{{ subscription.created_at }}</td>
+                    <td>
+                        {% if subscription.can_be_canceled %}
+                        <button class="btn btn-error btn-sm" onclick="document.getElementById('modal-{{ subscription.token }}').showModal()">
+                            {% translate "button.cancel-subscription" %}
+                        </button>
 
-                                            <!-- confirmation modal -->
-                                            <div class="modal fade" id="cancelModal-{{ subscription.token }}" tabindex="-1" aria-labelledby="cancelModalLabel-{{ subscription.token }}" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="cancelModalLabel-{{ subscription.token }}">{% translate "model.title.cancel-subscription" %}</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            {% translate "message.subscription.cancel-confirmation" %}
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% translate "button.no" %}</button>
-                                                            <a href="{% url 'account_subscription_cancel' subscription.token %}" class="btn btn-danger">
-                                                                {% translate "button.yes-cancel" %}
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endelement %}
+                        <dialog id="modal-{{ subscription.token }}" class="modal">
+                            <div class="modal-box">
+                                <h3 class="text-lg font-bold">{% translate "model.title.cancel-subscription" %}</h3>
+                                <p class="py-4">{% translate "message.subscription.cancel-confirmation" %}</p>
+                                <div class="modal-action">
+                                    <form method="dialog">
+                                        <button class="btn btn-ghost">{% translate "button.no" %}</button>
+                                    </form>
+                                    <a href="{% url 'account_subscription_cancel' subscription.token %}" class="btn btn-error">
+                                        {% translate "button.yes-cancel" %}
+                                    </a>
+                                </div>
+                            </div>
+                            <form method="dialog" class="modal-backdrop">
+                                <button>close</button>
+                            </form>
+                        </dialog>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% else %}
-        {% include 'partials/empty_data.html' %}
+    {% include 'partials/empty_data.html' %}
     {% endif %}
 
-    <div class="mt-4">
-        {% include 'partials/paginator.html' %}
-    </div>
+    {% include 'partials/paginator.html' %}
 
-    <div class="mt-4 text-center">
-        {% element button href=url_account_profile tags="outline-primary" %}
+    <div class="text-center mt-6">
+        <a href="{{ url_account_profile }}" class="btn btn-ghost">
             {% translate "button.back" %}
-        {% endelement %}
+        </a>
     </div>
 </div>
 

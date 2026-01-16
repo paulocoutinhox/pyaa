@@ -5,48 +5,33 @@
 
 {% block content %}
 
-<div class="container main-container">
-    {% element page_header centered=True %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold text-center mb-6">
         {% translate "title.shop-products.index" %}
-    {% endelement %}
+    </h1>
 
     {% if page_obj %}
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-            {% for product in page_obj %}
-            <div class="col">
-                {% element card class="h-100 product-card" %}
-                    <a href="{% url 'shop_product_details' product.id product.slug %}" class="text-decoration-none">
-                        <div class="text-center mb-3">
-                            <div class="position-relative overflow-hidden rounded" style="width: 100%; aspect-ratio: 16/9;">
-                                <img src="{{ product.get_image_url }}" alt="{{ product.name }}" class="img-fluid position-absolute top-0 start-0" style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                        </div>
-
-                        <div class="text-center">
-                            <h6 class="card-title mb-2 text-body">{{ product.name }}</h6>
-
-                            {% if product.description %}
-                                <p class="card-text text-muted small" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                    {{ product.description|striptags|truncatewords:10 }}
-                                </p>
-                            {% endif %}
-
-                            <div class="mt-auto">
-                                <h5 class="text-primary fw-bold">{{ product.price|format_currency:product.currency }}</h5>
-                            </div>
-                        </div>
-                    </a>
-                {% endelement %}
+    <div class="flex flex-wrap justify-center gap-4">
+        {% for product in page_obj %}
+        <a href="{% url 'shop_product_details' product.id product.slug %}" class="block w-full max-w-xs bg-base-200 rounded-lg overflow-hidden hover:opacity-80 transition-opacity">
+            <img src="{{ product.get_image_url }}" alt="{{ product.name }}" class="w-full aspect-[16/9] object-cover">
+            <div class="p-4 text-center">
+                <h2 class="font-semibold mb-1">{{ product.name }}</h2>
+                {% if product.description %}
+                <p class="text-sm text-base-content/60 mb-2 line-clamp-2">
+                    {{ product.description|striptags|truncatewords:10 }}
+                </p>
+                {% endif %}
+                <p class="text-lg font-bold text-primary">{{ product.price|format_currency:product.currency }}</p>
             </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        {% include 'partials/empty_data.html' %}
-    {% endif %}
-
-    <div class="mt-4">
-        {% include 'partials/paginator.html' %}
+        </a>
+        {% endfor %}
     </div>
+
+    {% include 'partials/paginator.html' %}
+    {% else %}
+    {% include 'partials/empty_data.html' %}
+    {% endif %}
 </div>
 
 {% endblock content %}

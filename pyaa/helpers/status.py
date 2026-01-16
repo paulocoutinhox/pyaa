@@ -2,102 +2,102 @@ class StatusHelper:
     STATUS_COLORS = {
         "debug": {
             "hex": "#6c757d",
-            "bs": "secondary",
+            "frontend": "secondary",
             "text": "#ffffff",
         },  # gray with white text
         "info": {
             "hex": "#007bff",
-            "bs": "primary",
+            "frontend": "primary",
             "text": "#ffffff",
         },  # blue with white text
         "success": {
             "hex": "#28a745",
-            "bs": "success",
+            "frontend": "success",
             "text": "#ffffff",
         },  # green with white text
         "warning": {
             "hex": "#ffc107",
-            "bs": "warning",
+            "frontend": "warning",
             "text": "#000000",
         },  # yellow with black text
         "error": {
             "hex": "#dc3545",
-            "bs": "danger",
+            "frontend": "error",
             "text": "#ffffff",
         },  # red with white text
         "initial": {
             "hex": "#007bff",
-            "bs": "primary",
+            "frontend": "primary",
             "text": "#ffffff",
         },  # blue with white text
         "analysis": {
             "hex": "#ffc107",
-            "bs": "warning",
+            "frontend": "warning",
             "text": "#000000",
         },  # yellow with black text
         "active": {
             "hex": "#28a745",
-            "bs": "success",
+            "frontend": "success",
             "text": "#ffffff",
         },  # green with white text
         "suspended": {
             "hex": "#fd7e14",
-            "bs": "orange",
+            "frontend": "orange",
             "text": "#ffffff",
         },  # orange with white text
         "canceled": {
             "hex": "#dc3545",
-            "bs": "danger",
+            "frontend": "error",
             "text": "#ffffff",
         },  # red with white text
         "failed": {
             "hex": "#910000",
-            "bs": "danger",
+            "frontend": "error",
             "text": "#ffffff",
         },  # dark red with white text
         "charged-back": {
             "hex": "#6c757d",
-            "bs": "secondary",
+            "frontend": "secondary",
             "text": "#ffffff",
         },  # gray with white text
         "rejected": {
             "hex": "#ff0000",
-            "bs": "danger",
+            "frontend": "error",
             "text": "#ffffff",
         },  # red with white text
         "refunded": {
             "hex": "#825690",
-            "bs": "purple",
+            "frontend": "purple",
             "text": "#ffffff",
         },  # purple with white text
         "approved": {
             "hex": "#28a745",
-            "bs": "success",
+            "frontend": "success",
             "text": "#ffffff",
         },  # green with white text
         "inactive": {
             "hex": "#6c757d",
-            "bs": "secondary",
+            "frontend": "secondary",
             "text": "#ffffff",
         },  # gray with white text
         "closed": {
             "hex": "#343a40",
-            "bs": "dark",
+            "frontend": "dark",
             "text": "#ffffff",
         },  # dark gray with white text
         "sold": {
             "hex": "#ffc107",
-            "bs": "warning",
+            "frontend": "warning",
             "text": "#000000",
         },  # gold with black text
         "unapproved": {
             "hex": "#dc3545",
-            "bs": "danger",
+            "frontend": "error",
             "text": "#ffffff",
         },  # red with white text
         "expired": {
             "hex": "#910000",
-            "bs": "danger",
+            "frontend": "error",
             "text": "#ffffff",
         },  # dark red with white text
     }
@@ -107,7 +107,7 @@ class StatusHelper:
             "patterns": ["completed", "succeeded", "paid", "created"],
             "colors": {
                 "hex": "#28a745",
-                "bs": "success",
+                "frontend": "success",
                 "text": "#ffffff",
             },  # green with white text
         },
@@ -115,7 +115,7 @@ class StatusHelper:
             "patterns": ["updated", "finalized"],
             "colors": {
                 "hex": "#ffc107",
-                "bs": "warning",
+                "frontend": "warning",
                 "text": "#000000",
             },  # yellow with black text
         },
@@ -123,7 +123,7 @@ class StatusHelper:
             "patterns": ["attached"],
             "colors": {
                 "hex": "#007bff",
-                "bs": "primary",
+                "frontend": "primary",
                 "text": "#ffffff",
             },  # blue with white text
         },
@@ -131,7 +131,7 @@ class StatusHelper:
             "patterns": ["refunded"],
             "colors": {
                 "hex": "#825690",
-                "bs": "purple",
+                "frontend": "purple",
                 "text": "#ffffff",
             },  # purple with white text
         },
@@ -139,7 +139,7 @@ class StatusHelper:
             "patterns": ["deleted"],
             "colors": {
                 "hex": "#dc3545",
-                "bs": "danger",
+                "frontend": "error",
                 "text": "#ffffff",
             },  # red with white text
         },
