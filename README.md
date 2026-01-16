@@ -7,7 +7,7 @@
     <br>
 </p>
 
-PyAA is a powerful, open-source Python + Django + FastAPI template application designed to build robust web applications with all the essential features pre-built. Whether you need a site, an e-commerce platform, or a SaaS application, PyAA has you covered – for free!
+PyAA is a powerful, open-source Python + Django + FastAPI + Tailwind template application designed to build robust web applications with all the essential features pre-built. Whether you need a site, an e-commerce platform, or a SaaS application, PyAA has you covered – for free!
 
 [![Build](https://github.com/paulocoutinhox/pyaa/actions/workflows/build.yml/badge.svg)](https://github.com/paulocoutinhox/pyaa/actions/workflows/build.yml)
 
