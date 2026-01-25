@@ -127,5 +127,8 @@ GitHub.sublime-settings
 package-lock.json
 node_modules
 
+# Bun
+bun.lock
+
 # Claude
 .claude
