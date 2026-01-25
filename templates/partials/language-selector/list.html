@@ -1,0 +1,12 @@
+{% load i18n %}
+{% load flags %}
+
+<div class="mt-8 pt-6 border-t border-base-300">
+    <h2 class="text-lg font-semibold text-center mb-4">
+        {% translate "title.language-selector" %}
+    </h2>
+
+    <ul class="flex gap-4 justify-center">
+        {% languages 'square' li_class='inline-block' a_class='hover:opacity-80 transition-opacity' %}
+    </ul>
+</div>

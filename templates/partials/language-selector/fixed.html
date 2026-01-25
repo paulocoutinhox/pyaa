@@ -1,0 +1,26 @@
+{% load i18n %}
+{% load static %}
+
+<div class="mt-8 pt-6 border-t border-base-300">
+    <h2 class="text-lg font-semibold text-center mb-4">
+        {% translate "title.language-selector" %}
+    </h2>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/django-translation-flags.min.css' %}">
+
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as languages %}
+
+    <ul class="flex gap-4 justify-center">
+        {% for language in languages %}
+        <li class="inline-block">
+            <a href="{% url 'set_language' language.code %}"
+               class="hover:opacity-80 transition-opacity"
+               title="{{ language.name_local }}">
+                <span class="flag-icon flag-icon-{{ language.code }} flag-icon-square"></span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
