@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load pyaa %}
+{% load pyaa_format %}
 {% load pyaa_status %}
 {% load static %}
 
@@ -18,23 +19,29 @@
     <div class="space-y-4">
         {% for purchase in page_obj %}
         <div class="bg-base-200 rounded-lg p-4">
-            <div class="flex items-center justify-between flex-wrap gap-4">
-                <div class="flex items-center gap-4">
-                    {% if purchase.product.get_image_url %}
-                    <div class="avatar">
-                        <div class="w-20 h-12 rounded">
-                            <img src="{{ purchase.product.get_image_url }}" alt="{{ purchase.product.name }}">
-                        </div>
-                    </div>
-                    {% endif %}
-                    <div>
-                        <h3 class="font-semibold">{{ purchase.product.name }}</h3>
-                        <p class="text-sm text-base-content/70">{{ purchase.created_at }}</p>
+            <div class="flex items-start gap-4">
+                <div class="avatar flex-shrink-0">
+                    <div class="w-20 h-12 rounded">
+                        <img src="{{ purchase.product.get_image_url }}" alt="{{ purchase.product.name }}">
                     </div>
                 </div>
-                <span class="badge" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
-                    {{ purchase.get_status_display }}
-                </span>
+                <div class="flex-1 min-w-0">
+                    <h3 class="font-semibold">{{ purchase.product.name }}</h3>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.price" %}:</span>
+                        <span>{{ purchase.price|format_currency:purchase.currency }}</span>
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.created-at" %}:</span>
+                        <span>{{ purchase.created_at }}</span>
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.status" %}:</span>
+                        <span class="badge badge-sm" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
+                            {{ purchase.get_status_display }}
+                        </span>
+                    </p>
+                </div>
             </div>
 
             {% if purchase.status == 'approved' %}
@@ -44,13 +51,13 @@
             <h4 class="font-semibold mb-2">{% translate "title.shop-product-files" %}</h4>
             <div class="space-y-2">
                 {% for file in files %}
-                <div class="flex items-center justify-between bg-base-100 rounded p-3">
-                    <div class="flex items-center gap-3">
-                        <img src="{% static 'images/file.png' %}" alt="File" class="w-8">
-                        <div>
-                            <p class="font-medium">{{ file.name }}</p>
+                <div class="flex items-center justify-between bg-base-100 rounded p-3 gap-3">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <img src="{% static 'images/file.png' %}" alt="File" class="w-8 flex-shrink-0">
+                        <div class="min-w-0">
+                            <p class="font-medium truncate">{{ file.name }}</p>
                             {% if file.description %}
-                            <p class="text-sm text-base-content/70">{{ file.description }}</p>
+                            <p class="text-sm text-base-content/70 truncate">{{ file.description }}</p>
                             {% endif %}
                             <p class="text-xs text-base-content/50">
                                 {% if file.file_type %}{{ file.file_type }} · {% endif %}
@@ -58,9 +65,9 @@
                             </p>
                         </div>
                     </div>
-                    <a href="{{ file.get_file_url }}" class="btn btn-outline btn-sm" target="_blank">
-                        <i class="fa-solid fa-download mr-1"></i>
-                        {% translate "button.download" %}
+                    <a href="{{ file.get_file_url }}" class="btn btn-outline btn-sm flex-shrink-0" target="_blank">
+                        <i class="fa-solid fa-download"></i>
+                        <span class="hidden sm:inline ml-1">{% translate "button.download" %}</span>
                     </a>
                 </div>
                 {% endfor %}

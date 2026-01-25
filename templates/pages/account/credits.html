@@ -13,47 +13,39 @@
     </h1>
 
     {% if page_obj %}
-    <div class="overflow-x-auto">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>{% translate "table.header.image" %}</th>
-                    <th>{% translate "table.header.description" %}</th>
-                    <th class="text-center">{% translate "table.header.amount" %}</th>
-                    <th>{% translate "table.header.created-at" %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for credit in page_obj %}
-                <tr>
-                    <td>
-                        {% if credit.get_image_url %}
-                        <div class="avatar">
-                            <div class="w-12 h-7 rounded">
-                                <img src="{{ credit.get_image_url }}" alt="">
-                            </div>
-                        </div>
-                        {% endif %}
-                    </td>
-                    <td>{{ credit.get_description }}</td>
-                    <td class="text-center">
+    <div class="space-y-4">
+        {% for credit in page_obj %}
+        <div class="bg-base-200 rounded-lg p-4">
+            <div class="flex items-start gap-4">
+                <div class="avatar flex-shrink-0">
+                    <div class="w-20 h-12 rounded">
+                        <img src="{{ credit.get_image_url }}" alt="">
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="font-semibold">{{ credit.get_description }}</h3>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.created-at" %}:</span>
+                        <span>{{ credit.created_at }}</span>
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.amount" %}:</span>
                         {% if credit.amount > 0 %}
-                        <span class="badge badge-success">{{ credit.amount }}</span>
+                        <span class="badge badge-sm badge-success">+{{ credit.amount }}</span>
                         {% else %}
-                        <span class="badge badge-error">{{ credit.amount }}</span>
+                        <span class="badge badge-sm badge-error">{{ credit.amount }}</span>
                         {% endif %}
-                    </td>
-                    <td>{{ credit.created_at }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
+
+    {% include 'partials/paginator.html' %}
     {% else %}
     {% include 'partials/empty_data.html' %}
     {% endif %}
-
-    {% include 'partials/paginator.html' %}
 
     <div class="text-center mt-6">
         <a href="{{ url_account_profile }}" class="btn btn-ghost">

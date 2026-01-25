@@ -1,3 +1,4 @@
+import uuid
 from datetime import timedelta
 
 from django.contrib.sites.models import Site
@@ -29,6 +30,7 @@ class Product(models.Model):
 
         indexes = [
             models.Index(fields=["name"], name="shop_product_name"),
+            models.Index(fields=["token"], name="shop_product_token"),
             models.Index(fields=["currency"], name="shop_product_currency"),
             models.Index(fields=["active"], name="shop_product_active"),
             models.Index(fields=["slug"], name="shop_product_slug"),
@@ -47,6 +49,13 @@ class Product(models.Model):
         verbose_name=_("model.field.site"),
         blank=True,
         null=True,
+    )
+
+    token = models.UUIDField(
+        _("model.field.token"),
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
     )
 
     name = models.CharField(
@@ -244,6 +253,7 @@ class Plan(models.Model):
         indexes = [
             models.Index(fields=["name"], name="shop_plan_name"),
             models.Index(fields=["tag"], name="shop_plan_tag"),
+            models.Index(fields=["token"], name="shop_plan_token"),
             models.Index(fields=["gateway"], name="shop_plan_gateway"),
             models.Index(fields=["currency"], name="shop_plan_currency"),
             models.Index(fields=["plan_type"], name="shop_plan_plan_type"),
@@ -264,6 +274,13 @@ class Plan(models.Model):
         verbose_name=_("model.field.site"),
         blank=True,
         null=True,
+    )
+
+    token = models.UUIDField(
+        _("model.field.token"),
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
     )
 
     language = models.ForeignKey(

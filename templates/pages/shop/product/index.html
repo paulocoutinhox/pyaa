@@ -13,7 +13,7 @@
     {% if page_obj %}
     <div class="flex flex-wrap justify-center gap-4">
         {% for product in page_obj %}
-        <a href="{% url 'shop_product_details' product.id product.slug %}" class="block w-full max-w-xs bg-base-200 rounded-lg overflow-hidden hover:opacity-80 transition-opacity">
+        <a href="{% url 'shop_product_details' product.token product.slug %}" class="block w-full max-w-xs bg-base-200 rounded-lg overflow-hidden hover:opacity-80 transition-opacity">
             <img src="{{ product.get_image_url }}" alt="{{ product.name }}" class="w-full aspect-[16/9] object-cover">
             <div class="p-4 text-center">
                 <h2 class="font-semibold mb-1">{{ product.name }}</h2>

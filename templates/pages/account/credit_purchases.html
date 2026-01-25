@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load pyaa %}
+{% load pyaa_format %}
 {% load pyaa_status %}
 
 {% block content %}
@@ -14,45 +15,41 @@
     </h1>
 
     {% if page_obj %}
-    <div class="overflow-x-auto">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>{% translate "table.header.image" %}</th>
-                    <th>{% translate "table.header.plan" %}</th>
-                    <th>{% translate "table.header.created-at" %}</th>
-                    <th>{% translate "table.header.status" %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for purchase in page_obj %}
-                <tr>
-                    <td>
-                        {% if purchase.plan.get_image_url %}
-                        <div class="avatar">
-                            <div class="w-12 h-7 rounded">
-                                <img src="{{ purchase.plan.get_image_url }}" alt="{{ purchase.plan.name }}">
-                            </div>
-                        </div>
-                        {% endif %}
-                    </td>
-                    <td>{{ purchase.plan.name }}</td>
-                    <td>{{ purchase.created_at }}</td>
-                    <td>
-                        <span class="badge" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
+    <div class="space-y-4">
+        {% for purchase in page_obj %}
+        <div class="bg-base-200 rounded-lg p-4">
+            <div class="flex items-start gap-4">
+                <div class="avatar flex-shrink-0">
+                    <div class="w-20 h-12 rounded">
+                        <img src="{{ purchase.plan.get_image_url }}" alt="{{ purchase.plan.name }}">
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="font-semibold">{{ purchase.plan.name }}</h3>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.price" %}:</span>
+                        <span>{{ purchase.price|format_currency:purchase.currency }}</span>
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.created-at" %}:</span>
+                        <span>{{ purchase.created_at }}</span>
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.status" %}:</span>
+                        <span class="badge badge-sm" style="background-color: {{ purchase.status|status_bg_color_hex }}; color: {{ purchase.status|status_text_color_hex }};">
                             {{ purchase.get_status_display }}
                         </span>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
+
+    {% include 'partials/paginator.html' %}
     {% else %}
     {% include 'partials/empty_data.html' %}
     {% endif %}
-
-    {% include 'partials/paginator.html' %}
 
     <div class="text-center mt-6">
         <a href="{{ url_account_profile }}" class="btn btn-ghost">

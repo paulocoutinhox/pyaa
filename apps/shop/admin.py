@@ -165,8 +165,8 @@ class PlanAdmin(admin.ModelAdmin):
         "language",
     )
 
-    search_fields = ("name",)
-    readonly_fields = ("created_at", "updated_at")
+    search_fields = ("name", "token")
+    readonly_fields = ("token", "created_at", "updated_at")
     ordering = ("-id",)
 
     fieldsets = (
@@ -175,6 +175,7 @@ class PlanAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "site",
+                    "token",
                     "language",
                     "name",
                     "tag",
@@ -650,8 +651,8 @@ class ProductAdmin(admin.ModelAdmin):
         "created_at",
     )
 
-    search_fields = ("name",)
-    readonly_fields = ("created_at", "updated_at")
+    search_fields = ("name", "token")
+    readonly_fields = ("token", "created_at", "updated_at")
     ordering = ("-id",)
     inlines = [ProductFileInline]
 
@@ -661,6 +662,7 @@ class ProductAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "site",
+                    "token",
                     "name",
                 )
             },

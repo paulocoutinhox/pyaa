@@ -104,7 +104,7 @@ def shop_checkout_view(request, type, code):
 
     if request.method == "POST":
         if type == ObjectType.SUBSCRIPTION:
-            plan = Plan.objects.filter(id=code, active=True).first()
+            plan = Plan.objects.filter(token=code, active=True).first()
 
             if not plan:
                 messages.error(request, _("message.shop-plan-not-found"))
@@ -134,7 +134,7 @@ def shop_checkout_view(request, type, code):
                     return redirect("home")
 
         elif type == ObjectType.CREDIT_PURCHASE:
-            plan = Plan.objects.filter(id=code, active=True).first()
+            plan = Plan.objects.filter(token=code, active=True).first()
 
             if not plan:
                 messages.error(request, _("message.shop-plan-not-found"))
@@ -165,7 +165,7 @@ def shop_checkout_view(request, type, code):
                     return redirect("home")
 
         elif type == ObjectType.PRODUCT_PURCHASE:
-            product = Product.objects.filter(id=code, active=True).first()
+            product = Product.objects.filter(token=code, active=True).first()
 
             if not product:
                 messages.error(request, _("message.shop-product-not-found"))
@@ -222,19 +222,19 @@ def shop_checkout_view(request, type, code):
         form = CheckoutForm()
 
         if type == ObjectType.SUBSCRIPTION:
-            plan = Plan.objects.filter(id=code, active=True).first()
+            plan = Plan.objects.filter(token=code, active=True).first()
 
             if plan:
                 form.create_for_subscription(plan, customer)
 
         elif type == ObjectType.CREDIT_PURCHASE:
-            plan = Plan.objects.filter(id=code, active=True).first()
+            plan = Plan.objects.filter(token=code, active=True).first()
 
             if plan:
                 form.create_for_credit_purchase(plan, customer)
 
         elif type == ObjectType.PRODUCT_PURCHASE:
-            product = Product.objects.filter(id=code, active=True).first()
+            product = Product.objects.filter(token=code, active=True).first()
 
             if product:
                 form.create_for_product_purchase(product, customer)
@@ -316,21 +316,21 @@ def shop_payment_pending_view(request, token):
     return render(request, "pages/shop/payment/pending.html", context)
 
 
-def shop_product_details_view(request, product_id, slug=None):
+def shop_product_details_view(request, product_token, slug=None):
     # get the current site
     current_site = Site.objects.get_current()
 
     # build the query to filter the product
-    filters = Q(id=product_id, active=True)
+    filters = Q(token=product_token, active=True)
     filters &= Q(site_id=current_site.id) | Q(site_id__isnull=True)
 
     product = Product.objects.filter(filters).first()
 
     if product:
-        # Redirect to the correct URL if slug doesn't match
+        # redirect to the correct URL if slug doesn't match
         if slug != product.slug:
             return redirect(
-                "shop_product_details", product_id=product_id, slug=product.slug
+                "shop_product_details", product_token=product_token, slug=product.slug
             )
 
         # get all active files for this product
@@ -359,12 +359,12 @@ urlpatterns = [
         name="shop_products",
     ),
     path(
-        "shop/product/<int:product_id>/",
+        "shop/product/<str:product_token>/",
         shop_product_details_view,
         name="shop_product_details_no_slug",
     ),
     path(
-        "shop/product/<int:product_id>/<slug:slug>/",
+        "shop/product/<str:product_token>/<slug:slug>/",
         shop_product_details_view,
         name="shop_product_details",
     ),
