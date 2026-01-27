@@ -19,7 +19,7 @@
         {% for plan in plans %}
         <div class="w-full max-w-sm bg-base-200 rounded-lg p-6 {% if plan.featured %}ring-2 ring-primary{% endif %}">
             {% if plan.get_image_url %}
-            <a href="{% if plan.plan_type == 'subscription' %}{% url 'shop_checkout' 'subscription' plan.id %}{% else %}{% url 'shop_checkout' 'credit-purchase' plan.id %}{% endif %}">
+            <a href="{% if plan.plan_type == 'subscription' %}{% url 'shop_checkout' 'subscription' plan.token %}{% else %}{% url 'shop_checkout' 'credit-purchase' plan.token %}{% endif %}">
                 <img src="{{ plan.get_image_url }}" alt="{{ plan.get_name }}" class="w-full aspect-[16/9] object-cover rounded-lg mb-4">
             </a>
             {% endif %}
@@ -37,11 +37,11 @@
 
             <div class="text-center">
                 {% if plan.plan_type == 'subscription' %}
-                <a href="{% url 'shop_checkout' 'subscription' plan.id %}" class="btn btn-primary w-full">
+                <a href="{% url 'shop_checkout' 'subscription' plan.token %}" class="btn btn-primary w-full">
                     {% trans "button.shop-select-subscription-plan" %}
                 </a>
                 {% else %}
-                <a href="{% url 'shop_checkout' 'credit-purchase' plan.id %}" class="btn btn-primary w-full">
+                <a href="{% url 'shop_checkout' 'credit-purchase' plan.token %}" class="btn btn-primary w-full">
                     {% trans "button.shop-select-credit-plan" %}
                 </a>
                 {% endif %}

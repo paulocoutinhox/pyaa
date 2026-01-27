@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load pyaa %}
+{% load pyaa_format %}
 {% load pyaa_status %}
 
 {% block content %}
@@ -14,63 +15,74 @@
     </h1>
 
     {% if page_obj %}
-    <div class="overflow-x-auto">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>{% translate "table.header.plan-name" %}</th>
-                    <th>{% translate "table.header.status" %}</th>
-                    <th>{% translate "table.header.expire-at" %}</th>
-                    <th>{% translate "table.header.created-at" %}</th>
-                    <th>{% translate "table.header.actions" %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for subscription in page_obj %}
-                <tr>
-                    <td>{{ subscription.plan.get_name }}</td>
-                    <td>
-                        <span class="badge" style="background-color: {{ subscription.status|status_bg_color_hex }}; color: {{ subscription.status|status_text_color_hex }};">
+    <div class="space-y-4">
+        {% for subscription in page_obj %}
+        <div class="bg-base-200 rounded-lg p-4">
+            <div class="flex items-start gap-4">
+                <div class="avatar flex-shrink-0">
+                    <div class="w-20 h-12 rounded">
+                        <img src="{{ subscription.plan.get_image_url }}" alt="{{ subscription.plan.name }}">
+                    </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h3 class="font-semibold">{{ subscription.plan.get_name }}</h3>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.price" %}:</span>
+                        <span>{{ subscription.plan.price|format_currency:subscription.plan.currency }}</span>
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.created-at" %}:</span>
+                        <span>{{ subscription.created_at }}</span>
+                    </p>
+                    {% if subscription.expire_at %}
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.expire-at" %}:</span>
+                        <span>{{ subscription.expire_at }}</span>
+                    </p>
+                    {% endif %}
+                    <p class="text-sm">
+                        <span class="font-semibold text-base-content/70">{% translate "model.field.status" %}:</span>
+                        <span class="badge badge-sm" style="background-color: {{ subscription.status|status_bg_color_hex }}; color: {{ subscription.status|status_text_color_hex }};">
                             {{ subscription.get_status_display }}
                         </span>
-                    </td>
-                    <td>{{ subscription.expire_at }}</td>
-                    <td>{{ subscription.created_at }}</td>
-                    <td>
-                        {% if subscription.can_be_canceled %}
+                    </p>
+                    {% if subscription.can_be_canceled %}
+                    <div class="mt-2">
                         <button class="btn btn-error btn-sm" onclick="document.getElementById('modal-{{ subscription.token }}').showModal()">
                             {% translate "button.cancel-subscription" %}
                         </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
-                        <dialog id="modal-{{ subscription.token }}" class="modal">
-                            <div class="modal-box">
-                                <h3 class="text-lg font-bold">{% translate "model.title.cancel-subscription" %}</h3>
-                                <p class="py-4">{% translate "message.subscription.cancel-confirmation" %}</p>
-                                <div class="modal-action">
-                                    <form method="dialog">
-                                        <button class="btn btn-ghost">{% translate "button.no" %}</button>
-                                    </form>
-                                    <a href="{% url 'account_subscription_cancel' subscription.token %}" class="btn btn-error">
-                                        {% translate "button.yes-cancel" %}
-                                    </a>
-                                </div>
-                            </div>
-                            <form method="dialog" class="modal-backdrop">
-                                <button>close</button>
-                            </form>
-                        </dialog>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% if subscription.can_be_canceled %}
+        <dialog id="modal-{{ subscription.token }}" class="modal">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold">{% translate "model.title.cancel-subscription" %}</h3>
+                <p class="py-4">{% translate "message.subscription.cancel-confirmation" %}</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <button class="btn btn-ghost">{% translate "button.no" %}</button>
+                    </form>
+                    <a href="{% url 'account_subscription_cancel' subscription.token %}" class="btn btn-error">
+                        {% translate "button.yes-cancel" %}
+                    </a>
+                </div>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
+        {% endif %}
+        {% endfor %}
     </div>
+
+    {% include 'partials/paginator.html' %}
     {% else %}
     {% include 'partials/empty_data.html' %}
     {% endif %}
-
-    {% include 'partials/paginator.html' %}
 
     <div class="text-center mt-6">
         <a href="{{ url_account_profile }}" class="btn btn-ghost">

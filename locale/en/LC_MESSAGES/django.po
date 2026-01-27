@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 15:50+0000\n"
+"POT-Creation-Date: 2026-01-27 01:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,9 +21,9 @@ msgstr "PYAA"
 
 #: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/content/admin.py:51
 #: apps/content/admin.py:131 apps/gallery/admin.py:58 apps/language/admin.py:40
-#: apps/newsletter/admin.py:41 apps/shop/admin.py:174 apps/shop/admin.py:281
-#: apps/shop/admin.py:364 apps/shop/admin.py:437 apps/shop/admin.py:539
-#: apps/shop/admin.py:660 apps/shop/admin.py:758 apps/site/admin.py:32
+#: apps/newsletter/admin.py:41 apps/shop/admin.py:177 apps/shop/admin.py:296
+#: apps/shop/admin.py:388 apps/shop/admin.py:489 apps/shop/admin.py:600
+#: apps/shop/admin.py:728 apps/shop/admin.py:836 apps/site/admin.py:32
 #: apps/system_log/admin.py:53
 msgid "admin.fieldsets.general"
 msgstr "GENERAL"
@@ -39,9 +39,9 @@ msgstr "ADDITIONAL INFORMATION"
 #: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/content/admin.py:70
 #: apps/content/admin.py:140 apps/customer/admin.py:136
 #: apps/gallery/admin.py:75 apps/language/admin.py:58
-#: apps/newsletter/admin.py:47 apps/shop/admin.py:232 apps/shop/admin.py:302
-#: apps/shop/admin.py:384 apps/shop/admin.py:459 apps/shop/admin.py:561
-#: apps/shop/admin.py:693 apps/shop/admin.py:780 apps/site/admin.py:38
+#: apps/newsletter/admin.py:47 apps/shop/admin.py:236 apps/shop/admin.py:317
+#: apps/shop/admin.py:408 apps/shop/admin.py:511 apps/shop/admin.py:622
+#: apps/shop/admin.py:762 apps/shop/admin.py:858 apps/site/admin.py:38
 #: apps/system_log/admin.py:65 apps/user/admin.py:92
 msgid "admin.fieldsets.important-dates"
 msgstr "IMPORTANT DATES"
@@ -97,18 +97,18 @@ msgstr "Banners"
 #: apps/banner/models.py:30 apps/banner/models.py:150 apps/content/models.py:28
 #: apps/content/models.py:95 apps/customer/models.py:47
 #: apps/customer/models.py:277 apps/gallery/models.py:32
-#: apps/language/models.py:27 apps/shop/models.py:38 apps/shop/models.py:156
-#: apps/shop/models.py:255 apps/shop/models.py:476 apps/shop/models.py:625
-#: apps/shop/models.py:748 apps/shop/models.py:858 apps/shop/models.py:1024
+#: apps/language/models.py:27 apps/shop/models.py:40 apps/shop/models.py:165
+#: apps/shop/models.py:265 apps/shop/models.py:493 apps/shop/models.py:642
+#: apps/shop/models.py:765 apps/shop/models.py:875 apps/shop/models.py:1041
 #: apps/system_log/models.py:22 apps/user/models.py:89
 msgid "model.field.id"
 msgstr "ID"
 
 #: apps/banner/models.py:39 apps/content/admin.py:93 apps/content/models.py:104
 #: apps/customer/models.py:65 apps/gallery/admin.py:102
-#: apps/gallery/models.py:41 apps/shop/models.py:47 apps/shop/models.py:264
-#: apps/shop/models.py:485 apps/shop/models.py:634 apps/shop/models.py:757
-#: apps/shop/models.py:867 apps/shop/models.py:1033 apps/site/models.py:19
+#: apps/gallery/models.py:41 apps/shop/models.py:49 apps/shop/models.py:274
+#: apps/shop/models.py:502 apps/shop/models.py:651 apps/shop/models.py:774
+#: apps/shop/models.py:884 apps/shop/models.py:1050 apps/site/models.py:19
 #: apps/system_log/models.py:31 apps/user/models.py:98
 #: templates/admin/report/banner-access-summary/pdf.html:10
 #: templates/admin/report/banner-access-summary/view.html:18
@@ -116,14 +116,14 @@ msgid "model.field.site"
 msgstr "Site"
 
 #: apps/banner/models.py:50 apps/content/models.py:131
-#: apps/customer/models.py:76 apps/gallery/models.py:59 apps/shop/models.py:275
+#: apps/customer/models.py:76 apps/gallery/models.py:59 apps/shop/models.py:292
 #: templates/admin/report/banner-access-summary/pdf.html:11
 #: templates/admin/report/banner-access-summary/view.html:23
 msgid "model.field.language"
 msgstr "Language"
 
-#: apps/banner/models.py:54 apps/shop/models.py:501 apps/shop/models.py:652
-#: apps/shop/models.py:775
+#: apps/banner/models.py:54 apps/shop/models.py:55 apps/shop/models.py:280
+#: apps/shop/models.py:518 apps/shop/models.py:669 apps/shop/models.py:792
 msgid "model.field.token"
 msgstr "Token"
 
@@ -134,8 +134,8 @@ msgstr "Token"
 msgid "model.field.title"
 msgstr "Title"
 
-#: apps/banner/models.py:66 apps/gallery/models.py:132 apps/shop/models.py:74
-#: apps/shop/models.py:367
+#: apps/banner/models.py:66 apps/gallery/models.py:132 apps/shop/models.py:83
+#: apps/shop/models.py:384
 msgid "model.field.image"
 msgstr "Image"
 
@@ -151,7 +151,7 @@ msgstr "Open in New Window"
 msgid "model.field.zone"
 msgstr "Zone"
 
-#: apps/banner/models.py:89 apps/shop/models.py:209 apps/shop/models.py:377
+#: apps/banner/models.py:89 apps/shop/models.py:218 apps/shop/models.py:394
 msgid "model.field.sort-order"
 msgstr "Order"
 
@@ -164,8 +164,8 @@ msgid "model.field.end-at"
 msgstr "End At"
 
 #: apps/banner/models.py:106 apps/content/models.py:156
-#: apps/gallery/models.py:78 apps/shop/models.py:97 apps/shop/models.py:202
-#: apps/shop/models.py:382
+#: apps/gallery/models.py:78 apps/shop/models.py:106 apps/shop/models.py:211
+#: apps/shop/models.py:399
 msgid "model.field.active"
 msgstr "Active"
 
@@ -173,19 +173,23 @@ msgstr "Active"
 #: apps/content/models.py:50 apps/content/models.py:163
 #: apps/customer/models.py:145 apps/customer/models.py:344
 #: apps/gallery/models.py:85 apps/language/models.py:56
-#: apps/newsletter/models.py:29 apps/shop/models.py:104 apps/shop/models.py:214
-#: apps/shop/models.py:395 apps/shop/models.py:531 apps/shop/models.py:685
-#: apps/shop/models.py:808 apps/shop/models.py:912 apps/shop/models.py:1089
+#: apps/newsletter/models.py:29 apps/shop/models.py:113 apps/shop/models.py:223
+#: apps/shop/models.py:412 apps/shop/models.py:548 apps/shop/models.py:702
+#: apps/shop/models.py:825 apps/shop/models.py:929 apps/shop/models.py:1106
 #: apps/site/models.py:37 apps/system_log/models.py:68
+#: templates/pages/account/credit_purchases.html:34
+#: templates/pages/account/credits.html:28
+#: templates/pages/account/product_purchases.html:35
+#: templates/pages/account/subscriptions.html:34
 msgid "model.field.created-at"
 msgstr "Created At"
 
 #: apps/banner/models.py:116 apps/content/models.py:55
 #: apps/content/models.py:168 apps/customer/models.py:150
 #: apps/customer/models.py:349 apps/gallery/models.py:90
-#: apps/language/models.py:61 apps/shop/models.py:109 apps/shop/models.py:219
-#: apps/shop/models.py:400 apps/shop/models.py:536 apps/shop/models.py:690
-#: apps/shop/models.py:813 apps/site/models.py:42
+#: apps/language/models.py:61 apps/shop/models.py:118 apps/shop/models.py:228
+#: apps/shop/models.py:417 apps/shop/models.py:553 apps/shop/models.py:707
+#: apps/shop/models.py:830 apps/site/models.py:42
 msgid "model.field.updated-at"
 msgstr "Updated At"
 
@@ -202,8 +206,8 @@ msgid "model.field.banner"
 msgstr "Banner"
 
 #: apps/banner/models.py:166 apps/customer/models.py:286
-#: apps/shop/models.py:642 apps/shop/models.py:765 apps/shop/models.py:875
-#: apps/shop/models.py:1041 apps/system_log/models.py:40
+#: apps/shop/models.py:659 apps/shop/models.py:782 apps/shop/models.py:892
+#: apps/shop/models.py:1058 apps/system_log/models.py:40
 msgid "model.field.customer"
 msgstr "Customer"
 
@@ -241,19 +245,19 @@ msgid "model.content-category.name.plural"
 msgstr "Content Categories"
 
 #: apps/content/models.py:34 apps/customer/admin.py:169
-#: apps/language/models.py:33 apps/shop/models.py:53 apps/shop/models.py:169
-#: apps/shop/models.py:279 apps/web/forms/contact.py:12
+#: apps/language/models.py:33 apps/shop/models.py:62 apps/shop/models.py:178
+#: apps/shop/models.py:296 apps/web/forms/contact.py:12
 #: templates/emails/site/contact.html:11
 msgid "model.field.name"
 msgstr "Name"
 
 #: apps/content/models.py:41 apps/content/models.py:135
-#: apps/gallery/models.py:63 apps/shop/models.py:286
+#: apps/gallery/models.py:63 apps/shop/models.py:303
 msgid "model.field.tag"
 msgstr "Tag"
 
 #: apps/content/models.py:46 apps/content/models.py:140
-#: apps/gallery/models.py:68 apps/shop/models.py:291
+#: apps/gallery/models.py:68 apps/shop/models.py:308
 msgid "model.field.tag.help"
 msgstr "Leave empty for auto generation."
 
@@ -494,7 +498,7 @@ msgstr "Activation Token"
 msgid "model.field.recovery-token"
 msgstr "Recovery Token"
 
-#: apps/customer/models.py:132 apps/shop/models.py:332
+#: apps/customer/models.py:132 apps/shop/models.py:349
 msgid "model.field.credits"
 msgstr "Credits"
 
@@ -659,62 +663,83 @@ msgstr "Customers Genders"
 msgid "model.banner-access-summary.name"
 msgstr "Banner Accesses"
 
-#: apps/shop/admin.py:51
+#: apps/shop/admin.py:52
 msgid "button.copy"
 msgstr "Copy"
 
-#: apps/shop/admin.py:52
+#: apps/shop/admin.py:53
 msgid "button.close"
 msgstr "Close"
 
-#: apps/shop/admin.py:53
+#: apps/shop/admin.py:54
 msgid "button.open"
 msgstr "Open"
 
-#: apps/shop/admin.py:54
+#: apps/shop/admin.py:55
 msgid "modal.title.message"
 msgstr "Message"
 
-#: apps/shop/admin.py:92 apps/shop/models.py:68 apps/shop/models.py:176
-#: apps/shop/models.py:389 apps/shop/models.py:906 apps/shop/models.py:1083
+#: apps/shop/admin.py:93 apps/shop/models.py:77 apps/shop/models.py:185
+#: apps/shop/models.py:406 apps/shop/models.py:923 apps/shop/models.py:1100
 #: apps/system_log/models.py:62 templates/pages/shop/product/detail.html:46
 msgid "model.field.description"
 msgstr "Description"
 
-#: apps/shop/admin.py:106 apps/shop/admin.py:330 apps/shop/admin.py:482
-#: apps/shop/admin.py:589 apps/shop/admin.py:808 apps/shop/models.py:516
-#: apps/shop/models.py:678 apps/shop/models.py:801 apps/shop/models.py:1076
+#: apps/shop/admin.py:107 apps/shop/admin.py:354 apps/shop/admin.py:543
+#: apps/shop/admin.py:659 apps/shop/admin.py:895 apps/shop/models.py:533
+#: apps/shop/models.py:695 apps/shop/models.py:818 apps/shop/models.py:1093
+#: templates/pages/account/credit_purchases.html:38
+#: templates/pages/account/product_purchases.html:39
+#: templates/pages/account/subscriptions.html:44
 msgid "model.field.status"
 msgstr "Status"
 
-#: apps/shop/admin.py:188 apps/shop/admin.py:551 apps/shop/admin.py:669
-#: apps/shop/admin.py:770
+#: apps/shop/admin.py:192 apps/shop/admin.py:612 apps/shop/admin.py:738
+#: apps/shop/admin.py:848
 msgid "admin.fieldsets.pricing"
 msgstr "PRICING"
 
-#: apps/shop/admin.py:199
+#: apps/shop/admin.py:203
 msgid "admin.fieldsets.frequency"
 msgstr "FREQUENCY"
 
-#: apps/shop/admin.py:208
+#: apps/shop/admin.py:212
 msgid "admin.fieldsets.features"
 msgstr "FEATURES"
 
-#: apps/shop/admin.py:217 apps/shop/admin.py:678
+#: apps/shop/admin.py:221 apps/shop/admin.py:747
 msgid "admin.fieldsets.description"
 msgstr "DESCRIPTION"
 
-#: apps/shop/admin.py:226 apps/shop/admin.py:687
+#: apps/shop/admin.py:230 apps/shop/admin.py:756
 msgid "admin.fieldsets.status"
 msgstr "STATUS"
 
-#: apps/shop/admin.py:293
+#: apps/shop/admin.py:253 apps/shop/admin.py:340 apps/shop/admin.py:645
+#: apps/shop/admin.py:779 apps/shop/admin.py:881 apps/shop/models.py:100
+#: apps/shop/models.py:343 apps/shop/models.py:684 apps/shop/models.py:807
+#: templates/pages/account/credit_purchases.html:30
+#: templates/pages/account/product_purchases.html:31
+#: templates/pages/account/subscriptions.html:30
+#: templates/pages/shop/product/detail.html:26
+msgid "model.field.price"
+msgstr "Price"
+
+#: apps/shop/admin.py:308
 msgid "admin.fieldsets.subscription"
 msgstr "SUBSCRIPTION"
 
-#: apps/shop/admin.py:375 apps/shop/admin.py:448
+#: apps/shop/admin.py:399 apps/shop/admin.py:500
 msgid "admin.fieldsets.details"
 msgstr "DETAILS"
+
+#: apps/shop/admin.py:443 apps/shop/admin.py:529 apps/shop/models.py:913
+#: apps/shop/models.py:1086
+#: templates/admin/report/customer-gender-summary/pdf.html:13
+#: templates/admin/report/customer-gender-summary/view.html:21
+#: templates/pages/account/credits.html:32
+msgid "model.field.amount"
+msgstr "Amount"
 
 #: apps/shop/apps.py:8
 msgid "apps.shop.description"
@@ -792,7 +817,7 @@ msgstr "General"
 msgid "enum.shop-object-type.unknown"
 msgstr "Unknown"
 
-#: apps/shop/enums.py:49 apps/shop/models.py:941
+#: apps/shop/enums.py:49 apps/shop/models.py:958
 msgid "enum.shop-object-type.bonus"
 msgstr "Bonus"
 
@@ -808,7 +833,7 @@ msgstr "Product Purchase"
 msgid "enum.shop-object-type.subscription"
 msgstr "Subscription"
 
-#: apps/shop/enums.py:53 apps/shop/models.py:949 apps/shop/models.py:951
+#: apps/shop/enums.py:53 apps/shop/models.py:966 apps/shop/models.py:968
 msgid "enum.shop-object-type.voucher"
 msgstr "Voucher"
 
@@ -913,168 +938,157 @@ msgstr "Your subscription was canceled successfully."
 msgid "message.error-cancel-subscription: %(error)s"
 msgstr "Error when canceling subscription: %(error)s"
 
-#: apps/shop/models.py:27
+#: apps/shop/models.py:28
 msgid "model.shop-product.name"
 msgstr "Product"
 
-#: apps/shop/models.py:28
+#: apps/shop/models.py:29
 msgid "model.shop-product.name.plural"
 msgstr "Products"
 
-#: apps/shop/models.py:60
+#: apps/shop/models.py:69
 msgid "model.field.slug"
 msgstr "Slug"
 
-#: apps/shop/models.py:84 apps/shop/models.py:319 apps/shop/models.py:660
-#: apps/shop/models.py:783 apps/shop/models.py:1062
+#: apps/shop/models.py:93 apps/shop/models.py:336 apps/shop/models.py:677
+#: apps/shop/models.py:800 apps/shop/models.py:1079
 msgid "model.field.currency"
 msgstr "Currency"
 
-#: apps/shop/models.py:91 apps/shop/models.py:326 apps/shop/models.py:667
-#: apps/shop/models.py:790 templates/pages/shop/product/detail.html:26
-msgid "model.field.price"
-msgstr "Price"
-
-#: apps/shop/models.py:146
+#: apps/shop/models.py:155
 msgid "model.shop-product-file.name"
 msgstr "Product File"
 
-#: apps/shop/models.py:147
+#: apps/shop/models.py:156
 msgid "model.shop-product-file.name.plural"
 msgstr "Product Files"
 
-#: apps/shop/models.py:165 apps/shop/models.py:771
+#: apps/shop/models.py:174 apps/shop/models.py:788
 msgid "model.field.product"
 msgstr "Product"
 
-#: apps/shop/models.py:182
+#: apps/shop/models.py:191
 msgid "model.field.file"
 msgstr "File"
 
-#: apps/shop/models.py:188
+#: apps/shop/models.py:197
 msgid "model.field.file-type"
 msgstr "File Type"
 
-#: apps/shop/models.py:195
+#: apps/shop/models.py:204
 msgid "model.field.file-size"
 msgstr "File Size"
 
-#: apps/shop/models.py:241
+#: apps/shop/models.py:250
 msgid "model.shop-plan.name"
 msgstr "Plan"
 
-#: apps/shop/models.py:242
+#: apps/shop/models.py:251
 msgid "model.shop-plan.name.plural"
 msgstr "Plans"
 
-#: apps/shop/models.py:295
+#: apps/shop/models.py:312
 msgid "model.field.plan-type"
 msgstr "Plan Type"
 
-#: apps/shop/models.py:304
+#: apps/shop/models.py:321
 msgid "model.field.payment-gateway"
 msgstr "Payment Gateway"
 
-#: apps/shop/models.py:312 apps/shop/models.py:509
+#: apps/shop/models.py:329 apps/shop/models.py:526
 msgid "model.field.external-id"
 msgstr "External ID"
 
-#: apps/shop/models.py:338
+#: apps/shop/models.py:355
 msgid "model.field.frequency-type"
 msgstr "Frequency Type"
 
-#: apps/shop/models.py:346
+#: apps/shop/models.py:363
 msgid "model.field.frequency-amount"
 msgstr "Frequency"
 
-#: apps/shop/models.py:353
+#: apps/shop/models.py:370
 msgid "model.field.featured"
 msgstr "Featured"
 
-#: apps/shop/models.py:360
+#: apps/shop/models.py:377
 msgid "model.field.bonus"
 msgstr "Bonus"
 
-#: apps/shop/models.py:363
+#: apps/shop/models.py:380
 msgid "model.hint.plan-bonus"
 msgstr "Amount of bonus associated with the plan."
 
-#: apps/shop/models.py:449
+#: apps/shop/models.py:466
 #, python-format
 msgid "plan.bonus.description: %(name)s %(bonus)s"
 msgstr "%(name)s (bonus of %(bonus)s)"
 
-#: apps/shop/models.py:463
+#: apps/shop/models.py:480
 msgid "model.shop-subscription.name"
 msgstr "Subscription"
 
-#: apps/shop/models.py:464
+#: apps/shop/models.py:481
 msgid "model.shop-subscription.name.plural"
 msgstr "Subscriptions"
 
-#: apps/shop/models.py:525
+#: apps/shop/models.py:542 templates/pages/account/subscriptions.html:39
 msgid "model.field.expire-at"
 msgstr "Expire At"
 
-#: apps/shop/models.py:606
+#: apps/shop/models.py:623
 msgid "model.credit-puchase.name"
 msgstr "Credit Purchase"
 
-#: apps/shop/models.py:607
+#: apps/shop/models.py:624
 msgid "model.credit-purchase.name.plural"
 msgstr "Credit Purchases"
 
-#: apps/shop/models.py:648
+#: apps/shop/models.py:665
 msgid "model.field.plan"
 msgstr "Plan"
 
-#: apps/shop/models.py:673 apps/shop/models.py:796
+#: apps/shop/models.py:690 apps/shop/models.py:813
 msgid "model.field.invoice-generated"
 msgstr "Invoice Generated"
 
-#: apps/shop/models.py:729
+#: apps/shop/models.py:746
 msgid "model.product-purchase.name"
 msgstr "Product Purchase"
 
-#: apps/shop/models.py:730
+#: apps/shop/models.py:747
 msgid "model.product-purchase.name.plural"
 msgstr "Product Purchases"
 
-#: apps/shop/models.py:844
+#: apps/shop/models.py:861
 msgid "model.shop-credit-log.name"
 msgstr "Credit Log"
 
-#: apps/shop/models.py:845
+#: apps/shop/models.py:862
 msgid "model.shop-credit-log.name.plural"
 msgstr "Credit Logs"
 
-#: apps/shop/models.py:880 apps/shop/models.py:1046
+#: apps/shop/models.py:897 apps/shop/models.py:1063
 msgid "model.field.object-type"
 msgstr "Object Type"
 
-#: apps/shop/models.py:889 apps/shop/models.py:1055
+#: apps/shop/models.py:906 apps/shop/models.py:1072
 msgid "model.field.object-id"
 msgstr "Object ID"
 
-#: apps/shop/models.py:896 apps/shop/models.py:1069
-#: templates/admin/report/customer-gender-summary/pdf.html:13
-#: templates/admin/report/customer-gender-summary/view.html:21
-msgid "model.field.amount"
-msgstr "Amount"
-
-#: apps/shop/models.py:901
+#: apps/shop/models.py:918
 msgid "model.field.is-refund"
 msgstr "Refund"
 
-#: apps/shop/models.py:961
+#: apps/shop/models.py:978
 msgid "message.refund-in-list"
 msgstr "(refund)"
 
-#: apps/shop/models.py:1010
+#: apps/shop/models.py:1027
 msgid "model.shop-event-log.name"
 msgstr "Event Log"
 
-#: apps/shop/models.py:1011
+#: apps/shop/models.py:1028
 msgid "model.shop-event-log.name.plural"
 msgstr "Event Logs"
 
@@ -1639,34 +1653,14 @@ msgstr "Change Password"
 msgid "button.cancel"
 msgstr "Cancel"
 
-#: templates/pages/account/credit_purchases.html:13
+#: templates/pages/account/credit_purchases.html:14
 msgid "title.account-credit-purchases"
 msgstr "My Credit Purchases"
 
-#: templates/pages/account/credit_purchases.html:21
-#: templates/pages/account/credits.html:20
-msgid "table.header.image"
-msgstr "Image"
-
-#: templates/pages/account/credit_purchases.html:22
-msgid "table.header.plan"
-msgstr "Plan"
-
-#: templates/pages/account/credit_purchases.html:23
-#: templates/pages/account/credits.html:23
-#: templates/pages/account/subscriptions.html:24
-msgid "table.header.created-at"
-msgstr "Created At"
-
-#: templates/pages/account/credit_purchases.html:24
-#: templates/pages/account/subscriptions.html:22
-msgid "table.header.status"
-msgstr "Status"
-
-#: templates/pages/account/credit_purchases.html:59
-#: templates/pages/account/credits.html:60
-#: templates/pages/account/product_purchases.html:82
-#: templates/pages/account/subscriptions.html:77
+#: templates/pages/account/credit_purchases.html:56
+#: templates/pages/account/credits.html:52
+#: templates/pages/account/product_purchases.html:89
+#: templates/pages/account/subscriptions.html:89
 #: templates/pages/gallery/view.html:35
 msgid "button.back"
 msgstr "Back"
@@ -1674,14 +1668,6 @@ msgstr "Back"
 #: templates/pages/account/credits.html:12
 msgid "title.account-credits"
 msgstr "My Credits"
-
-#: templates/pages/account/credits.html:21
-msgid "table.header.description"
-msgstr "Description"
-
-#: templates/pages/account/credits.html:22
-msgid "table.header.amount"
-msgstr "Amount"
 
 #: templates/pages/account/delete.html:16
 msgid "title.account-delete"
@@ -1763,18 +1749,20 @@ msgstr "Check Your Email"
 
 #: templates/pages/account/password_recovery_success.html:18
 msgid "message.account-password-recovery-success.instructions"
-msgstr "If an account associated with the provided credentials is found, password reset instructions will be sent to the registered email address."
+msgstr ""
+"If an account associated with the provided credentials is found, password "
+"reset instructions will be sent to the registered email address."
 
-#: templates/pages/account/product_purchases.html:14
+#: templates/pages/account/product_purchases.html:15
 msgid "title.account-product-purchases"
 msgstr "My Product Purchases"
 
-#: templates/pages/account/product_purchases.html:44
+#: templates/pages/account/product_purchases.html:51
 #: templates/pages/shop/product/detail.html:58
 msgid "title.shop-product-files"
 msgstr "Product Files"
 
-#: templates/pages/account/product_purchases.html:63
+#: templates/pages/account/product_purchases.html:70
 #: templates/pages/shop/product/detail.html:87
 msgid "button.download"
 msgstr "Download"
@@ -1910,39 +1898,27 @@ msgstr "My Account"
 msgid "button.continue-next-url"
 msgstr "Continue"
 
-#: templates/pages/account/subscriptions.html:13
+#: templates/pages/account/subscriptions.html:14
 msgid "title.account-subscriptions"
 msgstr "My Subscriptions"
 
-#: templates/pages/account/subscriptions.html:21
-msgid "table.header.plan-name"
-msgstr "Plan"
-
-#: templates/pages/account/subscriptions.html:23
-msgid "table.header.expire-at"
-msgstr "Expires At"
-
-#: templates/pages/account/subscriptions.html:25
-msgid "table.header.actions"
-msgstr "Actions"
-
-#: templates/pages/account/subscriptions.html:42
+#: templates/pages/account/subscriptions.html:52
 msgid "button.cancel-subscription"
 msgstr "Cancel Subscription"
 
-#: templates/pages/account/subscriptions.html:47
+#: templates/pages/account/subscriptions.html:63
 msgid "model.title.cancel-subscription"
 msgstr "Cancel Subscription"
 
-#: templates/pages/account/subscriptions.html:48
+#: templates/pages/account/subscriptions.html:64
 msgid "message.subscription.cancel-confirmation"
 msgstr "Are you sure you want to cancel your subscription?"
 
-#: templates/pages/account/subscriptions.html:51
+#: templates/pages/account/subscriptions.html:67
 msgid "button.no"
 msgstr "No"
 
-#: templates/pages/account/subscriptions.html:54
+#: templates/pages/account/subscriptions.html:70
 msgid "button.yes-cancel"
 msgstr "Yes, Cancel"
 
@@ -2227,15 +2203,17 @@ msgstr "Logout"
 msgid "menu.account"
 msgstr "My Account"
 
-#: templates/partials/language_selector.html:7
+#: templates/partials/language-selector/fixed.html:6
+#: templates/partials/language-selector/form.html:5
+#: templates/partials/language-selector/list.html:6
 msgid "title.language-selector"
 msgstr "Language Selector"
 
-#: templates/partials/language_selector.html:16
+#: templates/partials/language-selector/form.html:17
 msgid "language.selector.label"
 msgstr "Select Language"
 
-#: templates/partials/language_selector.html:29
+#: templates/partials/language-selector/form.html:29
 msgid "button.change"
 msgstr "Change"
 

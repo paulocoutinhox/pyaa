@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Any
+from uuid import UUID
 
 from pydantic import field_serializer
 
@@ -7,6 +8,7 @@ from pyaa.fastapi.schemas import BaseSchema
 
 
 class PlanSchema(BaseSchema):
+    token: UUID
     name: str
     tag: str | None
     plan_type: str
