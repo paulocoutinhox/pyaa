@@ -17,15 +17,15 @@
         {% translate "subtitle.account-signup-success" %}
     </p>
 
-    <a href="{% url 'account_profile' %}" class="btn btn-primary w-full">
-        {% translate "button.profile" %}
-    </a>
-
     {% if next_url %}
-    <a href="{{ next_url }}" class="btn btn-primary w-full mt-2">
+    <a href="{{ next_url }}" class="btn btn-success w-full mb-5">
         {% translate "button.continue-next-url" %}
     </a>
     {% endif %}
+
+    <a href="{% url 'account_profile' %}" class="btn btn-primary w-full">
+        {% translate "button.profile" %}
+    </a>
 </div>
 
 {% endblock content %}

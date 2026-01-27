@@ -121,7 +121,7 @@ class CustomerSignupForm(forms.ModelForm):
     password = forms.CharField(
         label=_("model.field.password"),
         required=True,
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(render_value=True),
     )
 
     accept_terms = forms.BooleanField(

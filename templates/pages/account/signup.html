@@ -18,7 +18,7 @@
         {% csrf_token %}
 
         {% if next_url %}
-        <input type="hidden" name="next" value="{{ next }}">
+        <input type="hidden" name="next" value="{{ next_url }}">
         {% endif %}
 
         {% element fields form=form %}
@@ -31,7 +31,7 @@
 
     <p class="text-center mt-6 text-sm text-base-content/70">
         {% translate "message.account-signup.has-account" %}
-        <a href="{% url 'account_login' %}" class="link link-primary">
+        <a href="{% url 'account_login' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" class="link link-primary">
             {% translate "message.account-signup.login" %}
         </a>
     </p>

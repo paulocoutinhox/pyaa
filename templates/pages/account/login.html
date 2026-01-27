@@ -15,7 +15,7 @@
         {% csrf_token %}
 
         {% if next_url %}
-        <input type="hidden" name="next" value="{{ next }}">
+        <input type="hidden" name="next" value="{{ next_url }}">
         {% endif %}
 
         {% element fields form=form %}
@@ -29,7 +29,7 @@
 
     <div class="divider">{% translate "text.or" %}</div>
 
-    <a href="{% url 'account_signup' %}" class="btn btn-outline w-full">
+    <a href="{% url 'account_signup' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" class="btn btn-outline w-full">
         <i class="fa-solid fa-user-plus mr-2"></i>
         {% translate "message.account-login.signup" %}
     </a>
