@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-27 01:57+0000\n"
+"POT-Creation-Date: 2026-01-27 18:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1899,13 +1899,13 @@ msgstr ""
 "Bem-vindo à nossa plataforma! Sua conta foi criada com sucesso e estamos "
 "felizes em tê-lo(a) conosco."
 
-#: templates/pages/account/signup_success.html:21
-msgid "button.profile"
-msgstr "Minha Conta"
-
-#: templates/pages/account/signup_success.html:26
+#: templates/pages/account/signup_success.html:22
 msgid "button.continue-next-url"
 msgstr "Continuar"
+
+#: templates/pages/account/signup_success.html:27
+msgid "button.profile"
+msgstr "Minha Conta"
 
 #: templates/pages/account/subscriptions.html:14
 msgid "title.account-subscriptions"
