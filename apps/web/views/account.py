@@ -103,7 +103,7 @@ def account_signup_view(request):
         "pages/account/signup.html",
         {
             "form": form,
-            "next": next_url,
+            "next_url": next_url,
             "banners": banners,
         },
     )
