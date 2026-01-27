@@ -7,6 +7,7 @@ from nonrelated_inlines.admin import NonrelatedTabularInline
 from apps.customer.helpers import CustomerHelper
 from apps.shop import filters, models
 from apps.shop.enums import ObjectType
+from pyaa.helpers.format import FormatHelper
 from pyaa.helpers.status import StatusHelper
 
 
@@ -143,6 +144,7 @@ class PlanAdmin(admin.ModelAdmin):
         "gateway",
         "plan_type",
         "language",
+        "formatted_price",
         "credits",
         "active",
         "created_at",
@@ -154,6 +156,7 @@ class PlanAdmin(admin.ModelAdmin):
         "gateway",
         "plan_type",
         "language",
+        "formatted_price",
         "credits",
         "active",
         "created_at",
@@ -240,6 +243,15 @@ class PlanAdmin(admin.ModelAdmin):
         ),
     )
 
+    def formatted_price(self, obj):
+        if obj.price is None:
+            return None
+        if obj.currency:
+            return FormatHelper.format_currency(obj.price, obj.currency)
+        return obj.price
+
+    formatted_price.short_description = _("model.field.price")
+
 
 class SubscriptionAdmin(admin.ModelAdmin):
     list_display = (
@@ -247,6 +259,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "plan",
+        "formatted_price",
         "status_badge",
         "created_at",
     )
@@ -256,6 +269,7 @@ class SubscriptionAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "plan",
+        "formatted_price",
         "status_badge",
         "created_at",
     )
@@ -316,6 +330,15 @@ class SubscriptionAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+    def formatted_price(self, obj):
+        if not obj.plan or obj.plan.price is None:
+            return None
+        if obj.plan.currency:
+            return FormatHelper.format_currency(obj.plan.price, obj.plan.currency)
+        return obj.plan.price
+
+    formatted_price.short_description = _("model.field.price")
+
     def status_badge(self, obj):
         colors = StatusHelper.get_status_color(obj.status, "hex")
         bg_color = colors["bg"]
@@ -337,7 +360,7 @@ class CreditLogAdmin(admin.ModelAdmin):
         "object_id",
         "object_type",
         "customer",
-        "amount",
+        "amount_badge",
         "created_at",
     )
 
@@ -346,7 +369,7 @@ class CreditLogAdmin(admin.ModelAdmin):
         "object_id",
         "object_type",
         "customer",
-        "amount",
+        "amount_badge",
         "created_at",
     )
 
@@ -393,6 +416,32 @@ class CreditLogAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
+    def amount_badge(self, obj):
+        if obj.amount is None:
+            return None
+
+        if obj.amount > 0:
+            bg_color = "#22c55e"
+            text_color = "#ffffff"
+            display_value = f"+{obj.amount}"
+        elif obj.amount < 0:
+            bg_color = "#ef4444"
+            text_color = "#ffffff"
+            display_value = str(obj.amount)
+        else:
+            bg_color = "#6b7280"
+            text_color = "#ffffff"
+            display_value = str(obj.amount)
+
+        return format_html(
+            '<span style="color: {}; background-color: {}; padding: 2px 8px; border-radius: 10px;">{}</span>',
+            text_color,
+            bg_color,
+            display_value,
+        )
+
+    amount_badge.short_description = _("model.field.amount")
+
     def save_model(self, request, obj, form, change):
         with transaction.atomic():
             super().save_model(request, obj, form, change)
@@ -410,6 +459,7 @@ class EventLogAdmin(admin.ModelAdmin):
         "object_id",
         "object_type",
         "customer",
+        "formatted_amount",
         "status_badge",
         "created_at",
     )
@@ -419,6 +469,7 @@ class EventLogAdmin(admin.ModelAdmin):
         "object_id",
         "object_type",
         "customer",
+        "formatted_amount",
         "status_badge",
         "created_at",
     )
@@ -468,6 +519,15 @@ class EventLogAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+    def formatted_amount(self, obj):
+        if obj.amount is None:
+            return None
+        if obj.currency:
+            return FormatHelper.format_currency(obj.amount, obj.currency)
+        return obj.amount
+
+    formatted_amount.short_description = _("model.field.amount")
+
     def status_badge(self, obj):
         colors = StatusHelper.get_status_color(obj.status)
         bg_color = colors["bg"]
@@ -489,7 +549,7 @@ class CreditPurchaseAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "plan",
-        "price",
+        "formatted_price",
         "status_badge",
         "created_at",
     )
@@ -499,7 +559,7 @@ class CreditPurchaseAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "plan",
-        "price",
+        "formatted_price",
         "status_badge",
         "created_at",
     )
@@ -575,6 +635,15 @@ class CreditPurchaseAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+    def formatted_price(self, obj):
+        if obj.price is None:
+            return None
+        if obj.currency:
+            return FormatHelper.format_currency(obj.price, obj.currency)
+        return obj.price
+
+    formatted_price.short_description = _("model.field.price")
+
     def status_badge(self, obj):
         colors = StatusHelper.get_status_color(obj.status)
         bg_color = colors["bg"]
@@ -630,8 +699,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "name",
-        "price",
-        "currency",
+        "formatted_price",
         "active",
         "created_at",
     )
@@ -639,8 +707,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = (
         "id",
         "name",
-        "price",
-        "currency",
+        "formatted_price",
         "active",
         "created_at",
     )
@@ -702,6 +769,15 @@ class ProductAdmin(admin.ModelAdmin):
         ),
     )
 
+    def formatted_price(self, obj):
+        if obj.price is None:
+            return None
+        if obj.currency:
+            return FormatHelper.format_currency(obj.price, obj.currency)
+        return obj.price
+
+    formatted_price.short_description = _("model.field.price")
+
 
 class ProductPurchaseAdmin(admin.ModelAdmin):
     list_display = (
@@ -709,7 +785,7 @@ class ProductPurchaseAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "product",
-        "price",
+        "formatted_price",
         "status_badge",
         "created_at",
     )
@@ -719,7 +795,7 @@ class ProductPurchaseAdmin(admin.ModelAdmin):
         "token",
         "customer",
         "product",
-        "price",
+        "formatted_price",
         "status_badge",
         "created_at",
     )
@@ -794,6 +870,15 @@ class ProductPurchaseAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def formatted_price(self, obj):
+        if obj.price is None:
+            return None
+        if obj.currency:
+            return FormatHelper.format_currency(obj.price, obj.currency)
+        return obj.price
+
+    formatted_price.short_description = _("model.field.price")
 
     def status_badge(self, obj):
         colors = StatusHelper.get_status_color(obj.status)

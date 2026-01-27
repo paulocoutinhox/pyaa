@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-25 19:51+0000\n"
+"POT-Creation-Date: 2026-01-27 01:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,9 +21,9 @@ msgstr "PYAA"
 
 #: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/content/admin.py:51
 #: apps/content/admin.py:131 apps/gallery/admin.py:58 apps/language/admin.py:40
-#: apps/newsletter/admin.py:41 apps/shop/admin.py:176 apps/shop/admin.py:284
-#: apps/shop/admin.py:367 apps/shop/admin.py:440 apps/shop/admin.py:542
-#: apps/shop/admin.py:665 apps/shop/admin.py:764 apps/site/admin.py:32
+#: apps/newsletter/admin.py:41 apps/shop/admin.py:177 apps/shop/admin.py:296
+#: apps/shop/admin.py:388 apps/shop/admin.py:489 apps/shop/admin.py:600
+#: apps/shop/admin.py:728 apps/shop/admin.py:836 apps/site/admin.py:32
 #: apps/system_log/admin.py:53
 msgid "admin.fieldsets.general"
 msgstr "GENERAL"
@@ -39,9 +39,9 @@ msgstr "ADDITIONAL INFORMATION"
 #: apps/banner/admin.py:81 apps/banner/admin.py:154 apps/content/admin.py:70
 #: apps/content/admin.py:140 apps/customer/admin.py:136
 #: apps/gallery/admin.py:75 apps/language/admin.py:58
-#: apps/newsletter/admin.py:47 apps/shop/admin.py:235 apps/shop/admin.py:305
-#: apps/shop/admin.py:387 apps/shop/admin.py:462 apps/shop/admin.py:564
-#: apps/shop/admin.py:699 apps/shop/admin.py:786 apps/site/admin.py:38
+#: apps/newsletter/admin.py:47 apps/shop/admin.py:236 apps/shop/admin.py:317
+#: apps/shop/admin.py:408 apps/shop/admin.py:511 apps/shop/admin.py:622
+#: apps/shop/admin.py:762 apps/shop/admin.py:858 apps/site/admin.py:38
 #: apps/system_log/admin.py:65 apps/user/admin.py:92
 msgid "admin.fieldsets.important-dates"
 msgstr "IMPORTANT DATES"
@@ -663,30 +663,30 @@ msgstr "Customers Genders"
 msgid "model.banner-access-summary.name"
 msgstr "Banner Accesses"
 
-#: apps/shop/admin.py:51
+#: apps/shop/admin.py:52
 msgid "button.copy"
 msgstr "Copy"
 
-#: apps/shop/admin.py:52
+#: apps/shop/admin.py:53
 msgid "button.close"
 msgstr "Close"
 
-#: apps/shop/admin.py:53
+#: apps/shop/admin.py:54
 msgid "button.open"
 msgstr "Open"
 
-#: apps/shop/admin.py:54
+#: apps/shop/admin.py:55
 msgid "modal.title.message"
 msgstr "Message"
 
-#: apps/shop/admin.py:92 apps/shop/models.py:77 apps/shop/models.py:185
+#: apps/shop/admin.py:93 apps/shop/models.py:77 apps/shop/models.py:185
 #: apps/shop/models.py:406 apps/shop/models.py:923 apps/shop/models.py:1100
 #: apps/system_log/models.py:62 templates/pages/shop/product/detail.html:46
 msgid "model.field.description"
 msgstr "Description"
 
-#: apps/shop/admin.py:106 apps/shop/admin.py:333 apps/shop/admin.py:485
-#: apps/shop/admin.py:592 apps/shop/admin.py:814 apps/shop/models.py:533
+#: apps/shop/admin.py:107 apps/shop/admin.py:354 apps/shop/admin.py:543
+#: apps/shop/admin.py:659 apps/shop/admin.py:895 apps/shop/models.py:533
 #: apps/shop/models.py:695 apps/shop/models.py:818 apps/shop/models.py:1093
 #: templates/pages/account/credit_purchases.html:38
 #: templates/pages/account/product_purchases.html:39
@@ -694,34 +694,52 @@ msgstr "Description"
 msgid "model.field.status"
 msgstr "Status"
 
-#: apps/shop/admin.py:191 apps/shop/admin.py:554 apps/shop/admin.py:675
-#: apps/shop/admin.py:776
+#: apps/shop/admin.py:192 apps/shop/admin.py:612 apps/shop/admin.py:738
+#: apps/shop/admin.py:848
 msgid "admin.fieldsets.pricing"
 msgstr "PRICING"
 
-#: apps/shop/admin.py:202
+#: apps/shop/admin.py:203
 msgid "admin.fieldsets.frequency"
 msgstr "FREQUENCY"
 
-#: apps/shop/admin.py:211
+#: apps/shop/admin.py:212
 msgid "admin.fieldsets.features"
 msgstr "FEATURES"
 
-#: apps/shop/admin.py:220 apps/shop/admin.py:684
+#: apps/shop/admin.py:221 apps/shop/admin.py:747
 msgid "admin.fieldsets.description"
 msgstr "DESCRIPTION"
 
-#: apps/shop/admin.py:229 apps/shop/admin.py:693
+#: apps/shop/admin.py:230 apps/shop/admin.py:756
 msgid "admin.fieldsets.status"
 msgstr "STATUS"
 
-#: apps/shop/admin.py:296
+#: apps/shop/admin.py:253 apps/shop/admin.py:340 apps/shop/admin.py:645
+#: apps/shop/admin.py:779 apps/shop/admin.py:881 apps/shop/models.py:100
+#: apps/shop/models.py:343 apps/shop/models.py:684 apps/shop/models.py:807
+#: templates/pages/account/credit_purchases.html:30
+#: templates/pages/account/product_purchases.html:31
+#: templates/pages/account/subscriptions.html:30
+#: templates/pages/shop/product/detail.html:26
+msgid "model.field.price"
+msgstr "Price"
+
+#: apps/shop/admin.py:308
 msgid "admin.fieldsets.subscription"
 msgstr "SUBSCRIPTION"
 
-#: apps/shop/admin.py:378 apps/shop/admin.py:451
+#: apps/shop/admin.py:399 apps/shop/admin.py:500
 msgid "admin.fieldsets.details"
 msgstr "DETAILS"
+
+#: apps/shop/admin.py:443 apps/shop/admin.py:529 apps/shop/models.py:913
+#: apps/shop/models.py:1086
+#: templates/admin/report/customer-gender-summary/pdf.html:13
+#: templates/admin/report/customer-gender-summary/view.html:21
+#: templates/pages/account/credits.html:32
+msgid "model.field.amount"
+msgstr "Amount"
 
 #: apps/shop/apps.py:8
 msgid "apps.shop.description"
@@ -937,14 +955,6 @@ msgstr "Slug"
 msgid "model.field.currency"
 msgstr "Currency"
 
-#: apps/shop/models.py:100 apps/shop/models.py:343 apps/shop/models.py:684
-#: apps/shop/models.py:807 templates/pages/account/credit_purchases.html:30
-#: templates/pages/account/product_purchases.html:31
-#: templates/pages/account/subscriptions.html:30
-#: templates/pages/shop/product/detail.html:26
-msgid "model.field.price"
-msgstr "Price"
-
 #: apps/shop/models.py:155
 msgid "model.shop-product-file.name"
 msgstr "Product File"
@@ -1065,13 +1075,6 @@ msgstr "Object Type"
 #: apps/shop/models.py:906 apps/shop/models.py:1072
 msgid "model.field.object-id"
 msgstr "Object ID"
-
-#: apps/shop/models.py:913 apps/shop/models.py:1086
-#: templates/admin/report/customer-gender-summary/pdf.html:13
-#: templates/admin/report/customer-gender-summary/view.html:21
-#: templates/pages/account/credits.html:32
-msgid "model.field.amount"
-msgstr "Amount"
 
 #: apps/shop/models.py:918
 msgid "model.field.is-refund"
