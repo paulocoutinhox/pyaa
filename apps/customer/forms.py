@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db.models import Q
+from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV3
 from localflavor.br.forms import BRCPFField, BRStateChoiceField, BRZipCodeField
@@ -127,6 +129,7 @@ class CustomerSignupForm(forms.ModelForm):
     accept_terms = forms.BooleanField(
         label=_("model.field.accept-terms"),
         required=True,
+        help_text="",
     )
 
     captcha = ReCaptchaField(
@@ -150,6 +153,21 @@ class CustomerSignupForm(forms.ModelForm):
             "accept_terms": self.fields["accept_terms"],
             "captcha": self.fields["captcha"],
         }
+
+        terms_url = reverse(
+            "content_by_tag", kwargs={"content_tag": "terms-and-conditions"}
+        )
+
+        privacy_url = reverse(
+            "content_by_tag", kwargs={"content_tag": "privacy-policy"}
+        )
+
+        help_text = _("model.field.accept-terms.help-text") % {
+            "terms_url": terms_url,
+            "privacy_url": privacy_url,
+        }
+
+        self.fields["accept_terms"].help_text = mark_safe(help_text)
 
     def clean(self):
         cleaned_data = super().clean()

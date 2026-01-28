@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-27 18:47+0000\n"
+"POT-Creation-Date: 2026-01-28 14:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,19 +297,19 @@ msgstr "INFORMAÇÕES DO USUÁRIO"
 msgid "admin.fieldsets.profile"
 msgstr "INFORMAÇÕES DO PERFIL"
 
-#: apps/customer/admin.py:178 apps/customer/forms.py:115
-#: apps/customer/forms.py:227 apps/newsletter/forms.py:7
+#: apps/customer/admin.py:178 apps/customer/forms.py:117
+#: apps/customer/forms.py:245 apps/newsletter/forms.py:7
 #: apps/newsletter/models.py:22 apps/user/models.py:112
 #: apps/web/forms/contact.py:23 templates/emails/site/contact.html:12
 msgid "model.field.email"
 msgstr "E-mail"
 
-#: apps/customer/admin.py:187 apps/customer/forms.py:234 apps/user/admin.py:20
+#: apps/customer/admin.py:187 apps/customer/forms.py:252 apps/user/admin.py:20
 #: apps/user/admin.py:40 apps/user/models.py:119
 msgid "model.field.cpf"
 msgstr "CPF"
 
-#: apps/customer/admin.py:196 apps/customer/forms.py:241 apps/user/admin.py:27
+#: apps/customer/admin.py:196 apps/customer/forms.py:259 apps/user/admin.py:27
 #: apps/user/admin.py:47 apps/user/models.py:127
 msgid "model.field.mobile-phone"
 msgstr "Celular"
@@ -358,81 +358,88 @@ msgstr "Site"
 msgid "filter.created-at"
 msgstr "Criado Em"
 
-#: apps/customer/forms.py:53 apps/customer/forms.py:349
+#: apps/customer/forms.py:55 apps/customer/forms.py:367
 #: apps/customer/models.py:328
 msgid "model.field.state"
 msgstr "Estado / Província"
 
-#: apps/customer/forms.py:59 apps/customer/forms.py:355
+#: apps/customer/forms.py:61 apps/customer/forms.py:373
 #: apps/customer/models.py:333
 msgid "model.field.postal-code"
 msgstr "CEP"
 
-#: apps/customer/forms.py:78
+#: apps/customer/forms.py:80
 msgid "model.field.login-username"
 msgstr "E-mail"
 
-#: apps/customer/forms.py:85
+#: apps/customer/forms.py:87
 msgid "model.field.login-password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:94 apps/customer/forms.py:215
+#: apps/customer/forms.py:96 apps/customer/forms.py:233
 msgid "model.field.first-name"
 msgstr "Nome"
 
-#: apps/customer/forms.py:101 apps/customer/forms.py:221
+#: apps/customer/forms.py:103 apps/customer/forms.py:239
 msgid "model.field.last-name"
 msgstr "Sobrenome"
 
-#: apps/customer/forms.py:108 apps/customer/forms.py:251
+#: apps/customer/forms.py:110 apps/customer/forms.py:269
 #: apps/customer/models.py:87
 #: templates/admin/report/customer-gender-summary/pdf.html:10
 #: templates/admin/report/customer-gender-summary/view.html:14
 msgid "model.field.gender"
 msgstr "Gênero"
 
-#: apps/customer/forms.py:122
+#: apps/customer/forms.py:124
 msgid "model.field.password"
 msgstr "Senha"
 
-#: apps/customer/forms.py:128
+#: apps/customer/forms.py:130
 msgid "model.field.accept-terms"
-msgstr "Aceitar Termos"
+msgstr "Aceito os Termos de Uso e Política de Privacidade"
 
-#: apps/customer/forms.py:134 apps/customer/forms.py:411
+#: apps/customer/forms.py:137 apps/customer/forms.py:429
 #: apps/web/forms/contact.py:45
 msgid "model.field.captcha"
 msgstr "Captcha"
 
-#: apps/customer/forms.py:245 apps/customer/models.py:80
+#: apps/customer/forms.py:165
+msgid "model.field.accept-terms.help-text"
+msgstr ""
+"Declaro que li e concordo com os <a href=\"%(terms_url)s\" target=\"_blank\" "
+"class=\"link link-primary\">Termos de Uso</a> e a <a href=\"%(privacy_url)s\" "
+"target=\"_blank\" class=\"link link-primary\">Política de Privacidade</a>"
+
+#: apps/customer/forms.py:263 apps/customer/models.py:80
 msgid "model.field.nickname"
 msgstr "Apelido"
 
-#: apps/customer/forms.py:402
+#: apps/customer/forms.py:420
 msgid "model.field.recovery-identifier"
 msgstr "Email, CPF ou Celular"
 
-#: apps/customer/forms.py:406
+#: apps/customer/forms.py:424
 msgid "model.field.recovery-identifier.help"
 msgstr "Digite seu email, CPF ou número de celular para recuperar sua senha"
 
-#: apps/customer/forms.py:433 apps/customer/forms.py:469
+#: apps/customer/forms.py:451 apps/customer/forms.py:487
 msgid "model.field.new-password"
 msgstr "Nova Senha"
 
-#: apps/customer/forms.py:440 apps/customer/forms.py:476
+#: apps/customer/forms.py:458 apps/customer/forms.py:494
 msgid "model.field.confirm-password"
 msgstr "Confirmar Senha"
 
-#: apps/customer/forms.py:454 apps/customer/forms.py:503
+#: apps/customer/forms.py:472 apps/customer/forms.py:521
 msgid "error.passwords-do-not-match"
 msgstr "As senhas não coincidem"
 
-#: apps/customer/forms.py:462
+#: apps/customer/forms.py:480
 msgid "model.field.current-password"
 msgstr "Senha Atual"
 
-#: apps/customer/forms.py:491
+#: apps/customer/forms.py:509
 msgid "error.current-password-incorrect"
 msgstr "A senha atual está incorreta"
 
