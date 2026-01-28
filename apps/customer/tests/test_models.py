@@ -282,6 +282,172 @@ class CustomerModelTest(TestCase):
             site=self.site,
         )
 
+        self.assertTrue(customer.has_active_subscription())
+
+    def test_has_active_subscription_with_canceled_and_expired(self):
+        user = User.objects.create_user(
+            email="testuser2@example.com", password="testpassword", site=self.site
+        )
+
+        customer = Customer.objects.create(
+            user=user,
+            site=self.site,
+            language_id=1,
+            gender=CustomerGender.MALE,
+        )
+
+        plan = Plan.objects.create(
+            name="Test Plan 2",
+            tag="test-plan-2",
+            plan_type=PlanType.SUBSCRIPTION,
+            gateway="stripe",
+            currency="USD",
+            price=9.99,
+            credits=10,
+            frequency_type="monthly",
+            frequency_amount=1,
+            description="Test plan description",
+            sort_order=1,
+            featured=True,
+            active=True,
+            site=self.site,
+        )
+
+        Subscription.objects.create(
+            token=uuid4(),
+            customer=customer,
+            plan=plan,
+            status=SubscriptionStatus.CANCELED,
+            expire_at=timezone.now() - timedelta(days=1),
+            site=self.site,
+        )
+
+        self.assertFalse(customer.has_active_subscription())
+
+    def test_has_active_subscription_with_multiple_subscriptions_canceled_one_valid(
+        self,
+    ):
+        user = User.objects.create_user(
+            email="testuser@example.com", password="testpassword", site=self.site
+        )
+        customer = Customer.objects.create(
+            user=user,
+            site=self.site,
+            language_id=1,
+            gender=CustomerGender.MALE,
+        )
+        plan = Plan.objects.create(
+            name="Test Plan",
+            tag="test-plan",
+            plan_type=PlanType.SUBSCRIPTION,
+            gateway="stripe",
+            currency="USD",
+            price=9.99,
+            credits=10,
+            frequency_type="monthly",
+            frequency_amount=1,
+            description="Test plan description",
+            sort_order=1,
+            featured=True,
+            active=True,
+            site=self.site,
+        )
+        Subscription.objects.create(
+            token=uuid4(),
+            customer=customer,
+            plan=plan,
+            status=SubscriptionStatus.CANCELED,
+            expire_at=timezone.now() - timedelta(days=1),
+            site=self.site,
+        )
+        Subscription.objects.create(
+            token=uuid4(),
+            customer=customer,
+            plan=plan,
+            status=SubscriptionStatus.CANCELED,
+            expire_at=timezone.now() + timedelta(days=30),
+            site=self.site,
+        )
+        self.assertTrue(customer.has_active_subscription())
+
+    def test_has_active_subscription_with_active_and_canceled_both_not_expired(self):
+        user = User.objects.create_user(
+            email="testuser@example.com", password="testpassword", site=self.site
+        )
+        customer = Customer.objects.create(
+            user=user,
+            site=self.site,
+            language_id=1,
+            gender=CustomerGender.MALE,
+        )
+        plan = Plan.objects.create(
+            name="Test Plan",
+            tag="test-plan",
+            plan_type=PlanType.SUBSCRIPTION,
+            gateway="stripe",
+            currency="USD",
+            price=9.99,
+            credits=10,
+            frequency_type="monthly",
+            frequency_amount=1,
+            description="Test plan description",
+            sort_order=1,
+            featured=True,
+            active=True,
+            site=self.site,
+        )
+        Subscription.objects.create(
+            token=uuid4(),
+            customer=customer,
+            plan=plan,
+            status=SubscriptionStatus.ACTIVE,
+            expire_at=timezone.now() + timedelta(days=60),
+            site=self.site,
+        )
+        Subscription.objects.create(
+            token=uuid4(),
+            customer=customer,
+            plan=plan,
+            status=SubscriptionStatus.CANCELED,
+            expire_at=timezone.now() + timedelta(days=30),
+            site=self.site,
+        )
+        self.assertTrue(customer.has_active_subscription())
+
+    def test_has_active_subscription_with_suspended_and_future_expire(self):
+        user = User.objects.create_user(
+            email="testuser@example.com", password="testpassword", site=self.site
+        )
+        customer = Customer.objects.create(
+            user=user,
+            site=self.site,
+            language_id=1,
+            gender=CustomerGender.MALE,
+        )
+        plan = Plan.objects.create(
+            name="Test Plan",
+            tag="test-plan",
+            plan_type=PlanType.SUBSCRIPTION,
+            gateway="stripe",
+            currency="USD",
+            price=9.99,
+            credits=10,
+            frequency_type="monthly",
+            frequency_amount=1,
+            description="Test plan description",
+            sort_order=1,
+            featured=True,
+            active=True,
+            site=self.site,
+        )
+        Subscription.objects.create(
+            token=uuid4(),
+            customer=customer,
+            plan=plan,
+            status=SubscriptionStatus.SUSPENDED,
+            expire_at=timezone.now() + timedelta(days=30),
+            site=self.site,
+        )
         self.assertFalse(customer.has_active_subscription())
 
     def test_has_active_subscription_with_no_expiration(self):
