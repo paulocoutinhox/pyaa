@@ -16,16 +16,29 @@
 {% endif %}
 
 {% for field in attrs.form.visible_fields %}
+{% with widget_name=field|widget_type %}
+{% if field.field.widget.input_type == "checkbox" %}
+<div class="form-control mb-4">
+    <label class="flex items-start gap-3 cursor-pointer">
+        {% if field.errors %}
+            {% render_field field class="checkbox checkbox-error mt-0.5 shrink-0" %}
+        {% else %}
+            {% render_field field class="checkbox mt-0.5 shrink-0" %}
+        {% endif %}
+        <span class="text-sm leading-relaxed">{{ field.help_text|default:field.label|safe }}</span>
+    </label>
+    {% for error in field.errors %}
+    <span class="text-xs text-error mt-1 ml-8">{{ error }}</span>
+    {% endfor %}
+</div>
+{% else %}
 <div class="form-control mb-4">
     <label class="label">
         <span class="label-text">{{ field.label }}</span>
     </label>
 
-    {% with widget_name=field|widget_type %}
     {% if field.errors %}
-        {% if field.field.widget.input_type == "checkbox" %}
-            {% render_field field class="checkbox checkbox-error" %}
-        {% elif field.field.widget.input_type == "radio" %}
+        {% if field.field.widget.input_type == "radio" %}
             {% render_field field class="radio radio-error" %}
         {% elif field.field.widget.input_type == "select" or widget_name == "select" %}
             {% render_field field class="select select-bordered select-error w-full" %}
@@ -37,9 +50,7 @@
             {% render_field field class="input input-bordered input-error w-full" %}
         {% endif %}
     {% else %}
-        {% if field.field.widget.input_type == "checkbox" %}
-            {% render_field field class="checkbox" %}
-        {% elif field.field.widget.input_type == "radio" %}
+        {% if field.field.widget.input_type == "radio" %}
             {% render_field field class="radio" %}
         {% elif field.field.widget.input_type == "select" or widget_name == "select" %}
             {% render_field field class="select select-bordered w-full" %}
@@ -51,11 +62,10 @@
             {% render_field field class="input input-bordered w-full" %}
         {% endif %}
     {% endif %}
-    {% endwith %}
 
     {% if field.help_text %}
     <label class="label">
-        <span class="label-text-alt text-base-content/60">{{ field.help_text }}</span>
+        <span class="label-text-alt text-base-content/60">{{ field.help_text|safe }}</span>
     </label>
     {% endif %}
 
@@ -65,4 +75,6 @@
     </label>
     {% endfor %}
 </div>
+{% endif %}
+{% endwith %}
 {% endfor %}

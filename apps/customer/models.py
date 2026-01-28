@@ -213,7 +213,7 @@ class Customer(models.Model):
 
     def has_active_subscription(self):
         return self.subscription_set.filter(
-            status=SubscriptionStatus.ACTIVE,
+            status__in=[SubscriptionStatus.ACTIVE, SubscriptionStatus.CANCELED],
             expire_at__isnull=False,
             expire_at__gt=Now(),
         ).exists()
