@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="container mx-auto px-4 py-8 max-w-2xl text-center">
-    <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="width: 64px; height: 64px;" class="mx-auto mb-4">
+    <img src="{% static 'images/logo.png' %}" alt="{% translate 'site.small-name' %}" style="height: 64px;" class="mx-auto mb-4">
 
     {% if user.is_authenticated %}
     <h2 class="text-2xl font-bold mb-2">
