@@ -11,7 +11,7 @@
         {% translate "title.account-login" %}
     </h1>
 
-    <form method="post" novalidate>
+    <form method="post" novalidate onsubmit="preventDoubleFormSubmit(this)">
         {% csrf_token %}
 
         {% if next_url %}
