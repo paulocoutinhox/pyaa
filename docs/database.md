@@ -54,6 +54,54 @@ Make sure that the MySQL server is running and accessible, and that you've repla
 
 If you encounter issues while installing the MySQL Client, please refer to the [troubleshooting](troubleshooting.md) documentation.
 
+## PostgreSQL
+
+To use PostgreSQL, you need a Python driver. Django supports two families: **psycopg2** (v2) and **psycopg** (v3). Add one of them to your `requirements.txt`:
+
+```txt
+# Option 1: psycopg2 — binary wheel (no system deps), common in production
+psycopg2-binary==2.9.11
+```
+
+```txt
+# Option 2: psycopg2 — compile from source (needs libpq-dev etc.)
+psycopg2==2.9.11
+```
+
+```txt
+# Option 3: psycopg (v3) — binary, no system deps
+psycopg[binary]==3.3.3
+```
+
+Then install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+> **Note**: For `psycopg2` (non-binary) or in Docker, install the PostgreSQL client libraries so the driver can compile/load. `psycopg2-binary` and `psycopg[binary]` do not need them.
+>
+> - **Debian/Ubuntu**: `apt install libpq-dev`
+> - **Alpine**: `apk add postgresql-dev`
+> - **macOS**: `brew install libpq` (and ensure it’s on your path/linker flags if needed)
+
+Configure your database for PostgreSQL:
+
+```python
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "db-name",
+        "USER": "db-user",
+        "PASSWORD": "db-pass",
+        "HOST": "db-host",
+        "PORT": "5432",
+    },
+}
+```
+
+If you see `ImproperlyConfigured: Error loading psycopg2 or psycopg module`, the chosen driver is not installed or (with `psycopg2` non-binary) the system libraries above are missing.
+
 ## Backup Command Usage
 
 The `backup_db` command allows you to back up your database and upload it to an S3 bucket (or other storage service if configured). The command supports options for compressing the backup and controlling access permissions.
