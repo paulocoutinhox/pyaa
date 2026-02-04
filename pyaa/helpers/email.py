@@ -26,11 +26,12 @@ class EmailHelper:
         """
         Sends an email with both HTML and plain text versions.
         """
-        # render html message from the template
         if language:
             with translation.override(language):
+                subject = str(subject)
                 html_message = render_to_string(template, context or {})
         else:
+            subject = str(subject)
             html_message = render_to_string(template, context or {})
 
         # convert html to plain text
