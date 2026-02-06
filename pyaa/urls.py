@@ -18,12 +18,13 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import path, re_path
 from django.utils.translation import gettext_lazy as _
 
 from apps.web.urls import urlpatterns as web_urlpatterns
 
-from . import views
+from . import sitemaps, views
 
 urlpatterns = [
     path(
@@ -42,6 +43,12 @@ urlpatterns = [
     path(
         "i18n/",
         include("django_translation_flags.urls"),
+    ),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps.sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
     ),
     re_path(
         r"^app/(?P<path>.*)$",
