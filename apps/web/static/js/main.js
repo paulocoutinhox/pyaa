@@ -7,7 +7,7 @@ function preventDoubleFormSubmit(form) {
 
     if (submitButton) {
         submitButton.disabled = true;
-        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+        submitButton.innerHTML = '<span class="loading loading-spinner loading-sm"></span>';
     }
 }
 
