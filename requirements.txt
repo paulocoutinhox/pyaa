@@ -23,14 +23,14 @@ django-ipware==7.0.1
 # general
 requests==2.32.5
 libsass==0.23.0
-boto3==1.42.41
+boto3==1.42.47
 beautifulsoup4==4.14.3
 
 # local
 tzdata==2025.3
 
 # image
-pillow==12.1.0
+pillow==12.1.1
 
 # payment
 stripe==14.3.0
@@ -39,7 +39,7 @@ stripe==14.3.0
 django-anymail[amazon-ses]==14.0
 
 # test
-coverage==7.13.3
+coverage==7.13.4
 
 # formatter
 black==26.1.0
@@ -49,10 +49,10 @@ babel==2.18.0
 matplotlib==3.10.8
 
 # pdf
-weasyprint==68.0
+weasyprint==68.1
 
 # fastapi
-fastapi==0.128.0
+fastapi==0.128.8
 pydantic==2.12.5
 python-multipart==0.0.22
 throttled==0.2.1
