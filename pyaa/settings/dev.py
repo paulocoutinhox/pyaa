@@ -149,6 +149,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "pyaa.context_processors.site_processor",
+                "pyaa.context_processors.cookie_consent_processor",
             ],
         },
     },
@@ -394,6 +395,15 @@ GATEWAY_FOR_PRODUCT_PURCHASE = PaymentGateway.STRIPE
 
 # Banner
 BANNER_ACCESS_INTERVAL = 86400  # 1 day in seconds
+
+# Google Analytics
+
+GOOGLE_ANALYTICS_ID = os.getenv("APP_GOOGLE_ANALYTICS_ID", "")
+
+# Cookie Consent
+# Bump COOKIE_CONSENT_VERSION whenever the cookie policy changes to invalidate stored decisions.
+
+COOKIE_CONSENT_VERSION = "1"
 
 # System Log
 

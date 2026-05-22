@@ -54,6 +54,7 @@
 <script>
     {% get_current_language as LANGUAGE_CODE %}
     window.PYAA_LANGUAGE = '{{ LANGUAGE_CODE }}';
+    window.PYAA_COOKIE_CONSENT_VERSION = '{{ cookie_consent_version }}';
 </script>
 
 {% compress css %}
@@ -67,6 +68,7 @@
     <script src="{% static 'vendor/magnific-popup/js/jquery.magnific-popup.min.js'%}"></script>
     <script src="{% static 'js/theme-manager.js' %}"></script>
     <script src="{% static 'js/banner-manager.js' %}"></script>
+    <script src="{% static 'js/cookie-consent.js' %}"></script>
     {% vite_all_js %}
     <script src="{% static 'js/main.js' %}"></script>
 {% endcompress %}
@@ -80,3 +82,5 @@
 <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 <meta name="msapplication-TileColor" content="#000000">
 <meta name="theme-color" content="#000000">
+
+{% include "partials/google_analytics.html" %}

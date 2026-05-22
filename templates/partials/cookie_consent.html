@@ -1,0 +1,100 @@
+{% load i18n %}
+
+<div id="cookie-consent-banner" class="hidden fixed inset-x-0 bottom-0 z-50 p-4 sm:p-6">
+    <div class="container mx-auto max-w-5xl">
+        <div role="dialog" aria-live="polite" aria-label="{% translate 'cookie-consent.banner.title' %}"
+            class="bg-base-100 border border-base-300 shadow-2xl rounded-2xl p-5 sm:p-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+
+            <div class="flex items-start gap-3">
+                <i class="fa-solid fa-cookie-bite text-2xl text-primary mt-1"></i>
+                <div class="text-sm leading-relaxed">
+                    <p class="font-semibold mb-1">{% translate "cookie-consent.banner.title" %}</p>
+                    <p class="opacity-80">
+                        {% blocktranslate trimmed %}
+                        We use cookies to ensure the basic functionality of our website and to improve your experience.
+                        You can accept all cookies, reject optional ones, or customize your preferences. You can change
+                        your choice at any time in the cookie settings.
+                        {% endblocktranslate %}
+                        <a href="{% url 'content_by_tag' content_tag='privacy-policy' %}" class="link link-primary">
+                            {% translate "site.privacy" %}
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2 lg:flex-shrink-0">
+                <button type="button" class="btn btn-ghost btn-sm" onclick="CookieConsent.openPreferences()">
+                    {% translate "cookie-consent.action.customize" %}
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="CookieConsent.rejectAll()">
+                    {% translate "cookie-consent.action.reject" %}
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="CookieConsent.acceptAll()">
+                    {% translate "cookie-consent.action.accept" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dialog id="cookie-consent-modal" class="modal">
+    <div class="modal-box max-w-2xl">
+        <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3" aria-label="{% translate 'button.close' %}">✕</button>
+        </form>
+
+        <h3 class="text-lg font-bold flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-primary"></i>
+            {% translate "cookie-consent.preferences.title" %}
+        </h3>
+
+        <p class="py-3 text-sm opacity-80">
+            {% blocktranslate trimmed %}
+            Choose which categories of cookies you want to allow. Essential cookies are required for the website to
+            function and cannot be disabled. You can update these preferences whenever you want.
+            {% endblocktranslate %}
+        </p>
+
+        <div class="space-y-3">
+            <div class="border border-base-300 rounded-xl p-4 bg-base-200/40">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="font-semibold">{% translate "cookie-consent.category.essential.title" %}</p>
+                        <p class="text-sm opacity-80 mt-1">
+                            {% translate "cookie-consent.category.essential.description" %}
+                        </p>
+                    </div>
+                    <input type="checkbox" class="toggle toggle-primary" checked disabled aria-readonly="true">
+                </div>
+            </div>
+
+            <div class="border border-base-300 rounded-xl p-4">
+                <div class="flex items-start justify-between gap-4">
+                    <div>
+                        <p class="font-semibold">{% translate "cookie-consent.category.analytics.title" %}</p>
+                        <p class="text-sm opacity-80 mt-1">
+                            {% translate "cookie-consent.category.analytics.description" %}
+                        </p>
+                    </div>
+                    <input type="checkbox" class="toggle toggle-primary" data-category="analytics">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-action flex flex-col sm:flex-row gap-2">
+            <button type="button" class="btn btn-outline btn-sm" onclick="CookieConsent.rejectAll()">
+                {% translate "cookie-consent.action.reject" %}
+            </button>
+            <button type="button" class="btn btn-ghost btn-sm" onclick="CookieConsent.acceptAll()">
+                {% translate "cookie-consent.action.accept" %}
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="CookieConsent.savePreferences()">
+                {% translate "cookie-consent.action.save" %}
+            </button>
+        </div>
+    </div>
+
+    <form method="dialog" class="modal-backdrop">
+        <button>{% translate "button.close" %}</button>
+    </form>
+</dialog>

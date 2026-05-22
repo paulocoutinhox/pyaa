@@ -2257,3 +2257,77 @@ msgstr "Próxima"
 #: templates/partials/paginator.html:23
 msgid "pagination.last"
 msgstr "Última"
+
+#: templates/partials/footer.html:58
+msgid "site.cookie-settings"
+msgstr "Configurações de Cookies"
+
+#: templates/partials/cookie_consent.html:5
+#: templates/partials/cookie_consent.html:12
+msgid "cookie-consent.banner.title"
+msgstr "Valorizamos a sua privacidade"
+
+#: templates/partials/cookie_consent.html:15
+msgid ""
+"We use cookies to ensure the basic functionality of our website and to "
+"improve your experience. You can accept all cookies, reject optional ones, "
+"or customize your preferences. You can change your choice at any time in "
+"the cookie settings."
+msgstr ""
+"Utilizamos cookies para garantir o funcionamento básico do nosso site e "
+"melhorar a sua experiência. Você pode aceitar todos os cookies, recusar os "
+"opcionais ou personalizar suas preferências. Você pode alterar sua escolha "
+"a qualquer momento nas configurações de cookies."
+
+#: templates/partials/cookie_consent.html:27
+#: templates/partials/cookie_consent.html:81
+msgid "cookie-consent.action.customize"
+msgstr "Personalizar"
+
+#: templates/partials/cookie_consent.html:30
+#: templates/partials/cookie_consent.html:78
+msgid "cookie-consent.action.reject"
+msgstr "Recusar opcionais"
+
+#: templates/partials/cookie_consent.html:33
+#: templates/partials/cookie_consent.html:84
+msgid "cookie-consent.action.accept"
+msgstr "Aceitar todos"
+
+#: templates/partials/cookie_consent.html:87
+msgid "cookie-consent.action.save"
+msgstr "Salvar preferências"
+
+#: templates/partials/cookie_consent.html:48
+msgid "cookie-consent.preferences.title"
+msgstr "Preferências de cookies"
+
+#: templates/partials/cookie_consent.html:52
+msgid ""
+"Choose which categories of cookies you want to allow. Essential cookies are "
+"required for the website to function and cannot be disabled. You can update "
+"these preferences whenever you want."
+msgstr ""
+"Escolha quais categorias de cookies você quer permitir. Os cookies "
+"essenciais são necessários para o funcionamento do site e não podem ser "
+"desativados. Você pode atualizar essas preferências sempre que quiser."
+
+#: templates/partials/cookie_consent.html:61
+msgid "cookie-consent.category.essential.title"
+msgstr "Cookies essenciais"
+
+#: templates/partials/cookie_consent.html:63
+msgid "cookie-consent.category.essential.description"
+msgstr ""
+"Necessários para autenticação, segurança e funcionamento básico do site. "
+"Esses cookies estão sempre ativos."
+
+#: templates/partials/cookie_consent.html:73
+msgid "cookie-consent.category.analytics.title"
+msgstr "Cookies de análise"
+
+#: templates/partials/cookie_consent.html:75
+msgid "cookie-consent.category.analytics.description"
+msgstr ""
+"Ajudam a entender como os visitantes interagem com o site para que possamos "
+"melhorar a experiência. Inclui o Google Analytics."

@@ -1,0 +1,57 @@
+{% if google_analytics_id %}
+<!-- Google Analytics (loaded after analytics consent is granted) -->
+<script>
+    (() => {
+        'use strict'
+
+        const measurementId = '{{ google_analytics_id }}'
+        const disableFlag = 'ga-disable-' + measurementId
+
+        window[disableFlag] = true
+        window.dataLayer = window.dataLayer || []
+
+        const gtag = function () {
+            window.dataLayer.push(arguments)
+        }
+
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+        })
+
+        let scriptLoaded = false
+
+        const loadScript = () => {
+            if (scriptLoaded) {
+                return
+            }
+            scriptLoaded = true
+
+            const script = document.createElement('script')
+            script.async = true
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId)
+            document.head.appendChild(script)
+
+            gtag('js', new Date())
+            gtag('config', measurementId, { anonymize_ip: true })
+        }
+
+        const applyConsent = (granted) => {
+            window[disableFlag] = !granted
+            gtag('consent', 'update', {
+                analytics_storage: granted ? 'granted' : 'denied',
+            })
+            if (granted) {
+                loadScript()
+            }
+        }
+
+        window.addEventListener('cookie-consent:updated', (event) => {
+            const categories = (event && event.detail && event.detail.categories) || {}
+            applyConsent(Boolean(categories.analytics))
+        })
+    })()
+</script>
+{% endif %}
