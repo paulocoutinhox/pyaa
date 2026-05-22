@@ -129,6 +129,7 @@ make run
 - [WebApp](docs/webapp.md)
 - [Cron](docs/cron.md)
 - [Queue](docs/queue.md)
+- [Cookie Consent](docs/cookie-consent.md)
 - [VSCode](docs/vscode.md)
 
 ## Screenshot

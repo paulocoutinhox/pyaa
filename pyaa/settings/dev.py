@@ -401,7 +401,6 @@ BANNER_ACCESS_INTERVAL = 86400  # 1 day in seconds
 GOOGLE_ANALYTICS_ID = os.getenv("APP_GOOGLE_ANALYTICS_ID", "")
 
 # Cookie Consent
-# Bump COOKIE_CONSENT_VERSION whenever the cookie policy changes to invalidate stored decisions.
 
 COOKIE_CONSENT_VERSION = "1"
 
