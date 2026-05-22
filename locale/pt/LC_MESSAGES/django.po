@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-28 14:17+0000\n"
+"POT-Creation-Date: 2026-05-22 01:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,8 +408,9 @@ msgstr "Captcha"
 msgid "model.field.accept-terms.help-text"
 msgstr ""
 "Declaro que li e concordo com os <a href=\"%(terms_url)s\" target=\"_blank\" "
-"class=\"link link-primary\">Termos de Uso</a> e a <a href=\"%(privacy_url)s\" "
-"target=\"_blank\" class=\"link link-primary\">Política de Privacidade</a>"
+"class=\"link link-primary\">Termos de Uso</a> e a <a href=\"%"
+"(privacy_url)s\" target=\"_blank\" class=\"link link-primary\">Política de "
+"Privacidade</a>"
 
 #: apps/customer/forms.py:263 apps/customer/models.py:80
 msgid "model.field.nickname"
@@ -674,7 +675,8 @@ msgstr "Acessos aos Banners"
 msgid "button.copy"
 msgstr "Copiar"
 
-#: apps/shop/admin.py:53
+#: apps/shop/admin.py:53 templates/partials/cookie_consent.html:43
+#: templates/partials/cookie_consent.html:98
 msgid "button.close"
 msgstr "Fechar"
 
@@ -1306,11 +1308,11 @@ msgstr "PyAA"
 msgid "admin.group.site-content"
 msgstr "Conteúdo do site"
 
-#: pyaa/settings/dev.py:208
+#: pyaa/settings/dev.py:209
 msgid "language.en"
 msgstr "Inglês"
 
-#: pyaa/settings/dev.py:209
+#: pyaa/settings/dev.py:210
 msgid "language.pt-br"
 msgstr "Português"
 
@@ -2122,6 +2124,79 @@ msgstr "Compre para Baixar"
 msgid "title.shop-products.index"
 msgstr "Produtos"
 
+#: templates/partials/cookie_consent.html:5
+#: templates/partials/cookie_consent.html:11
+msgid "cookie-consent.banner.title"
+msgstr "Valorizamos a sua privacidade"
+
+#: templates/partials/cookie_consent.html:13
+msgid ""
+"We use cookies to ensure the basic functionality of our website and to "
+"improve your experience. You can accept all cookies, reject optional ones, "
+"or customize your preferences. You can change your choice at any time in the "
+"cookie settings."
+msgstr ""
+"Utilizamos cookies para garantir o funcionamento básico do nosso site e "
+"melhorar a sua experiência. Você pode aceitar todos os cookies, recusar os "
+"opcionais ou personalizar suas preferências. Você pode alterar sua escolha a "
+"qualquer momento nas configurações de cookies."
+
+#: templates/partials/cookie_consent.html:19 templates/partials/footer.html:52
+msgid "site.privacy"
+msgstr "Política de Privacidade"
+
+#: templates/partials/cookie_consent.html:27
+msgid "cookie-consent.action.customize"
+msgstr "Personalizar"
+
+#: templates/partials/cookie_consent.html:30
+#: templates/partials/cookie_consent.html:86
+msgid "cookie-consent.action.reject"
+msgstr "Recusar opcionais"
+
+#: templates/partials/cookie_consent.html:33
+#: templates/partials/cookie_consent.html:89
+msgid "cookie-consent.action.accept"
+msgstr "Aceitar todos"
+
+#: templates/partials/cookie_consent.html:48
+msgid "cookie-consent.preferences.title"
+msgstr "Preferências de cookies"
+
+#: templates/partials/cookie_consent.html:52
+msgid ""
+"Choose which categories of cookies you want to allow. Essential cookies are "
+"required for the website to function and cannot be disabled. You can update "
+"these preferences whenever you want."
+msgstr ""
+"Escolha quais categorias de cookies você quer permitir. Os cookies "
+"essenciais são necessários para o funcionamento do site e não podem ser "
+"desativados. Você pode atualizar essas preferências sempre que quiser."
+
+#: templates/partials/cookie_consent.html:62
+msgid "cookie-consent.category.essential.title"
+msgstr "Cookies essenciais"
+
+#: templates/partials/cookie_consent.html:64
+msgid "cookie-consent.category.essential.description"
+msgstr ""
+"Necessários para autenticação, segurança e funcionamento básico do site. "
+"Esses cookies estão sempre ativos."
+
+#: templates/partials/cookie_consent.html:74
+msgid "cookie-consent.category.analytics.title"
+msgstr "Cookies de análise"
+
+#: templates/partials/cookie_consent.html:76
+msgid "cookie-consent.category.analytics.description"
+msgstr ""
+"Ajudam a entender como os visitantes interagem com o site para que possamos "
+"melhorar a experiência. Inclui o Google Analytics."
+
+#: templates/partials/cookie_consent.html:92
+msgid "cookie-consent.action.save"
+msgstr "Salvar preferências"
+
 #: templates/partials/customer_data.html:4
 #, python-format
 msgid "Hi %(name)s!"
@@ -2152,11 +2227,11 @@ msgstr "Recursos"
 msgid "site.terms"
 msgstr "Termos e Condições"
 
-#: templates/partials/footer.html:52
-msgid "site.privacy"
-msgstr "Política de Privacidade"
+#: templates/partials/footer.html:58
+msgid "site.cookie-settings"
+msgstr "Configurações de Cookies"
 
-#: templates/partials/footer.html:61
+#: templates/partials/footer.html:67
 msgid "footer.follow-us"
 msgstr "Siga-nos"
 
