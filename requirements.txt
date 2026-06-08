@@ -1,8 +1,8 @@
 # django
-django==6.0.4
+django==6.0.6
 django-admin-extras==1.0.2
 django-cleanup==9.0.0
-django-timezone-field==7.2.1
+django-timezone-field==7.2.2
 django-tinymce==5.0.0
 django-cors-headers==4.9.0
 django-widget-tweaks==1.5.1
@@ -15,52 +15,52 @@ django-storages==1.14.6
 django-admin-rangefilter==0.13.5
 django-admin-list-filter-dropdown==1.0.3
 django-recaptcha==4.1.0
-django-q2==1.9.0
+django-q2==1.10.0
 django-translation-flags==1.0.6
 django-localflavor==5.0
 django-ipware==7.0.1
 
 # general
-requests==2.33.1
+requests==2.34.2
 libsass==0.23.0
-boto3==1.42.85
-beautifulsoup4==4.14.3
+boto3==1.43.24
+beautifulsoup4==4.15.0
 
 # local
-tzdata==2026.1
+tzdata==2026.2
 
 # image
 pillow==12.2.0
 
 # payment
-stripe==15.0.1
+stripe==15.2.0
 
 # email
-django-anymail[amazon-ses]==14.0
+django-anymail[amazon-ses]==15.0
 
 # test
-coverage==7.13.5
+coverage==7.14.1
 
 # formatter
-black==26.3.1
+black==26.5.1
 babel==2.18.0
 
 # chart
-matplotlib==3.10.8
+matplotlib==3.10.9
 
 # pdf
-weasyprint==68.1
+weasyprint==69.0
 
 # fastapi
-fastapi==0.135.3
-pydantic==2.12.5
-python-multipart==0.0.24
+fastapi==0.136.3
+pydantic==2.13.4
+python-multipart==0.0.32
 throttled==0.2.1
-pyjwt==2.12.1
+pyjwt==2.13.0
 pytest==9.0.3
 pytest-django==4.12.0
 email-validator==2.3.0
 httpx==0.28.1
 
 # server
-uvicorn==0.44.0
+uvicorn==0.49.0
