@@ -77,6 +77,8 @@ class GetManifestTest(TestCase):
     @override_settings(DEBUG=False)
     def test_reads_manifest_and_caches_when_not_debug(self):
         with patch(
+            "apps.web.templatetags.pyaa_vite.Path.exists", return_value=True
+        ), patch(
             "apps.web.templatetags.pyaa_vite.Path.read_text",
             return_value=json.dumps(GET_MANIFEST_TEST_MANIFEST),
         ) as mock_read:
@@ -91,6 +93,8 @@ class GetManifestTest(TestCase):
     @override_settings(DEBUG=True)
     def test_rereads_manifest_each_call_when_debug(self):
         with patch(
+            "apps.web.templatetags.pyaa_vite.Path.exists", return_value=True
+        ), patch(
             "apps.web.templatetags.pyaa_vite.Path.read_text",
             return_value=json.dumps(GET_MANIFEST_TEST_MANIFEST),
         ) as mock_read:
@@ -99,3 +103,14 @@ class GetManifestTest(TestCase):
 
         # debug mode resets the cache, forcing a read on every call
         self.assertEqual(mock_read.call_count, 2)
+
+    @override_settings(DEBUG=False)
+    def test_returns_empty_manifest_when_file_missing(self):
+        # a missing build manifest must not crash template rendering
+        with patch(
+            "apps.web.templatetags.pyaa_vite.Path.exists", return_value=False
+        ), patch("apps.web.templatetags.pyaa_vite.Path.read_text") as mock_read:
+            manifest = pyaa_vite.get_manifest()
+
+        self.assertEqual(manifest, {})
+        mock_read.assert_not_called()
