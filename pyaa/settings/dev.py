@@ -261,8 +261,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # JWT
 
 AUTH_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=365 * 999),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=365 * 999),
     "SIGNING_KEY": SECRET_KEY,
     "ALGORITHM": "HS256",
 }
@@ -314,17 +314,7 @@ TINYMCE_DEFAULT_CONFIG = {
 
 # CORS
 
-CORS_ALLOW_ALL_ORIGINS = False
-
-cors_allowed_origins = os.getenv("APP_CORS_ALLOWED_ORIGINS")
-
-if cors_allowed_origins:
-    CORS_ALLOWED_ORIGINS = cors_allowed_origins.split(",")
-else:
-    CORS_ALLOWED_ORIGINS = [
-        "http://localhost:8000",
-        "http://127.0.0.1:8000",
-    ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Site
 
@@ -339,6 +329,11 @@ LOGIN_REDIRECT_URL = "home"
 AUTH_USER_MODEL = "user.User"
 
 LOGIN_URL = "account_login"
+
+PASSWORD_RECOVERY_TOKEN_TTL = timedelta(hours=1)
+
+LOGIN_RATELIMIT_MAX_ATTEMPTS = 10
+LOGIN_RATELIMIT_WINDOW = 300
 
 # Email
 
@@ -375,13 +370,6 @@ LOGGING = {
 
 CUSTOMER_SIGNUP_PLAN = 0
 CUSTOMER_ACTIVATION_REQUIRED = False
-
-# how long a password recovery token stays valid
-PASSWORD_RECOVERY_TOKEN_TTL = timedelta(hours=1)
-
-# login throttling to slow down brute force attempts
-LOGIN_RATELIMIT_MAX_ATTEMPTS = 10
-LOGIN_RATELIMIT_WINDOW = 300
 
 # Stripe
 
