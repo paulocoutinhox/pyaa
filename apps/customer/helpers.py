@@ -7,6 +7,7 @@ from django.db import transaction
 from django.db.models import F, Value
 from django.db.models.functions import Coalesce
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from apps.customer.models import Customer
@@ -372,7 +373,7 @@ class CustomerHelper:
             if plan_image.startswith(("http://", "https://")):
                 plan_image_url = plan_image
             else:
-                plan_image_url = f"https://{current_site.domain}{plan_image.url}"
+                plan_image_url = f"https://{current_site.domain}{plan.image.url}"
 
         context = {
             "subject": subject,
@@ -477,9 +478,10 @@ class CustomerHelper:
         # create a new recovery token
         new_token = uuid.uuid4()
 
-        # save it to the customer
+        # save it to the customer with its issue time for expiration control
         customer.recovery_token = new_token
-        customer.save(update_fields=["recovery_token"])
+        customer.recovery_token_created_at = timezone.now()
+        customer.save(update_fields=["recovery_token", "recovery_token_created_at"])
 
         return new_token
 
@@ -491,7 +493,8 @@ class CustomerHelper:
         :param customer: the customer object
         """
         customer.recovery_token = None
-        customer.save(update_fields=["recovery_token"])
+        customer.recovery_token_created_at = None
+        customer.save(update_fields=["recovery_token", "recovery_token_created_at"])
 
     @staticmethod
     def send_password_recovery_email(customer):

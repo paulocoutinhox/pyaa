@@ -1,5 +1,6 @@
 from asgiref.sync import sync_to_async
 from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db import transaction
 from fastapi import APIRouter, HTTPException, status
@@ -41,6 +42,14 @@ def _create_customer_transaction(data: CustomerCreateSchema):
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail=[{"user": e.message_dict}],
+        )
+
+    try:
+        validate_password(data.password, user)
+    except DjangoValidationError as e:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=[{"password": e.messages}],
         )
 
     user.save()
@@ -116,6 +125,15 @@ def _update_customer_transaction(user: User, data: CustomerUpdateSchema):
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail=[{"user": e.message_dict}],
         )
+
+    if data.password:
+        try:
+            validate_password(data.password, user)
+        except DjangoValidationError as e:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail=[{"password": e.messages}],
+            )
 
     user.save()
 

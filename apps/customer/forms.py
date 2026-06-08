@@ -1,6 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.db.models import Q
@@ -194,6 +195,15 @@ class CustomerSignupForm(forms.ModelForm):
             user.full_clean(exclude=["password"])
         except ValidationError as e:
             raise ValidationError(e.message_dict)
+
+        # enforce password strength validators against the new user
+        password = cleaned_data.get("password")
+
+        if password:
+            try:
+                validate_password(password, user)
+            except ValidationError as e:
+                raise ValidationError({"password": e.messages})
 
         return cleaned_data
 
@@ -472,6 +482,12 @@ class CustomerResetPasswordForm(forms.Form):
                     {"password_confirmation": _("error.passwords-do-not-match")}
                 )
 
+            # enforce password strength validators
+            try:
+                validate_password(password)
+            except ValidationError as e:
+                raise ValidationError({"password": e.messages})
+
         return cleaned_data
 
 
@@ -520,6 +536,12 @@ class CustomerChangePasswordForm(forms.Form):
                 raise ValidationError(
                     {"confirm_password": _("error.passwords-do-not-match")}
                 )
+
+            # enforce password strength validators against the user
+            try:
+                validate_password(new_password, self.user)
+            except ValidationError as e:
+                raise ValidationError({"new_password": e.messages})
 
         return cleaned_data
 

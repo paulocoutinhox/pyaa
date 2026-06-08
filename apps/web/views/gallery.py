@@ -33,7 +33,7 @@ def gallery_by_id_view(request, gallery_id):
         return redirect("home")
 
     page_number = request.GET.get("page", 1)
-    photos = gallery.gallery_photos.all()
+    photos = gallery.gallery_photos.order_by("id")
 
     paginator = Paginator(
         photos,
@@ -60,7 +60,7 @@ def gallery_by_tag_view(request, gallery_tag):
         return redirect("home")
 
     page_number = request.GET.get("page", 1)
-    photos = gallery.gallery_photos.all()
+    photos = gallery.gallery_photos.order_by("id")
 
     paginator = Paginator(
         photos,
