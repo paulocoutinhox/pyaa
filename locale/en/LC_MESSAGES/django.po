@@ -17,7 +17,7 @@ msgstr ""
 #: templates/partials/header.html:10 templates/partials/header.html:12
 #: templates/pyaa/elements/page_header.html:10
 msgid "site.small-name"
-msgstr "PYAA"
+msgstr "PyAA"
 
 #: apps/banner/admin.py:51 apps/banner/admin.py:142 apps/content/admin.py:51
 #: apps/content/admin.py:131 apps/gallery/admin.py:58 apps/language/admin.py:40

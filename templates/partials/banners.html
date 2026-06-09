@@ -4,13 +4,15 @@
 {% if banners %}
 <div class="carousel w-full" id="bannerCarousel">
     {% for banner in banners %}
-    <div id="banner-{{ banner.token }}" class="carousel-item relative w-full {% if not forloop.first %}hidden{% endif %}" data-index="{{ forloop.counter0 }}">
+    <div id="banner-{{ banner.token }}" class="carousel-item relative w-full {% if not forloop.first %}hidden{% endif %}"
+        data-banner-view data-banner-token="{{ banner.token }}">
         <img src="{{ banner.image.url }}" class="w-full" alt="{{ banner.title }}">
-        <a href="javascript:void(0);" class="absolute inset-0 z-0" onclick="event.preventDefault(); BannerManager.trackClickAccess('{{ banner.token }}', '{{ banner.link|default:'' }}', {{ banner.target_blank|lower }});"></a>
+        <a href="javascript:void(0);" class="absolute inset-0 z-0" data-banner-click data-banner-token="{{ banner.token }}"
+            data-banner-link="{{ banner.link|default:'' }}" data-banner-target-blank="{{ banner.target_blank|lower }}"></a>
         {% if banners|length > 1 %}
         <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between z-10">
-            <button class="btn btn-circle btn-sm" onclick="showBanner({{ forloop.counter0|add:'-1' }})">❮</button>
-            <button class="btn btn-circle btn-sm" onclick="showBanner({{ forloop.counter0|add:'1' }})">❯</button>
+            <button class="btn btn-circle btn-sm" data-carousel-prev>❮</button>
+            <button class="btn btn-circle btn-sm" data-carousel-next>❯</button>
         </div>
         {% endif %}
     </div>
@@ -20,41 +22,10 @@
 {% if banners|length > 1 %}
 <div class="flex w-full justify-center gap-2 py-2">
     {% for banner in banners %}
-    <button class="btn btn-xs {% if forloop.first %}btn-active{% endif %}" onclick="showBanner({{ forloop.counter0 }})" data-indicator="{{ forloop.counter0 }}">
+    <button class="btn btn-xs {% if forloop.first %}btn-active{% endif %}" data-carousel-to="{{ forloop.counter0 }}">
         {{ forloop.counter }}
     </button>
     {% endfor %}
 </div>
 {% endif %}
-
-<script>
-    var bannerCount = {{ banners|length }};
-    var currentBanner = 0;
-
-    function showBanner(index) {
-        if (index < 0) index = bannerCount - 1;
-        if (index >= bannerCount) index = 0;
-        currentBanner = index;
-
-        document.querySelectorAll('#bannerCarousel .carousel-item').forEach(function(item, i) {
-            item.classList.toggle('hidden', i !== index);
-        });
-
-        document.querySelectorAll('[data-indicator]').forEach(function(btn, i) {
-            btn.classList.toggle('btn-active', i === index);
-        });
-    }
-
-    $(function () {
-        {% for banner in banners %}
-        BannerManager.trackViewAccess('{{ banner.token }}');
-        {% endfor %}
-
-        {% if banners|length > 1 %}
-        setInterval(function() {
-            showBanner(currentBanner + 1);
-        }, 5000);
-        {% endif %}
-    });
-</script>
 {% endif %}

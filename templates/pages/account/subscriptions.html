@@ -48,7 +48,7 @@
                     </p>
                     {% if subscription.can_be_canceled %}
                     <div class="mt-2">
-                        <button class="btn btn-error btn-sm" onclick="document.getElementById('modal-{{ subscription.token }}').showModal()">
+                        <button class="btn btn-error btn-sm" data-modal-open="modal-{{ subscription.token }}">
                             {% translate "button.cancel-subscription" %}
                         </button>
                     </div>

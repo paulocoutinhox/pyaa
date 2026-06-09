@@ -38,15 +38,3 @@
 </div>
 
 {% endblock content %}
-
-{% block extra_footer %}
-<script>
-    $(document).ready(function () {
-        $('#gallery').magnificPopup({
-            delegate: 'a',
-            type: 'image',
-            gallery: { enabled: true }
-        });
-    });
-</script>
-{% endblock extra_footer %}

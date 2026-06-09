@@ -14,7 +14,7 @@
         {% translate "message.account-signup.create-account" %}
     </p>
 
-    <form method="post" novalidate onsubmit="preventDoubleFormSubmit(this)">
+    <form method="post" novalidate data-prevent-double-submit>
         {% csrf_token %}
 
         {% if next_url %}

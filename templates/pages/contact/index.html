@@ -10,7 +10,7 @@
         {% translate "title.contact" %}
     </h1>
 
-    <form method="POST" novalidate onsubmit="preventDoubleFormSubmit(this)">
+    <form method="POST" novalidate data-prevent-double-submit>
         {% csrf_token %}
         {% element fields form=form %}
         {% endelement %}

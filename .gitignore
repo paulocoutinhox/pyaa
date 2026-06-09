@@ -132,3 +132,6 @@ bun.lock
 
 # Claude
 .claude
+
+# vite build output
+/apps/web/static/frontend

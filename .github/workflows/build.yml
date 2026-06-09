@@ -49,7 +49,9 @@ jobs:
           make fixtures
 
       - name: Build assets
-        run: make assets
+        run: |
+          make frontend-setup
+          make frontend-prod
 
       - name: Test Django
         run: make test

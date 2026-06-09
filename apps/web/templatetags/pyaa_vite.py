@@ -20,7 +20,9 @@ def get_manifest():
     if _manifest_cache is not None:
         return _manifest_cache
 
-    manifest_path = Path(settings.BASE_DIR) / "static/frontend/.vite/manifest.json"
+    manifest_path = (
+        Path(settings.BASE_DIR) / "apps/web/static/frontend/.vite/manifest.json"
+    )
     _manifest_cache = json.loads(manifest_path.read_text())
     return _manifest_cache
 

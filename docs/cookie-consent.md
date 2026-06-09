@@ -13,7 +13,7 @@ Both can be defined directly in `dev.py` or provided as environment variables (`
 
 ## Versioning Consent Decisions
 
-`COOKIE_CONSENT_VERSION` is exposed to the frontend through `window.PYAA_COOKIE_CONSENT_VERSION` and stored alongside each consent decision in `localStorage`.
+`COOKIE_CONSENT_VERSION` is rendered into the `data-cookie-consent-version` attribute on the `<html>` element and read by the frontend (via `config.js`), then stored alongside each consent decision in `localStorage`.
 
 Whenever the cookie policy changes (new categories, new vendors, updated wording in the privacy policy), bump this value. The frontend will detect the mismatch on the next page load, discard the previous decision, and show the banner again so the user can re-consent.
 
@@ -33,7 +33,7 @@ COOKIE_CONSENT_VERSION = "2"
 
 To add a new optional category:
 
-1. Append the key to `OPTIONAL_CATEGORIES` in `apps/web/static/js/cookie-consent.js`.
+1. Append the key to `OPTIONAL_CATEGORIES` in `apps/web/static/vendor/frontend/js/cookie-consent.js`.
 2. Add a toggle row in `templates/partials/cookie_consent.html` using `data-category="<key>"`.
 3. Listen for the `cookie-consent:updated` event in the partial that loads the related vendor script.
 
