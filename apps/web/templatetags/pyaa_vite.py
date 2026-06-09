@@ -21,12 +21,6 @@ def get_manifest():
         return _manifest_cache
 
     manifest_path = Path(settings.BASE_DIR) / "static/frontend/.vite/manifest.json"
-
-    # degrade to an empty manifest when the frontend has not been built
-    if not manifest_path.exists():
-        _manifest_cache = {}
-        return _manifest_cache
-
     _manifest_cache = json.loads(manifest_path.read_text())
     return _manifest_cache
 

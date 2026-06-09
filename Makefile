@@ -33,6 +33,9 @@ help:
 	@echo "- frontend-setup"
 	@echo "- frontend-dev"
 	@echo "- frontend-prod"
+	@echo "- compilescss"
+	@echo "- collectstatic"
+	@echo "- assets"
 	@echo ""
 	@echo "- docker-build"
 	@echo "- docker-rebuild"
@@ -105,6 +108,18 @@ frontend-dev:
 
 frontend-prod:
 	npm run frontend:prod
+
+compilescss:
+	python3 manage.py compilescss
+
+collectstatic:
+	python3 manage.py collectstatic --noinput
+
+assets:
+	@make frontend-setup
+	@make frontend-prod
+	@make compilescss
+	@make collectstatic
 
 test:
 	python3 manage.py test
