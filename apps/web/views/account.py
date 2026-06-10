@@ -4,9 +4,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.http import Http404
 from django.shortcuts import redirect, render, resolve_url
 from django.urls import path
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from apps.banner.enums import BannerZone
@@ -37,7 +39,25 @@ def account_login_view(request):
     next_url = RequestHelper.get_next_url(request)
     banners = BannerHelper.get_banners(BannerZone.SIGNIN)
 
+    # throttle failed attempts per client ip to slow down brute force
+    client_ip = request.META.get("REMOTE_ADDR", "")
+    throttle_key = f"login-attempts-{client_ip}"
+
     if request.method == "POST":
+        attempts = cache.get(throttle_key, 0)
+
+        if attempts >= settings.LOGIN_RATELIMIT_MAX_ATTEMPTS:
+            messages.error(request, _("error.too-many-login-attempts"))
+            return render(
+                request,
+                "pages/account/login.html",
+                {
+                    "form": CustomerLoginForm(),
+                    "next_url": next_url,
+                    "banners": banners,
+                },
+            )
+
         form = CustomerLoginForm(request.POST)
 
         if form.is_valid():
@@ -51,6 +71,7 @@ def account_login_view(request):
             )
 
             if user:
+                cache.delete(throttle_key)
                 login(request, user)
                 messages.success(request, _("message.login-success"))
 
@@ -59,6 +80,7 @@ def account_login_view(request):
                 else:
                     return redirect("account_profile")
             else:
+                cache.set(throttle_key, attempts + 1, settings.LOGIN_RATELIMIT_WINDOW)
                 messages.error(request, _("error.invalid-login-data"))
     else:
         form = CustomerLoginForm()
@@ -260,7 +282,7 @@ def account_subscriptions_view(request):
 @customer_required
 def account_subscription_cancel_view(request, token):
     try:
-        subscription = Subscription.objects.get(token=token)
+        subscription = Subscription.objects.get(token=token, customer=request.customer)
     except Subscription.DoesNotExist:
         return redirect("home")
 
@@ -414,6 +436,15 @@ def account_reset_password_view(request, token):
         # find customer with matching recovery token
         customer = Customer.objects.get(recovery_token=token)
     except (Customer.DoesNotExist, ValueError):
+        raise Http404("Invalid token")
+
+    # reject expired recovery tokens
+    created_at = customer.recovery_token_created_at
+
+    if (
+        not created_at
+        or timezone.now() - created_at > settings.PASSWORD_RECOVERY_TOKEN_TTL
+    ):
         raise Http404("Invalid token")
 
     if request.method == "POST":

@@ -125,6 +125,7 @@ make run
 - [Security](docs/security.md)
 - [Stripe](docs/stripe.md)
 - [Frontend](docs/frontend.md)
+- [Frontend Data (Django → JS)](docs/frontend-data.md)
 - [Troubleshooting](docs/troubleshooting.md)
 - [WebApp](docs/webapp.md)
 - [Cron](docs/cron.md)

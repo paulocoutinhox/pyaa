@@ -46,7 +46,7 @@ async def token_refresh(data: TokenRefreshRequest):
     try:
         payload = verify_refresh_token(data.refresh)
         user_id = payload.get("user_id")
-        user = await User.objects.aget(id=user_id)
+        user = await User.objects.aget(id=user_id, is_active=True)
         access_token = create_access_token(user)
         return TokenRefreshResponse(access=access_token)
     except (ValueError, User.DoesNotExist):

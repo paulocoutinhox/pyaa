@@ -12,7 +12,11 @@ from apps.banner.helpers import BannerHelper
 @csrf_exempt
 @require_POST
 def track_view_access(request):
-    data = json.loads(request.body)
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid payload"}, status=400)
+
     token = data.get("token")
 
     if not token:
@@ -29,7 +33,11 @@ def track_view_access(request):
 @csrf_exempt
 @require_POST
 def track_click_access(request):
-    data = json.loads(request.body)
+    try:
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid payload"}, status=400)
+
     token = data.get("token")
 
     if not token:

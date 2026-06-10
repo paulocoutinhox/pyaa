@@ -1,7 +1,8 @@
 {% load i18n %}
 {% load pyaa %}
 <!DOCTYPE html>
-<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}" class="h-full">
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}"
+    data-cookie-consent-version="{{ cookie_consent_version }}" class="h-full">
 
 <head>
     {% include "partials/head.html" %}

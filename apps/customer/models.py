@@ -128,6 +128,14 @@ class Customer(models.Model):
         null=True,
     )
 
+    recovery_token_created_at = models.DateTimeField(
+        _("model.field.recovery-token-created-at"),
+        default=None,
+        editable=False,
+        blank=True,
+        null=True,
+    )
+
     credits = models.IntegerField(
         _("model.field.credits"),
         blank=False,

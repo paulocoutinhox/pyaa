@@ -13,8 +13,12 @@ from apps.system_log.helpers import SystemLogHelper
 @csrf_exempt
 def webhook_stripe_view(request):
     if settings.SYSTEM_LOG_WEBHOOK_ENABLED:
-        # capturing request data
-        request_headers = dict(request.headers)
+        # capturing request data with sensitive headers redacted
+        sensitive_headers = {"Stripe-Signature", "Authorization", "Cookie"}
+        request_headers = {
+            key: ("[redacted]" if key in sensitive_headers else value)
+            for key, value in request.headers.items()
+        }
         request_body = request.body.decode("utf-8") if request.body else None
         request_query_params = dict(request.GET)
         request_post_data = dict(request.POST)

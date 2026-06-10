@@ -60,8 +60,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "compressor",
-    "sass_processor",
     "django_admin_extras",
     "django_cleanup.apps.CleanupConfig",
     "tinymce",
@@ -229,19 +227,7 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
-    "sass_processor.finders.CssFinder",
 ]
-
-SASS_PROCESSOR_INCLUDE_DIRS = []
-SASS_PROCESSOR_AUTO_INCLUDE = False
-SASS_PROCESSOR_ROOT = BASE_DIR / "apps" / "web" / "static"
-
-# Compress static files
-
-COMPRESS_ROOT = BASE_DIR / "static"
-COMPRESS_ENABLED = True
-COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 # Messages
 
@@ -329,6 +315,11 @@ LOGIN_REDIRECT_URL = "home"
 AUTH_USER_MODEL = "user.User"
 
 LOGIN_URL = "account_login"
+
+PASSWORD_RECOVERY_TOKEN_TTL = timedelta(hours=1)
+
+LOGIN_RATELIMIT_MAX_ATTEMPTS = 10
+LOGIN_RATELIMIT_WINDOW = 300
 
 # Email
 

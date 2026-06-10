@@ -26,6 +26,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Upgrade PIP
         run: python3 -m pip install --upgrade pip setuptools wheel
 
@@ -42,6 +47,11 @@ jobs:
           make migrate
           make create-su
           make fixtures
+
+      - name: Build assets
+        run: |
+          make frontend-setup
+          make frontend-prod
 
       - name: Test Django
         run: make test

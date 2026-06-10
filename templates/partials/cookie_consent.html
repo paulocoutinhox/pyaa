@@ -23,13 +23,13 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-2 lg:flex-shrink-0">
-                <button type="button" class="btn btn-ghost btn-sm" onclick="CookieConsent.openPreferences()">
+                <button type="button" class="btn btn-ghost btn-sm" data-cookie-action="openPreferences">
                     {% translate "cookie-consent.action.customize" %}
                 </button>
-                <button type="button" class="btn btn-outline btn-sm" onclick="CookieConsent.rejectAll()">
+                <button type="button" class="btn btn-outline btn-sm" data-cookie-action="rejectAll">
                     {% translate "cookie-consent.action.reject" %}
                 </button>
-                <button type="button" class="btn btn-primary btn-sm" onclick="CookieConsent.acceptAll()">
+                <button type="button" class="btn btn-primary btn-sm" data-cookie-action="acceptAll">
                     {% translate "cookie-consent.action.accept" %}
                 </button>
             </div>
@@ -82,13 +82,13 @@
         </div>
 
         <div class="modal-action flex flex-col sm:flex-row gap-2">
-            <button type="button" class="btn btn-outline btn-sm" onclick="CookieConsent.rejectAll()">
+            <button type="button" class="btn btn-outline btn-sm" data-cookie-action="rejectAll">
                 {% translate "cookie-consent.action.reject" %}
             </button>
-            <button type="button" class="btn btn-ghost btn-sm" onclick="CookieConsent.acceptAll()">
+            <button type="button" class="btn btn-ghost btn-sm" data-cookie-action="acceptAll">
                 {% translate "cookie-consent.action.accept" %}
             </button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="CookieConsent.savePreferences()">
+            <button type="button" class="btn btn-primary btn-sm" data-cookie-action="savePreferences">
                 {% translate "cookie-consent.action.save" %}
             </button>
         </div>

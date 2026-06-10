@@ -6,9 +6,7 @@ django-timezone-field==7.2.2
 django-tinymce==5.0.0
 django-cors-headers==4.9.0
 django-widget-tweaks==1.5.1
-django-compressor==4.6.0
 django-resized==1.0.3
-django-sass-processor==1.4.2
 django-cache-cleaner==0.2.0
 django-nonrelated-inlines==0.2
 django-storages==1.14.6
@@ -22,8 +20,7 @@ django-ipware==7.0.1
 
 # general
 requests==2.34.2
-libsass==0.23.0
-boto3==1.43.24
+boto3==1.43.26
 beautifulsoup4==4.15.0
 
 # local

@@ -1,7 +1,7 @@
 {
   "name": "pyaa",
   "version": "1.0.0",
-  "description": "PYAA",
+  "description": "PyAA",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,15 +9,15 @@
     "frontend:prod": "vite build"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "latest",
-    "autoprefixer": "latest",
-    "daisyui": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
-    "vite": "^7.3.1",
-    "vite-plugin-static-copy": "^3.1.4"
+    "@tailwindcss/postcss": "4.3.0",
+    "autoprefixer": "10.5.0",
+    "daisyui": "5.5.23",
+    "postcss": "8.5.15",
+    "tailwindcss": "4.3.0",
+    "vite": "8.0.16"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.1.0"
+    "@fortawesome/fontawesome-free": "7.2.0",
+    "glightbox": "3.3.1"
   }
 }

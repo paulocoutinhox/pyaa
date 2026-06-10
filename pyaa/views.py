@@ -9,27 +9,44 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.static import serve
+from PIL import Image
 
 from pyaa.helpers.file import FileHelper
 
 
 @csrf_exempt
 def upload_image(request):
+    # only authenticated staff may upload editor images
+    if not request.user.is_authenticated or not request.user.is_staff:
+        return JsonResponse(
+            {"message": _("error.upload-image.unauthorized")}, status=403
+        )
+
     # validate request
     if request.method == "POST":
         # file object
-        file_obj = request.FILES["file"]
+        file_obj = request.FILES.get("file")
+
+        if not file_obj:
+            return JsonResponse({"message": _("error.upload-image.invalid-request")})
 
         # check extension
         file_name_suffix = pathlib.Path(file_obj.name).suffix
 
-        if file_name_suffix not in [
+        if file_name_suffix.lower() not in [
             ".jpg",
             ".png",
             ".gif",
             ".jpeg",
             ".webp",
         ]:
+            return JsonResponse({"message": _("error.upload-image.invalid-format")})
+
+        # validate the actual content is a real image and not a renamed payload
+        try:
+            Image.open(file_obj).verify()
+            file_obj.seek(0)
+        except Exception:
             return JsonResponse({"message": _("error.upload-image.invalid-format")})
 
         # create file name and path

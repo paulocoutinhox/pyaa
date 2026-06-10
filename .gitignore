@@ -132,3 +132,6 @@ bun.lock
 
 # Claude
 .claude
+
+# Vite
+/apps/web/static/frontend

@@ -93,6 +93,11 @@ def get_user_from_token(token: str) -> User:
 
     try:
         user = User.objects.get(id=user_id)
-        return user
     except User.DoesNotExist:
         raise ValueError("User not found")
+
+    # reject tokens of deactivated accounts
+    if not user.is_active:
+        raise ValueError("User is inactive")
+
+    return user
