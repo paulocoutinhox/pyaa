@@ -86,7 +86,7 @@ These tags discover the entry points in the manifest and generate the `<link>` a
 1. Start the asset watcher: `make frontend-dev`
 2. Start the Django server: `make run`
 3. Edit templates, CSS, or JS files.
-4. Vite rebuilds on save; refresh the browser to see the change.
+4. Vite rebuilds on save. Refresh the browser to see the change.
 
 There is no HMR — saving rebuilds the bundle and you refresh the page.
 
@@ -97,6 +97,8 @@ There is no HMR — saving rebuilds the bundle and you refresh the page.
 ## JavaScript
 
 All behavior is written as ES modules under `apps/web/static/vendor/frontend/js/`, imported from `frontend.js`. There are no global functions and no inline `onclick`/`onsubmit` handlers — modules attach event listeners and read data from `data-*` attributes. To add behavior, create a module and import it in `frontend.js`.
+
+To pass values from Django to the bundle (config, element data, translated strings, full JS i18n), see [Passing Data from Django to JavaScript](frontend-data.md).
 
 The image lightbox uses **GLightbox** (vanilla, no jQuery) and detects image dimensions automatically. The Django admin keeps its own vendored jQuery stack, which is unrelated to this pipeline.
 

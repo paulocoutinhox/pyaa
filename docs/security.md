@@ -18,5 +18,5 @@ These are enforced in the code:
 - **Password recovery**: recovery tokens expire after `PASSWORD_RECOVERY_TOKEN_TTL` (default 1 hour).
 - **Password strength**: `AUTH_PASSWORD_VALIDATORS` are enforced on signup, password reset, password change and the customer API.
 - **Editor uploads**: the `/upload-image/` endpoint requires an authenticated staff user and validates that the uploaded file is a real image.
-- **Payments**: the Stripe webhook verifies the signature (`STRIPE_WEBHOOK_SECRET`); checkout prices come from the server-side plan/product, never from the request.
+- **Payments**: the Stripe webhook verifies the signature (`STRIPE_WEBHOOK_SECRET`), and checkout prices come from the server-side plan/product, never from the request.
 - **Ownership**: account resources (subscriptions, purchases, credits) are always scoped to the authenticated customer.
