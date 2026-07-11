@@ -229,6 +229,31 @@ class ProcessCancelSubscriptionTest(StripeGatewayTestBase):
         self.assertEqual(stored[0].level, messages_constants.SUCCESS)
 
     @patch("apps.shop.gateways.stripe.stripe.Subscription.cancel")
+    def test_cancel_without_external_id_cancels_locally(self, mock_cancel):
+        subscription = Subscription.objects.create(
+            customer=self.customer,
+            plan=self.plan,
+            external_id=None,
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
+        )
+
+        request = self._request_with_messages()
+        result = gateway.process_cancel_for_subscription(request, subscription)
+
+        mock_cancel.assert_not_called()
+        self.assertEqual(result["action"], PaymentGatewayCancelAction.REDIRECT)
+
+        subscription.refresh_from_db()
+        self.assertEqual(subscription.status, SubscriptionStatus.CANCELED)
+
+        from django.contrib import messages as messages_constants
+
+        stored = list(request._messages)
+        self.assertEqual(len(stored), 1)
+        self.assertEqual(stored[0].level, messages_constants.SUCCESS)
+
+    @patch("apps.shop.gateways.stripe.stripe.Subscription.cancel")
     def test_cancel_failure_adds_error_message(self, mock_cancel):
         mock_cancel.side_effect = Exception("boom")
 
@@ -357,6 +382,41 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         self.assertEqual(log.customer, self.customer)
         self.assertEqual(log.amount, Decimal("9.99"))
         self.assertEqual(log.currency, "USD")
+
+    @patch("apps.shop.gateways.stripe.stripe.Webhook.construct_event")
+    def test_records_external_id_from_stripe_object_event(self, mock_construct):
+        # stripe delivers a StripeObject, not a plain dict; .get() raises on it
+        from stripe import StripeObject
+
+        subscription = Subscription.objects.create(
+            customer=self.customer,
+            plan=self.plan,
+            external_id=None,
+            status=SubscriptionStatus.ACTIVE,
+            site=self.site,
+        )
+
+        mock_construct.return_value = StripeObject.construct_from(
+            {
+                "type": "checkout.session.completed",
+                "data": {
+                    "object": {
+                        "metadata": {"token": subscription.token},
+                        "subscription": "sub_live_1",
+                        "amount_total": 100,
+                        "currency": "brl",
+                        "client_reference_id": subscription.token,
+                    }
+                },
+            },
+            "sk_test",
+        )
+
+        result = gateway.process_webhook(self._webhook_request())
+
+        self.assertEqual(result["response"].status_code, 200)
+        subscription.refresh_from_db()
+        self.assertEqual(subscription.external_id, "sub_live_1")
 
     @patch("apps.shop.gateways.stripe.stripe.Webhook.construct_event")
     def test_subscription_deleted_calls_canceled(self, mock_construct):

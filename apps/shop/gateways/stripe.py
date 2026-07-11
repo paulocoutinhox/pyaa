@@ -186,8 +186,12 @@ def process_cancel_for_subscription(request, subscription):
     redirect_url = reverse("account_profile")
 
     try:
-        # attempt to cancel the stripe subscription
-        stripe.Subscription.cancel(stripe_subscription)
+        # a subscription without a stripe id was never billed there, cancel it locally
+        if stripe_subscription:
+            stripe.Subscription.cancel(stripe_subscription)
+        else:
+            subscription.process_canceled()
+
         messages.success(request, _("message.subscription-canceled"))
     except Exception as e:
         # handle any exceptions and append the error message using format for translations
@@ -259,7 +263,7 @@ def handle_subscription_event(event_type, event_data, token, event_log):
 
     # update external id if we have it and it's not set
     if not subscription.external_id and "subscription" in event_data:
-        subscription.external_id = event_data.get("subscription")
+        subscription.external_id = event_data["subscription"]
         subscription.save(update_fields=["external_id"])
 
     # handle based on event type
@@ -376,7 +380,7 @@ def extract_token(event_data):
 
     # check in client reference id
     if "client_reference_id" in event_data:
-        return event_data.get("client_reference_id")
+        return event_data["client_reference_id"]
 
     # check in subscription details metadata
     if "subscription_details" in event_data:
