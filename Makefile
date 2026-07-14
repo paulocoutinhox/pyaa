@@ -18,6 +18,7 @@ help:
 	@echo "- fixtures"
 	@echo ""
 	@echo "- run"
+	@echo "- run-async"
 	@echo "- run-worker"
 	@echo ""
 	@echo "- test"
