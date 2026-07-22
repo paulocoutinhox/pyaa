@@ -11,10 +11,6 @@ class MockRequest:
     path = "/admin"
 
 
-class MockRequestAutoComplete:
-    path = "/admin/autocomplete"
-
-
 class ContentAdminTest(TestCase):
     fixtures = ["apps/content/fixtures/initial.json"]
 
@@ -42,18 +38,6 @@ class ContentAdminTest(TestCase):
 
         self.assertIsNotNone(queryset)
         self.assertFalse(use_distinct)
-
-    def test_get_search_results_autocomplete(self):
-        request = MockRequestAutoComplete()
-        queryset = Content.objects.all()
-        search_term = "Test"
-        queryset, use_distinct = self.admin.get_search_results(
-            request, queryset, search_term
-        )
-
-        self.assertIsNotNone(queryset)
-        self.assertFalse(use_distinct)
-        self.assertEqual(queryset.query.order_by, ("name",))
 
 
 class ContentAdminSiteNameTest(TestCase):

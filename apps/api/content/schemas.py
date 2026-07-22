@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from apps.api.language.schemas import LanguageSchema
 from pyaa.fastapi.schemas import BaseSchema
@@ -19,3 +19,13 @@ class ContentSchema(BaseSchema):
     language: LanguageSchema | None
     published_at: datetime | None
     active: bool
+
+
+class ContentCreateSchema(BaseSchema):
+    title: str
+    content: str = ""
+    tag: str | None = None
+    category_id: int | None = None
+    language_id: int | None = None
+    published_at: date | None = None
+    active: bool = True

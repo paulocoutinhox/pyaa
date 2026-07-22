@@ -2,6 +2,7 @@ import ipaddress
 
 from django.conf import settings
 from django.core.cache import cache
+from django.db import transaction
 from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import get_language
@@ -131,31 +132,33 @@ class BannerHelper:
             seconds=settings.BANNER_ACCESS_INTERVAL
         )
 
-        # check if there's any access within the interval for this type
-        has_recent_access = BannerAccess.objects.filter(
-            banner=banner,
-            ip_address=client_ip,
-            access_type=access_type,
-            created_at__gte=interval_start,
-        ).exists()
-
-        if has_recent_access:
-            return False
-
         # get country code from cloudflare header
         country_code = request.META.get("HTTP_CF_IPCOUNTRY", "").upper()
 
         if not country_code or len(country_code) != 2:
             country_code = None
 
-        # create access record
-        BannerAccess.objects.create(
-            banner=banner,
-            ip_address=client_ip,
-            customer=customer,
-            access_type=access_type,
-            country_code=country_code,
-            created_at=now,
-        )
+        # lock the banner row so concurrent tracking cannot bypass the interval check
+        with transaction.atomic():
+            Banner.objects.select_for_update().get(pk=banner.pk)
+
+            has_recent_access = BannerAccess.objects.filter(
+                banner=banner,
+                ip_address=client_ip,
+                access_type=access_type,
+                created_at__gte=interval_start,
+            ).exists()
+
+            if has_recent_access:
+                return False
+
+            BannerAccess.objects.create(
+                banner=banner,
+                ip_address=client_ip,
+                customer=customer,
+                access_type=access_type,
+                country_code=country_code,
+                created_at=now,
+            )
 
         return True

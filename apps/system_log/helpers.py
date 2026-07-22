@@ -1,5 +1,4 @@
 from django.contrib.sites.models import Site
-from django.utils.translation import gettext_lazy as _
 
 from apps.customer.models import Customer
 from apps.system_log import enums

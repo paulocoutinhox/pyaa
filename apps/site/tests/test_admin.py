@@ -24,7 +24,13 @@ class SiteProfileAdminTest(TestCase):
     def test_readonly_fields_with_object(self):
         admin = SiteProfileAdmin(SiteProfile, AdminSite())
         readonly = admin.get_readonly_fields(self.request, self.profile)
-        self.assertIn("site", readonly)
+        link_field = readonly[-1]
+
+        self.assertTrue(callable(link_field))
+        self.assertEqual(
+            link_field.short_description,
+            SiteProfile._meta.get_field("site").verbose_name,
+        )
 
     def test_get_form_removes_link_field(self):
         form = self.admin.get_form(self.request, self.profile)

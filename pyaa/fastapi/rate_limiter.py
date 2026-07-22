@@ -1,14 +1,15 @@
+from django.conf import settings
 from fastapi import FastAPI, Request
 from starlette.middleware.base import BaseHTTPMiddleware
 from throttled.fastapi import IPLimiter, TotalLimiter
 from throttled.models import Rate
 from throttled.storage.memory import MemoryStorage
 
-PATHS = ("/api/",)
+API_PREFIX = f"{settings.PYAA_API_PREFIX}/"
 
 
 def should_apply_limiter(request: Request) -> bool:
-    return request.url.path.startswith(PATHS)
+    return request.url.path.startswith(API_PREFIX)
 
 
 class ConditionalLimiterMiddleware(BaseHTTPMiddleware):

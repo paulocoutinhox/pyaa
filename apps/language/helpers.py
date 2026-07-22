@@ -23,7 +23,7 @@ class LanguageHelper:
         ).first()
 
         # if not found, try to get the language without the region code
-        if not language and "-" in browser_language:
+        if not language and browser_language and "-" in browser_language:
             language_code = browser_language.split("-")[0]
             language = Language.objects.filter(code_iso_639_1=language_code).first()
 

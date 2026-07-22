@@ -610,8 +610,12 @@ class CustomerHelper:
             # find customer with matching activation token
             customer = Customer.objects.select_for_update().get(activate_token=token)
 
-            # activate the user
+            # a customer whose user was removed cannot be activated
             user = customer.user
+            if not user:
+                return None
+
+            # activate the user
             user.is_active = True
             user.save(update_fields=["is_active"])
 

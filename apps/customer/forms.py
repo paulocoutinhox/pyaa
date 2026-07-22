@@ -17,7 +17,6 @@ from apps.customer.helpers import CustomerHelper
 from apps.customer.models import Customer
 from apps.language.helpers import LanguageHelper
 from apps.user.helpers import UserHelper
-from apps.user.models import User
 from pyaa.fields import OnlyNumberCharField
 from pyaa.mixins import SanitizeDigitFieldsMixin
 

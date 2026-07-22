@@ -487,7 +487,7 @@ class SubscriptionModelTest(TestCase):
         subscription.process_refunded()
         self.customer.refresh_from_db()
 
-        self.assertEqual(subscription.status, SubscriptionStatus.CANCELED)
+        self.assertEqual(subscription.status, SubscriptionStatus.REFUNDED)
         self.assertEqual(self.customer.credits, self.plan.credits)
 
     def test_process_canceled(self):
@@ -647,7 +647,7 @@ class SubscriptionModelTest(TestCase):
         subscription.process_refunded()
         subscription.refresh_from_db()
 
-        self.assertEqual(subscription.status, SubscriptionStatus.CANCELED)
+        self.assertEqual(subscription.status, SubscriptionStatus.REFUNDED)
         self.assertIsNotNone(subscription.expire_at)
         self.assertAlmostEqual(
             subscription.expire_at,
@@ -727,7 +727,7 @@ class CreditLogModelTest(TestCase):
         )
 
     def test_credit_log_creation(self):
-        credit_log = CreditLog.objects.create(
+        CreditLog.objects.create(
             object_id=1,
             object_type=ObjectType.GENERAL,
             amount=100,

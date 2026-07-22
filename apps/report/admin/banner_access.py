@@ -36,10 +36,10 @@ class BannerAccessSummaryAdmin(BaseReportAdmin):
         date_gte, date_lte = self.get_date_range("created_at", request)
         qs = self.apply_date_filter(qs, "accesses__created_at", date_gte, date_lte)
 
-        # apply active filter if set
+        # apply active filter only for the valid boolean values sent by the filter ui
         active_filter = request.GET.get("active__exact")
-        if active_filter is not None:
-            qs = qs.filter(active=active_filter)
+        if active_filter in {"0", "1"}:
+            qs = qs.filter(active=active_filter == "1")
 
         # group by banner and include site and language as banner info
         data = list(

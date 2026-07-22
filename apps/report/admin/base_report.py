@@ -107,6 +107,10 @@ class BaseReportAdmin(admin.ModelAdmin, DateParserMixin):
         self.init_chart_lib()
         response = super().changelist_view(request, extra_context=extra_context)
 
+        # a redirect response (e.g. invalid filter params) carries no context to enrich
+        if not hasattr(response, "context_data"):
+            return response
+
         # add general context data
         context_data = self.add_general_context(request)
         response.context_data.update(context_data)

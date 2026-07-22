@@ -146,7 +146,7 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
 
-        super(Product, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class ProductFile(models.Model):
@@ -430,7 +430,7 @@ class Plan(models.Model):
 
         self.currency = self.currency.upper()
 
-        super(Plan, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def get_frequency_in_days(self):
         if self.frequency_type is None or not self.frequency_type:
@@ -581,8 +581,8 @@ class Subscription(models.Model):
 
     @transaction.atomic
     def process_refunded(self):
-        # update the subscription status to canceled
-        self.status = enums.SubscriptionStatus.CANCELED
+        # update the subscription status to refunded
+        self.status = enums.SubscriptionStatus.REFUNDED
 
         # calculate the expiration based on the current expire_at or the current time
         days_to_add = self.plan.get_frequency_in_days()
@@ -1075,6 +1075,14 @@ class EventLog(models.Model):
         default=0,
     )
 
+    event_id = models.CharField(
+        _("model.field.event-id"),
+        max_length=255,
+        blank=True,
+        null=True,
+        unique=True,
+    )
+
     currency = models.CharField(
         _("model.field.currency"),
         max_length=3,
@@ -1111,4 +1119,4 @@ class EventLog(models.Model):
         if self.currency:
             self.currency = self.currency.upper()
 
-        super(EventLog, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)

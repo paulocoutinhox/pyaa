@@ -1,10 +1,11 @@
 import base64
 import io
 
-import matplotlib.pyplot as plt
 from django.contrib import admin
 from django.db.models import Count
 from django.utils.translation import gettext as _
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.figure import Figure
 
 from apps.customer import filters
 from apps.customer.enums import CustomerGender
@@ -39,7 +40,9 @@ class CustomerGendeSummaryAdmin(BaseReportAdmin):
         data = list(qs.values("gender").annotate(**metrics).order_by("-total"))
 
         for item in data:
-            item["gender_display"] = CustomerGender(item["gender"]).label
+            item["gender_display"] = (
+                CustomerGender(item["gender"]).label if item["gender"] else "-"
+            )
 
         data_footer = dict(qs.aggregate(**metrics))
 
@@ -59,16 +62,17 @@ class CustomerGendeSummaryAdmin(BaseReportAdmin):
         }
         colors = [color_map.get(item["gender"], "#000000") for item in data]
 
-        # generate chart as base64 string
-        plt.figure(figsize=(6, 6))
-        plt.pie(sizes, labels=labels, autopct="%1.1f%%", startangle=140, colors=colors)
-        plt.axis("equal")
+        # generate chart with a local figure to avoid the non-thread-safe pyplot global state
+        fig = Figure(figsize=(6, 6))
+        FigureCanvasAgg(fig)
+        ax = fig.subplots()
+        ax.pie(sizes, labels=labels, autopct="%1.1f%%", startangle=140, colors=colors)
+        ax.axis("equal")
 
         buffer = io.BytesIO()
-        plt.savefig(buffer, format=self.chart_format, dpi=self.chart_dpi)
+        fig.savefig(buffer, format=self.chart_format, dpi=self.chart_dpi)
         buffer.seek(0)
         chart_image = base64.b64encode(buffer.getvalue()).decode("utf-8")
         buffer.close()
-        plt.close()
 
         return f"data:image/png;base64,{chart_image}"

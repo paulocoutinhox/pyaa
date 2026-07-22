@@ -20,7 +20,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, re_path
-from django.utils.translation import gettext_lazy as _
 
 from apps.web.urls import urlpatterns as web_urlpatterns
 
