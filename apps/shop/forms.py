@@ -119,3 +119,21 @@ class CheckoutForm(forms.Form):
         self.show_address_data = False
         self.show_discount_data = False
         self.show_price_data = True
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        if self.checkout_step == CheckoutStep.CHECKOUT:
+            object_type = self.object_type
+
+            if object_type == ObjectType.SUBSCRIPTION:
+                # validate subscription if needed
+                pass
+            elif object_type == ObjectType.CREDIT_PURCHASE:
+                # validate credit purchase if needed
+                pass
+            elif object_type == ObjectType.PRODUCT_PURCHASE:
+                # validate product purchase if needed
+                pass
+
+        return cleaned_data
