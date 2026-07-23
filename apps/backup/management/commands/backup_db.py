@@ -3,7 +3,6 @@ import os
 import shutil
 import subprocess
 import tempfile
-import uuid
 from datetime import datetime
 
 import boto3
@@ -65,7 +64,7 @@ class Command(BaseCommand):
         db_name = db_settings.get("NAME", "")
         backup_dir = tempfile.gettempdir()
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        backup_filename = f"{timestamp}-{uuid.uuid4().hex}.sqlite3"
+        backup_filename = f"{timestamp}.sqlite3"
         backup_filepath = os.path.join(backup_dir, backup_filename)
 
         try:
@@ -110,7 +109,7 @@ class Command(BaseCommand):
         db_password = db_settings.get("PASSWORD", "")
         backup_dir = tempfile.gettempdir()
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        backup_filename = f"{timestamp}-{uuid.uuid4().hex}.sql"
+        backup_filename = f"{timestamp}.sql"
         backup_filepath = os.path.join(backup_dir, backup_filename)
 
         dump_command = [
