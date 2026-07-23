@@ -78,6 +78,9 @@ class GalleryAdmin(admin.ModelAdmin):
         ),
     )
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs
 
     @admin.display(
         ordering="site__name",
