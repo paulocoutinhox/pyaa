@@ -191,6 +191,8 @@ class Customer(models.Model):
 
             if not site_id:
                 raise ValidationError({"site_id": _("error.site-id-required")})
+        else:
+            site_id = self.site.id
 
     def setup_initial_data(self):
         if not self.pk:

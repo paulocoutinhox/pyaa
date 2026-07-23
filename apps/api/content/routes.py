@@ -36,6 +36,10 @@ def _create_content(data: ContentCreateSchema) -> ContentSchema:
     return ContentSchema.model_validate(content)
 
 
-@router.post("", response_model=ContentSchema, dependencies=[Depends(require_permission("content.add_content"))])
+@router.post(
+    "",
+    response_model=ContentSchema,
+    dependencies=[Depends(require_permission("content.add_content"))],
+)
 async def create_content(data: ContentCreateSchema):
     return await _create_content(data)
