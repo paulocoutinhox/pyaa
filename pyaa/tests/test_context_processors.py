@@ -21,7 +21,7 @@ class SiteProcessorTest(TestCase):
 
         with patch(
             "pyaa.context_processors.Site.objects.get_current",
-            side_effect=Exception("boom"),
+            side_effect=Site.DoesNotExist,
         ):
             result = site_processor(request)
 

@@ -224,8 +224,13 @@ def process_webhook(request):
         return {"response": JsonResponse({"error": f"error: {str(e)}"}, status=500)}
 
     # extract event details
+    event_id = event["id"]
     event_type = event["type"]
     event_data = event["data"]["object"]
+
+    # skip duplicate deliveries so retried webhooks never process the same event twice
+    if EventLog.objects.filter(event_id=event_id).exists():
+        return {"response": JsonResponse({"status": "success"}, status=200)}
 
     # extract token from metadata
     token = extract_token(event_data)
@@ -235,7 +240,7 @@ def process_webhook(request):
         return {"response": JsonResponse({"status": "success"}, status=200)}
 
     # create event log
-    event_log = create_event_log(event_type, event_data)
+    event_log = create_event_log(event_id, event_type, event_data)
 
     # determine the object type based on token prefix
     if token.startswith("subscription."):
@@ -328,11 +333,12 @@ def handle_product_purchase_event(event_type, event_data, token, event_log):
         purchase.process_refunded()
 
 
-def create_event_log(event_type, event_data):
+def create_event_log(event_id, event_type, event_data):
     amount, currency = extract_amount_and_currency(event_data)
 
     event_log = EventLog.objects.create(
         site=Site.objects.get_current(),
+        event_id=event_id,
         status=event_type,
         amount=amount,
         currency=currency,

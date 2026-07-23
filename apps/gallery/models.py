@@ -159,4 +159,3 @@ class GalleryPhoto(models.Model):
         return ""
 
     preview.short_description = _("model.field.preview")
-    preview.allow_tags = True

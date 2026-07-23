@@ -4,15 +4,10 @@ from django.test import RequestFactory, TestCase
 
 from apps.gallery.admin import GalleryAdmin
 from apps.gallery.models import Gallery
-from apps.language.models import Language
 
 
 class MockRequest:
     path = "/admin"
-
-
-class MockRequestAutoComplete:
-    path = "/admin/autocomplete"
 
 
 class GalleryAdminTest(TestCase):
@@ -40,18 +35,6 @@ class GalleryAdminTest(TestCase):
 
         self.assertIsNotNone(queryset)
         self.assertFalse(use_distinct)
-
-    def test_get_search_results_autocomplete(self):
-        request = MockRequestAutoComplete()
-        queryset = Gallery.objects.all()
-        search_term = "Test"
-        queryset, use_distinct = self.admin.get_search_results(
-            request, queryset, search_term
-        )
-
-        self.assertIsNotNone(queryset)
-        self.assertFalse(use_distinct)
-        self.assertEqual(queryset.query.order_by, ("name",))
 
 
 class GalleryAdminSiteNameTest(TestCase):

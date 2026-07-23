@@ -71,7 +71,7 @@ class Command(BaseCommand):
             )
 
     def decompress_file(self, compressed_path):
-        decompressed_path = compressed_path.rstrip(".gz")
+        decompressed_path = compressed_path.removesuffix(".gz")
 
         with gzip.open(compressed_path, "rb") as f_in:
             with open(decompressed_path, "wb") as f_out:

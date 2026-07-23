@@ -54,7 +54,7 @@ class ReadonlyLinksMixin:
                     field_name
                 ).verbose_name
 
-                link_readonly_fields.append(field_name)
+                link_readonly_fields.append(link_widget)
 
         self._link_readonly_fields = link_readonly_fields
 

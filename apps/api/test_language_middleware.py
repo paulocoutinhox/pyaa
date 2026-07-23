@@ -13,7 +13,7 @@ def lang_client():
     app = FastAPI()
 
     @app.get("/lang")
-    def get_lang():
+    async def get_lang():
         return {"lang": translation.get_language()}
 
     language.setup(app)

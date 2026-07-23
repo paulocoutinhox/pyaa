@@ -267,7 +267,7 @@ def account_subscriptions_view(request):
     )
 
     # get the page object
-    page_obj = paginator.page(page)
+    page_obj = paginator.get_page(page)
 
     return render(
         request,
@@ -314,7 +314,7 @@ def account_credits_view(request):
     )
 
     # get the page object
-    page_obj = paginator.page(page)
+    page_obj = paginator.get_page(page)
 
     return render(
         request,
@@ -344,7 +344,7 @@ def account_credit_purchases_view(request):
     )
 
     # get the page object
-    page_obj = paginator.page(page)
+    page_obj = paginator.get_page(page)
 
     return render(
         request,
@@ -374,7 +374,7 @@ def account_product_purchases_view(request):
     )
 
     # get the page object
-    page_obj = paginator.page(page)
+    page_obj = paginator.get_page(page)
 
     return render(
         request,

@@ -63,7 +63,7 @@ class LanguageAdmin(admin.ModelAdmin):
     )
 
     def get_queryset(self, request):
-        qs = super(LanguageAdmin, self).get_queryset(request)
+        qs = super().get_queryset(request)
         return qs
 
     def get_search_results(self, request, queryset, search_term):

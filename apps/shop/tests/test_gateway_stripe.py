@@ -1,6 +1,6 @@
 from decimal import Decimal
 from types import SimpleNamespace
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 import stripe
 from django.contrib.auth import get_user_model
@@ -334,6 +334,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
     @patch("apps.shop.gateways.stripe.stripe.Webhook.construct_event")
     def test_no_token_returns_success_without_logging(self, mock_construct):
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "checkout.session.completed",
             "data": {"object": {"id": "evt_no_token"}},
         }
@@ -354,6 +355,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "invoice.payment_succeeded",
             "data": {
                 "object": {
@@ -398,6 +400,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
 
         mock_construct.return_value = StripeObject.construct_from(
             {
+                "id": "evt_test",
                 "type": "checkout.session.completed",
                 "data": {
                     "object": {
@@ -429,6 +432,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "customer.subscription.deleted",
             "data": {"object": {"metadata": {"token": subscription.token}}},
         }
@@ -454,6 +458,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "charge.refunded",
             "data": {
                 "object": {
@@ -473,6 +478,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
     @patch("apps.shop.gateways.stripe.stripe.Webhook.construct_event")
     def test_subscription_not_found_is_ignored(self, mock_construct):
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "invoice.payment_succeeded",
             "data": {"object": {"metadata": {"token": "subscription.missing"}}},
         }
@@ -495,6 +501,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "checkout.session.completed",
             "data": {
                 "object": {
@@ -527,6 +534,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "payment_intent.canceled",
             "data": {"object": {"metadata": {"token": purchase.token}}},
         }
@@ -549,6 +557,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "charge.refunded",
             "data": {"object": {"metadata": {"token": purchase.token}}},
         }
@@ -562,6 +571,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
     @patch("apps.shop.gateways.stripe.stripe.Webhook.construct_event")
     def test_credit_purchase_not_found_is_ignored(self, mock_construct):
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "checkout.session.completed",
             "data": {"object": {"metadata": {"token": "credit-purchase.missing"}}},
         }
@@ -583,6 +593,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "checkout.session.completed",
             "data": {
                 "object": {
@@ -615,6 +626,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "payment_intent.canceled",
             "data": {"object": {"metadata": {"token": purchase.token}}},
         }
@@ -637,6 +649,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "charge.refunded",
             "data": {"object": {"metadata": {"token": purchase.token}}},
         }
@@ -650,6 +663,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
     @patch("apps.shop.gateways.stripe.stripe.Webhook.construct_event")
     def test_product_purchase_not_found_is_ignored(self, mock_construct):
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "checkout.session.completed",
             "data": {"object": {"metadata": {"token": "product-purchase.missing"}}},
         }
@@ -663,6 +677,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
     def test_unknown_token_prefix_not_dispatched(self, mock_construct):
         # a token with no recognized prefix should not be dispatched
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "checkout.session.completed",
             "data": {"object": {"metadata": {"token": "voucher.unknown"}}},
         }
@@ -684,6 +699,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "invoice.created",
             "data": {"object": {"metadata": {"token": subscription.token}}},
         }
@@ -714,6 +730,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "invoice.created",
             "data": {"object": {"metadata": {"token": purchase.token}}},
         }
@@ -744,6 +761,7 @@ class ProcessWebhookDispatchTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "invoice.created",
             "data": {"object": {"metadata": {"token": purchase.token}}},
         }
@@ -788,6 +806,7 @@ class WebhookRealProcessTest(StripeGatewayTestBase):
         )
 
         mock_construct.return_value = {
+            "id": "evt_test",
             "type": "checkout.session.completed",
             "data": {"object": {"client_reference_id": purchase.token}},
         }
@@ -805,10 +824,12 @@ class WebhookRealProcessTest(StripeGatewayTestBase):
 class CreateEventLogTest(StripeGatewayTestBase):
     def test_create_event_log_sets_amount_and_currency(self):
         event_log = gateway.create_event_log(
+            "evt_test",
             "invoice.payment_succeeded",
             {"amount_paid": 1500, "currency": "eur"},
         )
 
+        self.assertEqual(event_log.event_id, "evt_test")
         self.assertEqual(event_log.status, "invoice.payment_succeeded")
         self.assertEqual(event_log.amount, Decimal("15"))
         self.assertEqual(event_log.currency, "EUR")

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.db import models, transaction
+from django.db import transaction
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from nonrelated_inlines.admin import NonrelatedTabularInline
@@ -17,12 +17,6 @@ class BaseEventLogInlineAdmin(NonrelatedTabularInline):
     can_delete = False
     ordering = ["-id"]
     exclude = ["id", "object_type", "object_id", "customer", "description"]
-
-    readonly_fields = ["description_modal"] + [
-        field.name
-        for field in models.EventLog._meta.fields
-        if field.name != "description"
-    ]
 
     readonly_fields = (
         "site",
