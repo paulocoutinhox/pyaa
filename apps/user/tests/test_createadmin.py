@@ -91,3 +91,38 @@ class CreateAdminCommandTest(TestCase):
             )
 
         self.assertIn("Super user creation failed", str(ctx.exception))
+
+
+class CreateAdminUsernameTest(TestCase):
+    """
+    `make create-su` passes --username, and it used to be dropped on the way
+    through the manager: the account came out with a uuid for a login.
+    """
+
+    def test_the_username_that_was_passed_is_the_one_stored(self):
+        call_command(
+            "createadmin",
+            username="admin",
+            email="admin@admin.com",
+            password="admin",
+            interactive=False,
+        )
+
+        user = User.objects.get(email="admin@admin.com")
+
+        self.assertEqual(user.username, "admin")
+        self.assertTrue(user.check_password("admin"))
+        self.assertTrue(user.is_superuser)
+
+    def test_an_account_with_no_username_still_gets_a_unique_one(self):
+        call_command(
+            "createadmin",
+            email="nameless@example.com",
+            password="password123",
+            interactive=False,
+        )
+
+        user = User.objects.get(email="nameless@example.com")
+
+        self.assertTrue(user.username)
+        self.assertNotEqual(user.username, "nameless@example.com")

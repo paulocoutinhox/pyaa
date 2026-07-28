@@ -30,6 +30,9 @@ class UserManager(BaseUserManager):
             site_id=site_id,
         )
 
+        if username:
+            extra_fields["username"] = username
+
         user = self.model(**extra_fields)
         user.set_password(password)
         user.save(using=self._db)
